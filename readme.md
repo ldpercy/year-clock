@@ -10,13 +10,17 @@ For a 'second hand' you could have the time of day.
 
 Existing
 --------
-It's already been done of course, apparently goes back to Galileo.
+It's already been done of course.
+Over two thousand years ago, the front face of the [Antikythera mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism).
 
+More recently:
 
 	http://year-clock.net/
 
 	http://andybrice.net/blog/2010/01/30/year-clock/
 	https://www.flickr.com/photos/squidthing/sets/72157622655107168/
+
+	http://www.levitated.net/daily/levCelestes.html
 
 	https://forums.tumult.com/t/galileos-celestial-calendar/15896
 
