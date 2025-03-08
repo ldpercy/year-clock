@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Year Clock</title>
+    <link rel="stylesheet" href="css/yearclock.css">
+
+    <meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
+    <meta property="og:image" content="http://year-clock.net/img/facebook-thumb.png" />
+  </head>
+  <body onload="drawClock();">
+    <svg id="clock" width="300" height="300" viewBox="-150 -150 300 300" preserveAspectRatio="xMidYMid meet">
+      <circle cx="0" cy="0" r="150" class="face year"/>
+    </svg>
+
+    <footer>
+      The Year Clock was created by <a href="http://andybrice.net">Andy Brice</a> and <a href="http://bricedesign.co.uk">Ian Brice</a> to help visualise the long-term passage of time.
+    </footer>
+
+    <script src="js/snap.svg-min.js"></script>
+    <script src="js/yearclock.js"></script>
+  </body>
+</html>
