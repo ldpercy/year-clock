@@ -1,4 +1,37 @@
-// URL Parameters //
+/* Configuration
+*/
+
+
+// Clock Style
+const clockStyle = {
+	innerRadius: 116,
+	outerRadius: 140,
+	needleLength: 128,
+	monthLabelRadius: 123.5,	// how far out from the center the month-titles are positioned
+	monthLabelSize: 6,
+	weekdayTickLength: 5,
+	weekdayTickWidth: 0.3,
+	weekendTickLength: 5,
+	weekendTickWidth: 0.8,
+}
+
+// i18n
+const gregLocal = {
+	"en": [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+	"es": [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+	"fr": [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+	"zh": [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
+	"hi": [ "जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर" ],
+	"ru": [ "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" ],
+	"ko": [ "일월", "이월", "삼월", "사월", "오월", "유월", "칠월", "팔월", "구월", "시월", "십일월", "십이월" ]
+}
+
+const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ]
+
+
+
+/* URL Parameters
+*/
 
 function getParameterByName(name)
 {
@@ -11,7 +44,10 @@ function getParameterByName(name)
 	return decodeURIComponent(results[2].replace(/\+/g, " "))
 }
 
-// Geometry //
+
+
+/* Geometry
+*/
 
 Math.TAU = 2 * Math.PI;
 
@@ -122,15 +158,6 @@ function superLang( subLang )
 	return subLang ? subLang.slice( 0, 2 ) : null
 }
 
-const gregLocal = {
-	"en": [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-	"es": [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-	"fr": [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
-	"zh": [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
-	"hi": [ "जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर" ],
-	"ru": [ "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" ],
-	"ko": [ "일월", "이월", "삼월", "사월", "오월", "유월", "칠월", "팔월", "구월", "시월", "십일월", "십이월" ]
-}
 
 const languageParam = superLang( getParameterByName('language') )
 const browserLanguage = superLang( navigator.language || navigator.userLanguage )
@@ -139,7 +166,7 @@ const monthNames = gregLocal[languageParam] || gregLocal[browserLanguage] || gre
 
 // Set Up Months
 
-const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ]
+
 
 const months = monthNames.map(function( monthName, monthNumber )
 {
@@ -165,19 +192,7 @@ for (let date = new Date(year,0); date.getFullYear() <= year; d = incrementDay(d
 	days.push(day)
 }
 
-// Configure Clock Style //
 
-const clockStyle = {
-	innerRadius: 116,
-	outerRadius: 140,
-	needleLength: 128,
-	monthLabelRadius: 123.5,
-	monthLabelSize: 6,
-	weekdayTickLength: 5,
-	weekdayTickWidth: 0.3,
-	weekendTickLength: 7,
-	weekendTickWidth: 0.8,
-}
 
 // Draw Clock //
 
