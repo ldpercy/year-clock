@@ -1,0 +1,61 @@
+body {
+	margin: 0;
+	font-family: "Verdana", sans-serif;
+}
+
+/* Footer */
+
+footer {
+	color: silver;
+	padding: 1em;
+	text-align: center;
+	background-color: white;
+}
+
+a:link {
+	color: #7ABECF;
+}
+
+/* Clock */
+
+svg#clock {
+	display: block;
+	background-color: #e6e6e6;
+	width: 90vw;
+	height: 90vh;
+	padding: 5vh 5vw;
+}
+
+svg#clock .face   { fill: white; }
+
+svg#clock .segment.jan { fill: #7ABECF }
+svg#clock .segment.feb { fill: #5FB69C }
+svg#clock .segment.mar { fill: #2EA544 }
+svg#clock .segment.apr { fill: #AEC013 }
+svg#clock .segment.may { fill: #F3C301 }
+svg#clock .segment.jun { fill: #F18E17 }
+svg#clock .segment.jul { fill: #E42D1A }
+svg#clock .segment.aug { fill: #983021 }
+svg#clock .segment.sep { fill: #89493B }
+svg#clock .segment.oct { fill: #7C5E57 }
+svg#clock .segment.nov { fill: #6F6E6D }
+svg#clock .segment.dec { fill: #738C92 }
+
+svg#clock .tick { stroke: white }
+
+svg#clock .label.month { fill: white }
+svg#clock .label.year { fill: silver }
+
+svg#clock .needle { stroke: black; fill: black }
+svg#clock .pivot  { fill: black }
+
+/* Dark Theme */
+
+svg#clock.dark { background-color: #282828 }
+svg#clock.dark .face { fill: black }
+svg#clock.dark .tick { stroke: black }
+svg#clock.dark .label.month { fill: black }
+svg#clock.dark .label.year { fill: #282828 }
+
+svg#clock.dark .needle { stroke: white }
+svg#clock.dark .pivot { fill: white }

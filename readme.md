@@ -7,6 +7,8 @@ For a 'minute hand' you could have the days of the month.
 
 For a 'second hand' you could have the time of day.
 
+If you could sync it with a calendar/schedule of some sort you could highlight certain dates for reminders, add links etc.
+
 
 Existing
 --------
@@ -18,6 +20,7 @@ More recently:
 	http://year-clock.net/
 
 	http://andybrice.net/blog/2010/01/30/year-clock/
+
 	https://www.flickr.com/photos/squidthing/sets/72157622655107168/
 
 	http://www.levitated.net/daily/levCelestes.html
@@ -30,9 +33,11 @@ More recently:
 I wonder if I could borrow some of the code from the first one ...
 
 
+Andy Brice version
+------------------
 
-Calendar tie in
----------------
+I'm going to take [Andy Brice's version](year-clock.net) and start tinkering with it.
 
-If you could sync it with a calendar/schedule of some sort you could highlight certain dates for reminders, add links etc.
+
+
 
