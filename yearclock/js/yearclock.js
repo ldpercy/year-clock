@@ -5,15 +5,22 @@
 
 // Clock Style
 const clockStyle = {
-	innerRadius: 116,
-	outerRadius: 140,
-	needleLength: 128,
-	monthLabelRadius: 123.5,	// how far out from the center the month-titles are positioned
-	monthLabelSize: 6,
-	weekdayTickLength: 5,
-	weekdayTickWidth: 0.3,
-	weekendTickLength: 5,
-	weekendTickWidth: 0.8,
+	outerRadius: 1120,
+	innerRadius: 920,
+
+	needleLength: 1000,
+
+	monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
+	monthLabelSize: 48,
+	monthLabelYShift: 0.4,
+
+	weekdayTickLength: 40,
+	weekdayTickWidth: 2,
+	weekendTickLength: 55,
+	weekendTickWidth: 7,
+
+	yearFontSize: 250,
+	yearYShift: 0.4,
 }
 
 // i18n
@@ -233,8 +240,8 @@ function drawClock()
 			.addClass("label month")
 			.attr({
 				'text-anchor': 'middle',
-				'dy': 2,
 				'font-size': clockStyle.monthLabelSize,
+				'dy': clockStyle.monthLabelSize * clockStyle.monthLabelYShift,
 				'transform': svgRotateString(Snap.deg(labelAngle),0,0)
 			})
 	}
@@ -286,26 +293,39 @@ function drawClock()
 		.addClass("label year")
 		.attr({
 			'text-anchor': 'middle',
-			'dy': 10,
-			'font-size': 30
+			'font-size': clockStyle.yearFontSize,
+			'dy': clockStyle.yearFontSize * clockStyle.yearYShift,
 		})
 
 	// Draw Needle //
-
+	/*
 	const needlePathString = [
 		"M",  1.2, 20,
 		"L", -1.2, 20,
 		"L",    0, 0 - clockStyle.needleLength,
 		"Z"
 	].join(" ")
+	*/
+
+	const needlePathString = `
+		M 12 160
+		L -12 160
+		L 0, -1010
+		Z
+		M 30 0
+		A 30,30 0 1 1 -30,00
+		A 30,30 0 1 1 30,00
+		`
+		// A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+
 
 	const needleTransformString = svgRotateString(dateDegrees(now),0,0)
 
 	drawing.path(needlePathString)
 		.transform(needleTransformString)
 		.addClass("needle year")
-		.attr({ "stroke-width": 2, "stroke-linejoin": "round" })
+		//.attr({ "stroke-width": 2, "stroke-linejoin": "round" })
 
-	drawing.circle(0, 0, 5)
-		.addClass("pivot year")
+	//drawing.circle(0, 0, 5)
+	//	.addClass("pivot year")		// this is the centre of the needle
 }
