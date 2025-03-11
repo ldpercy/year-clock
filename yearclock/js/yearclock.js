@@ -6,7 +6,7 @@
 // Clock Style
 const clockStyle = {
 	innerRadius: 116,
-	outerRadius: 140,
+	outerRadius: 1200,
 	needleLength: 128,
 	monthLabelRadius: 123.5,	// how far out from the center the month-titles are positioned
 	monthLabelSize: 6,
