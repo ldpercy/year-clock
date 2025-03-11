@@ -1,6 +1,7 @@
-/* Configuration
-*/
 
+
+/* config & setup
+*/
 
 // Clock Style
 const clockStyle = {
@@ -27,6 +28,17 @@ const gregLocal = {
 }
 
 const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ]
+
+// Language
+
+var userLang = navigator.language || navigator.userLanguage
+
+
+// Set Up Current Date
+
+const dateParam = getParameterByName('date')
+let now = dateParam ? new Date(dateParam) : new Date()
+let year = now.getFullYear()
 
 
 
@@ -108,9 +120,7 @@ function svgRotateString(angle, centre_x, centre_y)
 	return ['rotate(', angle, centre_x, centre_y, ')'].join(' ')
 }
 
-// Language //
 
-var userLang = navigator.language || navigator.userLanguage
 
 // Dates //
 
@@ -145,11 +155,7 @@ function dateDegrees(date)
 	return 360 * dateRatio(date)
 }
 
-// Set Up Current Date
 
-const dateParam = getParameterByName('date')
-let now = dateParam ? new Date(dateParam) : new Date()
-let year = now.getFullYear()
 
 // Internationalization //
 
