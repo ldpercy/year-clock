@@ -293,7 +293,7 @@ function drawClock()
 		.addClass("label year")
 		.attr({
 			'text-anchor': 'middle',
-			'font-size': clockStyle.yearFontSize
+			'font-size': clockStyle.yearFontSize,
 			'dy': clockStyle.yearFontSize * clockStyle.yearYShift,
 		})
 
