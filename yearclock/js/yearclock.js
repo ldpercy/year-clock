@@ -298,21 +298,34 @@ function drawClock()
 		})
 
 	// Draw Needle //
-
+	/*
 	const needlePathString = [
 		"M",  1.2, 20,
 		"L", -1.2, 20,
 		"L",    0, 0 - clockStyle.needleLength,
 		"Z"
 	].join(" ")
+	*/
+
+	const needlePathString = `
+		M 12 160
+		L -12 160
+		L 0, -1010
+		Z
+		M 30 0
+		A 30,30 0 1 1 -30,00
+		A 30,30 0 1 1 30,00
+		`
+		// A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+
 
 	const needleTransformString = svgRotateString(dateDegrees(now),0,0)
 
 	drawing.path(needlePathString)
 		.transform(needleTransformString)
 		.addClass("needle year")
-		.attr({ "stroke-width": 2, "stroke-linejoin": "round" })
+		//.attr({ "stroke-width": 2, "stroke-linejoin": "round" })
 
-	drawing.circle(0, 0, 5)
-		.addClass("pivot year")
+	//drawing.circle(0, 0, 5)
+	//	.addClass("pivot year")		// this is the centre of the needle
 }
