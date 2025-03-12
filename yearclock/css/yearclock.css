@@ -7,6 +7,7 @@ svg#clock {
 	width: 90vw;
 	height: 90vh;
 	padding: 5vh 5vw;
+	font-size: 48px;
 }
 
 svg#clock .face   { fill: white; }
@@ -26,8 +27,18 @@ svg#clock .segment.dec { fill: #738C92 }
 
 svg#clock .tick { stroke: white }
 
-svg#clock .label.month { fill: white }
-svg#clock .label.year { fill: silver }
+svg#clock .label.month {
+	fill: white
+}
+
+svg#clock .label.year {
+	fill: silver;
+	text-anchor: middle;
+	font-size: 5em;
+	/* vertical-align: -50%; */
+	/* baseline-shift: -50%; */
+	transform: translate(0, 0.6cap)
+}
 
 svg#clock .needle {
 	stroke: black;
@@ -36,13 +47,7 @@ svg#clock .needle {
 	stroke-linejoin: round;
 }
 
-/*
-svg#clock .pivot  {
-	fill: black;
-	stroke-width: 15;
-	stroke-linejoin: round;
-}
-*/
+
 
 /* Dark Theme */
 
