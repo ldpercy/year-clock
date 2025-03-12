@@ -25,7 +25,27 @@ svg#clock .segment.oct { fill: #7C5E57 }
 svg#clock .segment.nov { fill: #6F6E6D }
 svg#clock .segment.dec { fill: #738C92 }
 
-svg#clock .tick { stroke: white }
+
+svg#clock .tick {
+	stroke: white
+}
+
+svg#clock .tick.day {
+	stroke-linecap: round;
+}
+
+svg#clock .tick.day.first {
+	stroke-width: 2;
+}
+
+svg#clock .tick.day.weekday {
+	stroke-width: 2;
+}
+
+svg#clock .tick.day.weekend {
+	stroke-width: 7;
+}
+
 
 svg#clock .label.month {
 	fill: white;

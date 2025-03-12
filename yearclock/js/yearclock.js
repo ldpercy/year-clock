@@ -12,12 +12,9 @@ const clockStyle = {
 
 	monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
 	monthLabelSize: 48,
-	// monthLabelYShift: 0.4,
 
 	weekdayTickLength: 40,
-	weekdayTickWidth: 2,
-	weekendTickLength: 55,
-	weekendTickWidth: 7,
+	weekendTickLength: 55,,
 
 	yearFontSize: 250,
 	yearYShift: 0.4,
@@ -256,7 +253,6 @@ function drawClock()
 			// Draw First Tick
 			radialLine(drawing, angle, clockStyle.innerRadius, clockStyle.outerRadius)
 				.addClass("tick day first")
-				.attr({ "stroke-width": clockStyle.weekdayTickWidth })
 		}
 
 		if (!day.weekend && !day.first) // If neither weekend nor first day in month
@@ -266,7 +262,6 @@ function drawClock()
 
 			radialLine(drawing, angle, tickInnerRadius, clockStyle.outerRadius)
 				.addClass("tick day weekday")
-				.attr({ "stroke-width": clockStyle.weekdayTickWidth })
 		}
 
 		if (day.weekend)
@@ -276,10 +271,6 @@ function drawClock()
 
 			radialLine(drawing, angle, tickInnerRadius, clockStyle.outerRadius)
 				.addClass("tick day weekend")
-				.attr({
-					"stroke-width": clockStyle.weekendTickWidth,
-					"stroke-linecap": "round"
-				})
 		}
 	}
 
