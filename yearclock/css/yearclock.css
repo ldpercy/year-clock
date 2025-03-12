@@ -28,7 +28,10 @@ svg#clock .segment.dec { fill: #738C92 }
 svg#clock .tick { stroke: white }
 
 svg#clock .label.month {
-	fill: white
+	fill: white;
+	text-anchor: middle;
+	/* transform: translate(0, 0) */
+	dominant-baseline: middle;
 }
 
 svg#clock .label.year {
@@ -37,7 +40,8 @@ svg#clock .label.year {
 	font-size: 5em;
 	/* vertical-align: -50%; */
 	/* baseline-shift: -50%; */
-	transform: translate(0, 0.6cap)
+	/* transform: translate(0, 0.6cap) */
+	dominant-baseline: central;
 }
 
 svg#clock .needle {

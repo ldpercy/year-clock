@@ -12,7 +12,7 @@ const clockStyle = {
 
 	monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
 	monthLabelSize: 48,
-	monthLabelYShift: 0.4,
+	// monthLabelYShift: 0.4,
 
 	weekdayTickLength: 40,
 	weekdayTickWidth: 2,
@@ -239,11 +239,10 @@ function drawClock()
 		drawing.text(0, yOffset, month.name)
 			.addClass("label month")
 			.attr({
-				'text-anchor': 'middle',
-				//'font-size': clockStyle.monthLabelSize,
-				'dy': clockStyle.monthLabelSize * clockStyle.monthLabelYShift,
 				'transform': svgRotateString(Snap.deg(labelAngle),0,0)
 			})
+
+
 	}
 
 	// Draw Day Ticks //
