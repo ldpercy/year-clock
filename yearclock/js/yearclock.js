@@ -11,13 +11,9 @@ const clockStyle = {
 	needleLength: 1000,
 
 	monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
-	monthLabelSize: 48,
 
 	weekdayTickLength: 40,
-	weekendTickLength: 55,,
-
-	yearFontSize: 250,
-	yearYShift: 0.4,
+	weekendTickLength: 55,
 }
 
 // i18n
