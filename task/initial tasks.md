@@ -38,3 +38,4 @@ https://stackoverflow.com/questions/2193916/positioning-svg-elements-using-css
 This works in both firefox and chromium.
 Id really like to be able to test this in KDE's svg engine as well, but not sure how to do that yet.
 
+This will do for now, move on to js sequence and module loading.
