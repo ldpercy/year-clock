@@ -1,5 +1,3 @@
-
-
 /* config & setup
 */
 
@@ -11,16 +9,9 @@ const clockStyle = {
 	needleLength: 1000,
 
 	monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
-	monthLabelSize: 48,
-	monthLabelYShift: 0.4,
 
 	weekdayTickLength: 40,
-	weekdayTickWidth: 2,
 	weekendTickLength: 55,
-	weekendTickWidth: 7,
-
-	yearFontSize: 250,
-	yearYShift: 0.4,
 }
 
 // i18n
@@ -37,12 +28,10 @@ const gregLocal = {
 const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ]
 
 // Language
-
 var userLang = navigator.language || navigator.userLanguage
 
 
 // Set Up Current Date
-
 const dateParam = getParameterByName('date')
 let now = dateParam ? new Date(dateParam) : new Date()
 let year = now.getFullYear()
@@ -51,7 +40,6 @@ let year = now.getFullYear()
 
 /* URL Parameters
 */
-
 function getParameterByName(name)
 {
 	const url = window.location.href
@@ -94,8 +82,8 @@ function midpoint(a,b)
 	return 0.5 * (a + b)
 }
 
-// Shapes //
 
+// Shapes
 function radialLine(drawing, angle, innerRadius, outerRadius)
 {
 	const start = polarPoint(angle, innerRadius)
@@ -111,13 +99,12 @@ function segment(drawing, startAngle, endAngle, innerRadius, outerRadius)
 	const innerEnd   = polarPoint(endAngle,   innerRadius)
 	const innerStart = polarPoint(startAngle, innerRadius)
 
-	const path = [
-		"M", outerStart.x, outerStart.y,
-		"A", outerRadius, outerRadius, 0, 0, 1, outerEnd.x, outerEnd.y,
-		"L", innerEnd.x, innerEnd.y,
-		"A", innerRadius, innerRadius, 0, 0, 0, innerStart.x, innerStart.y,
-		"Z"
-	].join(" ")
+	const path = `
+		M ${outerStart.x} ${outerStart.y}
+		A ${outerRadius} ${outerRadius} 0 0 1 ${outerEnd.x} ${outerEnd.y}
+		L ${innerEnd.x} ${innerEnd.y}
+		A ${innerRadius} ${innerRadius} 0 0 0 ${innerStart.x} ${innerStart.y}
+		Z`;
 
 	return drawing.path(path)
 }
@@ -129,8 +116,7 @@ function svgRotateString(angle, centre_x, centre_y)
 
 
 
-// Dates //
-
+// Dates
 function incrementDay(d)
 {
 	d.setDate(d.getDate() + 1)
@@ -164,8 +150,7 @@ function dateDegrees(date)
 
 
 
-// Internationalization //
-
+// Internationalization
 function superLang( subLang )
 {
 	return subLang ? subLang.slice( 0, 2 ) : null
@@ -177,10 +162,8 @@ const browserLanguage = superLang( navigator.language || navigator.userLanguage 
 
 const monthNames = gregLocal[languageParam] || gregLocal[browserLanguage] || gregLocal["en"]
 
+
 // Set Up Months
-
-
-
 const months = monthNames.map(function( monthName, monthNumber )
 {
 	const startDate = new Date(year, monthNumber)
@@ -190,8 +173,8 @@ const months = monthNames.map(function( monthName, monthNumber )
 	return { "name": monthName, "code": monthCodes[monthNumber], "startDate": startDate, "endDate": endDate }
 })
 
-// Set Up Days
 
+// Set Up Days
 let days = []
 
 for (let date = new Date(year,0); date.getFullYear() <= year; d = incrementDay(date))
@@ -207,16 +190,14 @@ for (let date = new Date(year,0); date.getFullYear() <= year; d = incrementDay(d
 
 
 
-// Draw Clock //
-
+/* Draw Clock
+*/
 function drawClock()
 {
-	// Set Up Drawing //
-
+	// Set Up Drawing
 	const drawing = Snap("#clock")
 
-	// Draw Months //
-
+	// Draw Months
 	for (let month of months)
 	{
 		const startAngle = dateRadians(month.startDate)
@@ -239,15 +220,11 @@ function drawClock()
 		drawing.text(0, yOffset, month.name)
 			.addClass("label month")
 			.attr({
-				'text-anchor': 'middle',
-				'font-size': clockStyle.monthLabelSize,
-				'dy': clockStyle.monthLabelSize * clockStyle.monthLabelYShift,
 				'transform': svgRotateString(Snap.deg(labelAngle),0,0)
 			})
 	}
 
-	// Draw Day Ticks //
-
+	// Day Ticks
 	for (let day of days)
 	{
 		const angle = dateRadians(day.date)
@@ -257,7 +234,6 @@ function drawClock()
 			// Draw First Tick
 			radialLine(drawing, angle, clockStyle.innerRadius, clockStyle.outerRadius)
 				.addClass("tick day first")
-				.attr({ "stroke-width": clockStyle.weekdayTickWidth })
 		}
 
 		if (!day.weekend && !day.first) // If neither weekend nor first day in month
@@ -267,7 +243,6 @@ function drawClock()
 
 			radialLine(drawing, angle, tickInnerRadius, clockStyle.outerRadius)
 				.addClass("tick day weekday")
-				.attr({ "stroke-width": clockStyle.weekdayTickWidth })
 		}
 
 		if (day.weekend)
@@ -277,36 +252,18 @@ function drawClock()
 
 			radialLine(drawing, angle, tickInnerRadius, clockStyle.outerRadius)
 				.addClass("tick day weekend")
-				.attr({
-					"stroke-width": clockStyle.weekendTickWidth,
-					"stroke-linecap": "round"
-				})
 		}
 	}
 
-	// Draw Year Label //
-
+	// Year Label
 	const yearOnLeft = dateRatio(now) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 
 	drawing.text(clockStyle.innerRadius * 0.55 * labelSide, 0, year)
 		.addClass("label year")
-		.attr({
-			'text-anchor': 'middle',
-			'font-size': clockStyle.yearFontSize,
-			'dy': clockStyle.yearFontSize * clockStyle.yearYShift,
-		})
 
-	// Draw Needle //
-	/*
-	const needlePathString = [
-		"M",  1.2, 20,
-		"L", -1.2, 20,
-		"L",    0, 0 - clockStyle.needleLength,
-		"Z"
-	].join(" ")
-	*/
 
+	// Needle
 	const needlePathString = `
 		M 12 160
 		L -12 160
@@ -314,18 +271,12 @@ function drawClock()
 		Z
 		M 30 0
 		A 30,30 0 1 1 -30,00
-		A 30,30 0 1 1 30,00
-		`
-		// A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+		A 30,30 0 1 1 30,00`;
 
-
-	const needleTransformString = svgRotateString(dateDegrees(now),0,0)
+	const needleTransformString = svgRotateString(dateDegrees(now),0,0);
 
 	drawing.path(needlePathString)
 		.transform(needleTransformString)
-		.addClass("needle year")
-		//.attr({ "stroke-width": 2, "stroke-linejoin": "round" })
+		.addClass("needle year");
 
-	//drawing.circle(0, 0, 5)
-	//	.addClass("pivot year")		// this is the centre of the needle
 }
