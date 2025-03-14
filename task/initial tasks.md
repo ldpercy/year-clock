@@ -41,7 +41,8 @@ Id really like to be able to test this in KDE's svg engine as well, but not sure
 This will do for now, move on to js sequence and module loading.
 
 
-JavaScript sequence
--------------------
+Load sequence
+-------------
 At the moment the core is a single js file included with a script tag at the bottom of the html (an older technique used to defer loading until later in the parsing).
 Lets try to organise the setup.
+
