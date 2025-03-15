@@ -6,8 +6,13 @@
 	<link rel="stylesheet" href="css/page.css">
 	<link rel="stylesheet" href="css/yearclock.css">
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
+	<script defer src="js/snap.svg-min.js"></script>
+	<script defer src="js/util.js"></script>
+	<script defer src="js/i18n.js"></script>
+	<script defer src="js/geometry.js"></script>
+	<script defer src="js/yearclock.js"></script>
 </head>
-<body onload="drawClock();">
+<body onload="setup();drawClock();">
 
 	<svg id="clock" width="2400" height="2400" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet">
 		<circle cx="0" cy="0" r="1200" class="face year"/>
@@ -16,8 +21,5 @@
 	<footer>
 		Year Clock by ldpercy, adapted from <a href="http://year-clock.net">year-clock.net</a> by <a href="http://andybrice.net">Andy Brice</a>.
 	</footer>
-
-	<script src="js/snap.svg-min.js"></script>
-	<script src="js/yearclock.js"></script>
 </body>
 </html>
