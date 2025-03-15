@@ -68,3 +68,6 @@ Turns out the `defer` is the most straightforward way to enforce load order for 
 
 
 
+Wrapup
+------
+Closing this off here, further tasks will get their own docs.
