@@ -3,19 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<title>Year Clock</title>
-	<link rel="stylesheet" href="css/page.css">
-	<link rel="stylesheet" href="css/yearclock.css">
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
+
+	<!-- core --->
+	<link rel="stylesheet" href="page.css">
 	<script defer src="js/snap.svg-min.js"></script>
 	<script defer src="js/util.js"></script>
 	<script defer src="js/i18n.js"></script>
 	<script defer src="js/geometry.js"></script>
+	<script defer src="js/setup.js"></script>
+
+	<!--- customisation -->
+	<link rel="stylesheet" href="original/yearclock.css">
+	<script defer src="original/yearclock.js"></script>
+
+	<!-- draw -->
 	<script defer src="js/yearclock.js"></script>
 </head>
 <body onload="setup();drawClock();">
 
 	<svg id="clock" width="2400" height="2400" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet">
-		<circle cx="0" cy="0" r="1200" class="face year"/>
 	</svg>
 
 	<footer>

@@ -1,24 +1,8 @@
 /* config & setup
 */
 
-const config = {
-
-	// Clock Style
-	clockStyle : {
-		outerRadius: 1120,
-		innerRadius: 920,
-
-		needleLength: 1000,
-
-		monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
-
-		weekdayTickLength: 40,
-		weekendTickLength: 55,
-	},
-
-	monthCodes : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
-	days : []
-};
+config.monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+config.days = [];
 
 
 /* setup
@@ -91,6 +75,9 @@ function drawClock()
 {
 	// Set Up Drawing
 	const drawing = Snap("#clock")
+
+	drawing.circle(0, 0, config.clockRadius)
+		.addClass('face year');
 
 	// Draw Months
 	for (let month of config.months)
