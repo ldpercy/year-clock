@@ -62,4 +62,9 @@ Eg have directories for different clock svg, css, json etc.
 There are a bunch of suggestions out there for other ways to do this, including creating scripts tags, will have a look.
 
 
+### script defer
+
+Turns out the `defer` is the most straightforward way to enforce load order for regular scripts.
+
+
 

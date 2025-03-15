@@ -18,15 +18,31 @@ function polarPoint (angle, radius)
 	)
 }
 
+function midpoint(a,b)
+{
+	return 0.5 * (a + b)
+}
+
+
+// clock
+
 function clockAngle( revolutions )
 {
 	return Math.TAU * (revolutions - 0.25)
 }
 
-function midpoint(a,b)
+function dateRadians(date)
 {
-	return 0.5 * (a + b)
+	return clockAngle( dateRatio(date) )
 }
+
+function dateDegrees(date)
+{
+	return 360 * dateRatio(date)
+}
+
+
+
 
 
 // Shapes

@@ -83,16 +83,6 @@ function isWeekend(d)
 	return dayNumber == 0 || dayNumber == 6
 }
 
-function dateRadians(date)
-{
-	return clockAngle( dateRatio(date) )
-}
-
-function dateDegrees(date)
-{
-	return 360 * dateRatio(date)
-}
-
 
 
 /* Draw Clock
