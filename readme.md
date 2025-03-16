@@ -33,6 +33,8 @@ More recently:
 I wonder if I could borrow some of the code from the first one ...
 
 
+(See also: https://en.wikipedia.org/wiki/Orrery)
+
 Andy Brice version
 ------------------
 

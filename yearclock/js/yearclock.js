@@ -16,17 +16,6 @@ const config = {
 		weekendTickLength: 55,
 	},
 
-	// i18n
-	gregLocal : {
-		"en": [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-		"es": [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-		"fr": [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
-		"zh": [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
-		"hi": [ "जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर" ],
-		"ru": [ "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" ],
-		"ko": [ "일월", "이월", "삼월", "사월", "오월", "유월", "칠월", "팔월", "구월", "시월", "십일월", "십이월" ]
-	},
-
 	monthCodes : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	days : []
 };
@@ -41,7 +30,7 @@ function setup() {
 	config.languageParam = superLang( getParameterByName('language') );
 	config.browserLanguage = superLang( navigator.language || navigator.userLanguage );
 
-	config.monthNames = config.gregLocal[config.languageParam] || config.gregLocal[config.browserLanguage] || config.gregLocal["en"]
+	config.monthNames = i18n.gregLocal[config.languageParam] || i18n.gregLocal[config.browserLanguage] || i18n.gregLocal["en"]
 
 	// Set Current Date
 	const dateParam = getParameterByName('date');
@@ -72,85 +61,6 @@ function setup() {
 } // setup
 
 
-
-/* URL Parameters
-*/
-function getParameterByName(name)
-{
-	const url = window.location.href
-	name = name.replace(/[\[\]]/g, "\\$&")
-	const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
-	const results = regex.exec(url)
-	if (!results) return null
-	if (!results[2]) return ''
-	return decodeURIComponent(results[2].replace(/\+/g, " "))
-}
-
-
-
-/* Geometry
-*/
-
-Math.TAU = 2 * Math.PI;
-
-function Point (x, y)
-{
-	this.x = x;
-	this.y = y;
-}
-
-function polarPoint (angle, radius)
-{
-	return new Point(
-		radius * Math.cos(angle),
-		radius * Math.sin(angle)
-	)
-}
-
-function clockAngle( revolutions )
-{
-	return Math.TAU * (revolutions - 0.25)
-}
-
-function midpoint(a,b)
-{
-	return 0.5 * (a + b)
-}
-
-
-// Shapes
-function radialLine(drawing, angle, innerRadius, outerRadius)
-{
-	const start = polarPoint(angle, innerRadius)
-	const end   = polarPoint(angle, outerRadius)
-
-	return drawing.line(start.x, start.y, end.x, end.y)
-}
-
-function segment(drawing, startAngle, endAngle, innerRadius, outerRadius)
-{
-	const outerStart = polarPoint(startAngle, outerRadius)
-	const outerEnd   = polarPoint(endAngle,   outerRadius)
-	const innerEnd   = polarPoint(endAngle,   innerRadius)
-	const innerStart = polarPoint(startAngle, innerRadius)
-
-	const path = `
-		M ${outerStart.x} ${outerStart.y}
-		A ${outerRadius} ${outerRadius} 0 0 1 ${outerEnd.x} ${outerEnd.y}
-		L ${innerEnd.x} ${innerEnd.y}
-		A ${innerRadius} ${innerRadius} 0 0 0 ${innerStart.x} ${innerStart.y}
-		Z`;
-
-	return drawing.path(path)
-}
-
-function svgRotateString(angle, centre_x, centre_y)
-{
-	return ['rotate(', angle, centre_x, centre_y, ')'].join(' ')
-}
-
-
-
 // Dates
 function incrementDay(d)
 {
@@ -171,24 +81,6 @@ function isWeekend(d)
 {
 	const dayNumber = d.getDay()
 	return dayNumber == 0 || dayNumber == 6
-}
-
-function dateRadians(date)
-{
-	return clockAngle( dateRatio(date) )
-}
-
-function dateDegrees(date)
-{
-	return 360 * dateRatio(date)
-}
-
-
-
-// Internationalization
-function superLang( subLang )
-{
-	return subLang ? subLang.slice( 0, 2 ) : null
 }
 
 

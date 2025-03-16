@@ -41,7 +41,40 @@ Id really like to be able to test this in KDE's svg engine as well, but not sure
 This will do for now, move on to js sequence and module loading.
 
 
+<<<<<<< HEAD:task/initial tasks.md
 JavaScript sequence
 -------------------
 At the moment the core is a single js file included with a script tag at the bottom of the html (an older technique used to defer loading until later in the parsing).
 Lets try to organise the setup.
+=======
+Load sequence
+-------------
+At the moment the core is a single js file included with a script tag at the bottom of the html (an older technique used to defer loading until later in the parsing).
+Lets try to organise the setup.
+
+
+### Modules only work via HTTP
+I was planning to use ES modules, but no-go for local files without a server:
+
+	https://javascript.info/modules-intro#what-is-a-module
+	https://github.com/whatwg/html/issues/8121
+	https://dev.to/calinzbaenen/rant-why-the-hell-does-everything-cool-javascript-related-have-to-be-locked-behind-needing-server-4ik3
+
+That's a pity.
+I don't want to run a server for this so I'll stick with old-school script tags for now.
+
+Part of the reason I wanted to split all this up is to work towards customisation.
+Eg have directories for different clock svg, css, json etc.
+There are a bunch of suggestions out there for other ways to do this, including creating scripts tags, will have a look.
+
+
+### script defer
+
+Turns out the `defer` is the most straightforward way to enforce load order for regular scripts.
+
+
+
+Wrapup
+------
+Closing this off here, further tasks will get their own docs.
+>>>>>>> refs/remotes/origin/main:task/[done]/initial tasks.md
