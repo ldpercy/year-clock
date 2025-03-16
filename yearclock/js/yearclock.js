@@ -1,8 +1,6 @@
-/* config & setup
+/* setup and draw
 */
 
-config.monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
-config.days = [];
 
 
 /* setup
@@ -44,28 +42,6 @@ function setup() {
 	}
 } // setup
 
-
-// Dates
-function incrementDay(d)
-{
-	d.setDate(d.getDate() + 1)
-}
-
-function dateRatio(date)
-{
-	const year = date.getFullYear()
-	const yearStart = new Date (year, 0)
-	const yearEnd   = new Date (year + 1, 0)
-	const yearLength = yearEnd - yearStart
-	const timeElapsed = date - yearStart
-	return timeElapsed / yearLength
-}
-
-function isWeekend(d)
-{
-	const dayNumber = d.getDay()
-	return dayNumber == 0 || dayNumber == 6
-}
 
 
 
