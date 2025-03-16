@@ -41,12 +41,6 @@ Id really like to be able to test this in KDE's svg engine as well, but not sure
 This will do for now, move on to js sequence and module loading.
 
 
-<<<<<<< HEAD:task/initial tasks.md
-JavaScript sequence
--------------------
-At the moment the core is a single js file included with a script tag at the bottom of the html (an older technique used to defer loading until later in the parsing).
-Lets try to organise the setup.
-=======
 Load sequence
 -------------
 At the moment the core is a single js file included with a script tag at the bottom of the html (an older technique used to defer loading until later in the parsing).
@@ -77,4 +71,3 @@ Turns out the `defer` is the most straightforward way to enforce load order for 
 Wrapup
 ------
 Closing this off here, further tasks will get their own docs.
->>>>>>> refs/remotes/origin/main:task/[done]/initial tasks.md
