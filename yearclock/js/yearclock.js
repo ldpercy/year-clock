@@ -61,10 +61,10 @@ function drawClock()
 		const startAngle = dateRadians(month.startDate)
 		const endAngle   = dateRadians(month.endDate)
 
-		// Month Segment
+		// Month sector
 
-		segment(drawing, startAngle, endAngle, config.clockStyle.innerRadius, config.clockStyle.outerRadius )
-			.addClass("segment month")
+		sector(drawing, startAngle, endAngle, config.clockStyle.innerRadius, config.clockStyle.outerRadius )
+			.addClass("sector month")
 			.addClass(month.code)
 
 		// Month Label
