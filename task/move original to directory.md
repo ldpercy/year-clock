@@ -15,3 +15,8 @@ Initial move
 
 Not sure if the custom skins should implement the entire drawClock function, or just parts of it.
 
+Wrapup
+------
+
+Will continue this thought in the customisation task, for now the initial move is done.
+
