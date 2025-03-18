@@ -16,3 +16,10 @@ footer {
 a:link {
 	color: #7ABECF;
 }
+
+svg#clock {
+	width: 90vw;
+	height: 90vh;
+	padding: 5vh 5vw;
+}
+

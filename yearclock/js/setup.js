@@ -46,4 +46,12 @@ function setup() {
 
 		config.days.push(day)
 	}
+
+	// theme
+	const themeName = getParameterByName('theme');
+	themeStyleElement = document.getElementById('themeStylesheet');
+	if (themeName) {
+		setTheme(themeName);
+	}
+
 } // setup
