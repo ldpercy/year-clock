@@ -1,24 +1,6 @@
-/* config & setup
+/* setup and draw
 */
 
-const config = {
-
-	// Clock Style
-	clockStyle : {
-		outerRadius: 1120,
-		innerRadius: 920,
-
-		needleLength: 1000,
-
-		monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
-
-		weekdayTickLength: 40,
-		weekendTickLength: 55,
-	},
-
-	monthCodes : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
-	days : []
-};
 
 
 /* setup
@@ -61,28 +43,6 @@ function setup() {
 } // setup
 
 
-// Dates
-function incrementDay(d)
-{
-	d.setDate(d.getDate() + 1)
-}
-
-function dateRatio(date)
-{
-	const year = date.getFullYear()
-	const yearStart = new Date (year, 0)
-	const yearEnd   = new Date (year + 1, 0)
-	const yearLength = yearEnd - yearStart
-	const timeElapsed = date - yearStart
-	return timeElapsed / yearLength
-}
-
-function isWeekend(d)
-{
-	const dayNumber = d.getDay()
-	return dayNumber == 0 || dayNumber == 6
-}
-
 
 
 /* Draw Clock
@@ -92,16 +52,19 @@ function drawClock()
 	// Set Up Drawing
 	const drawing = Snap("#clock")
 
+	drawing.circle(0, 0, config.clockRadius)
+		.addClass('face year');
+
 	// Draw Months
 	for (let month of config.months)
 	{
 		const startAngle = dateRadians(month.startDate)
 		const endAngle   = dateRadians(month.endDate)
 
-		// Month Segment
+		// Month sector
 
-		segment(drawing, startAngle, endAngle, config.clockStyle.innerRadius, config.clockStyle.outerRadius )
-			.addClass("segment month")
+		sector(drawing, startAngle, endAngle, config.clockStyle.innerRadius, config.clockStyle.outerRadius )
+			.addClass("sector month")
 			.addClass(month.code)
 
 		// Month Label
