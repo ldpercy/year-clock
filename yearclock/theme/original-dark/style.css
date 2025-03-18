@@ -8,5 +8,8 @@ svg#clock .tick { stroke: black }
 svg#clock .label.month { fill: black }
 svg#clock .label.year { fill: #282828 }
 
-svg#clock .needle { stroke: white }
-svg#clock .pivot { fill: white }
+svg#clock .needle {
+	stroke: white;
+	fill: white;
+}
+

@@ -47,7 +47,6 @@ svg#clock .tick.day.weekend {
 svg#clock .label.month {
 	fill: white;
 	text-anchor: middle;
-	/* transform: translate(0, 0) */
 	dominant-baseline: middle;
 }
 
@@ -55,9 +54,6 @@ svg#clock .label.year {
 	fill: silver;
 	text-anchor: middle;
 	font-size: 5em;
-	/* vertical-align: -50%; */
-	/* baseline-shift: -50%; */
-	/* transform: translate(0, 0.6cap) */
 	dominant-baseline: central;
 }
 
