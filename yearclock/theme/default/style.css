@@ -70,16 +70,3 @@ svg#clock .needle {
 	stroke-width: 15;
 	stroke-linejoin: round;
 }
-
-
-
-/* Dark Theme */
-
-svg#clock.dark { background-color: #282828 }
-svg#clock.dark .face { fill: black }
-svg#clock.dark .tick { stroke: black }
-svg#clock.dark .label.month { fill: black }
-svg#clock.dark .label.year { fill: #282828 }
-
-svg#clock.dark .needle { stroke: white }
-svg#clock.dark .pivot { fill: white }
