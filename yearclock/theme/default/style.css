@@ -4,9 +4,6 @@
 svg#clock {
 	display: block;
 	background-color: #e6e6e6;
-	width: 90vw;
-	height: 90vh;
-	padding: 5vh 5vw;
 	font-size: 48px;
 }
 
