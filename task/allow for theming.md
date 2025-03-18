@@ -1,5 +1,5 @@
-Allow For Customisation
-=======================
+Allow For Theming
+=================
 
 With luck swapping a single directory path will load a different skin for the clock.
 
