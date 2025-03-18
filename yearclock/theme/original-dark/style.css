@@ -1,11 +1,12 @@
 /* Orignal Dark Theme
+yearclock.html?theme=original-dark
 */
 
-svg#clock.dark { background-color: #282828 }
-svg#clock.dark .face { fill: black }
-svg#clock.dark .tick { stroke: black }
-svg#clock.dark .label.month { fill: black }
-svg#clock.dark .label.year { fill: #282828 }
+svg#clock { background-color: #282828 }
+svg#clock .face { fill: black }
+svg#clock .tick { stroke: black }
+svg#clock .label.month { fill: black }
+svg#clock .label.year { fill: #282828 }
 
-svg#clock.dark .needle { stroke: white }
-svg#clock.dark .pivot { fill: white }
+svg#clock .needle { stroke: white }
+svg#clock .pivot { fill: white }
