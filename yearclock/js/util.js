@@ -15,3 +15,12 @@ function getParameterByName(name)
 	if (!results[2]) return ''
 	return decodeURIComponent(results[2].replace(/\+/g, " "))
 }
+
+
+/* setTheme
+*/
+function setTheme(themeName){
+	styleUrl = `theme/${themeName}/style.css`;
+	themeStyleElement.setAttribute('href',styleUrl);
+}
+
