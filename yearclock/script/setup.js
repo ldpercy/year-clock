@@ -1,10 +1,13 @@
 /* Setup
 */
 
+console.clear()
+
 const config = {
 	clockRadius : 1200,
 	monthCodes : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	days : [],
+	defaultTheme: 'original',
 };
 
 
@@ -48,10 +51,36 @@ function setup() {
 	}
 
 	// theme
-	const themeName = getParameterByName('theme');
+	let themeName = getParameterByName('theme');
+	if (!themeName) themeName = config.defaultTheme;
 	themeStyleElement = document.getElementById('themeStylesheet');
-	if (themeName) {
-		setTheme(themeName);
-	}
+	setTheme(themeName);
 
 } // setup
+
+
+
+/* Utilities
+*/
+
+/* URL Parameters
+*/
+function getParameterByName(name)
+{
+	const url = window.location.href
+	name = name.replace(/[\[\]]/g, "\\$&")
+	const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
+	const results = regex.exec(url)
+	if (!results) return null
+	if (!results[2]) return ''
+	return decodeURIComponent(results[2].replace(/\+/g, " "))
+}
+
+
+/* setTheme
+*/
+function setTheme(themeName){
+	styleUrl = `theme/${themeName}/style.css`;
+	themeStyleElement.setAttribute('href',styleUrl);
+}
+
