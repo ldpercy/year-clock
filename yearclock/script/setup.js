@@ -50,18 +50,35 @@ function setup() {
 		config.days.push(day)
 	}
 
-	// theme
+	// Theming:
+	styleElement_base = document.getElementById('stylesheet-style');
+	styleElement_theme = document.getElementById('stylesheet-theme');
+	styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
-	themeStyleElement = document.getElementById('themeStylesheet');
 	let themeName = getParameterByName('theme');
-	if (!themeName) themeName = config.defaultTheme;
-	setTheme(themeName);
+	let styleName = getParameterByName('style');
 
-	subthemeStyleElement = document.getElementById('subthemeStylesheet');
-	let subthemeName = getParameterByName('subtheme');
-	if (subthemeName) setSubtheme(themeName, subthemeName);
+	if (!themeName) themeName = config.defaultTheme;
+
+	setTheme(themeName,styleName);
 
 } // setup
+
+
+/* setTheme
+*/
+function setTheme(themeName, styleName){
+	let cssUrl_theme = `theme/${themeName}/style.css`;
+	styleElement_theme.setAttribute('href',cssUrl_theme);
+
+	if (styleName) {
+		let cssUrl_style = `theme/${themeName}/style-${styleName}.css`;
+		styleElement_style.setAttribute('href', cssUrl_style);
+	}
+	else {
+		styleElement_style.removeAttribute('href');
+	}
+}
 
 
 
@@ -79,19 +96,4 @@ function getParameterByName(name)
 	if (!results) return null
 	if (!results[2]) return ''
 	return decodeURIComponent(results[2].replace(/\+/g, " "))
-}
-
-
-/* setTheme
-*/
-function setTheme(themeName){
-	let styleUrl = `theme/${themeName}/style.css`;
-	themeStyleElement.setAttribute('href',styleUrl);
-}
-
-/* setSubtheme
-*/
-function setSubtheme(themeName, subthemeName){
-	let subthemeStyleUrl = `theme/${themeName}/subtheme-${subthemeName}.css`;
-	subthemeStyleElement.setAttribute('href',subthemeStyleUrl);
 }

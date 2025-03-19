@@ -21,3 +21,15 @@ So it will work fine for what I want here.
 Will set up themes to be able to declare a base theme, and add subthemes so i can put the original back together in one folder.
 
 
+Bootstrap problem
+-----------------
+There's a bootstrap problem.
+We don't know what the base theme is until we've loaded the theme script.
+
+So with the theme I need to get the config first, then load the base, then the theme materials.
+So there needs to be a separate theme file to load first.
+
+Also i'm renaming 'subtheme' to 'style'.
+It's a tad confusing in a couple of spots, but I think it looks better.
+Might look around for other ideas.
+
