@@ -51,10 +51,15 @@ function setup() {
 	}
 
 	// theme
+
+	themeStyleElement = document.getElementById('themeStylesheet');
 	let themeName = getParameterByName('theme');
 	if (!themeName) themeName = config.defaultTheme;
-	themeStyleElement = document.getElementById('themeStylesheet');
 	setTheme(themeName);
+
+	subthemeStyleElement = document.getElementById('subthemeStylesheet');
+	let subthemeName = getParameterByName('subtheme');
+	if (subthemeName) setSubtheme(themeName, subthemeName);
 
 } // setup
 
@@ -80,7 +85,13 @@ function getParameterByName(name)
 /* setTheme
 */
 function setTheme(themeName){
-	styleUrl = `theme/${themeName}/style.css`;
+	let styleUrl = `theme/${themeName}/style.css`;
 	themeStyleElement.setAttribute('href',styleUrl);
 }
 
+/* setSubtheme
+*/
+function setSubtheme(themeName, subthemeName){
+	let subthemeStyleUrl = `theme/${themeName}/subtheme-${subthemeName}.css`;
+	subthemeStyleElement.setAttribute('href',subthemeStyleUrl);
+}
