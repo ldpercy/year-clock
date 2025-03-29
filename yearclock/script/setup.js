@@ -86,20 +86,25 @@ function setup() {
 /* setThemeConfig
 */
 function setThemeConfig(themeName){
+	// theme.description and them.base are now set
+
+	if (theme.base) {
+		console.log(`theme.base: ${theme.base}`);
+
+		//load the base resources
+		//load the theme resources
+	}
+	else {
+		console.log('no theme.base set');
+		//just load the theme resources
+	}
+
 	replaceScript('script-themeConfig', theme.configUrl, onloadThemeConfig);
 }
 
 
 function onloadThemeConfig(){
 	console.log('onloadThemeConfig');
-
-	// if (theme.base) {
-	// 	load the base resources
-	// 	load the theme resources
-	// }
-	// else {
-	// 	just load the theme resources
-	// }
 
 	setThemeStylesheets();
 	replaceScript('script-theme', theme.scriptUrl, onloadThemeScript);
@@ -140,11 +145,10 @@ function setThemeStylesheets(){
 
 
 
+//
+// Utilities
+//
 
-
-
-/* Utilities
-*/
 
 /* URL Parameters
 */
@@ -165,7 +169,7 @@ function getParameterByName(name)
 */
 function replaceScript(id, scriptUrl, callback) {
 
-	console.log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
+	//console.log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
 	let scriptElement = document.createElement('script');
 
 	scriptElement.setAttribute('id', id);
