@@ -93,6 +93,14 @@ function setThemeConfig(themeName){
 function onloadThemeConfig(){
 	console.log('onloadThemeConfig');
 
+	// if (theme.base) {
+	// 	load the base resources
+	// 	load the theme resources
+	// }
+	// else {
+	// 	just load the theme resources
+	// }
+
 	setThemeStylesheets();
 	replaceScript('script-theme', theme.scriptUrl, onloadThemeScript);
 }

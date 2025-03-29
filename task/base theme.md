@@ -33,3 +33,24 @@ Also i'm renaming 'subtheme' to 'style'.
 It's a tad confusing in a couple of spots, but I think it looks better.
 Might look around for other ideas.
 
+
+Callbacks
+---------
+
+At the moment the loading sequence is done with a couple of simple callbacks.
+I'd really like to rewrite these with something a bit more modern such as async/await, but unfortunately I'm a bit out-of-my-depth when it comes to writing promise-style code.
+That will have to be a separate task.
+
+
+Base features
+-------------
+
+Currently there are only two parts to the theme's `yearclock.js`:
+
+* theme.clockStyle
+* theme.drawClock()
+
+They could be split up in various ways, but will start with these.
+
+
+
