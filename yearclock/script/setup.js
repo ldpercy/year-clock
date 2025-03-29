@@ -1,21 +1,22 @@
-/* Setup
-*/
+//
+// Setup
+//
 
 console.clear()
 
 const config = {
 	monthCodes   : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	days         : [],
-	defaultTheme : 'brice',
-
+	defaultTheme : 'test',
 };
+
 
 // these will be filled in later
 const theme = {
 	name         : undefined,    // string   - the name of the theme, also the directory the theme files are stored in
 	description  : undefined,    // string   - description of the theme set in the theme config.js
 	configUrl    : undefined,    // string   - the location of the theme's config file
-	base         : undefined,    // string   - a base theme that will be loaded and run prior the main theme
+	base         : undefined,    // string   - (optional) a base theme that will be loaded prior the main theme
 	style        : undefined,    // string   - a set of additional css styles for making quick cosmetic changes
 	drawClock    : undefined,    // function - the function provided to draw the theme clock
 };
@@ -72,13 +73,13 @@ function setup() {
 	theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
 
 	replaceScript('script-themeConfig', theme.configUrl, setThemeConfig);
-	// We're async at this point, so the rest is in callbacks:
+	// Loading is async from here on, so the rest is in callbacks:
 	// Load the config, wait for the callback
 	// If specified, load base theme
 	// Load the theme script, wait for the callback
 	// When the theme script arrives, call theme.drawClock.
 
-} // setup
+} /* setup */
 
 
 
@@ -117,7 +118,7 @@ function setBaseTheme() {
 
 function setTheme(){
 	// onload script-theme
-	// All theme items are now set.
+	// All theme script items are now set.
 	console.log('onload script-theme');
 
 	let cssUrl_theme = `theme/${theme.name}/style.css`;
@@ -128,31 +129,8 @@ function setTheme(){
 		styleElement_style.setAttribute('href', cssUrl_style);
 	}
 
-	//replaceScript('script-theme', theme.scriptUrl, onloadThemeScript);
 	theme.drawClock();
-}
-
-// function onloadThemeScript(){
-// 	console.log('onloadThemeScript');
-// 	theme.drawClock();
-// }
-
-
-// /* setThemeStyleSheets
-// */
-// function setThemeStylesheets(){
-
-// 	let cssUrl_theme = `theme/${theme.name}/style.css`;
-// 	styleElement_theme.setAttribute('href', cssUrl_theme);
-
-// 	if (theme.style) {
-// 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
-// 		styleElement_style.setAttribute('href', cssUrl_style);
-// 	}
-
-// }
-
-
+}/* setTheme */
 
 
 
@@ -175,25 +153,17 @@ function getParameterByName(name)
 }
 
 
-
 /* replaceScript
 */
 function replaceScript(id, scriptUrl, callback) {
-
 	//console.log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
 	let scriptElement = document.createElement('script');
 
 	scriptElement.setAttribute('id', id);
-
 	scriptElement.setAttribute('src', scriptUrl);
-	scriptElement.setAttribute('name', 'appendScript');
 	scriptElement.addEventListener('load', callback);
 
-	// then bind the event to the callback function
-	// there are several events for cross browser compatibility
-	//script.onreadystatechange = callback;
 	document.getElementById(id).remove();
 	document.getElementsByTagName('head')[0].appendChild(scriptElement);
-}
-
+}/* replaceScript */
 

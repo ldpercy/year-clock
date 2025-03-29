@@ -69,8 +69,12 @@ Base theme load is working
 I've created a very basic test theme that uses `brice` as the base.
 Added a few small tweaks and can now switch between the themes showing the edits.
 
-	yearclock.html?theme=new
+	yearclock.html?theme=test
+	yearclock.html?theme=brice (original)
 
 
+Wrapup
+------
 
+This is basically going now, so will wrap this up here and move on.
 
