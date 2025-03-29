@@ -101,7 +101,7 @@ theme.drawClock = function()
 	const needlePathString = `
 		M 12 160
 		L -12 160
-		L 0, -1010
+		L 0, -${theme.clockStyle.needleLength}
 		Z
 		M 30 0
 		A 30,30 0 1 1 -30,00
