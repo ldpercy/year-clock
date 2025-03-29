@@ -29,6 +29,8 @@ Andy Brice and Ian Brice version
 
 I've started with code from [year-clock.net](http://year-clock.net) to use as a base.
 
+A copy of the original year-clock code is in the [year-clock.net/](<./year-clock.net/>) directory.
+
 
 Progress
 --------

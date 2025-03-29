@@ -1,7 +1,7 @@
 year-clock.net
 ==============
 
-This is the original version by Andy Brice.
+This is the original version by Andy Brice and Ian Brice.
 
 http://year-clock.net/
 
