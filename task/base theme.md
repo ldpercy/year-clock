@@ -42,8 +42,8 @@ I'd really like to rewrite these with something a bit more modern such as async/
 That will have to be a separate task.
 
 
-Base features
--------------
+Base feature load
+-----------------
 
 Currently there are only two parts to the theme's `yearclock.js`:
 
@@ -51,6 +51,16 @@ Currently there are only two parts to the theme's `yearclock.js`:
 * theme.drawClock()
 
 They could be split up in various ways, but will start with these.
+
+If a base theme is defined, load it and set clockStyle and drawClock on the theme object.
+
+Next, load the actual theme, and overwrite the theme object with it's theme features.
+
+	https://stackoverflow.com/questions/17972473/merge-two-objects-and-overwrite-the-values-if-conflict
+
+Object.assign or ES6 spread.
+
+Then call drawClock().
 
 
 
