@@ -63,4 +63,14 @@ Object.assign or ES6 spread.
 Then call drawClock().
 
 
+Base theme load is working
+--------------------------
+
+I've created a very basic test theme that uses `brice` as the base.
+Added a few small tweaks and can now switch between the themes showing the edits.
+
+	yearclock.html?theme=new
+
+
+
 
