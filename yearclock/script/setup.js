@@ -61,7 +61,7 @@ function setup() {
 	}
 
 	// Theming:
-	styleElement_base = document.getElementById('stylesheet-style');
+	styleElement_base = document.getElementById('stylesheet-base');
 	styleElement_theme = document.getElementById('stylesheet-theme');
 	styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
@@ -72,62 +72,54 @@ function setup() {
 	theme.configUrl = `theme/${theme.name}/config.js`;
 	theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
 
-	setThemeConfig(theme.name);
+	replaceScript('script-themeConfig', theme.configUrl, setThemeConfig);
 	// We're async at this point, so the rest is in callbacks:
-	// load the config, wait for the callback
-	// load the theme script, wait for the callback
-	// when the theme script arrives, call theme.drawClock.
+	// Load the config, wait for the callback
+	// If specified, load base theme
+	// Load the theme script, wait for the callback
+	// When the theme script arrives, call theme.drawClock.
 
 } // setup
 
 
 
-
 /* setThemeConfig
 */
-function setThemeConfig(themeName){
-	// theme.description and them.base are now set
+function setThemeConfig(){
+	// onload script-themeConfig
+	// theme.description and theme.base are now set
 
 	if (theme.base) {
 		console.log(`theme.base: ${theme.base}`);
-
+		// set base css
+		let cssUrl_base = `theme/${theme.base}/style.css`;
+		styleElement_base.setAttribute('href', cssUrl_base);
 		//load the base resources
-		//load the theme resources
+		let baseScriptUrl = `theme/${theme.base}/yearclock.js`;
+		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
 	}
 	else {
 		console.log('no theme.base set');
 		//just load the theme resources
+		replaceScript('script-theme', theme.scriptUrl, setTheme);
 	}
-
-	replaceScript('script-themeConfig', theme.configUrl, onloadThemeConfig);
-}
+}/* setThemeConfig */
 
 
-function onloadThemeConfig(){
-	console.log('onloadThemeConfig');
 
-	setThemeStylesheets();
-	replaceScript('script-theme', theme.scriptUrl, onloadThemeScript);
-}
-
-function onloadThemeScript(){
-	console.log('onloadThemeScript');
-	theme.drawClock();
+function setBaseTheme() {
+	// onload script-themeBase
+	// base theme values are now set
+	// proceed to set theme
+	replaceScript('script-theme', theme.scriptUrl, setTheme);
 }
 
 
 
-/* setThemeStyleSheets
-*/
-function setThemeStylesheets(){
-
-	if (theme.base) {
-		let cssUrl_base = `theme/${theme.base}/style.css`;
-		styleElement_base.setAttribute('href', cssUrl_base);
-	}
-	else {
-		styleElement_base.removeAttribute('href');
-	}
+function setTheme(){
+	// onload script-theme
+	// All theme items are now set.
+	console.log('onload script-theme');
 
 	let cssUrl_theme = `theme/${theme.name}/style.css`;
 	styleElement_theme.setAttribute('href', cssUrl_theme);
@@ -136,10 +128,30 @@ function setThemeStylesheets(){
 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
 		styleElement_style.setAttribute('href', cssUrl_style);
 	}
-	else {
-		styleElement_style.removeAttribute('href');
-	}
+
+	//replaceScript('script-theme', theme.scriptUrl, onloadThemeScript);
+	theme.drawClock();
 }
+
+// function onloadThemeScript(){
+// 	console.log('onloadThemeScript');
+// 	theme.drawClock();
+// }
+
+
+// /* setThemeStyleSheets
+// */
+// function setThemeStylesheets(){
+
+// 	let cssUrl_theme = `theme/${theme.name}/style.css`;
+// 	styleElement_theme.setAttribute('href', cssUrl_theme);
+
+// 	if (theme.style) {
+// 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
+// 		styleElement_style.setAttribute('href', cssUrl_style);
+// 	}
+
+// }
 
 
 
