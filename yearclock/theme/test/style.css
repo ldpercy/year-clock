@@ -22,3 +22,14 @@ svg#clock .sector.sep { fill: #2EA544 }
 svg#clock .sector.oct { fill: #AEC013 }
 svg#clock .sector.nov { fill: #F3C301 }
 svg#clock .sector.dec { fill: #F18E17 }
+
+
+
+svg#clock .needle {
+	stroke: black;
+	fill: black;
+	stroke-width: 15;
+	stroke-linejoin: round;
+	filter: drop-shadow(10px 5px 10px gray);
+}
+

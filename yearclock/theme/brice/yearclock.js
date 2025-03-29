@@ -3,15 +3,13 @@
 
 // Clock Style
 theme.clockStyle = {
-	outerRadius: 1120,
-	innerRadius: 920,
-
-	needleLength: 1000,
-
-	monthLabelRadius: 980,	// how far out from the center the month-titles are positioned
-
-	weekdayTickLength: 40,
-	weekendTickLength: 55,
+	clockRadius       : 1200,
+	outerRadius       : 1120,
+	innerRadius       : 920,
+	monthLabelRadius  : 980,	// how far out from the center the month-titles are positioned
+	weekdayTickLength : 40,
+	weekendTickLength : 55,
+	needleLength      : 1000,
 };
 
 
@@ -28,7 +26,7 @@ theme.drawClock = function()
 	// Set Up Drawing
 	const drawing = Snap("#clock")
 
-	drawing.circle(0, 0, config.clockRadius)
+	drawing.circle(0, 0, theme.clockStyle.clockRadius)
 		.addClass('face year');
 
 	// Draw Months

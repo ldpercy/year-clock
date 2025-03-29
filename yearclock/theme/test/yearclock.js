@@ -2,4 +2,5 @@
 // test theme
 //
 
-theme.clockStyle.needleLength = 900;
+theme.clockStyle.clockRadius  = 1190,
+theme.clockStyle.needleLength = 950;
