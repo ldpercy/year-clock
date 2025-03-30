@@ -126,7 +126,7 @@ theme.clock.drawNeedle = function() {
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
 
-	const needleTransformString = svgRotateString(dateDegrees(config.now),0,0);
+	const needleTransformString = svgRotateString(dateDegrees(config.date),0,0);
 
 	theme.clock.drawing.path(needlePathString)
 		.transform(needleTransformString)

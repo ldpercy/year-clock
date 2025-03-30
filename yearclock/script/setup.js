@@ -38,8 +38,8 @@ function setup() {
 
 	// Set Current Date
 	const dateParam = getParameterByName('date');
-	config.now = dateParam ? new Date(dateParam) : new Date();
-	config.year = config.now.getFullYear();
+	config.date = dateParam ? new Date(dateParam) : new Date();
+	config.year = config.date.getFullYear();
 
 	// Set Up Months
 	config.months = config.monthNames.map(function( monthName, monthNumber )
