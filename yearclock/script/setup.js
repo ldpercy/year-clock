@@ -20,6 +20,7 @@ const theme = {
 	style        : undefined,    // string   - a set of additional css styles for making quick cosmetic changes
 	drawClock    : undefined,    // function - the function provided to draw the theme clock
 	draw         : {},           // object   - contains the individual drawing functions called by drawClock
+	drawing      : {},           // object   - the snap svg drawing used by the draw methods
 };
 
 

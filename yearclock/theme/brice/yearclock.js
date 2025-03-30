@@ -16,30 +16,29 @@ theme.clockStyle = {
 
 
 
-
 /* Draw Clock
 */
 theme.drawClock = function()
 {
 	// Set Up Drawing
-	const drawing = Snap("#clock")
+	theme.drawing = Snap("#clock");
 
-	theme.draw.face(drawing);
-	theme.draw.months(drawing);
-	theme.draw.dayTicks(drawing);
-	theme.draw.year(drawing);
-	theme.draw.needle(drawing);
+	theme.draw.face();
+	theme.draw.months();
+	theme.draw.dayTicks();
+	theme.draw.year();
+	theme.draw.needle();
 
 }/* drawClock */
 
 
-theme.draw.face = function(drawing) {
-	drawing.circle(0, 0, theme.clockStyle.clockRadius)
+theme.draw.face = function() {
+	theme.drawing.circle(0, 0, theme.clockStyle.clockRadius)
 		.addClass('face year');
 }
 
 
-theme.draw.months = function(drawing) {
+theme.draw.months = function() {
 	// Draw Months
 	for (let month of config.months)
 	{
@@ -48,7 +47,7 @@ theme.draw.months = function(drawing) {
 
 		// Month sector
 
-		sector(drawing, startAngle, endAngle, theme.clockStyle.innerRadius, theme.clockStyle.outerRadius )
+		sector(theme.drawing, startAngle, endAngle, theme.clockStyle.innerRadius, theme.clockStyle.outerRadius )
 			.addClass("sector month")
 			.addClass(month.code)
 
@@ -60,7 +59,7 @@ theme.draw.months = function(drawing) {
 		const yOffset    = upsideDown ? theme.clockStyle.monthLabelRadius : 0 - theme.clockStyle.monthLabelRadius
 		const labelAngle = upsideDown ? midAngle + Math.PI          : midAngle
 
-		drawing.text(0, yOffset, month.name)
+		theme.drawing.text(0, yOffset, month.name)
 			.addClass("label month")
 			.attr({
 				'transform': svgRotateString(Snap.deg(labelAngle),0,0)
@@ -70,7 +69,7 @@ theme.draw.months = function(drawing) {
 
 
 
-theme.draw.dayTicks = function(drawing) {
+theme.draw.dayTicks = function() {
 	// Day Ticks
 	for (let day of config.days)
 	{
@@ -79,7 +78,7 @@ theme.draw.dayTicks = function(drawing) {
 		if (day.first) // If first day in month
 		{
 			// Draw First Tick
-			radialLine(drawing, angle, theme.clockStyle.innerRadius, theme.clockStyle.outerRadius)
+			radialLine(theme.drawing, angle, theme.clockStyle.innerRadius, theme.clockStyle.outerRadius)
 				.addClass("tick day first")
 		}
 
@@ -88,7 +87,7 @@ theme.draw.dayTicks = function(drawing) {
 			// Draw a standard day tick
 			const tickInnerRadius = theme.clockStyle.outerRadius -theme.clockStyle.weekdayTickLength
 
-			radialLine(drawing, angle, tickInnerRadius, theme.clockStyle.outerRadius)
+			radialLine(theme.drawing, angle, tickInnerRadius, theme.clockStyle.outerRadius)
 				.addClass("tick day weekday")
 		}
 
@@ -97,7 +96,7 @@ theme.draw.dayTicks = function(drawing) {
 			// Draw a weekend tick
 			const tickInnerRadius = theme.clockStyle.outerRadius -theme.clockStyle.weekendTickLength
 
-			radialLine(drawing, angle, tickInnerRadius, theme.clockStyle.outerRadius)
+			radialLine(theme.drawing, angle, tickInnerRadius, theme.clockStyle.outerRadius)
 				.addClass("tick day weekend")
 		}
 	}
@@ -105,18 +104,18 @@ theme.draw.dayTicks = function(drawing) {
 
 
 
-theme.draw.year = function(drawing) {
+theme.draw.year = function() {
 	// Year Label
 	const yearOnLeft = dateRatio(config.now) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 
-	drawing.text(theme.clockStyle.innerRadius * 0.55 * labelSide, 0, config.year)
+	theme.drawing.text(theme.clockStyle.innerRadius * 0.55 * labelSide, 0, config.year)
 		.addClass("label year")
 }
 
 
 
-theme.draw.needle = function(drawing) {
+theme.draw.needle = function() {
 	// Needle
 	const needlePathString = `
 		M 12 160
@@ -129,7 +128,7 @@ theme.draw.needle = function(drawing) {
 
 	const needleTransformString = svgRotateString(dateDegrees(config.now),0,0);
 
-	drawing.path(needlePathString)
+	theme.drawing.path(needlePathString)
 		.transform(needleTransformString)
 		.addClass("needle year");
 }
