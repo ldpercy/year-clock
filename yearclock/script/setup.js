@@ -7,9 +7,10 @@ console.clear()
 
 // Year-clock general configuration
 const config = {
-	monthCodes   : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
-	days         : [],
-	defaultTheme : 'test',
+	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
+	days            : [],
+	defaultTheme    : 'test',
+	defaultLanguage : 'en',
 };
 
 
@@ -31,17 +32,17 @@ const theme = {
 */
 function setup() {
 	// Language
-	config.userLang = navigator.language || navigator.userLanguage;
-
-	config.languageParam = superLang( getParameterByName('language') );
-	config.browserLanguage = superLang( navigator.language || navigator.userLanguage );
-
-	config.monthNames = i18n.gregLocal[config.languageParam] || i18n.gregLocal[config.browserLanguage] || i18n.gregLocal["en"]
+	config.languageParam = getParameterByName('language');
+	config.language = getLanguage(config.languageParam);
+	console.log('config.languageParam:', config.languageParam);
+	console.log('config.language:', config.language);
+	config.monthNames = i18n.gregLocal[config.language];
 
 	// Set Current Date
 	const dateParam = getParameterByName('date');
 	config.date = dateParam ? new Date(dateParam) : new Date();
 	config.year = config.date.getFullYear();
+	console.log('config.date:', config.date.toISOString());
 
 	// Set Up Months
 	config.months = config.monthNames.map(function( monthName, monthNumber )
@@ -71,8 +72,10 @@ function setup() {
 	config.styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
 	theme.name = getParameterByName('theme') || config.defaultTheme;
+	console.log('theme.name:', theme.name);
 
 	theme.style = getParameterByName('style');
+	console.log('theme.style:', theme.style);
 	theme.configUrl = `theme/${theme.name}/config.js`;
 	theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
 
@@ -123,7 +126,7 @@ function setBaseTheme() {
 function setTheme(){
 	// onload script-theme
 	// All theme script items are now set.
-	console.log('onload script-theme');
+	// console.log('onload script-theme');
 
 	let cssUrl_theme = `theme/${theme.name}/style.css`;
 	config.styleElement_theme.setAttribute('href', cssUrl_theme);

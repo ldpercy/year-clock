@@ -24,3 +24,11 @@ function superLang( subLang )
 }
 
 
+function getLanguage(languageParameter) {
+	let result = '';
+	const paramLanguage = superLang( languageParameter );
+	const browserLanguage = superLang( navigator.language || navigator.userLanguage );
+	result = paramLanguage || browserLanguage;
+	if (!i18n.gregLocal[result]) result = config.defaultLanguage;
+	return result;
+}
