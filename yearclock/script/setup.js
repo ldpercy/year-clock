@@ -64,9 +64,9 @@ function setup() {
 	}
 
 	// Theming:
-	styleElement_base = document.getElementById('stylesheet-base');
-	styleElement_theme = document.getElementById('stylesheet-theme');
-	styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	config.styleElement_base = document.getElementById('stylesheet-base');
+	config.styleElement_theme = document.getElementById('stylesheet-theme');
+	config.styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
 	theme.name = getParameterByName('theme');
 	if (!theme.name) theme.name = config.defaultTheme;
@@ -96,7 +96,7 @@ function setThemeConfig(){
 		console.log(`theme.base: ${theme.base}`);
 		// set base css
 		let cssUrl_base = `theme/${theme.base}/style.css`;
-		styleElement_base.setAttribute('href', cssUrl_base);
+		config.styleElement_base.setAttribute('href', cssUrl_base);
 		//load the base resources
 		let baseScriptUrl = `theme/${theme.base}/yearclock.js`;
 		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
@@ -125,11 +125,11 @@ function setTheme(){
 	console.log('onload script-theme');
 
 	let cssUrl_theme = `theme/${theme.name}/style.css`;
-	styleElement_theme.setAttribute('href', cssUrl_theme);
+	config.styleElement_theme.setAttribute('href', cssUrl_theme);
 
 	if (theme.style) {
 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
-		styleElement_style.setAttribute('href', cssUrl_style);
+		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
 
 	theme.clock.drawClock();
