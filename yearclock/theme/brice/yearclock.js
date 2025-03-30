@@ -18,7 +18,7 @@ theme.clock = {
 
 /* Draw Clock
 */
-theme.drawClock = function()
+theme.clock.drawClock = function()
 {
 	// Set Up Drawing
 	theme.clock.drawing = Snap("#clock");
@@ -106,7 +106,7 @@ theme.clock.drawDayTicks = function() {
 
 theme.clock.drawYear = function() {
 	// Year Label
-	const yearOnLeft = dateRatio(config.now) < 0.5
+	const yearOnLeft = dateRatio(config.date) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 
 	theme.clock.drawing.text(theme.clock.innerRadius * 0.55 * labelSide, 0, config.year)
