@@ -1,5 +1,9 @@
+Theming improvements
+====================
+
+
 Allow For Theming
-=================
+-----------------
 
 With luck swapping a single directory path will load a different skin for the clock.
 
@@ -11,8 +15,7 @@ Nice to have:
 Not sure if the custom skins should implement the entire drawClock function, or just parts of it.
 
 
-Thoughts on implementation
---------------------------
+### Thoughts on implementation
 
 Not sure if the custom skins should implement the entire drawClock function, or just parts of it.
 It doesn't matter too much, but having fallbacks would probably require the latter.
@@ -27,8 +30,7 @@ If the main draw fn finds an implementation in the skin it uses it, otherwise it
 Also think I might use the term 'theme' instead.
 
 
-Theming Ideas
--------------
+### Theming Ideas
 
 The dark theme relies on having the original as a base and only overrides a handful of colours.
 
