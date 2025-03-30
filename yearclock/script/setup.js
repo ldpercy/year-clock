@@ -132,7 +132,7 @@ function setTheme(){
 		styleElement_style.setAttribute('href', cssUrl_style);
 	}
 
-	theme.drawClock();
+	theme.clock.drawClock();
 }/* setTheme */
 
 
