@@ -1,9 +1,9 @@
-/*
-	Internationalization
-*/
+//
+//	Localisation
+//
 
 
-const i18n = {
+const l10n = {
 
 	gregLocal : {
 		"en": [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
@@ -29,6 +29,6 @@ function getLanguage(languageParameter) {
 	const paramLanguage = superLang( languageParameter );
 	const browserLanguage = superLang( navigator.language || navigator.userLanguage );
 	result = paramLanguage || browserLanguage;
-	if (!i18n.gregLocal[result]) result = config.defaultLanguage;
+	if (!l10n.gregLocal[result]) result = config.defaultLanguage;
 	return result;
 }

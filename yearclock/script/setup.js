@@ -36,7 +36,7 @@ function setup() {
 	config.language = getLanguage(config.languageParam);
 	console.log('config.languageParam:', config.languageParam);
 	console.log('config.language:', config.language);
-	config.monthNames = i18n.gregLocal[config.language];
+	config.monthNames = l10n.gregLocal[config.language];
 
 	// Set Current Date
 	const dateParam = getParameterByName('date');
