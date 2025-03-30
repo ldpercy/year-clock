@@ -15,3 +15,23 @@ I'd like to allow for base-theme inheritance here, so I think they'll need to be
 
 
 
+Initial work
+------------
+
+I've broken up the main drawClock function and moved some things around within the theme object.
+
+We now have a `theme.clock` object to hold all the parameters and drawing functions for the clock.
+
+The only mandatory item within that object is the main drawing function:
+
+	theme.clock.drawClock()
+
+All of the other parameters and functions could be skipped if you just wanted to pack it all into the one function, not the best idea though.
+
+
+Wrapup
+------
+This was pretty short and sweet and I'm only polishing things now, so will wrap it up.
+
+The `theme.clock` object now holds all the parameters and drawing functions for the clock theme.
+

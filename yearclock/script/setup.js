@@ -4,6 +4,8 @@
 
 console.clear()
 
+
+// Year-clock general configuration
 const config = {
 	monthCodes   : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	days         : [],
@@ -11,14 +13,17 @@ const config = {
 };
 
 
-// these will be filled in later
+// Theme configuration
 const theme = {
-	name         : undefined,    // string   - the name of the theme, also the directory the theme files are stored in
-	description  : undefined,    // string   - description of the theme set in the theme config.js
-	configUrl    : undefined,    // string   - the location of the theme's config file
-	base         : undefined,    // string   - (optional) a base theme that will be loaded prior the main theme
-	style        : undefined,    // string   - a set of additional css styles for making quick cosmetic changes
-	drawClock    : undefined,    // function - the function provided to draw the theme clock
+	name             : undefined,    // string   - The name of the theme, also the directory the theme files are stored in
+	description      : undefined,    // string   - Description of the theme set in the theme config.js
+	configUrl        : undefined,    // string   - The location of the theme's config file
+	base             : undefined,    // string   - (optional) A base theme that will be loaded prior the main theme
+	style            : undefined,    // string   - A set of additional css styles for making quick cosmetic changes
+	clock            : {             // object   - Object containing parameters and drawing functions for the theme
+		drawClock    : ()=>{},       // function - (mandatory) Main function to draw the theme clock
+		// drawPart  : ()=>{},       // function - (optional) Draws the named clock part
+	},
 };
 
 
@@ -35,8 +40,8 @@ function setup() {
 
 	// Set Current Date
 	const dateParam = getParameterByName('date');
-	config.now = dateParam ? new Date(dateParam) : new Date();
-	config.year = config.now.getFullYear();
+	config.date = dateParam ? new Date(dateParam) : new Date();
+	config.year = config.date.getFullYear();
 
 	// Set Up Months
 	config.months = config.monthNames.map(function( monthName, monthNumber )
@@ -61,12 +66,11 @@ function setup() {
 	}
 
 	// Theming:
-	styleElement_base = document.getElementById('stylesheet-base');
-	styleElement_theme = document.getElementById('stylesheet-theme');
-	styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	config.styleElement_base = document.getElementById('stylesheet-base');
+	config.styleElement_theme = document.getElementById('stylesheet-theme');
+	config.styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
-	theme.name = getParameterByName('theme');
-	if (!theme.name) theme.name = config.defaultTheme;
+	theme.name = getParameterByName('theme') || config.defaultTheme;
 
 	theme.style = getParameterByName('style');
 	theme.configUrl = `theme/${theme.name}/config.js`;
@@ -93,7 +97,7 @@ function setThemeConfig(){
 		console.log(`theme.base: ${theme.base}`);
 		// set base css
 		let cssUrl_base = `theme/${theme.base}/style.css`;
-		styleElement_base.setAttribute('href', cssUrl_base);
+		config.styleElement_base.setAttribute('href', cssUrl_base);
 		//load the base resources
 		let baseScriptUrl = `theme/${theme.base}/yearclock.js`;
 		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
@@ -122,14 +126,14 @@ function setTheme(){
 	console.log('onload script-theme');
 
 	let cssUrl_theme = `theme/${theme.name}/style.css`;
-	styleElement_theme.setAttribute('href', cssUrl_theme);
+	config.styleElement_theme.setAttribute('href', cssUrl_theme);
 
 	if (theme.style) {
 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
-		styleElement_style.setAttribute('href', cssUrl_style);
+		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
 
-	theme.drawClock();
+	theme.clock.drawClock();
 }/* setTheme */
 
 
