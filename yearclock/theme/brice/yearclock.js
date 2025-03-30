@@ -1,3 +1,19 @@
+
+
+
+// Clock Style
+theme.clockStyle = {
+	clockRadius       : 1200,
+	outerRadius       : 1120,
+	innerRadius       : 920,
+	monthLabelRadius  : 980,	// how far out from the center the month-titles are positioned
+	weekdayTickLength : 40,
+	weekendTickLength : 55,
+	needleLength      : 1000,
+};
+
+
+
 /* setup and draw
 */
 
@@ -5,12 +21,12 @@
 
 /* Draw Clock
 */
-function drawClock()
+theme.drawClock = function()
 {
 	// Set Up Drawing
 	const drawing = Snap("#clock")
 
-	drawing.circle(0, 0, config.clockRadius)
+	drawing.circle(0, 0, theme.clockStyle.clockRadius)
 		.addClass('face year');
 
 	// Draw Months
@@ -21,7 +37,7 @@ function drawClock()
 
 		// Month sector
 
-		sector(drawing, startAngle, endAngle, config.clockStyle.innerRadius, config.clockStyle.outerRadius )
+		sector(drawing, startAngle, endAngle, theme.clockStyle.innerRadius, theme.clockStyle.outerRadius )
 			.addClass("sector month")
 			.addClass(month.code)
 
@@ -30,7 +46,7 @@ function drawClock()
 		const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25)
 		const upsideDown = Math.cos(midAngle) < 0
 
-		const yOffset    = upsideDown ? config.clockStyle.monthLabelRadius : 0 - config.clockStyle.monthLabelRadius
+		const yOffset    = upsideDown ? theme.clockStyle.monthLabelRadius : 0 - theme.clockStyle.monthLabelRadius
 		const labelAngle = upsideDown ? midAngle + Math.PI          : midAngle
 
 		drawing.text(0, yOffset, month.name)
@@ -48,25 +64,25 @@ function drawClock()
 		if (day.first) // If first day in month
 		{
 			// Draw First Tick
-			radialLine(drawing, angle, config.clockStyle.innerRadius, config.clockStyle.outerRadius)
+			radialLine(drawing, angle, theme.clockStyle.innerRadius, theme.clockStyle.outerRadius)
 				.addClass("tick day first")
 		}
 
 		if (!day.weekend && !day.first) // If neither weekend nor first day in month
 		{
 			// Draw a standard day tick
-			const tickInnerRadius = config.clockStyle.outerRadius -config.clockStyle.weekdayTickLength
+			const tickInnerRadius = theme.clockStyle.outerRadius -theme.clockStyle.weekdayTickLength
 
-			radialLine(drawing, angle, tickInnerRadius, config.clockStyle.outerRadius)
+			radialLine(drawing, angle, tickInnerRadius, theme.clockStyle.outerRadius)
 				.addClass("tick day weekday")
 		}
 
 		if (day.weekend)
 		{
 			// Draw a weekend tick
-			const tickInnerRadius = config.clockStyle.outerRadius -config.clockStyle.weekendTickLength
+			const tickInnerRadius = theme.clockStyle.outerRadius -theme.clockStyle.weekendTickLength
 
-			radialLine(drawing, angle, tickInnerRadius, config.clockStyle.outerRadius)
+			radialLine(drawing, angle, tickInnerRadius, theme.clockStyle.outerRadius)
 				.addClass("tick day weekend")
 		}
 	}
@@ -75,7 +91,7 @@ function drawClock()
 	const yearOnLeft = dateRatio(config.now) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 
-	drawing.text(config.clockStyle.innerRadius * 0.55 * labelSide, 0, config.year)
+	drawing.text(theme.clockStyle.innerRadius * 0.55 * labelSide, 0, config.year)
 		.addClass("label year")
 
 
@@ -83,7 +99,7 @@ function drawClock()
 	const needlePathString = `
 		M 12 160
 		L -12 160
-		L 0, -1010
+		L 0, -${theme.clockStyle.needleLength}
 		Z
 		M 30 0
 		A 30,30 0 1 1 -30,00
@@ -95,4 +111,4 @@ function drawClock()
 		.transform(needleTransformString)
 		.addClass("needle year");
 
-}
+}// drawClock

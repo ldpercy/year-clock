@@ -10,23 +10,23 @@
 	<link rel="stylesheet" href="page/style.css">
 
 	<!-- core --->
-	<script defer src="js/snap.svg-min.js"></script>
-	<script defer src="js/util.js"></script>
-	<script defer src="js/i18n.js"></script>
-	<script defer src="js/maths.js"></script>
-	<script defer src="js/setup.js"></script>
+	<script defer src="script/snap.svg-min.js"></script>
+	<script defer src="script/i18n.js"></script>
+	<script defer src="script/maths.js"></script>
+	<script defer src="script/setup.js"></script>
 
-	<!-- default theme -->
-	<link rel="stylesheet" href="theme/default/style.css">
-	<script defer src="theme/default/yearclock.js"></script>
+	<!-- Theme Styles -->
+	<link id="stylesheet-base" rel="stylesheet">
+	<link id="stylesheet-theme" rel="stylesheet">
+	<link id="stylesheet-style" rel="stylesheet">
 
-	<!-- theme -->
-	<link id="themeStylesheet" rel="stylesheet" href="">
+	<!-- Theme Scripts -->
+	<script defer id="script-themeConfig"></script>
+	<script defer id="script-themeBase"></script>
+	<script defer id="script-theme"></script>
 
-	<!-- draw -->
-	<script defer src="js/yearclock.js"></script>
 </head>
-<body onload="setup();drawClock();">
+<body onload="setup();">
 
 	<svg id="clock" width="2400" height="2400" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet">
 	</svg>
