@@ -13,14 +13,15 @@ const config = {
 
 // these will be filled in later
 const theme = {
-	name         : undefined,    // string   - the name of the theme, also the directory the theme files are stored in
-	description  : undefined,    // string   - description of the theme set in the theme config.js
-	configUrl    : undefined,    // string   - the location of the theme's config file
-	base         : undefined,    // string   - (optional) a base theme that will be loaded prior the main theme
-	style        : undefined,    // string   - a set of additional css styles for making quick cosmetic changes
-	drawClock    : undefined,    // function - the function provided to draw the theme clock
-	draw         : {},           // object   - contains the individual drawing functions called by drawClock
-	drawing      : {},           // object   - the snap svg drawing used by the draw methods
+	name             : undefined,    // string   - the name of the theme, also the directory the theme files are stored in
+	description      : undefined,    // string   - description of the theme set in the theme config.js
+	configUrl        : undefined,    // string   - the location of the theme's config file
+	base             : undefined,    // string   - (optional) a base theme that will be loaded prior the main theme
+	style            : undefined,    // string   - a set of additional css styles for making quick cosmetic changes
+	clock            : {             // object   - object containing parameters and drawing functions for the theme
+		drawClock    : ()=>{},       // function - main function to draw the theme clock
+		// drawPart  : ()=>{},       // function - draws the named clock part
+	},
 };
 
 
