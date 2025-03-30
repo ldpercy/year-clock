@@ -5,7 +5,7 @@ A bit like a regular analog clock, but instead of the regular 12 hour divisions 
 
 The 'hour hand' points to the time of year.
 
-<img src="yearclock/image/example2.svg" alt="Year clock svg" width="50%"/>
+<img src="image/example2.svg" alt="Year clock svg" width="50%"/>
 
 
 
