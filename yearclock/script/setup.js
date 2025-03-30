@@ -4,6 +4,8 @@
 
 console.clear()
 
+
+// Year-clock general configuration
 const config = {
 	monthCodes   : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	days         : [],
@@ -11,16 +13,16 @@ const config = {
 };
 
 
-// these will be filled in later
+// Theme configuration
 const theme = {
-	name             : undefined,    // string   - the name of the theme, also the directory the theme files are stored in
-	description      : undefined,    // string   - description of the theme set in the theme config.js
-	configUrl        : undefined,    // string   - the location of the theme's config file
-	base             : undefined,    // string   - (optional) a base theme that will be loaded prior the main theme
-	style            : undefined,    // string   - a set of additional css styles for making quick cosmetic changes
-	clock            : {             // object   - object containing parameters and drawing functions for the theme
-		drawClock    : ()=>{},       // function - main function to draw the theme clock
-		// drawPart  : ()=>{},       // function - draws the named clock part
+	name             : undefined,    // string   - The name of the theme, also the directory the theme files are stored in
+	description      : undefined,    // string   - Description of the theme set in the theme config.js
+	configUrl        : undefined,    // string   - The location of the theme's config file
+	base             : undefined,    // string   - (optional) A base theme that will be loaded prior the main theme
+	style            : undefined,    // string   - A set of additional css styles for making quick cosmetic changes
+	clock            : {             // object   - Object containing parameters and drawing functions for the theme
+		drawClock    : ()=>{},       // function - (mandatory) Main function to draw the theme clock
+		// drawPart  : ()=>{},       // function - (optional) Draws the named clock part
 	},
 };
 
@@ -68,8 +70,7 @@ function setup() {
 	config.styleElement_theme = document.getElementById('stylesheet-theme');
 	config.styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
-	theme.name = getParameterByName('theme');
-	if (!theme.name) theme.name = config.defaultTheme;
+	theme.name = getParameterByName('theme') || config.defaultTheme;
 
 	theme.style = getParameterByName('style');
 	theme.configUrl = `theme/${theme.name}/config.js`;
