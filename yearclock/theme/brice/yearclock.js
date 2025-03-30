@@ -1,4 +1,6 @@
-
+//
+// yearclock.js
+//
 
 
 // Clock Style
@@ -14,10 +16,6 @@ theme.clockStyle = {
 
 
 
-/* setup and draw
-*/
-
-
 
 /* Draw Clock
 */
@@ -26,9 +24,22 @@ theme.drawClock = function()
 	// Set Up Drawing
 	const drawing = Snap("#clock")
 
+	theme.draw.face(drawing);
+	theme.draw.months(drawing);
+	theme.draw.dayTicks(drawing);
+	theme.draw.year(drawing);
+	theme.draw.needle(drawing);
+
+}/* drawClock */
+
+
+theme.draw.face = function(drawing) {
 	drawing.circle(0, 0, theme.clockStyle.clockRadius)
 		.addClass('face year');
+}
 
+
+theme.draw.months = function(drawing) {
 	// Draw Months
 	for (let month of config.months)
 	{
@@ -55,7 +66,11 @@ theme.drawClock = function()
 				'transform': svgRotateString(Snap.deg(labelAngle),0,0)
 			})
 	}
+}/* drawMonths */
 
+
+
+theme.draw.dayTicks = function(drawing) {
 	// Day Ticks
 	for (let day of config.days)
 	{
@@ -86,15 +101,22 @@ theme.drawClock = function()
 				.addClass("tick day weekend")
 		}
 	}
+}/* dayTicks */
 
+
+
+theme.draw.year = function(drawing) {
 	// Year Label
 	const yearOnLeft = dateRatio(config.now) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 
 	drawing.text(theme.clockStyle.innerRadius * 0.55 * labelSide, 0, config.year)
 		.addClass("label year")
+}
 
 
+
+theme.draw.needle = function(drawing) {
 	// Needle
 	const needlePathString = `
 		M 12 160
@@ -110,5 +132,4 @@ theme.drawClock = function()
 	drawing.path(needlePathString)
 		.transform(needleTransformString)
 		.addClass("needle year");
-
-}// drawClock
+}
