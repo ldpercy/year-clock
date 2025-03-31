@@ -41,7 +41,6 @@ theme.clock.drawMonthSectors = function() {
 	{
 		const startAngle = dateRadians(month.startDate);
 		const endAngle   = dateRadians(month.endDate);
-
 		// Month sector
 		const sectorPath = sector(startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
 		sectorSvg = `<path d="${sectorPath}" class="sector month ${month.code}"></path>`;
@@ -57,20 +56,15 @@ theme.clock.drawMonthLabels = function() {
 	{
 		const startAngle = dateRadians(month.startDate);
 		const endAngle   = dateRadians(month.endDate);
-
+		const midAngle   = midpoint(startAngle,endAngle);
+		const center     = polarPoint(midAngle, theme.clock.monthLabelRadius);
 		// Month Label
-		const midAngle = midpoint(startAngle,endAngle); // + (Math.TAU * 0.25)
-		const upsideDown = Math.cos(midAngle) < 0;
+		const invert    = (Math.cos(midAngle) < 0);
+		const rotate    = degrees(midAngle) + ((invert) ? 180 : 0);
+		const transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 
-		const yOffset        = upsideDown ? theme.clock.monthLabelRadius : 0 - theme.clock.monthLabelRadius;
-		const labelAngle     = upsideDown ? midAngle + Math.PI          : midAngle;
-		const labelTransform = svgRotateString(Snap.deg(labelAngle),0,0);
-
-		// transform="matrix(0.7147,0.6995,-0.6995,0.7147,0,0)"
-
-		const labelCoord = polarPoint(midAngle, theme.clock.monthLabelRadius);
-
-		const labelSvg = `<text x="${labelCoord.x}" y="${labelCoord.y}" class="label month" >${month.name}</text>`; // transform="${labelTransform}"
+		const labelSvg =
+			`<text x="${center.x}" y="${center.y}" class="label month" transform="${transform}">${month.name}</text>`;
 		theme.clock.element.innerHTML += labelSvg;
 	}
 }/* drawMonths */

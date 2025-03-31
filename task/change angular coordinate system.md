@@ -97,3 +97,12 @@ I wasn't all that far off.
 The trig functions for polarPoint needed changing for the new angles, but that was about it.
 
 
+Improve month label positioning
+-------------------------------
+So with that done, can I go back to the original job?
+
+Done, labels now have absolute centers and are rotated corrently (transform now only for rotation on the spot).
+
+
+
+

@@ -23,6 +23,14 @@ function midpoint(a,b)
 	return 0.5 * (a + b)
 }
 
+function radians(degrees) {
+	return (degrees/360) * Math.TAU;
+}
+
+function degrees(radians) {
+	return (radians/Math.TAU) * 360;
+}
+
 
 
 
