@@ -80,6 +80,19 @@ function snapRadialLine(drawing, angle, innerRadius, outerRadius)
 }
 
 
+function radialLine(angle, startRadius, endRadius) {
+	const start = polarPoint(angle, startRadius);
+	const end   = polarPoint(angle, endRadius);
+	result = {
+		xStart : start.x,
+		yStart : start.y,
+		xEnd   : end.x,
+		yEnd   : end.y,
+	}
+	return result;
+}
+
+
 function sector(startAngle, endAngle, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(startAngle, outerRadius)
