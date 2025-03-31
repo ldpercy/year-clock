@@ -47,7 +47,7 @@ theme.clock.drawMonths = function() {
 
 		// Month sector
 
-		sector(theme.clock.drawing, startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius )
+		snapSector(theme.clock.drawing, startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius )
 			.addClass("sector month")
 			.addClass(month.code)
 

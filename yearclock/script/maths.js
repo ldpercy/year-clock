@@ -79,7 +79,7 @@ function radialLine(drawing, angle, innerRadius, outerRadius)
 	return drawing.line(start.x, start.y, end.x, end.y)
 }
 
-function sector(drawing, startAngle, endAngle, innerRadius, outerRadius)
+function snapSector(drawing, startAngle, endAngle, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(startAngle, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
