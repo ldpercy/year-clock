@@ -7,7 +7,7 @@ svg#clock .face   {
 	fill: whitesmoke;
 	stroke: silver;
 	stroke-width: 10;
-	filter: drop-shadow(5px 5px 10px gray);
+	filter: drop-shadow(0px 10px 10px gray);
 }
 
 
@@ -31,8 +31,5 @@ svg#clock .needle {
 	fill: black;
 	stroke-width: 15;
 	stroke-linejoin: round;
-	filter: drop-shadow(5px 5px 10px gray);
+	filter: drop-shadow(0px 20px 10px gray);
 }
-/*
-drop-shadow is rendered *before* rotation, so it's a bit wonky, need to see if it can be applied after.
-*/
