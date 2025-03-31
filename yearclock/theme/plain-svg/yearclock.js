@@ -36,18 +36,21 @@ theme.clock.drawFace = function() {
 
 
 theme.clock.drawMonthSectors = function() {
+	let newSvg = '';
 	for (let month of config.months)
 	{
 		const sectorPath = sector(month.startAngle, month.endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
-		sectorSvg = `<path d="${sectorPath}" class="sector month ${month.code}"></path>`;
-		theme.clock.element.innerHTML += sectorSvg;
+		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
+		newSvg += sectorSvg;
 	}
+	theme.clock.element.innerHTML += `<g class="sector month">${newSvg}</g>`;
 }/* drawMonthSectors */
 
 
 /* drawMonthLabels
 */
 theme.clock.drawMonthLabels = function() {
+	newSvg = '';
 	for (let month of config.months)
 	{
 		const center     = polarPoint(month.midAngle, theme.clock.monthLabelRadius);
@@ -56,18 +59,22 @@ theme.clock.drawMonthLabels = function() {
 		const transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 
 		const labelSvg =
-			`<text x="${center.x}" y="${center.y}" class="label month" transform="${transform}">${month.name}</text>`;
-		theme.clock.element.innerHTML += labelSvg;
+			`<text x="${center.x}" y="${center.y}" transform="${transform}">${month.name}</text>`;
+		newSvg += labelSvg;
 	}
+	theme.clock.element.innerHTML += `<g class="label month">${newSvg}</g>`;
 }/* drawMonthLabels */
 
 
 
-
+/* drawDayTicks
+*/
 theme.clock.drawDayTicks = function() {
 
 	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayTickLength;
 	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
+
+	let newSvg = '';
 
 	for (let day of config.days)
 	{
@@ -76,23 +83,27 @@ theme.clock.drawDayTicks = function() {
 		if (day.class == 'weekday') // If neither weekend nor first day in month
 		{
 			const weekday = radialLine(angle, weekdayTickInnerRadius, theme.clock.outerRadius);
-			const weekdaySvg = `<line x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}" class="tick day weekday"></line>`;
-			theme.clock.element.innerHTML += weekdaySvg;
+			const weekdaySvg =
+				`<line x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}" class="weekday"></line>`;
+			newSvg += weekdaySvg;
 		}
 		else if (day.class == 'weekend')
 		{
 			const weekend = radialLine(angle, weekendTickInnerRadius, theme.clock.outerRadius);
-			const weekendSvg = `<line x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}" class="tick day weekend"></line>`;
-			theme.clock.element.innerHTML += weekendSvg;
+			const weekendSvg =
+				`<line x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}" class="weekend"></line>`;
+			newSvg += weekendSvg;
 		}
 		else if (day.class == 'first') // If first day in month
 		{
 			const first = radialLine(angle, theme.clock.innerRadius, theme.clock.outerRadius);
-			const firstSvg = `<line x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" class="tick day first"></line>`;
-			theme.clock.element.innerHTML += firstSvg;
+			const firstSvg =
+				`<line x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" class="first"></line>`;
+			newSvg += firstSvg;
 		}
 	}
-}/* dayTicks */
+	theme.clock.element.innerHTML += `<g class="tick day">${newSvg}</g>`;
+}/* drawDayTicks */
 
 
 
