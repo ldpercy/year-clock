@@ -67,8 +67,6 @@ After that the number of elements went up from a ~30 to around 400.
 I could time that out too if I wanted, but it'll prob just tell me what I already know.
 
 
-
-
 Remove last bit of Snap
 -----------------------
 
@@ -81,5 +79,14 @@ Some maths involved.
 Might need to split this one too.
 
 
+Wrapup
+------
 
+Have created a brand new theme 'svg-plain' that has no base-dependence on the original brice theme.
+It's done using a pretty rudimentary and slow method, should be able to improve.
+Going to wrap this upo here as I've done the main task job, though it needs more work.
+
+Two new tasks out of this:
+* [improve plain svg performance](<improve plain svg performance.md>)
+* [improve month label postioning](<improve month label postioning.md>)
 
