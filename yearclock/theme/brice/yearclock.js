@@ -46,13 +46,12 @@ theme.clock.drawMonths = function() {
 		const endAngle   = dateRadians(month.endDate)
 
 		// Month sector
-
-		sector(theme.clock.drawing, startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius )
+		const sectorPath = sector(startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
+		theme.clock.drawing.path(sectorPath)
 			.addClass("sector month")
 			.addClass(month.code)
 
 		// Month Label
-
 		const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25)
 		const upsideDown = Math.cos(midAngle) < 0
 
@@ -78,7 +77,7 @@ theme.clock.drawDayTicks = function() {
 		if (day.first) // If first day in month
 		{
 			// Draw First Tick
-			radialLine(theme.clock.drawing, angle, theme.clock.innerRadius, theme.clock.outerRadius)
+			snapRadialLine(theme.clock.drawing, angle, theme.clock.innerRadius, theme.clock.outerRadius)
 				.addClass("tick day first")
 		}
 
@@ -87,7 +86,7 @@ theme.clock.drawDayTicks = function() {
 			// Draw a standard day tick
 			const tickInnerRadius = theme.clock.outerRadius -theme.clock.weekdayTickLength
 
-			radialLine(theme.clock.drawing, angle, tickInnerRadius, theme.clock.outerRadius)
+			snapRadialLine(theme.clock.drawing, angle, tickInnerRadius, theme.clock.outerRadius)
 				.addClass("tick day weekday")
 		}
 
@@ -96,7 +95,7 @@ theme.clock.drawDayTicks = function() {
 			// Draw a weekend tick
 			const tickInnerRadius = theme.clock.outerRadius -theme.clock.weekendTickLength
 
-			radialLine(theme.clock.drawing, angle, tickInnerRadius, theme.clock.outerRadius)
+			snapRadialLine(theme.clock.drawing, angle, tickInnerRadius, theme.clock.outerRadius)
 				.addClass("tick day weekend")
 		}
 	}

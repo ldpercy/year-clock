@@ -2,14 +2,17 @@
 // Setup
 //
 
-console.clear()
+console.clear();
+log = createLog();
+log('setup.js')
 
 
 // Year-clock general configuration
 const config = {
-	monthCodes   : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
-	days         : [],
-	defaultTheme : 'test',
+	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
+	days            : [],
+	defaultTheme    : 'test',
+	defaultLanguage : 'en',
 };
 
 
@@ -31,17 +34,17 @@ const theme = {
 */
 function setup() {
 	// Language
-	config.userLang = navigator.language || navigator.userLanguage;
-
-	config.languageParam = superLang( getParameterByName('language') );
-	config.browserLanguage = superLang( navigator.language || navigator.userLanguage );
-
-	config.monthNames = i18n.gregLocal[config.languageParam] || i18n.gregLocal[config.browserLanguage] || i18n.gregLocal["en"]
+	config.languageParam = getParameterByName('language');
+	config.language = getLanguage(config.languageParam);
+	log('config.languageParam:', config.languageParam);
+	log('config.language:', config.language);
+	config.monthNames = l10n.gregLocal[config.language];
 
 	// Set Current Date
 	const dateParam = getParameterByName('date');
 	config.date = dateParam ? new Date(dateParam) : new Date();
 	config.year = config.date.getFullYear();
+	log('config.date:', config.date.toISOString());
 
 	// Set Up Months
 	config.months = config.monthNames.map(function( monthName, monthNumber )
@@ -71,8 +74,10 @@ function setup() {
 	config.styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 
 	theme.name = getParameterByName('theme') || config.defaultTheme;
+	log('theme.name:', theme.name);
 
 	theme.style = getParameterByName('style');
+	log('theme.style:', theme.style);
 	theme.configUrl = `theme/${theme.name}/config.js`;
 	theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
 
@@ -94,7 +99,7 @@ function setThemeConfig(){
 	// theme.description and theme.base are now set
 
 	if (theme.base) {
-		console.log(`theme.base: ${theme.base}`);
+		log(`theme.base: ${theme.base}`);
 		// set base css
 		let cssUrl_base = `theme/${theme.base}/style.css`;
 		config.styleElement_base.setAttribute('href', cssUrl_base);
@@ -103,7 +108,7 @@ function setThemeConfig(){
 		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
 	}
 	else {
-		console.log('no theme.base set');
+		log('no theme.base set');
 		//just load the theme resources
 		replaceScript('script-theme', theme.scriptUrl, setTheme);
 	}
@@ -123,7 +128,7 @@ function setBaseTheme() {
 function setTheme(){
 	// onload script-theme
 	// All theme script items are now set.
-	console.log('onload script-theme');
+	// log('onload script-theme');
 
 	let cssUrl_theme = `theme/${theme.name}/style.css`;
 	config.styleElement_theme.setAttribute('href', cssUrl_theme);
@@ -132,8 +137,9 @@ function setTheme(){
 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
 		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
-
+	log('Before drawClock');
 	theme.clock.drawClock();
+	log('After drawClock');
 }/* setTheme */
 
 
@@ -160,7 +166,7 @@ function getParameterByName(name)
 /* replaceScript
 */
 function replaceScript(id, scriptUrl, callback) {
-	//console.log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
+	//log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
 	let scriptElement = document.createElement('script');
 
 	scriptElement.setAttribute('id', id);
@@ -171,3 +177,15 @@ function replaceScript(id, scriptUrl, callback) {
 	document.getElementsByTagName('head')[0].appendChild(scriptElement);
 }/* replaceScript */
 
+
+
+/* createLog
+Returns a log function that logs to the console with performance timing.
+Use:
+	mylog = createLog();
+*/
+function createLog() {
+	return (...values) => {
+		console.log(performance.now(), ...values);
+	}
+}

@@ -71,7 +71,7 @@ function dateDegrees(date)
 
 // Shapes
 
-function radialLine(drawing, angle, innerRadius, outerRadius)
+function snapRadialLine(drawing, angle, innerRadius, outerRadius)
 {
 	const start = polarPoint(angle, innerRadius)
 	const end   = polarPoint(angle, outerRadius)
@@ -79,7 +79,21 @@ function radialLine(drawing, angle, innerRadius, outerRadius)
 	return drawing.line(start.x, start.y, end.x, end.y)
 }
 
-function sector(drawing, startAngle, endAngle, innerRadius, outerRadius)
+
+function radialLine(angle, startRadius, endRadius) {
+	const start = polarPoint(angle, startRadius);
+	const end   = polarPoint(angle, endRadius);
+	result = {
+		xStart : start.x,
+		yStart : start.y,
+		xEnd   : end.x,
+		yEnd   : end.y,
+	}
+	return result;
+}
+
+
+function sector(startAngle, endAngle, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(startAngle, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
@@ -93,8 +107,9 @@ function sector(drawing, startAngle, endAngle, innerRadius, outerRadius)
 		A ${innerRadius} ${innerRadius} 0 0 0 ${innerStart.x} ${innerStart.y}
 		Z`;
 
-	return drawing.path(path)
+	return path;
 }
+
 
 function svgRotateString(angle, centre_x, centre_y)
 {
