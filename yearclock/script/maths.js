@@ -13,8 +13,8 @@ function Point (x, y)
 function polarPoint (angle, radius)
 {
 	return new Point(
-		radius * Math.cos(angle),
-		radius * Math.sin(angle)
+		radius * -Math.cos(angle),
+		radius * -Math.sin(angle)
 	)
 }
 
@@ -49,12 +49,11 @@ function isWeekend(d)
 }
 
 
-
 // clock
 
 function clockAngle( revolutions )
 {
-	return Math.TAU * (revolutions - 0.25)
+	return Math.TAU * (revolutions)
 }
 
 function dateRadians(date)
@@ -99,6 +98,8 @@ function sector(startAngle, endAngle, innerRadius, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
 	const innerEnd   = polarPoint(endAngle,   innerRadius)
 	const innerStart = polarPoint(startAngle, innerRadius)
+
+	log(outerStart, outerEnd);
 
 	const path = `
 		M ${outerStart.x} ${outerStart.y}

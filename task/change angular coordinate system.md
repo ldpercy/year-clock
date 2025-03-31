@@ -43,6 +43,36 @@ It's in radians, so it should go from 0 to 2pi.
 
 
 
+How it works currently
+----------------------
+
+Start and end angles (trimmed):
+
+	January		-1.5707 -1.0386
+	February	-1.0386 -0.5407
+	March		-0.5407 -0.0085
+	April		-0.0085 0.5064
+	May			0.5064 1.0386
+	June		1.0386 1.5536
+	July		1.5536 2.0858
+	August		2.0858 2.6179
+	September	2.6179 3.1330
+	October		3.1330 3.6651
+	November	3.6651 4.1802
+	December	4.1802 4.7123
+
+So currently it goes from -1/4 to 3/4 of a revolution.
+
+I'd like these from 0 to 6.2831...
+
+Taking the quarter turn off clockAngle fixes that.
+But now the month sectors are out by 90 degrees and the labels by 180.
 
 
+Do it properly
+--------------
 
+I'm just messing about here, trying different thing.
+The labels are in the correct spot, so I'm something is right, but the month sectors are still out by 90.
+Need to actually do the maths.
+There's probably a very good reason for the way it was done.
