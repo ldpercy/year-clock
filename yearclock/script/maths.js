@@ -57,6 +57,13 @@ function isWeekend(d)
 }
 
 
+function getDayClass(date) {
+	result = 'weekday';
+	if (date.getDay() == 0 || date.getDay() == 6) result = 'weekend';
+	if (date.getDate() == 1) result = 'first';
+	return result;
+}
+
 // clock
 
 function clockAngle( revolutions )
