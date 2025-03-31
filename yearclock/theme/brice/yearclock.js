@@ -46,13 +46,12 @@ theme.clock.drawMonths = function() {
 		const endAngle   = dateRadians(month.endDate)
 
 		// Month sector
-
-		snapSector(theme.clock.drawing, startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius )
+		const sectorPath = sector(startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
+		theme.clock.drawing.path(sectorPath)
 			.addClass("sector month")
 			.addClass(month.code)
 
 		// Month Label
-
 		const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25)
 		const upsideDown = Math.cos(midAngle) < 0
 

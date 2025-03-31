@@ -79,7 +79,8 @@ function radialLine(drawing, angle, innerRadius, outerRadius)
 	return drawing.line(start.x, start.y, end.x, end.y)
 }
 
-function snapSector(drawing, startAngle, endAngle, innerRadius, outerRadius)
+
+function sector(startAngle, endAngle, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(startAngle, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
@@ -93,8 +94,9 @@ function snapSector(drawing, startAngle, endAngle, innerRadius, outerRadius)
 		A ${innerRadius} ${innerRadius} 0 0 0 ${innerStart.x} ${innerStart.y}
 		Z`;
 
-	return drawing.path(path)
+	return path;
 }
+
 
 function svgRotateString(angle, centre_x, centre_y)
 {
