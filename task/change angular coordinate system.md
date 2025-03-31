@@ -72,7 +72,28 @@ But now the month sectors are out by 90 degrees and the labels by 180.
 Do it properly
 --------------
 
-I'm just messing about here, trying different thing.
+I'm just messing about here, trying different things.
 The labels are in the correct spot, so I'm something is right, but the month sectors are still out by 90.
 Need to actually do the maths.
 There's probably a very good reason for the way it was done.
+
+### Coordinates
+
+SVG uses the following system (centered around 0,0):
+
+	-x -y	+x -y
+	-x +y	+x +y
+
+...
+
+Oooh I think I've found it. There was extra quarter turn hidden in the label code:
+
+```javascript
+	const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25)
+```
+
+Take that out and now it's working.
+I wasn't all that far off.
+The trig functions for polarPoint needed changing for the new angles, but that was about it.
+
+

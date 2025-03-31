@@ -11,7 +11,7 @@ log('setup.js')
 const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	days            : [],
-	defaultTheme    : 'test',
+	defaultTheme    : 'plain-svg',
 	defaultLanguage : 'en',
 };
 

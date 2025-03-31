@@ -13,8 +13,8 @@ function Point (x, y)
 function polarPoint (angle, radius)
 {
 	return new Point(
-		radius * -Math.cos(angle),
-		radius * -Math.sin(angle)
+		radius * Math.sin(angle),
+		radius * -Math.cos(angle)
 	)
 }
 
@@ -98,8 +98,6 @@ function sector(startAngle, endAngle, innerRadius, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
 	const innerEnd   = polarPoint(endAngle,   innerRadius)
 	const innerStart = polarPoint(startAngle, innerRadius)
-
-	log(outerStart, outerEnd);
 
 	const path = `
 		M ${outerStart.x} ${outerStart.y}

@@ -52,7 +52,7 @@ theme.clock.drawMonths = function() {
 			.addClass(month.code)
 
 		// Month Label
-		const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25)
+		const midAngle = midpoint(startAngle,endAngle);
 		const upsideDown = Math.cos(midAngle) < 0
 
 		const yOffset    = upsideDown ? theme.clock.monthLabelRadius : 0 - theme.clock.monthLabelRadius

@@ -41,11 +41,9 @@ theme.clock.drawMonthSectors = function() {
 	{
 		const startAngle = dateRadians(month.startDate);
 		const endAngle   = dateRadians(month.endDate);
-		//log(month.name,startAngle,endAngle);
 
 		// Month sector
 		const sectorPath = sector(startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
-		//log(sectorPath);
 		sectorSvg = `<path d="${sectorPath}" class="sector month ${month.code}"></path>`;
 		theme.clock.element.innerHTML += sectorSvg;
 	}
@@ -60,9 +58,8 @@ theme.clock.drawMonthLabels = function() {
 		const startAngle = dateRadians(month.startDate);
 		const endAngle   = dateRadians(month.endDate);
 
-
 		// Month Label
-		const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25);
+		const midAngle = midpoint(startAngle,endAngle); // + (Math.TAU * 0.25)
 		const upsideDown = Math.cos(midAngle) < 0;
 
 		const yOffset        = upsideDown ? theme.clock.monthLabelRadius : 0 - theme.clock.monthLabelRadius;
