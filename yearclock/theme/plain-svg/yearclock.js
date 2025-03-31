@@ -19,7 +19,8 @@ theme.clock.drawClock = function()
 	theme.clock.element = document.getElementById('clock');
 
 	theme.clock.drawFace();
-	theme.clock.drawMonths();
+	theme.clock.drawMonthSectors();
+	theme.clock.drawMonthLabels();
 	theme.clock.drawDayTicks();
 	theme.clock.drawYear();
 	theme.clock.drawNeedle();
@@ -34,7 +35,7 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonths = function() {
+theme.clock.drawMonthSectors = function() {
 	// Draw Months
 	for (let month of config.months)
 	{
@@ -45,6 +46,18 @@ theme.clock.drawMonths = function() {
 		const sectorPath = sector(startAngle, endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
 		sectorSvg = `<path d="${sectorPath}" class="sector month ${month.code}"></path>`;
 		theme.clock.element.innerHTML += sectorSvg;
+	}
+}/* drawMonths */
+
+
+
+theme.clock.drawMonthLabels = function() {
+	// Draw Months
+	for (let month of config.months)
+	{
+		const startAngle = dateRadians(month.startDate);
+		const endAngle   = dateRadians(month.endDate);
+		log(month.name,startAngle,endAngle);
 
 		// Month Label
 		const midAngle = midpoint(startAngle,endAngle) + (Math.TAU * 0.25);

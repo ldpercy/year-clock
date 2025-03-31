@@ -33,3 +33,53 @@ I'll add in some timing counters shortly to measure.
 My instinct is that the string appending method is likely the culprit.
 I expect Snap uses node creation and insertion or similar.
 
+
+Performance timing
+------------------
+
+I've added performance timing to an overridden log function.
+
+Timings vary a bit depending on the browser circumstance.
+
+All in milliseconds.
+
+For example from a freshly loaded browser it's slower:
+
+				chromium	firefox
+	brice 		~175		...
+	svg-plain	~230-400	~300
+
+
+Repeatedly refreshing the page:
+
+	Theme			chromium	firefox
+	brice 			~25-35		~20-35
+	svg-plain		~300-400	~300-350
+
+
+### Confounding factors
+I have a couple of drop-shadows on the new svg-plain theme, they might add a little bit of lag as blurs are sometimes slow.
+Also I have different plugins on each browser, so they might affect things.
+
+I could try a few more things but for now I'm looking at around 300ms drawing time with SVG string appending.
+I should also note that I only really noticed the slow down after I added the day tick marks.
+After that the number of elements went up from a ~30 to around 400.
+I could time that out too if I wanted, but it'll prob just tell me what I already know.
+
+
+
+
+Remove last bit of Snap
+-----------------------
+
+I'm going to yank out the last bit Snap then wrap this up.
+
+Performance tuning can be done in a different task.
+
+Hmm not as simple as I'd hoped.
+Some maths involved.
+Might need to split this one too.
+
+
+
+
