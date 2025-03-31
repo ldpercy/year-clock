@@ -104,5 +104,12 @@ So with that done, can I go back to the original job?
 Done, labels now have absolute centers and are rotated corrently (transform now only for rotation on the spot).
 
 
+Wrapup
+------
+
+Angles now start at 0 at 12 o'clock/Jan 1 and increase clockwise through to 2pi/360.
+A few bits of maths rewritten, and a couple of stray quarter turns removed.
+The month labels now have proper positions and are only rotated in place around their centers.
+And the last bit of of Snap has been removed from the plain-svg theme.
 
 
