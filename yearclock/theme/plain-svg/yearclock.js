@@ -4,9 +4,25 @@
 
 theme.clock.clockRadius  = 1170,
 theme.clock.needleLength = 950;
+theme.clock.innerRadius  = 920;
 
 
-theme.clock.element = document.getElementById('clock');
+
+/* Draw Clock
+*/
+theme.clock.drawClock = function()
+{
+	// Set Up Drawing
+	theme.clock.element = document.getElementById('clock');
+
+	theme.clock.drawFace();
+	//theme.clock.drawMonths();
+	//theme.clock.drawDayTicks();
+	theme.clock.drawYear();
+	theme.clock.drawNeedle();
+
+}/* drawClock */
+
 
 
 theme.clock.drawFace = function() {

@@ -3,12 +3,19 @@
 */
 
 
+svg#clock {
+	background-color: seashell;
+	font-size: 48px;
+}
+
+
 svg#clock .face   {
 	fill: whitesmoke;
 	stroke: silver;
 	stroke-width: 10;
 	filter: drop-shadow(0px 10px 10px gray);
 }
+
 
 
 svg#clock .sector.jan { fill: #E42D1A }
@@ -24,7 +31,12 @@ svg#clock .sector.oct { fill: #AEC013 }
 svg#clock .sector.nov { fill: #F3C301 }
 svg#clock .sector.dec { fill: #F18E17 }
 
-
+svg#clock .label.year {
+	fill: silver;
+	text-anchor: middle;
+	font-size: 5em;
+	dominant-baseline: central;
+}
 
 svg#clock .needle {
 	stroke: black;
