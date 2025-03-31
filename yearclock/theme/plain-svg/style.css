@@ -38,6 +38,14 @@ svg#clock .label.year {
 	dominant-baseline: central;
 }
 
+
+svg#clock .label.month {
+	fill: white;
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
+
 svg#clock .needle {
 	stroke: black;
 	fill: black;
