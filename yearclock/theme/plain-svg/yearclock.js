@@ -9,6 +9,11 @@ theme.clock.needleLength = 950;
 theme.clock.element = document.getElementById('clock');
 
 
+theme.clock.drawFace = function() {
+	const svg = `<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
+	theme.clock.element.innerHTML += svg;
+}
+
 
 theme.clock.drawYear = function() {
 	// Year Label
