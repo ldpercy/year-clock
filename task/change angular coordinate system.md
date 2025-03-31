@@ -1,5 +1,8 @@
-Improve month label positioning
--------------------------------
+Change angular coordinate system
+--------------------------------
+
+*Was: Improve month label positioning*
+
 
 Currently the month labels are positioned with transforms that rely on Snap svg for the rotation.
 It's the last piece of Snap in the plain svg version (which has [its own problems](<improve plain svg performance.md>)).
