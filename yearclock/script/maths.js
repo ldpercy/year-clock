@@ -71,7 +71,7 @@ function dateDegrees(date)
 
 // Shapes
 
-function radialLine(drawing, angle, innerRadius, outerRadius)
+function snapRadialLine(drawing, angle, innerRadius, outerRadius)
 {
 	const start = polarPoint(angle, innerRadius)
 	const end   = polarPoint(angle, outerRadius)
