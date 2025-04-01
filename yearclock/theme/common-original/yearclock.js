@@ -107,7 +107,7 @@ theme.clock.drawDateText = function() {
 	// Year Label
 	const yearOnLeft = dateRatio(config.date) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
-	const x = theme.clock.innerRadius * 0.55 * labelSide;
+	const x = theme.clock.dateLabel * labelSide;
 	const y = 0;
 
 	const svg = `<text x="${x}" y="${y}" class="label dateText">${config.year}</text>`;
