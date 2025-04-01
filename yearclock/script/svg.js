@@ -7,15 +7,6 @@
 sf = significantFigures(4);
 
 
-function snapRadialLine(drawing, angle, innerRadius, outerRadius)
-{
-	const start = polarPoint(angle, innerRadius)
-	const end   = polarPoint(angle, outerRadius)
-
-	return drawing.line(start.x, start.y, end.x, end.y)
-}
-
-
 function radialLine(angle, startRadius, endRadius) {
 	const start = polarPoint(angle, startRadius);
 	const end   = polarPoint(angle, endRadius);
