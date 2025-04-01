@@ -43,7 +43,7 @@ theme.clock.drawMonthSectors = function() {
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
 		newSvg += sectorSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="sector month">${newSvg}</g>`;
+	theme.clock.element.innerHTML += `<g class="month sector">${newSvg}</g>`;
 }/* drawMonthSectors */
 
 
@@ -62,7 +62,7 @@ theme.clock.drawMonthLabels = function() {
 			`<text x="${center.x}" y="${center.y}" transform="${transform}">${month.name}</text>`;
 		newSvg += labelSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="label month">${newSvg}</g>`;
+	theme.clock.element.innerHTML += `<g class="month label">${newSvg}</g>`;
 }/* drawMonthLabels */
 
 
@@ -102,7 +102,7 @@ theme.clock.drawDayTicks = function() {
 			newSvg += firstSvg;
 		}
 	}
-	theme.clock.element.innerHTML += `<g class="tick day">${newSvg}</g>`;
+	theme.clock.element.innerHTML += `<g class="day tick">${newSvg}</g>`;
 }/* drawDayTicks */
 
 
