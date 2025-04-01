@@ -50,14 +50,14 @@ svg#clock .label.month {
 	dominant-baseline: middle;
 }
 
-svg#clock .label.year {
+svg#clock .label.dateText {
 	fill: silver;
 	text-anchor: middle;
 	font-size: 5em;
 	dominant-baseline: central;
 }
 
-svg#clock .needle {
+svg#clock .yearHand {
 	stroke: black;
 	fill: black;
 	stroke-width: 15;

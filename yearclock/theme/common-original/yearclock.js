@@ -17,8 +17,8 @@ theme.clock.drawClock = function()
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
 	theme.clock.drawDayTicks();
-	theme.clock.drawYear();
-	theme.clock.drawNeedle();
+	theme.clock.drawDateText();
+	theme.clock.drawYearHand();
 
 }/* drawClock */
 
@@ -103,20 +103,20 @@ theme.clock.drawDayTicks = function() {
 
 
 
-theme.clock.drawYear = function() {
+theme.clock.drawDateText = function() {
 	// Year Label
 	const yearOnLeft = dateRatio(config.date) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 	const x = theme.clock.innerRadius * 0.55 * labelSide;
 	const y = 0;
 
-	const svg = `<text x="${x}" y="${y}" class="label year">${config.year}</text>`;
+	const svg = `<text x="${x}" y="${y}" class="label dateText">${config.year}</text>`;
 
 	theme.clock.element.innerHTML += svg;
 }
 
 
-theme.clock.drawNeedle = function() {
+theme.clock.drawYearHand = function() {
 	const path = `
 		M 12 160
 		L -12 160
@@ -127,7 +127,7 @@ theme.clock.drawNeedle = function() {
 		A 30,30 0 1 1 30,00`;
 	const transform = svgRotateString(dateDegrees(config.date),0,0);
 	const svg = `
-		<g class="needle">
+		<g class="yearHand">
 			<path d="${path}" transform="${transform}"></path>
 		</g>`;
 	theme.clock.element.innerHTML += svg;

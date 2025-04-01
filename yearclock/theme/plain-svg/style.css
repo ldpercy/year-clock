@@ -54,8 +54,14 @@ svg#clock .tick.day .weekend {
 }
 
 
+svg#clock .label.month {
+	fill: white;
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
 
-svg#clock .label.year {
+
+svg#clock .label.dateText {
 	fill: gray;
 	text-anchor: middle;
 	font-size: 5em;
@@ -64,14 +70,8 @@ svg#clock .label.year {
 }
 
 
-svg#clock .label.month {
-	fill: white;
-	text-anchor: middle;
-	dominant-baseline: middle;
-}
 
-
-svg#clock .needle {
+svg#clock .yearHand {
 	stroke: black;
 	fill: black;
 	stroke-width: 15;
