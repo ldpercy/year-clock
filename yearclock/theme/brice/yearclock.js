@@ -1,5 +1,7 @@
 //
-// yearclock.js
+// Brice
+//
+// Original style from year-clock.net
 //
 
 

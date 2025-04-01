@@ -80,26 +80,27 @@ theme.clock.drawDayTicks = function() {
 	{
 		const angle = dateRadians(day.date);
 
-		if (day.class == 'weekday') // If neither weekend nor first day in month
+		if (day.first) // Draw long line
 		{
-			const weekday = radialLine(angle, weekdayTickInnerRadius, theme.clock.outerRadius);
-			const weekdaySvg =
-				`<line x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}" class="weekday"></line>`;
-			newSvg += weekdaySvg;
+			const first = radialLine(angle, theme.clock.outerRadius, theme.clock.innerRadius);
+			const firstSvg =
+				`<line data-date="${day.isoShort}" class="first" x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" ></line>`;
+			newSvg += firstSvg;
 		}
-		else if (day.class == 'weekend')
+
+		if (day.weekend)
 		{
-			const weekend = radialLine(angle, weekendTickInnerRadius, theme.clock.outerRadius);
+			const weekend = radialLine(angle, theme.clock.outerRadius, weekendTickInnerRadius);
 			const weekendSvg =
-				`<line x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}" class="weekend"></line>`;
+				`<line data-date="${day.isoShort}" class="weekend" x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}"></line>`;
 			newSvg += weekendSvg;
 		}
-		else if (day.class == 'first') // If first day in month
+		else // If neither weekend nor first day in month
 		{
-			const first = radialLine(angle, theme.clock.innerRadius, theme.clock.outerRadius);
-			const firstSvg =
-				`<line x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" class="first"></line>`;
-			newSvg += firstSvg;
+			const weekday = radialLine(angle, theme.clock.outerRadius, weekdayTickInnerRadius);
+			const weekdaySvg =
+				`<line data-date="${day.isoShort}" class="weekday" x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}"></line>`;
+			newSvg += weekdaySvg;
 		}
 	}
 	theme.clock.element.innerHTML += `<g class="day tick">${newSvg}</g>`;
