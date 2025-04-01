@@ -35,6 +35,21 @@ Common clock base
 -----------------
 
 Now the only difference between brice and plain-svg are styles and dimensions.
-I can create a common base theme for these now so I don't have to keep them in sync.
 
+I can create a common base theme for these now so I don't have to keep them in sync.
 I've really only been adding bits of polish to the original so far so this will be fine.
+
+Done.
+
+It's starting come together now, and tipping over into more of my own code than original.
+
+
+Wrapup
+------
+
+* Ported new plain SVG code back to the original Brice theme
+* Tweaked the brice theme for better reproduction of the original
+* Brought some changes back to plain-svg that were needed
+* Moved common code from both into a new base theme 'common-original'
+* Snap code entirely gone now
+

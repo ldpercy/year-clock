@@ -104,7 +104,6 @@ More detail in the [task/](<./task/>) directory.
 
 * Customisable theming and styling of the clock face
 * Remove callbacks from loading sequence
-* Remove or minimise dependency on snap-svg
 * Dynamic theme loading (no page reload)
 * My own clock themes
 
