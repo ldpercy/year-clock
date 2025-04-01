@@ -2,12 +2,11 @@
 svg#clock {
 	background-color: white;
 	font-size: 48px;
-
+	fill: silver;
 }
 
-* {
+svg#clock * {
 	stroke: black;
-	fill: silver;
 }
 
 svg#clock .label.month {

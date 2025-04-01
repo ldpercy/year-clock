@@ -9,6 +9,8 @@ svg#clock {
 }
 
 
+
+
 svg#clock .face   {
 	fill: whitesmoke;
 	stroke: silver;
@@ -17,6 +19,7 @@ svg#clock .face   {
 }
 
 
+svg#clock .sector * { stroke:none; }
 
 svg#clock .sector.jan { fill: #E42D1A }
 svg#clock .sector.feb { fill: #983021 }
@@ -33,11 +36,8 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 
 
-svg#clock .tick {
-	stroke: white
-}
-
-svg#clock .tick.day {
+svg#clock .tick * {
+	stroke: white;
 	stroke-linecap: round;
 }
 
@@ -54,10 +54,11 @@ svg#clock .tick.day .weekend {
 }
 
 
-svg#clock .label.month {
-	fill: white;
+svg#clock .label text {
 	text-anchor: middle;
 	dominant-baseline: middle;
+	fill: white;
+	stroke: none;
 }
 
 
@@ -71,7 +72,7 @@ svg#clock .label.dateText {
 
 
 
-svg#clock .yearHand {
+svg#clock .yearHand path {
 	stroke: black;
 	fill: black;
 	stroke-width: 15;
