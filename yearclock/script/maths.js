@@ -42,6 +42,11 @@ function significantFigures(integer) {
 
 
 // Dates
+
+function isoDate(date) {
+	return date.toISOString().substring(0, 10);
+}
+
 function incrementDay(d)
 {
 	d.setDate(d.getDate() + 1)
@@ -64,10 +69,10 @@ function isWeekend(d)
 }
 
 
-function getDayClass(date) {
+function getDayClass(date) { // this needs attention
 	result = 'weekday';
-	if (date.getDay() == 0 || date.getDay() == 6) result = 'weekend';
-	if (date.getDate() == 1) result = 'first';
+	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
+	if (date.getDate() === 1) result += ' first';
 	return result;
 }
 

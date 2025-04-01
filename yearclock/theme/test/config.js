@@ -1,4 +1,4 @@
 
 theme.description = "Test theme";
-theme.base = 'brice';
+theme.base = 'common-original';
 

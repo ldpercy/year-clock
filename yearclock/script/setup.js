@@ -72,10 +72,11 @@ function setup() {
 	for (let date = new Date(config.year,0); date.getFullYear() <= config.year; d = incrementDay(date))
 	{
 		const day = {
-			date    : new Date(date),
-			first   : date.getDate() == 1,
-			weekend : isWeekend(date),
-			class   : getDayClass(date),
+			date     : new Date(date),
+			first    : date.getDate() == 1,
+			weekend  : isWeekend(date),
+			class    : getDayClass(date),
+			isoShort : isoDate(date),
 		}
 
 		config.days.push(day)
