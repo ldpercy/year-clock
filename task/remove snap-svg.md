@@ -29,3 +29,12 @@ Remove Snap
 
 Very little left, just remove the library and one last function.
 
+
+
+Common clock base
+-----------------
+
+Now the only difference between brice and plain-svg are styles and dimensions.
+I can create a common base theme for these now so I don't have to keep them in sync.
+
+I've really only been adding bits of polish to the original so far so this will be fine.

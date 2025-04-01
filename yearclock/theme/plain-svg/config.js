@@ -1,4 +1,4 @@
 
 theme.description = "Plain SVG version";
-//theme.base = 'brice';
+theme.base = 'common-original';
 
