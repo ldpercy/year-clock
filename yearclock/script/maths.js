@@ -32,6 +32,13 @@ function degrees(radians) {
 }
 
 
+/* significantFigures
+Returns a function that will call toPrecision with the supplied number of significant figures
+*/
+function significantFigures(integer) {
+	return (number) => { return number.toPrecision(integer) }
+}
+
 
 
 // Dates
@@ -57,6 +64,13 @@ function isWeekend(d)
 }
 
 
+function getDayClass(date) {
+	result = 'weekday';
+	if (date.getDay() == 0 || date.getDay() == 6) result = 'weekend';
+	if (date.getDate() == 1) result = 'first';
+	return result;
+}
+
 // clock
 
 function clockAngle( revolutions )
@@ -75,51 +89,4 @@ function dateDegrees(date)
 }
 
 
-
-// Shapes
-
-function snapRadialLine(drawing, angle, innerRadius, outerRadius)
-{
-	const start = polarPoint(angle, innerRadius)
-	const end   = polarPoint(angle, outerRadius)
-
-	return drawing.line(start.x, start.y, end.x, end.y)
-}
-
-
-function radialLine(angle, startRadius, endRadius) {
-	const start = polarPoint(angle, startRadius);
-	const end   = polarPoint(angle, endRadius);
-	result = {
-		xStart : start.x,
-		yStart : start.y,
-		xEnd   : end.x,
-		yEnd   : end.y,
-	}
-	return result;
-}
-
-
-function sector(startAngle, endAngle, innerRadius, outerRadius)
-{
-	const outerStart = polarPoint(startAngle, outerRadius)
-	const outerEnd   = polarPoint(endAngle,   outerRadius)
-	const innerEnd   = polarPoint(endAngle,   innerRadius)
-	const innerStart = polarPoint(startAngle, innerRadius)
-
-	const path = `
-		M ${outerStart.x} ${outerStart.y}
-		A ${outerRadius} ${outerRadius} 0 0 1 ${outerEnd.x} ${outerEnd.y}
-		L ${innerEnd.x} ${innerEnd.y}
-		A ${innerRadius} ${innerRadius} 0 0 0 ${innerStart.x} ${innerStart.y}
-		Z`;
-
-	return path;
-}
-
-
-function svgRotateString(angle, centre_x, centre_y)
-{
-	return ['rotate(', angle, centre_x, centre_y, ')'].join(' ')
-}
 

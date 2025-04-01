@@ -47,22 +47,35 @@ function setup() {
 	log('config.date:', config.date.toISOString());
 
 	// Set Up Months
-	config.months = config.monthNames.map(function( monthName, monthNumber )
-	{
-		const startDate = new Date(config.year, monthNumber)
-		const nextMonth = new Date(config.year, monthNumber + 1)
-		const endDate   = new Date(nextMonth - 1000)
-
-		return { "name": monthName, "code": config.monthCodes[monthNumber], "startDate": startDate, "endDate": endDate }
-	})
+	config.months = config.monthNames.map(
+		function( monthName, monthNumber ) {
+			const startDate = new Date(config.year, monthNumber);
+			const nextMonth = new Date(config.year, monthNumber + 1);
+			const endDate   = new Date(nextMonth - 1000);
+			const startAngle = dateRadians(startDate);
+			const endAngle   = dateRadians(endDate);
+			const result = {
+				'name'       : monthName,
+				'code'       : config.monthCodes[monthNumber],
+				'startDate'  : new Date(config.year, monthNumber),
+				'nextMonth'  : nextMonth,
+				'endDate'    : new Date(nextMonth - 1000),
+				'startAngle' : startAngle,
+				'endAngle'   : endAngle,
+				'midAngle'   : midpoint(startAngle,endAngle),
+			}
+			return result;
+		}
+	);
 
 	// Set Up Days
 	for (let date = new Date(config.year,0); date.getFullYear() <= config.year; d = incrementDay(date))
 	{
 		const day = {
-			date:    new Date(date),
-			first:   date.getDate() == 1,
-			weekend: isWeekend(date)
+			date    : new Date(date),
+			first   : date.getDate() == 1,
+			weekend : isWeekend(date),
+			class   : getDayClass(date),
 		}
 
 		config.days.push(day)
