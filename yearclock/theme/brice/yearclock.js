@@ -7,11 +7,11 @@
 theme.clock = {
 	clockRadius       : 1200,
 	outerRadius       : 1120,
-	innerRadius       : 920,
-	monthLabelRadius  : 980,	// how far out from the center the month-titles are positioned
+	innerRadius       : 930,
+	monthLabelRadius  : 985,	// how far out from the center the month-titles are positioned
 	weekdayTickLength : 40,
 	weekendTickLength : 55,
-	needleLength      : 1000,
+	needleLength      : 1030,
 };
 
 
