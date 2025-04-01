@@ -15,5 +15,12 @@ Alignment and opposition also correspond to the possibility of eclipses: lunar e
 
 So it would be a cool feature.
 
+**Edit:** It depends on the type of month being displayed:
+
+https://en.wikipedia.org/wiki/Lunar_month#Types
+
+A month hand based on regular calendar months probably won't show the above relationships, or they'll drift in and out of sync in roughly a 12:13 ratio.
+A lunar month hand of the right type is what you'd need.
+I'll fill in the details as I work it out.
 
 
