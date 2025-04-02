@@ -26,7 +26,7 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 
 
-svg#clock .needle {
+svg#clock .yearHand {
 	stroke: black;
 	fill: black;
 	stroke-width: 15;

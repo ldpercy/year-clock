@@ -11,7 +11,7 @@ theme.clock.innerRadius       = 930;
 theme.clock.monthLabelRadius  = 985;
 theme.clock.weekdayTickLength = 40;
 theme.clock.weekendTickLength = 55;
-theme.clock.needleLength      = 1030;
+theme.clock.yearHandLength    = 1030;
 theme.clock.dateLabel         = 500;
 
 theme.clock.monthLabel = {};
@@ -140,7 +140,7 @@ theme.clock.drawYearHand = function() {
 	const path = `
 		M 12 160
 		L -12 160
-		L 0, -${theme.clock.needleLength}
+		L 0, -${theme.clock.yearHandLength}
 		Z
 		M 30 0
 		A 30,30 0 1 1 -30,00
