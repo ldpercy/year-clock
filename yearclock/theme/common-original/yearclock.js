@@ -14,6 +14,14 @@ theme.clock.weekendTickLength = 55;
 theme.clock.needleLength      = 1030;
 theme.clock.dateLabel         = 500;
 
+theme.clock.monthLabel = {};
+theme.clock.monthLabel.position = 0.5;
+theme.clock.monthLabel.rotate = true;
+theme.clock.monthLabel.invert = true;
+
+
+
+
 /* Draw Clock
 */
 theme.clock.drawClock = function()
@@ -57,10 +65,14 @@ theme.clock.drawMonthLabels = function() {
 	for (let month of config.months)
 	{
 		const center     = polarPoint(month.midAngle, theme.clock.monthLabelRadius);
-		const invert    = (Math.cos(month.midAngle) < 0);
-		const rotate    = degrees(month.midAngle) + ((invert) ? 180 : 0);
-		const transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
+		let transform = '';
 
+		if (theme.clock.monthLabel.rotate)
+		{
+			const invert    = (Math.cos(month.midAngle) < 0);
+			const rotate    = degrees(month.midAngle) + ((invert) ? 180 : 0);
+			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
+		}
 		const labelSvg =
 			`<text x="${center.x}" y="${center.y}" transform="${transform}">${month.name}</text>`;
 		newSvg += labelSvg;

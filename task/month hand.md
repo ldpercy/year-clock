@@ -24,3 +24,40 @@ A lunar month hand of the right type is what you'd need.
 I'll fill in the details as I work it out.
 
 
+Design
+------
+
+Just a few thoughts before I start.
+
+On a traditional clock/watch the hour hand is shorter than the minute hand as you only rely on it for its *general* position - ie near a number or between two numbers.
+The rest of the information comes from the minute hand to provide more precise information.
+
+So, by analogy, the hands of a year clock should be like so:
+
+* The year hand is shorter and gives you the general idea of what month you're in
+* The month hand is longer and points to where you are in the month
+
+So simple enough.
+There are a few layout considerations too.
+
+A regular clock is fortunate to  have very one of it's large divisions (12 hours) split up into an equal number of small divisions (60 minutes).
+So the clock face itself (markings etc) is completely static for it's lifetime.
+
+The year clock's face doesn't have that privilege, and will have to change depending on year and month.
+And the year and month marking won't line up nicely so I'll need a design that'll work and not look too ugly.
+
+Won't know until I try I think.
+For starters I think I'll take cues from a pretty traditional analog face and put the day ticks around the edge, and put larger month markers closer in.
+
+This will be a whole new design.
+
+
+Traditional analog clock face
+-----------------------------
+
+The new theme is called 'traditional'.
+
+
+
+
+
