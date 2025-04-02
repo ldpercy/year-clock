@@ -39,7 +39,7 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 
 svg#clock .tick * {
-	stroke: white;
+	stroke: orange;
 	stroke-linecap: round;
 }
 

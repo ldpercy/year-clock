@@ -27,7 +27,7 @@ theme.clock.drawMonthLabels = function() {
 	newSvg = '';
 	for (let month of config.months)
 	{
-		const center     = polarPoint(month.midAngle, theme.clock.monthLabelRadius);
+		const center     = polarPoint(month.startAngle, theme.clock.monthLabelRadius);
 		const labelSvg =
 			`<text x="${center.x}" y="${center.y}">${month.name.slice(0,3)}</text>`;
 		newSvg += labelSvg;
