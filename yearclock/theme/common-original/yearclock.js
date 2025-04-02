@@ -134,7 +134,6 @@ theme.clock.drawYearHand = function() {
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
 
-	//const transform = `rotate(${dateDegrees(config.displayDate.date)},0,0)`;
 	const dayDivision = divisionDegrees(config.displayDate.daysInYear, config.displayDate.number);
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 

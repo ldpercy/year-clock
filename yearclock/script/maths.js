@@ -45,7 +45,7 @@ function significantFigures(integer) {
 
 /* divisionDegrees
 Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
-Division counting is 1-based.
+Divisions are discrete so counting is 1-based.
 */
 function divisionDegrees(divisions, number) {
 	result = {
@@ -68,12 +68,6 @@ function dateRadians(date)
 {
 	return clockAngle( dateRatio(date) )
 }
-
-function dateDegrees(date)
-{
-	return 360 * dateRatio(date)
-}
-
 
 //
 // Dates
