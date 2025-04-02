@@ -1,5 +1,5 @@
 //
-// common-original
+// common
 //
 // A common theme for the original Brice and other variants base on it
 //
@@ -61,10 +61,11 @@ theme.clock.drawMonthSectors = function() {
 /* drawMonthLabels
 */
 theme.clock.drawMonthLabels = function() {
-	newSvg = '';
+	let newSvg = '';
 	for (let month of config.months)
 	{
 		const center     = polarPoint(month.midAngle, theme.clock.monthLabelRadius);
+		log(center);
 		let transform = '';
 
 		if (theme.clock.monthLabel.rotate)
@@ -172,7 +173,7 @@ theme.clock.drawMonthDayTicks = function() {
 
 theme.clock.drawDateText = function() {
 	// Year Label
-	const yearOnLeft = dateRatio(config.displayDate.date) < 0.5
+	const yearOnLeft = dateRatio(config.date.object) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
 	const x = theme.clock.dateLabel * labelSide;
 	const y = 0;
@@ -193,7 +194,7 @@ theme.clock.drawYearHand = function() {
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
 
-	const dayDivision = divisionDegrees(config.displayDate.daysInYear, config.displayDate.number);
+	const dayDivision = divisionDegrees(config.displayDate.daysInYear, config.date.date);
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 
 	const svg = `
@@ -204,7 +205,7 @@ theme.clock.drawYearHand = function() {
 }
 
 
-theme.clock.drawMonthHand = function() {
+theme.clock.drawMonthHand = function(date) {
 	const path = `
 		M 12 160
 		L -12 160
@@ -214,7 +215,7 @@ theme.clock.drawMonthHand = function() {
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
 
-	const dayDivision = divisionDegrees(config.monthDayArray.length, config.date.getDate());
+	const dayDivision = divisionDegrees(config.monthDayArray.length, date.getDate());
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 
 	const svg = `
