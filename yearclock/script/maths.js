@@ -56,6 +56,20 @@ function divisionDegrees(divisions, number) {
 	return result;
 }
 
+/* divisionRadians
+Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
+Divisions are discrete so counting is 1-based.
+*/
+function divisionRadians(divisions, number) {
+	result = {
+		start  : (number-1)   * (Math.TAU / divisions),
+		middle : (number-0.5) * (Math.TAU / divisions),
+		end    : (number)     * (Math.TAU / divisions),
+	}
+	return result;
+}
+
+
 
 // clock
 
@@ -110,6 +124,11 @@ function getDayClass(date) { // this needs attention
 function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
+
+function daysInMonth(date) {
+	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+}
+
 
 
 

@@ -91,7 +91,7 @@ theme.clock.drawYearDayTicks = function() {
 
 	let newSvg = '';
 
-	for (let day of config.days)
+	for (let day of config.yearDayArray)
 	{
 		const angle = dateRadians(day.date);
 
@@ -118,8 +118,55 @@ theme.clock.drawYearDayTicks = function() {
 			newSvg += weekdaySvg;
 		}
 	}
-	theme.clock.element.innerHTML += `<g class="day tick">${newSvg}</g>`;
+	theme.clock.element.innerHTML += `<g class="day yearDay tick">${newSvg}</g>`;
 }/* drawYearDayTicks */
+
+
+
+/* drawMonthDayTicks
+*/
+theme.clock.drawMonthDayTicks = function() {
+
+	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayTickLength;
+	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
+
+	//log('drawMonthDayTicks');
+
+	let newSvg = '';
+
+	for (let day of config.monthDayArray)
+	{
+
+		//const angle = dateRadians(day.date);
+		let dayAngle = divisionRadians(config.monthDayArray.length, day.number);
+		//log(dayAngle);
+
+		if (day.first) // Draw long line
+		{
+			const first = radialLine(dayAngle.start, theme.clock.outerRadius, theme.clock.innerRadius);
+			const firstSvg =
+				`<line data-nummber="${day.number}" data-date="${day.isoShort}" class="first" x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" ></line>`;
+			newSvg += firstSvg;
+		}
+
+		if (day.weekend)
+		{
+			const weekend = radialLine(dayAngle.start, theme.clock.outerRadius, weekendTickInnerRadius);
+			const weekendSvg =
+				`<line data-nummber="${day.number}" data-date="${day.isoShort}" class="weekend" x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}"></line>`;
+			newSvg += weekendSvg;
+		}
+		else // If neither weekend nor first day in month
+		{
+			const weekday = radialLine(dayAngle.start, theme.clock.outerRadius, weekdayTickInnerRadius);
+			const weekdaySvg =
+				`<line data-nummber="${day.number}" data-date="${day.isoShort}" class="weekday" x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}"></line>`;
+			newSvg += weekdaySvg;
+		}
+	}
+	theme.clock.element.innerHTML += `<g class="day monthDay tick">${newSvg}</g>`;
+}/* drawMonthDayTicks */
+
 
 
 
