@@ -9,3 +9,4 @@ theme.clock.outerRadius       = 1120;
 theme.clock.monthLabelRadius  = 980;
 theme.clock.weekdayTickLength = 40;
 theme.clock.weekendTickLength = 55;
+theme.clock.dateLabel         = 500;

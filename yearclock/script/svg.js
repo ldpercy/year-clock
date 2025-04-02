@@ -36,9 +36,3 @@ function sector(startAngle, endAngle, innerRadius, outerRadius)
 
 	return path;
 }
-
-
-function svgRotateString(angle, centre_x, centre_y)
-{
-	return ['rotate(', angle, centre_x, centre_y, ')'].join(' ')
-}

@@ -9,10 +9,13 @@ log('setup.js')
 
 // Year-clock general configuration
 const config = {
+	date            : undefined,     // The date used for the clock display
+	displayDate     : {},            // The date used for the clock display
+	year            : {},            // year information
+	days            : [],            // array of day information
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
-	days            : [],
-	defaultTheme    : 'plain-svg',
 	defaultLanguage : 'en',
+	defaultTheme    : 'plain-svg',
 };
 
 
@@ -33,18 +36,19 @@ const theme = {
 /* setup
 */
 function setup() {
+	// Set Current Date
+	const dateParam = getParameterByName('date');
+	config.date = dateParam ? new Date(dateParam) : new Date();
+	config.year = config.date.getFullYear();
+	log('config.date:', config.date.toISOString());
+
+
 	// Language
 	config.languageParam = getParameterByName('language');
 	config.language = getLanguage(config.languageParam);
 	log('config.languageParam:', config.languageParam);
 	log('config.language:', config.language);
 	config.monthNames = l10n.gregLocal[config.language];
-
-	// Set Current Date
-	const dateParam = getParameterByName('date');
-	config.date = dateParam ? new Date(dateParam) : new Date();
-	config.year = config.date.getFullYear();
-	log('config.date:', config.date.toISOString());
 
 	// Set Up Months
 	config.months = config.monthNames.map(
@@ -68,19 +72,28 @@ function setup() {
 		}
 	);
 
-	// Set Up Days
-	for (let date = new Date(config.year,0); date.getFullYear() <= config.year; d = incrementDay(date))
+	// Setup day array
+	let dayNumber = 1;
+	for (let thisDate = new Date(config.year,0); thisDate.getFullYear() <= config.year; incrementDay(thisDate))
 	{
-		const day = {
-			date     : new Date(date),
-			first    : date.getDate() == 1,
-			weekend  : isWeekend(date),
-			class    : getDayClass(date),
-			isoShort : isoDate(date),
+		const dayInfo = {
+			number   : dayNumber,
+			date     : new Date(thisDate),
+			first    : thisDate.getDate() === 1,
+			weekend  : isWeekend(thisDate),
+			class    : getDayClass(thisDate),
+			isoShort : isoDate(thisDate),
+		}
+		if (datesAreEqual(config.date, thisDate))
+		{
+			config.displayDate = dayInfo;
+			log(dayInfo);
 		}
 
-		config.days.push(day)
+		config.days.push(dayInfo);
+		dayNumber++;
 	}
+	config.displayDate.daysInYear = config.days.length;
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');

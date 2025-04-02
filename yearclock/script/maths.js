@@ -1,5 +1,8 @@
-/* Maths
-*/
+//
+// Maths
+//
+
+
 
 
 Math.TAU = 2 * Math.PI;
@@ -40,8 +43,35 @@ function significantFigures(integer) {
 }
 
 
+/* divisionDegrees
+Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
+Divisions are discrete so counting is 1-based.
+*/
+function divisionDegrees(divisions, number) {
+	result = {
+		start  : (number-1)   * (360 / divisions),
+		middle : (number-0.5) * (360 / divisions),
+		end    : (number)     * (360 / divisions),
+	}
+	return result;
+}
 
+
+// clock
+
+function clockAngle( revolutions )
+{
+	return Math.TAU * (revolutions)
+}
+
+function dateRadians(date)
+{
+	return clockAngle( dateRatio(date) )
+}
+
+//
 // Dates
+//
 
 function isoDate(date) {
 	return date.toISOString().substring(0, 10);
@@ -76,22 +106,7 @@ function getDayClass(date) { // this needs attention
 	return result;
 }
 
-// clock
 
-function clockAngle( revolutions )
-{
-	return Math.TAU * (revolutions)
+function datesAreEqual(d1,d2) {
+	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
-
-function dateRadians(date)
-{
-	return clockAngle( dateRatio(date) )
-}
-
-function dateDegrees(date)
-{
-	return 360 * dateRatio(date)
-}
-
-
-
