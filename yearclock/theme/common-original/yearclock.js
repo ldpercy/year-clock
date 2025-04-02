@@ -133,7 +133,9 @@ theme.clock.drawYearHand = function() {
 		M 30 0
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
-	const transform = svgRotateString(dateDegrees(config.date),0,0);
+
+	const transform = `rotate(${dateDegrees(config.date)},0,0)`;
+
 	const svg = `
 		<g class="yearHand">
 			<path d="${path}" transform="${transform}"></path>

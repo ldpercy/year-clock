@@ -20,3 +20,6 @@ It's no wonder people started to go off it in OO and move towards composition.
 Will have a think about what's the best approach here, but will be a different task.
 
 
+Back to the pointer
+-------------------
+
