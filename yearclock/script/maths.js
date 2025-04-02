@@ -110,3 +110,57 @@ function getDayClass(date) { // this needs attention
 function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
+
+
+
+function getYearDayArray(date) {
+	const result = [];
+
+	// Setup day array
+	let dayNumber = 1;
+	for (let thisDate = new Date(config.year,0); thisDate.getFullYear() <= config.year; incrementDay(thisDate))
+	{
+		const dayInfo = {
+			number   : dayNumber,
+			date     : new Date(thisDate),
+			first    : thisDate.getDate() === 1,
+			weekend  : isWeekend(thisDate),
+			class    : getDayClass(thisDate),
+			isoShort : isoDate(thisDate),
+		}
+		if (datesAreEqual(config.date, thisDate))
+		{
+			config.displayDate = dayInfo;
+			//log(dayInfo);
+		}
+
+		result.push(dayInfo);
+		dayNumber++;
+	}
+
+	return result;
+}
+
+
+function getMonthDayArray(date) {
+	const result = [];
+	const year = date.getFullYear();
+	const month = date.getMonth();
+	const days = daysInMonth(date);
+	log(days);
+	for (let d=1; d<=days; d++) {
+		let thisDate = new Date(year,month,d);
+		//log(thisDate);
+		const dayInfo = {
+			number   : d,
+			date     : thisDate,
+			first    : thisDate.getDate() === 1,
+			weekend  : isWeekend(thisDate),
+			class    : getDayClass(thisDate),
+			isoShort : isoDate(thisDate),
+		}
+		log(dayInfo);
+		result.push(dayInfo);
+	}
+	return result;
+}

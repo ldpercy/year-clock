@@ -72,28 +72,9 @@ function setup() {
 		}
 	);
 
-	// Setup day array
-	let dayNumber = 1;
-	for (let thisDate = new Date(config.year,0); thisDate.getFullYear() <= config.year; incrementDay(thisDate))
-	{
-		const dayInfo = {
-			number   : dayNumber,
-			date     : new Date(thisDate),
-			first    : thisDate.getDate() === 1,
-			weekend  : isWeekend(thisDate),
-			class    : getDayClass(thisDate),
-			isoShort : isoDate(thisDate),
-		}
-		if (datesAreEqual(config.date, thisDate))
-		{
-			config.displayDate = dayInfo;
-			log(dayInfo);
-		}
-
-		config.days.push(dayInfo);
-		dayNumber++;
-	}
-	config.displayDate.daysInYear = config.days.length;
+	config.yearDayArray = getYearDayArray(config.date);
+	config.monthDayArray = getMonthDayArray(config.date);
+	config.displayDate.daysInYear = config.yearDayArray.length;
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
