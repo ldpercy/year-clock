@@ -39,20 +39,20 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 
 svg#clock .tick * {
-	stroke: orange;
-	stroke-linecap: round;
+	stroke: black;
+	stroke-linecap: butt;
 }
 
 svg#clock .tick.day .first {
-	stroke-width: 5;
+	stroke-width: 20;
 }
 
 svg#clock .tick.day .weekday {
-	stroke-width: 2;
+	stroke-width: 10;
 }
 
 svg#clock .tick.day .weekend {
-	stroke-width: 5;
+	stroke-width: 20;
 }
 
 svg#clock .month .label {
@@ -79,11 +79,20 @@ svg#clock .label.dateText {
 }
 
 
+svg#clock .hand {
+	filter: drop-shadow(0px 20px 10px gray);
+}
 
 svg#clock .yearHand path {
 	stroke: black;
 	fill: black;
+	stroke-width: 25;
+	stroke-linejoin: round;
+}
+
+svg#clock .monthHand path {
+	stroke:dimgrey;
+	fill: dimgrey;
 	stroke-width: 15;
 	stroke-linejoin: round;
-	filter: drop-shadow(0px 20px 10px gray);
 }

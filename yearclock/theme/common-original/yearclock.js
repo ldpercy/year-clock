@@ -197,7 +197,28 @@ theme.clock.drawYearHand = function() {
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 
 	const svg = `
-		<g class="yearHand">
+		<g class="hand yearHand">
+			<path d="${path}" transform="${transform}"></path>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}
+
+
+theme.clock.drawMonthHand = function() {
+	const path = `
+		M 12 160
+		L -12 160
+		L 0, -${theme.clock.monthHandLength}
+		Z
+		M 30 0
+		A 30,30 0 1 1 -30,00
+		A 30,30 0 1 1 30,00`;
+
+	const dayDivision = divisionDegrees(config.monthDayArray.length, config.date.getDate());
+	const transform = `rotate(${dayDivision.middle},0,0)`;
+
+	const svg = `
+		<g class="hand monthHand">
 			<path d="${path}" transform="${transform}"></path>
 		</g>`;
 	theme.clock.element.innerHTML += svg;
