@@ -32,7 +32,7 @@ theme.clock.drawClock = function()
 	theme.clock.drawFace();
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
-	theme.clock.drawDayTicks();
+	theme.clock.drawYearDayTicks();
 	theme.clock.drawDateText();
 	theme.clock.drawYearHand();
 
@@ -82,9 +82,9 @@ theme.clock.drawMonthLabels = function() {
 
 
 
-/* drawDayTicks
+/* drawYearDayTicks
 */
-theme.clock.drawDayTicks = function() {
+theme.clock.drawYearDayTicks = function() {
 
 	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayTickLength;
 	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
@@ -119,7 +119,7 @@ theme.clock.drawDayTicks = function() {
 		}
 	}
 	theme.clock.element.innerHTML += `<g class="day tick">${newSvg}</g>`;
-}/* drawDayTicks */
+}/* drawYearDayTicks */
 
 
 
