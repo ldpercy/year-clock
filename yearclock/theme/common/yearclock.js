@@ -65,7 +65,6 @@ theme.clock.drawMonthLabels = function() {
 	for (let month of config.months)
 	{
 		const center     = polarPoint(month.midAngle, theme.clock.monthLabelRadius);
-		log(center);
 		let transform = '';
 
 		if (theme.clock.monthLabel.rotate)
@@ -172,13 +171,26 @@ theme.clock.drawMonthDayTicks = function() {
 /* drawDateText
 */
 theme.clock.drawDateText = function(date) {
-	// Year Label
-	const yearOnLeft = dateRatio(config.date.object) < 0.5
-	const labelSide = yearOnLeft ? -1 : 1
-	const x = theme.clock.dateLabel * labelSide;
-	const y = 0;
+	let x,y;
 
-	const svg = `<text x="${x}" y="${y}" class="label dateText">${config.year}</text>`;
+	if (theme.clock.dateLabel instanceof Point)
+	{
+		log(theme.clock.dateLabel);
+		x = theme.clock.dateLabel.x;
+		y = theme.clock.dateLabel.y;
+	}
+	else
+	{
+		const yearOnLeft = dateRatio(date) < 0.5
+		const labelSide = yearOnLeft ? -1 : 1
+		x = theme.clock.dateLabel * labelSide;
+		y = 0;
+	}
+
+	const svg =
+		`<g class="dateText">
+			<text x="${x}" y="${y}" class="label dateText">${date.getFullYear()}</text>
+		</g>`;
 
 	theme.clock.element.innerHTML += svg;
 }
