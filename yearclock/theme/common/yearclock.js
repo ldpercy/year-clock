@@ -33,8 +33,8 @@ theme.clock.drawClock = function()
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearDayTicks();
-	theme.clock.drawDateText();
-	theme.clock.drawYearHand();
+	theme.clock.drawDateText(config.date.object);
+	theme.clock.drawYearHand(config.date.daysInYear, config.date.dayOfYear);
 
 }/* drawClock */
 
@@ -169,9 +169,9 @@ theme.clock.drawMonthDayTicks = function() {
 }/* drawMonthDayTicks */
 
 
-
-
-theme.clock.drawDateText = function() {
+/* drawDateText
+*/
+theme.clock.drawDateText = function(date) {
 	// Year Label
 	const yearOnLeft = dateRatio(config.date.object) < 0.5
 	const labelSide = yearOnLeft ? -1 : 1
@@ -184,7 +184,9 @@ theme.clock.drawDateText = function() {
 }
 
 
-theme.clock.drawYearHand = function() {
+/* drawYearHand
+*/
+theme.clock.drawYearHand = function(daysInYear, dayOfYear) {
 	const path = `
 		M 12 160
 		L -12 160
@@ -194,7 +196,7 @@ theme.clock.drawYearHand = function() {
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
 
-	const dayDivision = divisionDegrees(config.displayDate.daysInYear, config.date.date);
+	const dayDivision = divisionDegrees(daysInYear, dayOfYear);
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 
 	const svg = `
@@ -204,7 +206,8 @@ theme.clock.drawYearHand = function() {
 	theme.clock.element.innerHTML += svg;
 }
 
-
+/*drawMonthHand
+*/
 theme.clock.drawMonthHand = function(date) {
 	const path = `
 		M 12 160
