@@ -1,0 +1,162 @@
+<svg id="clock" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet">
+<style>
+svg#clock * {
+	stroke: black;
+	fill: none;
+}
+
+svg#clock {
+	background-color: seashell;
+	font-size: 48px;
+}
+
+svg#clock .face   {
+	fill: whitesmoke;
+	stroke: silver;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+svg#clock .sector * {
+	stroke:none;
+
+}
+
+svg#clock .tick * {
+	stroke: black;
+	stroke-linecap: butt;
+}
+
+svg#clock .tick.day .first {
+	stroke-width: 20;
+}
+
+svg#clock .tick.day .weekday {
+	stroke-width: 10;
+}
+
+svg#clock .tick.day .weekend {
+	stroke-width: 30;
+}
+
+svg#clock .month .label {
+	fill: black;
+}
+
+svg#clock .monthLabels text{
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: black;
+	stroke: none;
+	font-size: 3em;
+	font-variant: small-caps;
+}
+
+svg#clock .label.dateText {
+	fill: black;
+	text-anchor: middle;
+	font-size: 4em;
+	dominant-baseline: central;
+}
+
+svg#clock .hand {
+	filter: drop-shadow(0px 20px 10px gray);
+}
+
+svg#clock .yearHand path {
+	stroke: black;
+	fill: black;
+	stroke-width: 25;
+	stroke-linejoin: round;
+}
+
+svg#clock .monthHand path {
+	stroke:dimgrey;
+	fill: dimgrey;
+	stroke-width: 15;
+	stroke-linejoin: round;
+}
+</style>
+<circle cx="0" cy="0" r="1170" class="face"></circle><g class="month sector"><path d="
+M 0.000 -1120
+A 1120 1120 0 0 1 568.3 -965.1
+L 497.3 -844.5
+A 980.0 980.0 0 0 0 0.000 -980.0
+Z" class="sector jan"></path><path d="
+M 568.3 -965.1
+A 1120 1120 0 0 1 960.2 -576.6
+L 840.2 -504.5
+A 980.0 980.0 0 0 0 497.3 -844.5
+Z" class="sector feb"></path><path d="
+M 960.2 -576.6
+A 1120 1120 0 0 1 1120 -9.614
+L 980.0 -8.412
+A 980.0 980.0 0 0 0 840.2 -504.5
+Z" class="sector mar"></path><path d="
+M 1120 -9.613
+A 1120 1120 0 0 1 979.0 544.0
+L 856.7 476.0
+A 980.0 980.0 0 0 0 980.0 -8.412
+Z" class="sector apr"></path><path d="
+M 979.0 544.0
+A 1120 1120 0 0 1 567.6 965.5
+L 496.7 844.8
+A 980.0 980.0 0 0 0 856.7 476.0
+Z" class="sector may"></path><path d="
+M 567.6 965.5
+A 1120 1120 0 0 1 18.43 1120
+L 16.12 979.9
+A 980.0 980.0 0 0 0 496.7 844.8
+Z" class="sector jun"></path><path d="
+M 18.43 1120
+A 1120 1120 0 0 1 -552.4 974.3
+L -483.3 852.5
+A 980.0 980.0 0 0 0 16.12 979.9
+Z" class="sector jul"></path><path d="
+M -552.4 974.3
+A 1120 1120 0 0 1 -970.3 559.3
+L -849.1 489.4
+A 980.0 980.0 0 0 0 -483.3 852.5
+Z" class="sector aug"></path><path d="
+M -970.3 559.3
+A 1120 1120 0 0 1 -1120 8.813
+L -980.0 7.711
+A 980.0 980.0 0 0 0 -849.1 489.4
+Z" class="sector sep"></path><path d="
+M -1120 8.812
+A 1120 1120 0 0 1 -969.9 -560.0
+L -848.7 -490.0
+A 980.0 980.0 0 0 0 -980.0 7.711
+Z" class="sector oct"></path><path d="
+M -969.9 -560.0
+A 1120 1120 0 0 1 -568.3 -965.1
+L -497.3 -844.5
+A 980.0 980.0 0 0 0 -848.7 -490.0
+Z" class="sector nov"></path><path d="
+M -568.3 -965.1
+A 1120 1120 0 0 1 -0.0002225 -1120
+L -0.0001947 -980.0
+A 980.0 980.0 0 0 0 -497.3 -844.5
+Z" class="sector dec"></path></g><g class="month label monthLabels"><text x="0" y="-900">Jan</text><text x="456.67358396446093" y="-775.5315839532614">Feb</text><text x="771.583165268699" y="-463.31352135884777">Mar</text><text x="899.9668451229389" y="-7.725132973878349">Apr</text><text x="786.7203942453913" y="437.1167135655832">May</text><text x="456.1187303141124" y="775.8580436243747">Jun</text><text x="14.806018756134948" y="899.8782038746093">Jul</text><text x="-443.85341035214753" y="782.9394294061119">Aug</text><text x="-779.7445484749298" y="449.442364629357">Sep</text><text x="-899.9721406662599" y="7.081385781737911">Oct</text><text x="-779.4228634059947" y="-450.0000000000001">Nov</text><text x="-456.67358396446093" y="-775.5315839532614">Dec</text></g><g class="day monthDay tick"><line data-nummber="1" data-date="2024-01-31" class="first" x1="0.000" y1="-1120" x2="0.000" y2="-980.0"></line><line data-nummber="1" data-date="2024-01-31" class="weekday" x1="0.000" y1="-1120" x2="0.000" y2="-1080"></line><line data-nummber="2" data-date="2024-02-01" class="weekday" x1="240.8" y1="-1094" x2="232.2" y2="-1055"></line><line data-nummber="3" data-date="2024-02-02" class="weekend" x1="470.3" y1="-1016" x2="447.2" y2="-966.6"></line><line data-nummber="4" data-date="2024-02-03" class="weekend" x1="677.8" y1="-891.6" x2="644.5" y2="-847.8"></line><line data-nummber="5" data-date="2024-02-04" class="weekday" x1="853.6" y1="-725.1" x2="823.1" y2="-699.2"></line><line data-nummber="6" data-date="2024-02-05" class="weekday" x1="989.5" y1="-524.6" x2="954.2" y2="-505.9"></line><line data-nummber="7" data-date="2024-02-06" class="weekday" x1="1079" y1="-299.6" x2="1041" y2="-288.9"></line><line data-nummber="8" data-date="2024-02-07" class="weekday" x1="1118" y1="-60.64" x2="1078" y2="-58.47"></line><line data-nummber="9" data-date="2024-02-08" class="weekday" x1="1105" y1="181.2" x2="1066" y2="174.7"></line><line data-nummber="10" data-date="2024-02-09" class="weekend" x1="1040" y1="414.6" x2="989.4" y2="394.2"></line><line data-nummber="11" data-date="2024-02-10" class="weekend" x1="927.0" y1="628.5" x2="881.5" y2="597.7"></line><line data-nummber="12" data-date="2024-02-11" class="weekday" x1="770.2" y1="813.1" x2="742.7" y2="784.1"></line><line data-nummber="13" data-date="2024-02-12" class="weekday" x1="577.4" y1="959.7" x2="556.8" y2="925.4"></line><line data-nummber="14" data-date="2024-02-13" class="weekday" x1="357.6" y1="1061" x2="344.8" y2="1023"></line><line data-nummber="15" data-date="2024-02-14" class="weekday" x1="121.1" y1="1113" x2="116.8" y2="1074"></line><line data-nummber="16" data-date="2024-02-15" class="weekday" x1="-121.1" y1="1113" x2="-116.8" y2="1074"></line><line data-nummber="17" data-date="2024-02-16" class="weekend" x1="-357.6" y1="1061" x2="-340.1" y2="1009"></line><line data-nummber="18" data-date="2024-02-17" class="weekend" x1="-577.4" y1="959.7" x2="-549.1" y2="912.6"></line><line data-nummber="19" data-date="2024-02-18" class="weekday" x1="-770.2" y1="813.1" x2="-742.7" y2="784.1"></line><line data-nummber="20" data-date="2024-02-19" class="weekday" x1="-927.0" y1="628.5" x2="-893.9" y2="606.1"></line><line data-nummber="21" data-date="2024-02-20" class="weekday" x1="-1040" y1="414.6" x2="-1003" y2="399.7"></line><line data-nummber="22" data-date="2024-02-21" class="weekday" x1="-1105" y1="181.2" x2="-1066" y2="174.7"></line><line data-nummber="23" data-date="2024-02-22" class="weekday" x1="-1118" y1="-60.64" x2="-1078" y2="-58.47"></line><line data-nummber="24" data-date="2024-02-23" class="weekend" x1="-1079" y1="-299.6" x2="-1026" y2="-284.9"></line><line data-nummber="25" data-date="2024-02-24" class="weekend" x1="-989.5" y1="-524.6" x2="-940.9" y2="-498.9"></line><line data-nummber="26" data-date="2024-02-25" class="weekday" x1="-853.6" y1="-725.1" x2="-823.1" y2="-699.2"></line><line data-nummber="27" data-date="2024-02-26" class="weekday" x1="-677.8" y1="-891.6" x2="-653.6" y2="-859.8"></line><line data-nummber="28" data-date="2024-02-27" class="weekday" x1="-470.3" y1="-1016" x2="-453.5" y2="-980.2"></line><line data-nummber="29" data-date="2024-02-28" class="weekday" x1="-240.8" y1="-1094" x2="-232.2" y2="-1055"></line></g><g class="dateText">
+	<text x="0" y="430" class="label dateText">2024</text>
+</g>
+<g class="hand yearHand">
+	<path d="
+M 12 160
+L -12 160
+L 0, -600
+Z
+M 30 0
+A 30,30 0 1 1 -30,00
+A 30,30 0 1 1 30,00" transform="rotate(55.57377049180328,0,0)"></path>
+</g>
+<g class="hand monthHand">
+	<path d="
+M 12 160
+L -12 160
+L 0, -850
+Z
+M 30 0
+A 30,30 0 1 1 -30,00
+A 30,30 0 1 1 30,00" transform="rotate(316.55172413793105,0,0)"></path>
+</g></svg>
