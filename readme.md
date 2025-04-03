@@ -12,7 +12,8 @@ The 'hour hand' points to the time of year.
 
 In the second example the 'minute hand' points to the time of month.
 
-### Prior art
+Prior art
+---------
 
 It's already been done of course.
 Over two thousand years ago, on the front face of the [Antikythera mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism).
@@ -113,6 +114,7 @@ More detail in the [task/](<./task/>) directory.
 
 ### Future features
 
+* A lunar-month hand to demonstrate moon phases
 * A 'second hand' pointing to the time of day
 * Calendar integration
 
