@@ -1,5 +1,5 @@
 //
-// Traditional clock/watch face style
+// Wall clock theme
 //
 
 theme.clock.clockRadius       = 1170,
