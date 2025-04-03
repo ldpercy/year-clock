@@ -1,15 +1,26 @@
 
 svg#clock {
-	background-color: white;
 	font-size: 48px;
+}
+
+
+svg#clock .face {
 	fill: silver;
 }
 
+
 svg#clock * {
 	stroke: black;
+	fill: none;
 }
 
 svg#clock .label.month {
 	text-anchor: middle;
 	dominant-baseline: middle;
+}
+
+svg#clock .label.dateText {
+	text-anchor: middle;
+	font-size: 5em;
+	dominant-baseline: central;
 }

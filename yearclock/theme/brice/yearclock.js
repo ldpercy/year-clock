@@ -11,5 +11,5 @@ theme.clock.innerRadius       = 930;
 theme.clock.monthLabelRadius  = 985;
 theme.clock.weekdayTickLength = 40;
 theme.clock.weekendTickLength = 55;
-theme.clock.needleLength      = 1030;
+theme.clock.yearHandLength    = 1030;
 theme.clock.dateLabel         = 500;

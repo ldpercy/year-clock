@@ -7,7 +7,7 @@
 
 Math.TAU = 2 * Math.PI;
 
-function Point (x, y)
+function Point(x, y)
 {
 	this.x = x;
 	this.y = y;
@@ -48,13 +48,27 @@ Given integer divisions of a circle, return the start, middle and end angle of t
 Divisions are discrete so counting is 1-based.
 */
 function divisionDegrees(divisions, number) {
-	result = {
+	let result = {
 		start  : (number-1)   * (360 / divisions),
 		middle : (number-0.5) * (360 / divisions),
 		end    : (number)     * (360 / divisions),
 	}
 	return result;
 }
+
+/* divisionRadians
+Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
+Divisions are discrete so counting is 1-based.
+*/
+function divisionRadians(divisions, number) {
+	let result = {
+		start  : (number-1)   * (Math.TAU / divisions),
+		middle : (number-0.5) * (Math.TAU / divisions),
+		end    : (number)     * (Math.TAU / divisions),
+	}
+	return result;
+}
+
 
 
 // clock
@@ -109,4 +123,61 @@ function getDayClass(date) { // this needs attention
 
 function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
+}
+
+function daysInMonth(date) {
+	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+}
+
+
+
+
+function getYearDayArray(date) {
+	const result = [];
+
+	// Setup day array
+	let dayNumber = 1;
+	for (let thisDate = new Date(date.getFullYear(),0); thisDate.getFullYear() <= date.getFullYear(); incrementDay(thisDate))
+	{
+		const dayInfo = {
+			number   : dayNumber,
+			date     : new Date(thisDate),
+			first    : thisDate.getDate() === 1,
+			weekend  : isWeekend(thisDate),
+			class    : getDayClass(thisDate),
+			isoShort : isoDate(thisDate),
+		}
+		result.push(dayInfo);
+		dayNumber++;
+	}
+
+	return result;
+}
+
+
+function dayOfYear(date)
+{
+	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+}
+
+
+
+function getMonthDayArray(date) {
+	const result = [];
+	const year = date.getFullYear();
+	const month = date.getMonth();
+	const days = daysInMonth(date);
+	for (let d=1; d<=days; d++) {
+		let thisDate = new Date(year,month,d);
+		const dayInfo = {
+			number   : d,
+			date     : thisDate,
+			first    : thisDate.getDate() === 1,
+			weekend  : isWeekend(thisDate),
+			class    : getDayClass(thisDate),
+			isoShort : isoDate(thisDate),
+		}
+		result.push(dayInfo);
+	}
+	return result;
 }
