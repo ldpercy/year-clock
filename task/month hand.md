@@ -81,11 +81,35 @@ In new tabs and in a new profile it's correct.
 In any loaded page in my ordinary profile it's wrong.
 It only turns up before 11am (utc new day) which might be why I hadn't noticed it before.
 
-It must a plugin or setting i have on my regular ff profile.
+It must be a plugin or setting i have on my regular ff profile.
 Will try to find.
 
 
 
+Wrapup
+------
 
+The code is generally still in a kinda messy state, there's a bunch of bits that need refactoring/rationalising.
+
+But for now I've got the month hand going.
+
+I'm still on the fence about whether hands should point to the middle of the period or the start - I think it could depend a lot on whatever aesthetic the theme is going for.
+For the 'traditional' clock face it might be more in keeping to the hands point to the start.
+I'd also like to experiment with mid-period markers, which would suit mid-period hands better.
+
+Much to do, anyways, here's the summary:
+
+* Added new clock theme 'traditional' to highlight the new month hand
+* Move month labels to start of period - need more work on this
+* Revised 'needle' to 'hand'
+* Moved some date setup to maths - needs more work
+* Added function to draw month-day ticks - needs to be rationalised
+* Added new month hand
+* My ff profile is acting odd with getDate()
+* Parameterised a few more functions
+* Date text (year) can now optionally be absolutely positioned
+
+Late change.
+I'm renamimg the new theme from 'traditional' to 'wall-clock', as that's what I was really going for, and 'traditional' is a bit vague.
 
 
