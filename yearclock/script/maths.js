@@ -7,7 +7,7 @@
 
 Math.TAU = 2 * Math.PI;
 
-function Point (x, y)
+function Point(x, y)
 {
 	this.x = x;
 	this.y = y;
@@ -48,7 +48,7 @@ Given integer divisions of a circle, return the start, middle and end angle of t
 Divisions are discrete so counting is 1-based.
 */
 function divisionDegrees(divisions, number) {
-	result = {
+	let result = {
 		start  : (number-1)   * (360 / divisions),
 		middle : (number-0.5) * (360 / divisions),
 		end    : (number)     * (360 / divisions),
@@ -61,7 +61,7 @@ Given integer divisions of a circle, return the start, middle and end angle of t
 Divisions are discrete so counting is 1-based.
 */
 function divisionRadians(divisions, number) {
-	result = {
+	let result = {
 		start  : (number-1)   * (Math.TAU / divisions),
 		middle : (number-0.5) * (Math.TAU / divisions),
 		end    : (number)     * (Math.TAU / divisions),
@@ -137,7 +137,7 @@ function getYearDayArray(date) {
 
 	// Setup day array
 	let dayNumber = 1;
-	for (let thisDate = new Date(config.year,0); thisDate.getFullYear() <= config.year; incrementDay(thisDate))
+	for (let thisDate = new Date(date.getFullYear(),0); thisDate.getFullYear() <= date.getFullYear(); incrementDay(thisDate))
 	{
 		const dayInfo = {
 			number   : dayNumber,
@@ -147,12 +147,6 @@ function getYearDayArray(date) {
 			class    : getDayClass(thisDate),
 			isoShort : isoDate(thisDate),
 		}
-		if (datesAreEqual(config.date, thisDate))
-		{
-			config.displayDate = dayInfo;
-			//log(dayInfo);
-		}
-
 		result.push(dayInfo);
 		dayNumber++;
 	}
@@ -161,15 +155,20 @@ function getYearDayArray(date) {
 }
 
 
+function dayOfYear(date)
+{
+	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+}
+
+
+
 function getMonthDayArray(date) {
 	const result = [];
 	const year = date.getFullYear();
 	const month = date.getMonth();
 	const days = daysInMonth(date);
-	log(days);
 	for (let d=1; d<=days; d++) {
 		let thisDate = new Date(year,month,d);
-		//log(thisDate);
 		const dayInfo = {
 			number   : d,
 			date     : thisDate,
@@ -178,7 +177,6 @@ function getMonthDayArray(date) {
 			class    : getDayClass(thisDate),
 			isoShort : isoDate(thisDate),
 		}
-		log(dayInfo);
 		result.push(dayInfo);
 	}
 	return result;

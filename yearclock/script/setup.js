@@ -9,8 +9,8 @@ log('setup.js')
 
 // Year-clock general configuration
 const config = {
-	date            : undefined,     // The date used for the clock display
-	displayDate     : {},            // The date used for the clock display
+	date            : {},            // The date used for the clock display
+	//displayDate     : {},            // The date used for the clock display
 	year            : {},            // year information
 	days            : [],            // array of day information
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
@@ -37,10 +37,14 @@ const theme = {
 */
 function setup() {
 	// Set Current Date
-	const dateParam = getParameterByName('date');
-	config.date = dateParam ? new Date(dateParam) : new Date();
-	config.year = config.date.getFullYear();
-	log('config.date:', config.date.toISOString());
+	config.date.param      = getParameterByName('date');
+	config.date.object     = (config.date.param) ? new Date(config.date.param) : new Date();
+	config.date.year       = config.date.object.getFullYear();
+	config.date.month      = config.date.object.getMonth() + 1;		// js month starts at 0
+	config.date.date       = config.date.object.getDate();
+	config.date.dayOfYear  = dayOfYear(config.date.object);
+	config.date.daysInYear = undefined;
+	log('config.date.object:', config.date.object);
 
 
 	// Language
@@ -53,15 +57,15 @@ function setup() {
 	// Set Up Months
 	config.months = config.monthNames.map(
 		function( monthName, monthNumber ) {
-			const startDate = new Date(config.year, monthNumber);
-			const nextMonth = new Date(config.year, monthNumber + 1);
+			const startDate = new Date(config.date.year, monthNumber);
+			const nextMonth = new Date(config.date.year, monthNumber + 1);
 			const endDate   = new Date(nextMonth - 1000);
 			const startAngle = dateRadians(startDate);
 			const endAngle   = dateRadians(endDate);
 			const result = {
 				'name'       : monthName,
 				'code'       : config.monthCodes[monthNumber],
-				'startDate'  : new Date(config.year, monthNumber),
+				'startDate'  : new Date(config.date.year, monthNumber),
 				'nextMonth'  : nextMonth,
 				'endDate'    : new Date(nextMonth - 1000),
 				'startAngle' : startAngle,
@@ -72,9 +76,9 @@ function setup() {
 		}
 	);
 
-	config.yearDayArray = getYearDayArray(config.date);
-	config.monthDayArray = getMonthDayArray(config.date);
-	config.displayDate.daysInYear = config.yearDayArray.length;
+	config.yearDayArray = getYearDayArray(config.date.object);
+	config.monthDayArray = getMonthDayArray(config.date.object);
+	config.date.daysInYear = config.yearDayArray.length;
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
