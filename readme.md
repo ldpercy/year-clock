@@ -5,9 +5,10 @@ A bit like a regular analog clock, but instead of the regular 12 hour divisions 
 
 The 'hour hand' points to the time of year.
 
-
-<img src="image/example3.svg" alt="Year clock svg" width="40%"/>
-<img src="image/example4.svg" alt="Year clock svg" width="40%" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
+<p align="middle">
+<img src="image/example3.svg" alt="Year clock example 3" width="40%"/>
+<img src="image/example4.svg" alt="Year clock example 4" width="40%" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
+</p>
 
 In the second example the 'minute hand' points to the time of month.
 
@@ -112,7 +113,6 @@ More detail in the [task/](<./task/>) directory.
 
 ### Future features
 
-* A 'minute hand' pointing to the time of month
 * A 'second hand' pointing to the time of day
 * Calendar integration
 
