@@ -58,6 +58,34 @@ Traditional analog clock face
 The new theme is called 'traditional'.
 
 
+Quick update - firefox weirdness
+--------------------------------
+Done lots of stuff, chasing around bugs and not-very-succcesfully refactoring the date code.
+
+But last night got the month hand working, and it sort of looks okay.
+
+This morning I've been trying to clean things up a bit, but the date code is still really unsatisfactory.
+
+A different issue has cropped up - for some as yet unexplained reason I'm getting seemingly UTC values out of Date.getDate() in firefox.
+
+But only in *some* circumstances.
+
+```javascript
+	console.log('-----');
+	var nd = new Date();
+	console.log(nd);
+	gd = nd.getDate();
+	console.log(gd);
+```
+In new tabs and in a new profile it's correct.
+In any loaded page in my ordinary profile it's wrong.
+It only turns up before 11am (utc new day) which might be why I hadn't noticed it before.
+
+It must a plugin or setting i have on my regular ff profile.
+Will try to find.
+
+
+
 
 
 
