@@ -117,4 +117,6 @@ More detail in the [task/](<./task/>) directory.
 * A lunar-month hand to demonstrate moon phases
 * A 'second hand' pointing to the time of day
 * Calendar integration
-
+* Live date changes
+* Animation for live date changes
+* Convert to TypeScript
