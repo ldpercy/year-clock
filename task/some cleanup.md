@@ -13,3 +13,11 @@ So things have gotten a little messy and I'd like to do a few smaller jobs befor
 Probably a few other things, will update as I go.
 
 
+Hands
+-----
+
+The hand functions are nearly the same, so they need to be sorted out.
+So unify right?
+Not too bad, but the obvious thing to do is to separate the drawing from the angle calculation.
+Which means moving the calculations out to somwhere else.
+Don't want to clutter up the main drawClock fn (yet) so will add another layer.

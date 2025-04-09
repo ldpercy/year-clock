@@ -196,6 +196,16 @@ theme.clock.drawDateText = function(date) {
 }
 
 
+/* drawHands
+*/
+theme.clock.drawHands = function() {
+	// calculate year hand params
+	// draw year hand
+	// calculate month hand params
+	// draw month hand hand
+}
+
+
 /* drawYearHand
 */
 theme.clock.drawYearHand = function(daysInYear, dayOfYear) {
