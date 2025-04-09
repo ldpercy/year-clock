@@ -199,25 +199,20 @@ theme.clock.drawDateText = function(date) {
 /* drawHands
 */
 theme.clock.drawHands = function() {
+
 	// calculate year hand params
 	// draw year hand
+
 	// calculate month hand params
 	// draw month hand hand
+
 }
 
 
 /* drawYearHand
 */
 theme.clock.drawYearHand = function(daysInYear, dayOfYear) {
-	const path = `
-		M 12 160
-		L -12 160
-		L 0, -${theme.clock.yearHandLength}
-		Z
-		M 30 0
-		A 30,30 0 1 1 -30,00
-		A 30,30 0 1 1 30,00`;
-
+	const path = theme.clock.getHandPath(theme.clock.yearHandLength);
 	const dayDivision = divisionDegrees(daysInYear, dayOfYear);
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 
@@ -231,15 +226,7 @@ theme.clock.drawYearHand = function(daysInYear, dayOfYear) {
 /*drawMonthHand
 */
 theme.clock.drawMonthHand = function(date) {
-	const path = `
-		M 12 160
-		L -12 160
-		L 0, -${theme.clock.monthHandLength}
-		Z
-		M 30 0
-		A 30,30 0 1 1 -30,00
-		A 30,30 0 1 1 30,00`;
-
+	const path = theme.clock.getHandPath(theme.clock.monthHandLength);
 	const dayDivision = divisionDegrees(config.monthDayArray.length, date.getDate());
 	const transform = `rotate(${dayDivision.middle},0,0)`;
 
@@ -249,3 +236,20 @@ theme.clock.drawMonthHand = function(date) {
 		</g>`;
 	theme.clock.element.innerHTML += svg;
 }
+
+
+/*drawMonthHand
+*/
+theme.clock.getHandPath = function(length) {
+	const path = `
+		M 12 160
+		L -12 160
+		L 0, -${length}
+		Z
+		M 30 0
+		A 30,30 0 1 1 -30,00
+		A 30,30 0 1 1 30,00`;
+	return path;
+}
+
+
