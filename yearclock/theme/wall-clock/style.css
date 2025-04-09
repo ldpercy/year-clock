@@ -77,18 +77,18 @@ svg#clock .label.dateText {
 }
 
 
-svg#clock .hand {
+svg#clock .hands {
 	filter: drop-shadow(0px 20px 10px gray);
 }
 
-svg#clock .yearHand path {
+svg#clock path.yearHand  {
 	stroke: black;
 	fill: black;
 	stroke-width: 25;
 	stroke-linejoin: round;
 }
 
-svg#clock .monthHand path {
+svg#clock path.monthHand  {
 	stroke:dimgrey;
 	fill: dimgrey;
 	stroke-width: 15;

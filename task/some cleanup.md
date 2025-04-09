@@ -21,3 +21,12 @@ So unify right?
 Not too bad, but the obvious thing to do is to separate the drawing from the angle calculation.
 Which means moving the calculations out to somwhere else.
 Don't want to clutter up the main drawClock fn (yet) so will add another layer.
+
+### Which hands to draw?
+
+I've sort of got something starting to look better, but need a way to specify which hands to draw.
+
+Off the top of my head I can think of a handful of ways, not sure which is best.
+Ah actually this could get way too deep and theoretical, and I'd prefer a quick solution this time around.
+
+

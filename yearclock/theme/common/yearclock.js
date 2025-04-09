@@ -34,8 +34,8 @@ theme.clock.drawClock = function()
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearDayTicks();
 	theme.clock.drawDateText(config.date.object);
-	theme.clock.drawYearHand(config.date.daysInYear, config.date.dayOfYear);
-
+	//theme.clock.drawYearHand(config.date.daysInYear, config.date.dayOfYear);
+	theme.clock.drawHands();
 }/* drawClock */
 
 
@@ -198,14 +198,30 @@ theme.clock.drawDateText = function(date) {
 
 /* drawHands
 */
-theme.clock.drawHands = function() {
+theme.clock.drawHands = function(drawMonthHand) {
 
 	// calculate year hand params
-	// draw year hand
+	const yearDayDivision = divisionDegrees(config.date.daysInYear, config.date.dayOfYear);
+	const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
+	// get year hand
+	const yearHand = theme.clock.getHandSVG(theme.clock.yearHandLength, yearTransform, 'yearHand', '');
 
-	// calculate month hand params
-	// draw month hand hand
+	var monthHand = '';
 
+	if (drawMonthHand) {
+		// calculate month hand params
+		const monthDayDivision = divisionDegrees(config.monthDayArray.length, config.date.object.getDate());
+		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
+		// get month hand
+		monthHand = theme.clock.getHandSVG(theme.clock.monthHandLength, monthTransform, 'monthHand', '');
+	}
+
+	const svg = `
+		<g class="hands">
+			${yearHand}
+			${monthHand}
+		</g>`;
+	theme.clock.element.innerHTML += svg;
 }
 
 
@@ -239,7 +255,7 @@ theme.clock.drawMonthHand = function(date) {
 
 /*drawMonthHand
 */
-theme.clock.getHandSVG = function(length, transform, id) {
+theme.clock.getHandSVG = function(length, transform, cssClass, id) {
 	const path = `
 		M 12 160
 		L -12 160
@@ -248,7 +264,7 @@ theme.clock.getHandSVG = function(length, transform, id) {
 		M 30 0
 		A 30,30 0 1 1 -30,00
 		A 30,30 0 1 1 30,00`;
-	const svg = `<path d="${path}" transform="${transform}" id="${id}"></path>`;
+	const svg = `<path  id="${id}" class="${cssClass}" d="${path}" transform="${transform}"></path>`;
 	return svg;
 }
 

@@ -64,7 +64,7 @@ svg#clock .label.dateText {
 	dominant-baseline: central;
 }
 
-svg#clock .yearHand path {
+svg#clock path.yearHand {
 	stroke: black;
 	fill: black;
 	stroke-width: 15;
