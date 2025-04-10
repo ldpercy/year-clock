@@ -203,7 +203,7 @@ theme.clock.drawHands = function(drawMonthHand) {
 	const yearDayDivision = divisionDegrees(config.date.daysInYear, config.date.dayOfYear);
 	const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 	// get year hand
-	const yearHand = theme.clock.getHandSVG(theme.clock.yearHandLength, yearTransform, 'yearHand', '');
+	const yearHand = theme.clock.getHandPath(theme.clock.yearHandLength, yearTransform, 'yearHand', '');
 
 	var monthHand = '';
 
@@ -212,7 +212,7 @@ theme.clock.drawHands = function(drawMonthHand) {
 		const monthDayDivision = divisionDegrees(config.monthDayArray.length, config.date.object.getDate());
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
-		monthHand = theme.clock.getHandSVG(theme.clock.monthHandLength, monthTransform, 'monthHand', '');
+		monthHand = theme.clock.getHandPath(theme.clock.monthHandLength, monthTransform, 'monthHand', '');
 	}
 
 	const svg = `
@@ -224,9 +224,9 @@ theme.clock.drawHands = function(drawMonthHand) {
 }
 
 
-/* getHandSVG
+/* getHandPath
 */
-theme.clock.getHandSVG = function(length, transform, cssClass, id) {
+theme.clock.getHandPath = function(length, transform, cssClass, id) {
 	const path = `
 		M 12 160
 		L -12 160

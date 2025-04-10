@@ -29,4 +29,6 @@ I've sort of got something starting to look better, but need a way to specify wh
 Off the top of my head I can think of a handful of ways, not sure which is best.
 Ah actually this could get way too deep and theoretical, and I'd prefer a quick solution this time around.
 
+I've also moved the drop shadows to the group rather than individual hands which I think looks better.
+
 
