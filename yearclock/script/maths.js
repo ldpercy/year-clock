@@ -130,6 +130,12 @@ function daysInMonth(date) {
 }
 
 
+function dayOfYear(date)
+{
+	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+}
+
+
 
 
 function getYearDayArray(date) {
@@ -155,13 +161,6 @@ function getYearDayArray(date) {
 }
 
 
-function dayOfYear(date)
-{
-	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-}
-
-
-
 function getMonthDayArray(date) {
 	const result = [];
 	const year = date.getFullYear();
@@ -181,3 +180,33 @@ function getMonthDayArray(date) {
 	}
 	return result;
 }
+
+
+/* getPeriodDayArray
+Attempt at generalising the above two an arbitrary period.
+Will try to use half-open intervals.
+Might need to tweak the loop-end condition though.
+*/
+function getPeriodDayArray(startDate, endDate) {
+	const result = [];
+
+	let dayCounter = 1;
+	for (let thisDate = new Date(startDate.getFullYear(),0); thisDate < endDate; incrementDay(thisDate))
+	{
+		const dayInfo = {
+			dayInPeriod  : dayCounter,
+			dayOfMonth   : thisDate.getDate(),
+			dayOfYear    : dayOfYear(thisDate),
+			date         : new Date(thisDate),
+			isFirst      : thisDate.getDate() === 1,
+			isWeekend    : isWeekend(thisDate),
+			class        : getDayClass(thisDate),
+			isoShort     : isoDate(thisDate),
+		}
+		result.push(dayInfo);
+		dayCounter++;
+	}
+
+	return result;
+}/* getPeriodDayArray */
+

@@ -32,3 +32,17 @@ Ah actually this could get way too deep and theoretical, and I'd prefer a quick 
 I've also moved the drop shadows to the group rather than individual hands which I think looks better.
 
 
+
+Day arrays
+----------
+
+getYearDayArray and getMonthDayArray
+
+These are nearly the same, but have a slightly different setup and loop structure.
+They *should* be able to be made into one function.
+
+The main deal is that given a year or month give me back an array of info those dates.
+Could it be generalised to any date range, like a quarter for instance?
+
+
+

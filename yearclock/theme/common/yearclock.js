@@ -94,7 +94,7 @@ theme.clock.drawYearDayTicks = function() {
 	{
 		const angle = dateRadians(day.date);
 
-		if (day.first) // Draw long line
+		if (day.isFirst) // Draw long line
 		{
 			const first = radialLine(angle, theme.clock.outerRadius, theme.clock.innerRadius);
 			const firstSvg =
@@ -102,7 +102,7 @@ theme.clock.drawYearDayTicks = function() {
 			newSvg += firstSvg;
 		}
 
-		if (day.weekend)
+		if (day.isWeekend)
 		{
 			const weekend = radialLine(angle, theme.clock.outerRadius, weekendTickInnerRadius);
 			const weekendSvg =
