@@ -115,33 +115,36 @@ theme.clock.getPeriodDayTicks = function(periodArray) {
 	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
 
 	let result = '';
+	let tickClass = '';
+	let tickLine;
+	let tickSvg;
 
 	for (let day of periodArray)
 	{
 		let dayAngle = divisionRadians(periodArray.length, day.dayOfPeriod);
-		//log(dayAngle);
-
-		if (day.isFirst) // Draw long line
-		{
-			const first = radialLine(dayAngle.start, theme.clock.outerRadius, theme.clock.innerRadius);
-			const firstSvg =
-				`<line class="first" data-number="${day.number}" data-date="${day.isoShort}" x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" ></line>`;
-			result += firstSvg;
-		}
 
 		if (day.isWeekend)
 		{
-			const weekend = radialLine(dayAngle.start, theme.clock.outerRadius, weekendTickInnerRadius);
-			const weekendSvg =
-				`<line class="weekend" data-number="${day.number}" data-date="${day.isoShort}" x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}"></line>`;
-			result += weekendSvg;
+			tickLine = radialLine(dayAngle.start, theme.clock.outerRadius, weekendTickInnerRadius);
+			tickClass = 'weekend';
 		}
-		else // If neither weekend nor first day in month
+		else // day.isWeekday
 		{
-			const weekday = radialLine(dayAngle.start, theme.clock.outerRadius, weekdayTickInnerRadius);
-			const weekdaySvg =
-				`<line class="weekday" data-number="${day.number}" data-date="${day.isoShort}" x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}"></line>`;
-			result += weekdaySvg;
+			tickLine = radialLine(dayAngle.start, theme.clock.outerRadius, weekdayTickInnerRadius);
+			tickClass = 'weekday';
+		}
+
+		tickSvg =
+			`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
+		result += tickSvg;
+
+		if (day.isFirst) // Draw an extra line for firsts of the month
+		{
+			tickLine = radialLine(dayAngle.start, theme.clock.outerRadius, theme.clock.innerRadius);
+			tickClass = 'first';
+			tickSvg =
+				`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
+			result += tickSvg;
 		}
 	}
 

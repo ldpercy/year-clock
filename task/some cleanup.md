@@ -59,3 +59,9 @@ I really should have cleaned all this up in the previous task...
 
 First iteration done.
 
+Also rationalised the tick drawing code itself a bit.
+
+There's so much more that could be done to make the ticks or day markers better though, both in code and presentation.
+
+
+
