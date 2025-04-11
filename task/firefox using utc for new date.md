@@ -13,11 +13,11 @@ Appears to be caused by `privacy.resistFingerprinting`.
 	https://forums.mozillazine.org/viewtopic.php?t=3084798
 
 
-There doesn't appear to be an easy way to switch this off for local files though
+There doesn't appear to be an easy way to switch this off for local files though.
 
 	privacy.resistFingerprinting.exemptedDomains
 
-Doesn't seem to respect file protocol or other local paths, or I haven't gotten the syntax right yet.
+Doesn't seem to understand file protocol or other local paths, or I haven't gotten the syntax right yet.
 
 	https://connect.mozilla.org/t5/ideas/configure-fingerprinting-of-local-files/idi-p/70867
 
@@ -25,6 +25,11 @@ Apparently there's a setting to disable timezone spoofing:
 
 	privacy.resistFingerprinting.spoofTimezone
 
-But I'd rather not do that for my general use profile.
+But I'd rather not do that for my general profile.
 
-I'll create a new development profile for firefox with vanilla settings.
+I'll create a new development profile for firefox with fairly vanilla settings.
+
+
+Wrapup
+------
+Okay done new profile set up, new Date reporting correctly now.
