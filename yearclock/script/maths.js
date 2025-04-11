@@ -164,7 +164,7 @@ function getPeriodDayArray(startDate, endDate) {
 	for (let thisDate = new Date(startDate); thisDate < endDate; incrementDay(thisDate))
 	{
 		const dayInfo = {
-			dayInPeriod  : dayCounter,
+			dayOfPeriod  : dayCounter,
 			dayOfMonth   : thisDate.getDate(),
 			dayOfYear    : dayOfYear(thisDate),
 			date         : new Date(thisDate),

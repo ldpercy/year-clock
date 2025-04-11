@@ -85,39 +85,11 @@ theme.clock.drawMonthLabels = function() {
 */
 theme.clock.drawYearDayTicks = function() {
 
-	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayTickLength;
-	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
-
-	let newSvg = '';
-
-	for (let day of config.yearDayArray)
-	{
-		const angle = dateRadians(day.date);
-
-		if (day.isFirst) // Draw long line
-		{
-			const first = radialLine(angle, theme.clock.outerRadius, theme.clock.innerRadius);
-			const firstSvg =
-				`<line data-date="${day.isoShort}" class="first" x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" ></line>`;
-			newSvg += firstSvg;
-		}
-
-		if (day.isWeekend)
-		{
-			const weekend = radialLine(angle, theme.clock.outerRadius, weekendTickInnerRadius);
-			const weekendSvg =
-				`<line data-date="${day.isoShort}" class="weekend" x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}"></line>`;
-			newSvg += weekendSvg;
-		}
-		else // If neither weekend nor first day in month
-		{
-			const weekday = radialLine(angle, theme.clock.outerRadius, weekdayTickInnerRadius);
-			const weekdaySvg =
-				`<line data-date="${day.isoShort}" class="weekday" x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}"></line>`;
-			newSvg += weekdaySvg;
-		}
-	}
-	theme.clock.element.innerHTML += `<g class="day yearDay tick">${newSvg}</g>`;
+	const yearDayTicks = theme.clock.getPeriodDayTicks(config.yearDayArray);
+	theme.clock.element.innerHTML += `
+		<g class="day yearDay tick">
+			${yearDayTicks}
+		</g>`;
 }/* drawYearDayTicks */
 
 
@@ -126,44 +98,56 @@ theme.clock.drawYearDayTicks = function() {
 */
 theme.clock.drawMonthDayTicks = function() {
 
+	const monthDayTicks = theme.clock.getPeriodDayTicks(config.monthDayArray);
+	theme.clock.element.innerHTML += `
+		<g class="day monthDay tick">
+			${monthDayTicks}
+		</g>`;
+}/* drawMonthDayTicks */
+
+
+
+/* drawPeriodDayTicks
+*/
+theme.clock.getPeriodDayTicks = function(periodArray) {
+
 	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayTickLength;
 	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
 
-	//log('drawMonthDayTicks');
+	let result = '';
 
-	let newSvg = '';
-
-	for (let day of config.monthDayArray)
+	for (let day of periodArray)
 	{
-		//const angle = dateRadians(day.date);
-		let dayAngle = divisionRadians(config.monthDayArray.length, day.dayOfMonth);
+		let dayAngle = divisionRadians(periodArray.length, day.dayOfPeriod);
 		//log(dayAngle);
 
 		if (day.isFirst) // Draw long line
 		{
 			const first = radialLine(dayAngle.start, theme.clock.outerRadius, theme.clock.innerRadius);
 			const firstSvg =
-				`<line data-nummber="${day.number}" data-date="${day.isoShort}" class="first" x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" ></line>`;
-			newSvg += firstSvg;
+				`<line class="first" data-number="${day.number}" data-date="${day.isoShort}" x1="${first.xStart}" y1="${first.yStart}" x2="${first.xEnd}" y2="${first.yEnd}" ></line>`;
+			result += firstSvg;
 		}
 
 		if (day.isWeekend)
 		{
 			const weekend = radialLine(dayAngle.start, theme.clock.outerRadius, weekendTickInnerRadius);
 			const weekendSvg =
-				`<line data-nummber="${day.number}" data-date="${day.isoShort}" class="weekend" x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}"></line>`;
-			newSvg += weekendSvg;
+				`<line class="weekend" data-number="${day.number}" data-date="${day.isoShort}" x1="${weekend.xStart}" y1="${weekend.yStart}" x2="${weekend.xEnd}" y2="${weekend.yEnd}"></line>`;
+			result += weekendSvg;
 		}
 		else // If neither weekend nor first day in month
 		{
 			const weekday = radialLine(dayAngle.start, theme.clock.outerRadius, weekdayTickInnerRadius);
 			const weekdaySvg =
-				`<line data-nummber="${day.number}" data-date="${day.isoShort}" class="weekday" x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}"></line>`;
-			newSvg += weekdaySvg;
+				`<line class="weekday" data-number="${day.number}" data-date="${day.isoShort}" x1="${weekday.xStart}" y1="${weekday.yStart}" x2="${weekday.xEnd}" y2="${weekday.yEnd}"></line>`;
+			result += weekdaySvg;
 		}
 	}
-	theme.clock.element.innerHTML += `<g class="day monthDay tick">${newSvg}</g>`;
-}/* drawMonthDayTicks */
+
+	return result;
+}/* getPeriodDayTicks */
+
 
 
 /* drawDateText

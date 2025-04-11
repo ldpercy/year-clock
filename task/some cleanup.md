@@ -44,5 +44,18 @@ They *should* be able to be made into one function.
 The main deal is that given a year or month give me back an array of info those dates.
 Could it be generalised to any date range, like a quarter for instance?
 
+Okay after beating my head against it for a while I *think* I've got it.
+There are a bunch of gotchas and annoying quirks in js date handling.
+Also have sorted out the UTC problem I was having, have moved to a lightweight dedicated ff profile.
 
+
+
+Day ticks
+---------
+
+Next drawYearDayTicks and drawMonthDayTicks.
+
+I really should have cleaned all this up in the previous task...
+
+First iteration done.
 
