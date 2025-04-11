@@ -73,12 +73,16 @@ theme.clock.drawMonthLabels = function() {
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
-			`<text x="${center.x}" y="${center.y}" transform="${transform}">${month.name}</text>`;
+			`<text x="${center.x}" y="${center.y}" transform="${transform}">
+				${formatMonth(month.name)}
+			</text>`;
 		newSvg += labelSvg;
 	}
 	theme.clock.element.innerHTML += `<g class="month label">${newSvg}</g>`;
 }/* drawMonthLabels */
 
+
+function formatMonth(name) { return name }
 
 
 /* drawYearDayTicks

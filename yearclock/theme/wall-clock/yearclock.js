@@ -49,8 +49,15 @@ theme.clock.drawMonthLabels = function() {
 	{
 		const center     = polarPoint(month.startAngle, theme.clock.monthLabelRadius);
 		const labelSvg =
-			`<text x="${center.x}" y="${center.y}">${month.name.slice(0,3)}</text>`;
+			`<text x="${center.x}" y="${center.y}">
+				${formatMonth(month.name)}
+			</text>`;
 		newSvg += labelSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="month label monthLabels">${newSvg}</g>`;
+	theme.clock.element.innerHTML +=
+		`<g class="month label monthLabels">${newSvg}</g>`;
 }/* drawMonthLabels */
+
+
+
+function formatMonth(name) { return name.slice(0,3) }
