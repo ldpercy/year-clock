@@ -91,9 +91,25 @@ function isoDate(date) {
 	return date.toISOString().substring(0, 10);
 }
 
-function incrementDay(d)
-{
-	d.setDate(d.getDate() + 1)
+function incrementDay(d) {
+	d.setDate(d.getDate() + 1);
+}
+
+
+function startOfYear(date) {
+	return new Date(date.getFullYear(), 0, 1);
+}
+
+function nextYear(date) {
+	return new Date(date.getFullYear()+1, 0, 1);
+}
+
+function startOfMonth(date) {
+	return new Date(date.getFullYear(), date.getMonth(),1);
+}
+
+function nextMonth(date) {
+	return new Date(date.getFullYear(), date.getMonth()+1,1);
 }
 
 function dateRatio(date)
@@ -136,54 +152,8 @@ function dayOfYear(date)
 }
 
 
-
-
-function getYearDayArray(date) {
-	const result = [];
-
-	// Setup day array
-	let dayNumber = 1;
-	for (let thisDate = new Date(date.getFullYear(),0); thisDate.getFullYear() <= date.getFullYear(); incrementDay(thisDate))
-	{
-		const dayInfo = {
-			number   : dayNumber,
-			date     : new Date(thisDate),
-			first    : thisDate.getDate() === 1,
-			weekend  : isWeekend(thisDate),
-			class    : getDayClass(thisDate),
-			isoShort : isoDate(thisDate),
-		}
-		result.push(dayInfo);
-		dayNumber++;
-	}
-
-	return result;
-}
-
-
-function getMonthDayArray(date) {
-	const result = [];
-	const year = date.getFullYear();
-	const month = date.getMonth();
-	const days = daysInMonth(date);
-	for (let d=1; d<=days; d++) {
-		let thisDate = new Date(year,month,d);
-		const dayInfo = {
-			number   : d,
-			date     : thisDate,
-			first    : thisDate.getDate() === 1,
-			weekend  : isWeekend(thisDate),
-			class    : getDayClass(thisDate),
-			isoShort : isoDate(thisDate),
-		}
-		result.push(dayInfo);
-	}
-	return result;
-}
-
-
 /* getPeriodDayArray
-Attempt at generalising the above two an arbitrary period.
+Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
@@ -191,7 +161,7 @@ function getPeriodDayArray(startDate, endDate) {
 	const result = [];
 
 	let dayCounter = 1;
-	for (let thisDate = new Date(startDate.getFullYear(),0); thisDate < endDate; incrementDay(thisDate))
+	for (let thisDate = new Date(startDate); thisDate < endDate; incrementDay(thisDate))
 	{
 		const dayInfo = {
 			dayInPeriod  : dayCounter,

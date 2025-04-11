@@ -135,12 +135,11 @@ theme.clock.drawMonthDayTicks = function() {
 
 	for (let day of config.monthDayArray)
 	{
-
 		//const angle = dateRadians(day.date);
-		let dayAngle = divisionRadians(config.monthDayArray.length, day.number);
+		let dayAngle = divisionRadians(config.monthDayArray.length, day.dayOfMonth);
 		//log(dayAngle);
 
-		if (day.first) // Draw long line
+		if (day.isFirst) // Draw long line
 		{
 			const first = radialLine(dayAngle.start, theme.clock.outerRadius, theme.clock.innerRadius);
 			const firstSvg =
@@ -148,7 +147,7 @@ theme.clock.drawMonthDayTicks = function() {
 			newSvg += firstSvg;
 		}
 
-		if (day.weekend)
+		if (day.isWeekend)
 		{
 			const weekend = radialLine(dayAngle.start, theme.clock.outerRadius, weekendTickInnerRadius);
 			const weekendSvg =
