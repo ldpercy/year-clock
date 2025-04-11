@@ -65,3 +65,19 @@ There's so much more that could be done to make the ticks or day markers better 
 
 
 
+Wrapup
+------
+
+Actually I'm going to wrap this up here.
+I've removed most of the ugly code duplication mentioned at the top, and sorting out the month labels might require a bit more attention.
+
+
+* Hand path split from actual drawing
+* Hands are now grouped, shadows look better
+* Resolved the FF UTC problem
+* Unified the period array functions
+* Unified month and day tick functions
+* Simplified the tick drawing code
+* New task: [add hovers](<add hovers.md>)
+* New task: [options for month labels](<options for month labels.md>)
+
