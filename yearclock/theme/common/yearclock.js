@@ -78,7 +78,10 @@ theme.clock.drawMonthLabels = function() {
 			</text>`;
 		newSvg += labelSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="month label">${newSvg}</g>`;
+	theme.clock.element.innerHTML +=
+		`<g class="month label monthLabels">
+			${newSvg}
+		</g>`;
 }/* drawMonthLabels */
 
 
