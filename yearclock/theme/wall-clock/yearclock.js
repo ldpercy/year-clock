@@ -29,13 +29,13 @@ theme.clock.drawClock = function()
 	theme.clock.element = document.getElementById('clock');
 
 	theme.clock.drawFace();
-	theme.clock.drawMonthSectors();
+	// theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
 	//theme.clock.drawYearDayTicks();
 	theme.clock.drawMonthDayTicks();
 	theme.clock.drawDateText(config.date.object);
-	theme.clock.drawYearHand(config.date.daysInYear, config.date.dayOfYear);
-	theme.clock.drawMonthHand(config.date.object);
+
+	theme.clock.drawHands(drawMonthHand=true);
 
 }/* drawClock */
 

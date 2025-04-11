@@ -70,12 +70,13 @@ svg#clock .label.dateText {
 	filter: drop-shadow(0px 20px 10px gray);
 }
 
+svg#clock .hands {
+	filter: drop-shadow(0px 20px 10px gray);
+}
 
-
-svg#clock .yearHand path {
+svg#clock path.yearHand {
 	stroke: black;
 	fill: black;
 	stroke-width: 15;
 	stroke-linejoin: round;
-	filter: drop-shadow(0px 20px 10px gray);
 }

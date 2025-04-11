@@ -76,8 +76,9 @@ function setup() {
 		}
 	);
 
-	config.yearDayArray = getYearDayArray(config.date.object);
-	config.monthDayArray = getMonthDayArray(config.date.object);
+	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object));
+	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object));
+
 	config.date.daysInYear = config.yearDayArray.length;
 
 	// Theming:
