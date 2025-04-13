@@ -15,7 +15,7 @@ theme.clock.yearHandLength    = 1030;
 theme.clock.dateLabel         = 500;
 
 theme.clock.monthLabel = {};
-theme.clock.monthLabel.position = 0.5;
+theme.clock.monthLabel.sectorPosition = 0.5;
 theme.clock.monthLabel.rotate = true;
 theme.clock.monthLabel.invert = true;
 
@@ -49,7 +49,7 @@ theme.clock.drawMonthSectors = function() {
 	let newSvg = '';
 	for (let month of config.months)
 	{
-		const sectorPath = sector(month.startAngle, month.endAngle, theme.clock.innerRadius, theme.clock.outerRadius );
+		const sectorPath = sector(month.radiansStart, month.radiansEnd, theme.clock.innerRadius, theme.clock.outerRadius );
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
 		newSvg += sectorSvg;
 	}
@@ -63,13 +63,15 @@ theme.clock.drawMonthLabels = function() {
 	let newSvg = '';
 	for (let month of config.months)
 	{
-		const center     = polarPoint(month.midAngle, theme.clock.monthLabelRadius);
+		const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
+
+		const center     = polarPoint(radiansLabel, theme.clock.monthLabelRadius);
 		let transform = '';
 
 		if (theme.clock.monthLabel.rotate)
 		{
-			const invert    = (Math.cos(month.midAngle) < 0);
-			const rotate    = degrees(month.midAngle) + ((invert) ? 180 : 0);
+			const invert    = (Math.cos(radiansLabel) < 0);
+			const rotate    = degrees(radiansLabel) + ((invert) ? 180 : 0);
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =

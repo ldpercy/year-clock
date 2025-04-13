@@ -13,7 +13,7 @@ theme.clock.weekendTickLength = 55;
 theme.clock.dateLabel         = new Point(0,430);
 
 theme.clock.monthLabel = {};
-theme.clock.monthLabel.position = 0;
+theme.clock.monthLabel.sectorPosition = 0;
 theme.clock.monthLabel.rotate = false;
 theme.clock.monthLabel.invert = false;
 
@@ -42,7 +42,7 @@ theme.clock.drawClock = function()
 
 
 /* drawMonthLabels
-*/
+* /
 theme.clock.drawMonthLabels = function() {
 	let newSvg = '';
 	for (let month of config.months)
@@ -58,7 +58,7 @@ theme.clock.drawMonthLabels = function() {
 		<g class="month label monthLabels">
 			${newSvg}
 		</g>`;
-}/* drawMonthLabels */
+}/ * drawMonthLabels */
 
 
 
