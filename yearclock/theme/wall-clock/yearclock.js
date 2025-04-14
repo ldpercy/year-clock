@@ -7,8 +7,8 @@ theme.clock.clockRadius       = 1170,
 theme.clock.innerRadius       = 980;
 theme.clock.outerRadius       = 1120;
 theme.clock.monthLabelRadius  = 900;
-theme.clock.weekdayTickLength = 40;
-theme.clock.weekendTickLength = 55;
+theme.clock.weekdayMarkerLength = 40;
+theme.clock.weekendMarkerLength = 55;
 
 theme.clock.dateLabel         = new Point(0,430);
 
