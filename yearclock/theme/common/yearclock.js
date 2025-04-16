@@ -169,7 +169,6 @@ theme.clock.drawDateText = function(date) {
 
 	if (theme.clock.dateLabel instanceof Point)
 	{
-		log(theme.clock.dateLabel);
 		x = theme.clock.dateLabel.x;
 		y = theme.clock.dateLabel.y;
 	}
