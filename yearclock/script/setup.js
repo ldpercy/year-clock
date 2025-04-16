@@ -4,7 +4,7 @@
 
 console.clear();
 log = createLog();
-log('setup.js')
+log('--- setup.js ---')
 
 
 // Year-clock general configuration
@@ -153,9 +153,9 @@ function setTheme(){
 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
 		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
-	log('Before drawClock');
+	log('--- Before drawClock ---');
 	theme.clock.drawClock();
-	log('After drawClock');
+	log('--- After drawClock ---');
 }/* setTheme */
 
 
