@@ -4,7 +4,7 @@
 
 theme.clock.clockRadius       = 1170,
 
-theme.clock.innerRadius       = 800;
+theme.clock.innerRadius       = 900;
 theme.clock.outerRadius       = 1150;
 
 theme.clock.weekdayMarkerLength = 40;
@@ -12,7 +12,7 @@ theme.clock.weekendMarkerLength = 55;
 
 theme.clock.dateLabel         = new Point(0,430);
 
-theme.clock.monthLabelRadius  = 950;
+theme.clock.monthLabelRadius  = 1000;
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.sectorPosition = 0.5;
 theme.clock.monthLabel.rotate = false;
@@ -34,6 +34,7 @@ theme.clock.drawClock = function()
 	theme.clock.drawMonthLabels();
 	//theme.clock.drawYearDayTicks();
 	//theme.clock.drawMonthDayTicks();
+
 	theme.clock.drawMonthDaySectors();
 
 	theme.clock.drawDateText(config.date.object);
@@ -49,15 +50,12 @@ function formatMonth(name) { return name.slice(0,3) }
 
 
 
-
-
-
-
 /* drawMonthDaySectors
 */
 theme.clock.drawMonthDaySectors = function() {
 
-	const monthDayTicks = theme.clock.getPeriodDayTicks(config.monthDayArray);
+	log('drawMonthDaySectors');
+	const monthDayTicks = theme.clock.getPeriodDaySectors(config.monthDayArray);
 	theme.clock.element.innerHTML += `
 		<g class="day monthDay sector">
 			${monthDayTicks}
@@ -68,7 +66,7 @@ theme.clock.drawMonthDaySectors = function() {
 /* getPeriodDaySectors
 */
 theme.clock.getPeriodDaySectors = function(periodArray) {
-
+	log('getPeriodDaySectors');
 	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayMarkerLength;
 	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendMarkerLength
 
@@ -82,26 +80,27 @@ theme.clock.getPeriodDaySectors = function(periodArray) {
 	{
 		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
 
+		log(thisDivisionRadians);
+
 		if (day.isWeekend)
 		{
-			tickClass = 'weekend';
+			markerClass = 'weekend';
 		}
 		else // day.isWeekday
 		{
-			tickClass = 'weekday';
+			markerClass = 'weekday';
 		}
 
 		if (day.isFirst) // Draw an extra line for firsts of the month
 		{
-			tickClass += ' first';
+			markerClass += ' first';
 		}
 
-		const sectorPath = sector(thisDivisionRadians.radiansStart, thisDivisionRadians.radiansEnd, theme.clock.innerRadius, theme.clock.outerRadius );
-		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
+		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, theme.clock.innerRadius-100, theme.clock.innerRadius);
+		log(sectorPath);
+		sectorSvg = `<path class="sector ${markerClass}" data-number="${day.dayOfPeriod}" d="${sectorPath}" ></path>`;
 
-		tickSvg =
-			`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
-		result += tickSvg;
+		result += sectorSvg;
 	}
 
 	return result;
