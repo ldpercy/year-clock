@@ -23,10 +23,10 @@ theme.clock.monthHandLength    = 850;
 
 /* Draw Clock
 */
-theme.clock.drawClock = function()
+theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
-	theme.clock.element = document.getElementById('clock');
+	theme.clock.element = clockElement;
 
 	theme.clock.drawFace();
 	// theme.clock.drawMonthSectors();
