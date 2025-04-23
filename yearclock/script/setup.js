@@ -153,8 +153,14 @@ function setTheme(){
 		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
 		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
+
+	const clockElement = document.getElementById('clock');
+	log(clockElement);
+	if (theme.clock.viewBox) {
+		clockElement.setAttribute('viewBox', theme.clock.viewBox);
+	}
 	log('Before drawClock');
-	theme.clock.drawClock();
+	theme.clock.drawClock(clockElement);
 	log('After drawClock');
 }/* setTheme */
 
