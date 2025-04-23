@@ -4,7 +4,7 @@
 // A common theme for the original Brice and other variants base on it
 //
 
-
+theme.clock.viewBox           = '-1200 -1200 2400 2400';
 theme.clock.clockRadius       = 1200;
 theme.clock.outerRadius       = 1120;
 theme.clock.innerRadius       = 930;
@@ -24,11 +24,10 @@ theme.clock.monthLabel.invert = true;
 
 /* Draw Clock
 */
-theme.clock.drawClock = function()
+theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
-	theme.clock.element = document.getElementById('clock');
-
+	theme.clock.element = clockElement;
 	theme.clock.drawFace();
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();

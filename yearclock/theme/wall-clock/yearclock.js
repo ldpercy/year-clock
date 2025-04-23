@@ -1,12 +1,12 @@
 //
 // Wall clock theme
 //
+theme.clock.viewBox           = padViewBox(30);
+theme.clock.clockRadius       = 1200,
 
-theme.clock.clockRadius       = 1170,
-
-theme.clock.innerRadius       = 980;
-theme.clock.outerRadius       = 1120;
-theme.clock.monthLabelRadius  = 900;
+theme.clock.innerRadius       = 1000;
+theme.clock.outerRadius       = 1150;
+theme.clock.monthLabelRadius  = 920;
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 
@@ -23,10 +23,10 @@ theme.clock.monthHandLength    = 850;
 
 /* Draw Clock
 */
-theme.clock.drawClock = function()
+theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
-	theme.clock.element = document.getElementById('clock');
+	theme.clock.element = clockElement;
 
 	theme.clock.drawFace();
 	// theme.clock.drawMonthSectors();

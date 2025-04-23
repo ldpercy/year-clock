@@ -36,3 +36,8 @@ function sector(startAngle, endAngle, innerRadius, outerRadius)
 
 	return path;
 }
+
+
+function padViewBox(padding, x=-1200, y=-1200, width=2400, height=2400) {
+	return `${x-padding} ${y-padding} ${width + 2*padding} ${height + 2*padding}`;
+}
