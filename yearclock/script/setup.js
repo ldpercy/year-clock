@@ -160,7 +160,7 @@ function setTheme(){
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
 	log('--- Before drawClock ---');
-	theme.clock.drawClock();
+	theme.clock.drawClock(clockElement);
 	log('--- After drawClock ---');
 }/* setTheme */
 
