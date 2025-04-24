@@ -1,0 +1,16 @@
+
+
+
+
+
+.season .sector:nth-of-type(odd),
+.month .sector:nth-of-type(odd)
+{
+	fill: var(--lightgrey);
+}
+
+.season .sector:nth-of-type(even),
+.month .sector:nth-of-type(even)
+{
+	fill: var(--darkgrey);
+}
