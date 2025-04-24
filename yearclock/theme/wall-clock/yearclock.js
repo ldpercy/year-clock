@@ -10,7 +10,7 @@ theme.clock.monthLabelRadius  = 920;
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 
-theme.clock.dateLabel         = new Point(0,430);
+theme.clock.dateLabelPosition         = new Point(0,430);
 
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.sectorPosition = 0;

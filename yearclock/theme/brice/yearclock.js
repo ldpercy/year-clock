@@ -12,4 +12,4 @@ theme.clock.monthLabelRadius  = 985;
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 theme.clock.yearHandLength    = 1030;
-theme.clock.dateLabel         = 500;
+theme.clock.dateLabelPosition         = 500;

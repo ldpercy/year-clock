@@ -12,7 +12,7 @@ theme.clock.monthLabelRadius  = 985;
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 theme.clock.yearHandLength    = 1030;
-theme.clock.dateLabel         = 500;
+theme.clock.dateLabelPosition         = 500;
 
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.sectorPosition = 0.5;
@@ -166,16 +166,16 @@ theme.clock.getPeriodDayTicks = function(periodArray) {
 theme.clock.drawDateText = function(date) {
 	let x,y;
 
-	if (theme.clock.dateLabel instanceof Point)
+	if (theme.clock.dateLabelPosition instanceof Point)
 	{
-		x = theme.clock.dateLabel.x;
-		y = theme.clock.dateLabel.y;
+		x = theme.clock.dateLabelPosition.x;
+		y = theme.clock.dateLabelPosition.y;
 	}
 	else
 	{
 		const yearOnLeft = dateRatio(date) < 0.5
 		const labelSide = yearOnLeft ? -1 : 1
-		x = theme.clock.dateLabel * labelSide;
+		x = theme.clock.dateLabelPosition * labelSide;
 		y = 0;
 	}
 
@@ -186,6 +186,18 @@ theme.clock.drawDateText = function(date) {
 
 	theme.clock.element.innerHTML += svg;
 }
+
+
+/* drawYearLabel
+*/
+theme.clock.drawYearLabel = function(date, point) {
+	const svg =
+		`<g class="dateText">
+			<text x="${point.x}" y="${point.y}" class="label dateText">${date.getFullYear()}</text>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}/* drawYearLabel */
+
 
 
 /* drawHands
