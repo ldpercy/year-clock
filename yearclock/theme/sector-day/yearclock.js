@@ -2,7 +2,8 @@
 // sector-day theme styles
 //
 
-theme.clock.clockRadius       = 1170,
+theme.clock.viewBox           = padViewBox(30);
+theme.clock.clockRadius       = 1200,
 
 theme.clock.innerRadius       = 900;
 theme.clock.outerRadius       = 1150;
@@ -24,18 +25,14 @@ theme.clock.monthHandLength    = 850;
 
 /* Draw Clock
 */
-theme.clock.drawClock = function()
+theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
-	theme.clock.element = document.getElementById('clock');
-
+	theme.clock.element = clockElement;
 	theme.clock.drawFace();
 	theme.clock.drawMonthSectors();
-	theme.clock.drawMonthLabels();
-	//theme.clock.drawYearDayTicks();
-	//theme.clock.drawMonthDayTicks();
-
 	theme.clock.drawMonthDaySectors();
+	theme.clock.drawMonthLabels();
 
 	theme.clock.drawDateText(config.date.object);
 
@@ -57,7 +54,7 @@ theme.clock.drawMonthDaySectors = function() {
 	log('drawMonthDaySectors');
 	const monthDayTicks = theme.clock.getPeriodDaySectors(config.monthDayArray);
 	theme.clock.element.innerHTML += `
-		<g class="day monthDay sector">
+		<g class="sector day monthDay">
 			${monthDayTicks}
 		</g>`;
 }/* drawMonthDaySectors */
@@ -98,7 +95,7 @@ theme.clock.getPeriodDaySectors = function(periodArray) {
 
 		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, theme.clock.innerRadius-100, theme.clock.innerRadius);
 		log(sectorPath);
-		sectorSvg = `<path class="sector ${markerClass}" data-number="${day.dayOfPeriod}" d="${sectorPath}" ></path>`;
+		sectorSvg = `<path class="sector day ${markerClass}" data-number="${day.dayOfPeriod}" d="${sectorPath}" ></path>`;
 
 		result += sectorSvg;
 	}

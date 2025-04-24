@@ -20,7 +20,7 @@ svg#clock .face   {
 
 svg#clock .sector {
 	stroke:black;
-	stroke-width:1;
+	stroke-width:0;
 	fill: silver;
 }
 
