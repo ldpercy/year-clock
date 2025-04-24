@@ -18,11 +18,12 @@ In the second example the 'minute hand' points to the time of month.
 Click through to the raw on this example for some simple hovers on the day sectors.
 
 
-Prior art
----------
+Prior and current art
+---------------------
 
-It's already been done of course.
-Over two thousand years ago, on the front face of the [Antikythera mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism).
+It's been done many times before.
+
+A notable example is the front face of the [Antikythera mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism), which is over two thousand years old.
 
 (See also: https://en.wikipedia.org/wiki/Orrery)
 
@@ -30,19 +31,23 @@ Over two thousand years ago, on the front face of the [Antikythera mechanism](ht
 More recent examples:
 
 * http://year-clock.net/
-* http://andybrice.net/blog/2010/01/30/year-clock/
-* https://www.flickr.com/photos/squidthing/sets/72157622655107168/
-* http://www.levitated.net/daily/levCelestes.html
-* https://forums.tumult.com/t/galileos-celestial-calendar/15896
+* http://www.levitated.net/daily/levCelestes.html, https://forums.tumult.com/t/galileos-celestial-calendar/15896
 * https://plandisc.com/en/
+* https://circular-calendar.com
+* https://www.theroundmethod.com/
+* https://mycircularcalendar.com/
 
 
-### Andy Brice and Ian Brice version
+Many more examples can be found by searching for things like 'radial calendar' or 'circular calendar'.
 
-I've started with code from [year-clock.net](http://year-clock.net) to use as a base.
+### Year Clock by Andy Brice and Ian Brice
 
-A copy of the original year-clock code is in the [year-clock.net/](<./year-clock.net/>) directory.
+* http://andybrice.net/blog/2010/01/30/year-clock/
+* https://www.flickr.com/photos/squidthing/albums/72157622655107168/
 
+I've started with code from [http://year-clock.net](http://year-clock.net) to use as a base.
+
+A copy of the original source code is in the [./year-clock.net/](<./year-clock.net/>) directory.
 
 
 How to run
