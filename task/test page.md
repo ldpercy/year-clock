@@ -10,3 +10,14 @@ That would sidestep all the globals related problems.
 
 More sophisticated, but a *lot* more work, would be drawing different clock instances directly into the same page.
 This would require some major reworking, but would clean up a lot of code in the process.
+
+
+iframe version
+--------------
+Done, v.quick and easy.
+Will use this for a while and just add features as i go:
+
+* customise parameters wholesale or individually
+* change parameters live
+* draw iframes per json/other config
+* ...
