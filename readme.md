@@ -14,12 +14,8 @@ In the second example the 'minute hand' points to the time of month.
 
 <p align="middle">
 <img src="image/example5.svg" alt="Year clock example 4" width="50%" title="yearclock.html?theme=season-out&date=2015-10-21"/>
-
-<embed type="image/svg+xml" src="image/example5.svg" width="50%" title="yearclock.html?theme=season-out&date=2015-10-21"/>
-
-<object type="image/svg+xml" src="image/example5.svg" width="50%" title="yearclock.html?theme=season-out&date=2015-10-21"></object>
 </p>
-
+Click through to the raw on this example for some simple hovers on the day sectors.
 
 
 Prior art
