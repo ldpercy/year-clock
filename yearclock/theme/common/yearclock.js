@@ -32,7 +32,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearDayTicks();
-	theme.clock.drawDateText(config.date.object);
+	theme.clock.drawDateLabel(config.date.object);
 	theme.clock.drawHands();
 }/* drawClock */
 
@@ -74,9 +74,7 @@ theme.clock.drawMonthLabels = function() {
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
-			`<text x="${center.x}" y="${center.y}" transform="${transform}">
-				${formatMonth(month.name)}
-			</text>`;
+			`<text x="${center.x}" y="${center.y}" transform="${transform}">${formatMonth(month.name)}</text>`;
 		newSvg += labelSvg;
 	}
 	theme.clock.element.innerHTML +=
@@ -161,9 +159,9 @@ theme.clock.getPeriodDayTicks = function(periodArray) {
 
 
 
-/* drawDateText
+/* drawDateLabel
 */
-theme.clock.drawDateText = function(date) {
+theme.clock.drawDateLabel = function(date) {
 	let x,y;
 
 	if (theme.clock.dateLabelPosition instanceof Point)
@@ -185,7 +183,7 @@ theme.clock.drawDateText = function(date) {
 		</g>`;
 
 	theme.clock.element.innerHTML += svg;
-}
+}/* drawDateLabel */
 
 
 /* drawYearLabel

@@ -34,7 +34,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawMonthDaySectors();
 	theme.clock.drawMonthLabels();
 
-	theme.clock.drawDateText(config.date.object);
+	theme.clock.drawDateLabel(config.date.object);
 
 	theme.clock.drawHands(drawMonthHand=true);
 
