@@ -1,25 +1,25 @@
 
-svg#clock {
+.yearclock {
 	font-size: 48px;
 }
 
 
-svg#clock .face {
+.face {
 	fill: silver;
 }
 
 
-svg#clock * {
+* {
 	stroke: black;
 	fill: none;
 }
 
-svg#clock .label.month {
+.label.month {
 	text-anchor: middle;
 	dominant-baseline: middle;
 }
 
-svg#clock .label.dateText {
+.label.dateText {
 	text-anchor: middle;
 	font-size: 5em;
 	dominant-baseline: central;
