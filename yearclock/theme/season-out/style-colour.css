@@ -1,0 +1,19 @@
+
+
+
+.month .sector:nth-of-type(odd)
+{
+	fill: var(--darkgrey);
+}
+
+
+.month .sector:nth-of-type(even)
+{
+	fill: var(--lightgrey);
+}
+
+
+.season .sector.Summer { fill: #f004 }
+.season .sector.Autumn { fill: #ff04 }
+.season .sector.Winter { fill: #00f4 }
+.season .sector.Spring { fill: #0f04 }

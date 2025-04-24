@@ -2,25 +2,26 @@
 // season-out theme styles
 //
 
-theme.clock.viewBox           = padViewBox(30);
+theme.clock.viewBox           = padViewBox(75);
 //theme.clock.viewBox				= '-800 -800 1600 1600';
-theme.clock.clockRadius        = 1200;
+theme.clock.clockRadius        = 1250;
 
 
 theme.clock.seasonRadiusStart = 0;
-theme.clock.seasonRadiusEnd   = 400;
-theme.clock.monthRadiusStart  = 400;
-theme.clock.monthRadiusEnd    = 820;
-theme.clock.dayRadiusStart    = 780;
+theme.clock.seasonRadiusEnd   = 450;
+theme.clock.monthRadiusStart  = 350;
+theme.clock.monthRadiusEnd    = 850;
+theme.clock.dayRadiusStart    = 750;
 theme.clock.dayRadiusEnd      = 1200;
 
 
-theme.clock.lengthWeekday = 40;
-theme.clock.lengthWeekend = 55;
+theme.clock.dateLabelRadius     = 575;
+theme.clock.dateLabelPosition   = new Point(10, theme.clock.dateLabelRadius);  // tiny tweak to horizontal position here, having trouble centering it properly
+theme.clock.yearLabelPosition   = new Point(0, -theme.clock.dateLabelRadius);
 
-theme.clock.dateLabel         = new Point(0,430);
 
-theme.clock.monthLabelRadius  = 1000;
+
+theme.clock.monthLabelRadius  = 975;
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.sectorPosition = 0.5;
 theme.clock.monthLabel.rotate = false;
@@ -28,6 +29,14 @@ theme.clock.monthLabel.invert = false;
 
 theme.clock.yearHandLength    = 800;
 theme.clock.monthHandLength    = 850;
+
+
+//
+// formatting functions
+//
+function formatMonth(name) { return name.slice(0,3) }
+function formatDateLabel(date) { return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}` }
+
 
 
 /* Draw Clock
@@ -45,14 +54,12 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawPeriodDaySectors('yearDays', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 	theme.clock.drawMonthLabels();
-	theme.clock.drawDateText(config.date.object);
+	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
+	theme.clock.drawDateLabel(config.date.object);
+
 	theme.clock.drawHands(drawMonthHand=false);
 
 }/* drawClock */
-
-
-
-function formatMonth(name) { return name.slice(0,3) }
 
 
 

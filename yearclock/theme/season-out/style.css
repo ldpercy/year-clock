@@ -3,46 +3,48 @@
 */
 
 
+:root {
+	--white: #eee7;
+	--lightgrey: #eee7;
+	--darkgrey: #aaa7;
+	--labelblack: #000f;
+	--shadow: #aaaf;
+	--yearhand: darkorange;
+}
+
+
 svg#clock {
 	background-color: seashell;
 	font-size: 36px;
-	font-family: sans-serif;
+	font-family: monospace;
 }
+
 
 
 svg#clock .face   {
 	fill: white;
-	stroke: silver;
+	stroke: none;
 	stroke-width: 10;
 	filter: drop-shadow(0px 10px 10px gray);
 }
 
 
-.season * {stroke: none;}
-
-.season .Summer { fill: #f004 }
-.season .Autumn { fill: #ff04 }
-.season .Winter { fill: #00f4 }
-.season .Spring { fill: #0f04 }
-
-
-/* .season .Summer { fill: lightyellow }
-.season .Autumn { fill: peachpuff }
-.season .Winter { fill: lightblue }
-.season .Spring { fill: lightgreen} */
-
-
-
-svg#clock .month .sector:nth-of-type(odd)  {
-	stroke:silver;
-	stroke-width:0;
-	fill: silver;
+* {
+	stroke: var(--darkgrey);
+	stroke-width: 1px;
 }
 
-svg#clock .month .sector:nth-of-type(even) {
-	stroke:transparent;
-	stroke-width:0;
-	fill: transparent;
+
+.season .sector:nth-of-type(odd),
+.month .sector:nth-of-type(odd)
+{
+	fill: var(--lightgrey);
+}
+
+.season .sector:nth-of-type(even),
+.month .sector:nth-of-type(even)
+{
+	fill: var(--darkgrey);
 }
 
 
@@ -63,27 +65,20 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 
 
-
-
-.sector.day {
-	stroke:none;
-	stroke-width:0;
-}
-
 .yearDays .sector.day.weekend {
-	fill: #dddddd;
+	fill: var(--darkgrey);
 }
 
-.yearDays .sector.day.first {
-	fill: silver;
-}
+/*.yearDays .sector.day.first {
+	fill: var(--darkgrey);
+}*/
 
 .sector.day.Monday, .sector.day.Wednesday, .sector.day.Friday {
-	fill: transparent;
+	fill: var(--white);
 }
 
 .sector.day.Tuesday, .sector.day.Thursday {
-	fill: #dddddd;
+	fill: var(--lightgrey);
 }
 
 
@@ -94,44 +89,46 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 
 
-svg#clock .month .label {
-	fill: black;
-}
-
-
 svg#clock .monthLabels text{
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: black;
-	font-size: 3em;
+	fill: var(--labelblack);
+	font-size: 7ex;
 	font-variant: small-caps;
 	filter: drop-shadow(0ex 0ex 0.4ex white);
 }
 
 
-svg#clock .label.dateLabel {
-	fill: black;
+.label.dateLabel, .label.yearLabel {
+	fill: var(--labelblack);
 	text-anchor: middle;
-	font-size: 4em;
+	font-size: 10ex;
 	dominant-baseline: central;
 	filter: drop-shadow(0ex 0ex 0.4ex white);
 }
 
+svg#clock .label.dateLabel {
+	font-size: 8ex;
+}
+
+
+
 
 svg#clock .hands {
-	filter: drop-shadow(0px 20px 10px gray);
+	filter: drop-shadow(0px 20px 10px var(--shadow));
 }
 
 svg#clock path.yearHand  {
-	stroke: orange;
-	fill: orange;
+	stroke: var(--yearhand);
+	fill: var(--yearhand);
 	stroke-width: 25;
 	stroke-linejoin: round;
 }
-
+/*
 svg#clock path.monthHand  {
 	stroke:dimgrey;
 	fill: dimgrey;
 	stroke-width: 15;
 	stroke-linejoin: round;
 }
+*/
