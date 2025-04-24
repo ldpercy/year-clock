@@ -127,7 +127,7 @@ So you could split up Summer like this:
 	];
 ```
 That would cover the year neatly, but then you've got two summer sectors, and it doesn't make it easy to position a label in the middle.
-An improved approach would be to have summer and end in the same year, and pray that the maths works out as the angles across the boundary will be decrease.
+An improved approach would be to have summer start and end in the same year, and pray that the maths works out as the angles across the boundary will decrease.
 
 I might just try that first and see what it will actually do, but I have another idea if it fails.
 
@@ -142,3 +142,29 @@ I'm not sure how dateRangeRadians is working for negative ranges though... shoul
 
 
 
+Wrapup
+------
+
+The poor sector-day theme has been pretty much abandoned at this point.
+
+The new season-out is *much* better.
+
+But this is getting pretty close to what I want so I want to wrap this up here.
+
+* A new theme was started to try out day sectors (sector-day)
+* Detour/subtask to adjust dimensions
+* Lots of style/css edits
+* More functions paramterised
+* New theme season-out is the flagship for this task
+* Added hover and tooltips for day sectors
+* Fixed iso date bug
+* Add code to draw season sectors
+* Started using css vars
+
+
+Follow ups:
+* Really want to check what the dateRangeRadians function is doing
+* Probably some mess to clean up
+* really need to switch off the common theme styles, it's putting undue pressure on themes and getting the specificity right
+* use css vars more
+* I have to add a small manual tweak for the date label horizintal position - see if this can be fixed or done differently
