@@ -6,7 +6,7 @@
 svg#clock {
 	background-color: seashell;
 	font-size: 36px;
-	font-family: serif;
+	font-family: sans-serif;
 }
 
 
@@ -16,6 +16,21 @@ svg#clock .face   {
 	stroke-width: 10;
 	filter: drop-shadow(0px 10px 10px gray);
 }
+
+
+.season * {stroke: none;}
+
+.season .Summer { fill: #f004 }
+.season .Autumn { fill: #ff04 }
+.season .Winter { fill: #00f4 }
+.season .Spring { fill: #0f04 }
+
+
+/* .season .Summer { fill: lightyellow }
+.season .Autumn { fill: peachpuff }
+.season .Winter { fill: lightblue }
+.season .Spring { fill: lightgreen} */
+
 
 
 svg#clock .month .sector:nth-of-type(odd)  {
@@ -57,7 +72,6 @@ svg#clock .sector.dec { fill: #F18E17 }
 
 .yearDays .sector.day.weekend {
 	fill: #dddddd;
-	stroke:  #dddddd;
 }
 
 .yearDays .sector.day.first {

@@ -73,15 +73,26 @@ function divisionRadians(divisions, number) {
 
 // clock
 
+function dateRadians(date)
+{
+	return clockAngle( dateRatio(date) )
+}
+
 function clockAngle( revolutions )
 {
 	return Math.TAU * (revolutions)
 }
 
-function dateRadians(date)
+function dateRatio(date)
 {
-	return clockAngle( dateRatio(date) )
+	const year = date.getFullYear()
+	const yearStart = new Date (year, 0)
+	const yearEnd   = new Date (year + 1, 0)
+	const yearLength = yearEnd - yearStart
+	const timeElapsed = date - yearStart
+	return timeElapsed / yearLength
 }
+
 
 //
 // Dates
@@ -109,15 +120,6 @@ function nextMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1,1);
 }
 
-function dateRatio(date)
-{
-	const year = date.getFullYear()
-	const yearStart = new Date (year, 0)
-	const yearEnd   = new Date (year + 1, 0)
-	const yearLength = yearEnd - yearStart
-	const timeElapsed = date - yearStart
-	return timeElapsed / yearLength
-}
 
 function isWeekend(d)
 {
@@ -148,17 +150,21 @@ function dayOfYear(date)
 	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
 }
 
+function daysInYear(year) {
+	return dayOfYear(new Date(year,11,31));
+}
+
 
 /* getPeriodDayArray
 Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-function getPeriodDayArray(startDate, endDate, locale=config.locale) {
+function getPeriodDayArray(dateStart, dateEnd, locale=config.locale) {
 	const result = [];
 
 	let dayCounter = 1;
-	for (let thisDate = new Date(startDate); thisDate < endDate; incrementDay(thisDate))
+	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
 	{
 		const dayInfo = {
 			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
@@ -187,3 +193,64 @@ function isoDate(date) {
 	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
 	return localDate.toISOString().substring(0, 10);
 }
+
+
+/* dateRangeRadians
+Given two days in the same year, return the start, middle and end angles in radians.
+
+If endDate is less than
+
+*/
+function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
+
+	const days = daysInYear(year);
+	const radiansStart = divisionRadians(days, dayOfYear1).start;
+	const radiansEnd = divisionRadians(days, dayOfYear2).start;
+
+	let result = {
+		start  : radiansStart,
+		middle : (radiansStart + radiansEnd) / 2,
+		end    : radiansEnd,
+	}
+	return result;
+}/* dateRangeRadians */
+
+
+
+/* getSeasonArray
+*/
+function getSeasonArray(date) {
+
+	const year = date.getFullYear();
+
+	const seasonArray = [
+		{
+			name:      'Summer',
+			dateStart: new Date(year,11,1),
+			dateEnd:   new Date(year,2,1),
+		},
+		{
+			name:      'Autumn',
+			dateStart: new Date(year,2,1),
+			dateEnd:   new Date(year,5,1),
+		},
+		{
+			name:      'Winter',
+			dateStart: new Date(year,5,1),
+			dateEnd:   new Date(year,8,1),
+		},
+		{
+			name:      'Spring',
+			dateStart: new Date(year,8,1),
+			dateEnd:   new Date(year,11,1),
+		},
+	];
+
+	for (let season of seasonArray) {
+		season.radians = dateRangeRadians(year, dayOfYear(season.dateStart), dayOfYear(season.dateEnd));
+	}
+
+	return seasonArray;
+}/* getSeasonArray */
+
+

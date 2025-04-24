@@ -3,7 +3,8 @@
 //
 
 theme.clock.viewBox           = padViewBox(30);
-theme.clock.clockRadius       = 1200,
+//theme.clock.viewBox				= '-800 -800 1600 1600';
+theme.clock.clockRadius        = 1200;
 
 
 theme.clock.seasonRadiusStart = 0;
@@ -36,6 +37,9 @@ theme.clock.drawClock = function(clockElement)
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 	theme.clock.drawFace();
+
+	theme.clock.drawSeasonSectors(config.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
+
 	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 
 	theme.clock.drawPeriodDaySectors('yearDays', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
@@ -81,7 +85,7 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 	{
 		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
 
-		log(thisDivisionRadians);
+		//log(thisDivisionRadians);
 
 		if (day.isWeekend)
 		{
@@ -96,9 +100,9 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 		{
 			markerClass += ' first';
 		}
-		log(day);
+		//log(day);
 		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" data-number="${day.dayOfPeriod}" d="${sectorPath}"><title>${day.name} ${day.isoShort}</title></path>`;
+		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
 
 		result += sectorSvg;
 	}
@@ -107,3 +111,17 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 }/* getPeriodDaySectors */
 
 
+
+theme.clock.drawSeasonSectors = function(seasonArray, radiusStart, radiusEnd) {
+
+	let newSvg = '';
+	for (let season of seasonArray)
+	{
+		//const seasonRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
+
+		const sectorPath = sector(season.radians.start, season.radians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path d="${sectorPath}" class="sector ${season.name}"></path>`;
+		newSvg += sectorSvg;
+	}
+	theme.clock.element.innerHTML += `<g class="season">${newSvg}</g>`;
+}

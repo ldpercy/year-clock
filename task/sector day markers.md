@@ -59,5 +59,86 @@ I've used this answer to fix my function.
 
 
 
+Seasons
+-------
+
+I've wanted this for ages.
+It was one of the first tweaks I wanted to add the the original brice clock, with some cute little emojis for the seasons.
+
+Now's the time to tackle it.
+
+Initially it looks easy, just create an array something like:
+
+```json
+	const seasonArray = [
+		{
+			name: 'Summer',
+			startDate: 'year-12-01',
+			endDate: 'year-03-01',
+		},
+		{
+			name: 'Automn',
+			startDate: 'year-03-01',
+			endDate: 'year-06-01',
+		},
+		{
+			name: 'Winter',
+			startDate: 'year-06-01',
+			endDate: 'year-09-01',
+		},
+		{
+			name: 'Spring',
+			startDate: 'year-09-01',
+			endDate: 'year-12-01',
+		},
+	];
+```
+And do the same array looping for the sectors as usual.
+But it's a tiny bit more complicated because summer crosses over the year boundary (which is conveniently obscured above).
+
+So you could split up Summer like this:
+```json
+	const seasonArray = [
+		{
+			name: 'Summer',
+			startDate: 'year-01-01',
+			endDate: 'year-03-01',
+		},
+		{
+			name: 'Automn',
+			startDate: 'year-03-01',
+			endDate: 'year-06-01',
+		},
+		{
+			name: 'Winter',
+			startDate: 'year-06-01',
+			endDate: 'year-09-01',
+		},
+		{
+			name: 'Spring',
+			startDate: 'year-09-01',
+			endDate: 'year-12-01',
+		},
+		{
+			name: 'Summer',
+			startDate: 'year-12-01',
+			endDate: 'year-01-01',
+		},
+	];
+```
+That would cover the year neatly, but then you've got two summer sectors, and it doesn't make it easy to position a label in the middle.
+An improved approach would be to have summer and end in the same year, and pray that the maths works out as the angles across the boundary will be decrease.
+
+I might just try that first and see what it will actually do, but I have another idea if it fails.
+
+### 1st day bug
+
+Have something nearly working, though not sure that it should be...
+Anyway there's a small bug in the start/end angle, getting overlap by one day, need to find.
+That just the wrongle end angle, easy fix
+
+Anyway I have something working for seasons.
+I'm not sure how dateRangeRadians is working for negative ranges though... should test it.
+
 
 

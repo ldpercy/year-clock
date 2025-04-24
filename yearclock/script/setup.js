@@ -44,7 +44,7 @@ function setup() {
 	config.date.month      = config.date.object.getMonth() + 1;		// js month starts at 0
 	config.date.date       = config.date.object.getDate();
 	config.date.dayOfYear  = dayOfYear(config.date.object);
-	config.date.daysInYear = undefined;
+	config.date.daysInYear = daysInYear(config.date.year);
 	log('config.date.object:', config.date.object);
 
 
@@ -82,8 +82,8 @@ function setup() {
 
 	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object));
 	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object));
-
-	config.date.daysInYear = config.yearDayArray.length;
+	config.seasonArray   = getSeasonArray(config.date.object);
+	//log(config.seasonArray);
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
@@ -156,7 +156,6 @@ function setTheme(){
 	}
 
 	const clockElement = document.getElementById('clock');
-	log(clockElement);
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
