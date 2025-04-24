@@ -87,9 +87,6 @@ function dateRadians(date)
 // Dates
 //
 
-function isoDate(date) {
-	return date.toISOString().substring(0, 10);
-}
 
 function incrementDay(d) {
 	d.setDate(d.getDate() + 1);
@@ -181,3 +178,12 @@ function getPeriodDayArray(startDate, endDate, locale=config.locale) {
 	return result;
 }/* getPeriodDayArray */
 
+
+function isoDate(date) {
+	// return date.toISOString().substring(0, 10);
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+	// The timezone is always UTC,
+	// https://stackoverflow.com/a/72581185
+	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
+	return localDate.toISOString().substring(0, 10);
+}

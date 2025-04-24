@@ -35,3 +35,29 @@ This is why needed the dimensions updates - I wanted to be able to divide the ra
 I've run a little way with this, it's looking pretty interesting, and I've added some nifty day hovers.
 
 But a bug has shown up - days are out by one.
+
+
+Day bug
+-------
+
+I added a couple of hovers to the new season-out theme - first just a red highlight for the day under the mouse, bit of eye candy, but it's neat.
+
+Then I added an actual tooltip-style hover for the day sectors with title tags showing the date.
+Actually really useful, except it's showing that all of the days/dates are seemingly out-by-one - for instance firsts don't line up with their month starts.
+
+So what's going on?
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+
+> The timezone is always UTC
+
+So my maths `isoDate(date)` function is wrong.
+
+https://stackoverflow.com/questions/49330139/date-toisostring-but-local-time-instead-of-utc/72581185#72581185
+
+I've used this answer to fix my function.
+
+
+
+
+
