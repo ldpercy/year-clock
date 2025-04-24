@@ -44,11 +44,11 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonthSectors = function() {
+theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius) {
 	let newSvg = '';
 	for (let month of config.months)
 	{
-		const sectorPath = sector(month.radiansStart, month.radiansEnd, theme.clock.innerRadius, theme.clock.outerRadius );
+		const sectorPath = sector(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
 		newSvg += sectorSvg;
 	}
