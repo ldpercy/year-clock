@@ -1,0 +1,2020 @@
+<svg id="clock" class="yearclock" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-1275 -1275 2550 2550" preserveAspectRatio="xMidYMid meet">
+<style>
+:root {
+	--white: #eee7;
+	--lightgrey: #eee7;
+	--darkgrey: #aaa7;
+	--labelblack: #000f;
+	--shadow: #aaaf;
+	--yearhand: darkorange;
+}
+
+svg#clock {
+	background-color: seashell;
+	font-size: 36px;
+	font-family: monospace;
+}
+
+svg#clock .face   {
+	fill: white;
+	stroke: none;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+* {
+	stroke: var(--darkgrey);
+	stroke-width: 1px;
+}
+
+.month .sector:nth-of-type(odd)
+{
+	fill: var(--darkgrey);
+}
+
+.month .sector:nth-of-type(even)
+{
+	fill: var(--lightgrey);
+}
+
+.season .sector.Summer { fill: #f004 }
+.season .sector.Autumn { fill: #ff04 }
+.season .sector.Winter { fill: #00f4 }
+.season .sector.Spring { fill: #0f04 }
+
+.yearDays .sector.day.weekend {
+	fill: var(--darkgrey);
+}
+
+.sector.day.Monday, .sector.day.Wednesday, .sector.day.Friday {
+	fill: var(--white);
+}
+
+.sector.day.Tuesday, .sector.day.Thursday {
+	fill: var(--lightgrey);
+}
+
+.yearDays .sector.day:hover {
+	fill: red;
+	stroke-width: 5;
+}
+
+svg#clock .monthLabels text{
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: var(--labelblack);
+	font-size: 7ex;
+	font-variant: small-caps;
+	filter: drop-shadow(0ex 0ex 0.4ex white);
+}
+
+.label.dateLabel, .label.yearLabel {
+	fill: var(--labelblack);
+	text-anchor: middle;
+	font-size: 10ex;
+	dominant-baseline: central;
+	filter: drop-shadow(0ex 0ex 0.4ex white);
+}
+
+svg#clock .label.dateLabel {
+	font-size: 8ex;
+}
+
+svg#clock .hands {
+	filter: drop-shadow(0px 20px 10px var(--shadow));
+}
+
+svg#clock path.yearHand  {
+	stroke: var(--yearhand);
+	fill: var(--yearhand);
+	stroke-width: 25;
+	stroke-linejoin: round;
+}
+</style>
+
+<circle cx="0" cy="0" r="1250" class="face"></circle><g class="season"><path d="
+M -228.9 -387.4
+A 450.0 450.0 0 0 1 382.4 -237.2
+L 0.000 0.000
+A 0.000 0.000 0 0 0 0.000 0.000
+Z" class="sector Summer"></path><path d="
+M 382.4 -237.2
+A 450.0 450.0 0 0 1 232.2 385.4
+L 0.000 0.000
+A 0.000 0.000 0 0 0 0.000 0.000
+Z" class="sector Autumn"></path><path d="
+M 232.2 385.4
+A 450.0 450.0 0 0 1 -388.4 227.2
+L 0.000 0.000
+A 0.000 0.000 0 0 0 0.000 0.000
+Z" class="sector Winter"></path><path d="
+M -388.4 227.2
+A 450.0 450.0 0 0 1 -228.9 -387.4
+L 0.000 0.000
+A 0.000 0.000 0 0 0 0.000 0.000
+Z" class="sector Spring"></path></g><g class="month sector"><path d="
+M 0.000 -850.0
+A 850.0 850.0 0 0 1 432.4 -731.8
+L 178.0 -301.3
+A 350.0 350.0 0 0 0 0.000 -350.0
+Z" class="sector jan"></path><path d="
+M 432.4 -731.8
+A 850.0 850.0 0 0 1 722.3 -448.0
+L 297.4 -184.5
+A 350.0 350.0 0 0 0 178.0 -301.3
+Z" class="sector feb"></path><path d="
+M 722.3 -448.0
+A 850.0 850.0 0 0 1 849.8 -18.29
+L 349.9 -7.531
+A 350.0 350.0 0 0 0 297.4 -184.5
+Z" class="sector mar"></path><path d="
+M 849.8 -18.29
+A 850.0 850.0 0 0 1 747.7 404.2
+L 307.9 166.5
+A 350.0 350.0 0 0 0 349.9 -7.531
+Z" class="sector apr"></path><path d="
+M 747.7 404.2
+A 850.0 850.0 0 0 1 438.1 728.4
+L 180.4 299.9
+A 350.0 350.0 0 0 0 307.9 166.5
+Z" class="sector may"></path><path d="
+M 438.1 728.4
+A 850.0 850.0 0 0 1 21.34 849.7
+L 8.786 349.9
+A 350.0 350.0 0 0 0 180.4 299.9
+Z" class="sector jun"></path><path d="
+M 21.34 849.7
+A 850.0 850.0 0 0 1 -413.9 742.4
+L -170.4 305.7
+A 350.0 350.0 0 0 0 8.785 349.9
+Z" class="sector jul"></path><path d="
+M -413.9 742.4
+A 850.0 850.0 0 0 1 -734.0 428.7
+L -302.2 176.5
+A 350.0 350.0 0 0 0 -170.4 305.7
+Z" class="sector aug"></path><path d="
+M -734.0 428.7
+A 850.0 850.0 0 0 1 -849.9 10.36
+L -350.0 4.268
+A 350.0 350.0 0 0 0 -302.2 176.5
+Z" class="sector sep"></path><path d="
+M -849.9 10.36
+A 850.0 850.0 0 0 1 -737.3 -422.9
+L -303.6 -174.1
+A 350.0 350.0 0 0 0 -350.0 4.268
+Z" class="sector oct"></path><path d="
+M -737.3 -422.9
+A 850.0 850.0 0 0 1 -432.4 -731.8
+L -178.0 -301.3
+A 350.0 350.0 0 0 0 -303.6 -174.1
+Z" class="sector nov"></path><path d="
+M -432.4 -731.8
+A 850.0 850.0 0 0 1 -0.0001694 -850.0
+L -0.00006973 -350.0
+A 350.0 350.0 0 0 0 -178.0 -301.3
+Z" class="sector dec"></path></g>
+<g class="periodSectors yearDays">
+	<path class="sector day weekday first Thursday" d="
+M 0.000 -1200
+A 1200 1200 0 0 1 20.66 -1200
+L 12.91 -749.9
+A 750.0 750.0 0 0 0 0.000 -750.0
+Z"><title>Thursday - 2015-01-01</title></path><path class="sector day weekday Friday" d="
+M 20.66 -1200
+A 1200 1200 0 0 1 41.31 -1199
+L 25.82 -749.6
+A 750.0 750.0 0 0 0 12.91 -749.9
+Z"><title>Friday - 2015-01-02</title></path><path class="sector day weekend Saturday" d="
+M 41.31 -1199
+A 1200 1200 0 0 1 61.94 -1198
+L 38.71 -749.0
+A 750.0 750.0 0 0 0 25.82 -749.6
+Z"><title>Saturday - 2015-01-03</title></path><path class="sector day weekend Sunday" d="
+M 61.94 -1198
+A 1200 1200 0 0 1 82.56 -1197
+L 51.60 -748.2
+A 750.0 750.0 0 0 0 38.71 -749.0
+Z"><title>Sunday - 2015-01-04</title></path><path class="sector day weekday Monday" d="
+M 82.56 -1197
+A 1200 1200 0 0 1 103.2 -1196
+L 64.47 -747.2
+A 750.0 750.0 0 0 0 51.60 -748.2
+Z"><title>Monday - 2015-01-05</title></path><path class="sector day weekday Tuesday" d="
+M 103.2 -1196
+A 1200 1200 0 0 1 123.7 -1194
+L 77.33 -746.0
+A 750.0 750.0 0 0 0 64.47 -747.2
+Z"><title>Tuesday - 2015-01-06</title></path><path class="sector day weekday Wednesday" d="
+M 123.7 -1194
+A 1200 1200 0 0 1 144.2 -1191
+L 90.16 -744.6
+A 750.0 750.0 0 0 0 77.33 -746.0
+Z"><title>Wednesday - 2015-01-07</title></path><path class="sector day weekday Thursday" d="
+M 144.2 -1191
+A 1200 1200 0 0 1 164.7 -1189
+L 103.0 -742.9
+A 750.0 750.0 0 0 0 90.16 -744.6
+Z"><title>Thursday - 2015-01-08</title></path><path class="sector day weekday Friday" d="
+M 164.7 -1189
+A 1200 1200 0 0 1 185.2 -1186
+L 115.7 -741.0
+A 750.0 750.0 0 0 0 103.0 -742.9
+Z"><title>Friday - 2015-01-09</title></path><path class="sector day weekend Saturday" d="
+M 185.2 -1186
+A 1200 1200 0 0 1 205.6 -1182
+L 128.5 -738.9
+A 750.0 750.0 0 0 0 115.7 -741.0
+Z"><title>Saturday - 2015-01-10</title></path><path class="sector day weekend Sunday" d="
+M 205.6 -1182
+A 1200 1200 0 0 1 225.9 -1179
+L 141.2 -736.6
+A 750.0 750.0 0 0 0 128.5 -738.9
+Z"><title>Sunday - 2015-01-11</title></path><path class="sector day weekday Monday" d="
+M 225.9 -1179
+A 1200 1200 0 0 1 246.1 -1174
+L 153.8 -734.1
+A 750.0 750.0 0 0 0 141.2 -736.6
+Z"><title>Monday - 2015-01-12</title></path><path class="sector day weekday Tuesday" d="
+M 246.1 -1174
+A 1200 1200 0 0 1 266.3 -1170
+L 166.4 -731.3
+A 750.0 750.0 0 0 0 153.8 -734.1
+Z"><title>Tuesday - 2015-01-13</title></path><path class="sector day weekday Wednesday" d="
+M 266.3 -1170
+A 1200 1200 0 0 1 286.4 -1165
+L 179.0 -728.3
+A 750.0 750.0 0 0 0 166.4 -731.3
+Z"><title>Wednesday - 2015-01-14</title></path><path class="sector day weekday Thursday" d="
+M 286.4 -1165
+A 1200 1200 0 0 1 306.4 -1160
+L 191.5 -725.1
+A 750.0 750.0 0 0 0 179.0 -728.3
+Z"><title>Thursday - 2015-01-15</title></path><path class="sector day weekday Friday" d="
+M 306.4 -1160
+A 1200 1200 0 0 1 326.3 -1155
+L 204.0 -721.7
+A 750.0 750.0 0 0 0 191.5 -725.1
+Z"><title>Friday - 2015-01-16</title></path><path class="sector day weekend Saturday" d="
+M 326.3 -1155
+A 1200 1200 0 0 1 346.2 -1149
+L 216.4 -718.1
+A 750.0 750.0 0 0 0 204.0 -721.7
+Z"><title>Saturday - 2015-01-17</title></path><path class="sector day weekend Sunday" d="
+M 346.2 -1149
+A 1200 1200 0 0 1 365.9 -1143
+L 228.7 -714.3
+A 750.0 750.0 0 0 0 216.4 -718.1
+Z"><title>Sunday - 2015-01-18</title></path><path class="sector day weekday Monday" d="
+M 365.9 -1143
+A 1200 1200 0 0 1 385.5 -1136
+L 241.0 -710.2
+A 750.0 750.0 0 0 0 228.7 -714.3
+Z"><title>Monday - 2015-01-19</title></path><path class="sector day weekday Tuesday" d="
+M 385.5 -1136
+A 1200 1200 0 0 1 405.0 -1130
+L 253.1 -706.0
+A 750.0 750.0 0 0 0 241.0 -710.2
+Z"><title>Tuesday - 2015-01-20</title></path><path class="sector day weekday Wednesday" d="
+M 405.0 -1130
+A 1200 1200 0 0 1 424.4 -1122
+L 265.3 -701.5
+A 750.0 750.0 0 0 0 253.1 -706.0
+Z"><title>Wednesday - 2015-01-21</title></path><path class="sector day weekday Thursday" d="
+M 424.4 -1122
+A 1200 1200 0 0 1 443.7 -1115
+L 277.3 -696.9
+A 750.0 750.0 0 0 0 265.3 -701.5
+Z"><title>Thursday - 2015-01-22</title></path><path class="sector day weekday Friday" d="
+M 443.7 -1115
+A 1200 1200 0 0 1 462.8 -1107
+L 289.2 -692.0
+A 750.0 750.0 0 0 0 277.3 -696.9
+Z"><title>Friday - 2015-01-23</title></path><path class="sector day weekend Saturday" d="
+M 462.8 -1107
+A 1200 1200 0 0 1 481.8 -1099
+L 301.1 -686.9
+A 750.0 750.0 0 0 0 289.2 -692.0
+Z"><title>Saturday - 2015-01-24</title></path><path class="sector day weekend Sunday" d="
+M 481.8 -1099
+A 1200 1200 0 0 1 500.6 -1091
+L 312.9 -681.6
+A 750.0 750.0 0 0 0 301.1 -686.9
+Z"><title>Sunday - 2015-01-25</title></path><path class="sector day weekday Monday" d="
+M 500.6 -1091
+A 1200 1200 0 0 1 519.3 -1082
+L 324.6 -676.1
+A 750.0 750.0 0 0 0 312.9 -681.6
+Z"><title>Monday - 2015-01-26</title></path><path class="sector day weekday Tuesday" d="
+M 519.3 -1082
+A 1200 1200 0 0 1 537.9 -1073
+L 336.2 -670.4
+A 750.0 750.0 0 0 0 324.6 -676.1
+Z"><title>Tuesday - 2015-01-27</title></path><path class="sector day weekday Wednesday" d="
+M 537.9 -1073
+A 1200 1200 0 0 1 556.3 -1063
+L 347.7 -664.6
+A 750.0 750.0 0 0 0 336.2 -670.4
+Z"><title>Wednesday - 2015-01-28</title></path><path class="sector day weekday Thursday" d="
+M 556.3 -1063
+A 1200 1200 0 0 1 574.5 -1054
+L 359.1 -658.5
+A 750.0 750.0 0 0 0 347.7 -664.6
+Z"><title>Thursday - 2015-01-29</title></path><path class="sector day weekday Friday" d="
+M 574.5 -1054
+A 1200 1200 0 0 1 592.5 -1044
+L 370.3 -652.2
+A 750.0 750.0 0 0 0 359.1 -658.5
+Z"><title>Friday - 2015-01-30</title></path><path class="sector day weekend Saturday" d="
+M 592.5 -1044
+A 1200 1200 0 0 1 610.4 -1033
+L 381.5 -645.7
+A 750.0 750.0 0 0 0 370.3 -652.2
+Z"><title>Saturday - 2015-01-31</title></path><path class="sector day weekend first Sunday" d="
+M 610.4 -1033
+A 1200 1200 0 0 1 628.1 -1022
+L 392.6 -639.1
+A 750.0 750.0 0 0 0 381.5 -645.7
+Z"><title>Sunday - 2015-02-01</title></path><path class="sector day weekday Monday" d="
+M 628.1 -1022
+A 1200 1200 0 0 1 645.6 -1012
+L 403.5 -632.2
+A 750.0 750.0 0 0 0 392.6 -639.1
+Z"><title>Monday - 2015-02-02</title></path><path class="sector day weekday Tuesday" d="
+M 645.6 -1012
+A 1200 1200 0 0 1 662.9 -1000
+L 414.3 -625.2
+A 750.0 750.0 0 0 0 403.5 -632.2
+Z"><title>Tuesday - 2015-02-03</title></path><path class="sector day weekday Wednesday" d="
+M 662.9 -1000
+A 1200 1200 0 0 1 680.0 -988.7
+L 425.0 -617.9
+A 750.0 750.0 0 0 0 414.3 -625.2
+Z"><title>Wednesday - 2015-02-04</title></path><path class="sector day weekday Thursday" d="
+M 680.0 -988.7
+A 1200 1200 0 0 1 697.0 -976.9
+L 435.6 -610.5
+A 750.0 750.0 0 0 0 425.0 -617.9
+Z"><title>Thursday - 2015-02-05</title></path><path class="sector day weekday Friday" d="
+M 697.0 -976.9
+A 1200 1200 0 0 1 713.7 -964.7
+L 446.0 -602.9
+A 750.0 750.0 0 0 0 435.6 -610.5
+Z"><title>Friday - 2015-02-06</title></path><path class="sector day weekend Saturday" d="
+M 713.7 -964.7
+A 1200 1200 0 0 1 730.2 -952.3
+L 456.4 -595.2
+A 750.0 750.0 0 0 0 446.0 -602.9
+Z"><title>Saturday - 2015-02-07</title></path><path class="sector day weekend Sunday" d="
+M 730.2 -952.3
+A 1200 1200 0 0 1 746.5 -939.6
+L 466.5 -587.2
+A 750.0 750.0 0 0 0 456.4 -595.2
+Z"><title>Sunday - 2015-02-08</title></path><path class="sector day weekday Monday" d="
+M 746.5 -939.6
+A 1200 1200 0 0 1 762.5 -926.6
+L 476.6 -579.1
+A 750.0 750.0 0 0 0 466.5 -587.2
+Z"><title>Monday - 2015-02-09</title></path><path class="sector day weekday Tuesday" d="
+M 762.5 -926.6
+A 1200 1200 0 0 1 778.4 -913.3
+L 486.5 -570.8
+A 750.0 750.0 0 0 0 476.6 -579.1
+Z"><title>Tuesday - 2015-02-10</title></path><path class="sector day weekday Wednesday" d="
+M 778.4 -913.3
+A 1200 1200 0 0 1 794.0 -899.8
+L 496.2 -562.4
+A 750.0 750.0 0 0 0 486.5 -570.8
+Z"><title>Wednesday - 2015-02-11</title></path><path class="sector day weekday Thursday" d="
+M 794.0 -899.8
+A 1200 1200 0 0 1 809.3 -886.0
+L 505.8 -553.7
+A 750.0 750.0 0 0 0 496.2 -562.4
+Z"><title>Thursday - 2015-02-12</title></path><path class="sector day weekday Friday" d="
+M 809.3 -886.0
+A 1200 1200 0 0 1 824.5 -871.9
+L 515.3 -545.0
+A 750.0 750.0 0 0 0 505.8 -553.7
+Z"><title>Friday - 2015-02-13</title></path><path class="sector day weekend Saturday" d="
+M 824.5 -871.9
+A 1200 1200 0 0 1 839.3 -857.6
+L 524.6 -536.0
+A 750.0 750.0 0 0 0 515.3 -545.0
+Z"><title>Saturday - 2015-02-14</title></path><path class="sector day weekend Sunday" d="
+M 839.3 -857.6
+A 1200 1200 0 0 1 854.0 -843.0
+L 533.7 -526.9
+A 750.0 750.0 0 0 0 524.6 -536.0
+Z"><title>Sunday - 2015-02-15</title></path><path class="sector day weekday Monday" d="
+M 854.0 -843.0
+A 1200 1200 0 0 1 868.4 -828.2
+L 542.7 -517.6
+A 750.0 750.0 0 0 0 533.7 -526.9
+Z"><title>Monday - 2015-02-16</title></path><path class="sector day weekday Tuesday" d="
+M 868.4 -828.2
+A 1200 1200 0 0 1 882.5 -813.1
+L 551.6 -508.2
+A 750.0 750.0 0 0 0 542.7 -517.6
+Z"><title>Tuesday - 2015-02-17</title></path><path class="sector day weekday Wednesday" d="
+M 882.5 -813.1
+A 1200 1200 0 0 1 896.4 -797.8
+L 560.2 -498.6
+A 750.0 750.0 0 0 0 551.6 -508.2
+Z"><title>Wednesday - 2015-02-18</title></path><path class="sector day weekday Thursday" d="
+M 896.4 -797.8
+A 1200 1200 0 0 1 910.0 -782.3
+L 568.7 -488.9
+A 750.0 750.0 0 0 0 560.2 -498.6
+Z"><title>Thursday - 2015-02-19</title></path><path class="sector day weekday Friday" d="
+M 910.0 -782.3
+A 1200 1200 0 0 1 923.3 -766.5
+L 577.1 -479.1
+A 750.0 750.0 0 0 0 568.7 -488.9
+Z"><title>Friday - 2015-02-20</title></path><path class="sector day weekend Saturday" d="
+M 923.3 -766.5
+A 1200 1200 0 0 1 936.4 -750.5
+L 585.2 -469.1
+A 750.0 750.0 0 0 0 577.1 -479.1
+Z"><title>Saturday - 2015-02-21</title></path><path class="sector day weekend Sunday" d="
+M 936.4 -750.5
+A 1200 1200 0 0 1 949.1 -734.3
+L 593.2 -458.9
+A 750.0 750.0 0 0 0 585.2 -469.1
+Z"><title>Sunday - 2015-02-22</title></path><path class="sector day weekday Monday" d="
+M 949.1 -734.3
+A 1200 1200 0 0 1 961.6 -717.8
+L 601.0 -448.6
+A 750.0 750.0 0 0 0 593.2 -458.9
+Z"><title>Monday - 2015-02-23</title></path><path class="sector day weekday Tuesday" d="
+M 961.6 -717.8
+A 1200 1200 0 0 1 973.8 -701.2
+L 608.7 -438.2
+A 750.0 750.0 0 0 0 601.0 -448.6
+Z"><title>Tuesday - 2015-02-24</title></path><path class="sector day weekday Wednesday" d="
+M 973.8 -701.2
+A 1200 1200 0 0 1 985.8 -684.3
+L 616.1 -427.7
+A 750.0 750.0 0 0 0 608.7 -438.2
+Z"><title>Wednesday - 2015-02-25</title></path><path class="sector day weekday Thursday" d="
+M 985.8 -684.3
+A 1200 1200 0 0 1 997.4 -667.2
+L 623.4 -417.0
+A 750.0 750.0 0 0 0 616.1 -427.7
+Z"><title>Thursday - 2015-02-26</title></path><path class="sector day weekday Friday" d="
+M 997.4 -667.2
+A 1200 1200 0 0 1 1009 -650.0
+L 630.5 -406.2
+A 750.0 750.0 0 0 0 623.4 -417.0
+Z"><title>Friday - 2015-02-27</title></path><path class="sector day weekend Saturday" d="
+M 1009 -650.0
+A 1200 1200 0 0 1 1020 -632.5
+L 637.4 -395.3
+A 750.0 750.0 0 0 0 630.5 -406.2
+Z"><title>Saturday - 2015-02-28</title></path><path class="sector day weekend first Sunday" d="
+M 1020 -632.5
+A 1200 1200 0 0 1 1031 -614.8
+L 644.1 -384.3
+A 750.0 750.0 0 0 0 637.4 -395.3
+Z"><title>Sunday - 2015-03-01</title></path><path class="sector day weekday Monday" d="
+M 1031 -614.8
+A 1200 1200 0 0 1 1041 -597.0
+L 650.6 -373.1
+A 750.0 750.0 0 0 0 644.1 -384.3
+Z"><title>Monday - 2015-03-02</title></path><path class="sector day weekday Tuesday" d="
+M 1041 -597.0
+A 1200 1200 0 0 1 1051 -579.0
+L 656.9 -361.9
+A 750.0 750.0 0 0 0 650.6 -373.1
+Z"><title>Tuesday - 2015-03-03</title></path><path class="sector day weekday Wednesday" d="
+M 1051 -579.0
+A 1200 1200 0 0 1 1061 -560.8
+L 663.1 -350.5
+A 750.0 750.0 0 0 0 656.9 -361.9
+Z"><title>Wednesday - 2015-03-04</title></path><path class="sector day weekday Thursday" d="
+M 1061 -560.8
+A 1200 1200 0 0 1 1070 -542.5
+L 669.0 -339.1
+A 750.0 750.0 0 0 0 663.1 -350.5
+Z"><title>Thursday - 2015-03-05</title></path><path class="sector day weekday Friday" d="
+M 1070 -542.5
+A 1200 1200 0 0 1 1080 -524.0
+L 674.7 -327.5
+A 750.0 750.0 0 0 0 669.0 -339.1
+Z"><title>Friday - 2015-03-06</title></path><path class="sector day weekend Saturday" d="
+M 1080 -524.0
+A 1200 1200 0 0 1 1088 -505.3
+L 680.3 -315.8
+A 750.0 750.0 0 0 0 674.7 -327.5
+Z"><title>Saturday - 2015-03-07</title></path><path class="sector day weekend Sunday" d="
+M 1088 -505.3
+A 1200 1200 0 0 1 1097 -486.5
+L 685.6 -304.1
+A 750.0 750.0 0 0 0 680.3 -315.8
+Z"><title>Sunday - 2015-03-08</title></path><path class="sector day weekday Monday" d="
+M 1097 -486.5
+A 1200 1200 0 0 1 1105 -467.6
+L 690.7 -292.2
+A 750.0 750.0 0 0 0 685.6 -304.1
+Z"><title>Monday - 2015-03-09</title></path><path class="sector day weekday Tuesday" d="
+M 1105 -467.6
+A 1200 1200 0 0 1 1113 -448.5
+L 695.7 -280.3
+A 750.0 750.0 0 0 0 690.7 -292.2
+Z"><title>Tuesday - 2015-03-10</title></path><path class="sector day weekday Wednesday" d="
+M 1113 -448.5
+A 1200 1200 0 0 1 1121 -429.2
+L 700.4 -268.3
+A 750.0 750.0 0 0 0 695.7 -280.3
+Z"><title>Wednesday - 2015-03-11</title></path><path class="sector day weekday Thursday" d="
+M 1121 -429.2
+A 1200 1200 0 0 1 1128 -409.9
+L 704.9 -256.2
+A 750.0 750.0 0 0 0 700.4 -268.3
+Z"><title>Thursday - 2015-03-12</title></path><path class="sector day weekday Friday" d="
+M 1128 -409.9
+A 1200 1200 0 0 1 1135 -390.4
+L 709.2 -244.0
+A 750.0 750.0 0 0 0 704.9 -256.2
+Z"><title>Friday - 2015-03-13</title></path><path class="sector day weekend Saturday" d="
+M 1135 -390.4
+A 1200 1200 0 0 1 1141 -370.8
+L 713.3 -231.8
+A 750.0 750.0 0 0 0 709.2 -244.0
+Z"><title>Saturday - 2015-03-14</title></path><path class="sector day weekend Sunday" d="
+M 1141 -370.8
+A 1200 1200 0 0 1 1147 -351.1
+L 717.2 -219.5
+A 750.0 750.0 0 0 0 713.3 -231.8
+Z"><title>Sunday - 2015-03-15</title></path><path class="sector day weekday Monday" d="
+M 1147 -351.1
+A 1200 1200 0 0 1 1153 -331.3
+L 720.8 -207.1
+A 750.0 750.0 0 0 0 717.2 -219.5
+Z"><title>Monday - 2015-03-16</title></path><path class="sector day weekday Tuesday" d="
+M 1153 -331.3
+A 1200 1200 0 0 1 1159 -311.4
+L 724.3 -194.6
+A 750.0 750.0 0 0 0 720.8 -207.1
+Z"><title>Tuesday - 2015-03-17</title></path><path class="sector day weekday Wednesday" d="
+M 1159 -311.4
+A 1200 1200 0 0 1 1164 -291.4
+L 727.5 -182.1
+A 750.0 750.0 0 0 0 724.3 -194.6
+Z"><title>Wednesday - 2015-03-18</title></path><path class="sector day weekday Thursday" d="
+M 1164 -291.4
+A 1200 1200 0 0 1 1169 -271.3
+L 730.6 -169.6
+A 750.0 750.0 0 0 0 727.5 -182.1
+Z"><title>Thursday - 2015-03-19</title></path><path class="sector day weekday Friday" d="
+M 1169 -271.3
+A 1200 1200 0 0 1 1173 -251.2
+L 733.4 -157.0
+A 750.0 750.0 0 0 0 730.6 -169.6
+Z"><title>Friday - 2015-03-20</title></path><path class="sector day weekend Saturday" d="
+M 1173 -251.2
+A 1200 1200 0 0 1 1178 -230.9
+L 736.0 -144.3
+A 750.0 750.0 0 0 0 733.4 -157.0
+Z"><title>Saturday - 2015-03-21</title></path><path class="sector day weekend Sunday" d="
+M 1178 -230.9
+A 1200 1200 0 0 1 1181 -210.6
+L 738.4 -131.6
+A 750.0 750.0 0 0 0 736.0 -144.3
+Z"><title>Sunday - 2015-03-22</title></path><path class="sector day weekday Monday" d="
+M 1181 -210.6
+A 1200 1200 0 0 1 1185 -190.3
+L 740.5 -118.9
+A 750.0 750.0 0 0 0 738.4 -131.6
+Z"><title>Monday - 2015-03-23</title></path><path class="sector day weekday Tuesday" d="
+M 1185 -190.3
+A 1200 1200 0 0 1 1188 -169.8
+L 742.4 -106.2
+A 750.0 750.0 0 0 0 740.5 -118.9
+Z"><title>Tuesday - 2015-03-24</title></path><path class="sector day weekday Wednesday" d="
+M 1188 -169.8
+A 1200 1200 0 0 1 1191 -149.4
+L 744.2 -93.36
+A 750.0 750.0 0 0 0 742.4 -106.2
+Z"><title>Wednesday - 2015-03-25</title></path><path class="sector day weekday Thursday" d="
+M 1191 -149.4
+A 1200 1200 0 0 1 1193 -128.9
+L 745.7 -80.54
+A 750.0 750.0 0 0 0 744.2 -93.36
+Z"><title>Thursday - 2015-03-26</title></path><path class="sector day weekday Friday" d="
+M 1193 -128.9
+A 1200 1200 0 0 1 1195 -108.3
+L 746.9 -67.69
+A 750.0 750.0 0 0 0 745.7 -80.54
+Z"><title>Friday - 2015-03-27</title></path><path class="sector day weekend Saturday" d="
+M 1195 -108.3
+A 1200 1200 0 0 1 1197 -87.71
+L 748.0 -54.82
+A 750.0 750.0 0 0 0 746.9 -67.69
+Z"><title>Saturday - 2015-03-28</title></path><path class="sector day weekend Sunday" d="
+M 1197 -87.71
+A 1200 1200 0 0 1 1198 -67.10
+L 748.8 -41.94
+A 750.0 750.0 0 0 0 748.0 -54.82
+Z"><title>Sunday - 2015-03-29</title></path><path class="sector day weekday Monday" d="
+M 1198 -67.10
+A 1200 1200 0 0 1 1199 -46.47
+L 749.4 -29.04
+A 750.0 750.0 0 0 0 748.8 -41.94
+Z"><title>Monday - 2015-03-30</title></path><path class="sector day weekday Tuesday" d="
+M 1199 -46.47
+A 1200 1200 0 0 1 1200 -25.82
+L 749.8 -16.14
+A 750.0 750.0 0 0 0 749.4 -29.04
+Z"><title>Tuesday - 2015-03-31</title></path><path class="sector day weekday first Wednesday" d="
+M 1200 -25.82
+A 1200 1200 0 0 1 1200 -5.164
+L 750.0 -3.228
+A 750.0 750.0 0 0 0 749.8 -16.14
+Z"><title>Wednesday - 2015-04-01</title></path><path class="sector day weekday Thursday" d="
+M 1200 -5.164
+A 1200 1200 0 0 1 1200 15.49
+L 749.9 9.683
+A 750.0 750.0 0 0 0 750.0 -3.228
+Z"><title>Thursday - 2015-04-02</title></path><path class="sector day weekday Friday" d="
+M 1200 15.49
+A 1200 1200 0 0 1 1199 36.14
+L 749.7 22.59
+A 750.0 750.0 0 0 0 749.9 9.683
+Z"><title>Friday - 2015-04-03</title></path><path class="sector day weekend Saturday" d="
+M 1199 36.14
+A 1200 1200 0 0 1 1199 56.79
+L 749.2 35.49
+A 750.0 750.0 0 0 0 749.7 22.59
+Z"><title>Saturday - 2015-04-04</title></path><path class="sector day weekend Sunday" d="
+M 1199 56.79
+A 1200 1200 0 0 1 1198 77.41
+L 748.4 48.38
+A 750.0 750.0 0 0 0 749.2 35.49
+Z"><title>Sunday - 2015-04-05</title></path><path class="sector day weekday Monday" d="
+M 1198 77.41
+A 1200 1200 0 0 1 1196 98.01
+L 747.5 61.26
+A 750.0 750.0 0 0 0 748.4 48.38
+Z"><title>Monday - 2015-04-06</title></path><path class="sector day weekday Tuesday" d="
+M 1196 98.01
+A 1200 1200 0 0 1 1194 118.6
+L 746.3 74.12
+A 750.0 750.0 0 0 0 747.5 61.26
+Z"><title>Tuesday - 2015-04-07</title></path><path class="sector day weekday Wednesday" d="
+M 1194 118.6
+A 1200 1200 0 0 1 1192 139.1
+L 744.9 86.95
+A 750.0 750.0 0 0 0 746.3 74.12
+Z"><title>Wednesday - 2015-04-08</title></path><path class="sector day weekday Thursday" d="
+M 1192 139.1
+A 1200 1200 0 0 1 1189 159.6
+L 743.3 99.76
+A 750.0 750.0 0 0 0 744.9 86.95
+Z"><title>Thursday - 2015-04-09</title></path><path class="sector day weekday Friday" d="
+M 1189 159.6
+A 1200 1200 0 0 1 1186 180.1
+L 741.5 112.5
+A 750.0 750.0 0 0 0 743.3 99.76
+Z"><title>Friday - 2015-04-10</title></path><path class="sector day weekend Saturday" d="
+M 1186 180.1
+A 1200 1200 0 0 1 1183 200.5
+L 739.5 125.3
+A 750.0 750.0 0 0 0 741.5 112.5
+Z"><title>Saturday - 2015-04-11</title></path><path class="sector day weekend Sunday" d="
+M 1183 200.5
+A 1200 1200 0 0 1 1180 220.8
+L 737.2 138.0
+A 750.0 750.0 0 0 0 739.5 125.3
+Z"><title>Sunday - 2015-04-12</title></path><path class="sector day weekday Monday" d="
+M 1180 220.8
+A 1200 1200 0 0 1 1176 241.1
+L 734.7 150.7
+A 750.0 750.0 0 0 0 737.2 138.0
+Z"><title>Monday - 2015-04-13</title></path><path class="sector day weekday Tuesday" d="
+M 1176 241.1
+A 1200 1200 0 0 1 1171 261.3
+L 732.0 163.3
+A 750.0 750.0 0 0 0 734.7 150.7
+Z"><title>Tuesday - 2015-04-14</title></path><path class="sector day weekday Wednesday" d="
+M 1171 261.3
+A 1200 1200 0 0 1 1167 281.4
+L 729.1 175.9
+A 750.0 750.0 0 0 0 732.0 163.3
+Z"><title>Wednesday - 2015-04-15</title></path><path class="sector day weekday Thursday" d="
+M 1167 281.4
+A 1200 1200 0 0 1 1162 301.4
+L 726.0 188.4
+A 750.0 750.0 0 0 0 729.1 175.9
+Z"><title>Thursday - 2015-04-16</title></path><path class="sector day weekday Friday" d="
+M 1162 301.4
+A 1200 1200 0 0 1 1156 321.4
+L 722.6 200.9
+A 750.0 750.0 0 0 0 726.0 188.4
+Z"><title>Friday - 2015-04-17</title></path><path class="sector day weekend Saturday" d="
+M 1156 321.4
+A 1200 1200 0 0 1 1150 341.2
+L 719.0 213.3
+A 750.0 750.0 0 0 0 722.6 200.9
+Z"><title>Saturday - 2015-04-18</title></path><path class="sector day weekend Sunday" d="
+M 1150 341.2
+A 1200 1200 0 0 1 1144 361.0
+L 715.3 225.6
+A 750.0 750.0 0 0 0 719.0 213.3
+Z"><title>Sunday - 2015-04-19</title></path><path class="sector day weekday Monday" d="
+M 1144 361.0
+A 1200 1200 0 0 1 1138 380.6
+L 711.3 237.9
+A 750.0 750.0 0 0 0 715.3 225.6
+Z"><title>Monday - 2015-04-20</title></path><path class="sector day weekday Tuesday" d="
+M 1138 380.6
+A 1200 1200 0 0 1 1131 400.2
+L 707.1 250.1
+A 750.0 750.0 0 0 0 711.3 237.9
+Z"><title>Tuesday - 2015-04-21</title></path><path class="sector day weekday Wednesday" d="
+M 1131 400.2
+A 1200 1200 0 0 1 1124 419.6
+L 702.7 262.2
+A 750.0 750.0 0 0 0 707.1 250.1
+Z"><title>Wednesday - 2015-04-22</title></path><path class="sector day weekday Thursday" d="
+M 1124 419.6
+A 1200 1200 0 0 1 1117 438.9
+L 698.0 274.3
+A 750.0 750.0 0 0 0 702.7 262.2
+Z"><title>Thursday - 2015-04-23</title></path><path class="sector day weekday Friday" d="
+M 1117 438.9
+A 1200 1200 0 0 1 1109 458.0
+L 693.2 286.3
+A 750.0 750.0 0 0 0 698.0 274.3
+Z"><title>Friday - 2015-04-24</title></path><path class="sector day weekend Saturday" d="
+M 1109 458.0
+A 1200 1200 0 0 1 1101 477.1
+L 688.2 298.2
+A 750.0 750.0 0 0 0 693.2 286.3
+Z"><title>Saturday - 2015-04-25</title></path><path class="sector day weekend Sunday" d="
+M 1101 477.1
+A 1200 1200 0 0 1 1093 495.9
+L 683.0 310.0
+A 750.0 750.0 0 0 0 688.2 298.2
+Z"><title>Sunday - 2015-04-26</title></path><path class="sector day weekday Monday" d="
+M 1093 495.9
+A 1200 1200 0 0 1 1084 514.7
+L 677.5 321.7
+A 750.0 750.0 0 0 0 683.0 310.0
+Z"><title>Monday - 2015-04-27</title></path><path class="sector day weekday Tuesday" d="
+M 1084 514.7
+A 1200 1200 0 0 1 1075 533.3
+L 671.9 333.3
+A 750.0 750.0 0 0 0 677.5 321.7
+Z"><title>Tuesday - 2015-04-28</title></path><path class="sector day weekday Wednesday" d="
+M 1075 533.3
+A 1200 1200 0 0 1 1066 551.7
+L 666.0 344.8
+A 750.0 750.0 0 0 0 671.9 333.3
+Z"><title>Wednesday - 2015-04-29</title></path><path class="sector day weekday Thursday" d="
+M 1066 551.7
+A 1200 1200 0 0 1 1056 569.9
+L 660.0 356.2
+A 750.0 750.0 0 0 0 666.0 344.8
+Z"><title>Thursday - 2015-04-30</title></path><path class="sector day weekday first Friday" d="
+M 1056 569.9
+A 1200 1200 0 0 1 1046 588.0
+L 653.8 367.5
+A 750.0 750.0 0 0 0 660.0 356.2
+Z"><title>Friday - 2015-05-01</title></path><path class="sector day weekend Saturday" d="
+M 1046 588.0
+A 1200 1200 0 0 1 1036 606.0
+L 647.4 378.7
+A 750.0 750.0 0 0 0 653.8 367.5
+Z"><title>Saturday - 2015-05-02</title></path><path class="sector day weekend Sunday" d="
+M 1036 606.0
+A 1200 1200 0 0 1 1025 623.7
+L 640.7 389.8
+A 750.0 750.0 0 0 0 647.4 378.7
+Z"><title>Sunday - 2015-05-03</title></path><path class="sector day weekday Monday" d="
+M 1025 623.7
+A 1200 1200 0 0 1 1014 641.2
+L 633.9 400.8
+A 750.0 750.0 0 0 0 640.7 389.8
+Z"><title>Monday - 2015-05-04</title></path><path class="sector day weekday Tuesday" d="
+M 1014 641.2
+A 1200 1200 0 0 1 1003 658.6
+L 626.9 411.6
+A 750.0 750.0 0 0 0 633.9 400.8
+Z"><title>Tuesday - 2015-05-05</title></path><path class="sector day weekday Wednesday" d="
+M 1003 658.6
+A 1200 1200 0 0 1 991.6 675.8
+L 619.8 422.4
+A 750.0 750.0 0 0 0 626.9 411.6
+Z"><title>Wednesday - 2015-05-06</title></path><path class="sector day weekday Thursday" d="
+M 991.6 675.8
+A 1200 1200 0 0 1 979.8 692.7
+L 612.4 433.0
+A 750.0 750.0 0 0 0 619.8 422.4
+Z"><title>Thursday - 2015-05-07</title></path><path class="sector day weekday Friday" d="
+M 979.8 692.7
+A 1200 1200 0 0 1 967.8 709.5
+L 604.9 443.4
+A 750.0 750.0 0 0 0 612.4 433.0
+Z"><title>Friday - 2015-05-08</title></path><path class="sector day weekend Saturday" d="
+M 967.8 709.5
+A 1200 1200 0 0 1 955.4 726.1
+L 597.1 453.8
+A 750.0 750.0 0 0 0 604.9 443.4
+Z"><title>Saturday - 2015-05-09</title></path><path class="sector day weekend Sunday" d="
+M 955.4 726.1
+A 1200 1200 0 0 1 942.8 742.4
+L 589.2 464.0
+A 750.0 750.0 0 0 0 597.1 453.8
+Z"><title>Sunday - 2015-05-10</title></path><path class="sector day weekday Monday" d="
+M 942.8 742.4
+A 1200 1200 0 0 1 929.9 758.5
+L 581.2 474.1
+A 750.0 750.0 0 0 0 589.2 464.0
+Z"><title>Monday - 2015-05-11</title></path><path class="sector day weekday Tuesday" d="
+M 929.9 758.5
+A 1200 1200 0 0 1 916.7 774.4
+L 572.9 484.0
+A 750.0 750.0 0 0 0 581.2 474.1
+Z"><title>Tuesday - 2015-05-12</title></path><path class="sector day weekday Wednesday" d="
+M 916.7 774.4
+A 1200 1200 0 0 1 903.2 790.1
+L 564.5 493.8
+A 750.0 750.0 0 0 0 572.9 484.0
+Z"><title>Wednesday - 2015-05-13</title></path><path class="sector day weekday Thursday" d="
+M 903.2 790.1
+A 1200 1200 0 0 1 889.5 805.5
+L 555.9 503.4
+A 750.0 750.0 0 0 0 564.5 493.8
+Z"><title>Thursday - 2015-05-14</title></path><path class="sector day weekday Friday" d="
+M 889.5 805.5
+A 1200 1200 0 0 1 875.5 820.7
+L 547.2 512.9
+A 750.0 750.0 0 0 0 555.9 503.4
+Z"><title>Friday - 2015-05-15</title></path><path class="sector day weekend Saturday" d="
+M 875.5 820.7
+A 1200 1200 0 0 1 861.2 835.7
+L 538.3 522.3
+A 750.0 750.0 0 0 0 547.2 512.9
+Z"><title>Saturday - 2015-05-16</title></path><path class="sector day weekend Sunday" d="
+M 861.2 835.7
+A 1200 1200 0 0 1 846.7 850.4
+L 529.2 531.5
+A 750.0 750.0 0 0 0 538.3 522.3
+Z"><title>Sunday - 2015-05-17</title></path><path class="sector day weekday Monday" d="
+M 846.7 850.4
+A 1200 1200 0 0 1 831.9 864.8
+L 520.0 540.5
+A 750.0 750.0 0 0 0 529.2 531.5
+Z"><title>Monday - 2015-05-18</title></path><path class="sector day weekday Tuesday" d="
+M 831.9 864.8
+A 1200 1200 0 0 1 816.9 879.0
+L 510.6 549.4
+A 750.0 750.0 0 0 0 520.0 540.5
+Z"><title>Tuesday - 2015-05-19</title></path><path class="sector day weekday Wednesday" d="
+M 816.9 879.0
+A 1200 1200 0 0 1 801.7 892.9
+L 501.0 558.1
+A 750.0 750.0 0 0 0 510.6 549.4
+Z"><title>Wednesday - 2015-05-20</title></path><path class="sector day weekday Thursday" d="
+M 801.7 892.9
+A 1200 1200 0 0 1 786.2 906.6
+L 491.4 566.6
+A 750.0 750.0 0 0 0 501.0 558.1
+Z"><title>Thursday - 2015-05-21</title></path><path class="sector day weekday Friday" d="
+M 786.2 906.6
+A 1200 1200 0 0 1 770.5 920.0
+L 481.5 575.0
+A 750.0 750.0 0 0 0 491.4 566.6
+Z"><title>Friday - 2015-05-22</title></path><path class="sector day weekend Saturday" d="
+M 770.5 920.0
+A 1200 1200 0 0 1 754.5 933.1
+L 471.6 583.2
+A 750.0 750.0 0 0 0 481.5 575.0
+Z"><title>Saturday - 2015-05-23</title></path><path class="sector day weekend Sunday" d="
+M 754.5 933.1
+A 1200 1200 0 0 1 738.3 946.0
+L 461.5 591.2
+A 750.0 750.0 0 0 0 471.6 583.2
+Z"><title>Sunday - 2015-05-24</title></path><path class="sector day weekday Monday" d="
+M 738.3 946.0
+A 1200 1200 0 0 1 721.9 958.5
+L 451.2 599.1
+A 750.0 750.0 0 0 0 461.5 591.2
+Z"><title>Monday - 2015-05-25</title></path><path class="sector day weekday Tuesday" d="
+M 721.9 958.5
+A 1200 1200 0 0 1 705.3 970.8
+L 440.8 606.8
+A 750.0 750.0 0 0 0 451.2 599.1
+Z"><title>Tuesday - 2015-05-26</title></path><path class="sector day weekday Wednesday" d="
+M 705.3 970.8
+A 1200 1200 0 0 1 688.5 982.8
+L 430.3 614.3
+A 750.0 750.0 0 0 0 440.8 606.8
+Z"><title>Wednesday - 2015-05-27</title></path><path class="sector day weekday Thursday" d="
+M 688.5 982.8
+A 1200 1200 0 0 1 671.5 994.5
+L 419.7 621.6
+A 750.0 750.0 0 0 0 430.3 614.3
+Z"><title>Thursday - 2015-05-28</title></path><path class="sector day weekday Friday" d="
+M 671.5 994.5
+A 1200 1200 0 0 1 654.3 1006
+L 408.9 628.7
+A 750.0 750.0 0 0 0 419.7 621.6
+Z"><title>Friday - 2015-05-29</title></path><path class="sector day weekend Saturday" d="
+M 654.3 1006
+A 1200 1200 0 0 1 636.9 1017
+L 398.0 635.7
+A 750.0 750.0 0 0 0 408.9 628.7
+Z"><title>Saturday - 2015-05-30</title></path><path class="sector day weekend Sunday" d="
+M 636.9 1017
+A 1200 1200 0 0 1 619.3 1028
+L 387.0 642.4
+A 750.0 750.0 0 0 0 398.0 635.7
+Z"><title>Sunday - 2015-05-31</title></path><path class="sector day weekday first Monday" d="
+M 619.3 1028
+A 1200 1200 0 0 1 601.5 1038
+L 375.9 649.0
+A 750.0 750.0 0 0 0 387.0 642.4
+Z"><title>Monday - 2015-06-01</title></path><path class="sector day weekday Tuesday" d="
+M 601.5 1038
+A 1200 1200 0 0 1 583.5 1049
+L 364.7 655.4
+A 750.0 750.0 0 0 0 375.9 649.0
+Z"><title>Tuesday - 2015-06-02</title></path><path class="sector day weekday Wednesday" d="
+M 583.5 1049
+A 1200 1200 0 0 1 565.4 1058
+L 353.4 661.5
+A 750.0 750.0 0 0 0 364.7 655.4
+Z"><title>Wednesday - 2015-06-03</title></path><path class="sector day weekday Thursday" d="
+M 565.4 1058
+A 1200 1200 0 0 1 547.1 1068
+L 341.9 667.5
+A 750.0 750.0 0 0 0 353.4 661.5
+Z"><title>Thursday - 2015-06-04</title></path><path class="sector day weekday Friday" d="
+M 547.1 1068
+A 1200 1200 0 0 1 528.6 1077
+L 330.4 673.3
+A 750.0 750.0 0 0 0 341.9 667.5
+Z"><title>Friday - 2015-06-05</title></path><path class="sector day weekend Saturday" d="
+M 528.6 1077
+A 1200 1200 0 0 1 510.0 1086
+L 318.8 678.9
+A 750.0 750.0 0 0 0 330.4 673.3
+Z"><title>Saturday - 2015-06-06</title></path><path class="sector day weekend Sunday" d="
+M 510.0 1086
+A 1200 1200 0 0 1 491.2 1095
+L 307.0 684.3
+A 750.0 750.0 0 0 0 318.8 678.9
+Z"><title>Sunday - 2015-06-07</title></path><path class="sector day weekday Monday" d="
+M 491.2 1095
+A 1200 1200 0 0 1 472.3 1103
+L 295.2 689.5
+A 750.0 750.0 0 0 0 307.0 684.3
+Z"><title>Monday - 2015-06-08</title></path><path class="sector day weekday Tuesday" d="
+M 472.3 1103
+A 1200 1200 0 0 1 453.2 1111
+L 283.3 694.4
+A 750.0 750.0 0 0 0 295.2 689.5
+Z"><title>Tuesday - 2015-06-09</title></path><path class="sector day weekday Wednesday" d="
+M 453.2 1111
+A 1200 1200 0 0 1 434.1 1119
+L 271.3 699.2
+A 750.0 750.0 0 0 0 283.3 694.4
+Z"><title>Wednesday - 2015-06-10</title></path><path class="sector day weekday Thursday" d="
+M 434.1 1119
+A 1200 1200 0 0 1 414.7 1126
+L 259.2 703.8
+A 750.0 750.0 0 0 0 271.3 699.2
+Z"><title>Thursday - 2015-06-11</title></path><path class="sector day weekday Friday" d="
+M 414.7 1126
+A 1200 1200 0 0 1 395.3 1133
+L 247.1 708.1
+A 750.0 750.0 0 0 0 259.2 703.8
+Z"><title>Friday - 2015-06-12</title></path><path class="sector day weekend Saturday" d="
+M 395.3 1133
+A 1200 1200 0 0 1 375.7 1140
+L 234.8 712.3
+A 750.0 750.0 0 0 0 247.1 708.1
+Z"><title>Saturday - 2015-06-13</title></path><path class="sector day weekend Sunday" d="
+M 375.7 1140
+A 1200 1200 0 0 1 356.1 1146
+L 222.5 716.2
+A 750.0 750.0 0 0 0 234.8 712.3
+Z"><title>Sunday - 2015-06-14</title></path><path class="sector day weekday Monday" d="
+M 356.1 1146
+A 1200 1200 0 0 1 336.3 1152
+L 210.2 719.9
+A 750.0 750.0 0 0 0 222.5 716.2
+Z"><title>Monday - 2015-06-15</title></path><path class="sector day weekday Tuesday" d="
+M 336.3 1152
+A 1200 1200 0 0 1 316.4 1158
+L 197.7 723.5
+A 750.0 750.0 0 0 0 210.2 719.9
+Z"><title>Tuesday - 2015-06-16</title></path><path class="sector day weekday Wednesday" d="
+M 316.4 1158
+A 1200 1200 0 0 1 296.4 1163
+L 185.3 726.8
+A 750.0 750.0 0 0 0 197.7 723.5
+Z"><title>Wednesday - 2015-06-17</title></path><path class="sector day weekday Thursday" d="
+M 296.4 1163
+A 1200 1200 0 0 1 276.4 1168
+L 172.7 729.8
+A 750.0 750.0 0 0 0 185.3 726.8
+Z"><title>Thursday - 2015-06-18</title></path><path class="sector day weekday Friday" d="
+M 276.4 1168
+A 1200 1200 0 0 1 256.2 1172
+L 160.1 732.7
+A 750.0 750.0 0 0 0 172.7 729.8
+Z"><title>Friday - 2015-06-19</title></path><path class="sector day weekend Saturday" d="
+M 256.2 1172
+A 1200 1200 0 0 1 236.0 1177
+L 147.5 735.4
+A 750.0 750.0 0 0 0 160.1 732.7
+Z"><title>Saturday - 2015-06-20</title></path><path class="sector day weekend Sunday" d="
+M 236.0 1177
+A 1200 1200 0 0 1 215.7 1180
+L 134.8 737.8
+A 750.0 750.0 0 0 0 147.5 735.4
+Z"><title>Sunday - 2015-06-21</title></path><path class="sector day weekday Monday" d="
+M 215.7 1180
+A 1200 1200 0 0 1 195.4 1184
+L 122.1 740.0
+A 750.0 750.0 0 0 0 134.8 737.8
+Z"><title>Monday - 2015-06-22</title></path><path class="sector day weekday Tuesday" d="
+M 195.4 1184
+A 1200 1200 0 0 1 175.0 1187
+L 109.3 742.0
+A 750.0 750.0 0 0 0 122.1 740.0
+Z"><title>Tuesday - 2015-06-23</title></path><path class="sector day weekday Wednesday" d="
+M 175.0 1187
+A 1200 1200 0 0 1 154.5 1190
+L 96.56 743.8
+A 750.0 750.0 0 0 0 109.3 742.0
+Z"><title>Wednesday - 2015-06-24</title></path><path class="sector day weekday Thursday" d="
+M 154.5 1190
+A 1200 1200 0 0 1 134.0 1192
+L 83.74 745.3
+A 750.0 750.0 0 0 0 96.56 743.8
+Z"><title>Thursday - 2015-06-25</title></path><path class="sector day weekday Friday" d="
+M 134.0 1192
+A 1200 1200 0 0 1 113.4 1195
+L 70.90 746.6
+A 750.0 750.0 0 0 0 83.74 745.3
+Z"><title>Friday - 2015-06-26</title></path><path class="sector day weekend Saturday" d="
+M 113.4 1195
+A 1200 1200 0 0 1 92.86 1196
+L 58.04 747.8
+A 750.0 750.0 0 0 0 70.90 746.6
+Z"><title>Saturday - 2015-06-27</title></path><path class="sector day weekend Sunday" d="
+M 92.86 1196
+A 1200 1200 0 0 1 72.26 1198
+L 45.16 748.6
+A 750.0 750.0 0 0 0 58.04 747.8
+Z"><title>Sunday - 2015-06-28</title></path><path class="sector day weekday Monday" d="
+M 72.26 1198
+A 1200 1200 0 0 1 51.63 1199
+L 32.27 749.3
+A 750.0 750.0 0 0 0 45.16 748.6
+Z"><title>Monday - 2015-06-29</title></path><path class="sector day weekday Tuesday" d="
+M 51.63 1199
+A 1200 1200 0 0 1 30.98 1200
+L 19.36 749.7
+A 750.0 750.0 0 0 0 32.27 749.3
+Z"><title>Tuesday - 2015-06-30</title></path><path class="sector day weekday first Wednesday" d="
+M 30.98 1200
+A 1200 1200 0 0 1 10.33 1200
+L 6.455 750.0
+A 750.0 750.0 0 0 0 19.36 749.7
+Z"><title>Wednesday - 2015-07-01</title></path><path class="sector day weekday Thursday" d="
+M 10.33 1200
+A 1200 1200 0 0 1 -10.33 1200
+L -6.455 750.0
+A 750.0 750.0 0 0 0 6.455 750.0
+Z"><title>Thursday - 2015-07-02</title></path><path class="sector day weekday Friday" d="
+M -10.33 1200
+A 1200 1200 0 0 1 -30.98 1200
+L -19.36 749.7
+A 750.0 750.0 0 0 0 -6.455 750.0
+Z"><title>Friday - 2015-07-03</title></path><path class="sector day weekend Saturday" d="
+M -30.98 1200
+A 1200 1200 0 0 1 -51.63 1199
+L -32.27 749.3
+A 750.0 750.0 0 0 0 -19.36 749.7
+Z"><title>Saturday - 2015-07-04</title></path><path class="sector day weekend Sunday" d="
+M -51.63 1199
+A 1200 1200 0 0 1 -72.26 1198
+L -45.16 748.6
+A 750.0 750.0 0 0 0 -32.27 749.3
+Z"><title>Sunday - 2015-07-05</title></path><path class="sector day weekday Monday" d="
+M -72.26 1198
+A 1200 1200 0 0 1 -92.86 1196
+L -58.04 747.8
+A 750.0 750.0 0 0 0 -45.16 748.6
+Z"><title>Monday - 2015-07-06</title></path><path class="sector day weekday Tuesday" d="
+M -92.86 1196
+A 1200 1200 0 0 1 -113.4 1195
+L -70.90 746.6
+A 750.0 750.0 0 0 0 -58.04 747.8
+Z"><title>Tuesday - 2015-07-07</title></path><path class="sector day weekday Wednesday" d="
+M -113.4 1195
+A 1200 1200 0 0 1 -134.0 1192
+L -83.74 745.3
+A 750.0 750.0 0 0 0 -70.90 746.6
+Z"><title>Wednesday - 2015-07-08</title></path><path class="sector day weekday Thursday" d="
+M -134.0 1192
+A 1200 1200 0 0 1 -154.5 1190
+L -96.56 743.8
+A 750.0 750.0 0 0 0 -83.74 745.3
+Z"><title>Thursday - 2015-07-09</title></path><path class="sector day weekday Friday" d="
+M -154.5 1190
+A 1200 1200 0 0 1 -175.0 1187
+L -109.3 742.0
+A 750.0 750.0 0 0 0 -96.56 743.8
+Z"><title>Friday - 2015-07-10</title></path><path class="sector day weekend Saturday" d="
+M -175.0 1187
+A 1200 1200 0 0 1 -195.4 1184
+L -122.1 740.0
+A 750.0 750.0 0 0 0 -109.3 742.0
+Z"><title>Saturday - 2015-07-11</title></path><path class="sector day weekend Sunday" d="
+M -195.4 1184
+A 1200 1200 0 0 1 -215.7 1180
+L -134.8 737.8
+A 750.0 750.0 0 0 0 -122.1 740.0
+Z"><title>Sunday - 2015-07-12</title></path><path class="sector day weekday Monday" d="
+M -215.7 1180
+A 1200 1200 0 0 1 -236.0 1177
+L -147.5 735.4
+A 750.0 750.0 0 0 0 -134.8 737.8
+Z"><title>Monday - 2015-07-13</title></path><path class="sector day weekday Tuesday" d="
+M -236.0 1177
+A 1200 1200 0 0 1 -256.2 1172
+L -160.1 732.7
+A 750.0 750.0 0 0 0 -147.5 735.4
+Z"><title>Tuesday - 2015-07-14</title></path><path class="sector day weekday Wednesday" d="
+M -256.2 1172
+A 1200 1200 0 0 1 -276.4 1168
+L -172.7 729.8
+A 750.0 750.0 0 0 0 -160.1 732.7
+Z"><title>Wednesday - 2015-07-15</title></path><path class="sector day weekday Thursday" d="
+M -276.4 1168
+A 1200 1200 0 0 1 -296.4 1163
+L -185.3 726.8
+A 750.0 750.0 0 0 0 -172.7 729.8
+Z"><title>Thursday - 2015-07-16</title></path><path class="sector day weekday Friday" d="
+M -296.4 1163
+A 1200 1200 0 0 1 -316.4 1158
+L -197.7 723.5
+A 750.0 750.0 0 0 0 -185.3 726.8
+Z"><title>Friday - 2015-07-17</title></path><path class="sector day weekend Saturday" d="
+M -316.4 1158
+A 1200 1200 0 0 1 -336.3 1152
+L -210.2 719.9
+A 750.0 750.0 0 0 0 -197.7 723.5
+Z"><title>Saturday - 2015-07-18</title></path><path class="sector day weekend Sunday" d="
+M -336.3 1152
+A 1200 1200 0 0 1 -356.1 1146
+L -222.5 716.2
+A 750.0 750.0 0 0 0 -210.2 719.9
+Z"><title>Sunday - 2015-07-19</title></path><path class="sector day weekday Monday" d="
+M -356.1 1146
+A 1200 1200 0 0 1 -375.7 1140
+L -234.8 712.3
+A 750.0 750.0 0 0 0 -222.5 716.2
+Z"><title>Monday - 2015-07-20</title></path><path class="sector day weekday Tuesday" d="
+M -375.7 1140
+A 1200 1200 0 0 1 -395.3 1133
+L -247.1 708.1
+A 750.0 750.0 0 0 0 -234.8 712.3
+Z"><title>Tuesday - 2015-07-21</title></path><path class="sector day weekday Wednesday" d="
+M -395.3 1133
+A 1200 1200 0 0 1 -414.7 1126
+L -259.2 703.8
+A 750.0 750.0 0 0 0 -247.1 708.1
+Z"><title>Wednesday - 2015-07-22</title></path><path class="sector day weekday Thursday" d="
+M -414.7 1126
+A 1200 1200 0 0 1 -434.1 1119
+L -271.3 699.2
+A 750.0 750.0 0 0 0 -259.2 703.8
+Z"><title>Thursday - 2015-07-23</title></path><path class="sector day weekday Friday" d="
+M -434.1 1119
+A 1200 1200 0 0 1 -453.2 1111
+L -283.3 694.4
+A 750.0 750.0 0 0 0 -271.3 699.2
+Z"><title>Friday - 2015-07-24</title></path><path class="sector day weekend Saturday" d="
+M -453.2 1111
+A 1200 1200 0 0 1 -472.3 1103
+L -295.2 689.5
+A 750.0 750.0 0 0 0 -283.3 694.4
+Z"><title>Saturday - 2015-07-25</title></path><path class="sector day weekend Sunday" d="
+M -472.3 1103
+A 1200 1200 0 0 1 -491.2 1095
+L -307.0 684.3
+A 750.0 750.0 0 0 0 -295.2 689.5
+Z"><title>Sunday - 2015-07-26</title></path><path class="sector day weekday Monday" d="
+M -491.2 1095
+A 1200 1200 0 0 1 -510.0 1086
+L -318.8 678.9
+A 750.0 750.0 0 0 0 -307.0 684.3
+Z"><title>Monday - 2015-07-27</title></path><path class="sector day weekday Tuesday" d="
+M -510.0 1086
+A 1200 1200 0 0 1 -528.6 1077
+L -330.4 673.3
+A 750.0 750.0 0 0 0 -318.8 678.9
+Z"><title>Tuesday - 2015-07-28</title></path><path class="sector day weekday Wednesday" d="
+M -528.6 1077
+A 1200 1200 0 0 1 -547.1 1068
+L -341.9 667.5
+A 750.0 750.0 0 0 0 -330.4 673.3
+Z"><title>Wednesday - 2015-07-29</title></path><path class="sector day weekday Thursday" d="
+M -547.1 1068
+A 1200 1200 0 0 1 -565.4 1058
+L -353.4 661.5
+A 750.0 750.0 0 0 0 -341.9 667.5
+Z"><title>Thursday - 2015-07-30</title></path><path class="sector day weekday Friday" d="
+M -565.4 1058
+A 1200 1200 0 0 1 -583.5 1049
+L -364.7 655.4
+A 750.0 750.0 0 0 0 -353.4 661.5
+Z"><title>Friday - 2015-07-31</title></path><path class="sector day weekend first Saturday" d="
+M -583.5 1049
+A 1200 1200 0 0 1 -601.5 1038
+L -375.9 649.0
+A 750.0 750.0 0 0 0 -364.7 655.4
+Z"><title>Saturday - 2015-08-01</title></path><path class="sector day weekend Sunday" d="
+M -601.5 1038
+A 1200 1200 0 0 1 -619.3 1028
+L -387.0 642.4
+A 750.0 750.0 0 0 0 -375.9 649.0
+Z"><title>Sunday - 2015-08-02</title></path><path class="sector day weekday Monday" d="
+M -619.3 1028
+A 1200 1200 0 0 1 -636.9 1017
+L -398.0 635.7
+A 750.0 750.0 0 0 0 -387.0 642.4
+Z"><title>Monday - 2015-08-03</title></path><path class="sector day weekday Tuesday" d="
+M -636.9 1017
+A 1200 1200 0 0 1 -654.3 1006
+L -408.9 628.7
+A 750.0 750.0 0 0 0 -398.0 635.7
+Z"><title>Tuesday - 2015-08-04</title></path><path class="sector day weekday Wednesday" d="
+M -654.3 1006
+A 1200 1200 0 0 1 -671.5 994.5
+L -419.7 621.6
+A 750.0 750.0 0 0 0 -408.9 628.7
+Z"><title>Wednesday - 2015-08-05</title></path><path class="sector day weekday Thursday" d="
+M -671.5 994.5
+A 1200 1200 0 0 1 -688.5 982.8
+L -430.3 614.3
+A 750.0 750.0 0 0 0 -419.7 621.6
+Z"><title>Thursday - 2015-08-06</title></path><path class="sector day weekday Friday" d="
+M -688.5 982.8
+A 1200 1200 0 0 1 -705.3 970.8
+L -440.8 606.8
+A 750.0 750.0 0 0 0 -430.3 614.3
+Z"><title>Friday - 2015-08-07</title></path><path class="sector day weekend Saturday" d="
+M -705.3 970.8
+A 1200 1200 0 0 1 -721.9 958.5
+L -451.2 599.1
+A 750.0 750.0 0 0 0 -440.8 606.8
+Z"><title>Saturday - 2015-08-08</title></path><path class="sector day weekend Sunday" d="
+M -721.9 958.5
+A 1200 1200 0 0 1 -738.3 946.0
+L -461.5 591.2
+A 750.0 750.0 0 0 0 -451.2 599.1
+Z"><title>Sunday - 2015-08-09</title></path><path class="sector day weekday Monday" d="
+M -738.3 946.0
+A 1200 1200 0 0 1 -754.5 933.1
+L -471.6 583.2
+A 750.0 750.0 0 0 0 -461.5 591.2
+Z"><title>Monday - 2015-08-10</title></path><path class="sector day weekday Tuesday" d="
+M -754.5 933.1
+A 1200 1200 0 0 1 -770.5 920.0
+L -481.5 575.0
+A 750.0 750.0 0 0 0 -471.6 583.2
+Z"><title>Tuesday - 2015-08-11</title></path><path class="sector day weekday Wednesday" d="
+M -770.5 920.0
+A 1200 1200 0 0 1 -786.2 906.6
+L -491.4 566.6
+A 750.0 750.0 0 0 0 -481.5 575.0
+Z"><title>Wednesday - 2015-08-12</title></path><path class="sector day weekday Thursday" d="
+M -786.2 906.6
+A 1200 1200 0 0 1 -801.7 892.9
+L -501.0 558.1
+A 750.0 750.0 0 0 0 -491.4 566.6
+Z"><title>Thursday - 2015-08-13</title></path><path class="sector day weekday Friday" d="
+M -801.7 892.9
+A 1200 1200 0 0 1 -816.9 879.0
+L -510.6 549.4
+A 750.0 750.0 0 0 0 -501.0 558.1
+Z"><title>Friday - 2015-08-14</title></path><path class="sector day weekend Saturday" d="
+M -816.9 879.0
+A 1200 1200 0 0 1 -831.9 864.8
+L -520.0 540.5
+A 750.0 750.0 0 0 0 -510.6 549.4
+Z"><title>Saturday - 2015-08-15</title></path><path class="sector day weekend Sunday" d="
+M -831.9 864.8
+A 1200 1200 0 0 1 -846.7 850.4
+L -529.2 531.5
+A 750.0 750.0 0 0 0 -520.0 540.5
+Z"><title>Sunday - 2015-08-16</title></path><path class="sector day weekday Monday" d="
+M -846.7 850.4
+A 1200 1200 0 0 1 -861.2 835.7
+L -538.3 522.3
+A 750.0 750.0 0 0 0 -529.2 531.5
+Z"><title>Monday - 2015-08-17</title></path><path class="sector day weekday Tuesday" d="
+M -861.2 835.7
+A 1200 1200 0 0 1 -875.5 820.7
+L -547.2 512.9
+A 750.0 750.0 0 0 0 -538.3 522.3
+Z"><title>Tuesday - 2015-08-18</title></path><path class="sector day weekday Wednesday" d="
+M -875.5 820.7
+A 1200 1200 0 0 1 -889.5 805.5
+L -555.9 503.4
+A 750.0 750.0 0 0 0 -547.2 512.9
+Z"><title>Wednesday - 2015-08-19</title></path><path class="sector day weekday Thursday" d="
+M -889.5 805.5
+A 1200 1200 0 0 1 -903.2 790.1
+L -564.5 493.8
+A 750.0 750.0 0 0 0 -555.9 503.4
+Z"><title>Thursday - 2015-08-20</title></path><path class="sector day weekday Friday" d="
+M -903.2 790.1
+A 1200 1200 0 0 1 -916.7 774.4
+L -572.9 484.0
+A 750.0 750.0 0 0 0 -564.5 493.8
+Z"><title>Friday - 2015-08-21</title></path><path class="sector day weekend Saturday" d="
+M -916.7 774.4
+A 1200 1200 0 0 1 -929.9 758.5
+L -581.2 474.1
+A 750.0 750.0 0 0 0 -572.9 484.0
+Z"><title>Saturday - 2015-08-22</title></path><path class="sector day weekend Sunday" d="
+M -929.9 758.5
+A 1200 1200 0 0 1 -942.8 742.4
+L -589.2 464.0
+A 750.0 750.0 0 0 0 -581.2 474.1
+Z"><title>Sunday - 2015-08-23</title></path><path class="sector day weekday Monday" d="
+M -942.8 742.4
+A 1200 1200 0 0 1 -955.4 726.1
+L -597.1 453.8
+A 750.0 750.0 0 0 0 -589.2 464.0
+Z"><title>Monday - 2015-08-24</title></path><path class="sector day weekday Tuesday" d="
+M -955.4 726.1
+A 1200 1200 0 0 1 -967.8 709.5
+L -604.9 443.4
+A 750.0 750.0 0 0 0 -597.1 453.8
+Z"><title>Tuesday - 2015-08-25</title></path><path class="sector day weekday Wednesday" d="
+M -967.8 709.5
+A 1200 1200 0 0 1 -979.8 692.7
+L -612.4 433.0
+A 750.0 750.0 0 0 0 -604.9 443.4
+Z"><title>Wednesday - 2015-08-26</title></path><path class="sector day weekday Thursday" d="
+M -979.8 692.7
+A 1200 1200 0 0 1 -991.6 675.8
+L -619.8 422.4
+A 750.0 750.0 0 0 0 -612.4 433.0
+Z"><title>Thursday - 2015-08-27</title></path><path class="sector day weekday Friday" d="
+M -991.6 675.8
+A 1200 1200 0 0 1 -1003 658.6
+L -626.9 411.6
+A 750.0 750.0 0 0 0 -619.8 422.4
+Z"><title>Friday - 2015-08-28</title></path><path class="sector day weekend Saturday" d="
+M -1003 658.6
+A 1200 1200 0 0 1 -1014 641.2
+L -633.9 400.8
+A 750.0 750.0 0 0 0 -626.9 411.6
+Z"><title>Saturday - 2015-08-29</title></path><path class="sector day weekend Sunday" d="
+M -1014 641.2
+A 1200 1200 0 0 1 -1025 623.7
+L -640.7 389.8
+A 750.0 750.0 0 0 0 -633.9 400.8
+Z"><title>Sunday - 2015-08-30</title></path><path class="sector day weekday Monday" d="
+M -1025 623.7
+A 1200 1200 0 0 1 -1036 606.0
+L -647.4 378.7
+A 750.0 750.0 0 0 0 -640.7 389.8
+Z"><title>Monday - 2015-08-31</title></path><path class="sector day weekday first Tuesday" d="
+M -1036 606.0
+A 1200 1200 0 0 1 -1046 588.0
+L -653.8 367.5
+A 750.0 750.0 0 0 0 -647.4 378.7
+Z"><title>Tuesday - 2015-09-01</title></path><path class="sector day weekday Wednesday" d="
+M -1046 588.0
+A 1200 1200 0 0 1 -1056 569.9
+L -660.0 356.2
+A 750.0 750.0 0 0 0 -653.8 367.5
+Z"><title>Wednesday - 2015-09-02</title></path><path class="sector day weekday Thursday" d="
+M -1056 569.9
+A 1200 1200 0 0 1 -1066 551.7
+L -666.0 344.8
+A 750.0 750.0 0 0 0 -660.0 356.2
+Z"><title>Thursday - 2015-09-03</title></path><path class="sector day weekday Friday" d="
+M -1066 551.7
+A 1200 1200 0 0 1 -1075 533.3
+L -671.9 333.3
+A 750.0 750.0 0 0 0 -666.0 344.8
+Z"><title>Friday - 2015-09-04</title></path><path class="sector day weekend Saturday" d="
+M -1075 533.3
+A 1200 1200 0 0 1 -1084 514.7
+L -677.5 321.7
+A 750.0 750.0 0 0 0 -671.9 333.3
+Z"><title>Saturday - 2015-09-05</title></path><path class="sector day weekend Sunday" d="
+M -1084 514.7
+A 1200 1200 0 0 1 -1093 495.9
+L -683.0 310.0
+A 750.0 750.0 0 0 0 -677.5 321.7
+Z"><title>Sunday - 2015-09-06</title></path><path class="sector day weekday Monday" d="
+M -1093 495.9
+A 1200 1200 0 0 1 -1101 477.1
+L -688.2 298.2
+A 750.0 750.0 0 0 0 -683.0 310.0
+Z"><title>Monday - 2015-09-07</title></path><path class="sector day weekday Tuesday" d="
+M -1101 477.1
+A 1200 1200 0 0 1 -1109 458.0
+L -693.2 286.3
+A 750.0 750.0 0 0 0 -688.2 298.2
+Z"><title>Tuesday - 2015-09-08</title></path><path class="sector day weekday Wednesday" d="
+M -1109 458.0
+A 1200 1200 0 0 1 -1117 438.9
+L -698.0 274.3
+A 750.0 750.0 0 0 0 -693.2 286.3
+Z"><title>Wednesday - 2015-09-09</title></path><path class="sector day weekday Thursday" d="
+M -1117 438.9
+A 1200 1200 0 0 1 -1124 419.6
+L -702.7 262.2
+A 750.0 750.0 0 0 0 -698.0 274.3
+Z"><title>Thursday - 2015-09-10</title></path><path class="sector day weekday Friday" d="
+M -1124 419.6
+A 1200 1200 0 0 1 -1131 400.2
+L -707.1 250.1
+A 750.0 750.0 0 0 0 -702.7 262.2
+Z"><title>Friday - 2015-09-11</title></path><path class="sector day weekend Saturday" d="
+M -1131 400.2
+A 1200 1200 0 0 1 -1138 380.6
+L -711.3 237.9
+A 750.0 750.0 0 0 0 -707.1 250.1
+Z"><title>Saturday - 2015-09-12</title></path><path class="sector day weekend Sunday" d="
+M -1138 380.6
+A 1200 1200 0 0 1 -1144 361.0
+L -715.3 225.6
+A 750.0 750.0 0 0 0 -711.3 237.9
+Z"><title>Sunday - 2015-09-13</title></path><path class="sector day weekday Monday" d="
+M -1144 361.0
+A 1200 1200 0 0 1 -1150 341.2
+L -719.0 213.3
+A 750.0 750.0 0 0 0 -715.3 225.6
+Z"><title>Monday - 2015-09-14</title></path><path class="sector day weekday Tuesday" d="
+M -1150 341.2
+A 1200 1200 0 0 1 -1156 321.4
+L -722.6 200.9
+A 750.0 750.0 0 0 0 -719.0 213.3
+Z"><title>Tuesday - 2015-09-15</title></path><path class="sector day weekday Wednesday" d="
+M -1156 321.4
+A 1200 1200 0 0 1 -1162 301.4
+L -726.0 188.4
+A 750.0 750.0 0 0 0 -722.6 200.9
+Z"><title>Wednesday - 2015-09-16</title></path><path class="sector day weekday Thursday" d="
+M -1162 301.4
+A 1200 1200 0 0 1 -1167 281.4
+L -729.1 175.9
+A 750.0 750.0 0 0 0 -726.0 188.4
+Z"><title>Thursday - 2015-09-17</title></path><path class="sector day weekday Friday" d="
+M -1167 281.4
+A 1200 1200 0 0 1 -1171 261.3
+L -732.0 163.3
+A 750.0 750.0 0 0 0 -729.1 175.9
+Z"><title>Friday - 2015-09-18</title></path><path class="sector day weekend Saturday" d="
+M -1171 261.3
+A 1200 1200 0 0 1 -1176 241.1
+L -734.7 150.7
+A 750.0 750.0 0 0 0 -732.0 163.3
+Z"><title>Saturday - 2015-09-19</title></path><path class="sector day weekend Sunday" d="
+M -1176 241.1
+A 1200 1200 0 0 1 -1180 220.8
+L -737.2 138.0
+A 750.0 750.0 0 0 0 -734.7 150.7
+Z"><title>Sunday - 2015-09-20</title></path><path class="sector day weekday Monday" d="
+M -1180 220.8
+A 1200 1200 0 0 1 -1183 200.5
+L -739.5 125.3
+A 750.0 750.0 0 0 0 -737.2 138.0
+Z"><title>Monday - 2015-09-21</title></path><path class="sector day weekday Tuesday" d="
+M -1183 200.5
+A 1200 1200 0 0 1 -1186 180.1
+L -741.5 112.5
+A 750.0 750.0 0 0 0 -739.5 125.3
+Z"><title>Tuesday - 2015-09-22</title></path><path class="sector day weekday Wednesday" d="
+M -1186 180.1
+A 1200 1200 0 0 1 -1189 159.6
+L -743.3 99.76
+A 750.0 750.0 0 0 0 -741.5 112.5
+Z"><title>Wednesday - 2015-09-23</title></path><path class="sector day weekday Thursday" d="
+M -1189 159.6
+A 1200 1200 0 0 1 -1192 139.1
+L -744.9 86.95
+A 750.0 750.0 0 0 0 -743.3 99.76
+Z"><title>Thursday - 2015-09-24</title></path><path class="sector day weekday Friday" d="
+M -1192 139.1
+A 1200 1200 0 0 1 -1194 118.6
+L -746.3 74.12
+A 750.0 750.0 0 0 0 -744.9 86.95
+Z"><title>Friday - 2015-09-25</title></path><path class="sector day weekend Saturday" d="
+M -1194 118.6
+A 1200 1200 0 0 1 -1196 98.01
+L -747.5 61.26
+A 750.0 750.0 0 0 0 -746.3 74.12
+Z"><title>Saturday - 2015-09-26</title></path><path class="sector day weekend Sunday" d="
+M -1196 98.01
+A 1200 1200 0 0 1 -1198 77.41
+L -748.4 48.38
+A 750.0 750.0 0 0 0 -747.5 61.26
+Z"><title>Sunday - 2015-09-27</title></path><path class="sector day weekday Monday" d="
+M -1198 77.41
+A 1200 1200 0 0 1 -1199 56.79
+L -749.2 35.49
+A 750.0 750.0 0 0 0 -748.4 48.38
+Z"><title>Monday - 2015-09-28</title></path><path class="sector day weekday Tuesday" d="
+M -1199 56.79
+A 1200 1200 0 0 1 -1199 36.14
+L -749.7 22.59
+A 750.0 750.0 0 0 0 -749.2 35.49
+Z"><title>Tuesday - 2015-09-29</title></path><path class="sector day weekday Wednesday" d="
+M -1199 36.14
+A 1200 1200 0 0 1 -1200 15.49
+L -749.9 9.683
+A 750.0 750.0 0 0 0 -749.7 22.59
+Z"><title>Wednesday - 2015-09-30</title></path><path class="sector day weekday first Thursday" d="
+M -1200 15.49
+A 1200 1200 0 0 1 -1200 -5.164
+L -750.0 -3.228
+A 750.0 750.0 0 0 0 -749.9 9.683
+Z"><title>Thursday - 2015-10-01</title></path><path class="sector day weekday Friday" d="
+M -1200 -5.164
+A 1200 1200 0 0 1 -1200 -25.82
+L -749.8 -16.14
+A 750.0 750.0 0 0 0 -750.0 -3.228
+Z"><title>Friday - 2015-10-02</title></path><path class="sector day weekend Saturday" d="
+M -1200 -25.82
+A 1200 1200 0 0 1 -1199 -46.47
+L -749.4 -29.04
+A 750.0 750.0 0 0 0 -749.8 -16.14
+Z"><title>Saturday - 2015-10-03</title></path><path class="sector day weekend Sunday" d="
+M -1199 -46.47
+A 1200 1200 0 0 1 -1198 -67.10
+L -748.8 -41.94
+A 750.0 750.0 0 0 0 -749.4 -29.04
+Z"><title>Sunday - 2015-10-04</title></path><path class="sector day weekday Monday" d="
+M -1198 -67.10
+A 1200 1200 0 0 1 -1197 -87.71
+L -748.0 -54.82
+A 750.0 750.0 0 0 0 -748.8 -41.94
+Z"><title>Monday - 2015-10-05</title></path><path class="sector day weekday Tuesday" d="
+M -1197 -87.71
+A 1200 1200 0 0 1 -1195 -108.3
+L -746.9 -67.69
+A 750.0 750.0 0 0 0 -748.0 -54.82
+Z"><title>Tuesday - 2015-10-06</title></path><path class="sector day weekday Wednesday" d="
+M -1195 -108.3
+A 1200 1200 0 0 1 -1193 -128.9
+L -745.7 -80.54
+A 750.0 750.0 0 0 0 -746.9 -67.69
+Z"><title>Wednesday - 2015-10-07</title></path><path class="sector day weekday Thursday" d="
+M -1193 -128.9
+A 1200 1200 0 0 1 -1191 -149.4
+L -744.2 -93.36
+A 750.0 750.0 0 0 0 -745.7 -80.54
+Z"><title>Thursday - 2015-10-08</title></path><path class="sector day weekday Friday" d="
+M -1191 -149.4
+A 1200 1200 0 0 1 -1188 -169.8
+L -742.4 -106.2
+A 750.0 750.0 0 0 0 -744.2 -93.36
+Z"><title>Friday - 2015-10-09</title></path><path class="sector day weekend Saturday" d="
+M -1188 -169.8
+A 1200 1200 0 0 1 -1185 -190.3
+L -740.5 -118.9
+A 750.0 750.0 0 0 0 -742.4 -106.2
+Z"><title>Saturday - 2015-10-10</title></path><path class="sector day weekend Sunday" d="
+M -1185 -190.3
+A 1200 1200 0 0 1 -1181 -210.6
+L -738.4 -131.6
+A 750.0 750.0 0 0 0 -740.5 -118.9
+Z"><title>Sunday - 2015-10-11</title></path><path class="sector day weekday Monday" d="
+M -1181 -210.6
+A 1200 1200 0 0 1 -1178 -230.9
+L -736.0 -144.3
+A 750.0 750.0 0 0 0 -738.4 -131.6
+Z"><title>Monday - 2015-10-12</title></path><path class="sector day weekday Tuesday" d="
+M -1178 -230.9
+A 1200 1200 0 0 1 -1173 -251.2
+L -733.4 -157.0
+A 750.0 750.0 0 0 0 -736.0 -144.3
+Z"><title>Tuesday - 2015-10-13</title></path><path class="sector day weekday Wednesday" d="
+M -1173 -251.2
+A 1200 1200 0 0 1 -1169 -271.3
+L -730.6 -169.6
+A 750.0 750.0 0 0 0 -733.4 -157.0
+Z"><title>Wednesday - 2015-10-14</title></path><path class="sector day weekday Thursday" d="
+M -1169 -271.3
+A 1200 1200 0 0 1 -1164 -291.4
+L -727.5 -182.1
+A 750.0 750.0 0 0 0 -730.6 -169.6
+Z"><title>Thursday - 2015-10-15</title></path><path class="sector day weekday Friday" d="
+M -1164 -291.4
+A 1200 1200 0 0 1 -1159 -311.4
+L -724.3 -194.6
+A 750.0 750.0 0 0 0 -727.5 -182.1
+Z"><title>Friday - 2015-10-16</title></path><path class="sector day weekend Saturday" d="
+M -1159 -311.4
+A 1200 1200 0 0 1 -1153 -331.3
+L -720.8 -207.1
+A 750.0 750.0 0 0 0 -724.3 -194.6
+Z"><title>Saturday - 2015-10-17</title></path><path class="sector day weekend Sunday" d="
+M -1153 -331.3
+A 1200 1200 0 0 1 -1147 -351.1
+L -717.2 -219.5
+A 750.0 750.0 0 0 0 -720.8 -207.1
+Z"><title>Sunday - 2015-10-18</title></path><path class="sector day weekday Monday" d="
+M -1147 -351.1
+A 1200 1200 0 0 1 -1141 -370.8
+L -713.3 -231.8
+A 750.0 750.0 0 0 0 -717.2 -219.5
+Z"><title>Monday - 2015-10-19</title></path><path class="sector day weekday Tuesday" d="
+M -1141 -370.8
+A 1200 1200 0 0 1 -1135 -390.4
+L -709.2 -244.0
+A 750.0 750.0 0 0 0 -713.3 -231.8
+Z"><title>Tuesday - 2015-10-20</title></path><path class="sector day weekday Wednesday" d="
+M -1135 -390.4
+A 1200 1200 0 0 1 -1128 -409.9
+L -704.9 -256.2
+A 750.0 750.0 0 0 0 -709.2 -244.0
+Z"><title>Wednesday - 2015-10-21</title></path><path class="sector day weekday Thursday" d="
+M -1128 -409.9
+A 1200 1200 0 0 1 -1121 -429.2
+L -700.4 -268.3
+A 750.0 750.0 0 0 0 -704.9 -256.2
+Z"><title>Thursday - 2015-10-22</title></path><path class="sector day weekday Friday" d="
+M -1121 -429.2
+A 1200 1200 0 0 1 -1113 -448.5
+L -695.7 -280.3
+A 750.0 750.0 0 0 0 -700.4 -268.3
+Z"><title>Friday - 2015-10-23</title></path><path class="sector day weekend Saturday" d="
+M -1113 -448.5
+A 1200 1200 0 0 1 -1105 -467.6
+L -690.7 -292.2
+A 750.0 750.0 0 0 0 -695.7 -280.3
+Z"><title>Saturday - 2015-10-24</title></path><path class="sector day weekend Sunday" d="
+M -1105 -467.6
+A 1200 1200 0 0 1 -1097 -486.5
+L -685.6 -304.1
+A 750.0 750.0 0 0 0 -690.7 -292.2
+Z"><title>Sunday - 2015-10-25</title></path><path class="sector day weekday Monday" d="
+M -1097 -486.5
+A 1200 1200 0 0 1 -1088 -505.3
+L -680.3 -315.8
+A 750.0 750.0 0 0 0 -685.6 -304.1
+Z"><title>Monday - 2015-10-26</title></path><path class="sector day weekday Tuesday" d="
+M -1088 -505.3
+A 1200 1200 0 0 1 -1080 -524.0
+L -674.7 -327.5
+A 750.0 750.0 0 0 0 -680.3 -315.8
+Z"><title>Tuesday - 2015-10-27</title></path><path class="sector day weekday Wednesday" d="
+M -1080 -524.0
+A 1200 1200 0 0 1 -1070 -542.5
+L -669.0 -339.1
+A 750.0 750.0 0 0 0 -674.7 -327.5
+Z"><title>Wednesday - 2015-10-28</title></path><path class="sector day weekday Thursday" d="
+M -1070 -542.5
+A 1200 1200 0 0 1 -1061 -560.8
+L -663.1 -350.5
+A 750.0 750.0 0 0 0 -669.0 -339.1
+Z"><title>Thursday - 2015-10-29</title></path><path class="sector day weekday Friday" d="
+M -1061 -560.8
+A 1200 1200 0 0 1 -1051 -579.0
+L -656.9 -361.9
+A 750.0 750.0 0 0 0 -663.1 -350.5
+Z"><title>Friday - 2015-10-30</title></path><path class="sector day weekend Saturday" d="
+M -1051 -579.0
+A 1200 1200 0 0 1 -1041 -597.0
+L -650.6 -373.1
+A 750.0 750.0 0 0 0 -656.9 -361.9
+Z"><title>Saturday - 2015-10-31</title></path><path class="sector day weekend first Sunday" d="
+M -1041 -597.0
+A 1200 1200 0 0 1 -1031 -614.8
+L -644.1 -384.3
+A 750.0 750.0 0 0 0 -650.6 -373.1
+Z"><title>Sunday - 2015-11-01</title></path><path class="sector day weekday Monday" d="
+M -1031 -614.8
+A 1200 1200 0 0 1 -1020 -632.5
+L -637.4 -395.3
+A 750.0 750.0 0 0 0 -644.1 -384.3
+Z"><title>Monday - 2015-11-02</title></path><path class="sector day weekday Tuesday" d="
+M -1020 -632.5
+A 1200 1200 0 0 1 -1009 -650.0
+L -630.5 -406.2
+A 750.0 750.0 0 0 0 -637.4 -395.3
+Z"><title>Tuesday - 2015-11-03</title></path><path class="sector day weekday Wednesday" d="
+M -1009 -650.0
+A 1200 1200 0 0 1 -997.4 -667.2
+L -623.4 -417.0
+A 750.0 750.0 0 0 0 -630.5 -406.2
+Z"><title>Wednesday - 2015-11-04</title></path><path class="sector day weekday Thursday" d="
+M -997.4 -667.2
+A 1200 1200 0 0 1 -985.8 -684.3
+L -616.1 -427.7
+A 750.0 750.0 0 0 0 -623.4 -417.0
+Z"><title>Thursday - 2015-11-05</title></path><path class="sector day weekday Friday" d="
+M -985.8 -684.3
+A 1200 1200 0 0 1 -973.8 -701.2
+L -608.7 -438.2
+A 750.0 750.0 0 0 0 -616.1 -427.7
+Z"><title>Friday - 2015-11-06</title></path><path class="sector day weekend Saturday" d="
+M -973.8 -701.2
+A 1200 1200 0 0 1 -961.6 -717.8
+L -601.0 -448.6
+A 750.0 750.0 0 0 0 -608.7 -438.2
+Z"><title>Saturday - 2015-11-07</title></path><path class="sector day weekend Sunday" d="
+M -961.6 -717.8
+A 1200 1200 0 0 1 -949.1 -734.3
+L -593.2 -458.9
+A 750.0 750.0 0 0 0 -601.0 -448.6
+Z"><title>Sunday - 2015-11-08</title></path><path class="sector day weekday Monday" d="
+M -949.1 -734.3
+A 1200 1200 0 0 1 -936.4 -750.5
+L -585.2 -469.1
+A 750.0 750.0 0 0 0 -593.2 -458.9
+Z"><title>Monday - 2015-11-09</title></path><path class="sector day weekday Tuesday" d="
+M -936.4 -750.5
+A 1200 1200 0 0 1 -923.3 -766.5
+L -577.1 -479.1
+A 750.0 750.0 0 0 0 -585.2 -469.1
+Z"><title>Tuesday - 2015-11-10</title></path><path class="sector day weekday Wednesday" d="
+M -923.3 -766.5
+A 1200 1200 0 0 1 -910.0 -782.3
+L -568.7 -488.9
+A 750.0 750.0 0 0 0 -577.1 -479.1
+Z"><title>Wednesday - 2015-11-11</title></path><path class="sector day weekday Thursday" d="
+M -910.0 -782.3
+A 1200 1200 0 0 1 -896.4 -797.8
+L -560.2 -498.6
+A 750.0 750.0 0 0 0 -568.7 -488.9
+Z"><title>Thursday - 2015-11-12</title></path><path class="sector day weekday Friday" d="
+M -896.4 -797.8
+A 1200 1200 0 0 1 -882.5 -813.1
+L -551.6 -508.2
+A 750.0 750.0 0 0 0 -560.2 -498.6
+Z"><title>Friday - 2015-11-13</title></path><path class="sector day weekend Saturday" d="
+M -882.5 -813.1
+A 1200 1200 0 0 1 -868.4 -828.2
+L -542.7 -517.6
+A 750.0 750.0 0 0 0 -551.6 -508.2
+Z"><title>Saturday - 2015-11-14</title></path><path class="sector day weekend Sunday" d="
+M -868.4 -828.2
+A 1200 1200 0 0 1 -854.0 -843.0
+L -533.7 -526.9
+A 750.0 750.0 0 0 0 -542.7 -517.6
+Z"><title>Sunday - 2015-11-15</title></path><path class="sector day weekday Monday" d="
+M -854.0 -843.0
+A 1200 1200 0 0 1 -839.3 -857.6
+L -524.6 -536.0
+A 750.0 750.0 0 0 0 -533.7 -526.9
+Z"><title>Monday - 2015-11-16</title></path><path class="sector day weekday Tuesday" d="
+M -839.3 -857.6
+A 1200 1200 0 0 1 -824.5 -871.9
+L -515.3 -545.0
+A 750.0 750.0 0 0 0 -524.6 -536.0
+Z"><title>Tuesday - 2015-11-17</title></path><path class="sector day weekday Wednesday" d="
+M -824.5 -871.9
+A 1200 1200 0 0 1 -809.3 -886.0
+L -505.8 -553.7
+A 750.0 750.0 0 0 0 -515.3 -545.0
+Z"><title>Wednesday - 2015-11-18</title></path><path class="sector day weekday Thursday" d="
+M -809.3 -886.0
+A 1200 1200 0 0 1 -794.0 -899.8
+L -496.2 -562.4
+A 750.0 750.0 0 0 0 -505.8 -553.7
+Z"><title>Thursday - 2015-11-19</title></path><path class="sector day weekday Friday" d="
+M -794.0 -899.8
+A 1200 1200 0 0 1 -778.4 -913.3
+L -486.5 -570.8
+A 750.0 750.0 0 0 0 -496.2 -562.4
+Z"><title>Friday - 2015-11-20</title></path><path class="sector day weekend Saturday" d="
+M -778.4 -913.3
+A 1200 1200 0 0 1 -762.5 -926.6
+L -476.6 -579.1
+A 750.0 750.0 0 0 0 -486.5 -570.8
+Z"><title>Saturday - 2015-11-21</title></path><path class="sector day weekend Sunday" d="
+M -762.5 -926.6
+A 1200 1200 0 0 1 -746.5 -939.6
+L -466.5 -587.2
+A 750.0 750.0 0 0 0 -476.6 -579.1
+Z"><title>Sunday - 2015-11-22</title></path><path class="sector day weekday Monday" d="
+M -746.5 -939.6
+A 1200 1200 0 0 1 -730.2 -952.3
+L -456.4 -595.2
+A 750.0 750.0 0 0 0 -466.5 -587.2
+Z"><title>Monday - 2015-11-23</title></path><path class="sector day weekday Tuesday" d="
+M -730.2 -952.3
+A 1200 1200 0 0 1 -713.7 -964.7
+L -446.0 -602.9
+A 750.0 750.0 0 0 0 -456.4 -595.2
+Z"><title>Tuesday - 2015-11-24</title></path><path class="sector day weekday Wednesday" d="
+M -713.7 -964.7
+A 1200 1200 0 0 1 -697.0 -976.9
+L -435.6 -610.5
+A 750.0 750.0 0 0 0 -446.0 -602.9
+Z"><title>Wednesday - 2015-11-25</title></path><path class="sector day weekday Thursday" d="
+M -697.0 -976.9
+A 1200 1200 0 0 1 -680.0 -988.7
+L -425.0 -617.9
+A 750.0 750.0 0 0 0 -435.6 -610.5
+Z"><title>Thursday - 2015-11-26</title></path><path class="sector day weekday Friday" d="
+M -680.0 -988.7
+A 1200 1200 0 0 1 -662.9 -1000
+L -414.3 -625.2
+A 750.0 750.0 0 0 0 -425.0 -617.9
+Z"><title>Friday - 2015-11-27</title></path><path class="sector day weekend Saturday" d="
+M -662.9 -1000
+A 1200 1200 0 0 1 -645.6 -1012
+L -403.5 -632.2
+A 750.0 750.0 0 0 0 -414.3 -625.2
+Z"><title>Saturday - 2015-11-28</title></path><path class="sector day weekend Sunday" d="
+M -645.6 -1012
+A 1200 1200 0 0 1 -628.1 -1022
+L -392.6 -639.1
+A 750.0 750.0 0 0 0 -403.5 -632.2
+Z"><title>Sunday - 2015-11-29</title></path><path class="sector day weekday Monday" d="
+M -628.1 -1022
+A 1200 1200 0 0 1 -610.4 -1033
+L -381.5 -645.7
+A 750.0 750.0 0 0 0 -392.6 -639.1
+Z"><title>Monday - 2015-11-30</title></path><path class="sector day weekday first Tuesday" d="
+M -610.4 -1033
+A 1200 1200 0 0 1 -592.5 -1044
+L -370.3 -652.2
+A 750.0 750.0 0 0 0 -381.5 -645.7
+Z"><title>Tuesday - 2015-12-01</title></path><path class="sector day weekday Wednesday" d="
+M -592.5 -1044
+A 1200 1200 0 0 1 -574.5 -1054
+L -359.1 -658.5
+A 750.0 750.0 0 0 0 -370.3 -652.2
+Z"><title>Wednesday - 2015-12-02</title></path><path class="sector day weekday Thursday" d="
+M -574.5 -1054
+A 1200 1200 0 0 1 -556.3 -1063
+L -347.7 -664.6
+A 750.0 750.0 0 0 0 -359.1 -658.5
+Z"><title>Thursday - 2015-12-03</title></path><path class="sector day weekday Friday" d="
+M -556.3 -1063
+A 1200 1200 0 0 1 -537.9 -1073
+L -336.2 -670.4
+A 750.0 750.0 0 0 0 -347.7 -664.6
+Z"><title>Friday - 2015-12-04</title></path><path class="sector day weekend Saturday" d="
+M -537.9 -1073
+A 1200 1200 0 0 1 -519.3 -1082
+L -324.6 -676.1
+A 750.0 750.0 0 0 0 -336.2 -670.4
+Z"><title>Saturday - 2015-12-05</title></path><path class="sector day weekend Sunday" d="
+M -519.3 -1082
+A 1200 1200 0 0 1 -500.6 -1091
+L -312.9 -681.6
+A 750.0 750.0 0 0 0 -324.6 -676.1
+Z"><title>Sunday - 2015-12-06</title></path><path class="sector day weekday Monday" d="
+M -500.6 -1091
+A 1200 1200 0 0 1 -481.8 -1099
+L -301.1 -686.9
+A 750.0 750.0 0 0 0 -312.9 -681.6
+Z"><title>Monday - 2015-12-07</title></path><path class="sector day weekday Tuesday" d="
+M -481.8 -1099
+A 1200 1200 0 0 1 -462.8 -1107
+L -289.2 -692.0
+A 750.0 750.0 0 0 0 -301.1 -686.9
+Z"><title>Tuesday - 2015-12-08</title></path><path class="sector day weekday Wednesday" d="
+M -462.8 -1107
+A 1200 1200 0 0 1 -443.7 -1115
+L -277.3 -696.9
+A 750.0 750.0 0 0 0 -289.2 -692.0
+Z"><title>Wednesday - 2015-12-09</title></path><path class="sector day weekday Thursday" d="
+M -443.7 -1115
+A 1200 1200 0 0 1 -424.4 -1122
+L -265.3 -701.5
+A 750.0 750.0 0 0 0 -277.3 -696.9
+Z"><title>Thursday - 2015-12-10</title></path><path class="sector day weekday Friday" d="
+M -424.4 -1122
+A 1200 1200 0 0 1 -405.0 -1130
+L -253.1 -706.0
+A 750.0 750.0 0 0 0 -265.3 -701.5
+Z"><title>Friday - 2015-12-11</title></path><path class="sector day weekend Saturday" d="
+M -405.0 -1130
+A 1200 1200 0 0 1 -385.5 -1136
+L -241.0 -710.2
+A 750.0 750.0 0 0 0 -253.1 -706.0
+Z"><title>Saturday - 2015-12-12</title></path><path class="sector day weekend Sunday" d="
+M -385.5 -1136
+A 1200 1200 0 0 1 -365.9 -1143
+L -228.7 -714.3
+A 750.0 750.0 0 0 0 -241.0 -710.2
+Z"><title>Sunday - 2015-12-13</title></path><path class="sector day weekday Monday" d="
+M -365.9 -1143
+A 1200 1200 0 0 1 -346.2 -1149
+L -216.4 -718.1
+A 750.0 750.0 0 0 0 -228.7 -714.3
+Z"><title>Monday - 2015-12-14</title></path><path class="sector day weekday Tuesday" d="
+M -346.2 -1149
+A 1200 1200 0 0 1 -326.3 -1155
+L -204.0 -721.7
+A 750.0 750.0 0 0 0 -216.4 -718.1
+Z"><title>Tuesday - 2015-12-15</title></path><path class="sector day weekday Wednesday" d="
+M -326.3 -1155
+A 1200 1200 0 0 1 -306.4 -1160
+L -191.5 -725.1
+A 750.0 750.0 0 0 0 -204.0 -721.7
+Z"><title>Wednesday - 2015-12-16</title></path><path class="sector day weekday Thursday" d="
+M -306.4 -1160
+A 1200 1200 0 0 1 -286.4 -1165
+L -179.0 -728.3
+A 750.0 750.0 0 0 0 -191.5 -725.1
+Z"><title>Thursday - 2015-12-17</title></path><path class="sector day weekday Friday" d="
+M -286.4 -1165
+A 1200 1200 0 0 1 -266.3 -1170
+L -166.4 -731.3
+A 750.0 750.0 0 0 0 -179.0 -728.3
+Z"><title>Friday - 2015-12-18</title></path><path class="sector day weekend Saturday" d="
+M -266.3 -1170
+A 1200 1200 0 0 1 -246.1 -1174
+L -153.8 -734.1
+A 750.0 750.0 0 0 0 -166.4 -731.3
+Z"><title>Saturday - 2015-12-19</title></path><path class="sector day weekend Sunday" d="
+M -246.1 -1174
+A 1200 1200 0 0 1 -225.9 -1179
+L -141.2 -736.6
+A 750.0 750.0 0 0 0 -153.8 -734.1
+Z"><title>Sunday - 2015-12-20</title></path><path class="sector day weekday Monday" d="
+M -225.9 -1179
+A 1200 1200 0 0 1 -205.6 -1182
+L -128.5 -738.9
+A 750.0 750.0 0 0 0 -141.2 -736.6
+Z"><title>Monday - 2015-12-21</title></path><path class="sector day weekday Tuesday" d="
+M -205.6 -1182
+A 1200 1200 0 0 1 -185.2 -1186
+L -115.7 -741.0
+A 750.0 750.0 0 0 0 -128.5 -738.9
+Z"><title>Tuesday - 2015-12-22</title></path><path class="sector day weekday Wednesday" d="
+M -185.2 -1186
+A 1200 1200 0 0 1 -164.7 -1189
+L -103.0 -742.9
+A 750.0 750.0 0 0 0 -115.7 -741.0
+Z"><title>Wednesday - 2015-12-23</title></path><path class="sector day weekday Thursday" d="
+M -164.7 -1189
+A 1200 1200 0 0 1 -144.2 -1191
+L -90.16 -744.6
+A 750.0 750.0 0 0 0 -103.0 -742.9
+Z"><title>Thursday - 2015-12-24</title></path><path class="sector day weekday Friday" d="
+M -144.2 -1191
+A 1200 1200 0 0 1 -123.7 -1194
+L -77.33 -746.0
+A 750.0 750.0 0 0 0 -90.16 -744.6
+Z"><title>Friday - 2015-12-25</title></path><path class="sector day weekend Saturday" d="
+M -123.7 -1194
+A 1200 1200 0 0 1 -103.2 -1196
+L -64.47 -747.2
+A 750.0 750.0 0 0 0 -77.33 -746.0
+Z"><title>Saturday - 2015-12-26</title></path><path class="sector day weekend Sunday" d="
+M -103.2 -1196
+A 1200 1200 0 0 1 -82.56 -1197
+L -51.60 -748.2
+A 750.0 750.0 0 0 0 -64.47 -747.2
+Z"><title>Sunday - 2015-12-27</title></path><path class="sector day weekday Monday" d="
+M -82.56 -1197
+A 1200 1200 0 0 1 -61.94 -1198
+L -38.71 -749.0
+A 750.0 750.0 0 0 0 -51.60 -748.2
+Z"><title>Monday - 2015-12-28</title></path><path class="sector day weekday Tuesday" d="
+M -61.94 -1198
+A 1200 1200 0 0 1 -41.31 -1199
+L -25.82 -749.6
+A 750.0 750.0 0 0 0 -38.71 -749.0
+Z"><title>Tuesday - 2015-12-29</title></path><path class="sector day weekday Wednesday" d="
+M -41.31 -1199
+A 1200 1200 0 0 1 -20.66 -1200
+L -12.91 -749.9
+A 750.0 750.0 0 0 0 -25.82 -749.6
+Z"><title>Wednesday - 2015-12-30</title></path><path class="sector day weekday Thursday" d="
+M -20.66 -1200
+A 1200 1200 0 0 1 -2.939e-13 -1200
+L -1.837e-13 -750.0
+A 750.0 750.0 0 0 0 -12.91 -749.9
+Z"><title>Thursday - 2015-12-31</title></path>
+</g><g class="month label monthLabels">
+	<text x="263.6653966338656" y="-964.6142019573972" transform="">Jan</text><text x="699.458255856417" y="-714.6734557224711" transform="">Feb</text><text x="958.7177886596428" y="-284.35928278775174" transform="">Mar</text><text x="972.0340620284547" y="234.83990771685737" transform="">Apr</text><text x="723.1488882057505" y="690.6921785330908" transform="">May</text><text x="279.5421788483837" y="960.1334127321569" transform="">Jun</text><text x="-239.36913768974497" y="970.9286358541847" transform="">Jul</text><text x="-699.9706815708194" y="714.1715794830278" transform="">Aug</text><text x="-963.6623662162946" y="267.1232747972595" transform="">Sep</text><text x="-967.847661721925" y="-251.5370821556981" transform="">Oct</text><text x="-711.6566922670314" y="-702.5274032744544" transform="">Nov</text><text x="-263.6655888221472" y="-964.61414942508" transform="">Dec</text>
+</g><g class="dateLabel">
+	<text x="0" y="-575" class="label yearLabel">2015</text>
+</g><g class="dateLabel">
+	<text x="10" y="575" class="label dateLabel">10-21</text>
+</g>
+<g class="hands">
+	<path id="" class="yearHand" d="
+M 12 160
+L -12 160
+L 0, -800
+Z
+M 30 0
+A 30,30 0 1 1 -30,00
+A 30,30 0 1 1 30,00" transform="rotate(289.4794520547945,0,0)"></path>
+
+</g></svg>
