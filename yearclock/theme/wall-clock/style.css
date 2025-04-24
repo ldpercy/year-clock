@@ -69,7 +69,7 @@ svg#clock .monthLabels text{
 }
 
 
-svg#clock .label.dateText {
+svg#clock .label.dateLabel {
 	fill: black;
 	text-anchor: middle;
 	font-size: 5em;

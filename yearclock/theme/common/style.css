@@ -19,7 +19,7 @@
 	dominant-baseline: middle;
 }
 
-.label.dateText {
+.label.dateLabel {
 	text-anchor: middle;
 	font-size: 5em;
 	dominant-baseline: central;

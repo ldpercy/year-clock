@@ -21,6 +21,13 @@ theme.clock.monthLabel.invert = true;
 
 
 
+//
+// formatting functions
+//
+
+function formatMonth(name) { return name }
+function formatDateLabel(date) { return date.getFullYear() }
+
 
 /* Draw Clock
 */
@@ -84,7 +91,7 @@ theme.clock.drawMonthLabels = function() {
 }/* drawMonthLabels */
 
 
-function formatMonth(name) { return name }
+
 
 
 /* drawYearDayTicks
@@ -178,8 +185,8 @@ theme.clock.drawDateLabel = function(date) {
 	}
 
 	const svg =
-		`<g class="dateText">
-			<text x="${x}" y="${y}" class="label dateText">${date.getFullYear()}</text>
+		`<g class="dateLabel">
+			<text x="${x}" y="${y}" class="label dateLabel">${formatDateLabel(date)}</text>
 		</g>`;
 
 	theme.clock.element.innerHTML += svg;
@@ -190,8 +197,8 @@ theme.clock.drawDateLabel = function(date) {
 */
 theme.clock.drawYearLabel = function(date, point) {
 	const svg =
-		`<g class="dateText">
-			<text x="${point.x}" y="${point.y}" class="label dateText">${date.getFullYear()}</text>
+		`<g class="dateLabel">
+			<text x="${point.x}" y="${point.y}" class="label yearLabel">${date.getFullYear()}</text>
 		</g>`;
 	theme.clock.element.innerHTML += svg;
 }/* drawYearLabel */
