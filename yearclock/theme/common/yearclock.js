@@ -250,3 +250,72 @@ theme.clock.getHandPath = function(length, transform, cssClass, id) {
 }
 
 
+
+
+
+/* drawPeriodDaySectors
+*/
+theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd) {
+
+	log('drawPeriodDaySectors');
+	const periodDaySectors = theme.clock.getPeriodDaySectors(periodArray, radiusStart, radiusEnd);
+	theme.clock.element.innerHTML += `
+		<g class="periodSectors ${name}">
+			${periodDaySectors}
+		</g>`;
+}/* drawPeriodDaySectors */
+
+
+/* getPeriodDaySectors
+*/
+theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) {
+	// log('getPeriodDaySectors');
+
+	let result = '';
+	let markerClass = '';
+	let markerLine;
+	let markerSvg = '';
+	let sectorPath = '';
+
+	for (let day of periodArray)
+	{
+		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
+
+		if (day.isWeekend)
+		{
+			markerClass = 'weekend';
+		}
+		else // day.isWeekday
+		{
+			markerClass = 'weekday';
+		}
+
+		if (day.isFirst) // Draw an extra line for firsts of the month
+		{
+			markerClass += ' first';
+		}
+		//log(day);
+		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
+
+		result += sectorSvg;
+	}
+
+	return result;
+}/* getPeriodDaySectors */
+
+
+
+theme.clock.drawSeasonSectors = function(seasonArray, radiusStart, radiusEnd) {
+
+	let newSvg = '';
+	for (let season of seasonArray)
+	{
+		//const seasonRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
+
+		const sectorPath = sector(season.radians.start, season.radians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path d="${sectorPath}" class="sector ${season.name}"></path>`;
+		newSvg += sectorSvg;
+	}
+	theme.clock.element.innerHTML += `<g class="season">${newSvg}</g>`;
+}
