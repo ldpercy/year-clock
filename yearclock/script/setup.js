@@ -4,7 +4,7 @@
 
 console.clear();
 log = createLog();
-log('setup.js')
+log('--- setup.js ---')
 
 
 // Year-clock general configuration
@@ -16,6 +16,7 @@ const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 	defaultTheme    : 'plain-svg',
+	locale          : 'en'           // THe internal locale used for month and day names in classes
 };
 
 
@@ -43,7 +44,7 @@ function setup() {
 	config.date.month      = config.date.object.getMonth() + 1;		// js month starts at 0
 	config.date.date       = config.date.object.getDate();
 	config.date.dayOfYear  = dayOfYear(config.date.object);
-	config.date.daysInYear = undefined;
+	config.date.daysInYear = daysInYear(config.date.year);
 	log('config.date.object:', config.date.object);
 
 
@@ -81,8 +82,8 @@ function setup() {
 
 	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object));
 	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object));
-
-	config.date.daysInYear = config.yearDayArray.length;
+	config.seasonArray   = getSeasonArray(config.date.object);
+	//log(config.seasonArray);
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
@@ -155,13 +156,12 @@ function setTheme(){
 	}
 
 	const clockElement = document.getElementById('clock');
-	log(clockElement);
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
-	log('Before drawClock');
+	log('--- Before drawClock ---');
 	theme.clock.drawClock(clockElement);
-	log('After drawClock');
+	log('--- After drawClock ---');
 }/* setTheme */
 
 

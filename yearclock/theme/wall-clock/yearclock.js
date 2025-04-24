@@ -7,10 +7,10 @@ theme.clock.clockRadius       = 1200,
 theme.clock.innerRadius       = 1000;
 theme.clock.outerRadius       = 1150;
 theme.clock.monthLabelRadius  = 920;
-theme.clock.weekdayTickLength = 40;
-theme.clock.weekendTickLength = 55;
+theme.clock.weekdayMarkerLength = 40;
+theme.clock.weekendMarkerLength = 55;
 
-theme.clock.dateLabel         = new Point(0,430);
+theme.clock.dateLabelPosition         = new Point(0,430);
 
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.sectorPosition = 0;
@@ -33,7 +33,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawMonthLabels();
 	//theme.clock.drawYearDayTicks();
 	theme.clock.drawMonthDayTicks();
-	theme.clock.drawDateText(config.date.object);
+	theme.clock.drawDateLabel(config.date.object);
 
 	theme.clock.drawHands(drawMonthHand=true);
 

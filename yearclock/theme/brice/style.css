@@ -56,7 +56,7 @@ svg#clock .label text {
 	stroke: none;
 }
 
-svg#clock .label.dateText {
+svg#clock .label.dateLabel {
 	fill: silver;
 	stroke:none;
 	text-anchor: middle;

@@ -9,10 +9,10 @@ theme.clock.clockRadius       = 1200;
 theme.clock.outerRadius       = 1120;
 theme.clock.innerRadius       = 930;
 theme.clock.monthLabelRadius  = 985;
-theme.clock.weekdayTickLength = 40;
-theme.clock.weekendTickLength = 55;
+theme.clock.weekdayMarkerLength = 40;
+theme.clock.weekendMarkerLength = 55;
 theme.clock.yearHandLength    = 1030;
-theme.clock.dateLabel         = 500;
+theme.clock.dateLabelPosition         = 500;
 
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.sectorPosition = 0.5;
@@ -20,6 +20,13 @@ theme.clock.monthLabel.rotate = true;
 theme.clock.monthLabel.invert = true;
 
 
+
+//
+// formatting functions
+//
+
+function formatMonth(name) { return name }
+function formatDateLabel(date) { return date.getFullYear() }
 
 
 /* Draw Clock
@@ -32,7 +39,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearDayTicks();
-	theme.clock.drawDateText(config.date.object);
+	theme.clock.drawDateLabel(config.date.object);
 	theme.clock.drawHands();
 }/* drawClock */
 
@@ -44,11 +51,11 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonthSectors = function() {
+theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius) {
 	let newSvg = '';
 	for (let month of config.months)
 	{
-		const sectorPath = sector(month.radiansStart, month.radiansEnd, theme.clock.innerRadius, theme.clock.outerRadius );
+		const sectorPath = sector(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
 		newSvg += sectorSvg;
 	}
@@ -74,9 +81,7 @@ theme.clock.drawMonthLabels = function() {
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
-			`<text x="${center.x}" y="${center.y}" transform="${transform}">
-				${formatMonth(month.name)}
-			</text>`;
+			`<text x="${center.x}" y="${center.y}" transform="${transform}">${formatMonth(month.name)}</text>`;
 		newSvg += labelSvg;
 	}
 	theme.clock.element.innerHTML +=
@@ -86,7 +91,7 @@ theme.clock.drawMonthLabels = function() {
 }/* drawMonthLabels */
 
 
-function formatMonth(name) { return name }
+
 
 
 /* drawYearDayTicks
@@ -115,12 +120,12 @@ theme.clock.drawMonthDayTicks = function() {
 
 
 
-/* drawPeriodDayTicks
+/* getPeriodDayTicks
 */
 theme.clock.getPeriodDayTicks = function(periodArray) {
 
-	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayTickLength;
-	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendTickLength
+	const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayMarkerLength;
+	const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendMarkerLength
 
 	let result = '';
 	let tickClass = '';
@@ -161,32 +166,43 @@ theme.clock.getPeriodDayTicks = function(periodArray) {
 
 
 
-/* drawDateText
+/* drawDateLabel
 */
-theme.clock.drawDateText = function(date) {
+theme.clock.drawDateLabel = function(date) {
 	let x,y;
 
-	if (theme.clock.dateLabel instanceof Point)
+	if (theme.clock.dateLabelPosition instanceof Point)
 	{
-		log(theme.clock.dateLabel);
-		x = theme.clock.dateLabel.x;
-		y = theme.clock.dateLabel.y;
+		x = theme.clock.dateLabelPosition.x;
+		y = theme.clock.dateLabelPosition.y;
 	}
 	else
 	{
 		const yearOnLeft = dateRatio(date) < 0.5
 		const labelSide = yearOnLeft ? -1 : 1
-		x = theme.clock.dateLabel * labelSide;
+		x = theme.clock.dateLabelPosition * labelSide;
 		y = 0;
 	}
 
 	const svg =
-		`<g class="dateText">
-			<text x="${x}" y="${y}" class="label dateText">${date.getFullYear()}</text>
+		`<g class="dateLabel">
+			<text x="${x}" y="${y}" class="label dateLabel">${formatDateLabel(date)}</text>
 		</g>`;
 
 	theme.clock.element.innerHTML += svg;
-}
+}/* drawDateLabel */
+
+
+/* drawYearLabel
+*/
+theme.clock.drawYearLabel = function(date, point) {
+	const svg =
+		`<g class="dateLabel">
+			<text x="${point.x}" y="${point.y}" class="label yearLabel">${date.getFullYear()}</text>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}/* drawYearLabel */
+
 
 
 /* drawHands
@@ -234,3 +250,72 @@ theme.clock.getHandPath = function(length, transform, cssClass, id) {
 }
 
 
+
+
+
+/* drawPeriodDaySectors
+*/
+theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd) {
+
+	log('drawPeriodDaySectors');
+	const periodDaySectors = theme.clock.getPeriodDaySectors(periodArray, radiusStart, radiusEnd);
+	theme.clock.element.innerHTML += `
+		<g class="periodSectors ${name}">
+			${periodDaySectors}
+		</g>`;
+}/* drawPeriodDaySectors */
+
+
+/* getPeriodDaySectors
+*/
+theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) {
+	// log('getPeriodDaySectors');
+
+	let result = '';
+	let markerClass = '';
+	let markerLine;
+	let markerSvg = '';
+	let sectorPath = '';
+
+	for (let day of periodArray)
+	{
+		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
+
+		if (day.isWeekend)
+		{
+			markerClass = 'weekend';
+		}
+		else // day.isWeekday
+		{
+			markerClass = 'weekday';
+		}
+
+		if (day.isFirst) // Draw an extra line for firsts of the month
+		{
+			markerClass += ' first';
+		}
+		//log(day);
+		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
+
+		result += sectorSvg;
+	}
+
+	return result;
+}/* getPeriodDaySectors */
+
+
+
+theme.clock.drawSeasonSectors = function(seasonArray, radiusStart, radiusEnd) {
+
+	let newSvg = '';
+	for (let season of seasonArray)
+	{
+		//const seasonRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
+
+		const sectorPath = sector(season.radians.start, season.radians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path d="${sectorPath}" class="sector ${season.name}"></path>`;
+		newSvg += sectorSvg;
+	}
+	theme.clock.element.innerHTML += `<g class="season">${newSvg}</g>`;
+}

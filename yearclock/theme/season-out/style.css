@@ -1,0 +1,121 @@
+/*
+** sector-day theme styles
+*/
+
+
+:root {
+	--white: #eee7;
+	--lightgrey: #eee7;
+	--darkgrey: #aaa7;
+	--labelblack: #000f;
+	--shadow: #aaaf;
+	--yearhand: darkorange;
+}
+
+
+svg#clock {
+	background-color: seashell;
+	font-size: 36px;
+	font-family: monospace;
+}
+
+
+
+svg#clock .face   {
+	fill: white;
+	stroke: none;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+
+* {
+	stroke: var(--darkgrey);
+	stroke-width: 1px;
+}
+
+
+.month .sector:nth-of-type(odd)
+{
+	fill: var(--darkgrey);
+}
+
+
+.month .sector:nth-of-type(even)
+{
+	fill: var(--lightgrey);
+}
+
+
+.season .sector.Summer { fill: #f004 }
+.season .sector.Autumn { fill: #ff04 }
+.season .sector.Winter { fill: #00f4 }
+.season .sector.Spring { fill: #0f04 }
+
+
+
+.yearDays .sector.day.weekend {
+	fill: var(--darkgrey);
+}
+
+
+
+.sector.day.Monday, .sector.day.Wednesday, .sector.day.Friday {
+	fill: var(--white);
+}
+
+.sector.day.Tuesday, .sector.day.Thursday {
+	fill: var(--lightgrey);
+}
+
+
+.yearDays .sector.day:hover {
+	fill: red;
+	stroke-width: 5;
+}
+
+
+
+svg#clock .monthLabels text{
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: var(--labelblack);
+	font-size: 7ex;
+	font-variant: small-caps;
+	filter: drop-shadow(0ex 0ex 0.4ex white);
+}
+
+
+.label.dateLabel, .label.yearLabel {
+	fill: var(--labelblack);
+	text-anchor: middle;
+	font-size: 10ex;
+	dominant-baseline: central;
+	filter: drop-shadow(0ex 0ex 0.4ex white);
+}
+
+svg#clock .label.dateLabel {
+	font-size: 8ex;
+}
+
+
+svg#clock .hands {
+	filter: drop-shadow(0px 20px 10px var(--shadow));
+}
+
+
+svg#clock path.yearHand  {
+	stroke: var(--yearhand);
+	fill: var(--yearhand);
+	stroke-width: 25;
+	stroke-linejoin: round;
+}
+
+/*
+svg#clock path.monthHand  {
+	stroke:dimgrey;
+	fill: dimgrey;
+	stroke-width: 15;
+	stroke-linejoin: round;
+}
+*/
