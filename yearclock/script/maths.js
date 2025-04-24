@@ -157,13 +157,14 @@ Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-function getPeriodDayArray(startDate, endDate) {
+function getPeriodDayArray(startDate, endDate, locale=config.locale) {
 	const result = [];
 
 	let dayCounter = 1;
 	for (let thisDate = new Date(startDate); thisDate < endDate; incrementDay(thisDate))
 	{
 		const dayInfo = {
+			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
 			dayOfPeriod  : dayCounter,
 			dayOfMonth   : thisDate.getDate(),
 			dayOfYear    : dayOfYear(thisDate),

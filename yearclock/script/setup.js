@@ -16,6 +16,7 @@ const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 	defaultTheme    : 'plain-svg',
+	locale          : 'en'           // THe internal locale used for month and day names in classes
 };
 
 
