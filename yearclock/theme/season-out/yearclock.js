@@ -47,7 +47,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.element = clockElement;
 	theme.clock.drawFace();
 
-	theme.clock.drawSeasonSectors(config.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
+	theme.clock.drawSectors('season', config.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
 
 	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 

@@ -306,16 +306,15 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 
 
 
-theme.clock.drawSeasonSectors = function(seasonArray, radiusStart, radiusEnd) {
+theme.clock.drawSectors = function(name, sectorArray, radiusStart, radiusEnd) {
 
 	let newSvg = '';
-	for (let season of seasonArray)
+	for (let sector of sectorArray)
 	{
-		//const seasonRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
-
-		const sectorPath = sector(season.radians.start, season.radians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path d="${sectorPath}" class="sector ${season.name}"></path>`;
+		const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path d="${sectorPath}" class="sector ${sector.name}"></path>`;
 		newSvg += sectorSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="season">${newSvg}</g>`;
+	theme.clock.element.innerHTML += `<g class="${name}">${newSvg}</g>`;
 }
+
