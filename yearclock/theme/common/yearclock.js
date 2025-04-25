@@ -55,7 +55,7 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 	let newSvg = '';
 	for (let month of config.months)
 	{
-		const sectorPath = sector(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
+		const sectorPath = getSectorPath(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
 		newSvg += sectorSvg;
 	}
@@ -295,7 +295,7 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 			markerClass += ' first';
 		}
 		//log(day);
-		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
+		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
 		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
 
 		result += sectorSvg;

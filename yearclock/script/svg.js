@@ -20,7 +20,7 @@ function radialLine(angle, startRadius, endRadius) {
 }
 
 
-function sector(startAngle, endAngle, innerRadius, outerRadius)
+function getSectorPath(startAngle, endAngle, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(startAngle, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
