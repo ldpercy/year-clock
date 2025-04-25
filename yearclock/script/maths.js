@@ -254,3 +254,39 @@ function getSeasonArray(date) {
 }/* getSeasonArray */
 
 
+/* getQuarterArray
+*/
+function getQuarterArray(date) {
+
+	const year = date.getFullYear();
+
+	const quarterArray = [
+		{
+			name:      'Q1',
+			dateStart: new Date(year,0,1),
+			dateEnd:   new Date(year,3,1),
+		},
+		{
+			name:      'Q2',
+			dateStart: new Date(year,3,1),
+			dateEnd:   new Date(year,6,1),
+		},
+		{
+			name:      'Q3',
+			dateStart: new Date(year,6,1),
+			dateEnd:   new Date(year,9,1),
+		},
+		{
+			name:      'Q4',
+			dateStart: new Date(year,9,1),
+			dateEnd:   new Date(year,12,1),
+		},
+	];
+
+	for (let quarter of quarterArray) {
+		quarter.radians = dateRangeRadians(year, dayOfYear(quarter.dateStart), dayOfYear(quarter.dateEnd));
+	}
+
+	return quarterArray;
+}/* getQuarterArray */
+
