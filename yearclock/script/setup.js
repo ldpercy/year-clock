@@ -15,7 +15,7 @@ const config = {
 	days            : [],            // array of day information
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
-	defaultTheme    : 'plain-svg',
+	defaultTheme    : 'season-out',
 	locale          : 'en'           // THe internal locale used for month and day names in classes
 };
 
