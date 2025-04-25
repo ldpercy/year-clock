@@ -3,19 +3,18 @@ Year Clock
 
 A bit like a regular analog clock, but instead of the regular 12 hour divisions it has the 12 months of the year.
 
-The 'hour hand' points to the time of year.
+The 'hour hand' points to the time of year. In the second example the 'minute hand' points to the time of month.
 
 <p align="middle">
 	<img src="image/example3.svg" alt="Year clock example 3" width="40%"/>
 	<img src="image/example4.svg" alt="Year clock example 4" width="40%" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
 </p>
 
-In the second example the 'minute hand' points to the time of month.
-
+Click through to the raw for this example to show hovers and tooltips on the day sectors:
 <p align="middle">
 <img src="image/example5.svg" alt="Year clock example 4" width="50%" title="yearclock.html?theme=season-out&date=2015-10-21"/>
 </p>
-Click through to the raw on this example for some simple hovers on the day sectors.
+
 
 
 Prior and current art
