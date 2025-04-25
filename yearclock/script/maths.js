@@ -120,9 +120,7 @@ function nextMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1,1);
 }
 
-
-function isWeekend(d)
-{
+function isWeekend(d) {
 	const dayNumber = d.getDay()
 	return dayNumber == 0 || dayNumber == 6
 }
@@ -290,3 +288,37 @@ function getQuarterArray(date) {
 	return quarterArray;
 }/* getQuarterArray */
 
+
+
+/* getPeriodWeekArray
+*/
+function getPeriodWeekArray(dateStart, dateEnd) {
+
+	weekArray = [
+		{
+			name:      '',
+			dateStart: new Date(dateStart),
+			dateEnd:   new Date(dateEnd),
+			radians:   undefined,
+		}
+	];
+
+	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
+	{
+		if (thisDate.getDay() = 0)
+		{
+			/*
+			weekArray.append(
+				{
+					name:      'Q4',
+					dateStart: new Date(year,9,1),
+					dateEnd:   new Date(year,12,1),
+
+				}
+			);
+			*/
+		}
+	}
+
+	return weekArray;
+}/* getPeriodWeekArray */
