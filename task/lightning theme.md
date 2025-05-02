@@ -53,3 +53,8 @@ Turns out there's a standard week system, and that sometimes the first few days 
 Not sure what I want to do about that - for my needs I'd rather just have everything start at 1 (or zero) and count up from there incrementing every time a Monday rolls around.
 
 Will sit on it for a bit.
+
+### Start with a basic array
+
+For now I'll start with a basic array and leave ISO week support for a later task.
+
