@@ -290,39 +290,47 @@ function getQuarterArray(date) {
 
 
 
-/* getPeriodWeekArray
+/* getYearWeekArray
 */
-function getPeriodWeekArray(dateStart, dateEnd) {
+function getYearWeekArray(date) {
+
+	let dateStart   = startOfYear(config.date.object);
+	let dateEnd     = nextYear(config.date.object);
 
 	let weekNumber = 1;
 
 	let weekArray = [
 		{
 			name:      `${weekNumber}`,
-			dateStart: new Date(dateStart),
-			dateEnd:   new Date(dateEnd),
+			dateStart: dateStart,
+			dateEnd:   dateEnd,
 			radians:   undefined,
 		}
 	];
 
 	log(weekNumber);
 
-
 	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
 	{
-		log(thisDate);
-		// if (thisDate.getDay() == 0)
-		// {
-		// 	weekNumber++;
-		// 	weekArray.append({
-		// 		name:      '${weekNumber}',
-		// 		dateStart: new Date(thisDate),
-		// 		dateEnd:   new Date(new Date().setDate(thisDate.getDate() + 7)),
-		// 		radians: undefined,
-		// 	});
-		//}
+		//log(thisDate);
+		if (thisDate.getDay() === 1)
+		{
+			weekArray[weekArray.length-1].dateEnd = new Date(thisDate);
+
+			weekNumber++;
+
+			weekArray.push({
+				name:      `${weekNumber}`,
+				dateStart: new Date(thisDate),
+				radians: undefined,
+			});
+		}
+	}
+	weekArray[weekArray.length-1].dateEnd = dateEnd;
+
+	for (let week of weekArray) {
+		week.radians = dateRangeRadians(date.getFullYear(), dayOfYear(week.dateStart), dayOfYear(week.dateEnd));
 	}
 
-
 	return weekArray;
-}/* getPeriodWeekArray */
+}/* getYearWeekArray */
