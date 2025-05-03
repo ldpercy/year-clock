@@ -10,6 +10,8 @@
 	--labelblack: #000f;
 	--shadow: #aaaf;
 	--yearhand: darkorange;
+	--hover: red;
+
 }
 
 
@@ -68,9 +70,8 @@ svg#clock .face   {
 	fill: var(--lightgrey);
 }
 
-
 .sector:hover {
-	stroke: red;
+	stroke: var(--hover);
 	stroke-width: 5;
 	paint-order: fill;
 }
