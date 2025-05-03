@@ -313,7 +313,7 @@ theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusE
 	for (let sector of sectorArray)
 	{
 		const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name}"><title>${formatSector(sectorType,sector)}</title></path>`;
+		sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSector(sectorType,sector)}</title></path>`;
 		newSvg += sectorSvg;
 	}
 	theme.clock.element.innerHTML += `<g class="${sectorType}">${newSvg}</g>`;

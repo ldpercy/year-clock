@@ -226,26 +226,35 @@ function getSeasonArray(date) {
 			name:      'Summer',
 			dateStart: new Date(year,11,1),
 			dateEnd:   new Date(year,2,1),
+			radians:   undefined,
+			class:     '',
 		},
 		{
 			name:      'Autumn',
 			dateStart: new Date(year,2,1),
 			dateEnd:   new Date(year,5,1),
+			radians:   undefined,
+			class:     '',
 		},
 		{
 			name:      'Winter',
 			dateStart: new Date(year,5,1),
 			dateEnd:   new Date(year,8,1),
+			radians:   undefined,
+			class:     '',
 		},
 		{
 			name:      'Spring',
 			dateStart: new Date(year,8,1),
 			dateEnd:   new Date(year,11,1),
+			radians:   undefined,
+			class:     '',
 		},
 	];
 
 	for (let season of seasonArray) {
 		season.radians = dateRangeRadians(year, dayOfYear(season.dateStart), dayOfYear(season.dateEnd));
+		season.class = (dateIsInPeriod(date, season.dateStart, season.dateEnd)) ? 'current' : '';
 	}
 
 	return seasonArray;
@@ -263,26 +272,35 @@ function getQuarterArray(date) {
 			name:      'Q1',
 			dateStart: new Date(year,0,1),
 			dateEnd:   new Date(year,3,1),
+			radians:   undefined,
+			class:     '',
 		},
 		{
 			name:      'Q2',
 			dateStart: new Date(year,3,1),
 			dateEnd:   new Date(year,6,1),
+			radians:   undefined,
+			class:     '',
 		},
 		{
 			name:      'Q3',
 			dateStart: new Date(year,6,1),
 			dateEnd:   new Date(year,9,1),
+			radians:   undefined,
+			class:     '',
 		},
 		{
 			name:      'Q4',
 			dateStart: new Date(year,9,1),
 			dateEnd:   new Date(year,12,1),
+			radians:   undefined,
+			class:     '',
 		},
 	];
 
 	for (let quarter of quarterArray) {
 		quarter.radians = dateRangeRadians(year, dayOfYear(quarter.dateStart), dayOfYear(quarter.dateEnd));
+		quarter.class = (dateIsInPeriod(date, quarter.dateStart, quarter.dateEnd)) ? 'current' : '';
 	}
 
 	return quarterArray;
@@ -305,6 +323,7 @@ function getYearWeekArray(date) {
 			dateStart: dateStart,
 			dateEnd:   dateEnd,
 			radians:   undefined,
+			class:     '',
 		}
 	];
 
@@ -321,8 +340,9 @@ function getYearWeekArray(date) {
 
 			weekArray.push({
 				name:      `${weekNumber}`,
-				dateStart: new Date(thisDate),
-				radians: undefined,
+				dateStart:  new Date(thisDate),
+				radians:    undefined,
+				class:      '',
 			});
 		}
 	}
@@ -330,6 +350,7 @@ function getYearWeekArray(date) {
 
 	for (let week of weekArray) {
 		week.radians = dateRangeRadians(date.getFullYear(), dayOfYear(week.dateStart), dayOfYear(week.dateEnd));
+		week.class = (dateIsInPeriod(date, week.dateStart, week.dateEnd)) ? 'current' : '';
 	}
 
 	return weekArray;
