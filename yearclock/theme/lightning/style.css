@@ -4,71 +4,78 @@
 
 /* clock basics */
 :root {
+	--background: seashell;
+	--clockface: white;
 	--white: #eee7;
-	--lightgrey: #eee7;
-	--darkgrey: #aaa7;
-	--labelblack: #000f;
+
+	--sectorLight: #eee7;
+	--sectorDark: #aaa7;
+	--sectorStroke: #9997;
+
+	--textColour: #000f;
+	--textStroke: #1117;
+	--textShadow: white;
+
 	--shadow: #aaaf;
 	--yearhand: darkorange;
+
 	--current: #ff0e;
+	--currentOutline: yellow;
+
 	--hover: red;
 }
 
 
 svg#clock {
-	background-color: seashell;
+	background-color: var(--background);
 	font-size: 36px;
 	font-family: monospace;
 }
 
 
 svg#clock .face   {
-	fill: white;
+	fill: var(--clockface);
 	stroke: none;
 	stroke-width: 10;
 	filter: drop-shadow(0px 10px 10px gray);
 }
 
 
-* {
-	stroke: var(--darkgrey);
+path.sector {
+	stroke: var(--sectorStroke);
 	stroke-width: 1px;
 }
 
 
-/* quarter and month sectors */
-
-.quarter .sector:nth-of-type(odd),
-.month .sector:nth-of-type(even),
-.week .sector:nth-of-type(even)
-{
-	fill: var(--lightgrey);
-}
+/* Sectors: quarter, month, week  */
 
 .quarter .sector:nth-of-type(even),
 .month .sector:nth-of-type(odd),
+.week .sector:nth-of-type(even)
+{
+	fill: var(--sectorDark);
+}
+
+.quarter .sector:nth-of-type(odd),
+.month .sector:nth-of-type(even),
 .week .sector:nth-of-type(odd)
 {
-	fill: var(--darkgrey);
+	fill: var(--sectorLight);
 }
 
 
 
 /* days */
-
-.yearDays .sector.day.weekend {
-	fill: var(--darkgrey);
+.sector.day.weekend {
+	fill: var(--sectorDark);
 }
 
-.sector.day.Monday, .sector.day.Wednesday, .sector.day.Friday {
-	fill: var(--white);
-}
-
-.sector.day.Tuesday, .sector.day.Thursday {
-	fill: var(--lightgrey);
+.sector.day.weekday {
+	fill: var(--sectorLight);
 }
 
 
+/* Current date highlights */
 
 .quarter path.sector.current,
 .month path.sector.current,
@@ -76,11 +83,12 @@ svg#clock .face   {
 .day path.sector.current
 {
 	fill: var(--current);
-	/* stroke: var(--current); */
-	/* paint-order: fill; */
+	stroke: var(--currentOutline);
+	filter: drop-shadow(0ex 0ex 0.5ex var(--currentOutline));
+	paint-order: fill;
 }
 
-.sector:hover {
+.sector:hover, path.sector.current:hover {
 	stroke: var(--hover);
 	stroke-width: 5;
 	paint-order: fill;
@@ -90,19 +98,19 @@ svg#clock .face   {
 svg#clock .monthLabels text{
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: var(--labelblack);
+	fill: var(--textColour);
 	font-size: 4ex;
 	font-variant: small-caps;
-	filter: drop-shadow(0ex 0ex 0.4ex white);
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textShadow));
 }
 
 
 .label.dateLabel, .label.yearLabel {
-	fill: var(--labelblack);
+	fill: var(--textColour);
 	text-anchor: middle;
 	font-size: 10ex;
 	dominant-baseline: central;
-	filter: drop-shadow(0ex 0ex 0.4ex white);
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textShadow));
 }
 
 svg#clock .label.dateLabel {

@@ -1,0 +1,52 @@
+/*
+** Lightning theme - Dark styles
+*/
+
+
+:root {
+	--background: #223f;
+	--clockface: #111f;
+
+	--sectorLight: #4447;
+	--sectorDark: #2227;
+	--sectorStroke: #eee7;
+
+	--textColour: #eeef;
+	--textStroke: black;
+	--textShadow: #1117;
+
+	--shadow: #aaaf;
+	--yearhand: darkorange;
+
+	--current: #ff0e;
+	--currentOutline: yellow;
+
+	--hover: red;
+}
+
+
+/* Sectors: quarter, month, week  */
+
+.quarter .sector:nth-of-type(even),
+.month .sector:nth-of-type(odd),
+.week .sector:nth-of-type(even),
+.sector.day.weekend
+{
+	fill: var(--sectorLight);
+}
+
+.quarter .sector:nth-of-type(odd),
+.month .sector:nth-of-type(even),
+.week .sector:nth-of-type(odd),
+.sector.day.weekday
+{
+	fill: var(--sectorDark);
+}
+
+
+.label.dateLabel, .label.yearLabel {
+	fill: var(--textColour);
+	stroke: var(--textStroke);
+	stroke-width: 3px;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textShadow));
+}
