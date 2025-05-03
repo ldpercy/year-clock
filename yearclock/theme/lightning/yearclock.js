@@ -7,14 +7,17 @@ theme.clock.viewBox           = padViewBox(75);
 theme.clock.clockRadius        = 1250;
 
 
-theme.clock.quarterRadiusStart = 0;
-theme.clock.quarterRadiusEnd   = 300;
-theme.clock.monthRadiusStart  = 300;
-theme.clock.monthRadiusEnd    = 600;
-theme.clock.weekRadiusStart   = 600;
-theme.clock.weekRadiusEnd     = 900;
-theme.clock.dayRadiusStart    = 900;
-theme.clock.dayRadiusEnd      = 1200;
+theme.clock.overlap = 10;
+
+
+theme.clock.quarterRadiusStart  = 0;
+theme.clock.quarterRadiusEnd    = 300 + theme.clock.overlap;
+theme.clock.monthRadiusStart    = 300 - theme.clock.overlap;
+theme.clock.monthRadiusEnd      = 600 + theme.clock.overlap;
+theme.clock.weekRadiusStart     = 600 - theme.clock.overlap;
+theme.clock.weekRadiusEnd       = 900 + theme.clock.overlap;
+theme.clock.dayRadiusStart      = 900 - theme.clock.overlap;
+theme.clock.dayRadiusEnd        = 1200;
 
 
 theme.clock.yearLabelPosition   = new Point(0, 0);
