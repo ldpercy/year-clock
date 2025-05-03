@@ -38,13 +38,15 @@ const theme = {
 */
 function setup() {
 	// Set Current Date
-	config.date.param      = getParameterByName('date');
-	config.date.object     = (config.date.param) ? new Date(config.date.param) : new Date();
-	config.date.year       = config.date.object.getFullYear();
-	config.date.month      = config.date.object.getMonth() + 1;		// js month starts at 0
-	config.date.date       = config.date.object.getDate();
-	config.date.dayOfYear  = dayOfYear(config.date.object);
-	config.date.daysInYear = daysInYear(config.date.year);
+	config.date.param       = getParameterByName('date');
+	config.date.object      = (config.date.param) ? new Date(config.date.param) : new Date();
+	config.date.year        = config.date.object.getFullYear();
+	config.date.month       = config.date.object.getMonth() + 1;		// js month starts at 0
+	config.date.date        = config.date.object.getDate();
+	config.date.dayOfYear   = dayOfYear(config.date.object);
+	config.date.daysInYear  = daysInYear(config.date.year);
+	config.date.yearStart   = startOfYear(config.date.object);
+	config.date.yearEnd     = nextYear(config.date.object);
 	log('config.date.object:', config.date.object);
 
 
@@ -159,10 +161,19 @@ function setTheme(){
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
+	log('--- debug ---');
+	debug();
 	log('--- Before drawClock ---');
 	theme.clock.drawClock(clockElement);
 	log('--- After drawClock ---');
+
 }/* setTheme */
+
+
+function debug() {
+
+}
+
 
 
 
