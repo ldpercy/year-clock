@@ -10,6 +10,8 @@
 	--labelblack: #000f;
 	--shadow: #aaaf;
 	--yearhand: darkorange;
+	--current: #ff0e;
+	--hover: red;
 }
 
 
@@ -66,12 +68,23 @@ svg#clock .face   {
 	fill: var(--lightgrey);
 }
 
+
+
+.quarter path.sector.current,
+.month path.sector.current,
+.week path.sector.current,
+.day path.sector.current
+{
+	fill: var(--current);
+	/* stroke: var(--current); */
+	/* paint-order: fill; */
+}
+
 .sector:hover {
-	stroke: red;
+	stroke: var(--hover);
 	stroke-width: 5;
 	paint-order: fill;
 }
-
 
 
 svg#clock .monthLabels text{

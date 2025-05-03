@@ -44,7 +44,7 @@ function formatDateLabel(date) {
 
 function formatSector(sectorType, sector) {
 	let result;
-	log(sector);
+	//log(sector);
 	switch(sectorType) {
 		case 'quarter': result = `${sector.name}`; break;
 		case 'week'   : result = `Week ${sector.name}`; break;
