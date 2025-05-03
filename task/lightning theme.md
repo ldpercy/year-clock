@@ -64,3 +64,15 @@ Next need a way to highlight the current date, or dates in general.
 
 
 
+Date Highlighting
+-----------------
+
+For this theme all I really need is to mark the appropriate sectors for the current display date.
+So for example you add a class 'current' to the current quarter, month, week and day.
+
+That would probably do for now, but I feel like this tends to hint pretty strongly at general highlighting.
+
+
+
+
+

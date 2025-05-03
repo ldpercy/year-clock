@@ -125,18 +125,23 @@ function isWeekend(d) {
 	return dayNumber == 0 || dayNumber == 6
 }
 
-
-function getDayClass(date) { // this needs attention
+function getDayClass(date, displayDate) { // this needs attention
+	log(arguments);
 	result = 'weekday';
 	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
 	if (date.getDate() === 1) result += ' first';
+	if (datesAreEqual(date, displayDate)) result += ' current';
 	return result;
 }
-
 
 function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
+
+function dateIsInPeriod(date, periodStart, periodEnd) {
+	return ((date >= periodStart) && (date < periodEnd));
+}
+
 
 function daysInMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
@@ -158,7 +163,7 @@ Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-function getPeriodDayArray(dateStart, dateEnd, locale=config.locale) {
+function getPeriodDayArray(dateStart, dateEnd, displayDate, locale=config.locale) {
 	const result = [];
 
 	let dayCounter = 1;
@@ -172,7 +177,7 @@ function getPeriodDayArray(dateStart, dateEnd, locale=config.locale) {
 			date         : new Date(thisDate),
 			isFirst      : thisDate.getDate() === 1,
 			isWeekend    : isWeekend(thisDate),
-			class        : getDayClass(thisDate),
+			class        : getDayClass(thisDate, displayDate),
 			isoShort     : isoDate(thisDate),
 		}
 		result.push(dayInfo);
@@ -327,7 +332,7 @@ function getYearWeekArray(date) {
 		}
 	];
 
-	log(weekNumber);
+	// log(weekNumber);
 
 	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
 	{
