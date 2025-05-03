@@ -58,3 +58,9 @@ Will sit on it for a bit.
 
 For now I'll start with a basic array and leave ISO week support for a later task.
 
+
+Have the week ring going now and added a bit of overlap, looking good so far.
+Next need a way to highlight the current date, or dates in general.
+
+
+
