@@ -72,6 +72,15 @@ So for example you add a class 'current' to the current quarter, month, week and
 
 That would probably do for now, but I feel like this tends to hint pretty strongly at general highlighting.
 
+Lightning
+---------
+I have a basic version of highlighting working for the display date now, so the 'lightning' theme is starting to look as I'd intended.
+
+The generic date highlighting I'd talked about above is it's own topic, with it's own concerns and problems so will defer that to sometime later.
+
+For now I've just managed to squeeze in a few extra classes for the current display date so they can be highlighted.
+
+
 
 
 
