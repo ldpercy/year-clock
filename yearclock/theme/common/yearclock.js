@@ -97,9 +97,9 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 
 /* drawYearDayTicks
 */
-theme.clock.drawYearDayTicks = function() {
+theme.clock.drawYearDayTicks = function(yearDayArray=config.yearDayArray) {
 
-	const yearDayTicks = theme.clock.getPeriodDayTicks(config.yearDayArray);
+	const yearDayTicks = theme.clock.getPeriodDayTicks(yearDayArray);
 	theme.clock.element.innerHTML += `
 		<g class="day yearDay tick">
 			${yearDayTicks}
@@ -110,9 +110,9 @@ theme.clock.drawYearDayTicks = function() {
 
 /* drawMonthDayTicks
 */
-theme.clock.drawMonthDayTicks = function() {
+theme.clock.drawMonthDayTicks = function(monthDayArray=config.monthDayArray) {
 
-	const monthDayTicks = theme.clock.getPeriodDayTicks(config.monthDayArray);
+	const monthDayTicks = theme.clock.getPeriodDayTicks(monthDayArray);
 	theme.clock.element.innerHTML += `
 		<g class="day monthDay tick">
 			${monthDayTicks}
@@ -207,6 +207,7 @@ theme.clock.drawYearLabel = function(date, point) {
 
 
 /* drawHands
+This has a bunch of globals in it - need
 */
 theme.clock.drawHands = function(drawMonthHand) {
 

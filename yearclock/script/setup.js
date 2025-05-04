@@ -60,7 +60,7 @@ function setup() {
 	// Set up period arrays
 	config.monthArray    = getMonthArray(config.date);
 	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
-	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
+	//config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
 	config.seasonArray   = getSeasonArray(config.date.object);
 
 
