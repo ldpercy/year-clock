@@ -25,6 +25,11 @@
 }
 
 
+/* .viewBox {
+	stroke:red;
+	stroke-width:10px;
+} */
+
 svg#clock {
 	background-color: var(--background);
 	font-size: 36px;
@@ -108,11 +113,17 @@ path.sector.day.current
 .label.dateLabel, .label.yearLabel {
 	fill: var(--textDark);
 	text-anchor: middle;
-	font-size: 10ex;
+	font-size: 9ex;
 	dominant-baseline: central;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
 
-svg#clock .label.dateLabel {
-	font-size: 8ex;
+.label.yearLabel {
+	text-anchor: start;
+	dominant-baseline: hanging;
+}
+
+.label.dateLabel {
+	text-anchor: end;
+	dominant-baseline: hanging;
 }

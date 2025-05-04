@@ -37,7 +37,7 @@ theme.clock.monthHandLength    = 850;
 //
 // formatting functions
 //
-function formatMonth(name) { return name.slice(0,3) }
+function formatMonth(name) { return name.slice(0,2) }
 function formatDateLabel(date) {
 	return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`
 }
@@ -76,7 +76,7 @@ theme.clock.drawClock = function(clockElement)
 
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
-	//theme.clock.drawDateLabel(config.date.object);
+	theme.clock.drawDateLabel(config.date.object);
 
 }/* drawClock */
 
