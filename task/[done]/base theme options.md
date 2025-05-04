@@ -31,4 +31,12 @@ At least some of what is currently common-original would be beneficial as a libr
 Will sit on it for a bit.
 
 
+Wrapup
+------
+
+I've added a simple switch to turn off base theme styles, which will be off by default.
+
+Since I wrote this task `common-original` has become the `common` theme which really is more of a base library, but it has some of the original (brice) theme left if you load it.
+
+This is **done** as a subtask of lightning-theme.
 

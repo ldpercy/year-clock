@@ -96,9 +96,11 @@ function setThemeConfig(){
 
 	if (theme.base) {
 		log(`theme.base: ${theme.base}`);
-		// set base css
-		let cssUrl_base = `theme/${theme.base}/style.css`;
-		config.styleElement_base.setAttribute('href', cssUrl_base);
+		if (theme.loadBaseCSS) {
+			// set base css
+			let cssUrl_base = `theme/${theme.base}/style.css`;
+			config.styleElement_base.setAttribute('href', cssUrl_base);
+		}
 		//load the base resources
 		let baseScriptUrl = `theme/${theme.base}/yearclock.js`;
 		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
