@@ -78,7 +78,7 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 		if (theme.clock.monthLabel.rotate)
 		{
 			const invert    = (Math.cos(radiansLabel) < 0);
-			const rotate    = degrees(radiansLabel) + ((invert) ? 180 : 0);
+			const rotate    = degrees(radiansLabel) + ((theme.clock.monthLabel.invert) ? 180 : 0);
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
