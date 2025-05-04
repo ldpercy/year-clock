@@ -38,9 +38,21 @@ function getDayClass(date, displayDate) { // this needs attention
 	return result;
 }
 
+function getMonthClass(date, displayDate) {
+	result = '';
+	if (monthsAreEqual(date, displayDate)) result += ' current';
+	return result;
+}
+
+
 function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
+
+function monthsAreEqual(d1,d2) {
+	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth());
+}
+
 
 function dateIsInPeriod(date, periodStart, periodEnd) {
 	return ((date >= periodStart) && (date < periodEnd));
@@ -99,14 +111,16 @@ function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
 
 /* getMonthArray
 This needs a lot of cleanup/rationalisation:
-	Remove globals/paramterise.
+	Remove globals/paramterise
 	Change monthname map to something else
+	Change radians calc to fn
+
 */
-function getMonthArray(date, monthNames=config.monthNames) {
+function getMonthArray(displayDate, monthNames=config.monthNames) {
 	const result = monthNames.map(
 		function( monthName, monthNumber ) {
-			const startDate    = new Date(date.year, monthNumber);
-			const nextMonth    = new Date(date.year, monthNumber + 1);
+			const startDate    = new Date(displayDate.year, monthNumber);
+			const nextMonth    = new Date(displayDate.year, monthNumber + 1);
 			const endDate      = new Date(nextMonth - 1000);
 			const radiansStart = dateRadians(startDate);
 			const radiansEnd   = dateRadians(endDate);
@@ -115,13 +129,14 @@ function getMonthArray(date, monthNames=config.monthNames) {
 			const month = {
 				'name'         : monthName,
 				'code'         : config.monthCodes[monthNumber],
-				'startDate'    : new Date(date.year, monthNumber),
+				'startDate'    : new Date(displayDate.year, monthNumber),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
 				'radiansStart' : radiansStart,
 				'radiansEnd'   : radiansEnd,
 				'radiansWidth' : radiansWidth,
 				'radiansMid'   : midpoint(radiansStart, radiansEnd),
+				'class'        : getMonthClass(startDate, displayDate.object)
 			};
 			return month;
 		}

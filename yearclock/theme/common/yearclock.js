@@ -57,7 +57,7 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 	for (let month of monthArray)
 	{
 		const sectorPath = getSectorPath(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
-		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"><title>${month.name}</title></path>`;
+		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
 		newSvg += sectorSvg;
 	}
 	theme.clock.element.innerHTML += `<g class="month sector">${newSvg}</g>`;
