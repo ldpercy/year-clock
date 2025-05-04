@@ -3,7 +3,6 @@
 //
 
 
-
 function incrementDay(d) {
 	d.setDate(d.getDate() + 1);
 }
@@ -63,6 +62,40 @@ function daysInYear(year) {
 }
 
 
+function isoDate(date) {
+	// return date.toISOString().substring(0, 10);
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+	// The timezone is always UTC,
+	// https://stackoverflow.com/a/72581185
+	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
+	return localDate.toISOString().substring(0, 10);
+}
+
+
+/* dateRangeRadians
+Given two days in the same year, return the start, middle and end angles in radians.
+*/
+function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
+
+	const days = daysInYear(year);
+	const radiansStart = divisionRadians(days, dayOfYear1).start;
+	const radiansEnd = divisionRadians(days, dayOfYear2).start;
+
+	let result = {
+		start  : radiansStart,
+		middle : (radiansStart + radiansEnd) / 2,
+		end    : radiansEnd,
+	}
+	return result;
+}/* dateRangeRadians */
+
+
+
+//
+// Period Arrays
+//
+
+
 /* getPeriodDayArray
 Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
@@ -91,37 +124,6 @@ function getPeriodDayArray(dateStart, dateEnd, displayDate, locale=config.locale
 
 	return result;
 }/* getPeriodDayArray */
-
-
-function isoDate(date) {
-	// return date.toISOString().substring(0, 10);
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-	// The timezone is always UTC,
-	// https://stackoverflow.com/a/72581185
-	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
-	return localDate.toISOString().substring(0, 10);
-}
-
-
-/* dateRangeRadians
-Given two days in the same year, return the start, middle and end angles in radians.
-
-If endDate is less than
-
-*/
-function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
-
-	const days = daysInYear(year);
-	const radiansStart = divisionRadians(days, dayOfYear1).start;
-	const radiansEnd = divisionRadians(days, dayOfYear2).start;
-
-	let result = {
-		start  : radiansStart,
-		middle : (radiansStart + radiansEnd) / 2,
-		end    : radiansEnd,
-	}
-	return result;
-}/* dateRangeRadians */
 
 
 
