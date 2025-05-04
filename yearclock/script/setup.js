@@ -58,30 +58,7 @@ function setup() {
 	config.monthNames = l10n.gregLocal[config.language];
 
 	// Set Up Months
-	config.months = config.monthNames.map(
-		function( monthName, monthNumber ) {
-			const startDate    = new Date(config.date.year, monthNumber);
-			const nextMonth    = new Date(config.date.year, monthNumber + 1);
-			const endDate      = new Date(nextMonth - 1000);
-			const radiansStart = dateRadians(startDate);
-			const radiansEnd   = dateRadians(endDate);
-			const radiansWidth = radiansEnd - radiansStart;
-
-			const result = {
-				'name'         : monthName,
-				'code'         : config.monthCodes[monthNumber],
-				'startDate'    : new Date(config.date.year, monthNumber),
-				'nextMonth'    : nextMonth,
-				'endDate'      : new Date(nextMonth - 1000),
-				'radiansStart' : radiansStart,
-				'radiansEnd'   : radiansEnd,
-				'radiansWidth' : radiansWidth,
-				'radiansMid'   : midpoint(radiansStart, radiansEnd),
-			}
-			return result;
-		}
-	);
-
+	config.months        = getMonthArray(config.date);
 	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
 	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
 	config.seasonArray   = getSeasonArray(config.date.object);

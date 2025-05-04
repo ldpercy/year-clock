@@ -96,6 +96,41 @@ function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
 //
 
 
+
+/* getMonthArray
+This needs a lot of cleanup/rationalisation:
+	Remove globals/paramterise.
+	Change monthname map to something else
+*/
+function getMonthArray(date, monthNames=config.monthNames) {
+	const result = monthNames.map(
+		function( monthName, monthNumber ) {
+			const startDate    = new Date(date.year, monthNumber);
+			const nextMonth    = new Date(date.year, monthNumber + 1);
+			const endDate      = new Date(nextMonth - 1000);
+			const radiansStart = dateRadians(startDate);
+			const radiansEnd   = dateRadians(endDate);
+			const radiansWidth = radiansEnd - radiansStart;
+
+			const month = {
+				'name'         : monthName,
+				'code'         : config.monthCodes[monthNumber],
+				'startDate'    : new Date(date.year, monthNumber),
+				'nextMonth'    : nextMonth,
+				'endDate'      : new Date(nextMonth - 1000),
+				'radiansStart' : radiansStart,
+				'radiansEnd'   : radiansEnd,
+				'radiansWidth' : radiansWidth,
+				'radiansMid'   : midpoint(radiansStart, radiansEnd),
+			};
+			return month;
+		}
+	);
+	return result;
+}/* getMonthArray */
+
+
+
 /* getPeriodDayArray
 Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
