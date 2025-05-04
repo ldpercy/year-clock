@@ -72,6 +72,8 @@ So for example you add a class 'current' to the current quarter, month, week and
 
 That would probably do for now, but I feel like this tends to hint pretty strongly at general highlighting.
 
+New task: [custom date highlighting](<custom date highlighting.md >)
+
 Lightning
 ---------
 I have a basic version of highlighting working for the display date now, so the 'lightning' theme is starting to look as I'd intended.
