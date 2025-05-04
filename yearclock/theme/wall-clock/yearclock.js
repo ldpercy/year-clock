@@ -6,16 +6,17 @@ theme.clock.clockRadius       = 1200,
 
 theme.clock.innerRadius       = 1000;
 theme.clock.outerRadius       = 1150;
-theme.clock.monthLabelRadius  = 920;
+
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 
 theme.clock.dateLabelPosition         = new Point(0,430);
 
 theme.clock.monthLabel = {};
+theme.clock.monthLabel.radius         = 920;
 theme.clock.monthLabel.sectorPosition = 0;
-theme.clock.monthLabel.rotate = false;
-theme.clock.monthLabel.invert = false;
+theme.clock.monthLabel.rotate         = false;
+theme.clock.monthLabel.invert         = false;
 
 theme.clock.yearHandLength    = 600;
 theme.clock.monthHandLength    = 850;

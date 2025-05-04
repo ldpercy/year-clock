@@ -19,13 +19,11 @@ theme.clock.dateLabelRadius     = 575;
 theme.clock.dateLabelPosition   = new Point(10, theme.clock.dateLabelRadius);  // tiny tweak to horizontal position here, having trouble centering it properly
 theme.clock.yearLabelPosition   = new Point(0, -theme.clock.dateLabelRadius);
 
-
-
-theme.clock.monthLabelRadius  = 1000;
 theme.clock.monthLabel = {};
+theme.clock.monthLabel.radius         = 1000;
 theme.clock.monthLabel.sectorPosition = 0.5;
-theme.clock.monthLabel.rotate = false;
-theme.clock.monthLabel.invert = false;
+theme.clock.monthLabel.rotate         = false;
+theme.clock.monthLabel.invert         = false;
 
 theme.clock.yearHandLength    = 800;
 theme.clock.monthHandLength    = 850;

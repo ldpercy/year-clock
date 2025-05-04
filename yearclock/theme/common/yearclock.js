@@ -8,16 +8,17 @@ theme.clock.viewBox           = '-1200 -1200 2400 2400';
 theme.clock.clockRadius       = 1200;
 theme.clock.outerRadius       = 1120;
 theme.clock.innerRadius       = 930;
-theme.clock.monthLabelRadius  = 985;
+
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 theme.clock.yearHandLength    = 1030;
 theme.clock.dateLabelPosition         = 500;
 
 theme.clock.monthLabel = {};
+theme.clock.monthLabel.radius         = 985;
 theme.clock.monthLabel.sectorPosition = 0.5;
-theme.clock.monthLabel.rotate = true;
-theme.clock.monthLabel.invert = true;
+theme.clock.monthLabel.rotate         = true;
+theme.clock.monthLabel.invert         = true;
 
 
 
@@ -89,13 +90,18 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 	{
 		const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
 
-		const center     = polarPoint(radiansLabel, theme.clock.monthLabelRadius);
+		const center     = polarPoint(radiansLabel, theme.clock.monthLabel.radius);
 		let transform = '';
 
 		if (theme.clock.monthLabel.rotate)
 		{
-			const invert    = (Math.cos(radiansLabel) < 0);
-			const rotate    = degrees(radiansLabel) + ((theme.clock.monthLabel.invert) ? 180 : 0);
+			let rotate    = degrees(radiansLabel);
+			if (theme.clock.monthLabel.invert)
+			{
+				const invert = (Math.cos(radiansLabel) < 0);
+				rotate += ((invert) ? 180 : 0);
+			}
+
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =

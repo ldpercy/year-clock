@@ -19,16 +19,16 @@ theme.clock.weekRadiusEnd       = 900 + theme.clock.overlap;
 theme.clock.dayRadiusStart      = 900 - theme.clock.overlap;
 theme.clock.dayRadiusEnd        = 1200;
 
+//theme.clock.yearLabelPosition   = new Point(0, 0);
+theme.clock.yearLabelPosition   = new Point(-1250, -1250);
+theme.clock.dateLabelPosition   = new Point( 1250, -1250);
 
-theme.clock.yearLabelPosition   = new Point(0, 0);
 
-
-
-theme.clock.monthLabelRadius  = 450;
 theme.clock.monthLabel = {};
+theme.clock.monthLabel.radius         = 450;
 theme.clock.monthLabel.sectorPosition = 0.5;
-theme.clock.monthLabel.rotate = false;
-theme.clock.monthLabel.invert = false;
+theme.clock.monthLabel.rotate         = true;
+theme.clock.monthLabel.invert         = true;
 
 theme.clock.yearHandLength    = 800;
 theme.clock.monthHandLength    = 850;
