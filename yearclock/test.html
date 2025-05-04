@@ -15,25 +15,30 @@
 		iframe { width:45%; height:45vh; margin:0em 1em; }
 	</style>
 
+	<script defer>
+		urlArray = [
+			'yearclock.html?theme=common',
+			'yearclock.html?theme=brice',
+			'yearclock.html?theme=wall-clock',
+			'yearclock.html?theme=season-out',
+		];
+
+		function setup() {
+			testElement = document.getElementById('testOutput');
+
+			for (let url of urlArray) {
+				testElement.innerHTML +=
+					`<iframe src="${url}" title="${url}">
+						${url}
+					</iframe>`;
+			}
+		}
+	</script>
 </head>
-<body>
+<body onload="setup();">
 	<h1>Test Page for Year Clock</h1>
 
-	<iframe src="yearclock.html?theme=common">
-		common
-	</iframe>
-
-	<iframe src="yearclock.html?theme=brice">
-		brice
-	</iframe>
-
-	<iframe src="yearclock.html?theme=wall-clock">
-		wall-clock
-	</iframe>
-
-	<iframe src="yearclock.html?theme=season-out">
-		season-out
-	</iframe>
+	<output id="testOutput"></output>
 
 </body>
 </html>
