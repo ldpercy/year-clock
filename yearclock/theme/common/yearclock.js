@@ -283,6 +283,7 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 	{
 		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
 
+		/*
 		if (day.isWeekend)
 		{
 			markerClass = 'weekend';
@@ -296,9 +297,11 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 		{
 			markerClass += ' first';
 		}
+		*/
+
 		//log(day);
 		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
+		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
 
 		result += sectorSvg;
 	}

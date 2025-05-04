@@ -34,7 +34,10 @@ function getDayClass(date, displayDate) { // this needs attention
 	result = 'weekday';
 	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
 	if (date.getDate() === 1) result += ' first';
-	if (datesAreEqual(date, displayDate)) result += ' current';
+	if (datesAreEqual(date, displayDate)) {
+		log('current day:',date);
+		result += ' current';
+	}
 	return result;
 }
 

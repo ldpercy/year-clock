@@ -11,14 +11,13 @@
 	--sectorDark: #2227;
 	--sectorStroke: #eee7;
 
-	--textColour: #eeef;
-	--textStroke: black;
-	--textShadow: #1117;
+	--textDark: #000f;
+	--textStroke: #1117;
+	--textLight: #ffff;
 
 	--shadow: #aaaf;
-	--yearhand: darkorange;
 
-	--current: #ff0a;
+	--current: #ff07;
 	--currentOutline: yellow;
 
 	--hover: red;
@@ -45,8 +44,26 @@
 
 
 .label.dateLabel, .label.yearLabel {
-	fill: var(--textColour);
+	fill: var(--textLight);
 	stroke: var(--textStroke);
 	stroke-width: 3px;
-	filter: drop-shadow(0ex 0ex 0.2ex var(--textShadow));
+	filter: drop-shadow(0ex 0ex 0.1ex var(--textLight));
+}
+
+
+.monthLabels text{
+	fill: var(--textLight);
+	stroke: var(--textStroke);
+	font-size: 5ex;
+}
+
+
+/* Current date highlights */
+
+svg#clock .monthLabels text.current
+{
+	fill: var(--textDark);
+	stroke: var(--textDark);
+	/* stroke-width: 10px; */
+	filter: drop-shadow(0ex 0ex 0.1ex var(--currentOutline));
 }
