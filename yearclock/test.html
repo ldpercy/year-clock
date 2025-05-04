@@ -12,7 +12,8 @@
 		html { background-color: silver; }
 		body { margin:1em; padding:1em; background-color:white; border-radius:1ex; font-family:monospace; }
 		h1 {margin-top:0em; }
-		iframe { width:45%; height:45vh; margin:0em 1em; }
+		div.test { margin:0em 1em; width:45%; height:45vh; display:inline-block; }
+		iframe { width:100%; height:95%; }
 	</style>
 
 	<script defer>
@@ -21,6 +22,9 @@
 			'yearclock.html?theme=brice',
 			'yearclock.html?theme=wall-clock',
 			'yearclock.html?theme=season-out',
+			'yearclock.html?theme=plain-svg',
+			'yearclock.html?theme=test',
+			'yearclock.html?theme=sector-day',
 		];
 
 		function setup() {
@@ -28,9 +32,15 @@
 
 			for (let url of urlArray) {
 				testElement.innerHTML +=
-					`<iframe src="${url}" title="${url}">
-						${url}
-					</iframe>`;
+					`
+					<div class="test">
+						<a href="${url}">${url}</a>
+						</br>
+						<iframe src="${url}" title="${url}">
+							${url}
+						</iframe>
+					</div>
+					`;
 			}
 		}
 	</script>
