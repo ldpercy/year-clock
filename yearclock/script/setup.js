@@ -57,12 +57,12 @@ function setup() {
 	log('config.language:', config.language);
 	config.monthNames = l10n.gregLocal[config.language];
 
-	// Set Up Months
-	config.months        = getMonthArray(config.date);
+	// Set up period arrays
+	config.monthArray    = getMonthArray(config.date);
 	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
 	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
 	config.seasonArray   = getSeasonArray(config.date.object);
-	//log(config.seasonArray);
+
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');

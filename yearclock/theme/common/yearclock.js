@@ -52,9 +52,9 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius) {
+theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius, monthArray=config.monthArray) {
 	let newSvg = '';
-	for (let month of config.months)
+	for (let month of monthArray)
 	{
 		const sectorPath = getSectorPath(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"><title>${month.name}</title></path>`;
@@ -66,9 +66,9 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 
 /* drawMonthLabels
 */
-theme.clock.drawMonthLabels = function() {
+theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 	let newSvg = '';
-	for (let month of config.months)
+	for (let month of monthArray)
 	{
 		const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
 
