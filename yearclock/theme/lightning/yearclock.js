@@ -23,12 +23,18 @@ theme.clock.dayRadiusEnd        = 1200;
 theme.clock.yearLabelPosition   = new Point(-1250, -1250);
 theme.clock.dateLabelPosition   = new Point( 1250, -1250);
 
+theme.clock.quarterLabel = {};
+theme.clock.quarterLabel.radius         = 150;
+theme.clock.quarterLabel.sectorPosition = 0.5;
+theme.clock.quarterLabel.rotate         = true;
+theme.clock.quarterLabel.invert         = false;
 
 theme.clock.monthLabel = {};
 theme.clock.monthLabel.radius         = 450;
 theme.clock.monthLabel.sectorPosition = 0.5;
 theme.clock.monthLabel.rotate         = true;
-theme.clock.monthLabel.invert         = true;
+theme.clock.monthLabel.invert         = false;
+
 
 theme.clock.yearHandLength    = 800;
 theme.clock.monthHandLength    = 850;
@@ -74,6 +80,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
 	theme.clock.drawPeriodDaySectors('yearDays', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
+	theme.clock.drawSectorLabels('quarter', quarterArray, theme.clock.quarterLabel);
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
 	theme.clock.drawDateLabel(config.date.object);

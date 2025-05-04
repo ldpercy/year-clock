@@ -58,7 +58,6 @@ Mainly for debugging for now
 */
 theme.clock.drawViewbox = function(viewBox=theme.clock.viewBox) {
 	const vb =  splitViewBox(viewBox);
-	log(vb);
 	const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
 	theme.clock.element.innerHTML += svg;
 }/* drawViewbox */
@@ -344,3 +343,65 @@ theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusE
 	theme.clock.element.innerHTML += `<g class="${sectorType}">${newSvg}</g>`;
 }
 
+
+/* drawSectorLabels
+*/
+theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings) {
+	let newSvg = '';
+	for (let sector of sectorArray)
+	{
+		//
+		//const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
+		//sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSector(sectorType,sector)}</title></path>`;
+		//
+
+		const radiansLabel = sector.radiansStart + (sector.radiansWidth * labelSettings.sectorPosition);
+
+		const center     = polarPoint(radiansLabel, labelSettings.radius);
+		let transform = '';
+
+		if (labelSettings.rotate)
+		{
+			const invert    = (Math.cos(radiansLabel) < 0);
+			const rotate    = degrees(radiansLabel) + ((labelSettings.invert) ? 180 : 0);
+			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
+		}
+		const labelSvg =
+			`<text class="${sector.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatSector(sectorType, sector)}</text>`;
+		newSvg += labelSvg;
+	}
+
+	theme.clock.element.innerHTML +=
+		`<g class="label ${sectorType}">
+			${newSvg}
+		</g>`;
+}/* drawSectorLabels */
+
+
+
+/* drawMonthLabels
+* /
+theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
+	let newSvg = '';
+	for (let month of monthArray)
+	{
+		const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
+
+		const center     = polarPoint(radiansLabel, theme.clock.monthLabel.radius);
+		let transform = '';
+
+		if (theme.clock.monthLabel.rotate)
+		{
+			const invert    = (Math.cos(radiansLabel) < 0);
+			const rotate    = degrees(radiansLabel) + ((theme.clock.monthLabel.invert) ? 180 : 0);
+			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
+		}
+		const labelSvg =
+			`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatMonth(month.name)}</text>`;
+		newSvg += labelSvg;
+	}
+	theme.clock.element.innerHTML +=
+		`<g class="month label monthLabels">
+			${newSvg}
+		</g>`;
+}/ * drawMonthLabels */

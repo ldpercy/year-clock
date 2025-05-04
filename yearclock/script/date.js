@@ -100,6 +100,7 @@ function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
 		start  : radiansStart,
 		middle : (radiansStart + radiansEnd) / 2,
 		end    : radiansEnd,
+		width  : radiansEnd - radiansStart,
 	}
 	return result;
 }/* dateRangeRadians */
