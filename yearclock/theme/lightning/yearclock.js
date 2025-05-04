@@ -7,7 +7,7 @@ theme.clock.viewBox           = padViewBox(75);
 theme.clock.clockRadius        = 1250;
 
 
-theme.clock.overlap = 10;
+theme.clock.overlap = 10;		// amount by which rings overshoot their natural divisions
 
 
 theme.clock.quarterRadiusStart  = 0;
@@ -62,6 +62,8 @@ theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
+
+	theme.clock.drawViewbox();
 	theme.clock.drawFace();
 
 	let quarterArray = getQuarterArray(config.date.object);

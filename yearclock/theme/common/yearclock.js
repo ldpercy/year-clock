@@ -36,6 +36,7 @@ theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
+	//theme.clock.drawViewbox();
 	theme.clock.drawFace();
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
@@ -44,6 +45,22 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawHands();
 }/* drawClock */
 
+
+
+//
+// drawing functions
+//
+
+
+/* drawViewbox
+Mainly for debugging for now
+*/
+theme.clock.drawViewbox = function(viewBox=theme.clock.viewBox) {
+	const vb =  splitViewBox(viewBox);
+	log(vb);
+	const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
+	theme.clock.element.innerHTML += svg;
+}/* drawViewbox */
 
 
 theme.clock.drawFace = function() {
@@ -90,8 +107,6 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 			${newSvg}
 		</g>`;
 }/* drawMonthLabels */
-
-
 
 
 
