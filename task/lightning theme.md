@@ -82,6 +82,19 @@ The generic date highlighting I'd talked about above is it's own topic, with it'
 
 For now I've just managed to squeeze in a few extra classes for the current display date so they can be highlighted.
 
+There a few things that I want to try before wrapping this, and there'll be some follow up tasks as well.
+
+
+Labels
+------
+
+So far I only have year and month labels, but I don't really like the year positioned in the middle.
+With so many sectors in this theme I'd prefer to move the year off the clockface altogether and out into the background space, and add some sector labels for the quarters and months.
+
+To get the sector labels really nice will probably require a bit of overall refactoring, but I might be able to bodge something together for now.
+
+But before that I want to try placing some date labels outside the clock border, which I haven't done yet.
+
 
 
 
