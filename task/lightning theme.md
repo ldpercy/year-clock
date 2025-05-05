@@ -124,3 +124,13 @@ So far only used in newer array creation functions: season, quarter, week
 
 Have converted dateRangeRadians to work off absolute dates, and added allowances for year-spanning ranges to add/subtract extra 2pi revolutions; seems to be working though haven't fully tested yet.
 
+
+Labels, rotations and another bug
+---------------------------------
+
+I need a couple more additions here:
+* Label rotation options - already mentioned
+* Different formats for labels and hovers (titles)
+
+There's also a week-array bug for the year 2024, eg yearclock.html?theme=lightning&date=2024-07-30
+
