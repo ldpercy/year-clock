@@ -88,13 +88,15 @@ function isoDate(date) {
 
 
 /* dateRangeRadians
-Given two days in the same year, return the start, middle and end angles in radians.
+Given two dates return the start, middle and end angles in radians, as well as the width in radians.
 */
-function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
+function dateRangeRadians(date1, date2) {
+	const diy1 = daysInYear(date1);
+	const diy2 = daysInYear(date2);
 
-	const days = daysInYear(year);
-	const radiansStart = divisionRadians(days, dayOfYear1).start;
-	const radiansEnd = divisionRadians(days, dayOfYear2).start;
+	const radiansStart = divisionRadians(diy1, dayOfYear(date1)).start;
+	const radiansEnd   = divisionRadians(diy2, dayOfYear(date2)).start + (Math.TAU * yearDifference(date1, date2));
+	// Need to add or subtract additional 2pi rotations based on the year difference
 
 	let result = {
 		start  : radiansStart,
@@ -102,8 +104,14 @@ function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
 		end    : radiansEnd,
 		width  : radiansEnd - radiansStart,
 	}
+
 	return result;
 }/* dateRangeRadians */
+
+
+function yearDifference(date1, date2) {
+	return date2.getFullYear() - date1.getFullYear();
+}
 
 
 
@@ -219,7 +227,7 @@ function getSeasonArray(date) {
 	];
 
 	for (let season of seasonArray) {
-		season.radians = dateRangeRadians(year, dayOfYear(season.dateStart), dayOfYear(season.dateEnd));
+		season.radians = dateRangeRadians(season.dateStart, season.dateEnd);
 		season.class = (dateIsInPeriod(date, season.dateStart, season.dateEnd)) ? 'current' : '';
 	}
 
@@ -265,7 +273,7 @@ function getQuarterArray(date) {
 	];
 
 	for (let quarter of quarterArray) {
-		quarter.radians = dateRangeRadians(year, dayOfYear(quarter.dateStart), dayOfYear(quarter.dateEnd));
+		quarter.radians = dateRangeRadians(quarter.dateStart, quarter.dateEnd);
 		quarter.class = (dateIsInPeriod(date, quarter.dateStart, quarter.dateEnd)) ? 'current' : '';
 	}
 
@@ -315,7 +323,7 @@ function getYearWeekArray(date) {
 	weekArray[weekArray.length-1].dateEnd = dateEnd;
 
 	for (let week of weekArray) {
-		week.radians = dateRangeRadians(date.getFullYear(), dayOfYear(week.dateStart), dayOfYear(week.dateEnd));
+		week.radians = dateRangeRadians(week.dateStart, week.dateEnd);
 		week.class = (dateIsInPeriod(date, week.dateStart, week.dateEnd)) ? 'current' : '';
 	}
 

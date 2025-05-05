@@ -95,8 +95,32 @@ To get the sector labels really nice will probably require a bit of overall refa
 
 But before that I want to try placing some date labels outside the clock border, which I haven't done yet.
 
+Have year and month-day out on the corners now.
+Looks akay, still thinking though.
+
+
+### label rotation
+I'd also like an extra option or two for the label rotation, eg rotate left/right, and allow for adaptive inversions for those options as well.
 
 
 
+Bug in Quarter radian calculations
+----------------------------------
 
+The quarters are defined as absolute half-open date ranges.
+This won't produce the desired result for the last quarter though (yearclock/script/date.js:269):
+
+	dayOfYear(quarter.dateEnd)
+
+I need something like 366 back instead of 0 or 1, or to change how the quarter boundaries are calculated.
+
+The problem is:
+
+	function dateRangeRadians(year, dayOfYear1, dayOfYear2) {
+
+Which works off day-of-year.
+It really needs to work off absolute dates rather than day-of-year to facilitate things like half-open dates for end-of-year, ranges crossing year boundaries generally etc.
+So far only used in newer array creation functions: season, quarter, week
+
+Have converted dateRangeRadians to work off absolute dates, and added allowances for year-spanning ranges to add/subtract extra 2pi revolutions; seems to be working though haven't fully tested yet.
 
