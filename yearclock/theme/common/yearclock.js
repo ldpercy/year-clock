@@ -258,7 +258,8 @@ theme.clock.drawHands = function(drawMonthHand) {
 
 /* getHandPath
 */
-theme.clock.getHandPath = function(length, transform, cssClass, id) {
+theme.clock.getHandPath = function(length, transform, cssClass, id)
+{
 	const path = `
 		M 12 160
 		L -12 160
@@ -277,9 +278,8 @@ theme.clock.getHandPath = function(length, transform, cssClass, id) {
 
 /* drawPeriodDaySectors
 */
-theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd) {
-
-	log('drawPeriodDaySectors');
+theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
+{
 	const periodDaySectors = theme.clock.getPeriodDaySectors(periodArray, radiusStart, radiusEnd);
 	theme.clock.element.innerHTML += `
 		<g class="periodSectors ${name}">
@@ -290,9 +290,8 @@ theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radi
 
 /* getPeriodDaySectors
 */
-theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) {
-	// log('getPeriodDaySectors');
-
+theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd)
+{
 	let result = '';
 	let markerClass = '';
 	let markerLine;
@@ -331,8 +330,8 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 
 
 
-theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusEnd) {
-
+theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusEnd)
+{
 	let newSvg = '';
 	for (let sector of sectorArray)
 	{
@@ -346,7 +345,8 @@ theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusE
 
 /* drawSectorLabels
 */
-theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings) {
+theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
+{
 	let newSvg = '';
 	for (let sector of sectorArray)
 	{
@@ -355,7 +355,8 @@ theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings) 
 		//sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSector(sectorType,sector)}</title></path>`;
 		//
 
-		const radiansLabel = sector.radiansStart + (sector.radiansWidth * labelSettings.sectorPosition);
+		//log('drawSectorLabels', sector);
+		const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
 
 		const center     = polarPoint(radiansLabel, labelSettings.radius);
 		let transform = '';
