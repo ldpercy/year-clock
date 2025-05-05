@@ -24,16 +24,22 @@ theme.clock.yearLabelPosition   = new Point(-1250, -1250);
 theme.clock.dateLabelPosition   = new Point( 1250, -1250);
 
 theme.clock.quarterLabel = {};
-theme.clock.quarterLabel.radius         = 150;
+theme.clock.quarterLabel.radius         = 200;
 theme.clock.quarterLabel.sectorPosition = 0.5;
 theme.clock.quarterLabel.rotate         = true;
 theme.clock.quarterLabel.invert         = false;
 
 theme.clock.monthLabel = {};
-theme.clock.monthLabel.radius         = 450;
+theme.clock.monthLabel.radius         = 500;
 theme.clock.monthLabel.sectorPosition = 0.5;
 theme.clock.monthLabel.rotate         = true;
 theme.clock.monthLabel.invert         = false;
+
+theme.clock.weekLabel = {};
+theme.clock.weekLabel.radius         = 800;
+theme.clock.weekLabel.sectorPosition = 0.5;
+theme.clock.weekLabel.rotate         = true;
+theme.clock.weekLabel.invert         = false;
 
 
 theme.clock.yearHandLength    = 800;
@@ -43,7 +49,7 @@ theme.clock.monthHandLength    = 850;
 //
 // formatting functions
 //
-function formatMonth(name) { return name.slice(0,2) }
+function formatMonth(name) { return name.slice(0,3) }
 function formatDateLabel(date) {
 	return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`
 }
@@ -53,7 +59,7 @@ function formatSector(sectorType, sector) {
 	//log(sector);
 	switch(sectorType) {
 		case 'quarter': result = `${sector.name}`; break;
-		case 'week'   : result = `Week ${sector.name}`; break;
+		case 'week'   : result = `${sector.name}`; break;
 		default       : result = sector.name; break;
 	}
 
@@ -82,6 +88,8 @@ theme.clock.drawClock = function(clockElement)
 
 	theme.clock.drawSectorLabels('quarter', quarterArray, theme.clock.quarterLabel);
 	theme.clock.drawMonthLabels();
+	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);
+
 	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
 	theme.clock.drawDateLabel(config.date.object);
 

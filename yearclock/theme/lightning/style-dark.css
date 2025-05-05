@@ -24,7 +24,8 @@
 }
 
 
-/* Sectors: quarter, month, week  */
+/* Sectors: quarter, month, week
+*/
 
 .quarter .sector:nth-of-type(even),
 .month .sector:nth-of-type(odd),
@@ -42,20 +43,36 @@
 	fill: var(--sectorDark);
 }
 
+/* labels
+*/
 
-.label.dateLabel, .label.yearLabel {
+.label text,
+.label.yearLabel,
+.label.dateLabel,
+.label.monthLabels text
+{
 	fill: var(--textLight);
 	stroke: var(--textStroke);
+}
+
+.label.yearLabel,
+.label.dateLabel
+{
 	stroke-width: 3px;
 	filter: drop-shadow(0ex 0ex 0.1ex var(--textLight));
 }
 
 
-.monthLabels text{
-	fill: var(--textLight);
-	stroke: var(--textStroke);
+.monthLabels text,
+.label.quarter text
+{
 	font-size: 5ex;
+	stroke-width: 1px;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
+
+
+
 
 
 /* Current date highlights */

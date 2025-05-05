@@ -25,10 +25,11 @@
 }
 
 
-/* .viewBox {
-	stroke:red;
-	stroke-width:10px;
-} */
+.viewBox {
+	/* stroke:red;
+	stroke-width:10px; */
+	fill:transparent;
+}
 
 svg#clock {
 	background-color: var(--background);
@@ -51,7 +52,8 @@ path.sector {
 }
 
 
-/* Sectors: quarter, month, week  */
+/* Sectors: quarter, month, week
+*/
 
 .quarter .sector:nth-of-type(even),
 .month .sector:nth-of-type(odd),
@@ -79,7 +81,7 @@ path.sector {
 }
 
 
-/* Current date highlights */
+/* Current date sector highlights */
 
 .quarter path.sector.current,
 .month path.sector.current,
@@ -100,10 +102,19 @@ path.sector.day.current
 }
 
 
-.monthLabels text{
+/* Labels
+*/
+
+.label {
+	fill: var(--textDark);
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: var(--textDark);
+}
+
+.monthLabels text,
+.label.quarter text
+{
+
 	font-size: 4ex;
 	font-variant: small-caps;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
@@ -112,11 +123,18 @@ path.sector.day.current
 
 .label.dateLabel, .label.yearLabel {
 	fill: var(--textDark);
-	text-anchor: middle;
 	font-size: 9ex;
 	dominant-baseline: central;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
+
+.label.week text {
+	font-size: 1.3ex;
+}
+
+
+/* Clock labels
+*/
 
 .label.yearLabel {
 	text-anchor: start;
