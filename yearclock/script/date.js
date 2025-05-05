@@ -303,6 +303,10 @@ function getYearWeekArray(date) {
 
 	// log(weekNumber);
 
+	// if (dateStart.getDay() === 1) {
+	// 	incrementDay(dateStart);
+	// }
+
 	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
 	{
 		//log(thisDate);
