@@ -44,7 +44,7 @@ function setup() {
 	config.date.month       = config.date.object.getMonth() + 1;		// js month starts at 0
 	config.date.date        = config.date.object.getDate();
 	config.date.dayOfYear   = dayOfYear(config.date.object);
-	config.date.daysInYear  = daysInYear(config.date.year);
+	config.date.daysInYear  = daysInYear(config.date.object);
 	config.date.yearStart   = startOfYear(config.date.object);
 	config.date.yearEnd     = nextYear(config.date.object);
 	log('config.date.object:', config.date.object);

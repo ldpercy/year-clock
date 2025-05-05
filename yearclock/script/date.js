@@ -72,8 +72,8 @@ function dayOfYear(date)
 	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
 }
 
-function daysInYear(year) {
-	return dayOfYear(new Date(year,11,31));
+function daysInYear(date) {
+	return dayOfYear(new Date(date.getFullYear(),11,31));
 }
 
 
