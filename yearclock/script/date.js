@@ -77,16 +77,6 @@ function daysInYear(date) {
 }
 
 
-function isoDate(date) {
-	// return date.toISOString().substring(0, 10);
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-	// The timezone is always UTC,
-	// https://stackoverflow.com/a/72581185
-	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
-	return localDate.toISOString().substring(0, 10);
-}
-
-
 /* dateRangeRadians
 Given two dates return the start, middle and end angles in radians, as well as the width in radians.
 */
@@ -113,6 +103,25 @@ function yearDifference(date1, date2) {
 	return date2.getFullYear() - date1.getFullYear();
 }
 
+//
+// Date formatting
+//
+
+function isoDate(date) {
+	// return date.toISOString().substring(0, 10);
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+	// The timezone is always UTC,
+	// https://stackoverflow.com/a/72581185
+	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
+	return localDate.toISOString().substring(0, 10);
+}
+
+
+/*
+Return the last day of a half-open date range instead of its open limit.
+Equivalent to previousDay(date)
+closedIntervalEnd(date) {}
+*/
 
 
 //
