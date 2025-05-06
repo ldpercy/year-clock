@@ -153,6 +153,26 @@ I think this could use a proper treatment in a different task.
 Label rotation options
 ----------------------
 
-Want to do the label rotation options now though.
+Want to have a crack at the label rotation options now though.
 
+Rotate options:
+* none - Regular horizontal text on the page
+* radial - Rotate the text so that the bottom points towards the origin
+* radial-right - Radial plus an additional 90deg right turn
+* radial-left - Radial plus an additional 90deg left turn
+
+Invert options:
+* none - don't add any extra inversions
+* invert bottom
+* invert left
+* invert right
+
+What about invert options? there's one inbuilt one leftover from the brice theme, but could the idea be generalised?
+I suppose the idea is that for a particular section of the circle to apply an extra 180 degree turn so that the text vaguely points 'up'.
+For example the current invert applies and extra 180 for the bottom half of the circle.
+For left and right radial you could invert either the left or right half of the circle to achieve something similar.
+Tbh I can't seeing it getting much use, but it could be done.
+It might turn out to be better to allow the designer to provide a rotate function instead of trying to anticipate all the permutations.
+
+I've given the options version a go.
 

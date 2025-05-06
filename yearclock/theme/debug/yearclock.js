@@ -10,7 +10,7 @@ theme.clock.weekRadiusEnd   = 1100;
 theme.clock.weekLabel = {};
 theme.clock.weekLabel.radius         = 1000;
 theme.clock.weekLabel.sectorPosition = 0.5;
-theme.clock.weekLabel.rotate         = true;
+theme.clock.weekLabel.rotate         = 'radial-left';
 theme.clock.weekLabel.invert         = false;
 
 theme.clock.dayRadiusStart      = 1100 ;

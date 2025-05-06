@@ -95,13 +95,7 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 
 		if (theme.clock.monthLabel.rotate)
 		{
-			let rotate    = degrees(radiansLabel);
-			if (theme.clock.monthLabel.invert)
-			{
-				const invert = (Math.cos(radiansLabel) < 0);
-				rotate += ((invert) ? 180 : 0);
-			}
-
+			let rotate = rotationDegrees(radiansLabel, theme.clock.monthLabel);
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
@@ -364,8 +358,7 @@ theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
 
 		if (labelSettings.rotate)
 		{
-			const invert    = (Math.cos(radiansLabel) < 0);
-			const rotate    = degrees(radiansLabel) + ((labelSettings.invert) ? 180 : 0);
+			let rotate = rotationDegrees(radiansLabel, labelSettings);
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
@@ -378,6 +371,30 @@ theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
 			${newSvg}
 		</g>`;
 }/* drawSectorLabels */
+
+
+
+/* rotationDegrees
+*/
+function rotationDegrees(radians, settings) {
+	let result = 0;
+
+	switch(settings.rotate) {
+		case 'none'         : result = 0; break;
+		case 'radial-left'  : result = degrees(radians) - 90; break;
+		case 'radial-right' : result = degrees(radians) + 90; break;
+		case 'radial'       : result = degrees(radians); break;
+		case true           : result = degrees(radians); break;
+		default             : result = 0; break;
+	}
+
+	switch(settings.invert) {
+		case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
+		case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
+		case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+	}
+	return result;
+}/* rotationDegrees */
 
 
 

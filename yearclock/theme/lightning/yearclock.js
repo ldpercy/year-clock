@@ -24,26 +24,22 @@ theme.clock.yearLabelPosition   = new Point(-1250, -1250);
 theme.clock.dateLabelPosition   = new Point( 1250, -1250);
 
 theme.clock.quarterLabel = {};
-theme.clock.quarterLabel.radius         = 200;
+theme.clock.quarterLabel.radius         = 150;
 theme.clock.quarterLabel.sectorPosition = 0.5;
-theme.clock.quarterLabel.rotate         = true;
-theme.clock.quarterLabel.invert         = false;
+theme.clock.quarterLabel.rotate         = 'radial-left';
+theme.clock.quarterLabel.invert         = 'left';
 
 theme.clock.monthLabel = {};
-theme.clock.monthLabel.radius         = 500;
+theme.clock.monthLabel.radius         = 450;
 theme.clock.monthLabel.sectorPosition = 0.5;
-theme.clock.monthLabel.rotate         = true;
-theme.clock.monthLabel.invert         = false;
+theme.clock.monthLabel.rotate         = 'radial-left';
+theme.clock.monthLabel.invert         = 'left';
 
 theme.clock.weekLabel = {};
-theme.clock.weekLabel.radius         = 800;
+theme.clock.weekLabel.radius         = 750;
 theme.clock.weekLabel.sectorPosition = 0.5;
-theme.clock.weekLabel.rotate         = true;
-theme.clock.weekLabel.invert         = false;
-
-
-theme.clock.yearHandLength    = 800;
-theme.clock.monthHandLength    = 850;
+theme.clock.weekLabel.rotate         = 'radial-left';
+theme.clock.weekLabel.invert         = 'left';
 
 
 //
