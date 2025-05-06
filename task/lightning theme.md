@@ -132,5 +132,13 @@ I need a couple more additions here:
 * Label rotation options - already mentioned
 * Different formats for labels and hovers (titles)
 
-There's also a week-array bug for the year 2024, eg yearclock.html?theme=lightning&date=2024-07-30
+### Week array bug
+There's also a week-array bug for the year 2024, eg:
+
+	yearclock.html?theme=lightning&date=2024-07-30
+
+Bug sorted (I think), but it took way longer than I'd have liked.
+Have repurposed the old 'test' theme to become a general debugging theme.
+
+
 

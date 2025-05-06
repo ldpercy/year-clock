@@ -295,36 +295,28 @@ function getQuarterArray(date) {
 */
 function getYearWeekArray(date) {
 
-	let dateStart   = startOfYear(config.date.object);
-	let dateEnd     = nextYear(config.date.object);
+	const yearStart   = startOfYear(config.date.object);
+	const yearEnd     = nextYear(config.date.object);
 
 	let weekNumber = 1;
 
 	let weekArray = [
 		{
 			name:      `${weekNumber}`,
-			dateStart: dateStart,
-			dateEnd:   dateEnd,
+			dateStart: yearStart,
+			dateEnd:   undefined,
 			radians:   undefined,
 			class:     '',
 		}
 	];
 
-	// log(weekNumber);
-
-	// if (dateStart.getDay() === 1) {
-	// 	incrementDay(dateStart);
-	// }
-
-	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
+	for (let thisDate = new Date(yearStart); thisDate < yearEnd; incrementDay(thisDate))
 	{
-		//log(thisDate);
-		if (thisDate.getDay() === 1)
+		if (thisDate.getDay() === 1 && !datesAreEqual(thisDate, yearStart)) // need this condition otherwise weeks get borked
 		{
 			weekArray[weekArray.length-1].dateEnd = new Date(thisDate);
 
 			weekNumber++;
-
 			weekArray.push({
 				name:      `${weekNumber}`,
 				dateStart:  new Date(thisDate),
@@ -333,7 +325,7 @@ function getYearWeekArray(date) {
 			});
 		}
 	}
-	weekArray[weekArray.length-1].dateEnd = dateEnd;
+	weekArray[weekArray.length-1].dateEnd = yearEnd;
 
 	for (let week of weekArray) {
 		week.radians = dateRangeRadians(week.dateStart, week.dateEnd);
