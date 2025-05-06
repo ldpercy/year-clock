@@ -29,6 +29,7 @@ theme.clock.monthLabel.invert         = true;
 function formatMonth(name) { return name }
 function formatDateLabel(date) { return date.getFullYear() }
 function formatSector(sectorType, sector) { return sector.name }
+function formatLabel(sectorType, sector) { return sector.name }
 
 
 /* Draw Clock
@@ -368,7 +369,7 @@ theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
-			`<text class="${sector.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatSector(sectorType, sector)}</text>`;
+			`<text class="${sector.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel(sectorType, sector)}</text>`;
 		newSvg += labelSvg;
 	}
 
