@@ -141,4 +141,18 @@ Bug sorted (I think), but it took way longer than I'd have liked.
 Have repurposed the old 'test' theme to become a general debugging theme.
 
 
+Label and sector formatting and titles
+--------------------------------------
+
+I've started tinkering with this, but it's gotten a bit messy as there are still dedicated label and sector functions for months and days.
+Seasons, quarters and weeks use the generic functions.
+Not sure if they can be combined yet.
+I think this could use a proper treatment in a different task.
+
+
+Label rotation options
+----------------------
+
+Want to do the label rotation options now though.
+
 
