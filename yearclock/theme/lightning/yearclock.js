@@ -59,7 +59,7 @@ function formatSector(sectorType, sector) {
 	//log(sector);
 	switch(sectorType) {
 		case 'quarter': result = `${sector.name}`; break;
-		case 'week'   : result = `${sector.name}`; break;
+		case 'week'   : result = `W${sector.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 		default       : result = sector.name; break;
 	}
 
