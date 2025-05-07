@@ -109,16 +109,23 @@ path.sector.day.current
 	fill: var(--textDark);
 	text-anchor: middle;
 	dominant-baseline: middle;
+	font-variant: small-caps;
 }
 
-.monthLabels text,
+
 .label.quarter text
 {
 
 	font-size: 4ex;
-	font-variant: small-caps;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
+
+.monthLabels text {
+	font-size: 3ex;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+}
+
+
 
 
 .label.dateLabel, .label.yearLabel {
@@ -129,8 +136,15 @@ path.sector.day.current
 }
 
 .label.week text {
-	font-size: 1.3ex;
+	font-size: 1.5ex;
 }
+
+.label.yearDay text {
+	font-size: 0.7ex;
+	text-anchor: middle;
+}
+
+
 
 
 /* Clock labels

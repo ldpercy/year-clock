@@ -184,4 +184,20 @@ Square clock body
 The dates floating outside the clock body looked a bit weird, so I've changed the clock body to a rounded square, which I reckon looks alright.
 
 
+Extras, thoughts
+----------------
+
+I'm getting pretty close to wrapping this, but there are a bunch of little extras and improvements I want at this point.
+Most of these I'm happy to do as a follow up tasks:
+
+* Truncated weeks at the start/end of year need to have their labels customized (shrunk) or taken off entirely
+* **Really** want to add more info into the clock body bottom corners - week number, day name/number, etc. Need to improve week calcs for this though.
+* For very small sectors like year-days it would probably be sufficient to draw quadrilaterals with straight lines rather than proper arcs. Really unlikely that the difference would be noticed, and maybe a bit lighter.
+* Would love to remove the old dedicated month sector and label methods
+* See if any of the CSS blend properties work in SVG - multiple uses, nice effects
+* See if on-face labels can be moved behind their sectors to improve hover effect - could use CSS blend if available
+* Improve label and sector formatting and titles (noted above)
+* The dedicated drawDateLabel and drawYearLabel functions need to be sorted out - some of the old clocks are using drawDateLabel which has positioning logic and it's a bit confusing, need to clear up. Something more general would be better.
+
+
 
