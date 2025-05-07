@@ -38,6 +38,28 @@ function getSectorPath(startAngle, endAngle, innerRadius, outerRadius)
 }
 
 
+/* getSectorPathSimple
+A simplified version of the above that draws a quadrilateral with straight lines instead of proper arcs. Suitable for very small sectors or other effects.
+*/
+function getSectorPathSimple(startAngle, endAngle, innerRadius, outerRadius)
+{
+	const outerStart = polarPoint(startAngle, outerRadius)
+	const outerEnd   = polarPoint(endAngle,   outerRadius)
+	const innerEnd   = polarPoint(endAngle,   innerRadius)
+	const innerStart = polarPoint(startAngle, innerRadius)
+
+	const path = `
+		M ${sf(outerStart.x)} ${sf(outerStart.y)}
+		L ${sf(outerEnd.x)} ${sf(outerEnd.y)}
+		L ${sf(innerEnd.x)} ${sf(innerEnd.y)}
+		L ${sf(innerStart.x)} ${sf(innerStart.y)}
+		Z`;
+
+	return path;
+}
+
+
+
 function padViewBox(padding, x=-1200, y=-1200, width=2400, height=2400) {
 	return `${x-padding} ${y-padding} ${width + 2*padding} ${height + 2*padding}`;
 }
