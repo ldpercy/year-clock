@@ -61,19 +61,25 @@ function formatDateLabel(date) {
 	return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`
 }
 
-function formatSector(sectorType, sector) {
+function formatSectorTitle(sectorType, sector) {
 	let result;
-	//log(sector);
 	switch(sectorType) {
 		case 'quarter': result = `${sector.name}`; break;
 		case 'week'   : result = `W${sector.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 		default       : result = sector.name; break;
 	}
-
 	return result;
 }
 
-//function formatLabel(sectorType, sector) { return sector.name }
+function formatLabel(sectorType, sector) {
+	let result;
+	switch(sectorType) {
+		case 'quarter': result = `${sector.name}`; break;
+		case 'week'   : result = `W${sector.name}`; break;
+		default       : result = sector.name; break;
+	}
+	return result;
+}
 
 
 /* Draw Clock

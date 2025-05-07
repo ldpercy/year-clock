@@ -20,7 +20,7 @@ theme.clock.dayRadiusEnd        = 1200;
 //
 // formatting functions
 //
-function formatSector(sectorType, sector) {
+function formatSectorTitle(sectorType, sector) {
 	let result;
 	//log(sector);
 	switch(sectorType) {
