@@ -3,26 +3,38 @@
 //
 
 
+/* mutators:
+*/
+
 function incrementDay(d) {
 	d.setDate(d.getDate() + 1);
 }
 
+/* constructors:
+*/
 
 function startOfYear(date) {
 	return new Date(date.getFullYear(), 0, 1);
-}
-
-function nextYear(date) {
-	return new Date(date.getFullYear()+1, 0, 1);
 }
 
 function startOfMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth(),1);
 }
 
+function nextYear(date) {
+	return new Date(date.getFullYear()+1, 0, 1);
+}
+
 function nextMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1,1);
 }
+
+function nextDay(date) {
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+}
+
+/* decisions, calculations:
+*/
 
 function isWeekend(d) {
 	const dayNumber = d.getDay()
@@ -47,7 +59,6 @@ function getMonthClass(date, displayDate) {
 	return result;
 }
 
-
 function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
@@ -56,16 +67,13 @@ function monthsAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth());
 }
 
-
 function dateIsInPeriod(date, periodStart, periodEnd) {
 	return ((date >= periodStart) && (date < periodEnd));
 }
 
-
 function daysInMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
-
 
 function dayOfYear(date)
 {
