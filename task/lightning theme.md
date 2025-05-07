@@ -190,15 +190,7 @@ Extras, thoughts
 I'm getting pretty close to wrapping this, but there are a bunch of little extras and improvements I want to make note of at this point.
 Most of these I'm happy to do as a follow up tasks:
 
-* Truncated weeks at the start/end of year need to have their labels customized (shrunk) or taken off entirely
-* **Really** want to add more info into the bottom corners of the lightning theme - week number, day name/number, etc. Need to improve week calcs for this though.
-* For very small sectors like year-days it would probably be sufficient to draw quadrilaterals with straight lines rather than proper arcs. Really unlikely that the difference would be noticed, and maybe a bit lighter.
-* Would love to remove the old dedicated month sector and label methods
-* See if any of the CSS blend properties work in SVG - multiple uses, nice effects
-* See if on-face labels can be moved behind their sectors to improve hover effect - could use CSS blend if available
-* The dedicated drawDateLabel and drawYearLabel functions need to be sorted out - some of the old clocks are using drawDateLabel which has positioning logic and it's a bit confusing, need to clear up. Something more general would be better.
-* Add a 'last day of period' for more user-friendly output of date ranges
-
+*moved to wrapup below...*
 
 ### Improve label and sector formatting and titles (noted above)
 
@@ -209,3 +201,39 @@ Will have to see if there's a better technique than a that would allow for overr
 
 Wrapup
 ------
+I originally thought this mightn't take too long.
+Not so much, turns out.
+
+Lots of changes/updates to get the things I've wanted, plus a bunch of other little jobs along the way:
+
+
+* Added new theme 'lightning'
+* Added week array code and ring to theme; these are not
+* More work on general sector and label methods
+* Added general formatter function for sector titles
+* Hovers now work for all sectors
+* Added 'current' classes to highlight the current display date - the is the 'lightning' in the name
+* Split date scripts out of the maths script; moved month array creation to date script
+* Added 'dark' variant for lightning theme
+* New Task: custom date highlighting
+* Add a bunch of options for label rotation and inversion
+* Structure for label options is getting more organised
+* Couple of updates for test page
+* Base theme styles are now off by default
+* Fixed some date bugs; converted some functions over to work off regular date objects
+* Started wiki with a couple of pages
+* Turned the old 'test' theme into a debugging theme
+* Add a rounded-square clock body for the lightning theme
+
+
+
+Follow up tasks:
+
+* Truncated weeks at the start/end of year need to have their labels customized (shrunk) or taken off entirely
+* **Really** want to add more info into the bottom corners of the lightning theme - week number, day name/number, etc. Need to improve week calcs for this though.
+* For very small sectors like year-days it would probably be sufficient to draw quadrilaterals with straight lines rather than proper arcs. Really unlikely that the difference would be noticed, and maybe a bit lighter.
+* Would love to remove the old dedicated month sector and label methods
+* See if any of the CSS blend properties work in SVG - multiple uses, nice effects
+* See if on-face labels can be moved behind their sectors to improve hover effect - could use CSS blend if available
+* The dedicated drawDateLabel and drawYearLabel functions need to be sorted out - some of the old clocks are using drawDateLabel which has positioning logic and it's a bit confusing, need to clear up. Something more general would be better.
+* Add 'last day of period' fn for more user-friendly output of date ranges

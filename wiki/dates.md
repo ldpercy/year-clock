@@ -21,8 +21,15 @@ Weeks begin on Monday and end on Sunday.
 
 ### ISO Weeks
 
-Not yet implemented.
-Currently weeks just count up starting from 1.
+> [!NOTE]
+> Not yet implemented.
+> Currently weeks just count up starting from 1
+
+https://en.wikipedia.org/wiki/ISO_week_date
+
+In the ISO week system the first few days of the year sometimes aren't part of the the current year's week 1, but are assigned to the previous year:
+
+> If 1 January is on a Monday, Tuesday, Wednesday or Thursday, it is in W01. If it is on a Friday, it is part of W53 of the previous year. If it is on a Saturday, it is part of the last week of the previous year which is numbered W52 in a common year and W53 in a leap year. If it is on a Sunday, it is part of W52 of the previous year.
 
 
 
