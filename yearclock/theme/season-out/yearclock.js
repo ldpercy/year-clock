@@ -32,8 +32,16 @@ theme.clock.monthHandLength    = 850;
 //
 // formatting functions
 //
-function formatMonth(name) { return name.slice(0,3) }
 function formatDateLabel(date) { return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}` }
+
+function formatLabel(sectorType, sector) {
+	let result;
+	switch(sectorType) {
+		case 'month'    : result = `${sector.name.slice(0,3)}`; break;
+		default         : result = sector.name; break;
+	}
+	return result;
+}
 
 
 
@@ -49,7 +57,7 @@ theme.clock.drawClock = function(clockElement)
 
 	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 
-	theme.clock.drawPeriodDaySectors('yearDays', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 	theme.clock.drawMonthLabels();
 	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);

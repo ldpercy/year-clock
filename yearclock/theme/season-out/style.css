@@ -56,7 +56,7 @@ svg#clock .face   {
 
 
 
-.yearDays .sector.day.weekend {
+.yearDay .sector.day.weekend {
 	fill: var(--darkgrey);
 }
 

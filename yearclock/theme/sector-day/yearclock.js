@@ -45,9 +45,13 @@ theme.clock.drawClock = function(clockElement)
 
 
 
-function formatMonth(name) { return name.slice(0,3) }
-
-
-
+function formatLabel(sectorType, sector) {
+	let result;
+	switch(sectorType) {
+		case 'month'    : result = `${sector.name.slice(0,3)}`; break;
+		default         : result = sector.name; break;
+	}
+	return result;
+}
 
 

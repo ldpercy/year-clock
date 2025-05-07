@@ -26,8 +26,9 @@ theme.clock.monthLabel.invert         = true;
 // formatting functions
 //
 
-function formatMonth(name) { return name }
 function formatDateLabel(date) { return date.getFullYear() }
+
+
 function formatSectorTitle(sectorType, sector) { return sector.name }
 function formatLabel(sectorType, sector) { return sector.name }
 
@@ -90,6 +91,7 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 
 
 /* drawMonthLabels
+This is nearly ready to get rid of
 */
 theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 	let newSvg = '';
@@ -106,7 +108,7 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
-			`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatMonth(month.name)}</text>`;
+			`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel('month', month)}</text>`;
 		newSvg += labelSvg;
 	}
 	theme.clock.element.innerHTML +=
@@ -410,31 +412,3 @@ function rotationDegrees(radians, settings) {
 	return result;
 }/* rotationDegrees */
 
-
-
-/* drawMonthLabels
-* /
-theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
-	let newSvg = '';
-	for (let month of monthArray)
-	{
-		const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
-
-		const center     = polarPoint(radiansLabel, theme.clock.monthLabel.radius);
-		let transform = '';
-
-		if (theme.clock.monthLabel.rotate)
-		{
-			const invert    = (Math.cos(radiansLabel) < 0);
-			const rotate    = degrees(radiansLabel) + ((theme.clock.monthLabel.invert) ? 180 : 0);
-			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
-		}
-		const labelSvg =
-			`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatMonth(month.name)}</text>`;
-		newSvg += labelSvg;
-	}
-	theme.clock.element.innerHTML +=
-		`<g class="month label monthLabels">
-			${newSvg}
-		</g>`;
-}/ * drawMonthLabels */
