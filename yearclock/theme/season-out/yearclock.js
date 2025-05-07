@@ -44,9 +44,9 @@ function formatLabel(labelType, data) {
 	return result;
 }
 
-function formatSectorTitle(sectorType, data) {
+function formatTitle(type, data) {
 	let result;
-	switch(sectorType) {
+	switch(type) {
 		case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
 		case 'quarter'  : result = `${data.name}`; break;
 		case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;

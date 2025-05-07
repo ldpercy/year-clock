@@ -27,7 +27,7 @@ theme.clock.monthLabel.invert         = true;
 //
 
 
-function formatSectorTitle(sectorType, data) { return data.name }
+function formatTitle(type, data) { return data.name }
 
 function formatLabel(labelType, data) {
 	let result;
@@ -339,7 +339,7 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd)
 
 		//log(day);
 		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatSectorTitle('day',day)}</title></path>`;
+		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatTitle('day',day)}</title></path>`;
 
 		result += sectorSvg;
 	}
@@ -355,7 +355,7 @@ theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusE
 	for (let sector of sectorArray)
 	{
 		const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSectorTitle(sectorType,sector)}</title></path>`;
+		sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatTitle(sectorType,sector)}</title></path>`;
 		newSvg += sectorSvg;
 	}
 	theme.clock.element.innerHTML += `<g class="${sectorType}">${newSvg}</g>`;

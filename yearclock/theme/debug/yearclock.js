@@ -28,10 +28,9 @@ theme.clock.dayLabel.invert         = false;
 //
 // formatting functions
 //
-function formatSectorTitle(sectorType, data) {
+function formatTitle(type, data) {
 	let result;
-	//log(sector);
-	switch(sectorType) {
+	switch(type) {
 		case 'quarter': result = `${data.name}`; break;
 		case 'week'   : result = `Week ${data.name}: ${isoDate(data.dateStart)} - ${isoDate(data.dateEnd)}`; break;
 		default       : result = data.name; break;
