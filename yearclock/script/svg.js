@@ -20,7 +20,7 @@ function radialLine(angle, startRadius, endRadius) {
 }
 
 
-function sector(startAngle, endAngle, innerRadius, outerRadius)
+function getSectorPath(startAngle, endAngle, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(startAngle, outerRadius)
 	const outerEnd   = polarPoint(endAngle,   outerRadius)
@@ -40,4 +40,16 @@ function sector(startAngle, endAngle, innerRadius, outerRadius)
 
 function padViewBox(padding, x=-1200, y=-1200, width=2400, height=2400) {
 	return `${x-padding} ${y-padding} ${width + 2*padding} ${height + 2*padding}`;
+}
+
+
+function splitViewBox(viewBoxString) {
+	const vba    = viewBoxString.split(' ');
+	const result = {
+		x      : vba[0],
+		y      : vba[1],
+		width  : vba[2],
+		height : vba[3],
+	};
+	return result;
 }

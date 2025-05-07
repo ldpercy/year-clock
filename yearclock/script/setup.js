@@ -38,13 +38,15 @@ const theme = {
 */
 function setup() {
 	// Set Current Date
-	config.date.param      = getParameterByName('date');
-	config.date.object     = (config.date.param) ? new Date(config.date.param) : new Date();
-	config.date.year       = config.date.object.getFullYear();
-	config.date.month      = config.date.object.getMonth() + 1;		// js month starts at 0
-	config.date.date       = config.date.object.getDate();
-	config.date.dayOfYear  = dayOfYear(config.date.object);
-	config.date.daysInYear = daysInYear(config.date.year);
+	config.date.param       = getParameterByName('date');
+	config.date.object      = (config.date.param) ? new Date(config.date.param) : new Date();
+	config.date.year        = config.date.object.getFullYear();
+	config.date.month       = config.date.object.getMonth() + 1;		// js month starts at 0
+	config.date.date        = config.date.object.getDate();
+	config.date.dayOfYear   = dayOfYear(config.date.object);
+	config.date.daysInYear  = daysInYear(config.date.object);
+	config.date.yearStart   = startOfYear(config.date.object);
+	config.date.yearEnd     = nextYear(config.date.object);
 	log('config.date.object:', config.date.object);
 
 
@@ -55,35 +57,12 @@ function setup() {
 	log('config.language:', config.language);
 	config.monthNames = l10n.gregLocal[config.language];
 
-	// Set Up Months
-	config.months = config.monthNames.map(
-		function( monthName, monthNumber ) {
-			const startDate    = new Date(config.date.year, monthNumber);
-			const nextMonth    = new Date(config.date.year, monthNumber + 1);
-			const endDate      = new Date(nextMonth - 1000);
-			const radiansStart = dateRadians(startDate);
-			const radiansEnd   = dateRadians(endDate);
-			const radiansWidth = radiansEnd - radiansStart;
-
-			const result = {
-				'name'         : monthName,
-				'code'         : config.monthCodes[monthNumber],
-				'startDate'    : new Date(config.date.year, monthNumber),
-				'nextMonth'    : nextMonth,
-				'endDate'      : new Date(nextMonth - 1000),
-				'radiansStart' : radiansStart,
-				'radiansEnd'   : radiansEnd,
-				'radiansWidth' : radiansWidth,
-				'radiansMid'   : midpoint(radiansStart, radiansEnd),
-			}
-			return result;
-		}
-	);
-
-	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object));
-	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object));
+	// Set up period arrays
+	config.monthArray    = getMonthArray(config.date);
+	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
+	//config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
 	config.seasonArray   = getSeasonArray(config.date.object);
-	//log(config.seasonArray);
+
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
@@ -117,9 +96,11 @@ function setThemeConfig(){
 
 	if (theme.base) {
 		log(`theme.base: ${theme.base}`);
-		// set base css
-		let cssUrl_base = `theme/${theme.base}/style.css`;
-		config.styleElement_base.setAttribute('href', cssUrl_base);
+		if (theme.loadBaseCSS) {
+			// set base css
+			let cssUrl_base = `theme/${theme.base}/style.css`;
+			config.styleElement_base.setAttribute('href', cssUrl_base);
+		}
 		//load the base resources
 		let baseScriptUrl = `theme/${theme.base}/yearclock.js`;
 		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
@@ -159,10 +140,19 @@ function setTheme(){
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
+	log('--- debug ---');
+	debug();
 	log('--- Before drawClock ---');
 	theme.clock.drawClock(clockElement);
 	log('--- After drawClock ---');
+
 }/* setTheme */
+
+
+function debug() {
+
+}
+
 
 
 

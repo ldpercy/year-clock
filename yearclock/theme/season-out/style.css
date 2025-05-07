@@ -10,6 +10,8 @@
 	--labelblack: #000f;
 	--shadow: #aaaf;
 	--yearhand: darkorange;
+	--hover: red;
+
 }
 
 
@@ -47,14 +49,14 @@ svg#clock .face   {
 }
 
 
-.season .sector.Summer { fill: #f004 }
-.season .sector.Autumn { fill: #ff04 }
-.season .sector.Winter { fill: #00f4 }
-.season .sector.Spring { fill: #0f04 }
+.sector.season-Summer { fill: #f004 }
+.sector.season-Autumn { fill: #ff04 }
+.sector.season-Winter { fill: #00f4 }
+.sector.season-Spring { fill: #0f04 }
 
 
 
-.yearDays .sector.day.weekend {
+.yearDay .sector.day.weekend {
 	fill: var(--darkgrey);
 }
 
@@ -68,10 +70,10 @@ svg#clock .face   {
 	fill: var(--lightgrey);
 }
 
-
-.yearDays .sector.day:hover {
-	fill: red;
+.sector:hover {
+	stroke: var(--hover);
 	stroke-width: 5;
+	paint-order: fill;
 }
 
 

@@ -8,16 +8,17 @@ theme.clock.viewBox           = '-1200 -1200 2400 2400';
 theme.clock.clockRadius       = 1200;
 theme.clock.outerRadius       = 1120;
 theme.clock.innerRadius       = 930;
-theme.clock.monthLabelRadius  = 985;
+
 theme.clock.weekdayMarkerLength = 40;
 theme.clock.weekendMarkerLength = 55;
 theme.clock.yearHandLength    = 1030;
 theme.clock.dateLabelPosition         = 500;
 
 theme.clock.monthLabel = {};
+theme.clock.monthLabel.radius         = 985;
 theme.clock.monthLabel.sectorPosition = 0.5;
-theme.clock.monthLabel.rotate = true;
-theme.clock.monthLabel.invert = true;
+theme.clock.monthLabel.rotate         = true;
+theme.clock.monthLabel.invert         = true;
 
 
 
@@ -25,8 +26,24 @@ theme.clock.monthLabel.invert = true;
 // formatting functions
 //
 
-function formatMonth(name) { return name }
-function formatDateLabel(date) { return date.getFullYear() }
+
+function formatSectorTitle(sectorType, data) { return data.name }
+
+function formatLabel(labelType, data) {
+	let result;
+	switch(labelType) {
+		case 'year'     : result = `${data.date.getFullYear()}`; break;
+		case 'date'     : result = `${data.date.getFullYear()}`; break;
+		default         : result = data.name; break;
+	}
+	return result;
+}
+
+
+
+//
+// drawing functions
+//
 
 
 /* Draw Clock
@@ -35,6 +52,7 @@ theme.clock.drawClock = function(clockElement)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
+	//theme.clock.drawViewbox();
 	theme.clock.drawFace();
 	theme.clock.drawMonthSectors();
 	theme.clock.drawMonthLabels();
@@ -44,6 +62,22 @@ theme.clock.drawClock = function(clockElement)
 }/* drawClock */
 
 
+/* drawViewbox
+Mainly for debugging for now
+*/
+theme.clock.drawViewbox = function(viewBox=theme.clock.viewBox) {
+	const vb =  splitViewBox(viewBox);
+	const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
+	theme.clock.element.innerHTML += svg;
+}/* drawViewbox */
+
+
+theme.clock.drawBody = function() {
+	const svg =
+		`<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
+	theme.clock.element.innerHTML += svg;
+}
+
 
 theme.clock.drawFace = function() {
 	const svg = `<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
@@ -51,12 +85,12 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius) {
+theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius, monthArray=config.monthArray) {
 	let newSvg = '';
-	for (let month of config.months)
+	for (let month of monthArray)
 	{
-		const sectorPath = sector(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
-		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code}"></path>`;
+		const sectorPath = getSectorPath(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
+		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
 		newSvg += sectorSvg;
 	}
 	theme.clock.element.innerHTML += `<g class="month sector">${newSvg}</g>`;
@@ -64,24 +98,24 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 
 
 /* drawMonthLabels
+This is nearly ready to get rid of
 */
-theme.clock.drawMonthLabels = function() {
+theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 	let newSvg = '';
-	for (let month of config.months)
+	for (let month of monthArray)
 	{
 		const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
 
-		const center     = polarPoint(radiansLabel, theme.clock.monthLabelRadius);
+		const center     = polarPoint(radiansLabel, theme.clock.monthLabel.radius);
 		let transform = '';
 
 		if (theme.clock.monthLabel.rotate)
 		{
-			const invert    = (Math.cos(radiansLabel) < 0);
-			const rotate    = degrees(radiansLabel) + ((invert) ? 180 : 0);
+			let rotate = rotationDegrees(radiansLabel, theme.clock.monthLabel);
 			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 		}
 		const labelSvg =
-			`<text x="${center.x}" y="${center.y}" transform="${transform}">${formatMonth(month.name)}</text>`;
+			`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel('month', month)}</text>`;
 		newSvg += labelSvg;
 	}
 	theme.clock.element.innerHTML +=
@@ -92,13 +126,11 @@ theme.clock.drawMonthLabels = function() {
 
 
 
-
-
 /* drawYearDayTicks
 */
-theme.clock.drawYearDayTicks = function() {
+theme.clock.drawYearDayTicks = function(yearDayArray=config.yearDayArray) {
 
-	const yearDayTicks = theme.clock.getPeriodDayTicks(config.yearDayArray);
+	const yearDayTicks = theme.clock.getPeriodDayTicks(yearDayArray);
 	theme.clock.element.innerHTML += `
 		<g class="day yearDay tick">
 			${yearDayTicks}
@@ -109,9 +141,9 @@ theme.clock.drawYearDayTicks = function() {
 
 /* drawMonthDayTicks
 */
-theme.clock.drawMonthDayTicks = function() {
+theme.clock.drawMonthDayTicks = function(monthDayArray=config.monthDayArray) {
 
-	const monthDayTicks = theme.clock.getPeriodDayTicks(config.monthDayArray);
+	const monthDayTicks = theme.clock.getPeriodDayTicks(monthDayArray);
 	theme.clock.element.innerHTML += `
 		<g class="day monthDay tick">
 			${monthDayTicks}
@@ -167,8 +199,9 @@ theme.clock.getPeriodDayTicks = function(periodArray) {
 
 
 /* drawDateLabel
+This and year below need to be generally sorted out
 */
-theme.clock.drawDateLabel = function(date) {
+theme.clock.drawDateLabel = function(date, point) {
 	let x,y;
 
 	if (theme.clock.dateLabelPosition instanceof Point)
@@ -186,7 +219,7 @@ theme.clock.drawDateLabel = function(date) {
 
 	const svg =
 		`<g class="dateLabel">
-			<text x="${x}" y="${y}" class="label dateLabel">${formatDateLabel(date)}</text>
+			<text x="${x}" y="${y}" class="label dateLabel">${formatLabel('date',{'date':date})}</text>
 		</g>`;
 
 	theme.clock.element.innerHTML += svg;
@@ -198,14 +231,38 @@ theme.clock.drawDateLabel = function(date) {
 theme.clock.drawYearLabel = function(date, point) {
 	const svg =
 		`<g class="dateLabel">
-			<text x="${point.x}" y="${point.y}" class="label yearLabel">${date.getFullYear()}</text>
+			<text x="${point.x}" y="${point.y}" class="label yearLabel">${formatLabel('year',{'date':date})}</text>
 		</g>`;
 	theme.clock.element.innerHTML += svg;
 }/* drawYearLabel */
 
 
+/* drawWeekLabel
+* /
+theme.clock.drawWeekLabel = function(date, point) {
+	const svg =
+		`<g class="dateLabel">
+			<text x="${point.x}" y="${point.y}" class="label weekLabel">${date.getFullYear()}</text>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}/ * drawWeekLabel */
+
+
+/* drawDayLabel
+* /
+theme.clock.drawDayLabel = function(date, point) {
+	const svg =
+		`<g class="drawDayLabel">
+			<text x="${point.x}" y="${point.y}" class="label drawDayLabel">${date.getFullYear()}</text>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}/ * drawYearLabel */
+
+
+
 
 /* drawHands
+This has a bunch of globals in it - need
 */
 theme.clock.drawHands = function(drawMonthHand) {
 
@@ -236,7 +293,8 @@ theme.clock.drawHands = function(drawMonthHand) {
 
 /* getHandPath
 */
-theme.clock.getHandPath = function(length, transform, cssClass, id) {
+theme.clock.getHandPath = function(length, transform, cssClass, id)
+{
 	const path = `
 		M 12 160
 		L -12 160
@@ -255,9 +313,8 @@ theme.clock.getHandPath = function(length, transform, cssClass, id) {
 
 /* drawPeriodDaySectors
 */
-theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd) {
-
-	log('drawPeriodDaySectors');
+theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
+{
 	const periodDaySectors = theme.clock.getPeriodDaySectors(periodArray, radiusStart, radiusEnd);
 	theme.clock.element.innerHTML += `
 		<g class="periodSectors ${name}">
@@ -268,9 +325,8 @@ theme.clock.drawPeriodDaySectors = function(name, periodArray, radiusStart, radi
 
 /* getPeriodDaySectors
 */
-theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) {
-	// log('getPeriodDaySectors');
-
+theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd)
+{
 	let result = '';
 	let markerClass = '';
 	let markerLine;
@@ -281,22 +337,9 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 	{
 		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
 
-		if (day.isWeekend)
-		{
-			markerClass = 'weekend';
-		}
-		else // day.isWeekday
-		{
-			markerClass = 'weekday';
-		}
-
-		if (day.isFirst) // Draw an extra line for firsts of the month
-		{
-			markerClass += ' first';
-		}
 		//log(day);
-		const sectorPath = sector(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path class="sector day ${markerClass} ${day.name}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
+		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatSectorTitle('day',day)}</title></path>`;
 
 		result += sectorSvg;
 	}
@@ -306,16 +349,74 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd) 
 
 
 
-theme.clock.drawSeasonSectors = function(seasonArray, radiusStart, radiusEnd) {
-
+theme.clock.drawSectors = function(sectorType, sectorArray, radiusStart, radiusEnd)
+{
 	let newSvg = '';
-	for (let season of seasonArray)
+	for (let sector of sectorArray)
 	{
-		//const seasonRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
-
-		const sectorPath = sector(season.radians.start, season.radians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path d="${sectorPath}" class="sector ${season.name}"></path>`;
+		const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
+		sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSectorTitle(sectorType,sector)}</title></path>`;
 		newSvg += sectorSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="season">${newSvg}</g>`;
+	theme.clock.element.innerHTML += `<g class="${sectorType}">${newSvg}</g>`;
 }
+
+
+/* drawSectorLabels
+*/
+theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
+{
+	let newSvg = '';
+	for (let sector of sectorArray)
+	{
+		//
+		//const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
+		//sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSectorTitle(sectorType,sector)}</title></path>`;
+		//
+
+		//log('drawSectorLabels', sector);
+		const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
+
+		const center     = polarPoint(radiansLabel, labelSettings.radius);
+		let transform = '';
+
+		if (labelSettings.rotate)
+		{
+			let rotate = rotationDegrees(radiansLabel, labelSettings);
+			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
+		}
+		const labelSvg =
+			`<text class="${sector.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel(sectorType, sector)}</text>`;
+		newSvg += labelSvg;
+	}
+
+	theme.clock.element.innerHTML +=
+		`<g class="label ${sectorType}">
+			${newSvg}
+		</g>`;
+}/* drawSectorLabels */
+
+
+
+/* rotationDegrees
+*/
+function rotationDegrees(radians, settings) {
+	let result = 0;
+
+	switch(settings.rotate) {
+		case 'none'         : result = 0; break;
+		case 'radial-left'  : result = degrees(radians) - 90; break;
+		case 'radial-right' : result = degrees(radians) + 90; break;
+		case 'radial'       : result = degrees(radians); break;
+		case true           : result = degrees(radians); break;
+		default             : result = 0; break;
+	}
+
+	switch(settings.invert) {
+		case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
+		case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
+		case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+	}
+	return result;
+}/* rotationDegrees */
+

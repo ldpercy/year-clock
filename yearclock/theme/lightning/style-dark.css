@@ -1,0 +1,89 @@
+/*
+** Lightning theme - Dark styles
+*/
+
+
+:root {
+	--background: #223f;
+	--clockface: #111f;
+
+	--sectorLight: #4447;
+	--sectorDark: #2227;
+	--sectorStroke: #eee7;
+
+	--textDark: #000f;
+	--textStroke: #1117;
+	--textLight: #ffff;
+
+	--shadow: #aaaf;
+
+	--current: #ff07;
+	--currentOutline: #ff0a;
+
+	--hover: red;
+}
+
+
+/* Sectors: quarter, month, week
+*/
+
+.quarter .sector:nth-of-type(even),
+.month .sector:nth-of-type(odd),
+.week .sector:nth-of-type(even),
+.sector.day.weekend
+{
+	fill: var(--sectorLight);
+}
+
+.quarter .sector:nth-of-type(odd),
+.month .sector:nth-of-type(even),
+.week .sector:nth-of-type(odd),
+.sector.day.weekday
+{
+	fill: var(--sectorDark);
+}
+
+/* labels
+*/
+
+.label text,
+.label.yearLabel,
+.label.dateLabel,
+.label.monthLabels text
+{
+	fill: var(--textLight);
+	stroke: var(--textStroke);
+}
+
+.label.yearLabel,
+.label.dateLabel
+{
+	stroke-width: 3px;
+	filter: drop-shadow(0ex 0ex 0.1ex var(--textLight));
+}
+
+
+.monthLabels text,
+.label.quarter text
+{
+	font-size: 5ex;
+	stroke-width: 1px;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+}
+
+
+.monthLabels text {
+	font-size: 4ex;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+}
+
+
+/* Current date highlights */
+
+svg#clock text.current
+{
+	fill: var(--textDark);
+	stroke: var(--textDark);
+	/* stroke-width: 10px; */
+	filter: drop-shadow(0ex 0ex 0.1ex var(--currentOutline));
+}

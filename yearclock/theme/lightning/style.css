@@ -1,0 +1,161 @@
+/*
+** Lightning theme styles
+*/
+
+/* clock basics */
+:root {
+	--background: seashell;
+	--clockface: white;
+	--white: #eee7;
+
+	--sectorLight: #eee7;
+	--sectorDark: #aaa7;
+	--sectorStroke: #9997;
+
+	--textDark: #000f;
+	--textStroke: #1117;
+	--textLight: #ffff;
+
+	--shadow: #aaaf;
+
+	--current: #fa0a;
+	--currentOutline: #fa0a;
+
+	--hover: red;
+}
+
+
+.viewBox {
+	/* stroke:red;
+	stroke-width:10px; */
+	fill:transparent;
+}
+
+svg#clock {
+	background-color: var(--background);
+	font-size: 36px;
+	font-family: monospace;
+}
+
+
+svg#clock .body   {
+	fill: var(--clockface);
+	stroke: none;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+
+path.sector {
+	stroke: var(--sectorStroke);
+	stroke-width: 1px;
+}
+
+
+/* Sectors: quarter, month, week
+*/
+
+.quarter .sector:nth-of-type(even),
+.month .sector:nth-of-type(odd),
+.week .sector:nth-of-type(even)
+{
+	fill: var(--sectorDark);
+}
+
+.quarter .sector:nth-of-type(odd),
+.month .sector:nth-of-type(even),
+.week .sector:nth-of-type(odd)
+{
+	fill: var(--sectorLight);
+}
+
+
+
+/* days */
+.sector.day.weekend {
+	fill: var(--sectorDark);
+}
+
+.sector.day.weekday {
+	fill: var(--sectorLight);
+}
+
+
+/* Current date sector highlights */
+
+.quarter path.sector.current,
+.month path.sector.current,
+.week path.sector.current,
+path.sector.day.current
+{
+	fill: var(--current);
+	stroke: var(--currentOutline);
+	stroke-width: 5px;
+	filter: drop-shadow(0ex 0ex 0.5ex var(--currentOutline));
+	paint-order: fill;
+}
+
+.sector:hover, path.sector.current:hover {
+	stroke: var(--hover);
+	stroke-width: 5;
+	paint-order: fill;
+}
+
+
+/* Labels
+*/
+
+.label {
+	fill: var(--textDark);
+	text-anchor: middle;
+	dominant-baseline: middle;
+	font-variant: small-caps;
+}
+
+
+.label.quarter text
+{
+
+	font-size: 4ex;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+}
+
+.monthLabels text {
+	font-size: 3ex;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+}
+
+
+
+
+.label.dateLabel, .label.yearLabel {
+	fill: var(--textDark);
+	font-size: 9ex;
+	dominant-baseline: central;
+	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+}
+
+.label.week text {
+	font-size: 1.5ex;
+}
+
+.label.yearDay text {
+	font-size: 0.7ex;
+	text-anchor: middle;
+}
+
+
+
+
+/* Clock labels
+*/
+
+.label.yearLabel {
+	text-anchor: start;
+	dominant-baseline: hanging;
+}
+
+.label.dateLabel {
+	text-anchor: end;
+	dominant-baseline: hanging;
+}
