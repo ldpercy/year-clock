@@ -204,6 +204,8 @@ Most of these I'm happy to do as a follow up tasks:
 
 I've gone ahead and done this, now just have two formatting functions - formatSectorTitle and formatLabel.
 It's an improvement in most ways, but it makes setting default and override formatters more difficult as the functions are all-or-nothing.
-Will have to see if there's a better technique than a switch that would allow for overrides.
+Will have to see if there's a better technique than a that would allow for overrides.
 
 
+Wrapup
+------
