@@ -6,13 +6,13 @@ A bit like a regular analog clock, but instead of the regular 12 hour divisions 
 The 'hour hand' points to the time of year. In the second example the 'minute hand' points to the time of month.
 
 <p align="middle">
-	<img src="image/example3.svg" alt="Year clock example 3" width="40%"/>
-	<img src="image/example4.svg" alt="Year clock example 4" width="40%" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
+	<img width="40%" src="image/plain-svg.svg" alt="Example: plain-svg" title="yearclock.html?theme=plain-svg&date=2021-09-01"/>
+	<img width="40%" src="image/wall-clock.svg" alt="Example: wall-clock" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
 </p>
 
-Click through to the raw for this example to show hovers and tooltips on the day sectors:
+Click through to the raw for this example to show hovers and tooltips on the sectors:
 <p align="middle">
-<img src="image/example5.svg" alt="Year clock example 4" width="50%" title="yearclock.html?theme=season-out&date=2015-10-21"/>
+<img width="50%" src="image/season-out.svg" alt="Example: season-out" title="yearclock.html?theme=season-out&date=2015-10-21"/>
 </p>
 
 
@@ -126,7 +126,6 @@ More detail in the [task/](<./task/>) directory.
 
 * A lunar-month hand to demonstrate moon phases
 * A 'second hand' pointing to the time of day
-* Calendar integration
-* Live date changes
-* Animation for live date changes
-* Convert to TypeScript
+* Calendar integration + custom date highlighting
+* Live date changes + animations
+* Conversion to TypeScript
