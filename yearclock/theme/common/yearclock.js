@@ -64,6 +64,13 @@ theme.clock.drawViewbox = function(viewBox=theme.clock.viewBox) {
 }/* drawViewbox */
 
 
+theme.clock.drawBody = function() {
+	const svg =
+		`<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
+	theme.clock.element.innerHTML += svg;
+}
+
+
 theme.clock.drawFace = function() {
 	const svg = `<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
 	theme.clock.element.innerHTML += svg;
@@ -220,6 +227,29 @@ theme.clock.drawYearLabel = function(date, point) {
 }/* drawYearLabel */
 
 
+/* drawWeekLabel
+* /
+theme.clock.drawWeekLabel = function(date, point) {
+	const svg =
+		`<g class="dateLabel">
+			<text x="${point.x}" y="${point.y}" class="label weekLabel">${date.getFullYear()}</text>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}/ * drawWeekLabel */
+
+
+/* drawDayLabel
+* /
+theme.clock.drawDayLabel = function(date, point) {
+	const svg =
+		`<g class="drawDayLabel">
+			<text x="${point.x}" y="${point.y}" class="label drawDayLabel">${date.getFullYear()}</text>
+		</g>`;
+	theme.clock.element.innerHTML += svg;
+}/ * drawYearLabel */
+
+
+
 
 /* drawHands
 This has a bunch of globals in it - need
@@ -296,22 +326,6 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd)
 	for (let day of periodArray)
 	{
 		let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
-
-		/*
-		if (day.isWeekend)
-		{
-			markerClass = 'weekend';
-		}
-		else // day.isWeekday
-		{
-			markerClass = 'weekday';
-		}
-
-		if (day.isFirst) // Draw an extra line for firsts of the month
-		{
-			markerClass += ' first';
-		}
-		*/
 
 		//log(day);
 		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);

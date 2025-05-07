@@ -38,7 +38,7 @@ svg#clock {
 }
 
 
-svg#clock .face   {
+svg#clock .body   {
 	fill: var(--clockface);
 	stroke: none;
 	stroke-width: 10;

@@ -174,5 +174,14 @@ For left and right radial you could invert either the left or right half of the 
 Tbh I can't seeing it getting much use, but it could be done.
 It might turn out to be better to allow the designer to provide a rotate function instead of trying to anticipate all the permutations.
 
-I've given the options version a go.
+I've given the options version a go, and it's turned out okay, not too difficult.
+Would still like a function version though at some point.
+
+
+Square clock body
+-----------------
+
+The dates floating outside the clock body looked a bit weird, so I've changed the clock body to a rounded square, which I reckon looks alright.
+
+
 

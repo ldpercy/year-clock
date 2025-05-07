@@ -77,7 +77,7 @@
 
 /* Current date highlights */
 
-svg#clock .monthLabels text.current
+svg#clock text.current
 {
 	fill: var(--textDark);
 	stroke: var(--textDark);

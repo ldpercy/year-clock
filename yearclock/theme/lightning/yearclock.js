@@ -2,9 +2,18 @@
 // Lightning theme
 //
 
-theme.clock.viewBox           = padViewBox(75);
+theme.clock.viewBox           = padViewBox(125);
 //theme.clock.viewBox				= '-800 -800 1600 1600';
 theme.clock.clockRadius        = 1250;
+
+theme.clock.body = {
+	x       : -1300,
+	y       : -1300,
+	width   : 2600,
+	height  : 2600,
+	radius  : 100,
+};
+
 
 
 theme.clock.overlap = 10;		// amount by which rings overshoot their natural divisions
@@ -20,8 +29,10 @@ theme.clock.dayRadiusStart      = 900 - theme.clock.overlap;
 theme.clock.dayRadiusEnd        = 1200;
 
 //theme.clock.yearLabelPosition   = new Point(0, 0);
-theme.clock.yearLabelPosition   = new Point(-1250, -1250);
-theme.clock.dateLabelPosition   = new Point( 1250, -1250);
+theme.clock.yearLabelPosition   = new Point(-1200, -1200);
+theme.clock.dateLabelPosition   = new Point( 1200, -1200);
+theme.clock.weekLabelPosition   = new Point(-1200,  1200);
+theme.clock.dayLabelPosition    = new Point( 1200,  1200);
 
 theme.clock.quarterLabel = {};
 theme.clock.quarterLabel.radius         = 150;
@@ -62,6 +73,7 @@ function formatSector(sectorType, sector) {
 	return result;
 }
 
+//function formatLabel(sectorType, sector) { return sector.name }
 
 
 /* Draw Clock
@@ -72,7 +84,8 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.element = clockElement;
 
 	theme.clock.drawViewbox();
-	theme.clock.drawFace();
+	//theme.clock.drawFace();
+	theme.clock.drawBody(theme.clock.body);
 
 	let quarterArray = getQuarterArray(config.date.object);
 	let weekArray    = getYearWeekArray(config.date.object);
@@ -91,5 +104,14 @@ theme.clock.drawClock = function(clockElement)
 
 }/* drawClock */
 
+
+
+theme.clock.drawBody = function(body=theme.clock.body) {
+
+	const svg =
+		`<rect class="body" x="${body.x}" y="${body.y}" width="${body.width}" height="${body.height}" rx="${body.radius}" ry="${body.radius}"></rect>`;
+
+	theme.clock.element.innerHTML += svg;
+}
 
 
