@@ -26,11 +26,24 @@ theme.clock.monthLabel.invert         = true;
 // formatting functions
 //
 
-function formatDateLabel(date) { return date.getFullYear() }
-
 
 function formatSectorTitle(sectorType, sector) { return sector.name }
-function formatLabel(sectorType, sector) { return sector.name }
+
+function formatLabel(labelType, labelData) {
+	let result;
+	switch(labelType) {
+		case 'year'     : result = `${labelData.date.getFullYear()}`; break;
+		case 'date'     : result = `${labelData.date.getFullYear()}`; break;
+		default         : result = labelData.name; break;
+	}
+	return result;
+}
+
+
+
+//
+// drawing functions
+//
 
 
 /* Draw Clock
@@ -47,12 +60,6 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawDateLabel(config.date.object);
 	theme.clock.drawHands();
 }/* drawClock */
-
-
-
-//
-// drawing functions
-//
 
 
 /* drawViewbox
@@ -192,8 +199,9 @@ theme.clock.getPeriodDayTicks = function(periodArray) {
 
 
 /* drawDateLabel
+This and year below need to be generally sorted out
 */
-theme.clock.drawDateLabel = function(date) {
+theme.clock.drawDateLabel = function(date, point) {
 	let x,y;
 
 	if (theme.clock.dateLabelPosition instanceof Point)
@@ -211,7 +219,7 @@ theme.clock.drawDateLabel = function(date) {
 
 	const svg =
 		`<g class="dateLabel">
-			<text x="${x}" y="${y}" class="label dateLabel">${formatDateLabel(date)}</text>
+			<text x="${x}" y="${y}" class="label dateLabel">${formatLabel('date',{'date':date})}</text>
 		</g>`;
 
 	theme.clock.element.innerHTML += svg;
@@ -223,7 +231,7 @@ theme.clock.drawDateLabel = function(date) {
 theme.clock.drawYearLabel = function(date, point) {
 	const svg =
 		`<g class="dateLabel">
-			<text x="${point.x}" y="${point.y}" class="label yearLabel">${date.getFullYear()}</text>
+			<text x="${point.x}" y="${point.y}" class="label yearLabel">${formatLabel('year',{'date':date})}</text>
 		</g>`;
 	theme.clock.element.innerHTML += svg;
 }/* drawYearLabel */

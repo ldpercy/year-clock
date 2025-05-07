@@ -56,27 +56,29 @@ theme.clock.weekLabel.invert         = 'left';
 //
 // formatting functions
 //
-function formatMonth(name) { return name.slice(0,3) }
-function formatDateLabel(date) {
-	return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`
-}
+
 
 function formatSectorTitle(sectorType, sector) {
 	let result;
 	switch(sectorType) {
-		case 'quarter': result = `${sector.name}`; break;
-		case 'week'   : result = `W${sector.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
-		default       : result = sector.name; break;
+		case 'yearDay'  : result = `${sector.name} ${sector.dayOfYear}`; break;
+		case 'quarter'  : result = `${sector.name}`; break;
+		case 'week'     : result = `W${sector.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
+		default         : result = sector.name; break;
 	}
 	return result;
 }
 
-function formatLabel(sectorType, sector) {
+function formatLabel(labelType, labelData) {
 	let result;
-	switch(sectorType) {
-		case 'quarter': result = `${sector.name}`; break;
-		case 'week'   : result = `W${sector.name}`; break;
-		default       : result = sector.name; break;
+	switch(labelType) {
+		case 'yearDay'  : result = `${labelData.name}`; break;
+		case 'quarter'  : result = `${labelData.name}`; break;
+		case 'month'    : result = `${labelData.name.slice(0,3)}`; break;
+		case 'week'     : result = `W${labelData.name}`; break;
+		case 'date'     : result = `${(labelData.date.getMonth()+1).toString().padStart(2,'0')}-${labelData.date.getDate().toString().padStart(2,'0')}`; break;
+		case 'year'     : result = `${labelData.date.getFullYear()}`; break;
+		default         : result = labelData.name; break;
 	}
 	return result;
 }

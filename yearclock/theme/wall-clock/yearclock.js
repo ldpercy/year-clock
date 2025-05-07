@@ -44,11 +44,12 @@ theme.clock.drawClock = function(clockElement)
 
 
 
-function formatLabel(sectorType, sector) {
+function formatLabel(labelType, labelData) {
 	let result;
-	switch(sectorType) {
-		case 'month'    : result = `${sector.name.slice(0,3)}`; break;
-		default         : result = sector.name; break;
+	switch(labelType) {
+		case 'month'    : result = `${labelData.name.slice(0,3)}`    ; break;
+		case 'date'     : result = `${labelData.date.getFullYear()}` ; break;
+		default         : result = labelData.name; break;
 	}
 	return result;
 }

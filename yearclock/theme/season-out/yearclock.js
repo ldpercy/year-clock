@@ -32,13 +32,14 @@ theme.clock.monthHandLength    = 850;
 //
 // formatting functions
 //
-function formatDateLabel(date) { return `${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}` }
 
-function formatLabel(sectorType, sector) {
+function formatLabel(labelType, labelData) {
 	let result;
-	switch(sectorType) {
-		case 'month'    : result = `${sector.name.slice(0,3)}`; break;
-		default         : result = sector.name; break;
+	switch(labelType) {
+		case 'month'    : result = `${labelData.name.slice(0,3)}`; break;
+		case 'date'     : result = `${(labelData.date.getMonth()+1).toString().padStart(2,'0')}-${labelData.date.getDate().toString().padStart(2,'0')}`; break;
+		case 'year'     : result = `${labelData.date.getFullYear()}`; break;
+		default         : result = labelData.name; break;
 	}
 	return result;
 }
