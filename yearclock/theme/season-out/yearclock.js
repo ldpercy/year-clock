@@ -33,13 +33,25 @@ theme.clock.monthHandLength    = 850;
 // formatting functions
 //
 
-function formatLabel(labelType, labelData) {
+function formatLabel(labelType, data) {
 	let result;
 	switch(labelType) {
-		case 'month'    : result = `${labelData.name.slice(0,3)}`; break;
-		case 'date'     : result = `${(labelData.date.getMonth()+1).toString().padStart(2,'0')}-${labelData.date.getDate().toString().padStart(2,'0')}`; break;
-		case 'year'     : result = `${labelData.date.getFullYear()}`; break;
-		default         : result = labelData.name; break;
+		case 'month'    : result = `${data.name.slice(0,3)}`; break;
+		case 'date'     : result = `${(data.date.getMonth()+1).toString().padStart(2,'0')}-${data.date.getDate().toString().padStart(2,'0')}`; break;
+		case 'year'     : result = `${data.date.getFullYear()}`; break;
+		default         : result = data.name; break;
+	}
+	return result;
+}
+
+function formatSectorTitle(sectorType, data) {
+	let result;
+	switch(sectorType) {
+		case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
+		case 'quarter'  : result = `${data.name}`; break;
+		case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
+		case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
+		default         : result = data.name; break;
 	}
 	return result;
 }

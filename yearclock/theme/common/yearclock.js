@@ -27,14 +27,14 @@ theme.clock.monthLabel.invert         = true;
 //
 
 
-function formatSectorTitle(sectorType, sector) { return sector.name }
+function formatSectorTitle(sectorType, data) { return data.name }
 
-function formatLabel(labelType, labelData) {
+function formatLabel(labelType, data) {
 	let result;
 	switch(labelType) {
-		case 'year'     : result = `${labelData.date.getFullYear()}`; break;
-		case 'date'     : result = `${labelData.date.getFullYear()}`; break;
-		default         : result = labelData.name; break;
+		case 'year'     : result = `${data.date.getFullYear()}`; break;
+		case 'date'     : result = `${data.date.getFullYear()}`; break;
+		default         : result = data.name; break;
 	}
 	return result;
 }
@@ -339,7 +339,7 @@ theme.clock.getPeriodDaySectors = function(periodArray, radiusStart, radiusEnd)
 
 		//log(day);
 		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${day.name} - ${day.isoShort}</title></path>`;
+		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatSectorTitle('day',day)}</title></path>`;
 
 		result += sectorSvg;
 	}

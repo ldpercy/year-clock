@@ -32,8 +32,8 @@ function formatSectorTitle(sectorType, sector) {
 	let result;
 	//log(sector);
 	switch(sectorType) {
-		case 'quarter': result = `${sector.name}`; break;
-		case 'week'   : result = `Week ${sector.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
+		case 'quarter': result = `${data.name}`; break;
+		case 'week'   : result = `Week ${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 		default       : result = sector.name; break;
 	}
 

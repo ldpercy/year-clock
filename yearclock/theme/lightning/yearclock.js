@@ -65,30 +65,34 @@ theme.clock.dayLabel.invert         = 'left';
 //
 
 
-function formatSectorTitle(sectorType, sector) {
+function formatSectorTitle(sectorType, data) {
 	let result;
 	switch(sectorType) {
-		case 'yearDay'  : result = `${sector.name} ${sector.dayOfYear}`; break;
-		case 'quarter'  : result = `${sector.name}`; break;
-		case 'week'     : result = `W${sector.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
-		default         : result = sector.name; break;
+		case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
+		case 'quarter'  : result = `${data.name}`; break;
+		case 'week'     : result = `W${data.name}: ${isoDate(data.dateStart)} - ${isoDate(data.dateEnd)}`; break;
+		case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
+		default         : result = data.name; break;
 	}
 	return result;
 }
 
-function formatLabel(labelType, labelData) {
+function formatLabel(labelType, data) {
 	let result;
 	switch(labelType) {
-		case 'yearDay'  : result = `${labelData.name}`; break;
-		case 'quarter'  : result = `${labelData.name}`; break;
-		case 'month'    : result = `${labelData.name.slice(0,3)}`; break;
-		case 'week'     : result = `W${labelData.name}`; break;
-		case 'date'     : result = `${(labelData.date.getMonth()+1).toString().padStart(2,'0')}-${labelData.date.getDate().toString().padStart(2,'0')}`; break;
-		case 'year'     : result = `${labelData.date.getFullYear()}`; break;
-		default         : result = labelData.name; break;
+		case 'yearDay'  : result = `${data.name}`; break;
+		case 'quarter'  : result = `${data.name}`; break;
+		case 'month'    : result = `${data.name.slice(0,3)}`; break;
+		case 'week'     : result = `W${data.name}`; break;
+		case 'date'     : result = `${isoMonthDay(data.date)}`; break;
+		case 'year'     : result = `${data.date.getFullYear()}`; break;
+		default         : result = data.name; break;
 	}
 	return result;
 }
+
+
+
 
 
 /* Draw Clock

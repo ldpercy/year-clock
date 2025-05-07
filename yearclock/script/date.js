@@ -125,6 +125,11 @@ function isoDate(date) {
 }
 
 
+function isoMonthDay(date) {
+	return isoDate(date).substring(5, 10);
+}
+
+
 /*
 Return the last day of a half-open date range instead of its open limit.
 Equivalent to previousDay(date)
