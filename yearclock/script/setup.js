@@ -43,6 +43,7 @@ function setup() {
 	config.date.year        = config.date.object.getFullYear();
 	config.date.month       = config.date.object.getMonth() + 1;		// js month starts at 0
 	config.date.date        = config.date.object.getDate();
+	config.date.name        = config.date.object.toLocaleString(config.locale, {weekday: "long"});
 	config.date.dayOfYear   = dayOfYear(config.date.object);
 	config.date.daysInYear  = daysInYear(config.date.object);
 	config.date.yearStart   = startOfYear(config.date.object);

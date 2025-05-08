@@ -27,7 +27,14 @@ theme.clock.monthLabel.invert         = true;
 //
 
 
-function formatTitle(type, data) { return data.name }
+function formatTitle(type, data) {
+	let result;
+	switch(type) {
+		case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
+		default         : result = data.name; break;
+	}
+	return result;
+}
 
 function formatLabel(labelType, data) {
 	let result;
@@ -284,6 +291,7 @@ theme.clock.drawHands = function(drawMonthHand) {
 
 	const svg = `
 		<g class="hands">
+			<title>${formatTitle('hands',{'date':config.date})}</title>
 			${yearHand}
 			${monthHand}
 		</g>`;
@@ -369,11 +377,6 @@ theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
 	let newSvg = '';
 	for (let sector of sectorArray)
 	{
-		//
-		//const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-		//sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatSectorTitle(sectorType,sector)}</title></path>`;
-		//
-
 		//log('drawSectorLabels', sector);
 		const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
 
@@ -383,10 +386,10 @@ theme.clock.drawSectorLabels = function(sectorType, sectorArray, labelSettings)
 		if (labelSettings.rotate)
 		{
 			let rotate = rotationDegrees(radiansLabel, labelSettings);
-			transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
+			transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 		}
 		const labelSvg =
-			`<text class="${sector.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel(sectorType, sector)}</text>`;
+			`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${formatLabel(sectorType, sector)}</text>`;
 		newSvg += labelSvg;
 	}
 

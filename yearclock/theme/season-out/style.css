@@ -37,6 +37,9 @@ svg#clock .face   {
 }
 
 
+/* Sectors
+*/
+
 .month .sector:nth-of-type(odd)
 {
 	fill: var(--darkgrey);
@@ -70,13 +73,9 @@ svg#clock .face   {
 	fill: var(--lightgrey);
 }
 
-.sector:hover {
-	stroke: var(--hover);
-	stroke-width: 5;
-	paint-order: fill;
-}
 
-
+/* Labels
+*/
 
 svg#clock .monthLabels text{
 	text-anchor: middle;
@@ -101,23 +100,31 @@ svg#clock .label.dateLabel {
 }
 
 
-svg#clock .hands {
+.hands {
 	filter: drop-shadow(0px 20px 10px var(--shadow));
 }
 
 
-svg#clock path.yearHand  {
+path.yearHand  {
 	stroke: var(--yearhand);
 	fill: var(--yearhand);
 	stroke-width: 25;
 	stroke-linejoin: round;
 }
 
-/*
-svg#clock path.monthHand  {
-	stroke:dimgrey;
-	fill: dimgrey;
-	stroke-width: 15;
-	stroke-linejoin: round;
-}
+
+
+/* Interactive
 */
+
+.sector:hover
+{
+	stroke: var(--hover);
+	stroke-width: 5;
+	paint-order: fill;
+}
+
+.hands:hover {
+	/* //stroke: var(--hover); */
+	filter: drop-shadow(0px 20px 10px var(--hover));
+}

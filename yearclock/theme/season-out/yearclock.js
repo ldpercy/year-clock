@@ -51,6 +51,7 @@ function formatTitle(type, data) {
 		case 'quarter'  : result = `${data.name}`; break;
 		case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 		case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
+		case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
 		default         : result = data.name; break;
 	}
 	return result;

@@ -33,6 +33,7 @@ function formatTitle(type, data) {
 	switch(type) {
 		case 'quarter': result = `${data.name}`; break;
 		case 'week'   : result = `Week ${data.name}: ${isoDate(data.dateStart)} - ${isoDate(data.dateEnd)}`; break;
+		case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
 		default       : result = data.name; break;
 	}
 
