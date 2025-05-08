@@ -74,8 +74,8 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 	theme.clock.drawMonthLabels();
-	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
-	theme.clock.drawDateLabel(config.date.object);
+	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
+	theme.clock.drawDateLabel(displayDate.object);
 
 	theme.clock.drawHands(displayDate, drawMonthHand=false);
 

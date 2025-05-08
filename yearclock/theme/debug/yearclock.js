@@ -53,11 +53,12 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	//theme.clock.drawMonthSectors();
 	//theme.clock.drawMonthLabels();
 	//theme.clock.drawYearDayTicks();
-	//theme.clock.drawDateLabel(config.date.object);
-	//theme.clock.drawHands();
+	//theme.clock.drawDateLabel(displayDate.object);
+	//theme.clock.drawHands(displayDate);
 
 
-	let weekArray    = getYearWeekArray(config.date.object);
+
+	let weekArray    = getYearWeekArray(displayDate.object);
 	//log(weekArray);
 
 	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);

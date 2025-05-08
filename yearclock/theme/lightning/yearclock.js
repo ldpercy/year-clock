@@ -106,8 +106,8 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	//theme.clock.drawFace();
 	theme.clock.drawBody(theme.clock.body);
 
-	let quarterArray = getQuarterArray(config.date.object);
-	let weekArray    = getYearWeekArray(config.date.object);
+	let quarterArray = getQuarterArray(displayDate.object);
+	let weekArray    = getYearWeekArray(displayDate.object);
 
 	theme.clock.drawSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd);
 	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
@@ -120,8 +120,8 @@ theme.clock.drawClock = function(clockElement, displayDate)
 
 	theme.clock.drawSectorLabels('yearDay', config.yearDayArray, theme.clock.dayLabel);
 
-	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
-	theme.clock.drawDateLabel(config.date.object);
+	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
+	theme.clock.drawDateLabel(displayDate.object);
 
 }/* drawClock */
 
