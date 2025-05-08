@@ -24,6 +24,21 @@
 }
 
 
+/* mix-blend-mode with labels behind, dark styles
+path.sector {
+	stroke: var(--sectorStroke);
+	stroke-width: 1px;
+
+	mix-blend-mode: lighten;
+
+	good: difference, lighten, screen
+	interesting: difference, exclusion,
+
+}
+*/
+
+
+
 /* Sectors: quarter, month, week
 */
 

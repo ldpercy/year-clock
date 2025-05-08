@@ -49,6 +49,16 @@ svg#clock .body   {
 path.sector {
 	stroke: var(--sectorStroke);
 	stroke-width: 1px;
+
+	/* mix-blend-mode with labels behind
+
+	For light theme:
+
+	mix-blend-mode: multiply;
+
+	good: darken, multiply,
+	interesting: difference, exclusion,
+	*/
 }
 
 

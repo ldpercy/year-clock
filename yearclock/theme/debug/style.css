@@ -8,8 +8,8 @@
 	--clockface: white;
 	--white: #eee7;
 
-	--sectorLight: #eee7;
-	--sectorDark: #aaa7;
+	--sectorLight: #ee0b;
+	--sectorDark: #00ab;
 	--sectorStroke: #9997;
 
 	--textDark: #000f;
@@ -24,7 +24,7 @@
 	--hover: red;
 }
 
-
+/**/
 
 .face   {
 	fill: whitesmoke;
@@ -40,6 +40,44 @@ path.sector {
 	stroke-width: 3px;
 	fill:transparent;
 }
+
+
+/*
+	mix-blend-mode:color;
+	mix-blend-mode:color-burn;
+	mix-blend-mode:color-dodge;
+	mix-blend-mode:darken;
+	mix-blend-mode:difference;
+	mix-blend-mode:exclusion;
+	mix-blend-mode:hard-light;
+	mix-blend-mode:hue;
+	mix-blend-mode:lighten;
+	mix-blend-mode:luminosity;
+	mix-blend-mode:multiply;
+	mix-blend-mode:normal;
+	mix-blend-mode:overlay;
+	mix-blend-mode:saturation;
+	mix-blend-mode:screen;
+	mix-blend-mode:soft-light;
+*/
+
+.quarter .sector:nth-of-type(even),
+.month .sector:nth-of-type(odd),
+.week .sector:nth-of-type(even)
+{
+	fill: var(--sectorDark);
+	mix-blend-mode:multiply;
+}
+
+.quarter .sector:nth-of-type(odd),
+.month .sector:nth-of-type(even),
+.week .sector:nth-of-type(odd)
+{
+	fill: var(--sectorLight);
+	mix-blend-mode:multiply;
+}
+
+
 
 svg#clock .sector.jan { fill: #E42D1A }
 svg#clock .sector.feb { fill: #983021 }
@@ -75,6 +113,8 @@ svg#clock .sector.dec { fill: #F18E17 }
 	fill: var(--textDark);
 	text-anchor: middle;
 	dominant-baseline: middle;
+
+
 }
 
 .label.yearDay text {

@@ -60,8 +60,8 @@ theme.clock.drawClock = function(clockElement)
 	let weekArray    = getYearWeekArray(config.date.object);
 	//log(weekArray);
 
-	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
 	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);
+	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
 
 	theme.clock.drawSectorLabels('yearDay', config.yearDayArray, theme.clock.dayLabel);
 	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
