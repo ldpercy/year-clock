@@ -80,7 +80,7 @@ function formatTitle(type, data) {
 function formatLabel(labelType, data) {
 	let result;
 	switch(labelType) {
-		case 'yearDay'  : result = `${data.name}`; break;
+		case 'yearDay'  : result = `${data.name.slice(0,2)}`; break;
 		case 'quarter'  : result = `${data.name}`; break;
 		case 'month'    : result = `${data.name.slice(0,3)}`; break;
 		case 'week'     : result = `W${data.name}`; break;
