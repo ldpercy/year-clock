@@ -56,7 +56,14 @@ Would probably require more tweaks.
 
 I'm not too sure this can be done actually - if elements like `path` allowed children *other* than title then the hover might bubble.
 But I don't think most drawing elements (path, rect, circle etc) allow arbitrary nested children like that - I'll double check.
+
+https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element#graphics_elements
+
+Yeah, as i thought, all the graphics elements basically are only allowed animation and descriptive as child elements.
+
 Hover on a containing group might be another possibility - I think I did something like this on the share charts ages ago, but don't remember if it was done natively or with script trickery.
+
+
 
 ### CSS :has
 
