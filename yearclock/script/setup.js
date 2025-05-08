@@ -144,7 +144,7 @@ function setTheme(){
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
-	theme.clock.drawClock(clockElement);
+	theme.clock.drawClock(clockElement, config.date);
 	log('--- After drawClock ---');
 
 

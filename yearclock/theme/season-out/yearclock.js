@@ -61,7 +61,7 @@ function formatTitle(type, data) {
 
 /* Draw Clock
 */
-theme.clock.drawClock = function(clockElement)
+theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
@@ -77,7 +77,7 @@ theme.clock.drawClock = function(clockElement)
 	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
 	theme.clock.drawDateLabel(config.date.object);
 
-	theme.clock.drawHands(drawMonthHand=false);
+	theme.clock.drawHands(displayDate, drawMonthHand=false);
 
 }/* drawClock */
 

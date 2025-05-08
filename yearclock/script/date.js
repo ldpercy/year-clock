@@ -309,8 +309,8 @@ function getQuarterArray(date) {
 */
 function getYearWeekArray(date) {
 
-	const yearStart   = startOfYear(config.date.object);
-	const yearEnd     = nextYear(config.date.object);
+	const yearStart   = startOfYear(date);
+	const yearEnd     = nextYear(date);
 
 	let weekNumber = 1;
 
