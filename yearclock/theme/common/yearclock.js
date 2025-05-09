@@ -92,7 +92,7 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius, monthArray=config.monthArray) {
+theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius, monthArray=config.date.monthArray) {
 	let newSvg = '';
 	for (let month of monthArray)
 	{
@@ -107,7 +107,7 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 /* drawMonthLabels
 This is nearly ready to get rid of
 */
-theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
+theme.clock.drawMonthLabels = function(monthArray=config.date.monthArray) {
 	let newSvg = '';
 	for (let month of monthArray)
 	{
@@ -135,7 +135,7 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 
 /* drawYearDayTicks
 */
-theme.clock.drawYearDayTicks = function(yearDayArray=config.yearDayArray) {
+theme.clock.drawYearDayTicks = function(yearDayArray=config.date.yearDayArray) {
 
 	const yearDayTicks = theme.clock.getPeriodDayTicks(yearDayArray);
 	theme.clock.element.innerHTML += `

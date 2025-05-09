@@ -112,13 +112,13 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.drawSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd);
 	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
-	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawPeriodDaySectors('yearDay', config.date.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 	theme.clock.drawSectorLabels('quarter', quarterArray, theme.clock.quarterLabel);
 	theme.clock.drawMonthLabels();
 	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);
 
-	theme.clock.drawSectorLabels('yearDay', config.yearDayArray, theme.clock.dayLabel);
+	theme.clock.drawSectorLabels('yearDay', config.date.yearDayArray, theme.clock.dayLabel);
 
 	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
 	theme.clock.drawDateLabel(displayDate.object);

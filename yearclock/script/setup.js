@@ -37,6 +37,13 @@ const theme = {
 /* setup
 */
 function setup() {
+	// Language
+	config.languageParam = getParameterByName('language');
+	config.language = getLanguage(config.languageParam);
+	log('config.languageParam:', config.languageParam);
+	log('config.language:', config.language);
+	config.monthNames = l10n.gregLocal[config.language];
+
 	// Set Current Date
 	config.date.param       = getParameterByName('date');
 	config.date.object      = (config.date.param) ? new Date(config.date.param) : new Date();
@@ -48,21 +55,11 @@ function setup() {
 	config.date.daysInYear  = daysInYear(config.date.object);
 	config.date.yearStart   = startOfYear(config.date.object);
 	config.date.yearEnd     = nextYear(config.date.object);
-	log('config.date.object:', config.date.object);
-
-
-	// Language
-	config.languageParam = getParameterByName('language');
-	config.language = getLanguage(config.languageParam);
-	log('config.languageParam:', config.languageParam);
-	log('config.language:', config.language);
-	config.monthNames = l10n.gregLocal[config.language];
-
 	// Set up period arrays
-	config.monthArray    = getMonthArray(config.date);
-	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
-	//config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
-	config.seasonArray   = getSeasonArray(config.date.object);
+	config.date.monthArray    = getMonthArray(config.date);
+	config.date.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
+	config.date.seasonArray   = getSeasonArray(config.date.object);
+	log('config.date.object:', config.date.object);
 
 
 	// Theming:

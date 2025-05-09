@@ -125,4 +125,7 @@ It occurs to me around about here that a few things should be shuffled around to
 * This would work towards being able to draw multiple clocks (with different settings) in the same document
 * It might also be helpful to turn `displayDate` into a js class to group all of its functionality together
 
+I'm going to go ahead and make these changes but as this touches a bunch of older and lower down code I'm going to merge it back pretty much straight away to keep main in sync.
+
+
 
