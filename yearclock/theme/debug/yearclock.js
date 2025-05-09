@@ -64,8 +64,8 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);
 	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
 
-	theme.clock.drawSectorLabels('yearDay', config.date.yearDayArray, theme.clock.dayLabel);
-	theme.clock.drawPeriodDaySectors('yearDay', config.date.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel);
+	theme.clock.drawPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 
 }/* drawClock */

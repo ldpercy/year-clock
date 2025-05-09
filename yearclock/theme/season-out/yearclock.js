@@ -67,13 +67,13 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.element = clockElement;
 	theme.clock.drawFace();
 
-	theme.clock.drawSectors('season', config.date.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
+	theme.clock.drawSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
 
-	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
+	theme.clock.drawMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 
-	theme.clock.drawPeriodDaySectors('yearDay', config.date.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
-	theme.clock.drawMonthLabels();
+	theme.clock.drawMonthLabels(displayDate.monthArray);
 	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
 	theme.clock.drawDateLabel(displayDate.object);
 

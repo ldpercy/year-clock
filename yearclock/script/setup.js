@@ -33,6 +33,8 @@ const theme = {
 	},
 };
 
+let displayDate = undefined;
+
 
 /* setup
 */
@@ -44,23 +46,14 @@ function setup() {
 	log('config.language:', config.language);
 	config.monthNames = l10n.gregLocal[config.language];
 
-	// Set Current Date
-	config.date.param       = getParameterByName('date');
-	config.date.object      = (config.date.param) ? new Date(config.date.param) : new Date();
-	config.date.year        = config.date.object.getFullYear();
-	config.date.month       = config.date.object.getMonth() + 1;		// js month starts at 0
-	config.date.date        = config.date.object.getDate();
-	config.date.name        = config.date.object.toLocaleString(config.locale, {weekday: "long"});
-	config.date.dayOfYear   = dayOfYear(config.date.object);
-	config.date.daysInYear  = daysInYear(config.date.object);
-	config.date.yearStart   = startOfYear(config.date.object);
-	config.date.yearEnd     = nextYear(config.date.object);
-	// Set up period arrays
-	config.date.monthArray    = getMonthArray(config.date);
-	config.date.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
-	config.date.seasonArray   = getSeasonArray(config.date.object);
-	log('config.date.object:', config.date.object);
-
+	// Set initial displayDate
+	const dateParameter = getParameterByName('date');
+	const urlDate = (dateParameter !== null) ? new Date(dateParameter) : null;
+	log('urlDate', urlDate);
+	const setupDate = (isValidDate(urlDate)) ? urlDate : new Date();
+	log('setupDate', setupDate);
+	displayDate = createDisplayDate(setupDate);
+	log('Initial displayDate:', displayDate);
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
@@ -141,7 +134,7 @@ function setTheme(){
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
-	theme.clock.drawClock(clockElement, config.date);
+	theme.clock.drawClock(clockElement, displayDate); //config.date);
 	log('--- After drawClock ---');
 
 
