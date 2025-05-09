@@ -92,10 +92,10 @@ Lets see now...
 * Need to clean up anything still relying directly on the `config.date` global
 
 
-config.date global
-------------------
+Refactor config.date global
+---------------------------
 
- Might start here, might be easy to at least parameterise this.
+Might start here, might be easy to at least parameterise this.
 
 Ugh. This is a bit of a mess.
 In use I've mixed up proper JS date objects and the current `config.date` which has a bunch of extra stuff in it.
@@ -108,4 +108,21 @@ For starters I need to be clearer about what kinds of dates I'm using in what co
 * If the argument is 'displayDate' it's the fattened out date object currently sitting in config.date
 
 For now I'll pass the full displayDate object into drawClock, and divvy it out as needed.
+
+Okay done, have cleaned up all the config.date references in the themes.
+
+
+### Date array globals
+
+I'd like to get all of the `config.` references out of the themes entirely now as well.
+There are a dozen or so remaining references to the date array globals left in the themes.
+These will need to go as well.
+
+It occurs to me around about here that a few things should be shuffled around to make more sense.
+
+* Those period arrays should be part of the displayDate object, because they are attendant to it
+* `config.date = ` should probably be just  `let displayDate = ` and pushed into a constructor in the date script
+* This would work towards being able to draw multiple clocks (with different settings) in the same document
+* It might also be helpful to turn `displayDate` into a js class to group all of its functionality together
+
 
