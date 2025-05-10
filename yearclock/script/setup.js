@@ -16,7 +16,8 @@ const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 	defaultTheme    : 'season-out',
-	locale          : 'en'           // THe internal locale used for month and day names in classes
+	locale          : 'en',           // THe internal locale used for month and day names in classes
+	setupDate       : undefined,
 };
 
 
@@ -33,7 +34,7 @@ const theme = {
 	},
 };
 
-let displayDate = undefined;
+//let displayDate = undefined;
 
 
 /* setup
@@ -50,10 +51,9 @@ function setup() {
 	const dateParameter = getParameterByName('date');
 	const urlDate = (dateParameter !== null) ? new Date(dateParameter) : null;
 	log('urlDate', urlDate);
-	const setupDate = (isValidDate(urlDate)) ? urlDate : new Date();
-	log('setupDate', setupDate);
-	displayDate = createDisplayDate(setupDate);
-	log('Initial displayDate:', displayDate);
+	config.setupDate = (isValidDate(urlDate)) ? urlDate : new Date();
+	log('setupDate', config.setupDate);
+
 
 	// Theming:
 	config.styleElement_base = document.getElementById('stylesheet-base');
@@ -131,6 +131,10 @@ function setTheme(){
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
+
+	let displayDate = createDisplayDate(config.setupDate);
+	log('Initial displayDate:', displayDate);
+
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
