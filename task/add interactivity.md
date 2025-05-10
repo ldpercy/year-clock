@@ -82,6 +82,14 @@ Dynamically set display date
 
 I've got a couple of test events for single and double click that I can probably put into action.
 
+### dbl click fires two single clicks first
+
+https://stackoverflow.com/questions/880608/prevent-click-event-from-firing-when-dblclick-event-fires
+
+https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
+
+
+
 But for these to be useful what I really need right now is a single function call to set the current display date.
 This is probably going to require *lots* of changes.
 Lets see now...
