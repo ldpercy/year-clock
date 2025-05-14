@@ -16,8 +16,8 @@ const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 	defaultTheme    : 'season-out',
-	locale          : 'en',           // THe internal locale used for month and day names in classes
-	setupDate       : undefined,
+	locale          : 'en',           // The internal locale used for month and day names in classes
+	setupDate       : undefined,      // the date used at the initial setup time
 };
 
 
@@ -80,6 +80,7 @@ function setup() {
 
 
 /* setThemeConfig
+setup part 2
 */
 function setThemeConfig(){
 	// onload script-themeConfig
@@ -132,6 +133,9 @@ function setTheme(){
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
 
+
+
+	// displayDate is now a transient object passed in to drawClock
 	let displayDate = createDisplayDate(config.setupDate);
 	log('Initial displayDate:', displayDate);
 
