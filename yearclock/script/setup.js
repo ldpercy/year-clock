@@ -9,10 +9,6 @@ log('--- setup.js ---')
 
 // Year-clock general configuration
 const config = {
-	date            : {},            // The date used for the clock display
-	//displayDate     : {},            // The date used for the clock display
-	year            : {},            // year information
-	days            : [],            // array of day information
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 	defaultTheme    : 'season-out',
@@ -34,8 +30,6 @@ const theme = {
 	},
 };
 
-//let displayDate = undefined;
-
 
 /* setup
 */
@@ -47,7 +41,7 @@ function setup() {
 	log('config.language:', config.language);
 	config.monthNames = l10n.gregLocal[config.language];
 
-	// Set initial displayDate
+	// Set initial display date based on date param or local date
 	const dateParameter = getParameterByName('date');
 	const urlDate = (dateParameter !== null) ? new Date(dateParameter) : null;
 	log('urlDate', urlDate);
@@ -142,7 +136,7 @@ function setTheme(){
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
-	theme.clock.drawClock(clockElement, displayDate); //config.date);
+	theme.clock.drawClock(clockElement, displayDate);
 	log('--- After drawClock ---');
 
 

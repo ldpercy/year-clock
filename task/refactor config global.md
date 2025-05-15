@@ -155,3 +155,36 @@ Have renamed my local branch, need to sort out the remote branch names though.
 I think there were 3 of these left in the theme directory, will get them out next.
 
 
+### Anything left?
+
+Have taken out the click events, but other than that I think I should start wrapping this.
+
+
+
+Wrapup
+------
+
+I'm just going to crib and update the summary from above.
+
+* Turned old config.date object into transient displayDate object
+* displayDate object now created by function in date script
+* Moved period arrays into displayDate object
+* Add displayDate as parameter to drawclock
+* Remove/refactor out old config.date ref in themes to use displayDate parameter
+* Actual displayDate call moved to just before drawClock
+* Small improvements to initial date setting
+* Removed some no longer used `config.` settings
+
+That's about enough for now.
+I'm nowhere near 100% sure I haven't introduced bugs with this, but this branch *needs* to be merged.
+
+A bunch of new tasks will follow, haven't started them yet, but some ideas:
+
+* Add writing of the svg element itself to the drawClock function
+* Add container element for drawing clocks into
+* Convert themes to javascript classes
+* Refactor out `theme.` global
+* Add proper setDate method
+* Add more parameters to drawClock
+
+
