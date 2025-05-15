@@ -48,7 +48,7 @@ Experiment - move createDisplayDate to before drawClock
 
 This is really starting to change a lot about how things were working - I need to write out what I'm doing here because I'm coming back after a few days and need to reconnect.
 
-* I'd pulled a bunch of globals out of the theme code - I think i got most/all, but there might be a few leftover - will find and fix as needed
+* I'd pulled a bunch of globals out of the theme code - I think i got most/all, but there might be a few leftovers - will find and fix as needed
 * I'd merged all of the fat date stuff together into a single displayDate object that it now being built by a function. That object itself needs some serious refactoring, but it is what it is for the moment.
 * The displayDate object is now a transient parameter to the main drawClock function(s), so in theory now (or pretty soon, depending on how good the previous refactors were) I'll be able to split out the clock draw from the setup sequence. This mean's I'll be able to redraw the clock on demand, instead of just at page load.
 
@@ -92,7 +92,7 @@ Could it be cleared up a bit?
 Some kind of better structure...
 --------------------------------
 
-So what I'd like, and what I'm slowly moving towards with all of this, is having a single functions like:
+So what I'd like, and what I'm slowly moving towards with all of this, is having single functions like:
 
 	setupPage()									// do whatever's necessary to get the page setup and ready
 	drawClock(element, theme, config, date)		// draw a clock into the element with some $parameters
@@ -144,4 +144,9 @@ Resume from task split
 ----------------------
 
 Original 'add interactivity' context above, new task context from here on.
+
+### branch name
+
+Have renamed my local branch, need to sort out the remote branch names though.
+
 
