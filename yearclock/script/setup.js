@@ -146,9 +146,8 @@ function setTheme(){
 	log('--- After drawClock ---');
 
 
-
+	/*
 	// https://gomakethings.com/detecting-click-events-on-svgs-with-vanilla-js-event-delegation/
-
 
 	clockElement.addEventListener('click', function (event) {
 		//if (!event.target.matches('.sandwich')) return;
@@ -156,14 +155,13 @@ function setTheme(){
 		log('click',event);
 	}, false);
 
-
 	clockElement.addEventListener('dblclick', function (event) {
 		//if (!event.target.matches('.sandwich')) return;
 		//	console.log(event.target);
 		log('dblclick',event);
 	}, false);
 
-
+	*/
 
 }/* setTheme */
 
