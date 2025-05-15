@@ -150,3 +150,8 @@ Original 'add interactivity' context above, new task context from here on.
 Have renamed my local branch, need to sort out the remote branch names though.
 
 
+### Remaining `config.`
+
+I think there were 3 of these left in the theme directory, will get them out next.
+
+

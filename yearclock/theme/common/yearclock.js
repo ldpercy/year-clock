@@ -148,7 +148,7 @@ theme.clock.drawYearDayTicks = function(yearDayArray) {
 
 /* drawMonthDayTicks
 */
-theme.clock.drawMonthDayTicks = function(monthDayArray=config.monthDayArray) {
+theme.clock.drawMonthDayTicks = function(monthDayArray) {
 
 	const monthDayTicks = theme.clock.getPeriodDayTicks(monthDayArray);
 	theme.clock.element.innerHTML += `
@@ -283,7 +283,7 @@ theme.clock.drawHands = function(displayDate, drawMonthHand) {
 
 	if (drawMonthHand) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(config.monthDayArray.length, displayDate.object.getDate());
+		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		monthHand = theme.clock.getHandPath(theme.clock.monthHandLength, monthTransform, 'monthHand', '');

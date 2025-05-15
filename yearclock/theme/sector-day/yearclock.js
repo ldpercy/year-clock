@@ -27,13 +27,13 @@ theme.clock.monthHandLength    = 850;
 */
 theme.clock.drawClock = function(clockElement, displayDate)
 {
-	config.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object);
+	displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object);
 
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 	theme.clock.drawFace();
 	theme.clock.drawMonthSectors(displayDate.monthArray);
-	theme.clock.drawPeriodDaySectors('month', config.monthDayArray, theme.clock.innerRadius, theme.clock.outerRadius);
+	theme.clock.drawPeriodDaySectors('month', displayDate.monthDayArray, theme.clock.innerRadius, theme.clock.outerRadius);
 	theme.clock.drawMonthLabels(displayDate.monthArray);
 
 	theme.clock.drawDateLabel(displayDate.object);
