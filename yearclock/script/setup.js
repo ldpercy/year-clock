@@ -9,14 +9,11 @@ log('--- setup.js ---')
 
 // Year-clock general configuration
 const config = {
-	date            : {},            // The date used for the clock display
-	//displayDate     : {},            // The date used for the clock display
-	year            : {},            // year information
-	days            : [],            // array of day information
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 	defaultTheme    : 'season-out',
-	locale          : 'en'           // THe internal locale used for month and day names in classes
+	locale          : 'en',           // The internal locale used for month and day names in classes
+	setupDate       : undefined,      // the date used at the initial setup time
 };
 
 
@@ -37,20 +34,6 @@ const theme = {
 /* setup
 */
 function setup() {
-	// Set Current Date
-	config.date.param       = getParameterByName('date');
-	config.date.object      = (config.date.param) ? new Date(config.date.param) : new Date();
-	config.date.year        = config.date.object.getFullYear();
-	config.date.month       = config.date.object.getMonth() + 1;		// js month starts at 0
-	config.date.date        = config.date.object.getDate();
-	config.date.name        = config.date.object.toLocaleString(config.locale, {weekday: "long"});
-	config.date.dayOfYear   = dayOfYear(config.date.object);
-	config.date.daysInYear  = daysInYear(config.date.object);
-	config.date.yearStart   = startOfYear(config.date.object);
-	config.date.yearEnd     = nextYear(config.date.object);
-	log('config.date.object:', config.date.object);
-
-
 	// Language
 	config.languageParam = getParameterByName('language');
 	config.language = getLanguage(config.languageParam);
@@ -58,11 +41,12 @@ function setup() {
 	log('config.language:', config.language);
 	config.monthNames = l10n.gregLocal[config.language];
 
-	// Set up period arrays
-	config.monthArray    = getMonthArray(config.date);
-	config.yearDayArray  = getPeriodDayArray(startOfYear(config.date.object), nextYear(config.date.object), config.date.object);
-	//config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
-	config.seasonArray   = getSeasonArray(config.date.object);
+	// Set initial display date based on date param or local date
+	const dateParameter = getParameterByName('date');
+	const urlDate = (dateParameter !== null) ? new Date(dateParameter) : null;
+	log('urlDate', urlDate);
+	config.setupDate = (isValidDate(urlDate)) ? urlDate : new Date();
+	log('setupDate', config.setupDate);
 
 
 	// Theming:
@@ -90,6 +74,7 @@ function setup() {
 
 
 /* setThemeConfig
+setup part 2
 */
 function setThemeConfig(){
 	// onload script-themeConfig
@@ -141,11 +126,36 @@ function setTheme(){
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
 	}
+
+
+
+	// displayDate is now a transient object passed in to drawClock
+	let displayDate = createDisplayDate(config.setupDate);
+	log('Initial displayDate:', displayDate);
+
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
-	theme.clock.drawClock(clockElement);
+	theme.clock.drawClock(clockElement, displayDate);
 	log('--- After drawClock ---');
+
+
+	/*
+	// https://gomakethings.com/detecting-click-events-on-svgs-with-vanilla-js-event-delegation/
+
+	clockElement.addEventListener('click', function (event) {
+		//if (!event.target.matches('.sandwich')) return;
+		//	console.log(event.target);
+		log('click',event);
+	}, false);
+
+	clockElement.addEventListener('dblclick', function (event) {
+		//if (!event.target.matches('.sandwich')) return;
+		//	console.log(event.target);
+		log('dblclick',event);
+	}, false);
+
+	*/
 
 }/* setTheme */
 
@@ -154,51 +164,3 @@ function debug() {
 
 }
 
-
-
-
-//
-// Utilities
-//
-
-
-/* URL Parameters
-*/
-function getParameterByName(name)
-{
-	const url = window.location.href
-	name = name.replace(/[\[\]]/g, "\\$&")
-	const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
-	const results = regex.exec(url)
-	if (!results) return null
-	if (!results[2]) return ''
-	return decodeURIComponent(results[2].replace(/\+/g, " "))
-}
-
-
-/* replaceScript
-*/
-function replaceScript(id, scriptUrl, callback) {
-	//log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
-	let scriptElement = document.createElement('script');
-
-	scriptElement.setAttribute('id', id);
-	scriptElement.setAttribute('src', scriptUrl);
-	scriptElement.addEventListener('load', callback);
-
-	document.getElementById(id).remove();
-	document.getElementsByTagName('head')[0].appendChild(scriptElement);
-}/* replaceScript */
-
-
-
-/* createLog
-Returns a log function that logs to the console with performance timing.
-Use:
-	mylog = createLog();
-*/
-function createLog() {
-	return (...values) => {
-		console.log(performance.now(), ...values);
-	}
-}

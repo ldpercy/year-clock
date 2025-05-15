@@ -44,7 +44,7 @@ function formatTitle(type, data) {
 
 /* Draw Clock
 */
-theme.clock.drawClock = function(clockElement)
+theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
@@ -53,18 +53,19 @@ theme.clock.drawClock = function(clockElement)
 	//theme.clock.drawMonthSectors();
 	//theme.clock.drawMonthLabels();
 	//theme.clock.drawYearDayTicks();
-	//theme.clock.drawDateLabel(config.date.object);
-	//theme.clock.drawHands();
+	//theme.clock.drawDateLabel(displayDate.object);
+	//theme.clock.drawHands(displayDate);
 
 
-	let weekArray    = getYearWeekArray(config.date.object);
+
+	let weekArray    = getYearWeekArray(displayDate.object);
 	//log(weekArray);
 
 	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);
 	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
 
-	theme.clock.drawSectorLabels('yearDay', config.yearDayArray, theme.clock.dayLabel);
-	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel);
+	theme.clock.drawPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 
 }/* drawClock */

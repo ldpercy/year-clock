@@ -55,17 +55,17 @@ function formatLabel(labelType, data) {
 
 /* Draw Clock
 */
-theme.clock.drawClock = function(clockElement)
+theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 	//theme.clock.drawViewbox();
 	theme.clock.drawFace();
-	theme.clock.drawMonthSectors();
-	theme.clock.drawMonthLabels();
-	theme.clock.drawYearDayTicks();
-	theme.clock.drawDateLabel(config.date.object);
-	theme.clock.drawHands();
+	theme.clock.drawMonthSectors(displayDate.monthArray);
+	theme.clock.drawMonthLabels(displayDate.monthArray);
+	theme.clock.drawYearDayTicks(displayDate.yearDayArray);
+	theme.clock.drawDateLabel(displayDate.object);
+	theme.clock.drawHands(displayDate);
 }/* drawClock */
 
 
@@ -92,7 +92,7 @@ theme.clock.drawFace = function() {
 }
 
 
-theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius, monthArray=config.monthArray) {
+theme.clock.drawMonthSectors = function(monthArray, radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius) {
 	let newSvg = '';
 	for (let month of monthArray)
 	{
@@ -107,7 +107,7 @@ theme.clock.drawMonthSectors = function(radiusStart=theme.clock.outerRadius, rad
 /* drawMonthLabels
 This is nearly ready to get rid of
 */
-theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
+theme.clock.drawMonthLabels = function(monthArray) {
 	let newSvg = '';
 	for (let month of monthArray)
 	{
@@ -135,7 +135,7 @@ theme.clock.drawMonthLabels = function(monthArray=config.monthArray) {
 
 /* drawYearDayTicks
 */
-theme.clock.drawYearDayTicks = function(yearDayArray=config.yearDayArray) {
+theme.clock.drawYearDayTicks = function(yearDayArray) {
 
 	const yearDayTicks = theme.clock.getPeriodDayTicks(yearDayArray);
 	theme.clock.element.innerHTML += `
@@ -148,7 +148,7 @@ theme.clock.drawYearDayTicks = function(yearDayArray=config.yearDayArray) {
 
 /* drawMonthDayTicks
 */
-theme.clock.drawMonthDayTicks = function(monthDayArray=config.monthDayArray) {
+theme.clock.drawMonthDayTicks = function(monthDayArray) {
 
 	const monthDayTicks = theme.clock.getPeriodDayTicks(monthDayArray);
 	theme.clock.element.innerHTML += `
@@ -271,10 +271,10 @@ theme.clock.drawDayLabel = function(date, point) {
 /* drawHands
 This has a bunch of globals in it - need
 */
-theme.clock.drawHands = function(drawMonthHand) {
+theme.clock.drawHands = function(displayDate, drawMonthHand) {
 
 	// calculate year hand params
-	const yearDayDivision = divisionDegrees(config.date.daysInYear, config.date.dayOfYear);
+	const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear);
 	const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 	// get year hand
 	const yearHand = theme.clock.getHandPath(theme.clock.yearHandLength, yearTransform, 'yearHand', '');
@@ -283,7 +283,7 @@ theme.clock.drawHands = function(drawMonthHand) {
 
 	if (drawMonthHand) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(config.monthDayArray.length, config.date.object.getDate());
+		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		monthHand = theme.clock.getHandPath(theme.clock.monthHandLength, monthTransform, 'monthHand', '');
@@ -291,7 +291,7 @@ theme.clock.drawHands = function(drawMonthHand) {
 
 	const svg = `
 		<g class="hands">
-			<title>${formatTitle('hands',{'date':config.date})}</title>
+			<title>${formatTitle('hands',{'date':displayDate})}</title>
 			${yearHand}
 			${monthHand}
 		</g>`;

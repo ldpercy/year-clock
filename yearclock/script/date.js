@@ -3,6 +3,35 @@
 //
 
 
+/* createDisplayDate
+This is a temporary-ish function to re-create the big fat object sitting in the setup function called `config.date`.
+It needs to be rationalised (much) further.
+*/
+function createDisplayDate(date) {
+	log('createDisplayDate...',date);
+	const result = {
+		object      : new Date(date),
+		year        : date.getFullYear(),
+		month       : date.getMonth() + 1,		// js month starts at 0
+		date        : date.getDate(),
+		name        : date.toLocaleString(config.locale, {weekday: "long"}),
+		dayOfYear   : dayOfYear(date),
+		daysInYear  : daysInYear(date),
+		yearStart   : startOfYear(date),
+		yearEnd     : nextYear(date),
+	};
+
+	// Set up period arrays
+	result.monthArray   = getMonthArray(result, config.monthNames);
+	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
+	result.seasonArray  = getSeasonArray(date);
+
+	log('createDisplayDate',result);
+	return result;
+}/* createDisplayDate */
+
+
+
 /* mutators:
 */
 
@@ -35,6 +64,12 @@ function nextDay(date) {
 
 /* decisions, calculations:
 */
+
+
+//https://stackoverflow.com/a/1353711
+function isValidDate(date) {
+	return date instanceof Date && !isNaN(date);
+}
 
 function isWeekend(d) {
 	const dayNumber = d.getDay()
@@ -150,7 +185,7 @@ This needs a lot of cleanup/rationalisation:
 	Change radians calc to fn
 
 */
-function getMonthArray(displayDate, monthNames=config.monthNames) {
+function getMonthArray(displayDate, monthNames) {
 	const result = monthNames.map(
 		function( monthName, monthNumber ) {
 			const startDate    = new Date(displayDate.year, monthNumber);
@@ -309,8 +344,8 @@ function getQuarterArray(date) {
 */
 function getYearWeekArray(date) {
 
-	const yearStart   = startOfYear(config.date.object);
-	const yearEnd     = nextYear(config.date.object);
+	const yearStart   = startOfYear(date);
+	const yearEnd     = nextYear(date);
 
 	let weekNumber = 1;
 

@@ -61,23 +61,23 @@ function formatTitle(type, data) {
 
 /* Draw Clock
 */
-theme.clock.drawClock = function(clockElement)
+theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 	theme.clock.drawFace();
 
-	theme.clock.drawSectors('season', config.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
+	theme.clock.drawSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
 
-	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
+	theme.clock.drawMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 
-	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
-	theme.clock.drawMonthLabels();
-	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
-	theme.clock.drawDateLabel(config.date.object);
+	theme.clock.drawMonthLabels(displayDate.monthArray);
+	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
+	theme.clock.drawDateLabel(displayDate.object);
 
-	theme.clock.drawHands(drawMonthHand=false);
+	theme.clock.drawHands(displayDate, drawMonthHand=false);
 
 }/* drawClock */
 

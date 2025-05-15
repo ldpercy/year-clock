@@ -97,7 +97,7 @@ function formatLabel(labelType, data) {
 
 /* Draw Clock
 */
-theme.clock.drawClock = function(clockElement)
+theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
@@ -106,22 +106,22 @@ theme.clock.drawClock = function(clockElement)
 	//theme.clock.drawFace();
 	theme.clock.drawBody(theme.clock.body);
 
-	let quarterArray = getQuarterArray(config.date.object);
-	let weekArray    = getYearWeekArray(config.date.object);
+	let quarterArray = getQuarterArray(displayDate.object);
+	let weekArray    = getYearWeekArray(displayDate.object);
 
 	theme.clock.drawSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd);
-	theme.clock.drawMonthSectors(theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
+	theme.clock.drawMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 	theme.clock.drawSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
-	theme.clock.drawPeriodDaySectors('yearDay', config.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
+	theme.clock.drawPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
 
 	theme.clock.drawSectorLabels('quarter', quarterArray, theme.clock.quarterLabel);
-	theme.clock.drawMonthLabels();
+	theme.clock.drawMonthLabels(displayDate.monthArray);
 	theme.clock.drawSectorLabels('week', weekArray, theme.clock.weekLabel);
 
-	theme.clock.drawSectorLabels('yearDay', config.yearDayArray, theme.clock.dayLabel);
+	theme.clock.drawSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel);
 
-	theme.clock.drawYearLabel(config.date.object, theme.clock.yearLabelPosition);
-	theme.clock.drawDateLabel(config.date.object);
+	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
+	theme.clock.drawDateLabel(displayDate.object);
 
 }/* drawClock */
 

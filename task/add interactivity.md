@@ -40,7 +40,7 @@ Everything so far has had the sectors drawn first, with labels placed on top.
 This is fine and produces the visual result you'd expect and want most of the time.
 
 One downside though is the hover for the sector gets blocked when the mouse is over the label text.
-It's not a big deal, but I've been wondering if there are ways to draw the labels in other ways so that this interaction is removed.
+It's not a big deal, but I've been wondering if there are ways to draw the labels in other ways so that this interaction is removed or minimised.
 
 ### Labels behind sectors
 
@@ -52,7 +52,7 @@ I've managed to produce quite acceptable results on the standard (light) lightni
 It's harder to make the dark theme look nice with just a single blend-mode setting though.
 Would probably require more tweaks.
 
-### Labels as children of elements
+### Labels as children of sector elements
 
 I'm not too sure this can be done actually - if elements like `path` allowed children *other* than title then the hover might bubble.
 But I don't think most drawing elements (path, rect, circle etc) allow arbitrary nested children like that - I'll double check.
@@ -61,8 +61,10 @@ https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element#graphics_elem
 
 Yeah, as i thought, all the graphics elements basically are only allowed animation and descriptive as child elements.
 
-Hover on a containing group might be another possibility - I think I did something like this on the share charts ages ago, but don't remember if it was done natively or with script trickery.
 
+### Group labels and sector elements as siblings
+
+Hover on a containing group might be another possibility - I think I did something like this on the share charts ages ago, but don't remember if it was done natively or with script trickery.
 
 
 ### CSS :has
@@ -71,5 +73,40 @@ There was also this that I found a little while back, might offer another avenue
 
 	https://stackoverflow.com/a/74816531
 	https://developer.mozilla.org/en-US/docs/Web/CSS/:has
+
+
+
+
+Dynamically set display date
+----------------------------
+
+I've got a couple of test events for single and double click that I can probably put into action.
+
+### dbl click fires two single clicks first
+
+https://stackoverflow.com/questions/880608/prevent-click-event-from-firing-when-dblclick-event-fires
+
+https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
+
+
+
+But for these to be useful what I really need right now is a single function call to set the current display date.
+This is probably going to require *lots* of changes.
+Lets see now...
+
+* So far the naming for 'current' or 'display' date has been a bit mixed. I started using display date a while back, but lately have been using current. Need to decide on something and stick to it. Display is probably better.
+* Need ways to find and update all changeable clock elements to the new display date. No small task.
+* Need to clean up the initial date setting code
+* Need to clean up anything still relying directly on the `config.date` global
+
+
+
+
+Task Split - refactor config global
+-----------------------------------
+
+Some major refactoring to the setup and config required - job has been split to: [refactor config global](<refactor config global.md>)
+
+
 
 

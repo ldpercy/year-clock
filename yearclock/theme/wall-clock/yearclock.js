@@ -24,21 +24,21 @@ theme.clock.monthHandLength    = 850;
 
 /* Draw Clock
 */
-theme.clock.drawClock = function(clockElement)
+theme.clock.drawClock = function(clockElement, displayDate)
 {
-	config.monthDayArray = getPeriodDayArray(startOfMonth(config.date.object), nextMonth(config.date.object), config.date.object);
+	displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object);
 
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 
 	theme.clock.drawFace();
 	// theme.clock.drawMonthSectors();
-	theme.clock.drawMonthLabels();
+	theme.clock.drawMonthLabels(displayDate.monthArray);
 	//theme.clock.drawYearDayTicks();
-	theme.clock.drawMonthDayTicks(config.monthDayArray);
-	theme.clock.drawDateLabel(config.date.object);
+	theme.clock.drawMonthDayTicks(displayDate.monthDayArray);
+	theme.clock.drawDateLabel(displayDate.object);
 
-	theme.clock.drawHands(drawMonthHand=true);
+	theme.clock.drawHands(displayDate, drawMonthHand=true);
 
 }/* drawClock */
 
