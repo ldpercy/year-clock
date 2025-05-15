@@ -178,7 +178,7 @@ So it currently looks something like this:
 
 To be honest, it's not that great.
 
-The logic is a bit messy, and the actual logical units are really clearly defined.
+The logic is a bit messy, and the actual logical units aren't really clearly defined.
 
 Could it be cleared up a bit?
 
@@ -188,9 +188,9 @@ Some kind of better structure...
 
 So what I'd like, and what I'm slowly moving towards with all of this, is having a single functions like:
 
-	setupPage()									// do whatevers necessary to get the page setup and ready
-	drawClock(element, theme, config, date)		// draw a clock into the element with $parameters
-	fooClock.setDate(lastChristmas)				// update the date for a clock
+	setupPage()									// do whatever's necessary to get the page setup and ready
+	drawClock(element, theme, config, date)		// draw a clock into the element with some $parameters
+	fooClock.setDate(lastChristmas)				// update the display date for a clock
 	fooClock.setTheme()							// live update the theme for a clock, keep the date
 	fooClock.setStyle('dark')					// live update the styles for a clock
 	fooClock.setLanguage('klingon')				// live update the localisation for a clock
@@ -198,9 +198,40 @@ So what I'd like, and what I'm slowly moving towards with all of this, is having
 So I could just spray clocks straight into the page and update them at will.
 Something I'd started dreaming of for the test page when i started scripting it....
 
-This is a much bigger task than just interactivity, though the want for interactivity is what's motivating it this case.
+This is a much bigger task than just interactivity, though the want for interactivity is what's motivating it in this case.
 
 I'm going to think about a task split, or maybe just some new tasks.
-I'm might want to rename and finish off this branch as well before going much further.
+I might want to rename and finish off this branch as well before going much further.
+
+A few more thoughts while I'm here.
+
+* For any of the above to work each clock will need it's own namespace. So the load sequence will need to be more careful about where it's payloads get dropped.
+* Individual clock instances could be organised with js classes for data and methods
+* ...Or something more *functional*, whatever that may be
+* Reusing the page's script elements for loading different clock themes I think could probably be done, as long as the relevant bits get copied into the relevant instance spaces.
+* Styles on the other hand, not so sure about about. I've never dug all that deep into scripting styles, so not sure if there are ways of saying 'load this, but only apply it to this' which is what I'd need. I know there are techniques out there, virtual dom and other things I used to butt into in SPAs, but will need to brush up.
+
+
+Where to from here?
+-------------------
+
+As stated I need to rename and finish up this branch - new work = new tasks.
+
+Work so far on this branch:
+* Experimental click events on the svg - will comment them out for now
+* Add displayDate as parameter to drawclock
+* Remove/refactor out old config.date ref in themes to use displayDate parameter
+* Moved period arrays into config.date/displayDate object
+* displayDate object creation moved to function in date script
+* And displayDate call moved to just before drawClock
+
+So thus far this has mostly been about removing reliance on the `config.` global scope, mainly for the theme code.
+That will then become the updated task and branch description.
+
+There are still a few references to `config.` left that I'll pull out as part of this task.
+
+There's also the `theme.` global that needs to be addressed - but that's going to have to be part of a new task.
+
+
 
 
