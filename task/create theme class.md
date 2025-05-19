@@ -50,5 +50,55 @@ Some dynamic load of styles still probably required though for now at least.
 
 This could really clean up a *lot* of code.
 
+### Where does the theme code live then?
+
+It's still not really clear how the files could be organised yet, for instance the script parts don't necessarily need their own directories anymore.
+
+How it ends up being structured will probably depend a fair bit on what can be done about the stylesheets.
+For example if there *are* techniques to apply certain chunks of CSS to certain nodes, and this can be done dynamically/scripted, then a whole theme could probably be packed into a single script file.
+(Rather than the 3 or more in a directory used now.)
+
+I'd better take a detour into stylesheet scripting.
+
+
+Ordinary Stylesheets
+--------------------
+Before i go into more technical solutions, can any of what I want be done with regular stylesheet features?
+For example you could enforce that themes prefix all their style rules with certain kinds of selectors so that their effect was contained.
+
+eg
+```css
+#themeInstance  selector { ... }	/* select a specific clock instance on the page */
+.themeName      selector { ... }	/* select all instances of 'themeName' clocks on the page */
+```
+
+Either of these could be done, but you'd probably need to write the whole stylesheet like this, which would get tedious - to be able to do it at least a bit dynamically would help.
+
+There's also nested style rules that i think got added a few years back - should brush up on those:
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting
+
+So with that you could perhaps build a dynamic stylesheet that targets a single element something like this:
+
+```js
+	const myTheme.css = `
+		svg.clock { blah }
+		.sector { blah}
+		etc... `;
+
+	const styleTag = `
+	<style>
+		#myInstance {
+			${myTheme.css}
+		}
+	</style>`;
+```
+
+I think that, or something like it, could work. It would have to be written into the page along with the svg tag so
+
+
+
+
+
 
 
