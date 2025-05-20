@@ -61,9 +61,9 @@ For example if there *are* techniques to apply certain chunks of CSS to certain 
 I'd better take a detour into stylesheet scripting.
 
 
-Ordinary Stylesheets
---------------------
-Before i go into more technical solutions, can any of what I want be done with regular stylesheet features?
+Ordinary Stylesheets/CSS
+------------------------
+Before i go into more technical solutions, can any of what I want be done with regular CSS features?
 For example you could enforce that themes prefix all their style rules with certain kinds of selectors so that their effect was contained.
 
 eg
@@ -78,7 +78,7 @@ There's also nested style rules that i think got added a few years back - should
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting
 
-So with that you could perhaps build a dynamic stylesheet that targets a single element something like this:
+So with that you could perhaps build a dynamic stylesheet that targets a single element with something like this:
 
 ```js
 	const myTheme.css = `
@@ -94,11 +94,92 @@ So with that you could perhaps build a dynamic stylesheet that targets a single 
 	</style>`;
 ```
 
-I think that, or something like it, could work. It would have to be written into the page along with the svg tag so
+I think that, or something like it, could work. It would have to be written into the page along with the svg tag.
+
+I've tried that with a really simple html experiment and it looks like it could in principle work.
+
+Although I'm not yet sure how CSS vars would work in a setup like this yet.
+I've made some use of vars as globals like this:
+
+```css
+	:root {
+		--background: seashell;
+		--clockface: white;
+		...etc....
+	}
+```
+
+But I think that would probably have to change in a multi-instance situation as `:root` could well be global to whole the document.
+Some sort of use of `&` could be useful here perhaps?
+
+There might be other options that aren't terribly onerous, for example you could require something like this (somewhere within the clock class):
+
+```js
+	theme.css = `
+		svg {
+			--background: seashell;
+			--clockface: white;
+			/* ... rest of css ... */
+		}
+	`;
+```
+
+So that when it gets written it comes out like this:
+
+```html
+<style>
+	#myInstance svg {
+		--background: seashell;
+		--clockface: white;
+		/* ... rest of css ... */
+	}
+</style>
+```
+
+I'm not 100% sure that something like this is *necessary*, but it might make things a bit clearer.
+Will see.
 
 
 
+Remaining questions
+-------------------
+
+At this point I'm satisfied that classes will *probably* work, and that targeting css for in-page clock instances can *probably* be done.
+
+I'd like to start writing code soon...
+
+There are a few remaining things to clarify...
+
+* Do we do away with the theme folders altogether and replace them with single class files?
+* If so how do we declare/load the correct theme classes at page load time?
+* If themes have base classes, how do we make sure they're loaded/present before the theme's classes are loaded?
+
+Some quick ideas for a really basic implementation...:
 
 
+### Themes will probably end up being single files
+Everything will be packed into single class files:
+* config
+* CSS
+* drawClock
+* anything else
 
+That means the theme folder will just have a bunch of files like:
 
+	themeName.class.js
+
+### Base classes are always loaded
+This keeps things simple to begin with - in effect we have something like this most of the time:
+* 1 abstract base theme class (interface for theme)
+* 1 concrete base theme class (Common)
+* Any number of actual theme classes inheriting from Common
+
+At the very least the abstract base class will be part of the core scripts.
+In two minds at this point about whether the 'common' class belongs there as well.
+
+### Theme classes can probably be loaded at page load or dynamically as requested
+It won't matter too much either way I don't think.
+
+...
+So that's probably enough to start on *something*.
+It won't be great, but better to start somewhere...
