@@ -1,5 +1,5 @@
-Create theme class
-==================
+Themes as classes
+=================
 
 Themes are currently just properties and functions that get loaded into a global `theme` object.
 
@@ -109,14 +109,14 @@ I've made some use of vars as globals like this:
 	}
 ```
 
-But I think that would probably have to change in a multi-instance situation as `:root` could well be global to whole the document.
+But I think that would probably have to change in a multi-instance situation as `:root` could well be global to the whole document.
 Some sort of use of `&` could be useful here perhaps?
 
 There might be other options that aren't terribly onerous, for example you could require something like this (somewhere within the clock class):
 
 ```js
 	theme.css = `
-		svg {
+		svg.clock {
 			--background: seashell;
 			--clockface: white;
 			/* ... rest of css ... */
@@ -128,7 +128,7 @@ So that when it gets written it comes out like this:
 
 ```html
 <style>
-	#myInstance svg {
+	#myInstance svg.clock {
 		--background: seashell;
 		--clockface: white;
 		/* ... rest of css ... */
@@ -170,16 +170,16 @@ That means the theme folder will just have a bunch of files like:
 
 ### Base classes are always loaded
 This keeps things simple to begin with - in effect we have something like this most of the time:
-* 1 abstract base theme class (interface for theme)
-* 1 concrete base theme class (Common)
-* Any number of actual theme classes inheriting from Common
+* 1 abstract base theme class (class Theme)
+* 1 concrete base theme class (class Common extends Theme)
+* Any number of actual theme classes inheriting from Common (class ThemeName extends Common)
 
 At the very least the abstract base class will be part of the core scripts.
-In two minds at this point about whether the 'common' class belongs there as well.
+In two minds at this point about whether the 'Common' class belongs there as well.
 
 ### Theme classes can probably be loaded at page load or dynamically as requested
 It won't matter too much either way I don't think.
 
 ...
 So that's probably enough to start on *something*.
-It won't be great, but better to start somewhere...
+It won't be great, but better to start somewhere.
