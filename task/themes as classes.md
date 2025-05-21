@@ -183,3 +183,20 @@ It won't matter too much either way I don't think.
 ...
 So that's probably enough to start on *something*.
 It won't be great, but better to start somewhere.
+
+
+
+CSS as class string
+-------------------
+
+One major downside to packing styles into a js class string is you lose all editor support for css.
+No idea if there's a way to customise intellisense etc to activate in certain circumstances.
+
+For arguments sake, could raw css (theme/style.css) be loaded and modified according to what I'd sketched above for targeting a single instance?
+
+
+* load theme class
+* load css using link but with `disabled`
+*
+
+
