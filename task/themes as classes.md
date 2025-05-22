@@ -197,6 +197,46 @@ For arguments sake, could raw css (theme/style.css) be loaded and modified accor
 
 * load theme class
 * load css using link but with `disabled`
-*
+
+It seems like I'm going to be pretty severely hobbled by the current same-origin restrictions on the file URI:
+
+	https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#file_origins
+
+In everything I've tried so far I can't actually directly read the content of anything loaded with file:/// URIs.
+
+These get blocked by origin policy:
+* fetch (and presumably xhr)
+* iframe contents
+* document.styleSheets
+
+
+See also:
+[experiment-html - local-load-content](experiment-html/local-load-content/local-load-content.md)
+
+Which in this case means that while I can load and apply CSS from a file easily, I can't get at it's source programmatically to rewrite it as an id-only nested rule.
+At least not while using strictly local file URIs.
+
+So while I'm sticking with local-only, my options are:
+* Put the CSS into the js class as a string (as suggested) and lose nice editor features
+* Leave the CSS as separate files (keeping the folder structure too) but find another way to localise the effects of the styles
+
+
+The ability to localise the the styles would probably be limited to class, or maybe nth-of-type.
+
+
+### What about @import
+
+Another newish (edit: not new) feature - can it do anything useful here?
+
+Or [@ rules](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_syntax/At-rule) in general for that matter.
+
+Actually there are several possible leads in that list, better go through them - for example:
+
+* container
+* layer
+* namespace
+* scope
+
+
 
 
