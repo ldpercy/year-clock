@@ -125,3 +125,23 @@ This task is now primarily about just the JS-class aspect of theming.
 
 
 
+Back to the theme classes
+-------------------------
+
+I'd started making a bit of mess beginning to change things over.
+Want to take a step back and sketch out vaguely how the initial load/draw might work now with classes.
+
+
+* The three old callbacks should go away
+* Now I'll probably need a a central addClock function that sits in the page that looks something like drawClock(element, theme, config)
+* The clock theme classes probably shouldn't have their own draw-into-element methods - I think that should be the page's responsibility.
+* The clock theme functions should probably all be rewritten as string getters, so the main method just returns a big fat svg string to be inserted/appended by the document.
+
+The document addClock (or whatever I call it) function will probably be responsible for a few things:
+
+* Retrieving and caching the theme class (if it hasn't already been loaded)
+* Maintaining records/references of what's been loaded/drawn and handling reuse of already stored resources
+
+It might actually be better to have a small class in the page itself to handle some of this...
+
+
