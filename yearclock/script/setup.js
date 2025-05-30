@@ -59,10 +59,18 @@ function setup() {
 
 	theme.style = getParameterByName('style');
 	log('theme.style:', theme.style);
-	theme.configUrl = `theme/${theme.name}/config.js`;
-	theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
 
-	replaceScript('script-themeConfig', theme.configUrl, setThemeConfig);
+
+	//theme.configUrl = `theme/${theme.name}/config.js`;
+	//theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
+	//replaceScript('script-themeConfig', theme.configUrl, setThemeConfig);
+
+
+
+	theme.classUrl = `theme/${theme.name}/theme.class.js`;
+	replaceScript('script-themeClass', theme.classUrl, setThemeConfig);
+
+
 	// Loading is async from here on, so the rest is in callbacks:
 	// Load the config, wait for the callback
 	// If specified, load base theme
