@@ -10,6 +10,14 @@ This idea is to create theme classes, out of which individual clock instances ca
 This one is tentative as I'm not sure it's the necessarily the best approach, but I'd like to try it to see how it pans out.
 
 
+If successful will likely cover these two as well:
+* [dynamic theme loading](<dynamic theme loading.md>)
+* [add svg tag to drawclock](<add svg tag to drawclock.md>)
+
+And probably simplify [convert callbacks to async](<convert callbacks to async.md>).
+
+
+
 Starting ideas
 --------------
 
@@ -132,10 +140,10 @@ I'd started making a bit of mess beginning to change things over.
 Want to take a step back and sketch out vaguely how the initial load/draw might work now with classes.
 
 
-* The three old callbacks should go away
+* The three old callbacks should go away; should need only one
 * Now I'll probably need a a central addClock function that sits in the page that looks something like drawClock(element, theme, config)
 * The clock theme classes probably shouldn't have their own draw-into-element methods - I think that should be the page's responsibility.
-* The clock theme functions should probably all be rewritten as string getters, so the main method just returns a big fat svg string to be inserted/appended by the document.
+* The drawing functions should probably all be rewritten as string getters, so the main method just returns a big fat svg string to be inserted/appended by the document.
 
 The document addClock (or whatever I call it) function will probably be responsible for a few things:
 
@@ -144,4 +152,4 @@ The document addClock (or whatever I call it) function will probably be responsi
 
 It might actually be better to have a small class in the page itself to handle some of this...
 
-
+Actually I think it's a bit arguable what info should be stored by the page and what should be stored in the instance - will work that one out as I go.
