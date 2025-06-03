@@ -122,10 +122,11 @@ function setTheme(){
 		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
 
-	const clockElement = document.getElementById('clock');
+	const clockContainer = document.getElementById('clockContainer');
+	/*
 	if (theme.clock.viewBox) {
 		clockElement.setAttribute('viewBox', theme.clock.viewBox);
-	}
+	} */
 
 
 
@@ -136,7 +137,7 @@ function setTheme(){
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
-	theme.clock.drawClock(clockElement, displayDate);
+	theme.clock.drawClock(clockContainer, displayDate);
 	log('--- After drawClock ---');
 
 

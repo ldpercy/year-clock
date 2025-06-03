@@ -50,11 +50,13 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	let weekArray    = getYearWeekArray(displayDate.object);
 
 	const clockBody = `
-		${theme.clock.getFace()}
-		${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
-		${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
-		${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
-		${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getFace()}
+			${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
+			${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
+			${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
+			${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+		</svg>
 	`;
 
 	clockElement.innerHTML = clockBody;

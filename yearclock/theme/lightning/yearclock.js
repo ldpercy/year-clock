@@ -103,20 +103,21 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	let weekArray    = getYearWeekArray(displayDate.object);
 
 	const clockBody = `
-		${theme.clock.getBody(theme.clock.body)}
-		${theme.clock.getSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd)}
-		${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
-		${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
-		${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getBody(theme.clock.body)}
+			${theme.clock.getSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd)}
+			${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
+			${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
+			${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
 
-		${theme.clock.getSectorLabels('quarter', quarterArray, theme.clock.quarterLabel)}
-		${theme.clock.getMonthLabels(displayDate.monthArray)}
-		${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
-		${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
+			${theme.clock.getSectorLabels('quarter', quarterArray, theme.clock.quarterLabel)}
+			${theme.clock.getMonthLabels(displayDate.monthArray)}
+			${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
+			${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
 
-		${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
-		${theme.clock.getDateLabel(displayDate.object)}
-
+			${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
+			${theme.clock.getDateLabel(displayDate.object)}
+		</svg>
 	`;
 
 	clockElement.innerHTML = clockBody;

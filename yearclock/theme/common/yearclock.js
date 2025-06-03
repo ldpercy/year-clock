@@ -58,12 +58,15 @@ function formatLabel(labelType, data) {
 theme.clock.drawClock = function(clockElement, displayDate)
 {
 	const clockBody = `
-		${theme.clock.getFace()}
-		${theme.clock.getMonthSectors(displayDate.monthArray)}
-		${theme.clock.getMonthLabels(displayDate.monthArray)}
-		${theme.clock.getYearDayTicks(displayDate.yearDayArray)}
-		${theme.clock.getDateLabel(displayDate.object)}
-		${theme.clock.getHands(displayDate)}
+
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getFace()}
+			${theme.clock.getMonthSectors(displayDate.monthArray)}
+			${theme.clock.getMonthLabels(displayDate.monthArray)}
+			${theme.clock.getYearDayTicks(displayDate.yearDayArray)}
+			${theme.clock.getDateLabel(displayDate.object)}
+			${theme.clock.getHands(displayDate)}
+		</svg>
 	`;
 
 	clockElement.innerHTML = clockBody;

@@ -64,14 +64,16 @@ function formatTitle(type, data) {
 theme.clock.drawClock = function(clockElement, displayDate)
 {
 	const clockBody = `
-		${theme.clock.getFace()}
-		${theme.clock.getSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd)}
-		${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
-		${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
-		${theme.clock.getMonthLabels(displayDate.monthArray)}
-		${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
-		${theme.clock.getDateLabel(displayDate.object)}
-		${theme.clock.getHands(displayDate, drawMonthHand=false)}
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getFace()}
+			${theme.clock.getSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd)}
+			${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
+			${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+			${theme.clock.getMonthLabels(displayDate.monthArray)}
+			${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
+			${theme.clock.getDateLabel(displayDate.object)}
+			${theme.clock.getHands(displayDate, drawMonthHand=false)}
+		</svg>
 	`;
 
 	clockElement.innerHTML = clockBody;

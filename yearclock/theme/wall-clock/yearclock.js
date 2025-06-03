@@ -32,11 +32,13 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.element = clockElement;
 
 	const clockBody = `
-		${theme.clock.getFace()}
-		${theme.clock.getMonthLabels(displayDate.monthArray)}
-		${theme.clock.getMonthDayTicks(displayDate.monthDayArray)}
-		${theme.clock.getDateLabel(displayDate.object)}
-		${theme.clock.getHands(displayDate, drawMonthHand=true)}
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getFace()}
+			${theme.clock.getMonthLabels(displayDate.monthArray)}
+			${theme.clock.getMonthDayTicks(displayDate.monthDayArray)}
+			${theme.clock.getDateLabel(displayDate.object)}
+			${theme.clock.getHands(displayDate, drawMonthHand=true)}
+		</svg>
 	`;
 
 	clockElement.innerHTML = clockBody;
