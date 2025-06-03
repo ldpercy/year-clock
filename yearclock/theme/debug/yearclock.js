@@ -47,25 +47,16 @@ function formatTitle(type, data) {
 theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
-	theme.clock.element = clockElement;
-	//theme.clock.getViewbox();
-	theme.clock.getFace();
-	//theme.clock.getMonthSectors();
-	//theme.clock.getMonthLabels();
-	//theme.clock.getYearDayTicks();
-	//theme.clock.getDateLabel(displayDate.object);
-	//theme.clock.getHands(displayDate);
-
-
-
 	let weekArray    = getYearWeekArray(displayDate.object);
-	//log(weekArray);
 
-	theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel);
-	theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
+	const clockBody = `
+		${theme.clock.getFace()}
+		${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
+		${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
+		${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
+		${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+	`;
 
-	theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel);
-	theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
-
+	clockElement.innerHTML = clockBody;
 
 }/* drawClock */

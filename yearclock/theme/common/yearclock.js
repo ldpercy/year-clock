@@ -57,18 +57,6 @@ function formatLabel(labelType, data) {
 */
 theme.clock.drawClock = function(clockElement, displayDate)
 {
-	// Set Up Drawing
-	theme.clock.element = clockElement;
-	//theme.clock.getViewbox();
-	/*
-	theme.clock.getFace();
-	theme.clock.getMonthSectors(displayDate.monthArray);
-	theme.clock.getMonthLabels(displayDate.monthArray);
-	theme.clock.getYearDayTicks(displayDate.yearDayArray);
-	theme.clock.getDateLabel(displayDate.object);
-	theme.clock.getHands(displayDate);
-	*/
-
 	const clockBody = `
 		${theme.clock.getFace()}
 		${theme.clock.getMonthSectors(displayDate.monthArray)}
@@ -78,7 +66,7 @@ theme.clock.drawClock = function(clockElement, displayDate)
 		${theme.clock.getHands(displayDate)}
 	`;
 
-	theme.clock.element.innerHTML = clockBody;
+	clockElement.innerHTML = clockBody;
 }/* drawClock */
 
 
@@ -326,20 +314,6 @@ theme.clock.getHandPath = function(length, transform, cssClass, id)
 	return svg;
 }
 
-
-
-
-
-/* getPeriodDaySectors
-* /
-theme.clock.getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
-{
-	const periodDaySectors = theme.clock.getPeriodDaySectors(periodArray, radiusStart, radiusEnd);
-	theme.clock.element.innerHTML += `
-		<g class="periodSectors ${name}">
-			${periodDaySectors}
-		</g>`;
-}/ * getPeriodDaySectors */
 
 
 /* getPeriodDaySectors

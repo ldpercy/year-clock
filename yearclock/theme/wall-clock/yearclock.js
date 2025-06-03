@@ -39,7 +39,7 @@ theme.clock.drawClock = function(clockElement, displayDate)
 		${theme.clock.getHands(displayDate, drawMonthHand=true)}
 	`;
 
-	theme.clock.element.innerHTML = clockBody;
+	clockElement.innerHTML = clockBody;
 }/* drawClock */
 
 
