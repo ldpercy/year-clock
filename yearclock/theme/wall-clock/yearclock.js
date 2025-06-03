@@ -22,16 +22,16 @@ theme.clock.yearHandLength    = 600;
 theme.clock.monthHandLength    = 850;
 
 
-/* drawClock
+/* getClockSVG
 */
-theme.clock.drawClock = function(clockElement, displayDate)
+theme.clock.getClockSVG = function(displayDate)
 {
 	displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object);
 
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 
-	const clockBody = `
+	const clockSVG = `
 		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 			${theme.clock.getFace()}
 			${theme.clock.getMonthLabels(displayDate.monthArray)}
@@ -41,8 +41,8 @@ theme.clock.drawClock = function(clockElement, displayDate)
 		</svg>
 	`;
 
-	clockElement.innerHTML = clockBody;
-}/* drawClock */
+	return clockSVG;
+}/* getClockSVG */
 
 
 

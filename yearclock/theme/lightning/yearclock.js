@@ -95,14 +95,14 @@ function formatLabel(labelType, data) {
 
 
 
-/* drawClock
+/* getClockSVG
 */
-theme.clock.drawClock = function(clockElement, displayDate)
+theme.clock.getClockSVG = function(displayDate)
 {
 	let quarterArray = getQuarterArray(displayDate.object);
 	let weekArray    = getYearWeekArray(displayDate.object);
 
-	const clockBody = `
+	const clockSVG = `
 		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 			${theme.clock.getBody(theme.clock.body)}
 			${theme.clock.getSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd)}
@@ -120,8 +120,8 @@ theme.clock.drawClock = function(clockElement, displayDate)
 		</svg>
 	`;
 
-	clockElement.innerHTML = clockBody;
-}/* drawClock */
+	return clockSVG;
+}/* getClockSVG */
 
 
 
