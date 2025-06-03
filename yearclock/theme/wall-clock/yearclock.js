@@ -31,15 +31,15 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 
-	theme.clock.getFace();
-	// theme.clock.getMonthSectors();
-	theme.clock.getMonthLabels(displayDate.monthArray);
-	//theme.clock.getYearDayTicks();
-	theme.clock.getMonthDayTicks(displayDate.monthDayArray);
-	theme.clock.getDateLabel(displayDate.object);
+	const clockBody = `
+		${theme.clock.getFace()}
+		${theme.clock.getMonthLabels(displayDate.monthArray)}
+		${theme.clock.getMonthDayTicks(displayDate.monthDayArray)}
+		${theme.clock.getDateLabel(displayDate.object)}
+		${theme.clock.getHands(displayDate, drawMonthHand=true)}
+	`;
 
-	theme.clock.getHands(displayDate, drawMonthHand=true);
-
+	theme.clock.element.innerHTML = clockBody;
 }/* drawClock */
 
 

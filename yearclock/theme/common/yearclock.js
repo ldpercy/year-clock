@@ -60,12 +60,25 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 	//theme.clock.getViewbox();
+	/*
 	theme.clock.getFace();
 	theme.clock.getMonthSectors(displayDate.monthArray);
 	theme.clock.getMonthLabels(displayDate.monthArray);
 	theme.clock.getYearDayTicks(displayDate.yearDayArray);
 	theme.clock.getDateLabel(displayDate.object);
 	theme.clock.getHands(displayDate);
+	*/
+
+	const clockBody = `
+		${theme.clock.getFace()}
+		${theme.clock.getMonthSectors(displayDate.monthArray)}
+		${theme.clock.getMonthLabels(displayDate.monthArray)}
+		${theme.clock.getYearDayTicks(displayDate.yearDayArray)}
+		${theme.clock.getDateLabel(displayDate.object)}
+		${theme.clock.getHands(displayDate)}
+	`;
+
+	theme.clock.element.innerHTML = clockBody;
 }/* drawClock */
 
 
@@ -75,20 +88,20 @@ Mainly for debugging for now
 theme.clock.getViewbox = function(viewBox=theme.clock.viewBox) {
 	const vb =  splitViewBox(viewBox);
 	const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }/* getViewbox */
 
 
 theme.clock.getBody = function() {
 	const svg =
 		`<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }
 
 
 theme.clock.getFace = function() {
 	const svg = `<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }
 
 
@@ -100,7 +113,7 @@ theme.clock.getMonthSectors = function(monthArray, radiusStart=theme.clock.outer
 		sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
 		newSvg += sectorSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="month sector">${newSvg}</g>`;
+	return `<g class="month sector">${newSvg}</g>`;
 }/* getMonthSectors */
 
 
@@ -125,10 +138,8 @@ theme.clock.getMonthLabels = function(monthArray) {
 			`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel('month', month)}</text>`;
 		newSvg += labelSvg;
 	}
-	theme.clock.element.innerHTML +=
-		`<g class="month label monthLabels">
-			${newSvg}
-		</g>`;
+	const result = `<g class="month label monthLabels">${newSvg}</g>`;
+	return result;
 }/* getMonthLabels */
 
 
@@ -136,12 +147,12 @@ theme.clock.getMonthLabels = function(monthArray) {
 /* getYearDayTicks
 */
 theme.clock.getYearDayTicks = function(yearDayArray) {
-
 	const yearDayTicks = theme.clock.getPeriodDayTicks(yearDayArray);
-	theme.clock.element.innerHTML += `
+	const result = `
 		<g class="day yearDay tick">
 			${yearDayTicks}
 		</g>`;
+	return result;
 }/* getYearDayTicks */
 
 
@@ -149,12 +160,12 @@ theme.clock.getYearDayTicks = function(yearDayArray) {
 /* getMonthDayTicks
 */
 theme.clock.getMonthDayTicks = function(monthDayArray) {
-
 	const monthDayTicks = theme.clock.getPeriodDayTicks(monthDayArray);
-	theme.clock.element.innerHTML += `
+	const result = `
 		<g class="day monthDay tick">
 			${monthDayTicks}
 		</g>`;
+	return result;
 }/* getMonthDayTicks */
 
 
@@ -229,7 +240,7 @@ theme.clock.getDateLabel = function(date, point) {
 			<text x="${x}" y="${y}" class="label dateLabel">${formatLabel('date',{'date':date})}</text>
 		</g>`;
 
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }/* getDateLabel */
 
 
@@ -240,7 +251,7 @@ theme.clock.getYearLabel = function(date, point) {
 		`<g class="dateLabel">
 			<text x="${point.x}" y="${point.y}" class="label yearLabel">${formatLabel('year',{'date':date})}</text>
 		</g>`;
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }/* getYearLabel */
 
 
@@ -251,7 +262,7 @@ theme.clock.getWeekLabel = function(date, point) {
 		`<g class="dateLabel">
 			<text x="${point.x}" y="${point.y}" class="label weekLabel">${date.getFullYear()}</text>
 		</g>`;
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }/ * drawWeekLabel */
 
 
@@ -262,7 +273,7 @@ theme.clock.getDayLabel = function(date, point) {
 		`<g class="drawDayLabel">
 			<text x="${point.x}" y="${point.y}" class="label drawDayLabel">${date.getFullYear()}</text>
 		</g>`;
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }/ * drawYearLabel */
 
 
@@ -295,7 +306,7 @@ theme.clock.getHands = function(displayDate, drawMonthHand) {
 			${yearHand}
 			${monthHand}
 		</g>`;
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }
 
 
@@ -335,11 +346,8 @@ theme.clock.getPeriodDaySectors = function(name, periodArray, radiusStart, radiu
 */
 theme.clock.getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
 {
-	let result = '';
-	let markerClass = '';
-	let markerLine;
-	let markerSvg = '';
 	let sectorPath = '';
+	let sectorSvg = '';
 
 	for (let day of periodArray)
 	{
@@ -347,17 +355,15 @@ theme.clock.getPeriodDaySectors = function(name, periodArray, radiusStart, radiu
 
 		//log(thisDivisionRadians);
 		const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-		sectorSvg = `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatTitle('day',day)}</title></path>`;
-
-		result += sectorSvg;
+		sectorSvg += `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatTitle('day',day)}</title></path>`;
 	}
 
-	theme.clock.element.innerHTML += `
+	const result = `
 		<g class="periodSectors ${name}">
-			${result}
+			${sectorSvg}
 		</g>`;
 
-	//return result;
+	return result;
 }/* getPeriodDaySectors */
 
 
@@ -371,7 +377,8 @@ theme.clock.getSectors = function(sectorType, sectorArray, radiusStart, radiusEn
 		sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatTitle(sectorType,sector)}</title></path>`;
 		newSvg += sectorSvg;
 	}
-	theme.clock.element.innerHTML += `<g class="${sectorType}">${newSvg}</g>`;
+	const result = `<g class="${sectorType}">${newSvg}</g>`;
+	return result;
 }
 
 
@@ -398,10 +405,11 @@ theme.clock.getSectorLabels = function(sectorType, sectorArray, labelSettings)
 		newSvg += labelSvg;
 	}
 
-	theme.clock.element.innerHTML +=
+	const result =
 		`<g class="label ${sectorType}">
 			${newSvg}
 		</g>`;
+	return result;
 }/* getSectorLabels */
 
 

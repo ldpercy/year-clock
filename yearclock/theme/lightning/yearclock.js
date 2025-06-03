@@ -102,13 +102,13 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	// Set Up Drawing
 	theme.clock.element = clockElement;
 
-	theme.clock.getViewbox();
+	// theme.clock.getViewbox();
 	//theme.clock.getFace();
-	theme.clock.getBody(theme.clock.body);
+	//theme.clock.getBody(theme.clock.body);
 
 	let quarterArray = getQuarterArray(displayDate.object);
 	let weekArray    = getYearWeekArray(displayDate.object);
-
+/*
 	theme.clock.getSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd);
 	theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
 	theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd);
@@ -123,6 +123,28 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition);
 	theme.clock.getDateLabel(displayDate.object);
 
+ */
+
+	const clockBody = `
+		${theme.clock.getBody(theme.clock.body)}
+		${theme.clock.getSectors('quarter', quarterArray, theme.clock.quarterRadiusStart, theme.clock.quarterRadiusEnd)}
+		${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
+		${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
+		${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+
+		${theme.clock.getSectorLabels('quarter', quarterArray, theme.clock.quarterLabel)}
+		${theme.clock.getMonthLabels(displayDate.monthArray)}
+		${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
+		${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
+
+		${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
+		${theme.clock.getDateLabel(displayDate.object)}
+
+	`;
+
+	theme.clock.element.innerHTML = clockBody;
+
+
 }/* drawClock */
 
 
@@ -132,7 +154,7 @@ theme.clock.getBody = function(body=theme.clock.body) {
 	const svg =
 		`<rect class="body" x="${body.x}" y="${body.y}" width="${body.width}" height="${body.height}" rx="${body.radius}" ry="${body.radius}"></rect>`;
 
-	theme.clock.element.innerHTML += svg;
+	return svg;
 }
 
 

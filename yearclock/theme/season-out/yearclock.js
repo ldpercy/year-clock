@@ -65,6 +65,9 @@ theme.clock.drawClock = function(clockElement, displayDate)
 {
 	// Set Up Drawing
 	theme.clock.element = clockElement;
+
+
+	/*
 	theme.clock.getFace();
 
 	theme.clock.getSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
@@ -78,6 +81,20 @@ theme.clock.drawClock = function(clockElement, displayDate)
 	theme.clock.getDateLabel(displayDate.object);
 
 	theme.clock.getHands(displayDate, drawMonthHand=false);
+	*/
+
+	const clockBody = `
+		${theme.clock.getFace()}
+		${theme.clock.getSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd)}
+		${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
+		${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+		${theme.clock.getMonthLabels(displayDate.monthArray)}
+		${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
+		${theme.clock.getDateLabel(displayDate.object)}
+		${theme.clock.getHands(displayDate, drawMonthHand=false)}
+	`;
+
+	theme.clock.element.innerHTML = clockBody;
 
 }/* drawClock */
 
