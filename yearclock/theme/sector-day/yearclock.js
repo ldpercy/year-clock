@@ -23,24 +23,25 @@ theme.clock.yearHandLength    = 600;
 theme.clock.monthHandLength    = 850;
 
 
-/* Draw Clock
+/* getClockSVG
 */
-theme.clock.drawClock = function(clockElement, displayDate)
+theme.clock.getClockSVG = function(displayDate)
 {
 	displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object);
 
-	// Set Up Drawing
-	theme.clock.element = clockElement;
-	theme.clock.drawFace();
-	theme.clock.drawMonthSectors(displayDate.monthArray);
-	theme.clock.drawPeriodDaySectors('month', displayDate.monthDayArray, theme.clock.innerRadius, theme.clock.outerRadius);
-	theme.clock.drawMonthLabels(displayDate.monthArray);
+	const clockSVG = `
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getFace()}
+			${theme.clock.getMonthSectors(displayDate.monthArray)}
+			${theme.clock.getPeriodDaySectors('month', displayDate.monthDayArray, theme.clock.innerRadius, theme.clock.outerRadius)}
+			${theme.clock.getMonthLabels(displayDate.monthArray)}
+			${theme.clock.getDateLabel(displayDate.object)}
+			${theme.clock.getHands(displayDate, drawMonthHand=true)}
+		</svg>
+	`;
 
-	theme.clock.drawDateLabel(displayDate.object);
-
-	theme.clock.drawHands(displayDate, drawMonthHand=true);
-
-}/* drawClock */
+	return clockSVG;
+}/* getClockSVG */
 
 
 
