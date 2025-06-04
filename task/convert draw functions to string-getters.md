@@ -31,4 +31,16 @@ With moving to classes the methods will need to become string-getters instead, w
 I'm going to do this first before going back to the class-work as it should stand alone okay.
 
 
+Wrapup
+------
+
+This was fairly quick.
+In hindsight probably should have done this a while ago.
+
+* All of the direct draws have been pulled out of the draw functions
+* All draw function converted to string getters
+* The main 'drawClock' functions have become 'getClockSVG' and now use template strings to call the string getters
+* The getClockSVG functions now return the whole SVG string including the tag
+
+Will return to theme-classes next.
 
