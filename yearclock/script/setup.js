@@ -122,12 +122,7 @@ function setTheme(){
 		config.styleElement_style.setAttribute('href', cssUrl_style);
 	}
 
-	const clockElement = document.getElementById('clock');
-	if (theme.clock.viewBox) {
-		clockElement.setAttribute('viewBox', theme.clock.viewBox);
-	}
-
-
+	const clockContainer = document.getElementById('clockContainer');
 
 	// displayDate is now a transient object passed in to drawClock
 	let displayDate = createDisplayDate(config.setupDate);
@@ -136,7 +131,8 @@ function setTheme(){
 	log('--- debug ---');
 	debug();
 	log('--- Before drawClock ---');
-	theme.clock.drawClock(clockElement, displayDate);
+	const clockSVG = theme.clock.getClockSVG(displayDate);
+	clockContainer.innerHTML += clockSVG;
 	log('--- After drawClock ---');
 
 
