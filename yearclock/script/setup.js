@@ -30,6 +30,7 @@ const theme = {
 	},
 };
 
+themeClass = {};	// a namespace theme classes will be defined into
 
 /* setup
 */
@@ -168,3 +169,14 @@ function debug() {
 
 }
 
+
+/* drawClock
+*/
+function drawClock(container, themeName, id, date, language ) {
+
+	let instance = new
+
+	container.innerhtml
+
+
+}/* drawClock */

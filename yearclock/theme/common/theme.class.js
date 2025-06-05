@@ -1,4 +1,4 @@
-class Common extends ThemeBase {
+themeClass.Common = class extends ThemeBase {
 
 	description = "Common";
 
