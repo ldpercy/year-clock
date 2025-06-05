@@ -59,27 +59,25 @@ function formatTitle(type, data) {
 
 
 
-/* Draw Clock
+/* getClockSVG
 */
-theme.clock.drawClock = function(clockElement, displayDate)
+theme.clock.getClockSVG = function(displayDate)
 {
-	// Set Up Drawing
-	theme.clock.element = clockElement;
-	theme.clock.drawFace();
+	const clockSVG = `
+		<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			${theme.clock.getFace()}
+			${theme.clock.getSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd)}
+			${theme.clock.getMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd)}
+			${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+			${theme.clock.getMonthLabels(displayDate.monthArray)}
+			${theme.clock.getYearLabel(displayDate.object, theme.clock.yearLabelPosition)}
+			${theme.clock.getDateLabel(displayDate.object)}
+			${theme.clock.getHands(displayDate, drawMonthHand=false)}
+		</svg>
+	`;
 
-	theme.clock.drawSectors('season', displayDate.seasonArray, theme.clock.seasonRadiusStart, theme.clock.seasonRadiusEnd);
-
-	theme.clock.drawMonthSectors(displayDate.monthArray, theme.clock.monthRadiusStart, theme.clock.monthRadiusEnd);
-
-	theme.clock.drawPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd);
-
-	theme.clock.drawMonthLabels(displayDate.monthArray);
-	theme.clock.drawYearLabel(displayDate.object, theme.clock.yearLabelPosition);
-	theme.clock.drawDateLabel(displayDate.object);
-
-	theme.clock.drawHands(displayDate, drawMonthHand=false);
-
-}/* drawClock */
+	return clockSVG;
+}/* getClockSVG */
 
 
 
