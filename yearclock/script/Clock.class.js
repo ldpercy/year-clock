@@ -1,4 +1,4 @@
-class Theme {
+class Clock {
 
 	constructor(id) {
 		this.id = id;
