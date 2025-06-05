@@ -173,5 +173,10 @@ Will try working on the Clock constructor method, which should take parameters l
 	* language
 	* id
 
+How many of those are strictly needed in the constructor though?
+
+
+
+
 
 

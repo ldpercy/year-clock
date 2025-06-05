@@ -1,7 +1,10 @@
 class Clock {
 
-	constructor(id) {
+	constructor(id, date, language) {
 		this.id = id;
+		this.date = date;
+		this.language = language;
+
 	}
 
 	css = '';
