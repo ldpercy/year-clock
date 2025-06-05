@@ -1,4 +1,4 @@
-class ThemeBase extends Theme {
+class ThemeBase extends Clock {
 
 	constructor(id) {
 		this.id = id;

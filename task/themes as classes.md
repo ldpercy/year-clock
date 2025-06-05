@@ -153,3 +153,25 @@ The document addClock (or whatever I call it) function will probably be responsi
 It might actually be better to have a small class in the page itself to handle some of this...
 
 Actually I think it's a bit arguable what info should be stored by the page and what should be stored in the instance - will work that one out as I go.
+
+
+### Draw functions converted to string getters
+
+Took a detour to do this first, will make conversion to classes easier.
+
+
+
+Where to next?
+--------------
+
+Trying to figure out the next steps...
+
+Will try working on the Clock constructor method, which should take parameters like:
+
+	* date (or displayDate)
+	* style
+	* language
+	* id
+
+
+
