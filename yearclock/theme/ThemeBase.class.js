@@ -1,6 +1,7 @@
 class ThemeBase extends Clock {
 
 	constructor(id) {
+		super();
 		this.id = id;
 	}
 
@@ -8,6 +9,28 @@ class ThemeBase extends Clock {
 	description = "common";
 	element = undefined;
 	config = {};
+
+
+
+	//
+
+	viewBox           = '-1200 -1200 2400 2400';
+	clockRadius       = 1200;
+	outerRadius       = 1120;
+	innerRadius       = 930;
+
+	weekdayMarkerLength = 40;
+	weekendMarkerLength = 55;
+	yearHandLength    = 1030;
+	dateLabelPosition         = 500;
+
+	monthLabel = {
+		radius         : 985,
+		sectorPosition : 0.5,
+		rotate         : true,
+		invert         : true,
+	};
+
 
 
 	//
@@ -46,13 +69,13 @@ class ThemeBase extends Clock {
 	getClockSVG = function(displayDate)
 	{
 		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${theme.clock.getFace()}
-				${theme.clock.getMonthSectors(displayDate.monthArray)}
-				${theme.clock.getMonthLabels(displayDate.monthArray)}
-				${theme.clock.getYearDayTicks(displayDate.yearDayArray)}
-				${theme.clock.getDateLabel(displayDate.object)}
-				${theme.clock.getHands(displayDate)}
+			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				${this.getFace()}
+				${this.getMonthSectors(displayDate.monthArray)}
+				${this.getMonthLabels(displayDate.monthArray)}
+				${this.getYearDayTicks(displayDate.yearDayArray)}
+				${this.getDateLabel(displayDate.object)}
+				${this.getHands(displayDate)}
 			</svg>
 		`;
 
@@ -63,7 +86,7 @@ class ThemeBase extends Clock {
 	/* getViewbox
 	Mainly for debugging for now
 	*/
-	getViewbox = function(viewBox=theme.clock.viewBox) {
+	getViewbox = function(viewBox=this.viewBox) {
 		const vb =  splitViewBox(viewBox);
 		const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
 		return svg;
@@ -72,18 +95,18 @@ class ThemeBase extends Clock {
 
 	getBody = function() {
 		const svg =
-			`<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
+			`<circle cx="0" cy="0" r="${this.clockRadius}" class="face"></circle>`
 		return svg;
 	}
 
 
 	getFace = function() {
-		const svg = `<circle cx="0" cy="0" r="${theme.clock.clockRadius}" class="face"></circle>`
+		const svg = `<circle cx="0" cy="0" r="${this.clockRadius}" class="face"></circle>`
 		return svg;
 	}
 
 
-	getMonthSectors = function(monthArray, radiusStart=theme.clock.outerRadius, radiusEnd=theme.clock.innerRadius) {
+	getMonthSectors = function(monthArray, radiusStart=this.outerRadius, radiusEnd=this.innerRadius) {
 		let newSvg = '';
 		for (let month of monthArray)
 		{
@@ -102,18 +125,18 @@ class ThemeBase extends Clock {
 		let newSvg = '';
 		for (let month of monthArray)
 		{
-			const radiansLabel = month.radiansStart + (month.radiansWidth * theme.clock.monthLabel.sectorPosition);
+			const radiansLabel = month.radiansStart + (month.radiansWidth * this.monthLabel.sectorPosition);
 
-			const center     = polarPoint(radiansLabel, theme.clock.monthLabel.radius);
+			const center     = polarPoint(radiansLabel, this.monthLabel.radius);
 			let transform = '';
 
-			if (theme.clock.monthLabel.rotate)
+			if (this.monthLabel.rotate)
 			{
-				let rotate = rotationDegrees(radiansLabel, theme.clock.monthLabel);
+				let rotate = this.rotationDegrees(radiansLabel, this.monthLabel);
 				transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 			}
 			const labelSvg =
-				`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${formatLabel('month', month)}</text>`;
+				`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${this.formatLabel('month', month)}</text>`;
 			newSvg += labelSvg;
 		}
 		const result = `<g class="month label monthLabels">${newSvg}</g>`;
@@ -125,7 +148,7 @@ class ThemeBase extends Clock {
 	/* getYearDayTicks
 	*/
 	getYearDayTicks = function(yearDayArray) {
-		const yearDayTicks = theme.clock.getPeriodDayTicks(yearDayArray);
+		const yearDayTicks = this.getPeriodDayTicks(yearDayArray);
 		const result = `
 			<g class="day yearDay tick">
 				${yearDayTicks}
@@ -138,7 +161,7 @@ class ThemeBase extends Clock {
 	/* getMonthDayTicks
 	*/
 	getMonthDayTicks = function(monthDayArray) {
-		const monthDayTicks = theme.clock.getPeriodDayTicks(monthDayArray);
+		const monthDayTicks = this.getPeriodDayTicks(monthDayArray);
 		const result = `
 			<g class="day monthDay tick">
 				${monthDayTicks}
@@ -152,8 +175,8 @@ class ThemeBase extends Clock {
 	*/
 	getPeriodDayTicks = function(periodArray) {
 
-		const weekdayTickInnerRadius = theme.clock.outerRadius - theme.clock.weekdayMarkerLength;
-		const weekendTickInnerRadius = theme.clock.outerRadius - theme.clock.weekendMarkerLength
+		const weekdayTickInnerRadius = this.outerRadius - this.weekdayMarkerLength;
+		const weekendTickInnerRadius = this.outerRadius - this.weekendMarkerLength
 
 		let result = '';
 		let tickClass = '';
@@ -166,12 +189,12 @@ class ThemeBase extends Clock {
 
 			if (day.isWeekend)
 			{
-				tickLine = radialLine(dayAngle.start, theme.clock.outerRadius, weekendTickInnerRadius);
+				tickLine = radialLine(dayAngle.start, this.outerRadius, weekendTickInnerRadius);
 				tickClass = 'weekend';
 			}
 			else // day.isWeekday
 			{
-				tickLine = radialLine(dayAngle.start, theme.clock.outerRadius, weekdayTickInnerRadius);
+				tickLine = radialLine(dayAngle.start, this.outerRadius, weekdayTickInnerRadius);
 				tickClass = 'weekday';
 			}
 
@@ -181,7 +204,7 @@ class ThemeBase extends Clock {
 
 			if (day.isFirst) // Draw an extra line for firsts of the month
 			{
-				tickLine = radialLine(dayAngle.start, theme.clock.outerRadius, theme.clock.innerRadius);
+				tickLine = radialLine(dayAngle.start, this.outerRadius, this.innerRadius);
 				tickClass = 'first';
 				tickSvg =
 					`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
@@ -200,22 +223,22 @@ class ThemeBase extends Clock {
 	getDateLabel = function(date, point) {
 		let x,y;
 
-		if (theme.clock.dateLabelPosition instanceof Point)
+		if (this.dateLabelPosition instanceof Point)
 		{
-			x = theme.clock.dateLabelPosition.x;
-			y = theme.clock.dateLabelPosition.y;
+			x = this.dateLabelPosition.x;
+			y = this.dateLabelPosition.y;
 		}
 		else
 		{
 			const yearOnLeft = dateRatio(date) < 0.5
 			const labelSide = yearOnLeft ? -1 : 1
-			x = theme.clock.dateLabelPosition * labelSide;
+			x = this.dateLabelPosition * labelSide;
 			y = 0;
 		}
 
 		const svg =
 			`<g class="dateLabel">
-				<text x="${x}" y="${y}" class="label dateLabel">${formatLabel('date',{'date':date})}</text>
+				<text x="${x}" y="${y}" class="label dateLabel">${this.formatLabel('date',{'date':date})}</text>
 			</g>`;
 
 		return svg;
@@ -227,7 +250,7 @@ class ThemeBase extends Clock {
 	getYearLabel = function(date, point) {
 		const svg =
 			`<g class="dateLabel">
-				<text x="${point.x}" y="${point.y}" class="label yearLabel">${formatLabel('year',{'date':date})}</text>
+				<text x="${point.x}" y="${point.y}" class="label yearLabel">${this.formatLabel('year',{'date':date})}</text>
 			</g>`;
 		return svg;
 	}/* getYearLabel */
@@ -266,7 +289,7 @@ class ThemeBase extends Clock {
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
-		const yearHand = theme.clock.getHandPath(theme.clock.yearHandLength, yearTransform, 'yearHand', '');
+		const yearHand = this.getHandPath(this.yearHandLength, yearTransform, 'yearHand', '');
 
 		var monthHand = '';
 
@@ -275,12 +298,12 @@ class ThemeBase extends Clock {
 			const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 			const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 			// get month hand
-			monthHand = theme.clock.getHandPath(theme.clock.monthHandLength, monthTransform, 'monthHand', '');
+			monthHand = this.getHandPath(this.monthHandLength, monthTransform, 'monthHand', '');
 		}
 
 		const svg = `
 			<g class="hands">
-				<title>${formatTitle('hands',{'date':displayDate})}</title>
+				<title>${this.formatTitle('hands',{'date':displayDate})}</title>
 				${yearHand}
 				${monthHand}
 			</g>`;
@@ -319,7 +342,7 @@ class ThemeBase extends Clock {
 
 			//log(thisDivisionRadians);
 			const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
-			sectorSvg += `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${formatTitle('day',day)}</title></path>`;
+			sectorSvg += `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${this.formatTitle('day',day)}</title></path>`;
 		}
 
 		const result = `
@@ -338,7 +361,7 @@ class ThemeBase extends Clock {
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-			sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${formatTitle(sectorType,sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${this.formatTitle(sectorType,sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
 		const result = `<g class="${sectorType}">${newSvg}</g>`;
@@ -361,11 +384,11 @@ class ThemeBase extends Clock {
 
 			if (labelSettings.rotate)
 			{
-				let rotate = rotationDegrees(radiansLabel, labelSettings);
+				let rotate = this.rotationDegrees(radiansLabel, labelSettings);
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
 			const labelSvg =
-				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${formatLabel(sectorType, sector)}</text>`;
+				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
 			newSvg += labelSvg;
 		}
 
