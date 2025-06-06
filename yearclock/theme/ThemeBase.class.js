@@ -111,7 +111,7 @@ class ThemeBase extends Clock {
 		for (let month of monthArray)
 		{
 			const sectorPath = getSectorPath(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
-			sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
 			newSvg += sectorSvg;
 		}
 		return `<g class="month sector">${newSvg}</g>`;

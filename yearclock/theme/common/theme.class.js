@@ -1,4 +1,14 @@
-themeClass.Common = class extends ThemeBase {
+/* common
+*/
+themeClass['common'] = class extends ThemeBase {
+
+
+	constructor(id, date, language) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.language = language;
+	}
 
 	description = "Common";
 
@@ -38,4 +48,4 @@ themeClass.Common = class extends ThemeBase {
 	}/* drawClock */
 
 
-}/* Common */
+}/* common */
