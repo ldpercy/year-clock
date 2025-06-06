@@ -30,7 +30,8 @@ const theme = {
 	},
 };
 
-themeClass = {};	// a namespace theme classes will be defined into
+themeClass = {};		// namespace that theme classes will be defined into
+clockInstance = {};		// clock instances will be collected here
 
 /* setup
 */
@@ -69,7 +70,13 @@ function setup() {
 
 
 	theme.classUrl = `theme/${theme.name}/theme.class.js`;
-	replaceScript('script-themeClass', theme.classUrl, setThemeConfig);
+
+	containerElement = document.getElementById('clockContainer');
+
+	drawClock(containerElement, theme.name, '1234', config.setupDate, config.language );
+
+
+	//replaceScript('script-themeClass', theme.classUrl, setThemeConfig);
 
 
 	// Loading is async from here on, so the rest is in callbacks:
@@ -174,9 +181,36 @@ function debug() {
 */
 function drawClock(container, themeName, id, date, language ) {
 
-	let instance = new
+	log('drawClock',arguments);
 
-	container.innerhtml
+	let cssUrl_theme = `theme/${theme.name}/style.css`;
+	config.styleElement_theme.setAttribute('href', cssUrl_theme);
 
+	if (theme.style) {
+		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
+		config.styleElement_style.setAttribute('href', cssUrl_style);
+	}
+
+	// load the theme class
+	replaceScript('script-themeClass', theme.classUrl, (()=>{return drawClock2(...arguments)}));
 
 }/* drawClock */
+
+
+/* drawClock2
+*/
+function drawClock2(container, themeName, id, date, language ) {
+
+	log('drawClock2',arguments);
+
+	clockInstance[id] = new themeClass[themeName](id, date, language);
+
+
+	let displayDate = createDisplayDate(config.setupDate);
+	let clockSVG = clockInstance[id].getClockSVG(displayDate);
+
+	container.innerHTML += clockSVG;
+
+}/* drawClock */
+
+

@@ -1,11 +1,14 @@
 /* themeClass.Debug
 */
-themeClass.Debug = class extends ThemeBase {
+//themeClass.Debug = class extends ThemeBase {
+themeClass['debug'] = class extends ThemeBase {
 
-	constructor(id) {
+	constructor(id, date, language) {
+		super();
 		this.id = id;
+		this.date = date;
+		this.language = language;
 	}
-
 
 	viewBox           = padViewBox(10);
 
@@ -50,16 +53,17 @@ themeClass.Debug = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+
 		// Set Up Drawing
 		let weekArray    = getYearWeekArray(displayDate.object);
 
 		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${theme.clock.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${theme.clock.getFace()}
-				${theme.clock.getSectorLabels('week', weekArray, theme.clock.weekLabel)}
-				${theme.clock.getSectors('week', weekArray, theme.clock.weekRadiusStart, theme.clock.weekRadiusEnd)}
-				${theme.clock.getSectorLabels('yearDay', displayDate.yearDayArray, theme.clock.dayLabel)}
-				${theme.clock.getPeriodDaySectors('yearDay', displayDate.yearDayArray, theme.clock.dayRadiusStart, theme.clock.dayRadiusEnd)}
+			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				${this.getFace()}
+				${this.getSectorLabels('week', weekArray, this.weekLabel)}
+				${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
+				${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
+				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 			</svg>
 		`;
 

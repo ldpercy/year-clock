@@ -176,7 +176,17 @@ Will try working on the Clock constructor method, which should take parameters l
 How many of those are strictly needed in the constructor though?
 
 
+Name mapping for theme classes
+------------------------------
 
+So far I've used dashed lower-case names for themes eg 'wall-clock'.
 
+For classes though will probably want to stick with the convention of upper-casing them, and dashes will probably be out.
+So do i start mapping between name styles, or just enforce one format?
 
+Because I'm namespacing the theme classes I could probably do something like this:
 
+	themeClass['wall-clock'] = class extends ThemeBase {
+
+But not sure I want to.
+Ugh. I'll start out like this and see how it gets on, though not totally enamoured with it.
