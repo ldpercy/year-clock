@@ -183,7 +183,7 @@ function drawClock(container, themeName, id, date, language ) {
 
 	log('drawClock',arguments);
 
-	let cssUrl_theme = `theme/${theme.name}/style.css`;
+	let cssUrl_theme = `theme/${theme.name}/theme.css`;
 	config.styleElement_theme.setAttribute('href', cssUrl_theme);
 
 	if (theme.style) {
