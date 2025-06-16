@@ -13,32 +13,9 @@ class ThemeBase extends Clock {
 	config = {};
 
 
-
-	//
-	/*
-	viewBox           = '-1200 -1200 2400 2400';
-	clockRadius       = 1200;
-	outerRadius       = 1120;
-	innerRadius       = 930;
-
-	weekdayMarkerLength = 40;
-	weekendMarkerLength = 55;
-	yearHandLength    = 1030;
-	dateLabelPosition         = 500;
-
-	monthLabel = {
-		radius         : 985,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : true,
-	};
-	*/
-
-
 	//
 	// formatting functions
 	//
-
 
 	formatTitle = function(type, data) {
 		let result;
@@ -148,7 +125,6 @@ class ThemeBase extends Clock {
 
 
 	/* getPeriodDayTicks
-	todo: parameterise
 	*/
 	getPeriodDayTicks = function(periodType, periodArray, tick) {
 
@@ -345,6 +321,12 @@ class ThemeBase extends Clock {
 
 
 	/* getSectorLabels
+		labelSetting = {
+			radius         : number,
+			sectorPosition : number,
+			rotate         : boolean,
+			invert         : boolean,
+		};
 	*/
 	getSectorLabels = function(sectorType, sectorArray, labelSettings)
 	{
