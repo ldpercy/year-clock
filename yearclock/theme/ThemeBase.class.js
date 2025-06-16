@@ -1,3 +1,5 @@
+/* ThemeBase
+*/
 class ThemeBase extends Clock {
 
 	constructor(id) {
@@ -13,7 +15,7 @@ class ThemeBase extends Clock {
 
 
 	//
-
+	/*
 	viewBox           = '-1200 -1200 2400 2400';
 	clockRadius       = 1200;
 	outerRadius       = 1120;
@@ -30,7 +32,7 @@ class ThemeBase extends Clock {
 		rotate         : true,
 		invert         : true,
 	};
-
+	*/
 
 
 	//

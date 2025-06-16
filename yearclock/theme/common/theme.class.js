@@ -3,37 +3,26 @@
 themeClass['common'] = class extends ThemeBase {
 
 
-	constructor(id, date, language) {
-		super();
-		this.id = id;
-		this.date = date;
-		this.language = language;
-	}
+	viewBox           = '-1200 -1200 2400 2400';
+	clockRadius       = 1200;
+	outerRadius       = 1120;
+	innerRadius       = 930;
 
-	description = "Common";
+	weekdayMarkerLength = 40;
+	weekendMarkerLength = 55;
+	yearHandLength      = 1030;
+	dateLabelPosition   = 500;
 
-	config = {
-		viewBox           : '-1200 -1200 2400 2400',
-		clockRadius       : 1200,
-		outerRadius       : 1120,
-		innerRadius       : 930,
-
-		weekdayMarkerLength	: 40,
-		weekendMarkerLength : 55,
-		yearHandLength		: 1030,
-		dateLabelPosition   : 500,
-
-		monthLabel : {
-			radius         : 985,
-			sectorPosition : 0.5,
-			rotate         : true,
-			invert         : true,
-		}
-	}//config
+	monthLabel = {
+		radius         : 985,
+		sectorPosition : 0.5,
+		rotate         : true,
+		invert         : true,
+	};
 
 
 	/* Draw Clock
-	*/
+	* /
 	drawClock = function(clockElement, displayDate)
 	{
 		// Set Up Drawing
@@ -45,7 +34,7 @@ themeClass['common'] = class extends ThemeBase {
 		theme.clock.drawYearDayTicks(displayDate.yearDayArray);
 		theme.clock.drawDateLabel(displayDate.object);
 		theme.clock.drawHands(displayDate);
-	}/* drawClock */
+	}/ * drawClock */
 
 
 }/* common */

@@ -208,6 +208,30 @@ Should probably just convert 'hands' to a config object to cleanm it up.
 
 
 
+Main class conversion done, cleaning up
+---------------------------------------
+
+Removed the old config.js files, they're no longer needed.
+I don't think anything was making any use of the loadBaseCSS flag anymore, and it was trouble to begin with.
+
+### Common theme
+The 'common' theme is now not really doing much much as it basically inherits everything from the theme base.
+The only thing it provides is a basic outline css.
+I think I'll keep it around, but think about renaming/repurposing it.
+
+One thing it does highlight though is that there are still some default values in the ThemeBase class.
+I should very probably remove them.
+They're possible sources of unintended dependencies and bugs.
+I'll move config 'defaults' to the common theme where they can live for now.
+This should show up any accidental config inheritance.
+I'm in two minds about whether *some* sensible defaults might be helpful for some things - not sure yet.
+
+* A default viewbox string is probably reasonable
+* There are default arguments used in a few places - should prob remove those too
+
+
+
+
 
 
 
