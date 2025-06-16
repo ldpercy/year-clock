@@ -29,8 +29,10 @@ themeClass['wall-clock'] = class extends ThemeBase {
 		invert         : false,
 	};
 
-	yearHandLength    = 600;
-	monthHandLength    = 850;
+	hand = {
+		yearLength  : 600,
+		monthLength : 850,
+	};
 
 
 	/* getClockSVG
@@ -45,7 +47,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
 				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, true)}
+				${this.getHands(displayDate, this.hand)}
 			</svg>
 		`;
 

@@ -187,7 +187,6 @@ class ThemeBase extends Clock {
 			<g class="day ${periodType} tick">
 				${tickSvg}
 			</g>`;
-		return result;
 
 		return result;
 	}/* getPeriodDayTicks */
@@ -258,24 +257,23 @@ class ThemeBase extends Clock {
 
 
 	/* getHands
-	This has a bunch of globals in it - need
 	*/
-	getHands = function(displayDate, drawMonthHand) {
+	getHands = function(displayDate, hand) {
 
 		// calculate year hand params
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
-		const yearHand = this.getHandPath(this.yearHandLength, yearTransform, 'yearHand', '');
+		const yearHand = this.getHandPath(hand.yearLength, yearTransform, 'yearHand', '');
 
 		var monthHand = '';
 
-		if (drawMonthHand) {
+		if (hand.monthLength) {
 			// calculate month hand params
 			const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 			const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 			// get month hand
-			monthHand = this.getHandPath(this.monthHandLength, monthTransform, 'monthHand', '');
+			monthHand = this.getHandPath(hand.monthLength, monthTransform, 'monthHand', '');
 		}
 
 		const svg = `
@@ -285,7 +283,7 @@ class ThemeBase extends Clock {
 				${monthHand}
 			</g>`;
 		return svg;
-	}
+	}/* getHands */
 
 
 	/* getHandPath

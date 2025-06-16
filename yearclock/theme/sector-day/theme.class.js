@@ -21,9 +21,10 @@ themeClass['sector-day'] = class extends ThemeBase {
 		invert         : false,
 	};
 
-
-	yearHandLength    = 600;
-	monthHandLength    = 850;
+	hand = {
+		yearLength	: 600,
+		monthLength : 850,
+	};
 
 
 
@@ -40,7 +41,7 @@ themeClass['sector-day'] = class extends ThemeBase {
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.innerRadius, this.outerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, true)}
+				${this.getHands(displayDate, this.hand)}
 			</svg>
 		`;
 

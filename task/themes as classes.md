@@ -219,7 +219,9 @@ The 'common' theme is now not really doing much much as it basically inherits ev
 The only thing it provides is a basic outline css.
 I think I'll keep it around, but think about renaming/repurposing it.
 
-### Defaults and 'globals'
+
+Clean up defaults and 'globals'
+-------------------------------
 
 One thing it does highlight though is that there are still some default values in the ThemeBase class.
 I should very probably remove them.
@@ -247,9 +249,10 @@ There are three ticks are currently constructed out of clock parameters
 
 Have also updated the getBody and getFace methods.
 
+Also need to do `getHands`. Done.
 
-
-
+That's all the direct reads of `this.` properties that I can find right now.
+All the main draw methods are properly parameterised now afaict.
 
 
 
