@@ -21,20 +21,23 @@ themeClass['common'] = class extends ThemeBase {
 	};
 
 
-	/* Draw Clock
-	* /
-	drawClock = function(clockElement, displayDate)
+	/* getClockSVG
+	*/
+	getClockSVG = function(displayDate)
 	{
-		// Set Up Drawing
-		theme.clock.element = clockElement;
-		//theme.clock.drawViewbox();
-		theme.clock.drawFace();
-		theme.clock.drawMonthSectors(displayDate.monthArray);
-		theme.clock.drawMonthLabels(displayDate.monthArray);
-		theme.clock.drawYearDayTicks(displayDate.yearDayArray);
-		theme.clock.drawDateLabel(displayDate.object);
-		theme.clock.drawHands(displayDate);
-	}/ * drawClock */
+		const clockSVG = `
+			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				${this.getFace()}
+				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
+				${this.getMonthLabels(displayDate.monthArray)}
+				${this.getYearDayTicks(displayDate.yearDayArray)}
+				${this.getDateLabel(displayDate.object)}
+				${this.getHands(displayDate)}
+			</svg>
+		`;
+
+		return clockSVG;
+	}/* getClockSVG */
 
 
 }/* common */

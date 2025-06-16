@@ -229,7 +229,12 @@ I'm in two minds about whether *some* sensible defaults might be helpful for som
 * A default viewbox string is probably reasonable
 * There are default arguments used in a few places - should prob remove those too
 
+Some older base methods for the original themes still make use of what were globals as well:
 
+* getPeriodDayTicks
+* getDateLabel
+
+Overall I'd like this type of thing gone as it presumes setting names - change them over to become arguments.
 
 
 

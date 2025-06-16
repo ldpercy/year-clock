@@ -36,7 +36,7 @@ themeClass['sector-day'] = class extends ThemeBase {
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${this.getFace()}
-				${this.getMonthSectors(displayDate.monthArray)}
+				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.innerRadius, this.outerRadius)}
 				${this.getMonthLabels(displayDate.monthArray)}
 				${this.getDateLabel(displayDate.object)}

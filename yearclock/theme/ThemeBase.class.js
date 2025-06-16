@@ -108,7 +108,7 @@ class ThemeBase extends Clock {
 	}
 
 
-	getMonthSectors = function(monthArray, radiusStart=this.outerRadius, radiusEnd=this.innerRadius) {
+	getMonthSectors = function(monthArray, radiusStart, radiusEnd) {
 		let newSvg = '';
 		for (let month of monthArray)
 		{
