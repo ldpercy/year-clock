@@ -67,7 +67,7 @@ themeClass['season-out'] = class extends ThemeBase {
 	{
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace()}
+				${this.getFace(this.clockRadius)}
 				${this.getSectors('season', displayDate.seasonArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
 				${this.getMonthSectors(displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}

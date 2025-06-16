@@ -59,7 +59,7 @@ themeClass['debug'] = class extends ThemeBase {
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace()}
+				${this.getFace(this.clockRadius)}
 				${this.getSectorLabels('week', weekArray, this.weekLabel)}
 				${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
 				${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}

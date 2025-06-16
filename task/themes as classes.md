@@ -219,6 +219,8 @@ The 'common' theme is now not really doing much much as it basically inherits ev
 The only thing it provides is a basic outline css.
 I think I'll keep it around, but think about renaming/repurposing it.
 
+### Defaults and 'globals'
+
 One thing it does highlight though is that there are still some default values in the ThemeBase class.
 I should very probably remove them.
 They're possible sources of unintended dependencies and bugs.
@@ -237,14 +239,13 @@ Some older base methods for the original themes still make use of what were glob
 
 Overall I'd like this type of thing gone as it presumes setting names - change them over to become arguments.
 
-
 Have done getMonthLabels and getDateLabel; getPeriodDayTicks is a bit more work though.
 There are three ticks are currently constructed out of clock parameters
 * weekday
 * weekend
 * first-of-month
 
-
+Have also updated the getBody and getFace methods.
 
 
 
