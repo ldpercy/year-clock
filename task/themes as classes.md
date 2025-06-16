@@ -239,7 +239,10 @@ Overall I'd like this type of thing gone as it presumes setting names - change t
 
 
 Have done getMonthLabels and getDateLabel; getPeriodDayTicks is a bit more work though.
-
+There are three ticks are currently constructed out of clock parameters
+* weekday
+* weekend
+* first-of-month
 
 
 

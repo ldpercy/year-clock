@@ -11,6 +11,15 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	weekdayMarkerLength = 40;
 	weekendMarkerLength = 55;
 
+	tick = {
+		weekdayStart    : this.outerRadius,
+		weekdayEnd      : this.outerRadius - this.weekdayMarkerLength,
+		weekendStart    : this.outerRadius,
+		weekendEnd      : this.outerRadius - this.weekendMarkerLength,
+		monthFirstStart : this.outerRadius,
+		monthFirstEnd   : this.innerRadius,
+	};
+
 	dateLabelPosition         = new Point(0,430);
 
 	monthLabel = {
@@ -34,7 +43,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${this.getFace()}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray)}
+				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate, true)}
 			</svg>

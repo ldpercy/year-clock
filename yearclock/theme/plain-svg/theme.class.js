@@ -16,6 +16,17 @@ themeClass['plain-svg'] = class extends ThemeBase {
 
 	weekdayMarkerLength = 42;
 	weekendMarkerLength = 57;
+
+	tick = {
+		weekdayStart    : this.outerRadius,
+		weekdayEnd      : this.outerRadius - this.weekdayMarkerLength,
+		weekendStart    : this.outerRadius,
+		weekendEnd      : this.outerRadius - this.weekendMarkerLength,
+		monthFirstStart : this.outerRadius,
+		monthFirstEnd   : this.innerRadius,
+	};
+
+
 	yearHandLength    = 980;
 	dateLabelPosition         = 530;
 
@@ -29,7 +40,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 				${this.getFace()}
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
+				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate)}
 			</svg>

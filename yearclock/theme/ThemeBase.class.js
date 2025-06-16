@@ -150,10 +150,7 @@ class ThemeBase extends Clock {
 	/* getPeriodDayTicks
 	todo: parameterise
 	*/
-	getPeriodDayTicks = function(periodType, periodArray) {
-
-		const weekdayTickInnerRadius = this.outerRadius - this.weekdayMarkerLength;
-		const weekendTickInnerRadius = this.outerRadius - this.weekendMarkerLength
+	getPeriodDayTicks = function(periodType, periodArray, tick) {
 
 		let tickClass = '';
 		let tickLine;
@@ -165,12 +162,12 @@ class ThemeBase extends Clock {
 
 			if (day.isWeekend)
 			{
-				tickLine = radialLine(dayAngle.start, this.outerRadius, weekendTickInnerRadius);
+				tickLine = radialLine(dayAngle.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
 			}
 			else // day.isWeekday
 			{
-				tickLine = radialLine(dayAngle.start, this.outerRadius, weekdayTickInnerRadius);
+				tickLine = radialLine(dayAngle.start, tick.weekdayStart, tick.weekdayEnd);
 				tickClass = 'weekday';
 			}
 
@@ -179,7 +176,7 @@ class ThemeBase extends Clock {
 
 			if (day.isFirst) // Draw an extra line for firsts of the month
 			{
-				tickLine = radialLine(dayAngle.start, this.outerRadius, this.innerRadius);
+				tickLine = radialLine(dayAngle.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
 					`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;

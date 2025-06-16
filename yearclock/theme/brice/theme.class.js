@@ -17,6 +17,16 @@ themeClass['brice'] = class extends ThemeBase {
 
 	weekdayMarkerLength = 40;
 	weekendMarkerLength = 55;
+
+	tick = {
+		weekdayStart    : this.outerRadius,
+		weekdayEnd      : this.outerRadius - this.weekdayMarkerLength,
+		weekendStart    : this.outerRadius,
+		weekendEnd      : this.outerRadius - this.weekendMarkerLength,
+		monthFirstStart : this.outerRadius,
+		monthFirstEnd   : this.innerRadius,
+	};
+
 	yearHandLength      = 1030;
 	dateLabelPosition   = 500;
 
@@ -30,7 +40,7 @@ themeClass['brice'] = class extends ThemeBase {
 				${this.getFace()}
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
+				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate)}
 			</svg>
