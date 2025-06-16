@@ -39,7 +39,7 @@ themeClass['sector-day'] = class extends ThemeBase {
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.innerRadius, this.outerRadius)}
 				${this.getMonthLabels(displayDate.monthArray)}
-				${this.getDateLabel(displayDate.object)}
+				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate, true)}
 			</svg>
 		`;

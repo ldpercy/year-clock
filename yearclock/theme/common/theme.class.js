@@ -31,7 +31,7 @@ themeClass['common'] = class extends ThemeBase {
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray)}
 				${this.getYearDayTicks(displayDate.yearDayArray)}
-				${this.getDateLabel(displayDate.object)}
+				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate)}
 			</svg>
 		`;

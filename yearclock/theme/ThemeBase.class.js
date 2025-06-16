@@ -222,19 +222,19 @@ class ThemeBase extends Clock {
 	/* getDateLabel
 	This and year below need to be generally sorted out
 	*/
-	getDateLabel = function(date, point) {
+	getDateLabel = function(date, dateLabelPosition) {
 		let x,y;
 
-		if (this.dateLabelPosition instanceof Point)
+		if (dateLabelPosition instanceof Point)
 		{
-			x = this.dateLabelPosition.x;
-			y = this.dateLabelPosition.y;
+			x = dateLabelPosition.x;
+			y = dateLabelPosition.y;
 		}
 		else
 		{
 			const yearOnLeft = dateRatio(date) < 0.5
 			const labelSide = yearOnLeft ? -1 : 1
-			x = this.dateLabelPosition * labelSide;
+			x = dateLabelPosition * labelSide;
 			y = 0;
 		}
 

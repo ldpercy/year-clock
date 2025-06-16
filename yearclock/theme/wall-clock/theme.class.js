@@ -35,7 +35,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 				${this.getFace()}
 				${this.getMonthLabels(displayDate.monthArray)}
 				${this.getMonthDayTicks(displayDate.monthDayArray)}
-				${this.getDateLabel(displayDate.object)}
+				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate, true)}
 			</svg>
 		`;

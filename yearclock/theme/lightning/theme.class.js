@@ -115,7 +115,7 @@ themeClass['lightning'] = class extends ThemeBase {
 				${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 
 				${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
-				${this.getDateLabel(displayDate.object)}
+				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 			</svg>
 		`;
 
