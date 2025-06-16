@@ -190,3 +190,36 @@ Because I'm namespacing the theme classes I could probably do something like thi
 
 But not sure I want to.
 Ugh. I'll start out like this and see how it gets on, though not totally enamoured with it.
+
+
+A tiny peculiarity in class methods
+-----------------------------------
+
+I have a line in a few of the theme getClockSVG methods that looks like:
+
+	${theme.clock.getHands(displayDate, drawMonthHand=false)}
+
+The inline assignment `drawMonthHand=` throws up errors after being converted to a class.
+
+	Uncaught ReferenceError: assignment to undeclared variable drawMonthHand
+
+For whatever JS reason this style doesn't work with classes, no problem, not wedded to it.
+Should probably just convert 'hands' to a config object to cleanm it up.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Todo
+----
+* Convert hand config to object and clean up drawMonthHand=.

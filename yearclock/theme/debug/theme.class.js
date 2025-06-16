@@ -1,6 +1,5 @@
 /* themeClass.Debug
 */
-//themeClass.Debug = class extends ThemeBase {
 themeClass['debug'] = class extends ThemeBase {
 
 	constructor(id, date, language) {
