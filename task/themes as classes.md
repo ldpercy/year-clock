@@ -233,8 +233,11 @@ Some older base methods for the original themes still make use of what were glob
 
 * getPeriodDayTicks
 * getDateLabel
+* getMonthLabels
 
 Overall I'd like this type of thing gone as it presumes setting names - change them over to become arguments.
+
+
 
 
 

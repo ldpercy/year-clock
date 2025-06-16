@@ -28,7 +28,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${this.getFace()}
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
-				${this.getMonthLabels(displayDate.monthArray)}
+				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
 				${this.getYearDayTicks(displayDate.yearDayArray)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate)}

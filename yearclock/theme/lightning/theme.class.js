@@ -110,7 +110,7 @@ themeClass['lightning'] = class extends ThemeBase {
 				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 
 				${this.getSectorLabels('quarter', quarterArray, this.quarterLabel)}
-				${this.getMonthLabels(displayDate.monthArray)}
+				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
 				${this.getSectorLabels('week', weekArray, this.weekLabel)}
 				${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 

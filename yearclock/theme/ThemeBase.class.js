@@ -123,18 +123,18 @@ class ThemeBase extends Clock {
 	/* getMonthLabels
 	This is nearly ready to get rid of
 	*/
-	getMonthLabels = function(monthArray) {
+	getMonthLabels = function(monthArray, labelSetting) {
 		let newSvg = '';
 		for (let month of monthArray)
 		{
-			const radiansLabel = month.radiansStart + (month.radiansWidth * this.monthLabel.sectorPosition);
+			const radiansLabel = month.radiansStart + (month.radiansWidth * labelSetting.sectorPosition);
 
-			const center     = polarPoint(radiansLabel, this.monthLabel.radius);
+			const center     = polarPoint(radiansLabel, labelSetting.radius);
 			let transform = '';
 
-			if (this.monthLabel.rotate)
+			if (labelSetting.rotate)
 			{
-				let rotate = this.rotationDegrees(radiansLabel, this.monthLabel);
+				let rotate = this.rotationDegrees(radiansLabel, labelSetting);
 				transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
 			}
 			const labelSvg =
