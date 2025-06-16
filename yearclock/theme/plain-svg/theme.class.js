@@ -29,7 +29,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 				${this.getFace()}
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
-				${this.getYearDayTicks(displayDate.yearDayArray)}
+				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate)}
 			</svg>

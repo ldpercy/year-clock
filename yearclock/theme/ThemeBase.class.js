@@ -75,7 +75,7 @@ class ThemeBase extends Clock {
 				${this.getFace()}
 				${this.getMonthSectors(displayDate.monthArray)}
 				${this.getMonthLabels(displayDate.monthArray)}
-				${this.getYearDayTicks(displayDate.yearDayArray)}
+				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
 				${this.getDateLabel(displayDate.object)}
 				${this.getHands(displayDate)}
 			</svg>
@@ -147,40 +147,14 @@ class ThemeBase extends Clock {
 
 
 
-	/* getYearDayTicks
-	*/
-	getYearDayTicks = function(yearDayArray) {
-		const yearDayTicks = this.getPeriodDayTicks(yearDayArray);
-		const result = `
-			<g class="day yearDay tick">
-				${yearDayTicks}
-			</g>`;
-		return result;
-	}/* getYearDayTicks */
-
-
-
-	/* getMonthDayTicks
-	*/
-	getMonthDayTicks = function(monthDayArray) {
-		const monthDayTicks = this.getPeriodDayTicks(monthDayArray);
-		const result = `
-			<g class="day monthDay tick">
-				${monthDayTicks}
-			</g>`;
-		return result;
-	}/* getMonthDayTicks */
-
-
-
 	/* getPeriodDayTicks
+	todo: parameterise
 	*/
-	getPeriodDayTicks = function(periodArray) {
+	getPeriodDayTicks = function(periodType, periodArray) {
 
 		const weekdayTickInnerRadius = this.outerRadius - this.weekdayMarkerLength;
 		const weekendTickInnerRadius = this.outerRadius - this.weekendMarkerLength
 
-		let result = '';
 		let tickClass = '';
 		let tickLine;
 		let tickSvg;
@@ -200,19 +174,23 @@ class ThemeBase extends Clock {
 				tickClass = 'weekday';
 			}
 
-			tickSvg =
+			tickSvg +=
 				`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
-			result += tickSvg;
 
 			if (day.isFirst) // Draw an extra line for firsts of the month
 			{
 				tickLine = radialLine(dayAngle.start, this.outerRadius, this.innerRadius);
 				tickClass = 'first';
-				tickSvg =
+				tickSvg +=
 					`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
-				result += tickSvg;
 			}
 		}
+
+		const result = `
+			<g class="day ${periodType} tick">
+				${tickSvg}
+			</g>`;
+		return result;
 
 		return result;
 	}/* getPeriodDayTicks */
