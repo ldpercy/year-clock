@@ -1,4 +1,5 @@
 /* season-out
+Seasons in the middle then months then days
 */
 themeClass['season-out'] = class extends ThemeBase {
 

@@ -1,8 +1,7 @@
-//
-// Lightning theme
-//
+/* Lightning theme
+No hands for this one, just highlights
+*/
 themeClass['lightning'] = class extends ThemeBase {
-
 
 	viewBox           = padViewBox(125);
 	//this.viewBox				= '-800 -800 1600 1600';

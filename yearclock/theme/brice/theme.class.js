@@ -1,10 +1,6 @@
-//
-// Brice
-//
-// Original style from year-clock.net
-//
-
-
+/* brice
+Original theme from year-clock.net
+*/
 themeClass['brice'] = class extends ThemeBase {
 
 	// Clock parameters
@@ -22,6 +18,5 @@ themeClass['brice'] = class extends ThemeBase {
 	weekendMarkerLength = 55;
 	yearHandLength    = 1030;
 	dateLabelPosition         = 500;
-
 
 }/* brice */

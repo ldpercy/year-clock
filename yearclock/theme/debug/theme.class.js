@@ -1,4 +1,5 @@
-/* themeClass.Debug
+/* debug
+Debug theme - use for fixing bugs
 */
 themeClass['debug'] = class extends ThemeBase {
 
