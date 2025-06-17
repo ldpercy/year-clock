@@ -16,6 +16,11 @@ const l10n = {
 	}
 }
 
+// config.monthNames = l10n.gregLocal[config.language];
+
+function getMonthNames(language) {
+	return l10n.gregLocal[language];
+}
 
 
 function superLang( subLang )
@@ -24,11 +29,11 @@ function superLang( subLang )
 }
 
 
-function getLanguage(languageParameter) {
+function getLanguage(languageParameter, defaultLanguage) {
 	let result = '';
 	const paramLanguage = superLang( languageParameter );
 	const browserLanguage = superLang( navigator.language || navigator.userLanguage );
 	result = paramLanguage || browserLanguage;
-	if (!l10n.gregLocal[result]) result = config.defaultLanguage;
+	if (!l10n.gregLocal[result]) result = defaultLanguage;
 	return result;
 }

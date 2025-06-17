@@ -7,7 +7,7 @@
 This is a temporary-ish function to re-create the big fat object sitting in the setup function called `config.date`.
 It needs to be rationalised (much) further.
 */
-function createDisplayDate(date) {
+function createDisplayDate(date, language) {
 	log('createDisplayDate...',date);
 	const result = {
 		object      : new Date(date),
@@ -21,8 +21,10 @@ function createDisplayDate(date) {
 		yearEnd     : nextYear(date),
 	};
 
+	result.monthNames = getMonthNames(language);
+
 	// Set up period arrays
-	result.monthArray   = getMonthArray(result, config.monthNames);
+	result.monthArray   = getMonthArray(result, result.monthNames);
 	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
 	result.seasonArray  = getSeasonArray(date);
 
