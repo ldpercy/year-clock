@@ -46,10 +46,6 @@ const themeClass = {};		// global namespace that theme classes will be defined i
 /* setup
 */
 function setup() {
-	// Language
-	page.parameter.language = getParameterByName('language');
-	page.initial.language   = getLanguage(page.parameter.language, page.default.language);
-
 	// Set initial date based on date param or local date
 	page.parameter.date = getParameterByName('date');
 	const urlDate = (page.parameter.date !== null) ? new Date(page.parameter.date) : null;
@@ -61,6 +57,11 @@ function setup() {
 	page.parameter.style = getParameterByName('style');
 	page.initial.style   = page.parameter.style || page.default.style;
 
+	// Language
+	page.parameter.language = getParameterByName('language');
+	page.initial.language   = getLanguage(page.parameter.language, page.default.language);
+
+
 	// reusable page elements
 	page.element.style_theme = document.getElementById('stylesheet-theme');
 	page.element.style_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
@@ -68,7 +69,7 @@ function setup() {
 
 	log('page:', page);
 
-	let initialClockParams = {
+	const initialClockParams = {
 		id          : '1234',
 		container   : page.element.container,
 		date        : page.initial.date,
@@ -105,14 +106,22 @@ function drawClock(clock) {
 		page.element.style_style.setAttribute('href', cssUrl_style);
 	}
 
-	let classUrl = `theme/${clock.theme}/theme.class.js`;
-	// async load the theme class
-	replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(...arguments)}));
+	if (themeClass[clock.theme]) {
+		// we already have that theme class in memory
+		// go right ahead to drawClock2
+		drawClock2(...arguments);
+	}
+	else { // go and get the theme class
+		let classUrl = `theme/${clock.theme}/theme.class.js`;
+		// async load the theme class
+		replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(...arguments)}));
+	}
 
 }/* drawClock */
 
 
 /* drawClock2
+Asynchronously called by the class script element's load event.
 Part 2:
 * create instance of the theme class for the clock
 * write clock svg into the container
@@ -129,8 +138,6 @@ function drawClock2(clock) {
 	clock.container.innerHTML += clockSVG;
 
 }/* drawClock */
-
-
 
 
 

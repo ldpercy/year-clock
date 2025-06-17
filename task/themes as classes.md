@@ -290,3 +290,39 @@ In this particular case the clock radius hadn't been set - but rather than faili
 Not a big problem, but also I barely noticed it because the effect was small.
 I'd really rather get errors for cases like this.
 
+
+Playing with multiple draw
+--------------------------
+This has a few more pieces needed to be properly ready, but I want to start playing with it to see where it's at.
+
+With a little forcing I should be able to draw multiple clocks into the page now, though styles are going be broken as they're currently reused.
+
+```js
+let testClock = {
+	id          : 'test',
+	container   : document.getElementById('clockContainer2'),
+	date        : new Date('2011-11-11'),
+	theme       : 'brice',
+	style       : 'dark',
+	language    : page.initial.language,
+};
+drawClock(testClock);
+```
+
+Yep it works and yep it breaks the styles.
+Okay cool.
+The [long diversion into style encapsulation](<multiple clocks in document.md>) suggests I won't be able to properly fix this anytime soon, but still have an idea or two that might help a bit.
+
+
+Clock instance mutators
+-----------------------
+Towards the end of the [refactor config global](<[done]/21 - refactor config global.md>) task (which strongly motivated this task) I'd speculated about clock mutator methods like these:
+
+	fooClock.setDate('2001-01-01')
+	fooClock.setTheme('example')
+	fooClock.setStyle('daytime')
+	fooClock.setLanguage('latin')
+
+That could in some way work on an in-page clock instance.
+Whilst not strictly in-scope for this task, the class/instance setup lends itself to the idea so I want to have a bit of a think about how they could work.
+

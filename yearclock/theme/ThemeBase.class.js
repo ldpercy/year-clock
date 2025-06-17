@@ -73,9 +73,9 @@ class ThemeBase extends Clock {
 	}/* getViewbox */
 
 
-	getBody = function(bodyRadius) {
+	getBody = function(body) {
 		const svg =
-			`<circle cx="0" cy="0" r="${bodyRadius}" class="body"></circle>`
+			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
 		return svg;
 	}
 
