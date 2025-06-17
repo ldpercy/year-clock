@@ -215,7 +215,7 @@ Removed the old config.js files, they're no longer needed.
 I don't think anything was making any use of the loadBaseCSS flag anymore, and it was trouble to begin with.
 
 ### Common theme
-The 'common' theme is now not really doing much much as it basically inherits everything from the theme base.
+The 'common' theme is now not really doing much as it basically inherits everything from the theme base.
 The only thing it provides is a basic outline css.
 I think I'll keep it around, but think about renaming/repurposing it.
 
@@ -255,10 +255,25 @@ That's all the direct reads of `this.` properties that I can find right now.
 All the main draw methods are properly parameterised now afaict.
 
 
+Cleanup setup script
+--------------------
 
+All the themes are roughly in shape and working as before.
 
+A while back I quickly put together a rough replacement for the old setup callbacks to work with the new class arrangement.
+I want to revisit this now and clean up the old code.
 
+* The three old callbacks can go
+* The old global 'theme' object can probably go too
 
-Todo
-----
-* Convert hand config to object and clean up drawMonthHand=.
+Actually the theme object is still used a bit, but that will need to be re-jigged.
+There shouldn't be a page-global theme anymore, but there could be starting values attached to the page.
+
+So I'll create a page object (maybe a class?) for storing some of this sort of stuff.
+
+* Values for default, url parameter and initial computed arguments are now stored in the page object
+* cleaned up logic for those so now clearer and more consistent
+* Have moved an old config.monthNames reference out to date/l10n
+* reusable element references now stored in page object
+* reorganised draw clock clock parameters - prob want to correct the arg spread though
+

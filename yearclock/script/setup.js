@@ -11,14 +11,14 @@ log('--- setup.js ---')
 const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
-	defaultTheme    : 'season-out',
+
 	locale          : 'en',           // The internal locale used for month and day names in classes
 	setupDate       : undefined,      // the date used at the initial setup time
 };
 
 
 // Theme configuration
-const theme = {
+/*const theme = {
 	name             : undefined,    // string   - The name of the theme, also the directory the theme files are stored in
 	description      : undefined,    // string   - Description of the theme set in the theme config.js
 	configUrl        : undefined,    // string   - The location of the theme's config file
@@ -28,9 +28,39 @@ const theme = {
 		drawClock    : ()=>{},       // function - (mandatory) Main function to draw the theme clock
 		// drawPart  : ()=>{},       // function - (optional) Draws the named clock part
 	},
+};*/
+
+
+// object to store general page information
+const page = {
+	// arguments - default, received and computed
+	default :
+	{
+		date        : new Date(),
+		theme       : 'season-out',
+		style       : '',
+		language    : 'en',
+	},
+
+	parameter : 	// requested values to use
+	{
+		date        : undefined,
+		theme       : undefined,
+		style       : undefined,
+		language    : undefined,
+	},
+
+	initial :		// initial computed values to use
+	{
+		date        : undefined,	// initial date to use
+		theme       : undefined,	// initial clock theme to use
+		style       : undefined,	// initial clock style to use
+		language    : undefined,	// initial language to use
+	},
+
+	element : {}, // store references to various page elements
+
 };
-
-
 
 
 themeClass = {};		// namespace that theme classes will be defined into
@@ -40,37 +70,40 @@ clockInstance = {};		// clock instances will be collected here
 */
 function setup() {
 	// Language
-	config.languageParam = getParameterByName('language');
-	config.language = getLanguage(config.languageParam);
-	log('config.languageParam:', config.languageParam);
-	log('config.language:', config.language);
-	config.monthNames = l10n.gregLocal[config.language];
+	page.parameter.language = getParameterByName('language');
+	page.initial.language   = getLanguage(page.parameter.language, page.default.language);
 
-	// Set initial display date based on date param or local date
-	const dateParameter = getParameterByName('date');
-	const urlDate = (dateParameter !== null) ? new Date(dateParameter) : null;
-	log('urlDate', urlDate);
-	config.setupDate = (isValidDate(urlDate)) ? urlDate : new Date();
-	log('setupDate', config.setupDate);
-
+	// Set initial date based on date param or local date
+	page.parameter.date = getParameterByName('date');
+	const urlDate = (page.parameter.date !== null) ? new Date(page.parameter.date) : null;
+	page.initial.date = (isValidDate(urlDate)) ? urlDate : page.default.date;
 
 	// Theming:
-	config.styleElement_base = document.getElementById('stylesheet-base');
-	config.styleElement_theme = document.getElementById('stylesheet-theme');
-	config.styleElement_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	page.parameter.theme = getParameterByName('theme');
+	page.initial.theme   = page.parameter.theme || page.default.theme;
+	page.parameter.style = getParameterByName('style');
+	page.initial.style   = page.parameter.style || page.default.style;
 
-	theme.name = getParameterByName('theme') || config.defaultTheme;
-	log('theme.name:', theme.name);
+	// reusable page elements
+	page.element.style_theme = document.getElementById('stylesheet-theme');
+	page.element.style_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	page.element.container   = document.getElementById('clockContainer');
 
-	theme.style = getParameterByName('style');
-	log('theme.style:', theme.style);
+	log('page:', page);
 
+	let initialClockParams = {
+		id          : '1234',
+		container   : page.element.container,
+		date        : page.initial.date,
+		theme       : page.initial.theme,
+		style       : page.initial.style,
+		language    : page.initial.language,
+	};
 
-	theme.classUrl = `theme/${theme.name}/theme.class.js`;
+	log('initialClockParams:', initialClockParams);
 
-	containerElement = document.getElementById('clockContainer');
-
-	drawClock(containerElement, theme.name, '1234', config.setupDate, config.language );
+	drawClock(initialClockParams);
+	// I'm sure there's a way to spread these parameters properly...
 
 	// Loading is async from here on, so the rest is in callbacks:
 
@@ -79,42 +112,45 @@ function setup() {
 
 
 
-
-
-
 /* drawClock
+Part 1:
+* load the css
+* async load the theme class
 */
-function drawClock(container, themeName, id, date, language ) {
+function drawClock(clock) {
 
 	log('drawClock',arguments);
 
-	let cssUrl_theme = `theme/${theme.name}/theme.css`;
-	config.styleElement_theme.setAttribute('href', cssUrl_theme);
+	let cssUrl_theme = `theme/${clock.theme}/theme.css`;
+	page.element.style_theme.setAttribute('href', cssUrl_theme);
 
-	if (theme.style) {
-		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
-		config.styleElement_style.setAttribute('href', cssUrl_style);
+	if (clock.style) {
+		let cssUrl_style = `theme/${clock.theme}/style-${clock.style}.css`;
+		page.element.style_style.setAttribute('href', cssUrl_style);
 	}
 
-	// load the theme class
-	replaceScript('script-themeClass', theme.classUrl, (()=>{return drawClock2(...arguments)}));
+	let classUrl = `theme/${clock.theme}/theme.class.js`;
+	// async load the theme class
+	replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(...arguments)}));
 
 }/* drawClock */
 
 
 /* drawClock2
+Part 2:
+* create instance of the theme class for the clock
+* write clock svg into the container
 */
-function drawClock2(container, themeName, id, date, language ) {
+function drawClock2(clock) {
 
 	log('drawClock2',arguments);
 
-	clockInstance[id] = new themeClass[themeName](id, date, language);
+	clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.language);
 
+	let displayDate = createDisplayDate(clock.date, clock.language);
+	let clockSVG = clockInstance[clock.id].getClockSVG(displayDate);
 
-	let displayDate = createDisplayDate(config.setupDate);
-	let clockSVG = clockInstance[id].getClockSVG(displayDate);
-
-	container.innerHTML += clockSVG;
+	clock.container.innerHTML += clockSVG;
 
 }/* drawClock */
 
