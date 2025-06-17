@@ -12,7 +12,6 @@ const config = {
 	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
 	defaultLanguage : 'en',
 
-	locale          : 'en',           // The internal locale used for month and day names in classes
 	setupDate       : undefined,      // the date used at the initial setup time
 };
 

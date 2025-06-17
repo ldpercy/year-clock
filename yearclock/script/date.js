@@ -11,10 +11,11 @@ function createDisplayDate(date, language) {
 	log('createDisplayDate...',date);
 	const result = {
 		object      : new Date(date),
+		language    : language,
 		year        : date.getFullYear(),
 		month       : date.getMonth() + 1,		// js month starts at 0
 		date        : date.getDate(),
-		name        : date.toLocaleString(config.locale, {weekday: "long"}),
+		name        : date.toLocaleString(language, {weekday: "long"}),
 		dayOfYear   : dayOfYear(date),
 		daysInYear  : daysInYear(date),
 		yearStart   : startOfYear(date),
@@ -222,7 +223,7 @@ Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-function getPeriodDayArray(dateStart, dateEnd, displayDate, locale=config.locale) {
+function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 	const result = [];
 
 	let dayCounter = 1;
