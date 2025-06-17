@@ -7,6 +7,7 @@
 
 	<!-- page -->
 	<link rel="icon" href="page/test-favicon.svg">
+	<script defer src="script/utility.js"></script>
 
 	<style>
 		html { background-color: silver; }
@@ -17,7 +18,7 @@
 	</style>
 
 	<script defer>
-		urlArray = [
+		baseUrlArray = [
 			'yearclock.html?theme=debug',
 			'yearclock.html?theme=lightning',
 			'yearclock.html?theme=common',
@@ -29,9 +30,19 @@
 		];
 
 		function setup() {
-			testElement = document.getElementById('testOutput');
+			let testElement = document.getElementById('testOutput');
 
-			for (let url of urlArray) {
+			// url parameters
+			const date     = getParameterByName('date');
+			const language = getParameterByName('language');
+			const style    = getParameterByName('style');
+
+			const dateParam     = (date)     ? `&date=${date}` : '';
+			const languageParam = (language) ? `&language=${language}` : '';
+			const styleParam    = (style)    ? `&style=${style}` : '';
+
+			for (let baseUrl of baseUrlArray) {
+				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">
