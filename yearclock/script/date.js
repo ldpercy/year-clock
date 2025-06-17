@@ -189,6 +189,8 @@ This needs a lot of cleanup/rationalisation:
 
 */
 function getMonthArray(displayDate, monthNames) {
+	const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+
 	const result = monthNames.map(
 		function( monthName, monthNumber ) {
 			const startDate    = new Date(displayDate.year, monthNumber);
@@ -200,7 +202,7 @@ function getMonthArray(displayDate, monthNames) {
 
 			const month = {
 				'name'         : monthName,
-				'code'         : config.monthCodes[monthNumber],
+				'code'         : monthCodes[monthNumber],
 				'startDate'    : new Date(displayDate.year, monthNumber),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),

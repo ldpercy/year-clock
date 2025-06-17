@@ -3,31 +3,9 @@
 //
 
 console.clear();
-log = createLog();
+const log = createLog();
 log('--- setup.js ---')
 
-
-// Year-clock general configuration
-const config = {
-	monthCodes      : [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ],
-	defaultLanguage : 'en',
-
-	setupDate       : undefined,      // the date used at the initial setup time
-};
-
-
-// Theme configuration
-/*const theme = {
-	name             : undefined,    // string   - The name of the theme, also the directory the theme files are stored in
-	description      : undefined,    // string   - Description of the theme set in the theme config.js
-	configUrl        : undefined,    // string   - The location of the theme's config file
-	base             : undefined,    // string   - (optional) A base theme that will be loaded prior the main theme
-	style            : undefined,    // string   - A set of additional css styles for making quick cosmetic changes
-	clock            : {             // object   - Object containing parameters and drawing functions for the theme
-		drawClock    : ()=>{},       // function - (mandatory) Main function to draw the theme clock
-		// drawPart  : ()=>{},       // function - (optional) Draws the named clock part
-	},
-};*/
 
 
 // object to store general page information
@@ -57,13 +35,13 @@ const page = {
 		language    : undefined,	// initial language to use
 	},
 
-	element : {}, // store references to various page elements
-
+	element       : {}, // store references to various page elements
+	clockInstance : {}, // clock instances will be collected here
 };
 
 
-themeClass = {};		// namespace that theme classes will be defined into
-clockInstance = {};		// clock instances will be collected here
+const themeClass = {};		// global namespace that theme classes will be defined into
+
 
 /* setup
 */
@@ -110,7 +88,6 @@ function setup() {
 
 
 
-
 /* drawClock
 Part 1:
 * load the css
@@ -144,10 +121,10 @@ function drawClock2(clock) {
 
 	log('drawClock2',arguments);
 
-	clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.language);
+	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.language);
 
 	let displayDate = createDisplayDate(clock.date, clock.language);
-	let clockSVG = clockInstance[clock.id].getClockSVG(displayDate);
+	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
 
 	clock.container.innerHTML += clockSVG;
 
