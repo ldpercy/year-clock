@@ -30,6 +30,9 @@ const theme = {
 	},
 };
 
+
+
+
 themeClass = {};		// namespace that theme classes will be defined into
 clockInstance = {};		// clock instances will be collected here
 
@@ -63,118 +66,20 @@ function setup() {
 	log('theme.style:', theme.style);
 
 
-	//theme.configUrl = `theme/${theme.name}/config.js`;
-	//theme.scriptUrl = `theme/${theme.name}/yearclock.js`;
-	//replaceScript('script-themeConfig', theme.configUrl, setThemeConfig);
-
-
-
 	theme.classUrl = `theme/${theme.name}/theme.class.js`;
 
 	containerElement = document.getElementById('clockContainer');
 
 	drawClock(containerElement, theme.name, '1234', config.setupDate, config.language );
 
-
-	//replaceScript('script-themeClass', theme.classUrl, setThemeConfig);
-
-
 	// Loading is async from here on, so the rest is in callbacks:
-	// Load the config, wait for the callback
-	// If specified, load base theme
-	// Load the theme script, wait for the callback
-	// When the theme script arrives, call theme.drawClock.
 
 } /* setup */
 
 
 
-/* setThemeConfig
-setup part 2
-*/
-function setThemeConfig(){
-	// onload script-themeConfig
-	// theme.description and theme.base are now set
-
-	if (theme.base) {
-		log(`theme.base: ${theme.base}`);
-		if (theme.loadBaseCSS) {
-			// set base css
-			let cssUrl_base = `theme/${theme.base}/style.css`;
-			config.styleElement_base.setAttribute('href', cssUrl_base);
-		}
-		//load the base resources
-		let baseScriptUrl = `theme/${theme.base}/yearclock.js`;
-		replaceScript('script-themeBase', baseScriptUrl, setBaseTheme);
-	}
-	else {
-		log('no theme.base set');
-		//just load the theme resources
-		replaceScript('script-theme', theme.scriptUrl, setTheme);
-	}
-}/* setThemeConfig */
 
 
-
-function setBaseTheme() {
-	// onload script-themeBase
-	// base theme values are now set
-	// proceed to set theme
-	replaceScript('script-theme', theme.scriptUrl, setTheme);
-}
-
-
-
-function setTheme(){
-	// onload script-theme
-	// All theme script items are now set.
-	// log('onload script-theme');
-
-	let cssUrl_theme = `theme/${theme.name}/style.css`;
-	config.styleElement_theme.setAttribute('href', cssUrl_theme);
-
-	if (theme.style) {
-		let cssUrl_style = `theme/${theme.name}/style-${theme.style}.css`;
-		config.styleElement_style.setAttribute('href', cssUrl_style);
-	}
-
-	const clockContainer = document.getElementById('clockContainer');
-
-	// displayDate is now a transient object passed in to drawClock
-	let displayDate = createDisplayDate(config.setupDate);
-	log('Initial displayDate:', displayDate);
-
-	log('--- debug ---');
-	debug();
-	log('--- Before drawClock ---');
-	const clockSVG = theme.clock.getClockSVG(displayDate);
-	clockContainer.innerHTML += clockSVG;
-	log('--- After drawClock ---');
-
-
-	/*
-	// https://gomakethings.com/detecting-click-events-on-svgs-with-vanilla-js-event-delegation/
-
-	clockElement.addEventListener('click', function (event) {
-		//if (!event.target.matches('.sandwich')) return;
-		//	console.log(event.target);
-		log('click',event);
-	}, false);
-
-	clockElement.addEventListener('dblclick', function (event) {
-		//if (!event.target.matches('.sandwich')) return;
-		//	console.log(event.target);
-		log('dblclick',event);
-	}, false);
-
-	*/
-
-}/* setTheme */
-
-
-function debug() {
-
-}
 
 
 /* drawClock
@@ -214,3 +119,23 @@ function drawClock2(container, themeName, id, date, language ) {
 }/* drawClock */
 
 
+
+
+
+
+/*
+// https://gomakethings.com/detecting-click-events-on-svgs-with-vanilla-js-event-delegation/
+
+clockElement.addEventListener('click', function (event) {
+	//if (!event.target.matches('.sandwich')) return;
+	//	console.log(event.target);
+	log('click',event);
+}, false);
+
+clockElement.addEventListener('dblclick', function (event) {
+	//if (!event.target.matches('.sandwich')) return;
+	//	console.log(event.target);
+	log('dblclick',event);
+}, false);
+
+*/
