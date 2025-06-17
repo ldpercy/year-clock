@@ -87,22 +87,23 @@ A small set of translations were inherited from the original, eg:
 
 	yearclock.html?language=fr
 
+**NB: Currently only month names are translated**
 
 Theming
 -------
+[-> Wiki:theming](wiki/theming.md)
+
 
 > [!NOTE]
 > Theming work is in progress so subject to change
 
 
-
 Themes are in [yearclock/theme/](<./yearclock/theme/>).
 
-Each theme is a directory `yearclock/theme/[themeName]/` with three files:
+Each theme is a directory `yearclock/theme/[themeName]/` with two files:
 
-* config.js	- basic information about the theme, including specifying a 'base' theme
-* style.css	- regular stylesheet for the clock
-* yearclock.js - contains clock setting and the `drawClock()` function
+* theme.class.js - contains clock settings and the main `getClockSVG()` function
+* theme.css	- regular stylesheet for the clock
 
 Optional style variants (specified with the 'style' parameter) are stored as:
 
@@ -116,7 +117,7 @@ More detail in the [task/](<./task/>) directory.
 
 ### Currently working on
 
-* Customisable theming and styling of the clock face
+* Converting themes to JavaScript classes
 * Remove callbacks from loading sequence
 * Dynamic theme loading (no page reload)
 * My own clock themes
