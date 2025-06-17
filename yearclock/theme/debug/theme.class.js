@@ -10,8 +10,9 @@ themeClass['debug'] = class extends ThemeBase {
 		this.language = language;
 	}
 
-	viewBox           = padViewBox(10);
 
+	viewBox           = padViewBox(10);
+	clockRadius       = 1200;
 	weekRadiusStart = 400;
 	weekRadiusEnd   = 1100;
 

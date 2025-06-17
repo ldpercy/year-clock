@@ -277,3 +277,16 @@ So I'll create a page object (maybe a class?) for storing some of this sort of s
 * reusable element references now stored in page object
 * reorganised draw clock clock parameters - prob want to correct the arg spread though
 
+
+
+Small silent failure
+--------------------
+
+There was a small silent failure in the debug theme:
+
+	${this.getFace(this.clockRadius)}
+
+In this particular case the clock radius hadn't been set - but rather than failing an `undefined` was passed through.
+Not a big problem, but also I barely noticed it because the effect was small.
+I'd really rather get errors for cases like this.
+
