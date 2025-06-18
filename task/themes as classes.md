@@ -316,13 +316,49 @@ The [long diversion into style encapsulation](<multiple clocks in document.md>) 
 
 Clock instance mutators
 -----------------------
-Towards the end of the [refactor config global](<[done]/21 - refactor config global.md>) task (which strongly motivated this task) I'd speculated about clock mutator methods like these:
+
+Getting pretty close to wrapping this - want to take a little thought diversion before I close.
+
+Towards the end of the [refactor config global](<[done]/21 - refactor config global.md>) task (which strongly motivated this task) I'd speculated about clock mutator methods that could in some way work on a clock instance:
 
 	fooClock.setDate('2001-01-01')
 	fooClock.setTheme('example')
 	fooClock.setStyle('daytime')
 	fooClock.setLanguage('latin')
 
-That could in some way work on an in-page clock instance.
-Whilst not strictly in-scope for this task, the class/instance setup lends itself to the idea so I want to have a bit of a think about how they could work.
+Whilst not strictly in-scope for this task, conversion to classes lends itself to the mutator idea so I want to have a bit of a think about how they could work.
 
+At the moment all other than setStyle would require a full clock redraw.
+
+### setStyle
+
+This just requires changing the href of the clock instance's style link.
+This should pretty much *just work* if the style exists so I could implement this now.
+I'd like to move the `<link rel="stylesheet" ... >` elements to become part of the drawClock process though.
+
+### setLanguage
+
+Would currently require a full clock redraw.
+The *might* be ways of rewriting particular text and title elements with clever use of document selectors, but not sure it would be worth it.
+Would be a trade off depending on the complexity of what's already been drawn, and how much needs to change.
+
+### setDate
+
+For a complete date change a full redraw would be pretty much mandatory - there's little to be gained from just keeping the clock body (though you could do it).
+
+However... (dramatic pause)
+
+An in-year date change could be quite interesting, and possibly quite cool.
+Most of the clock face stays the same - only the hands, highlights and perhaps a few labels would need to be updated.
+Even better if you could animate the changes.
+
+I'd speculated about this one in [add interactivity](<add interactivity.md>) but now in a better spot to consider it.
+
+
+### setTheme
+
+At the furthest end of the scale, setTheme would currently require a total teardown of the existing clock instance, only retaining the date, style and language.
+So you'd really need to call `drawClock(clockConfig)` again but keep a few parameters.
+
+If in some fanciful future the theme was a property of the clock instance, using composition rather than inheritance, you might be able to change it and do a redraw.
+But not anytime soon.
