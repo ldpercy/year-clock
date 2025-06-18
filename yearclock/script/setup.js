@@ -130,7 +130,7 @@ function drawClock2(clock) {
 
 	log('drawClock2',arguments);
 
-	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.language);
+	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme,clock.style, clock.language);
 
 	let displayDate = createDisplayDate(clock.date, clock.language);
 	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);

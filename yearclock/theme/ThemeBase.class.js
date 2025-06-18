@@ -2,15 +2,10 @@
 */
 class ThemeBase extends Clock {
 
-	constructor(id) {
-		super();
-		this.id = id;
+
+	constructor(id, date, theme, style, language) {
+		super(id, date, theme, style, language);
 	}
-
-
-	description = "common";
-	element = undefined;
-	config = {};
 
 
 	//
