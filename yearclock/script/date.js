@@ -7,22 +7,25 @@
 This is a temporary-ish function to re-create the big fat object sitting in the setup function called `config.date`.
 It needs to be rationalised (much) further.
 */
-function createDisplayDate(date) {
-	log('createDisplayDate...',date);
+function createDisplayDate(date, language) {
+	log('createDisplayDate', arguments);
 	const result = {
 		object      : new Date(date),
+		language    : language,
 		year        : date.getFullYear(),
 		month       : date.getMonth() + 1,		// js month starts at 0
 		date        : date.getDate(),
-		name        : date.toLocaleString(config.locale, {weekday: "long"}),
+		name        : date.toLocaleString(language, {weekday: "long"}),
 		dayOfYear   : dayOfYear(date),
 		daysInYear  : daysInYear(date),
 		yearStart   : startOfYear(date),
 		yearEnd     : nextYear(date),
 	};
 
+	result.monthNames = getMonthNames(language);
+
 	// Set up period arrays
-	result.monthArray   = getMonthArray(result, config.monthNames);
+	result.monthArray   = getMonthArray(result, result.monthNames);
 	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
 	result.seasonArray  = getSeasonArray(date);
 
@@ -186,6 +189,8 @@ This needs a lot of cleanup/rationalisation:
 
 */
 function getMonthArray(displayDate, monthNames) {
+	const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+
 	const result = monthNames.map(
 		function( monthName, monthNumber ) {
 			const startDate    = new Date(displayDate.year, monthNumber);
@@ -197,7 +202,7 @@ function getMonthArray(displayDate, monthNames) {
 
 			const month = {
 				'name'         : monthName,
-				'code'         : config.monthCodes[monthNumber],
+				'code'         : monthCodes[monthNumber],
 				'startDate'    : new Date(displayDate.year, monthNumber),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
@@ -220,7 +225,7 @@ Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-function getPeriodDayArray(dateStart, dateEnd, displayDate, locale=config.locale) {
+function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 	const result = [];
 
 	let dayCounter = 1;
