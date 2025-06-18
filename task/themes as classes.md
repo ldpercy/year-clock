@@ -339,7 +339,7 @@ I'd like to move the `<link rel="stylesheet" ... >` elements to become part of t
 ### setLanguage
 
 Would currently require a full clock redraw.
-The *might* be ways of rewriting particular text and title elements with clever use of document selectors, but not sure it would be worth it.
+There *might* be ways of rewriting particular text and title elements with clever use of document selectors, but not sure it would be worth it.
 Would be a trade off depending on the complexity of what's already been drawn, and how much needs to change.
 
 ### setDate
@@ -362,3 +362,34 @@ So you'd really need to call `drawClock(clockConfig)` again but keep a few param
 
 If in some fanciful future the theme was a property of the clock instance, using composition rather than inheritance, you might be able to change it and do a redraw.
 But not anytime soon.
+
+
+
+Wrapup
+------
+
+* Created Clock and ThemeBase classes
+* ThemeBase is the new 'common' and holds all the core drawing functions
+* 'Inheritance is not reuse' so this isn't very trad OO, but workable for now
+* Long diversion into [style isolation](<multiple clocks in document.md>)
+* All of the draw functions were [converted to string getters](<22 - convert draw functions to string-getters.md>) to help
+* Converted all the current themes to JS classes
+* Old config.js files aren't needed anymore
+* Cleaned up a bunch of default and 'global' config vars - the draw functions are now *pure*
+* Big revision to the main setup script - *much* cleaner now
+* Various cleanups for date and language handling
+* Updated the test page - now can take parameters
+* Experiment with multiple draw and notes regarding mutators
+* wiki and readme updates
+
+
+Whew. I might tag this with something...
+
+
+### Forward work
+
+* Write dedicated style/link tags with the clock instance
+* implement setStyle for live style changes
+* Look further into setDate, especially for in-year changes
+* Have another look at converting the callback to async, should be a tad simpler now
+
