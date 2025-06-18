@@ -8,7 +8,7 @@ This is a temporary-ish function to re-create the big fat object sitting in the 
 It needs to be rationalised (much) further.
 */
 function createDisplayDate(date, language) {
-	log('createDisplayDate...',date);
+	log('createDisplayDate', arguments);
 	const result = {
 		object      : new Date(date),
 		language    : language,

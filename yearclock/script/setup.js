@@ -59,7 +59,7 @@ function setup() {
 
 	// Language
 	page.parameter.language = getParameterByName('language');
-	page.initial.language   = getLanguage(page.parameter.language, page.default.language);
+	page.initial.language   = getSupportedLanguage(page.parameter.language) || getSupportedBrowserLanguage() || page.default.language;
 
 
 	// reusable page elements
