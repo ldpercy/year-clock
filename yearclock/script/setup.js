@@ -108,6 +108,12 @@ function setup() {
 function updateClock() {
 	log('updateClock');
 
+	if (!isValidDate(new Date(page.element.datePicker.value)))
+	{
+		log('Invalid date');
+		return;
+	}
+
 	const updateClockParams = {
 		id          : '1234',
 		container   : page.element.container,
