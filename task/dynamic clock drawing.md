@@ -29,3 +29,16 @@ Super cool.
 
 Time to clean it up and ship it.
 
+
+Wrapup
+------
+
+I've added a bit of basic CSS to make the form look a bit prettier, and a bit of responsiveness for page orientation.
+I should change it over to grid -> https://stackoverflow.com/questions/9686538/align-labels-in-form-next-to-input
+But I need to brush up on that first.
+
+Far from perfect but enough for now.
+
+* Added html form for updating clock settings
+* Added event and handler for redrawing clock on form change
+
