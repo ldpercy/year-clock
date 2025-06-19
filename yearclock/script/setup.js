@@ -67,6 +67,23 @@ function setup() {
 	page.element.style_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 	page.element.container   = document.getElementById('clockContainer');
 
+	// The clock form
+	page.element.themeInput = document.getElementById('input-theme');
+	page.element.themeInput.value = page.initial.theme;
+
+	page.element.datePicker = document.getElementById('input-date');
+	page.element.datePicker.value = isoDate(page.initial.date);
+
+	page.element.languageInput = document.getElementById('input-language');
+	page.element.languageInput.value = page.initial.language;
+
+	page.element.styleInput = document.getElementById('input-style');
+	page.element.styleInput.value = page.initial.style;
+
+	page.element.clockForm = document.getElementById('form-clock');
+	page.element.clockForm.addEventListener('change', updateClock );
+
+
 	log('page:', page);
 
 	const initialClockParams = {
@@ -86,6 +103,23 @@ function setup() {
 	// Loading is async from here on, so the rest is in callbacks:
 
 } /* setup */
+
+
+function updateClock() {
+	log('updateClock');
+
+	const updateClockParams = {
+		id          : '1234',
+		container   : page.element.container,
+		date        : new Date(page.element.datePicker.value),
+		theme       : page.element.themeInput.value,
+		style       : page.element.styleInput.value,
+		language    : page.element.languageInput.value,
+	};
+
+	drawClock(updateClockParams);
+}
+
 
 
 
@@ -135,7 +169,7 @@ function drawClock2(clock) {
 	let displayDate = createDisplayDate(clock.date, clock.language);
 	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
 
-	clock.container.innerHTML += clockSVG;
+	clock.container.innerHTML = clockSVG;
 
 }/* drawClock */
 
