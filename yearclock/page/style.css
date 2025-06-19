@@ -21,5 +21,41 @@ svg#clock {
 	width: 90vw;
 	height: 90vh;
 	padding: 5vh 5vw;
+
 }
 
+
+/* clock settings form
+*/
+
+form#form-clock {
+	position:absolute;
+	right:0ex;
+	border:1px solid silver;
+	background-color:whitesmoke;
+	border-radius: 1ex;
+	padding:1ex;
+	margin: 1ex;
+
+	input, select {
+		width:10em;
+	}
+
+}
+
+@media (orientation: landscape) {
+	form#form-clock {
+		label {
+			display:block;
+			text-align: right;
+		}
+	}
+}
+
+@media (orientation: portrait) {
+	form#form-clock {
+		label {
+			display:inline-block;
+		}
+	}
+}
