@@ -1,4 +1,4 @@
-Dynamic theme loading
+Dynamic clock drawing
 =====================
 
 Allow for switching themes on-the-fly without reloading the page.

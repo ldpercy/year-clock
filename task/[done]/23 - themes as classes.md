@@ -11,7 +11,7 @@ This one is tentative as I'm not sure it's the necessarily the best approach, bu
 
 
 If successful will likely cover these two as well:
-* [dynamic theme loading](<dynamic theme loading.md>)
+* [dynamic clock drawing](<dynamic clock drawing.md>)
 * [add svg tag to drawclock](<add svg tag to drawclock.md>)
 
 And probably simplify [convert callbacks to async](<convert callbacks to async.md>).
