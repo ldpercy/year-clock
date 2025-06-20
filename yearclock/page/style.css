@@ -29,33 +29,37 @@ svg#clock {
 */
 
 form#form-clock {
+	display: grid;
 	position:absolute;
 	right:0ex;
 	border:1px solid silver;
-	background-color:whitesmoke;
+	background-color:#eee9;
 	border-radius: 1ex;
 	padding:1ex;
 	margin: 1ex;
-
-	input, select {
-		width:10em;
-	}
-
 }
 
-@media (orientation: landscape) {
+/* @media (orientation: landscape) { */
+@media (min-aspect-ratio: 1.2) {
+
 	form#form-clock {
-		label {
-			display:block;
-			text-align: right;
-		}
+		grid-template-columns: 1fr ;
 	}
 }
 
-@media (orientation: portrait) {
+/* @media (orientation: portrait) { */
+@media (max-aspect-ratio: 1.2) {
 	form#form-clock {
-		label {
-			display:inline-block;
-		}
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		label { text-align:center;}
 	}
 }
+
+@media (max-width: 800px) {
+	form#form-clock {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		label { display: none; }
+	}
+}
+
+
