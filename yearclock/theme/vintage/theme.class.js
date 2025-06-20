@@ -1,6 +1,6 @@
-/* sector-day
+/* vintage
 */
-themeClass['sector-day'] = class extends ThemeBase {
+themeClass['vintage'] = class extends ThemeBase {
 
 
 	viewBox           = padViewBox(30);
@@ -61,4 +61,4 @@ themeClass['sector-day'] = class extends ThemeBase {
 	}
 
 
-}/* sector-day */
+}/* vintage */
