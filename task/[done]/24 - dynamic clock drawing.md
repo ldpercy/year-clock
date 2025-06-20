@@ -1,5 +1,9 @@
 Dynamic clock drawing
 =====================
+```
+2025-06-19		1.1.0	Done
+2025-06-20		1.1.1	Update form and media queries
+```
 
 Allow for switching themes on-the-fly without reloading the page.
 
@@ -42,3 +46,13 @@ Far from perfect but enough for now.
 * Added html form for updating clock settings
 * Added event and handler for redrawing clock on form change
 
+
+**Done: 2025-06-19 v1.1.0**
+
+
+Follow-up
+---------
+
+* Update the form presentation and responsiveness
+
+**Done: 2025-06-20 v1.1.1**

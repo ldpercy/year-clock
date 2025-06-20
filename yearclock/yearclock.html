@@ -33,38 +33,31 @@
 </head>
 <body onload="setup();">
 	<form id="form-clock">
-		<label>
-			Theme:
-			<select id="input-theme" name="theme" title="theme">
-				<option>brice</option>
-				<option>common</option>
-				<option>debug</option>
-				<option>lightning</option>
-				<option>plain-svg</option>
-				<option>season-out</option>
-				<option>wall-clock</option>
-			</select>
-		</label>
-		<label>
-			Date:
-			<input id="input-date" type="date" name="date" title="date"/>
-		</label>
-		<label>
-			Language:
-			<select id="input-language" name="language" title="language">
-				<option>en</option>
-				<option>es</option>
-				<option>fr</option>
-				<option>zh</option>
-				<option>hi</option>
-				<option>ru</option>
-				<option>ko</option>
-			</select>
-		</label>
-		<label>
-			Style:
-			<input id="input-style" type="text" name="style" title="style"/>
-		</label>
+		<label for="input-theme">Theme</label>
+		<select id="input-theme" name="theme" title="theme">
+			<option>brice</option>
+			<option>common</option>
+			<option>debug</option>
+			<option>lightning</option>
+			<option>plain-svg</option>
+			<option>season-out</option>
+			<option>wall-clock</option>
+			<option>vintage</option>
+		</select>
+		<label for="input-date">Date</label>
+		<input id="input-date" type="date" name="date" title="date"/>
+		<label for="input-language">Language</label>
+		<select id="input-language" name="language" title="language">
+			<option>en</option>
+			<option>es</option>
+			<option>fr</option>
+			<option>zh</option>
+			<option>hi</option>
+			<option>ru</option>
+			<option>ko</option>
+		</select>
+		<label for="input-style">Style</label>
+		<input id="input-style" type="text" name="style" title="style"/>
 	</form>
 
 	<div id="clockContainer">
