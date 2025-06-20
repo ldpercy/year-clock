@@ -37,51 +37,29 @@ form#form-clock {
 	border-radius: 1ex;
 	padding:1ex;
 	margin: 1ex;
-
-	/*
-	input, select {
-		width:10em;
-	}
-	*/
-
 }
 
-@media (orientation: portrait) {
+/* @media (orientation: landscape) { */
+@media (min-aspect-ratio: 1.2) {
+
+	form#form-clock {
+		grid-template-columns: 1fr ;
+	}
+}
+
+/* @media (orientation: portrait) { */
+@media (max-aspect-ratio: 1.2) {
 	form#form-clock {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 		label { text-align:center;}
 	}
 }
 
-@media (orientation: landscape) {
+@media (max-width: 800px) {
 	form#form-clock {
-		grid-template-columns: 1fr ;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		label { display: none; }
 	}
-}
-
-.container {
-	display: grid;
-
-
-	/*
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
- 	*/
-	/*
-	grid-template-columns: [first] 50% [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
-	grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
-	*/
-
-	border:1px solid coral;
-	padding:1ex;
-
-
-
-	.item {
-		border:1px solid indigo;
-		padding:1ex;
-		margin:1ex;
-	}
-
 }
 
 
