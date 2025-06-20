@@ -1,8 +1,8 @@
 Dynamic clock drawing
 =====================
 ```
-done: 2025-06-19
-version: 1.1.0
+2025-06-19		1.1.0	Done
+2025-06-20		1.1.1	Update form and media queries
 ```
 
 Allow for switching themes on-the-fly without reloading the page.
@@ -54,3 +54,5 @@ Follow-up
 ---------
 
 * Update the form presentation and responsiveness
+
+**Done: 2025-06-20 v1.1.1**
