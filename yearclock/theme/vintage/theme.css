@@ -1,12 +1,40 @@
 /*
 ** vintage theme styles
 */
+html {
 
+	background: repeating-linear-gradient(
+		to right,
+		ivory,
+		ivory 5ex,
+		lightblue 5.4ex,
+		lightblue 5.6ex,
+		lightpink 6ex,
+		lightpink 10ex,
+		lightblue 10.4ex,
+		lightblue 10.6ex,
+		ivory 11ex
+	);
+}
 
 svg#clock {
-	background-color: burlywood;
+	/* fill: url(#Gradient1); */
+	/* background-color: burlywood; */
+	/* background-image: url(#Gradient1); */
 	font-size: 48px;
 	font-family:cursive;
+}
+
+
+.stop1 {
+	stop-color: red;
+}
+.stop2 {
+	stop-color: black;
+	stop-opacity: 0;
+}
+.stop3 {
+	stop-color: blue;
 }
 
 
