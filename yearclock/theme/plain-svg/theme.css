@@ -3,8 +3,14 @@
 */
 
 
+html {
+	background-color: darkblue;
+	background-image: url(../../background/star.svg);
+	background-size: 5vw;
+}
+
 svg#clock {
-	background-color: seashell;
+
 	font-size: 48px;
 }
 
