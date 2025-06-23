@@ -6,14 +6,15 @@ html {
 	background: repeating-linear-gradient(
 		to right,
 		ivory,
-		ivory 5ex,
-		lightblue 5.4ex,
-		lightblue 5.6ex,
-		lightpink 6ex,
-		lightpink 10ex,
-		lightblue 10.4ex,
-		lightblue 10.6ex,
-		ivory 11ex
+		ivory 2vw,
+		lightblue 2.4vw,
+		lightblue 2.6vw,
+		lightpink 3vw,
+		lightpink 7vw,
+		lightblue 7.4vw,
+		lightblue 7.6vw,
+		ivory 8vw,
+		ivory 10vw
 	);
 }
 
