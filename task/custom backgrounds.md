@@ -15,3 +15,20 @@ Eg as a page style:
 ```
 
 
+Background element
+------------------
+Backgrounds like this could be applied at a few different places depending on circumstances:
+* html
+* body
+* clock container
+* svg
+
+Scripted backgrounds
+--------------------
+Created an SVG that displays a random character from a set when loaded - the idea was to have a background made up of random 'space' emojis.
+Unfortaunately didn't work.
+I presume there's no DOM/script access given to things loaded by `background-image`.
+
+
+
+
