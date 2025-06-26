@@ -5,8 +5,8 @@
 
 html {
 	background-color: darkblue;
-	background-image: url(../../background/star.svg);
-	background-size: 5vw;
+	background-image: url(../../background/space.svg);
+	background-size: 20vw;
 }
 
 svg#clock {
