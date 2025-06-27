@@ -17,6 +17,7 @@ const page = {
 		theme       : 'season-out',
 		style       : '',
 		language    : 'en',
+		background  : '',
 	},
 
 	parameter : 	// requested values to use
@@ -25,6 +26,7 @@ const page = {
 		theme       : undefined,
 		style       : undefined,
 		language    : undefined,
+		background  : undefined,
 	},
 
 	initial :		// initial computed values to use
@@ -33,6 +35,7 @@ const page = {
 		theme       : undefined,	// initial clock theme to use
 		style       : undefined,	// initial clock style to use
 		language    : undefined,	// initial language to use
+		background  : undefined,
 	},
 
 	element       : {}, // store references to various page elements
@@ -61,10 +64,15 @@ function setup() {
 	page.parameter.language = getParameterByName('language');
 	page.initial.language   = getSupportedLanguage(page.parameter.language) || getSupportedBrowserLanguage() || page.default.language;
 
+	// Background
+	page.parameter.background = getParameterByName('background');
+	page.initial.background   = page.parameter.background || page.default.background;
 
 	// reusable page elements
-	page.element.style_theme = document.getElementById('stylesheet-theme');
-	page.element.style_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	page.element.style_theme        = document.getElementById('stylesheet-theme');
+	page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	page.element.style_background   = document.getElementById('stylesheet-background');
+
 	page.element.container   = document.getElementById('clockContainer');
 
 	// The clock form
@@ -97,12 +105,21 @@ function setup() {
 
 	log('initialClockParams:', initialClockParams);
 
+	setBackground(page.initial.background);
+
 	drawClock(initialClockParams);
 	// I'm sure there's a way to spread these parameters properly...
 
 	// Loading is async from here on, so the rest is in callbacks:
 
 } /* setup */
+
+
+function setBackground(background) {
+	let cssUrl_background = `background/${background}.css`;
+	page.element.style_background.setAttribute('href', cssUrl_background);
+}
+
 
 
 function updateClock() {
