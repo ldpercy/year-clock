@@ -15,7 +15,7 @@
 }
 
 
-svg#clock {
+svg.yearclock {
 	background-color: seashell;
 	font-size: 36px;
 	font-family: monospace;
@@ -23,7 +23,7 @@ svg#clock {
 
 
 
-svg#clock .face   {
+svg.yearclock .face   {
 	fill: white;
 	stroke: none;
 	stroke-width: 10;
@@ -77,7 +77,7 @@ svg#clock .face   {
 /* Labels
 */
 
-svg#clock .monthLabels text{
+svg.yearclock .monthLabels text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: var(--labelblack);
@@ -95,7 +95,7 @@ svg#clock .monthLabels text{
 	filter: drop-shadow(0ex 0ex 0.4ex white);
 }
 
-svg#clock .label.dateLabel {
+svg.yearclock .label.dateLabel {
 	font-size: 8ex;
 }
 

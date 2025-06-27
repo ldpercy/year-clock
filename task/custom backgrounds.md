@@ -55,3 +55,22 @@ I think this is going to have to be **clock** to be consistent.
 Whether that mean the svg itself, or a clock container element, not sure yet.
 I'll start with the svg element, but I'm not sure whether the css `background-` properties really properly belong there (even though they work).
 But not the page html or body elements - too presumptuous.
+
+To apply backgrounds to the clock SVG I'll use a `svg.yearclock` class for now.
+
+
+Remove svg#clock
+----------------
+These have been hanging around for far too long and causing specificity problems.
+Time to clear them all out.
+Eventually I think I'll go towards something like this:
+
+```css
+svg.themeName {
+	/* theme rules */
+}
+```
+
+But for now just replacing all the id selectors with the class selector `svg.yearclock`.
+
+

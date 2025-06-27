@@ -31,14 +31,14 @@
 	fill:transparent;
 }
 
-svg#clock {
+svg.yearclock {
 	background-color: var(--background);
 	font-size: 36px;
 	font-family: monospace;
 }
 
 
-svg#clock .body   {
+svg.yearclock .body   {
 	fill: var(--clockface);
 	stroke: none;
 	stroke-width: 10;
