@@ -17,25 +17,6 @@ svg.yearclock .face   {
 	filter: drop-shadow(0px 10px 10px gray);
 }
 
-/*
-svg.yearclock .sector * {
-	 stroke:none;
-}
-
-svg.yearclock .sector.jan { fill: #E42D1A }
-svg.yearclock .sector.feb { fill: #983021 }
-svg.yearclock .sector.mar { fill: #89493B }
-svg.yearclock .sector.apr { fill: #7C5E57 }
-svg.yearclock .sector.may { fill: #6F6E6D }
-svg.yearclock .sector.jun { fill: #738C92 }
-svg.yearclock .sector.jul { fill: #7ABECF }
-svg.yearclock .sector.aug { fill: #5FB69C }
-svg.yearclock .sector.sep { fill: #2EA544 }
-svg.yearclock .sector.oct { fill: #AEC013 }
-svg.yearclock .sector.nov { fill: #F3C301 }
-svg.yearclock .sector.dec { fill: #F18E17 }
-*/
-
 
 svg.yearclock .tick * {
 	stroke: black;

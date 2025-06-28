@@ -3,7 +3,7 @@
 */
 
 
-html {
+svg.yearclock {
 	background-color: darkblue;
 	background-image: url(../../background/space.svg);
 	background-size: 20vw;
