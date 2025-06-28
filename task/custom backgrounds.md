@@ -74,3 +74,15 @@ svg.themeName {
 But for now just replacing all the id selectors with the class selector `svg.yearclock`.
 
 
+HTML+SVG notes
+--------------
+
+Should probably move some of this to the wiki and/or the html-experiment project to test more rigourously.
+I haven't done any really *basic* testing of html+svg in ages, but have noticed a few things while I'm messing around with this stuff:
+
+* SVG elements seem to naturally expand to fill their html container elements (without any other hard sizes specified)
+* SVG elements have a natural `display` of `inline`, but seem to behave more like block elements
+* Padding on an SVG element applies to the **viewbox**. The background and borders are still expanded to the container, but the drawing space can be shrunk in with padding.
+* Margins apply as per a regular html block element
+
+

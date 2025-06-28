@@ -116,12 +116,16 @@ path.yearHand  {
 
 /* Interactive
 */
+.sector {
+	transition: all .5s ease-in;
+}
 
 .sector:hover
 {
 	stroke: var(--hover);
 	stroke-width: 5;
 	paint-order: fill;
+	transition: all .05s ease-in;
 }
 
 .hands:hover {
