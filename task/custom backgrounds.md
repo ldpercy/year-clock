@@ -86,3 +86,25 @@ I haven't done any really *basic* testing of html+svg in ages, but have noticed 
 * Margins apply as per a regular html block element
 
 
+Background Priority
+-------------------
+
+I'm going to try making the background a part of the clock SVG but also overridable in the UI.
+I've been to-ing and fro-ing about this for a while, but will just implement something and reevaluate it later.
+
+For this to work how I think I want it to I'll need to take the form change event and tweak the update a bit based on what's changed - hopefully this will work.
+
+There are a few useful properties passed through in the event object - I think the one I want is `event.target` which references the actual element that changed afaict.
+
+* `event.target` - The element that triggered the event (the actual form inputs in this case)
+* `event.srcElement` - DEPRECATED alias for event.target
+* `event.currentTarget` - The element the event handler was attached to (the form)
+
+Okay so it's working.
+Changes for theme, date, language and style are all doing full redraws, and changing the background just loads the new background stylesheet.
+I should be able to switch 'style' to no longer do a full redraw as well.
+
+The form is getting bigger, and there are more inputs planned - will need some new responsive styles.
+
+
+

@@ -89,7 +89,7 @@ function setup() {
 	page.element.styleInput.value = page.initial.style;
 
 	page.element.clockForm = document.getElementById('form-clock');
-	page.element.clockForm.addEventListener('change', updateClock );
+	page.element.clockForm.addEventListener('change', ((event)=>{formChangeHandler(event)}) );
 
 
 	log('page:', page);
@@ -105,7 +105,7 @@ function setup() {
 
 	log('initialClockParams:', initialClockParams);
 
-	setBackground(page.initial.background);
+	// setBackground(page.initial.background);
 
 	drawClock(initialClockParams);
 	// I'm sure there's a way to spread these parameters properly...
@@ -115,15 +115,41 @@ function setup() {
 } /* setup */
 
 
-function setBackground(background) {
+
+
+
+function formChangeHandler(event) {
+
+	//log('formChangeHandler:', event);
+
+	log('event.target', event.target);
+	//log('event.currentTarget', event.currentTarget);
+	//log('event.srcElement', event.srcElement);
+
+	log('event.target.name', event.target.name);
+	log('event.target.value', event.target.value);
+
+	if (event.target.name === 'background')
+	{
+		updateBackground(event.target.value);
+	}
+	else
+	{
+		updateClock();
+	}
+
+}/* formChangeHandler */
+
+
+
+function updateBackground(background) {
 	let cssUrl_background = `background/${background}.css`;
 	page.element.style_background.setAttribute('href', cssUrl_background);
 }
 
 
-
 function updateClock() {
-	log('updateClock');
+	log('updateClock:');
 
 	if (!isValidDate(new Date(page.element.datePicker.value)))
 	{
@@ -145,7 +171,6 @@ function updateClock() {
 
 
 
-
 /* drawClock
 Part 1:
 * load the css
@@ -153,7 +178,7 @@ Part 1:
 */
 function drawClock(clock) {
 
-	log('drawClock',arguments);
+	//log('drawClock', arguments);
 
 	let cssUrl_theme = `theme/${clock.theme}/theme.css`;
 	page.element.style_theme.setAttribute('href', cssUrl_theme);
@@ -185,7 +210,7 @@ Part 2:
 */
 function drawClock2(clock) {
 
-	log('drawClock2',arguments);
+	//log('drawClock2',arguments);
 
 	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme,clock.style, clock.language);
 
