@@ -106,5 +106,25 @@ I should be able to switch 'style' to no longer do a full redraw as well.
 
 The form is getting bigger, and there are more inputs planned - will need some new responsive styles.
 
+Style change updated to no longer do full redraw.
+
+Not sure yet where the initial style and background draws should properly go - need to look again after a break.
+
+
+Actual backgrounds
+------------------
+Mostly happy so far, a few things will need tidying though.
+
+So far I only have a couple of emoji-based backgrounds for testing that are cute, but would like to add a few different kinds of example backgrounds before I wrap this up.
+* A basic wallpaper style or two based on gradients (started doing this for the vintage clock)
+* A daytime sky
+* Perhaps a more serious take on a night sky
+* Something simple/abstract
+
+Could maybe add some of these later, one or two for now will do.
+
+
+
+
 
 
