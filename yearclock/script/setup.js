@@ -119,31 +119,30 @@ function setup() {
 
 
 function formChangeHandler(event) {
-
 	//log('formChangeHandler:', event);
-
-	log('event.target', event.target);
+	//log('event.target', event.target);
 	//log('event.currentTarget', event.currentTarget);
-	//log('event.srcElement', event.srcElement);
+	//log('event.target.name', event.target.name);
+	//log('event.target.value', event.target.value);
 
-	log('event.target.name', event.target.name);
-	log('event.target.value', event.target.value);
-
-	if (event.target.name === 'background')
-	{
-		updateBackground(event.target.value);
-	}
-	else
-	{
-		updateClock();
+	switch(event.target.name) {
+		case 'style'        : updateStyle(event.target.value); break;
+		case 'background'   : updateBackground(event.target.value) ; break;
+		default             : updateClock(); break;
 	}
 
 }/* formChangeHandler */
 
 
 
+function updateStyle(style) {
+	//page.element.themeInput.value
+	const cssUrl_style = (style) ? `theme/${page.element.themeInput.value}/style-${style}.css` : '';
+	page.element.style_style.setAttribute('href', cssUrl_style);
+}
+
 function updateBackground(background) {
-	let cssUrl_background = `background/${background}.css`;
+	const cssUrl_background = (background) ? `background/${background}.css` : '';
 	page.element.style_background.setAttribute('href', cssUrl_background);
 }
 
@@ -178,7 +177,7 @@ Part 1:
 */
 function drawClock(clock) {
 
-	//log('drawClock', arguments);
+	log('drawClock', arguments);
 
 	let cssUrl_theme = `theme/${clock.theme}/theme.css`;
 	page.element.style_theme.setAttribute('href', cssUrl_theme);
