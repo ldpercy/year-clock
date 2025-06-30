@@ -8,7 +8,7 @@ This is a temporary-ish function to re-create the big fat object sitting in the 
 It needs to be rationalised (much) further.
 */
 function createDisplayDate(date, language) {
-	log('createDisplayDate', arguments);
+	//log('createDisplayDate', arguments);
 	const result = {
 		object      : new Date(date),
 		language    : language,
@@ -29,7 +29,7 @@ function createDisplayDate(date, language) {
 	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
 	result.seasonArray  = getSeasonArray(date);
 
-	log('createDisplayDate',result);
+	//log('createDisplayDate',result);
 	return result;
 }/* createDisplayDate */
 
