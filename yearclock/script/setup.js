@@ -88,6 +88,9 @@ function setup() {
 	page.element.styleInput = document.getElementById('input-style');
 	page.element.styleInput.value = page.initial.style;
 
+	page.element.backgroundInput = document.getElementById('input-background');
+	page.element.backgroundInput.value = page.initial.background;
+
 	page.element.clockForm = document.getElementById('form-clock');
 	page.element.clockForm.addEventListener('change', ((event)=>{formChangeHandler(event)}) );
 
@@ -101,11 +104,12 @@ function setup() {
 		theme       : page.initial.theme,
 		style       : page.initial.style,
 		language    : page.initial.language,
+		background  : page.initial.background,
 	};
 
 	log('initialClockParams:', initialClockParams);
 
-	// setBackground(page.initial.background);
+	updateBackground(page.initial.background);
 
 	drawClock(initialClockParams);
 	// I'm sure there's a way to spread these parameters properly...

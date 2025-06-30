@@ -33,16 +33,19 @@
 			let testElement = document.getElementById('testOutput');
 
 			// url parameters
-			const date     = getParameterByName('date');
-			const language = getParameterByName('language');
-			const style    = getParameterByName('style');
+			const date          = getParameterByName('date');
+			const language      = getParameterByName('language');
+			const style         = getParameterByName('style');
+			const background    = getParameterByName('background');
 
-			const dateParam     = (date)     ? `&date=${date}` : '';
-			const languageParam = (language) ? `&language=${language}` : '';
-			const styleParam    = (style)    ? `&style=${style}` : '';
+
+			const dateParam         = (date)        ? `&date=${date}` : '';
+			const languageParam     = (language)    ? `&language=${language}` : '';
+			const styleParam        = (style)       ? `&style=${style}` : '';
+			const backgroundParam   = (background)  ? `&background=${background}` : '';
 
 			for (let baseUrl of baseUrlArray) {
-				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}`;
+				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">
