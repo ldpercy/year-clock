@@ -1,6 +1,10 @@
 Custom backgrounds
 ==================
 
+```
+
+```
+
 While playing around with the the vintage clock I'd started creating a wallpaper-style background, and it seems like I can make and customise the backgrounds generally.
 
 So will create a few backgrounbds and see if they can become a page parameter, plus set defaults for certain themes.
@@ -137,4 +141,20 @@ There are also complications to do with font selection for emojis in browsers - 
 Want to change both to text inputs with suggestions - I think there's a standard way now.
 I've changed these over to text inputs with `datalist`s but the browser implementations are a bit meh - not quite what I'd hoped.
 I'll leave them for now but keep an eye out for better options.
+
+
+Wrapup
+------
+Going to call this one here - want to move on, anything else will go into other work.
+
+* Added background folder for images and css
+* Changed old svg id selectors to use classes instead
+* Normalised all backgrounds to SVG element
+* Starter backgrounds: star, sunset, dusk
+* Changed style and background to use datalist
+* Some experimental transitions were added to the lightning and season-out themes
+* Updated the form change event to allow different kinds of updates depending on what changes
+
+
+
 
