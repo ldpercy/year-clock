@@ -124,6 +124,17 @@ So far I only have a couple of emoji-based backgrounds for testing that are cute
 Could maybe add some of these later, one or two for now will do.
 
 
+### Firefox & chromium
+They disagree about how to render the 'space' background.
+I made it in ff using `pre-wrap` - chromium doesn't seem to honour that property in SVG.
+Tbh that technique was a bit hackish anyway; will look for an alternative, I think there might be better ways to do align/distribute.
+I was going to do a sky theme in a similar way but I'll just comment them both out for now.
+There are also complications to do with font selection for emojis in browsers - some glyphs that look fine on my system don't render the same in-browser.
+
+
+### Text input and select
+
+Want to change both to text inputs with suggestions - I think there's a standard way now.
 
 
 
