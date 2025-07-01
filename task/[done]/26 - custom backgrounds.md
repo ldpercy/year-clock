@@ -2,7 +2,7 @@ Custom backgrounds
 ==================
 
 ```
-
+2025-07-01		1.2.0	Done
 ```
 
 While playing around with the the vintage clock I'd started creating a wallpaper-style background, and it seems like I can make and customise the backgrounds generally.
