@@ -17,7 +17,7 @@ I don't really love it in it's first incarnation, but i'll try a few things to s
 
 Being able to put in additional day markers of some sort - numbers, initial letter - would help I think.
 
-I had another layout idea while doing it, but it requires some other changes which resulted in [task: dimension updates](<[done]/17 - dimension updates.md>).
+I had another layout idea while doing it, but it requires some other changes which resulted in [task: dimension updates](<17 - dimension updates.md>).
 
 
 Season out

@@ -319,7 +319,7 @@ Clock instance mutators
 
 Getting pretty close to wrapping this - want to take a little thought diversion before I close.
 
-Towards the end of the [refactor config global](<[done]/21 - refactor config global.md>) task (which strongly motivated this task) I'd speculated about clock mutator methods that could in some way work on a clock instance:
+Towards the end of the [refactor config global](<21 - refactor config global.md>) task (which strongly motivated this task) I'd speculated about clock mutator methods that could in some way work on a clock instance:
 
 	fooClock.setDate('2001-01-01')
 	fooClock.setTheme('example')
