@@ -31,14 +31,14 @@
 	fill:transparent;
 }
 
-svg#clock {
+svg.yearclock {
 	background-color: var(--background);
 	font-size: 36px;
 	font-family: monospace;
 }
 
 
-svg#clock .body   {
+svg.yearclock .body   {
 	fill: var(--clockface);
 	stroke: none;
 	stroke-width: 10;
@@ -49,7 +49,7 @@ svg#clock .body   {
 path.sector {
 	stroke: var(--sectorStroke);
 	stroke-width: 1px;
-
+	transition: all .5s ease-in;
 	/* mix-blend-mode with labels behind
 
 	For light theme:
@@ -103,12 +103,14 @@ path.sector.day.current
 	stroke-width: 5px;
 	filter: drop-shadow(0ex 0ex 0.5ex var(--currentOutline));
 	paint-order: fill;
+	transition: all .5s ease-in;
 }
 
 .sector:hover, path.sector.current:hover {
 	stroke: var(--hover);
 	stroke-width: 5;
 	paint-order: fill;
+	transition: all .05s ease-in;
 }
 
 

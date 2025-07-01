@@ -7,7 +7,7 @@
 
 	<!-- page -->
 	<link rel="icon" href="page/favicon.svg">
-	<link rel="stylesheet" href="page/style.css">
+	<link rel="stylesheet" href="page/page.css">
 
 	<!-- core --->
 	<script defer src="script/l10n.js"></script>
@@ -27,6 +27,9 @@
 	<link id="stylesheet-theme" rel="stylesheet">
 	<link id="stylesheet-style" rel="stylesheet">
 
+	<!-- Page background style -->
+	<link id="stylesheet-background" rel="stylesheet">
+
 	<!-- Theme class script -->
 	<script defer id="script-themeClass"></script>
 
@@ -44,8 +47,10 @@
 			<option>wall-clock</option>
 			<option>vintage</option>
 		</select>
+
 		<label for="input-date">Date</label>
 		<input id="input-date" type="date" name="date" title="date"/>
+
 		<label for="input-language">Language</label>
 		<select id="input-language" name="language" title="language">
 			<option>en</option>
@@ -56,9 +61,27 @@
 			<option>ru</option>
 			<option>ko</option>
 		</select>
+
 		<label for="input-style">Style</label>
-		<input id="input-style" type="text" name="style" title="style"/>
+		<input id="input-style" type="text" name="style" title="style" list="datalist-style"/>
+		<datalist id="datalist-style">
+			<option value="dark"></option>
+			<option value="mono"></option>
+		</datalist>
+
+		<label for="input-background">Background</label>
+		<input id="input-background" name="background" type="text" title="background" list="datalist-background"/>
+		<datalist id="datalist-background">
+			<option value="">none/theme</option>
+			<option>star</option>
+			<option>sunset</option>
+			<option>dusk</option>
+		</datalist>
 	</form>
+	<!--
+	<details>
+		<summary>Year Clock</summary>
+	</details> -->
 
 	<div id="clockContainer">
 		<!-- <svg id="clock" class="yearclock" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">

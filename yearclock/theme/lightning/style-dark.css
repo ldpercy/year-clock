@@ -95,7 +95,7 @@ path.sector {
 
 /* Current date highlights */
 
-svg#clock text.current
+svg.yearclock text.current
 {
 	fill: var(--textDark);
 	stroke: var(--textDark);

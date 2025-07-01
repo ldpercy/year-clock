@@ -2,13 +2,13 @@
 yearclock.html?theme=original-dark
 */
 
-svg#clock { background-color: #282828 }
-svg#clock .face { fill: black }
-svg#clock .tick { stroke: black }
-svg#clock .label.month { fill: black }
-svg#clock .label.year { fill: #282828 }
+svg.yearclock { background-color: #282828 }
+svg.yearclock .face { fill: black }
+svg.yearclock .tick { stroke: black }
+svg.yearclock .label.month { fill: black }
+svg.yearclock .label.year { fill: #282828 }
 
-svg#clock path.yearHand {
+svg.yearclock path.yearHand {
 	stroke: white;
 	fill: white;
 }

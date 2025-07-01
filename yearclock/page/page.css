@@ -21,7 +21,6 @@ svg#clock {
 	width: 90vw;
 	height: 90vh;
 	padding: 5vh 5vw;
-
 }
 
 
@@ -51,7 +50,8 @@ form#form-clock {
 @media (max-aspect-ratio: 1.2) {
 	form#form-clock {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-		label { text-align:center;}
+		label { text-align:right; margin-right:1ex; }
+		label::after { content:": "; }
 	}
 }
 

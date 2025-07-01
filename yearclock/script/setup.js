@@ -17,6 +17,7 @@ const page = {
 		theme       : 'season-out',
 		style       : '',
 		language    : 'en',
+		background  : '',
 	},
 
 	parameter : 	// requested values to use
@@ -25,6 +26,7 @@ const page = {
 		theme       : undefined,
 		style       : undefined,
 		language    : undefined,
+		background  : undefined,
 	},
 
 	initial :		// initial computed values to use
@@ -33,6 +35,7 @@ const page = {
 		theme       : undefined,	// initial clock theme to use
 		style       : undefined,	// initial clock style to use
 		language    : undefined,	// initial language to use
+		background  : undefined,
 	},
 
 	element       : {}, // store references to various page elements
@@ -61,10 +64,15 @@ function setup() {
 	page.parameter.language = getParameterByName('language');
 	page.initial.language   = getSupportedLanguage(page.parameter.language) || getSupportedBrowserLanguage() || page.default.language;
 
+	// Background
+	page.parameter.background = getParameterByName('background');
+	page.initial.background   = page.parameter.background || page.default.background;
 
 	// reusable page elements
-	page.element.style_theme = document.getElementById('stylesheet-theme');
-	page.element.style_style = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	page.element.style_theme        = document.getElementById('stylesheet-theme');
+	page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+	page.element.style_background   = document.getElementById('stylesheet-background');
+
 	page.element.container   = document.getElementById('clockContainer');
 
 	// The clock form
@@ -80,8 +88,11 @@ function setup() {
 	page.element.styleInput = document.getElementById('input-style');
 	page.element.styleInput.value = page.initial.style;
 
+	page.element.backgroundInput = document.getElementById('input-background');
+	page.element.backgroundInput.value = page.initial.background;
+
 	page.element.clockForm = document.getElementById('form-clock');
-	page.element.clockForm.addEventListener('change', updateClock );
+	page.element.clockForm.addEventListener('change', ((event)=>{formChangeHandler(event)}) );
 
 
 	log('page:', page);
@@ -93,9 +104,12 @@ function setup() {
 		theme       : page.initial.theme,
 		style       : page.initial.style,
 		language    : page.initial.language,
+		background  : page.initial.background,
 	};
 
 	log('initialClockParams:', initialClockParams);
+
+	updateBackground(page.initial.background);
 
 	drawClock(initialClockParams);
 	// I'm sure there's a way to spread these parameters properly...
@@ -105,8 +119,40 @@ function setup() {
 } /* setup */
 
 
+
+
+
+function formChangeHandler(event) {
+	//log('formChangeHandler:', event);
+	//log('event.target', event.target);
+	//log('event.currentTarget', event.currentTarget);
+	//log('event.target.name', event.target.name);
+	//log('event.target.value', event.target.value);
+
+	switch(event.target.name) {
+		case 'style'        : updateStyle(event.target.value); break;
+		case 'background'   : updateBackground(event.target.value) ; break;
+		default             : updateClock(); break;
+	}
+
+}/* formChangeHandler */
+
+
+
+function updateStyle(style) {
+	//page.element.themeInput.value
+	const cssUrl_style = (style) ? `theme/${page.element.themeInput.value}/style-${style}.css` : '';
+	page.element.style_style.setAttribute('href', cssUrl_style);
+}
+
+function updateBackground(background) {
+	const cssUrl_background = (background) ? `background/${background}.css` : '';
+	page.element.style_background.setAttribute('href', cssUrl_background);
+}
+
+
 function updateClock() {
-	log('updateClock');
+	log('updateClock:');
 
 	if (!isValidDate(new Date(page.element.datePicker.value)))
 	{
@@ -128,7 +174,6 @@ function updateClock() {
 
 
 
-
 /* drawClock
 Part 1:
 * load the css
@@ -136,7 +181,7 @@ Part 1:
 */
 function drawClock(clock) {
 
-	log('drawClock',arguments);
+	log('drawClock', arguments);
 
 	let cssUrl_theme = `theme/${clock.theme}/theme.css`;
 	page.element.style_theme.setAttribute('href', cssUrl_theme);
@@ -168,7 +213,7 @@ Part 2:
 */
 function drawClock2(clock) {
 
-	log('drawClock2',arguments);
+	//log('drawClock2',arguments);
 
 	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme,clock.style, clock.language);
 
