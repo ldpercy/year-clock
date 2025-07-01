@@ -87,6 +87,6 @@ It's done using a pretty rudimentary and slow method, should be able to improve.
 Going to wrap this upo here as I've done the main task job, though it needs more work.
 
 Two new tasks out of this:
-* [improve plain svg performance](<improve plain svg performance.md>)
-* [improve month label postioning](<improve month label postioning.md>)
+* [improve plain svg performance](<11 - improve plain svg performance.md>)
+* [improve month label postioning](<10 - change angular coordinate system.md>)
 

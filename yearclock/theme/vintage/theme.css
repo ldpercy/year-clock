@@ -1,7 +1,7 @@
 /*
 ** vintage theme styles
 */
-html {
+svg.yearclock {
 
 	background: repeating-linear-gradient(
 		to right,
@@ -18,7 +18,7 @@ html {
 	);
 }
 
-svg#clock {
+svg.yearclock {
 	/* fill: url(#Gradient1); */
 	/* background-color: burlywood; */
 	/* background-image: url(#Gradient1); */
@@ -39,7 +39,7 @@ svg#clock {
 }
 
 
-svg#clock .face   {
+svg.yearclock .face   {
 	fill: wheat;
 	stroke: silver;
 	stroke-width: 10;
@@ -48,41 +48,41 @@ svg#clock .face   {
 
 
 
-svg#clock .sector {
+svg.yearclock .sector {
 	stroke:black;
 	stroke-width:0;
 	fill: silver;
 }
 
-svg#clock .sector:nth-of-type(even) {
+svg.yearclock .sector:nth-of-type(even) {
 	stroke:none;
 	fill: white;
 }
 
 
-svg#clock .tick * {
+svg.yearclock .tick * {
 	stroke: black;
 	stroke-linecap: butt;
 }
 
-svg#clock .tick.day .first {
+svg.yearclock .tick.day .first {
 	stroke-width: 20;
 }
 
-svg#clock .tick.day .weekday {
+svg.yearclock .tick.day .weekday {
 	stroke-width: 10;
 }
 
-svg#clock .tick.day .weekend {
+svg.yearclock .tick.day .weekend {
 	stroke-width: 30;
 }
 
-svg#clock .month .label {
+svg.yearclock .month .label {
 	fill: black;
 }
 
 
-svg#clock .monthLabels text{
+svg.yearclock .monthLabels text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: gold;
@@ -92,7 +92,7 @@ svg#clock .monthLabels text{
 }
 
 
-svg#clock .label.dateLabel {
+svg.yearclock .label.dateLabel {
 	fill: black;
 	text-anchor: middle;
 	font-size: 4em;
@@ -100,18 +100,18 @@ svg#clock .label.dateLabel {
 }
 
 
-svg#clock .hands {
+svg.yearclock .hands {
 	filter: drop-shadow(0px 20px 10px gray);
 }
 
-svg#clock path.yearHand  {
+svg.yearclock path.yearHand  {
 	stroke: black;
 	fill: black;
 	stroke-width: 25;
 	stroke-linejoin: round;
 }
 
-svg#clock path.monthHand  {
+svg.yearclock path.monthHand  {
 	stroke:dimgrey;
 	fill: dimgrey;
 	stroke-width: 15;

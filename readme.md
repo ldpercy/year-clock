@@ -89,6 +89,13 @@ A small set of translations were inherited from the original, eg:
 
 **NB: Currently only month names are translated**
 
+### Background
+
+A few custom backgrounds are available eg:
+
+	yearclock.html?background=dusk
+
+
 Theming
 -------
 [-> Wiki:theming](wiki/theming.md)
@@ -117,16 +124,16 @@ More detail in the [task/](<./task/>) directory.
 
 ### Currently working on
 
-* Converting themes to JavaScript classes
-* Remove callbacks from loading sequence
-* Dynamic theme loading (no page reload)
-* My own clock themes
+* Dynamic/interactive elements
+* Vintage clock theme
+* Custom date highlighting
+* Remove callback from draw sequence
 
 
 ### Future features
 
 * A lunar-month hand to demonstrate moon phases
 * A 'second hand' pointing to the time of day
-* Calendar integration + custom date highlighting
-* Live date changes + animations
+* Calendar integration
 * Conversion to TypeScript
+

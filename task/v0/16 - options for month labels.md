@@ -1,7 +1,7 @@
 Options for month labels
 ========================
 
-Carried over from [15 - some cleanup](<[done]/15 - some cleanup.md>).
+Carried over from [15 - some cleanup](<15 - some cleanup.md>).
 
 > remove the drawMonthLabels override in the wall-clock theme
 
