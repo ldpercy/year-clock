@@ -4,17 +4,9 @@
 
 
 svg.yearclock {
-	background-color: darkblue;
-	background-image: url(../../background/space.svg);
-	background-size: 20vw;
-}
-
-svg.yearclock {
-
+	background-color: seashell;
 	font-size: 48px;
 }
-
-
 
 
 svg.yearclock .face   {
