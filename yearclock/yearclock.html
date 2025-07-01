@@ -63,16 +63,20 @@
 		</select>
 
 		<label for="input-style">Style</label>
-		<input id="input-style" type="text" name="style" title="style"/>
+		<input id="input-style" type="text" name="style" title="style" list="datalist-style"/>
+		<datalist id="datalist-style">
+			<option value="dark"></option>
+			<option value="mono"></option>
+		</datalist>
 
 		<label for="input-background">Background</label>
-		<select id="input-background" name="background" title="background">
+		<input id="input-background" name="background" type="text" title="background" list="datalist-background"/>
+		<datalist id="datalist-background">
 			<option value="">none/theme</option>
-			<!-- <option>space</option> -->
 			<option>star</option>
 			<option>sunset</option>
 			<option>dusk</option>
-		</select>
+		</datalist>
 	</form>
 	<!--
 	<details>

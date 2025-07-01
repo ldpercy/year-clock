@@ -135,7 +135,6 @@ There are also complications to do with font selection for emojis in browsers - 
 ### Text input and select
 
 Want to change both to text inputs with suggestions - I think there's a standard way now.
-
-
-
+I've changed these over to text inputs with `datalist`s but the browser implementations are a bit meh - not quite what I'd hoped.
+I'll leave them for now but keep an eye out for better options.
 
