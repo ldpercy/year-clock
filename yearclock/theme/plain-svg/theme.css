@@ -10,7 +10,7 @@ svg.yearclock {
 
 
 svg.yearclock .face   {
-	fill: whitesmoke;
+	fill: #fff5; /* f5f5f555 */
 	stroke: silver;
 	stroke-width: 10;
 	filter: drop-shadow(0px 10px 10px gray);
@@ -62,7 +62,9 @@ svg.yearclock .label text {
 
 
 svg.yearclock .label.dateLabel {
-	fill: gray;
+	fill: white;
+	stroke: black;
+	stroke-width:1px;
 	text-anchor: middle;
 	font-size: 5.2em;
 	dominant-baseline: central;
@@ -74,8 +76,8 @@ svg.yearclock .hands {
 }
 
 svg.yearclock path.yearHand {
-	stroke: black;
-	fill: black;
+	stroke: white;
+	fill: white;
 	stroke-width: 15;
 	stroke-linejoin: round;
 }
