@@ -51,14 +51,22 @@ svg.yearclock {
 
 
 .stop1 {
-	stop-color: red;
+	stop-color:brown;
 }
 .stop2 {
-	stop-color: black;
-	stop-opacity: 0;
+	stop-color: burlywood;
+	stop-opacity: 1;
 }
 .stop3 {
-	stop-color: blue;
+	stop-color: brown;
+}
+
+
+svg.yearclock .body   {
+	/* fill: wheat; */
+	stroke: grey;
+	stroke-width: 3;
+	filter: drop-shadow(0px 20px 20px gray);
 }
 
 

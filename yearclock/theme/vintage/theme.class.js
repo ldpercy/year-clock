@@ -3,7 +3,12 @@
 themeClass['vintage'] = class extends ThemeBase {
 
 
-	viewBox           = padViewBox(30);
+	viewBox           = padViewBox(200);
+
+	body = {
+		radius : 1300,
+	}
+
 	clockRadius       = 1200;
 
 	innerRadius       = 900;
@@ -49,9 +54,8 @@ themeClass['vintage'] = class extends ThemeBase {
 				</rect>
 				-->
 
-
-
 				${this.getDefs()}
+				${this.getBody(this.body)}
 				${this.getFace(this.clockRadius)}
 				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.innerRadius, this.outerRadius)}
@@ -96,6 +100,14 @@ themeClass['vintage'] = class extends ThemeBase {
 		`;
 		return result;
 	}/* getDefs */
+
+
+	getBody = function(body) {
+		const svg =
+			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
+		return svg;
+	}
+
 
 
 }/* vintage */
