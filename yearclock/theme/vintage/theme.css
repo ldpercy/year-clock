@@ -3,19 +3,42 @@
 */
 svg.yearclock {
 
+	--lightblue: #ade9;
+	--lightpink: #fbc;
+	--ivory: #ffee;
+
+	/*
 	background: repeating-linear-gradient(
-		to right,
+		45deg,
 		ivory,
 		ivory 2vw,
-		lightblue 2.4vw,
-		lightblue 2.6vw,
-		lightpink 3vw,
-		lightpink 7vw,
-		lightblue 7.4vw,
-		lightblue 7.6vw,
-		ivory 8vw,
-		ivory 10vw
-	);
+		gold 2.4vw,
+		gold 2.6vw
+	); */
+
+
+	background:
+		repeating-linear-gradient(
+			to right,
+			var(--ivory),
+			var(--ivory) 2vw,
+			var(--lightblue) 2.4vw,
+			var(--lightblue) 2.6vw,
+			var(--lightpink) 3vw,
+			var(--lightpink) 7vw,
+			var(--lightblue) 7.4vw,
+			var(--lightblue) 7.6vw,
+			var(--ivory) 8vw,
+			var(--ivory) 10vw
+		),
+		repeating-linear-gradient(
+			135deg,
+			ivory,
+			ivory 1vh,
+			gold 2vh,
+			gold 3vh,
+			ivory 3.3vh
+		);
 }
 
 svg.yearclock {
