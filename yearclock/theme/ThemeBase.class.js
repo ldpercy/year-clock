@@ -280,6 +280,7 @@ class ThemeBase extends Clock {
 	*/
 	getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
 	{
+		log('getPeriodDaySectors:', arguments);
 		let sectorPath = '';
 		let sectorSvg = '';
 
@@ -326,10 +327,10 @@ class ThemeBase extends Clock {
 	*/
 	getSectorLabels = function(sectorType, sectorArray, labelSettings)
 	{
+		log('getSectorLabels:', arguments);
 		let newSvg = '';
 		for (let sector of sectorArray)
 		{
-			//log('drawSectorLabels', sector);
 			const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
 
 			const center     = polarPoint(radiansLabel, labelSettings.radius);

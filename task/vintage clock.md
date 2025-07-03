@@ -23,3 +23,22 @@ The stroke-width for the hand needs to be sorted out though.
 I've used it to fatten the hand in some cases, but that messes up setting an actual outline, which I want in this case.
 I want to create some new hands for the vintage clock so will try to sort them out together.
 
+
+Day label bug
+-------------
+
+Working on the clock face now, it's a bit of a mishmash of ideas so far.
+
+Trying to draw labels for the month-day sectors and something weird is turning up - I think there's a small bug in `getPeriodDayArray`.
+
+It uses `dateRangeRadians` to generate sector angles, but that particular function assumes that the date range takes place within the context of years.
+I did generalise it a while back though so that it should work across year boundaries (fingers crossed).
+
+For getPeriodDayArray the angular context isn't necessarily obvious - probably it's usually going to be that the date range represents one revolution, but that isn't a given.
+You could be doing a dial/meter type readout where the full range is represented by a third of a circle.
+
+Probably the angle calculations should actually be separated from the array creation as they're separate concerns.
+
+
+
+

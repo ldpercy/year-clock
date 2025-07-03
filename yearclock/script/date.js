@@ -125,6 +125,7 @@ function daysInYear(date) {
 
 /* dateRangeRadians
 Given two dates return the start, middle and end angles in radians, as well as the width in radians.
+Gives angles in the context of years.
 */
 function dateRangeRadians(date1, date2) {
 	const diy1 = daysInYear(date1);
@@ -224,6 +225,9 @@ function getMonthArray(displayDate, monthNames) {
 Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
+BUG: the radians calc uses the dateRangeRadians function which assumes a context of years.
+This will produce incorrect angles for other periods such as months.
+
 */
 function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 	const result = [];
@@ -241,7 +245,7 @@ function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 			isWeekend    : isWeekend(thisDate),
 			class        : getDayClass(thisDate, displayDate),
 			isoShort     : isoDate(thisDate),
-			radians      : dateRangeRadians(thisDate, nextDay(thisDate)),
+			radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
 		}
 		result.push(dayInfo);
 		dayCounter++;
