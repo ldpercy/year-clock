@@ -2,22 +2,19 @@
 */
 themeClass['vintage'] = class extends ThemeBase {
 
-
 	viewBox           = padViewBox(200);
 
 	body = {
 		radius : 1300,
 	}
 
-	clockRadius       = 1200;
+	faceRadius       = 1200;
 
-	innerRadius       = 900;
-	outerRadius       = 1150;
+	monthSector = {
+		outerRadius : 1100,
+		innerRadius : 1000,
+	};
 
-	weekdayMarkerLength = 40;
-	weekendMarkerLength = 55;
-
-	dateLabelPosition         = new Point(0,430);
 
 	monthLabel = {
 		radius         : 1000,
@@ -26,9 +23,30 @@ themeClass['vintage'] = class extends ThemeBase {
 		invert         : false,
 	};
 
+
+	daySector = {
+		innerRadius : 600,
+		outerRadius : 700,
+	};
+
+	dayLabel = {
+		radius         : 650,
+		sectorPosition : 0.5,
+		rotate         : false,
+		invert         : false,
+	};
+
+
+	weekdayMarkerLength = 40;
+	weekendMarkerLength = 55;
+
+
+	dateLabelPosition         = new Point(0,430);
+
+
 	hand = {
-		yearLength	: 600,
-		monthLength : 850,
+		yearLength	: 1000,
+		monthLength : 600,
 	};
 
 
@@ -56,10 +74,15 @@ themeClass['vintage'] = class extends ThemeBase {
 
 				${this.getDefs()}
 				${this.getBody(this.body)}
-				${this.getFace(this.clockRadius)}
-				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
-				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.innerRadius, this.outerRadius)}
+				${this.getFace(this.faceRadius)}
+
+				${this.getMonthSectors(displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
+
+				//
+				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate, this.hand)}
 			</svg>
