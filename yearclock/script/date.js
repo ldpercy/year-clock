@@ -27,7 +27,6 @@ function createDisplayDate(date, language) {
 	// Set up period arrays
 	result.monthArray   = getMonthArray(result, result.monthNames);
 	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
-	result.seasonArray  = getSeasonArray(date);
 
 	//log('createDisplayDate',result);
 	return result;
