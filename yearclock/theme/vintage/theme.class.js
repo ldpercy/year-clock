@@ -17,7 +17,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	monthLabel = {
-		radius         : 1000,
+		radius         : 1050,
 		sectorPosition : 0.5,
 		rotate         : false,
 		invert         : false,
@@ -96,7 +96,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
-			case 'month'    : result = `${data.name.slice(0,3)}`; break;
+			case 'month'    : result = `${data.number}`; break; /* `${data.name.slice(0,3)}` */
 			case 'date'     : result = `${data.date.getFullYear()}`; break;
 			default         : result = data.name; break;
 		}

@@ -42,3 +42,14 @@ Probably the angle calculations should actually be separated from the array crea
 
 
 
+
+
+
+### Multiple formatters
+
+I'm tinkering with the design and wondering if both month numbers and names in different rings might look interesting.
+That would require having multiple formatters for certain fields, and ways to specify which to use where - I think they're hardcoded currently so need a way to parameterise that.
+
+
+
+

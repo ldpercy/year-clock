@@ -98,8 +98,10 @@ class ThemeBase extends Clock {
 	*/
 	getMonthLabels = function(monthArray, labelSetting) {
 		let newSvg = '';
+
 		for (let month of monthArray)
 		{
+			log('month',month);
 			const radiansLabel = month.radiansStart + (month.radiansWidth * labelSetting.sectorPosition);
 
 			const center     = polarPoint(radiansLabel, labelSetting.radius);
