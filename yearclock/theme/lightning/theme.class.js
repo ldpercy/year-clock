@@ -98,6 +98,7 @@ themeClass['lightning'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		let quarterArray = getQuarterArray(displayDate.object);
 		let weekArray    = getYearWeekArray(displayDate.object);
 

@@ -38,6 +38,8 @@ themeClass['common'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${this.getFace(this.clockRadius)}

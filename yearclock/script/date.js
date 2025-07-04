@@ -26,7 +26,7 @@ function createDisplayDate(date, language) {
 
 	// Set up period arrays
 	result.monthArray   = getMonthArray(result, result.monthNames);
-	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
+	//result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
 
 	//log('createDisplayDate',result);
 	return result;
@@ -78,12 +78,12 @@ function isWeekend(d) {
 	return dayNumber == 0 || dayNumber == 6
 }
 
-function getDayClass(date, displayDate) { // this needs attention
+function getDayClass(date, currentDate) { // this needs attention
 	//log(arguments);
 	result = 'weekday';
 	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
 	if (date.getDate() === 1) result += ' first';
-	if (datesAreEqual(date, displayDate)) {
+	if (datesAreEqual(date, currentDate)) {
 		log('current day:',date);
 		result += ' current';
 	}
@@ -229,7 +229,7 @@ BUG: the radians calc uses the dateRangeRadians function which assumes a context
 This will produce incorrect angles for other periods such as months.
 
 */
-function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
+function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 	const result = [];
 
 	let dayCounter = 1;
@@ -243,9 +243,9 @@ function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 			date         : new Date(thisDate),
 			isFirst      : thisDate.getDate() === 1,
 			isWeekend    : isWeekend(thisDate),
-			class        : getDayClass(thisDate, displayDate),
+			class        : getDayClass(thisDate, currentDate),
 			isoShort     : isoDate(thisDate),
-			//radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
+			radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
 		}
 		result.push(dayInfo);
 		dayCounter++;

@@ -56,6 +56,7 @@ themeClass['debug'] = class extends ThemeBase {
 	{
 
 		// Set Up Drawing
+		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		let weekArray    = getYearWeekArray(displayDate.object);
 
 		const clockSVG = `
