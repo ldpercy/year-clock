@@ -101,7 +101,7 @@ class ThemeBase extends Clock {
 
 		for (let month of monthArray)
 		{
-			log('month',month);
+			//log('month:',month);
 			const radiansLabel = month.radiansStart + (month.radiansWidth * labelSetting.sectorPosition);
 
 			const center     = polarPoint(radiansLabel, labelSetting.radius);
@@ -329,10 +329,11 @@ class ThemeBase extends Clock {
 	*/
 	getSectorLabels = function(sectorType, sectorArray, labelSettings)
 	{
-		log('getSectorLabels:', arguments);
+		//log('getSectorLabels:', arguments);
 		let newSvg = '';
 		for (let sector of sectorArray)
 		{
+			//log('sector:', sector);
 			const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
 
 			const center     = polarPoint(radiansLabel, labelSettings.radius);
