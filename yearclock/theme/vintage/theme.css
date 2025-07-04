@@ -125,9 +125,20 @@ svg.yearclock .monthLabels text{
 	dominant-baseline: middle;
 	fill: black;
 	stroke: none;
-	font-size: 3em;
+	font-size: 5em;
 	font-variant: small-caps;
 }
+
+svg.yearclock .monthDay text{
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: black;
+	stroke: none;
+	font-size: 2em;
+	font-variant: small-caps;
+}
+
+
 
 
 svg.yearclock .label.dateLabel {

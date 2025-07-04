@@ -11,13 +11,13 @@ themeClass['vintage'] = class extends ThemeBase {
 	faceRadius       = 1200;
 
 	monthSector = {
-		outerRadius : 1100,
-		innerRadius : 1000,
+		outerRadius : 1150,
+		innerRadius : 1050,
 	};
 
 
 	monthLabel = {
-		radius         : 1050,
+		radius         : 900,
 		sectorPosition : 0.5,
 		rotate         : false,
 		invert         : false,
@@ -25,12 +25,12 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	daySector = {
-		innerRadius : 600,
-		outerRadius : 700,
+		innerRadius : 650,
+		outerRadius : 750,
 	};
 
 	dayLabel = {
-		radius         : 650,
+		radius         : 700,
 		sectorPosition : 0.5,
 		rotate         : false,
 		invert         : false,
@@ -41,7 +41,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	weekendMarkerLength = 55;
 
 
-	dateLabelPosition         = new Point(0,430);
+	dateLabelPosition         = new Point(0,350);
 
 
 	hand = {
@@ -108,6 +108,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.number}`; break; /* `${data.name.slice(0,3)}` */
+			case 'monthDay' : result = `${data.dayOfMonth}`; break;
 			case 'date'     : result = `${data.date.getFullYear()}`; break;
 			default         : result = data.name; break;
 		}

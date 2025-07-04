@@ -60,25 +60,19 @@ Calc radians on array
 Need to abstract out the radians calc.
 Need something that I can apply to an array with a [].map() or similar
 
+Done.
+The radians calcs have been pulled out of getPeriodDayArray and moved to the themes.
+It's a little bit messier now in a way, but the concerns and implementations are more properly grouped.
 
 
+Design
+------
+
+Have it sort of how I'd envisioned, but ultimately I don't think it looks that good right now.
+Will need some more experimentation to find something cohesive.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Multiple formatters
--------------------
+### Multiple formatters
 
 I'm tinkering with the design and wondering if both month numbers and names in different rings might look interesting.
 That would require having multiple formatters for certain fields, and ways to specify which to use where - I think they're hardcoded currently so need a way to parameterise that.
