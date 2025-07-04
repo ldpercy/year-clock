@@ -245,7 +245,7 @@ function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 			isWeekend    : isWeekend(thisDate),
 			class        : getDayClass(thisDate, displayDate),
 			isoShort     : isoDate(thisDate),
-			radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
+			//radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
 		}
 		result.push(dayInfo);
 		dayCounter++;
