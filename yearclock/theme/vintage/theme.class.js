@@ -57,6 +57,10 @@ themeClass['vintage'] = class extends ThemeBase {
 	{
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 
+		displayDate.monthDayArray.forEach(
+			(day) => {day.radians = yearDayRadians(day.date);}
+		);
+
 		const clockSVG = `
 			<svg
 				id="clock"
@@ -79,7 +83,6 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getMonthSectors(displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
 
-				//
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 
@@ -87,6 +90,11 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getHands(displayDate, this.hand)}
 			</svg>
 		`;
+
+		/*
+
+		 */
+
 
 		return clockSVG;
 	}/* getClockSVG */

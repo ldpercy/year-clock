@@ -245,7 +245,7 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 			isWeekend    : isWeekend(thisDate),
 			class        : getDayClass(thisDate, currentDate),
 			isoShort     : isoDate(thisDate),
-			radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
+			//radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
 		}
 		result.push(dayInfo);
 		dayCounter++;
@@ -254,6 +254,10 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 	return result;
 }/* getPeriodDayArray */
 
+
+function yearDayRadians(date) {
+	return dateRangeRadians(date, nextDay(date))
+}
 
 
 /* getSeasonArray

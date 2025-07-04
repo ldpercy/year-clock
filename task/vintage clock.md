@@ -54,6 +54,13 @@ Also, not every clock breaks when I remove the sector angles, so I might need to
 Even though it needs it, I don't won't to go too much into cleaning up the displayDate object right now.
 
 
+Calc radians on array
+---------------------
+
+Need to abstract out the radians calc.
+Need something that I can apply to an array with a [].map() or similar
+
+
 
 
 
