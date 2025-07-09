@@ -38,6 +38,22 @@ function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
 }
 
 
+/* getArcPath
+TODO: work out how to get inner/outer/reverse paths going
+*/
+function getArcPath(radiansStart, radiansEnd, radius)
+{
+	const start = polarPoint(radiansStart, radius);
+	const end   = polarPoint(radiansEnd,   radius);
+
+	const path = `
+		M ${sf(start.x)} ${sf(start.y)}
+		A ${sf(radius)} ${sf(radius)} 0 0 1 ${sf(end.x)} ${sf(end.y)}`;
+
+	return path;
+}
+
+
 /* getSectorPathSimple
 A simplified version of the above that draws a quadrilateral with straight lines instead of proper arcs. Suitable for very small sectors or other effects.
 */
