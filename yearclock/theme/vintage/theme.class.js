@@ -99,7 +99,7 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getSectorLabels('monthName', displayDate.monthArray, this.monthText)}
 				${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
-				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+				${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
 				${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 

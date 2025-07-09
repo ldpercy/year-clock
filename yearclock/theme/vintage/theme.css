@@ -88,14 +88,17 @@ svg.yearclock .face   {
 svg.yearclock .sector {
 	stroke:black;
 	stroke-width:1px;
-	fill: silver;
 }
 
-svg.yearclock .sector:nth-of-type(odd) {
+svg.yearclock .month .sector:nth-of-type(odd),
+svg.yearclock .day .sector.weekday
+{
 	fill: var(--sectorlight);
 }
 
-svg.yearclock .sector:nth-of-type(even) {
+svg.yearclock .month .sector:nth-of-type(even),
+svg.yearclock .day .sector.weekend
+{
 	fill: var(--sectordark);
 }
 
