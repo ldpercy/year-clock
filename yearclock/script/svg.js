@@ -7,9 +7,9 @@
 sf = significantFigures(4);
 
 
-function radialLine(angle, startRadius, endRadius) {
-	const start = polarPoint(angle, startRadius);
-	const end   = polarPoint(angle, endRadius);
+function radialLine(radians, startRadius, endRadius) {
+	const start = polarPoint(radians, startRadius);
+	const end   = polarPoint(radians, endRadius);
 	result = {
 		xStart : sf(start.x),
 		yStart : sf(start.y),
@@ -20,12 +20,12 @@ function radialLine(angle, startRadius, endRadius) {
 }
 
 
-function getSectorPath(startAngle, endAngle, innerRadius, outerRadius)
+function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
 {
-	const outerStart = polarPoint(startAngle, outerRadius)
-	const outerEnd   = polarPoint(endAngle,   outerRadius)
-	const innerEnd   = polarPoint(endAngle,   innerRadius)
-	const innerStart = polarPoint(startAngle, innerRadius)
+	const outerStart = polarPoint(radiansStart, outerRadius);
+	const outerEnd   = polarPoint(radiansEnd,   outerRadius);
+	const innerEnd   = polarPoint(radiansEnd,   innerRadius);
+	const innerStart = polarPoint(radiansStart, innerRadius);
 
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}
@@ -41,12 +41,12 @@ function getSectorPath(startAngle, endAngle, innerRadius, outerRadius)
 /* getSectorPathSimple
 A simplified version of the above that draws a quadrilateral with straight lines instead of proper arcs. Suitable for very small sectors or other effects.
 */
-function getSectorPathSimple(startAngle, endAngle, innerRadius, outerRadius)
+function getSectorPathSimple(radiansStart, radiansEnd, innerRadius, outerRadius)
 {
-	const outerStart = polarPoint(startAngle, outerRadius)
-	const outerEnd   = polarPoint(endAngle,   outerRadius)
-	const innerEnd   = polarPoint(endAngle,   innerRadius)
-	const innerStart = polarPoint(startAngle, innerRadius)
+	const outerStart = polarPoint(radiansStart, outerRadius);
+	const outerEnd   = polarPoint(radiansEnd,   outerRadius);
+	const innerEnd   = polarPoint(radiansEnd,   innerRadius);
+	const innerStart = polarPoint(radiansStart, innerRadius);
 
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}

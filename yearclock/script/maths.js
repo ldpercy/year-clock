@@ -11,11 +11,11 @@ function Point(x, y)
 	this.y = y;
 }
 
-function polarPoint (angle, radius)
+function polarPoint(radians, radius)
 {
 	return new Point(
-		radius * Math.sin(angle),
-		radius * -Math.cos(angle)
+		radius * Math.sin(radians),
+		radius * -Math.cos(radians)
 	)
 }
 
