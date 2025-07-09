@@ -46,7 +46,7 @@ class ThemeBase extends Clock {
 		// 	<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 		// 		${this.getFace()}
 		// 		${this.getMonthSectors(displayDate.monthArray)}
-		// 		${this.getMonthLabels(displayDate.monthArray)}
+		// 		${this.getSectorLabels('month', displayDate.monthArray)}
 		// 		${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
 		// 		${this.getDateLabel(displayDate.object)}
 		// 		${this.getHands(displayDate)}
@@ -93,35 +93,6 @@ class ThemeBase extends Clock {
 		}
 		return `<g class="month sector">${newSvg}</g>`;
 	}/* getMonthSectors */
-
-
-	/* getMonthLabels
-	This is nearly ready to get rid of
-	* /
-	getMonthLabels = function(monthArray, labelSetting) {
-		let newSvg = '';
-
-		for (let month of monthArray)
-		{
-			//log('month:',month);
-			const radiansLabel = month.radians.start + (month.radians.width * labelSetting.sectorPosition);
-
-			const center     = polarPoint(radiansLabel, labelSetting.radius);
-			let transform = '';
-
-			if (labelSetting.rotate)
-			{
-				let rotate = this.rotationDegrees(radiansLabel, labelSetting);
-				transform = `rotate(${rotate}, ${center.x}, ${center.y})`;
-			}
-			const labelSvg =
-				`<text class="${month.class}" x="${center.x}" y="${center.y}" transform="${transform}">${this.formatLabel('month', month)}</text>`;
-			newSvg += labelSvg;
-		}
-		const result = `<g class="month label monthLabels">${newSvg}</g>`;
-		return result;
-	}/ * getMonthLabels */
-
 
 
 	/* getPeriodDayTicks
@@ -206,29 +177,6 @@ class ThemeBase extends Clock {
 			</g>`;
 		return svg;
 	}/* getYearLabel */
-
-
-	/* getWeekLabel
-	* /
-	getWeekLabel = function(date, point) {
-		const svg =
-			`<g class="dateLabel">
-				<text x="${point.x}" y="${point.y}" class="label weekLabel">${date.getFullYear()}</text>
-			</g>`;
-		return svg;
-	}/ * drawWeekLabel */
-
-
-	/* getDayLabel
-	* /
-	getDayLabel = function(date, point) {
-		const svg =
-			`<g class="drawDayLabel">
-				<text x="${point.x}" y="${point.y}" class="label drawDayLabel">${date.getFullYear()}</text>
-			</g>`;
-		return svg;
-	}/ * drawYearLabel */
-
 
 
 

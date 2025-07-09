@@ -1,20 +1,12 @@
 svg#clock {
 	background-color: brown;
 	font-size: 48px;
-	font-family:cursive;
+	font-family:fantasy;
 }
 
-svg#clock .face   {
+svg#clock .face {
 	fill: burlywood;
 	stroke: silver;
 
 }
 
-
-
-svg#clock .monthLabels text{
-	font-variant:normal;
-	font-style: italic;
-	fill:black;
-	stroke:silver;
-}

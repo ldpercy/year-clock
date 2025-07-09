@@ -63,8 +63,7 @@ path.sector {
 
 .label text,
 .label.yearLabel,
-.label.dateLabel,
-.label.monthLabels text
+.label.dateLabel
 {
 	fill: var(--textLight);
 	stroke: var(--textStroke);
@@ -78,17 +77,10 @@ path.sector {
 }
 
 
-.monthLabels text,
 .label.quarter text
 {
 	font-size: 5ex;
 	stroke-width: 1px;
-	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
-}
-
-
-.monthLabels text {
-	font-size: 4ex;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
 
