@@ -12,9 +12,8 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	monthSector = {
 		outerRadius : 1150,
-		innerRadius : 1075,
+		innerRadius : 1070,
 	};
-
 
 	monthText = {
 		radius         : 1110,
@@ -25,7 +24,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	monthNumber = {
-		radius         : 925,
+		radius         : 900,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
@@ -60,7 +59,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	hand = {
-		yearLength	: 900,
+		yearLength	: 850,
 		monthLength : 550,
 	};
 
@@ -166,6 +165,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	getDateLabel = function(date, point) {
 
 		const dateLabelPath = getArcPath(radians(-60), radians(60), point.y);
+		//const dateLabelPath = getArcPath(radians(240), radians(120), point.y);
 
 		const textPath = `<textPath startOffset="50%" xlink:href="#dateLabelPath">${this.formatLabel('date',{'date':date})}</textPath>`;
 
@@ -174,6 +174,7 @@ themeClass['vintage'] = class extends ThemeBase {
 				<defs>
 					<path id="dateLabelPath" d="${dateLabelPath}"/>
 				</defs>
+
 				<text class="label dateLabel">${textPath}</text>
 			</g>`;
 
