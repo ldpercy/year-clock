@@ -46,7 +46,7 @@ svg.yearclock {
 }
 
 svg.yearclock {
-	/* fill: url(#Gradient1); */
+	fill: url(#Gradient1);
 	/* background-color: burlywood; */
 	/* background-image: url(#Gradient1); */
 	font-size: 48px;

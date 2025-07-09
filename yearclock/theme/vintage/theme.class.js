@@ -11,17 +11,25 @@ themeClass['vintage'] = class extends ThemeBase {
 	faceRadius       = 1200;
 
 	monthSector = {
-		outerRadius : 1150,
-		innerRadius : 1050,
+		outerRadius : 1160,
+		innerRadius : 1100,
 	};
 
 
 	monthLabel = {
-		radius         : 900,
+		radius         : 1000,
 		sectorPosition : 0.5,
 		rotate         : false,
 		invert         : false,
 	};
+
+	monthLabel2 = {
+		radius         : 1130,
+		sectorPosition : 0.5,
+		rotate         : true,
+		invert         : false,
+	};
+
 
 
 	daySector = {
@@ -65,13 +73,11 @@ themeClass['vintage'] = class extends ThemeBase {
 		log('displayDate.monthDayArray:', displayDate.monthDayArray);
 
 		const clockSVG = `
-			<svg
-				id="clock"
+			<svg id="clock"
 				class="yearclock"
 				viewBox="${this.viewBox}"
 				preserveAspectRatio="xMidYMid meet"
 				xmlns="http://www.w3.org/2000/svg"
-				fill="url(#Gradient1)"
 				>
 
 				<!--
@@ -85,6 +91,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 				${this.getMonthSectors(displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
+				${this.getMonthLabels(displayDate.monthArray, this.monthLabel2)}
 
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
