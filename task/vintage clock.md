@@ -119,4 +119,11 @@ https://css-tricks.com/snippets/svg/curved-text-along-path/
 
 Would like to be able to do this - would need a section of the sector curve to use.
 
+https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/textPath
+
+I've added an experimental application of this for the year text, but I need to sort out how to do negative angles for the bottom half of the clock.
+
+Once that's figured out it needs to be applied to the month names here.
+Probably also for the plain-svg theme.
+
 

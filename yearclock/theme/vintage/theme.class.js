@@ -60,7 +60,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	hand = {
-		yearLength	: 1000,
+		yearLength	: 900,
 		monthLength : 550,
 	};
 
@@ -159,6 +159,31 @@ themeClass['vintage'] = class extends ThemeBase {
 			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
 		return svg;
 	}
+
+
+	/* getDateLabel
+	*/
+	getDateLabel = function(date, point) {
+
+		const dateLabelPath = getArcPath(radians(-60), radians(60), point.y);
+
+		const textPath = `<textPath startOffset="50%" xlink:href="#dateLabelPath">${this.formatLabel('date',{'date':date})}</textPath>`;
+
+		const svg =
+			`<g class="dateLabel">
+				<defs>
+					<path id="dateLabelPath" d="${dateLabelPath}"/>
+				</defs>
+				<text class="label dateLabel">${textPath}</text>
+			</g>`;
+
+		/*
+		x="${point.x}" y="${point.y}"
+		${this.formatLabel('date',{'date':date})}
+		*/
+
+		return svg;
+	}/* getDateLabel */
 
 
 

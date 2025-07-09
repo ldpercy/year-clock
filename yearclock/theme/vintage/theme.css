@@ -121,6 +121,7 @@ svg.yearclock .label {
 
 	&.dayNumber text {
 		font-size: 1em;
+		font-weight:bold;
 	}
 
 	&.dateLabel {
