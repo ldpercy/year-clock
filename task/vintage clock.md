@@ -34,13 +34,13 @@ Trying to draw labels for the month-day sectors and something weird is turning u
 It uses `dateRangeRadians` to generate sector angles, but that particular function assumes that the date range takes place within the context of years.
 I did generalise it a while back though so that it should work across year boundaries (fingers crossed).
 
-For getPeriodDayArray the angular context isn't necessarily obvious - probably it's usually going to be that the date range represents one revolution, but that isn't a given.
+However for getPeriodDayArray the angular context isn't necessarily obvious.
+Probably it's usually going to be that the date range represents one revolution, but that isn't a given.
 You could be doing a dial/meter type readout where the full range is represented by a third of a circle.
-
 Probably the angle calculations should actually be separated from the array creation as they're separate concerns.
 
-Removing the current radians calc from getPeriodDayArray breaks lightning, debug and vintage.
 
+Removing the current radians calc from getPeriodDayArray breaks lightning, debug and vintage.
 In each case it's getSectorLabels that breaks because it relies on the stock yearDayArray created in createDisplayDate:
 
 	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
@@ -68,15 +68,27 @@ It's a little bit messier now in a way, but the concerns and implementations are
 Design
 ------
 
-Have it sort of how I'd envisioned, but ultimately I don't think it looks that good right now.
+Have it sort of how I'd envisioned early on, but I don't think it looks that good right now.
 Will need some more experimentation to find something cohesive.
+Probably need a more solid idea of 'vintage' to get the look right, so I'm going to to start working off actual clockface example photos for this one.
+I think I want something sort of first half 20th century, fairly traditional.
+Also the wallpaper I've done, while I like it, it's a bit retro and might not be the best match for this; might need something a touch more subdued, a colour tweak or two might be enough.
 
 
 ### Multiple formatters
 
-I'm tinkering with the design and wondering if both month numbers and names in different rings might look interesting.
+I'm toying with the design and wondering if both month numbers and names in different rings might look interesting.
 That would require having multiple formatters for certain fields, and ways to specify which to use where - I think they're hardcoded currently so need a way to parameterise that.
 
+
+getMonthLabels & getSectorLabels
+--------------------------------
+
+`getMonthLabels` is one of the older methods that's been on the list for chopping for a while.
+It's still widely used though so will have to see if can easily be replaced by getSectorLabels.
+The name of the latter is a bit unfortunate, but not sure what would be better yet.
+I speculated above about different kinds of angular contexts for some things like days/months and I've been half thinking about doing a car-dashboard theme to explore exactly that - year/month/day using circle parts to look like speedos/ tachos fuel gauges etc.
+Think I'll add it as a new task for fun.
 
 
 
