@@ -80,12 +80,14 @@ class ThemeBase extends Clock {
 		return svg;
 	}
 
-
+	/* getMonthSectors
+	TODO: rationalise/remove
+	*/
 	getMonthSectors = function(monthArray, radiusStart, radiusEnd) {
 		let newSvg = '';
 		for (let month of monthArray)
 		{
-			const sectorPath = getSectorPath(month.radiansStart, month.radiansEnd, radiusStart, radiusEnd);
+			const sectorPath = getSectorPath(month.radians.start, month.radians.end, radiusStart, radiusEnd);
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
 			newSvg += sectorSvg;
 		}
@@ -102,7 +104,7 @@ class ThemeBase extends Clock {
 		for (let month of monthArray)
 		{
 			//log('month:',month);
-			const radiansLabel = month.radiansStart + (month.radiansWidth * labelSetting.sectorPosition);
+			const radiansLabel = month.radians.start + (month.radians.width * labelSetting.sectorPosition);
 
 			const center     = polarPoint(radiansLabel, labelSetting.radius);
 			let transform = '';

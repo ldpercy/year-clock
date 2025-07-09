@@ -196,9 +196,10 @@ function getMonthArray(displayDate, monthNames) {
 			const startDate    = new Date(displayDate.year, index);
 			const nextMonth    = new Date(displayDate.year, index + 1);
 			const endDate      = new Date(nextMonth - 1000);
-			const radiansStart = dateRadians(startDate);
-			const radiansEnd   = dateRadians(endDate);
-			const radiansWidth = radiansEnd - radiansStart;
+
+			//const radiansStart = dateRadians(startDate);
+			//const radiansEnd   = dateRadians(endDate);
+			//const radiansWidth = radiansEnd - radiansStart;
 
 			const month = {
 				'number'       : index+1,
@@ -207,10 +208,11 @@ function getMonthArray(displayDate, monthNames) {
 				'startDate'    : new Date(displayDate.year, index),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
-				'radiansStart' : radiansStart,
-				'radiansEnd'   : radiansEnd,
-				'radiansWidth' : radiansWidth,
-				'radiansMid'   : midpoint(radiansStart, radiansEnd),
+				//'radiansStart' : radiansStart,
+				//'radiansEnd'   : radiansEnd,
+				//'radiansWidth' : radiansWidth,
+				//'radiansMid'   : midpoint(radiansStart, radiansEnd),
+				'radians'      : dateRangeRadians(startDate, nextMonth),
 				'class'        : getMonthClass(startDate, displayDate.object)
 			};
 			return month;
