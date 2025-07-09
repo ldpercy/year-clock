@@ -46,9 +46,13 @@ function getArcPath(radiansStart, radiansEnd, radius)
 	const start = polarPoint(radiansStart, radius);
 	const end   = polarPoint(radiansEnd,   radius);
 
+	const rotation     = '0';
+	const largeArcFlag = '0';
+	const sweepFlag    = (radiansStart < radiansEnd) ? '1' : '0';
+
 	const path = `
 		M ${sf(start.x)} ${sf(start.y)}
-		A ${sf(radius)} ${sf(radius)} 0 0 1 ${sf(end.x)} ${sf(end.y)}`;
+		A ${sf(radius)} ${sf(radius)} 0 0 ${sweepFlag} ${sf(end.x)} ${sf(end.y)}`;
 
 	return path;
 }
