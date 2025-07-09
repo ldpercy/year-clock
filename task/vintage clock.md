@@ -90,5 +90,10 @@ The name of the latter is a bit unfortunate, but not sure what would be better y
 I speculated above about different kinds of angular contexts for some things like days/months and I've been half thinking about doing a car-dashboard theme to explore exactly that - year/month/day using circle parts to look like speedos/ tachos fuel gauges etc.
 Think I'll add it as a new task for fun.
 
+I was thinking that maybe in a different full-range content 'sector' might make less sense, but actually while the core shape is still a circle it's probably fine.
+
+So I probably want to try rationalising these two methods first, then see what options I have for making the label formatting more flexible.
+
+
 
 

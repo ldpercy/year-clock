@@ -40,7 +40,7 @@ svg.yearclock .month .label {
 }
 
 
-svg.yearclock .monthLabels text{
+svg.yearclock .label.month text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: black;

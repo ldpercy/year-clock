@@ -97,7 +97,7 @@ class ThemeBase extends Clock {
 
 	/* getMonthLabels
 	This is nearly ready to get rid of
-	*/
+	* /
 	getMonthLabels = function(monthArray, labelSetting) {
 		let newSvg = '';
 
@@ -120,7 +120,7 @@ class ThemeBase extends Clock {
 		}
 		const result = `<g class="month label monthLabels">${newSvg}</g>`;
 		return result;
-	}/* getMonthLabels */
+	}/ * getMonthLabels */
 
 
 

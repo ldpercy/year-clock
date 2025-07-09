@@ -77,7 +77,7 @@ svg.yearclock .face   {
 /* Labels
 */
 
-svg.yearclock .monthLabels text{
+svg.yearclock .label.month text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: var(--labelblack);
