@@ -87,6 +87,7 @@ getMonthLabels & getSectorLabels
 `getMonthLabels` is one of the older methods that's been on the list for chopping for a while.
 It's still widely used though so will have to see if can easily be replaced by getSectorLabels.
 The name of the latter is a bit unfortunate, but not sure what would be better yet.
+
 I speculated above about different kinds of angular contexts for some things like days/months and I've been half thinking about doing a car-dashboard theme to explore exactly that - year/month/day using circle parts to look like speedos/ tachos fuel gauges etc.
 Think I'll add it as a new task for fun.
 
@@ -94,6 +95,28 @@ I was thinking that maybe in a different full-range content 'sector' might make 
 
 So I probably want to try rationalising these two methods first, then see what options I have for making the label formatting more flexible.
 
+### Other methods that need to be rationalised/removed
 
+I've removed getMonthLabels; some other methods that also need to be rationalised:
+
+* getMonthSectors
+* getDateLabel/getYearLabel
+* getPeriodDayTicks
+
+
+
+Different label formatting
+--------------------------
+
+getSectorLabels currently takes string sectorType arg that gets used for two things:
+* the group (g) class
+* passed to formatLabel as the labelType
+
+So for now without changing anything else I can just use a different sectorType to do what I want.
+
+### Text on a curve
+https://css-tricks.com/snippets/svg/curved-text-along-path/
+
+Would like to be able to do this - would need a section of the sector curve to use.
 
 

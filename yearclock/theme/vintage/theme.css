@@ -10,6 +10,8 @@ svg.yearclock {
 	--sectorlight: #fff9;
 	--sectordark: #ccc9;
 
+	--darkGrey: #222c;
+
 
 	/*
 	background: repeating-linear-gradient(
@@ -50,7 +52,7 @@ svg.yearclock {
 	/* background-color: burlywood; */
 	/* background-image: url(#Gradient1); */
 	font-size: 48px;
-	font-family:  cursive, serif;
+	font-family: serif;/*  cursive, */
 }
 
 
@@ -98,55 +100,37 @@ svg.yearclock .sector:nth-of-type(even) {
 }
 
 
-svg.yearclock .tick * {
-	stroke: black;
-	stroke-linecap: butt;
-}
-
-svg.yearclock .tick.day .first {
-	stroke-width: 20;
-}
-
-svg.yearclock .tick.day .weekday {
-	stroke-width: 10;
-}
-
-svg.yearclock .tick.day .weekend {
-	stroke-width: 30;
-}
-
-svg.yearclock .month .label {
-	fill: black;
-}
-
-
-svg.yearclock .label.month text{
+svg.yearclock .label {
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: black;
+	fill: var(--darkGrey);
 	stroke: none;
-	font-size: 5em;
 	font-variant: small-caps;
+
+	&.monthName text {
+		font-size: 1em;
+	}
+
+	&.monthNumber text{
+		font-size: 5em;
+	}
+
+	&.dayName text {
+		font-size: 1em;
+	}
+
+	&.dayNumber text {
+		font-size: 1em;
+	}
+
+	&.dateLabel {
+		text-anchor: middle;
+		font-size: 4em;
+		dominant-baseline: central;
+	}
+
 }
 
-svg.yearclock .monthDay text{
-	text-anchor: middle;
-	dominant-baseline: middle;
-	fill: black;
-	stroke: none;
-	font-size: 2em;
-	font-variant: small-caps;
-}
-
-
-
-
-svg.yearclock .label.dateLabel {
-	fill: black;
-	text-anchor: middle;
-	font-size: 4em;
-	dominant-baseline: central;
-}
 
 
 svg.yearclock .hands {

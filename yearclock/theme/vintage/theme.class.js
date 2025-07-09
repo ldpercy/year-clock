@@ -11,25 +11,25 @@ themeClass['vintage'] = class extends ThemeBase {
 	faceRadius       = 1200;
 
 	monthSector = {
-		outerRadius : 1160,
-		innerRadius : 1100,
+		outerRadius : 1150,
+		innerRadius : 1075,
 	};
 
 
-	monthLabel = {
-		radius         : 1000,
-		sectorPosition : 0.5,
-		rotate         : false,
-		invert         : false,
-	};
-
-	monthLabel2 = {
-		radius         : 1130,
+	monthText = {
+		radius         : 1110,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
 	};
 
+
+	monthNumber = {
+		radius         : 925,
+		sectorPosition : 0.5,
+		rotate         : true,
+		invert         : false,
+	};
 
 
 	daySector = {
@@ -37,10 +37,17 @@ themeClass['vintage'] = class extends ThemeBase {
 		outerRadius : 750,
 	};
 
-	dayLabel = {
+	dayName = {
 		radius         : 700,
 		sectorPosition : 0.5,
-		rotate         : false,
+		rotate         : true,
+		invert         : false,
+	};
+
+	dayNumber = {
+		radius         : 600,
+		sectorPosition : 0.5,
+		rotate         : true,
 		invert         : false,
 	};
 
@@ -54,7 +61,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	hand = {
 		yearLength	: 1000,
-		monthLength : 600,
+		monthLength : 550,
 	};
 
 
@@ -90,11 +97,12 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getFace(this.faceRadius)}
 
 				${this.getMonthSectors(displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel2)}
+				${this.getSectorLabels('monthName', displayDate.monthArray, this.monthText)}
+				${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
 				${this.getPeriodDaySectors('month', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
-				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+				${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
+				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate, this.hand)}
@@ -114,10 +122,12 @@ themeClass['vintage'] = class extends ThemeBase {
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
-			case 'month'    : result = `${data.number}`; break; /* `${data.name.slice(0,3)}` */
-			case 'monthDay' : result = `${data.dayOfMonth}`; break;
-			case 'date'     : result = `${data.date.getFullYear()}`; break;
-			default         : result = data.name; break;
+			case 'monthName'    : result = data.name; break;
+			case 'monthNumber'  : result = `${data.number}`; break;
+			case 'dayName'      : result = `${data.name.slice(0,3)}`; break;
+			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
+			case 'date'         : result = `${data.date.getFullYear()}`; break;
+			default             : result = data.name; break;
 		}
 		return result;
 	}
