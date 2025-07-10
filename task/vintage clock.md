@@ -177,3 +177,11 @@ Should I shoehorn this into the existing method or write a new one?
 I've gone with a new method, it's different enough that it's probably justified.
 
 
+### Inversion & plain-svg
+
+As I said I've been tweakang the plain-svg theme a bit along with this task.
+I've gotten the inversion working for it, but I might tack on a few more changes as well.
+It really should be renamed, as 'plain-svg' was just the name for while I was removing Snap.
+Mostly it's just the brice theme with a few embellishments.
+
+

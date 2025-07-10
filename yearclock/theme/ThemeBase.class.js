@@ -307,13 +307,20 @@ class ThemeBase extends Clock {
 
 		let defs = '';
 		let textPaths = '';
+		let labelArc = '';
 
 		for (let sector of sectorArray)
 		{
 			//log('sector:', sector);
 
 			const pathId = `labelPath-${sectorType}-${sector.id}`;
-			const labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSettings.radius);
+
+			if (labelSettings.invert && (Math.cos(sector.radians.middle) < 0)) {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
+			}
+			else {
+				labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSettings.radius);
+			}
 
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 			defs += labelPath;
