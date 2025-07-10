@@ -184,4 +184,8 @@ I've gotten the inversion working for it, but I might tack on a few more changes
 It really should be renamed, as 'plain-svg' was just the name for while I was removing Snap.
 Mostly it's just the brice theme with a few embellishments.
 
+I've tweaked it a little bit more, might end up renaming it to something like 'glass' and give it a proper background.
 
+
+Hands
+-----

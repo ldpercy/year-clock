@@ -5,10 +5,10 @@ themeClass['plain-svg'] = class extends ThemeBase {
 	viewBox           = padViewBox(30);
 	clockRadius       = 1200;
 	outerRadius       = 1150;
-	innerRadius       = 945;
+	innerRadius       = 950;
 
 	monthLabel = {
-		radius         : 1010,
+		radius         : 1075,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : true,
@@ -18,16 +18,16 @@ themeClass['plain-svg'] = class extends ThemeBase {
 	weekendMarkerLength = 57;
 
 	tick = {
-		weekdayStart    : this.outerRadius,
-		weekdayEnd      : this.outerRadius - this.weekdayMarkerLength,
-		weekendStart    : this.outerRadius,
-		weekendEnd      : this.outerRadius - this.weekendMarkerLength,
-		monthFirstStart : this.outerRadius,
-		monthFirstEnd   : this.innerRadius,
+		weekdayStart    : this.innerRadius,
+		weekdayEnd      : this.innerRadius + this.weekdayMarkerLength,
+		weekendStart    : this.innerRadius,
+		weekendEnd      : this.innerRadius + this.weekendMarkerLength,
+		monthFirstStart : this.innerRadius,
+		monthFirstEnd   : this.outerRadius,
 	};
 
 	hand = {
-		yearLength : 980,
+		yearLength : 940,
 	};
 
 	dateLabelPosition         = 530;
