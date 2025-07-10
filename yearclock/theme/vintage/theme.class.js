@@ -98,8 +98,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 				${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
-
-				${this.getSectorLabels('monthName', displayDate.monthArray, this.monthText)}
+				${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
 				${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
 				${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
@@ -112,8 +111,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		`;
 
 		/*
-		 */
-
+		*/
 
 		return clockSVG;
 	}/* getClockSVG */

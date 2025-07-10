@@ -295,6 +295,42 @@ class ThemeBase extends Clock {
 	}/* getSectorLabels */
 
 
+	/* getSectorLabelsCurved
+		labelSetting = {
+			radius         : number,
+			invert         : boolean,
+		};
+	*/
+	getSectorLabelsCurved = function(sectorType, sectorArray, labelSettings)
+	{
+		//log('getSectorLabels:', arguments);
+
+		let defs = '';
+		let textPaths = '';
+
+		for (let sector of sectorArray)
+		{
+			//log('sector:', sector);
+
+			const pathId = `labelPath-${sectorType}-${sector.id}`;
+			const labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSettings.radius);
+
+			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
+			defs += labelPath;
+
+			const textPath = `<textPath class="${sector.class}" startOffset="50%" xlink:href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+			textPaths += textPath;
+		}
+
+		const result =
+			`<g class="label ${sectorType}">
+				<defs>${defs}</defs>
+				<text>${textPaths}</text>
+			</g>`;
+		return result;
+	}/* getSectorLabelsCurved */
+
+
 
 	/* rotationDegrees
 	*/

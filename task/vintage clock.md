@@ -149,3 +149,31 @@ See [simple testing](<simple testing.md>) for a quick and dirty solution.
 I know there are some data attributes in the old clocks that currently have `undefined`s in them - will use that task to sort them out properly.
 
 
+Curved paths for month names
+----------------------------
+
+Curved paths will probably only make sense for radial label orientations, but I should allow for inversions.
+I'll use the plain-svg theme that I've been tweaking as a rider to this task to test the inversion.
+
+Not sure yet how this will work, but will figure it out.
+
+I think this will need to be a new label setting in additions to the existing ones.
+
+This could get a bit messy.
+There are a few bits of the current label calcs that would go away or need to be changed a little for curved paths.
+Unless I'm doing it wrong, the only things needed (for now) for text on a curved path are the curve and startOffset.
+
+	<textPath startOffset="50%" xlink:href="#dateLabelPath">${text}</textPath>
+
+The startOffset 50% would be equivalent to the current `sectorPosition : 0.5,`.
+
+These vars wouldn't be needed:
+* radiansLabel
+* center (x and y)
+* transform
+* rotate
+
+Should I shoehorn this into the existing method or write a new one?
+I've gone with a new method, it's different enough that it's probably justified.
+
+

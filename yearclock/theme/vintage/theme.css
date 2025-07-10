@@ -112,6 +112,7 @@ svg.yearclock .label {
 
 	&.monthName text {
 		font-size: 1em;
+		dominant-baseline: central;
 	}
 
 	&.monthNumber text{
