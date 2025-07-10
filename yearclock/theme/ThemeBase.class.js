@@ -45,7 +45,7 @@ class ThemeBase extends Clock {
 		// const clockSVG = `
 		// 	<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 		// 		${this.getFace()}
-		// 		${this.getMonthSectors(displayDate.monthArray)}
+		// 		${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
 		// 		${this.getSectorLabels('month', displayDate.monthArray)}
 		// 		${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
 		// 		${this.getDateLabel(displayDate.object)}
@@ -80,19 +80,6 @@ class ThemeBase extends Clock {
 		return svg;
 	}
 
-	/* getMonthSectors
-	TODO: rationalise/remove
-	*/
-	getMonthSectors = function(monthArray, radiusStart, radiusEnd) {
-		let newSvg = '';
-		for (let month of monthArray)
-		{
-			const sectorPath = getSectorPath(month.radians.start, month.radians.end, radiusStart, radiusEnd);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${month.code} ${month.class}"><title>${month.name}</title></path>`;
-			newSvg += sectorSvg;
-		}
-		return `<g class="month sector">${newSvg}</g>`;
-	}/* getMonthSectors */
 
 
 	/* getPeriodDayTicks
@@ -254,19 +241,20 @@ class ThemeBase extends Clock {
 	}/* getPeriodDaySectors */
 
 
-
+	/* getSectors
+	*/
 	getSectors = function(sectorType, sectorArray, radiusStart, radiusEnd)
 	{
 		let newSvg = '';
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.name} ${sector.class}"><title>${this.formatTitle(sectorType,sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType,sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
-		const result = `<g class="${sectorType}">${newSvg}</g>`;
+		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;
 		return result;
-	}
+	}/* getSectors */
 
 
 	/* getSectorLabels

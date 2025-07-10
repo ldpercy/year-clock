@@ -52,10 +52,10 @@ svg.yearclock .face   {
 }
 
 
-.sector.season-Summer { fill: #f004 }
-.sector.season-Autumn { fill: #ff04 }
-.sector.season-Winter { fill: #00f4 }
-.sector.season-Spring { fill: #0f04 }
+.sector.season-summer { fill: #f004 }
+.sector.season-autumn { fill: #ff04 }
+.sector.season-winter { fill: #00f4 }
+.sector.season-spring { fill: #0f04 }
 
 
 

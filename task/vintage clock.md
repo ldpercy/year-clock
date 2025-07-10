@@ -127,3 +127,25 @@ Once that's figured out it needs to be applied to the month names here.
 Probably also for the plain-svg theme.
 
 
+getMonthSectors -> getSectors
+-----------------------------
+
+Another leftover to be refactored out.
+There will be some flow-on changes from this because of some of the classnames used:
+* getMonthSectors: ${month.code}
+* getSectors: ${sectorType}-${sector.name}
+
+The sector names aren't really appropriate to use as classnames all the time as they might change or be locale dependent.
+I think I need to normalise this to a local id - this will replace the old `month.code`.
+
+I've gone through and added an 'id' attribute to the various period arrays to use for classes.
+It's also starting to be a bit more consistent about group naming, but more to be done.
+There really is a lot of css that should be tidied up too.
+
+
+### Testing
+While I'm doing this it's getting hard to spot all the places where I've inadvertently missed properties.
+See [simple testing](<simple testing.md>) for a quick and dirty solution.
+I know there are some data attributes in the old clocks that currently have `undefined`s in them - will use that task to sort them out properly.
+
+

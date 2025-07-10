@@ -95,7 +95,10 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getBody(this.body)}
 				${this.getFace(this.faceRadius)}
 
-				${this.getMonthSectors(displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+
+				${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+
+
 				${this.getSectorLabels('monthName', displayDate.monthArray, this.monthText)}
 				${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
@@ -109,7 +112,6 @@ themeClass['vintage'] = class extends ThemeBase {
 		`;
 
 		/*
-
 		 */
 
 

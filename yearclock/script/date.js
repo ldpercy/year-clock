@@ -187,7 +187,7 @@ This needs a lot of cleanup/rationalisation:
 	Change monthname map to something else
 */
 function getMonthArray(displayDate, monthNames) {
-	const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+	const monthId = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
 
 	const result = monthNames.map(
 		function( monthName, index ) {
@@ -196,9 +196,9 @@ function getMonthArray(displayDate, monthNames) {
 			const endDate      = new Date(nextMonth - 1000);
 
 			const month = {
+				'id'           : monthId[index],
 				'number'       : index+1,
 				'name'         : monthName,
-				'code'         : monthCodes[index],
 				'startDate'    : new Date(displayDate.year, index),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
@@ -256,32 +256,36 @@ function getSeasonArray(date) {
 
 	const seasonArray = [
 		{
-			name:      'Summer',
-			dateStart: new Date(year,11,1),
-			dateEnd:   new Date(year,2,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'summer',
+			name        : 'Summer',
+			dateStart   : new Date(year,11,1),
+			dateEnd     : new Date(year,2,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Autumn',
-			dateStart: new Date(year,2,1),
-			dateEnd:   new Date(year,5,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'autumn',
+			name        : 'Autumn',
+			dateStart   : new Date(year,2,1),
+			dateEnd     : new Date(year,5,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Winter',
-			dateStart: new Date(year,5,1),
-			dateEnd:   new Date(year,8,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'winter',
+			name        : 'Winter',
+			dateStart   : new Date(year,5,1),
+			dateEnd     : new Date(year,8,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Spring',
-			dateStart: new Date(year,8,1),
-			dateEnd:   new Date(year,11,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'spring',
+			name        : 'Spring',
+			dateStart   : new Date(year,8,1),
+			dateEnd     : new Date(year,11,1),
+			radians     : undefined,
+			class       : '',
 		},
 	];
 
@@ -302,32 +306,36 @@ function getQuarterArray(date) {
 
 	const quarterArray = [
 		{
-			name:      'Q1',
-			dateStart: new Date(year,0,1),
-			dateEnd:   new Date(year,3,1),
-			radians:   undefined,
-			class:     '',
+			id          : '1',
+			name        : 'Q1',
+			dateStart   : new Date(year,0,1),
+			dateEnd     : new Date(year,3,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Q2',
-			dateStart: new Date(year,3,1),
-			dateEnd:   new Date(year,6,1),
-			radians:   undefined,
-			class:     '',
+			id          : '2',
+			name        : 'Q2',
+			dateStart   : new Date(year,3,1),
+			dateEnd     : new Date(year,6,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Q3',
-			dateStart: new Date(year,6,1),
-			dateEnd:   new Date(year,9,1),
-			radians:   undefined,
-			class:     '',
+			id          : '3',
+			name        : 'Q3',
+			dateStart   : new Date(year,6,1),
+			dateEnd     : new Date(year,9,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Q4',
-			dateStart: new Date(year,9,1),
-			dateEnd:   new Date(year,12,1),
-			radians:   undefined,
-			class:     '',
+			id          : '4',
+			name        : 'Q4',
+			dateStart   : new Date(year,9,1),
+			dateEnd     : new Date(year,12,1),
+			radians     : undefined,
+			class       : '',
 		},
 	];
 
@@ -352,11 +360,12 @@ function getYearWeekArray(date) {
 
 	let weekArray = [
 		{
-			name:      `${weekNumber}`,
-			dateStart: yearStart,
-			dateEnd:   undefined,
-			radians:   undefined,
-			class:     '',
+			id          : `${weekNumber}`,
+			name        : `${weekNumber}`,
+			dateStart   : yearStart,
+			dateEnd     : undefined,
+			radians     : undefined,
+			class       : '',
 		}
 	];
 
@@ -368,10 +377,11 @@ function getYearWeekArray(date) {
 
 			weekNumber++;
 			weekArray.push({
-				name:      `${weekNumber}`,
-				dateStart:  new Date(thisDate),
-				radians:    undefined,
-				class:      '',
+				id          : `${weekNumber}`,
+				name        : `${weekNumber}`,
+				dateStart   : new Date(thisDate),
+				radians     : undefined,
+				class       : '',
 			});
 		}
 	}
