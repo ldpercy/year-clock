@@ -185,8 +185,6 @@ closedIntervalEnd(date) {}
 This needs a lot of cleanup/rationalisation:
 	Remove globals/paramterise
 	Change monthname map to something else
-	Change radians calc to fn
-
 */
 function getMonthArray(displayDate, monthNames) {
 	const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
@@ -197,10 +195,6 @@ function getMonthArray(displayDate, monthNames) {
 			const nextMonth    = new Date(displayDate.year, index + 1);
 			const endDate      = new Date(nextMonth - 1000);
 
-			//const radiansStart = dateRadians(startDate);
-			//const radiansEnd   = dateRadians(endDate);
-			//const radiansWidth = radiansEnd - radiansStart;
-
 			const month = {
 				'number'       : index+1,
 				'name'         : monthName,
@@ -208,10 +202,6 @@ function getMonthArray(displayDate, monthNames) {
 				'startDate'    : new Date(displayDate.year, index),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
-				//'radiansStart' : radiansStart,
-				//'radiansEnd'   : radiansEnd,
-				//'radiansWidth' : radiansWidth,
-				//'radiansMid'   : midpoint(radiansStart, radiansEnd),
 				'radians'      : dateRangeRadians(startDate, nextMonth),
 				'class'        : getMonthClass(startDate, displayDate.object)
 			};
@@ -227,9 +217,6 @@ function getMonthArray(displayDate, monthNames) {
 Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
-BUG: the radians calc uses the dateRangeRadians function which assumes a context of years.
-This will produce incorrect angles for other periods such as months.
-
 */
 function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 	const result = [];
@@ -247,7 +234,6 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 			isWeekend    : isWeekend(thisDate),
 			class        : getDayClass(thisDate, currentDate),
 			isoShort     : isoDate(thisDate),
-			//radians      : dateRangeRadians(thisDate, nextDay(thisDate)),  // todo: remove/generalise this
 		}
 		result.push(dayInfo);
 		dayCounter++;
