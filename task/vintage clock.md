@@ -187,5 +187,21 @@ Mostly it's just the brice theme with a few embellishments.
 I've tweaked it a little bit more, might end up renaming it to something like 'glass' and give it a proper background.
 
 
-Hands
------
+New/updated Hands
+-----------------
+
+This is probably the last thing I want to do for the vintage clock.
+There are other bits of polish that might be nice, but this is getting pretty close to mvp.
+
+I'd like to add at least one, maybe two, new hand designs for the vintage clock.
+The original hand could also use a little work so that I can resize it naturally without having to overdo the stroke-width.
+This might actually be tricky to do well.
+Some other options that might help:
+* scale with transforms
+* border/stroke behind  (paint-order: stroke;)
+
+There are a few competing concerns here I think:
+* keeping the hand units in the same unit scale as the rest of the drawing
+* keeping the stroke-width similar in size to other borders such as sectors/text
+* styling the path stroke with linecap, linejoin, width etc to achieve smooth corners
+

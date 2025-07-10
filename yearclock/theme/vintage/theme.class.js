@@ -106,7 +106,7 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.hand)}
+				${this.getHand(displayDate, this.hand)}
 			</svg>
 		`;
 
@@ -186,6 +186,30 @@ themeClass['vintage'] = class extends ThemeBase {
 		return svg;
 	}/* getDateLabel */
 
+
+	/*  */
+	getHand = function() {
+		const length = 900;
+		const tail = 200;
+		const width = 20;
+		const radius = 30;
+
+		/*
+		radius = 5
+
+		*/
+
+		const path = `
+			M 0, -${length}
+			L ${width} ${tail}
+			L -${width} ${tail}
+			Z
+			M 30 0
+			A 30,30 0 1 1 -30,00
+			A 30,30 0 1 1 30,00`;
+		const svg = `<path class="hand1" d="${path}" />`;
+		return svg;
+	}
 
 
 }/* vintage */
