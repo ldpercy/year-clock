@@ -106,6 +106,9 @@ themeClass['vintage'] = class extends ThemeBase {
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+
+				<text x="0" y="350" class="label favicon">&#10041;</text>
+
 				${this.getHand(displayDate, this.hand)}
 			</svg>
 		`;

@@ -134,6 +134,16 @@ svg.yearclock .label {
 		dominant-baseline: central;
 	}
 
+	&.favicon {
+		text-anchor: middle;
+		font-size: 3em;
+		dominant-baseline: central;
+		fill: var(--sectordark);
+		stroke: var(--darkGrey);
+		stroke-width: 2;
+		stroke-linejoin: round;
+	}
+
 }
 
 
