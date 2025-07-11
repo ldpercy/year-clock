@@ -111,7 +111,7 @@ themeClass['vintage'] = class extends ThemeBase {
 					${this.getIcon()}
 				</svg>
 
-				${this.getHand(displayDate, this.hand)}
+				${this.getHand2(displayDate, this.hand)}
 			</svg>
 		`;
 
@@ -193,10 +193,10 @@ themeClass['vintage'] = class extends ThemeBase {
 	}/* getDateLabel */
 
 
-	/* getHand
+	/* getHand1
 	Test of a more configurable hand shape
 	*/
-	getHand = function() {
+	getHand1 = function() {
 		const length = 900;
 		const tail = 100;
 		const width = 50;
@@ -224,7 +224,62 @@ themeClass['vintage'] = class extends ThemeBase {
 			Z`;
 		const svg = `<path class="hand1" d="${path}" />`;
 		return svg;
-	}
+	}/* getHand1 */
+
+
+
+
+	/* getHand2
+	Test of a more configurable hand shape
+	*/
+	getHand2 = function() {
+		const length = 900;
+		const tail = 150;
+		const width = 30;
+
+		const tipRadius = 5;
+
+		const circle = 350;
+		const circleRadius = 150;
+		const circleInnerRadius = 100;
+		const circleX = circleRadius * (5/13);
+		const circleY = circleRadius * (12/13);
+
+		const pinRadius = 50;
+		const pinX = pinRadius * (5/13);
+		const pinY = pinRadius * (12/13);
+		/* Need to use a better pythagorean triad or do the trig properly */
+
+		const path = `
+			M -${tipRadius}, -${length}
+			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${length}
+
+			L ${circleX} -${circle+circleY}
+			A ${circleRadius},${circleRadius} 0 0 1 ${circleX} -${circle-circleY}
+
+
+			L ${pinX} -${pinY}
+			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
+
+			L ${width} ${tail}
+			L -${width} ${tail}
+
+			L -${pinX} ${pinY}
+			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
+
+			L ${-circleX} -${circle-circleY}
+			A ${circleRadius},${circleRadius} 0 0 1 ${-circleX} -${circle+circleY}
+
+			Z
+
+			M 0 ${-circle-circleInnerRadius}
+			A ${circleInnerRadius},${circleInnerRadius} 0 0 1 0 ${-circle+circleInnerRadius}
+			A ${circleInnerRadius},${circleInnerRadius} 0 0 1 0 ${-circle-circleInnerRadius}
+			Z
+			`;
+		const svg = `<path class="hand2" d="${path}" />`;
+		return svg;
+	}/* getHand2 */
 
 
 	getIcon = function() {
