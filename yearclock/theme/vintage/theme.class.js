@@ -190,26 +190,35 @@ themeClass['vintage'] = class extends ThemeBase {
 	}/* getDateLabel */
 
 
-	/*  */
+	/* getHand
+	Test of a more configurable hand shape
+	*/
 	getHand = function() {
 		const length = 900;
-		const tail = 200;
-		const width = 20;
-		const radius = 30;
+		const tail = 100;
+		const width = 50;
 
-		/*
-		radius = 5
+		const tipRadius = 5;
 
-		*/
+		const pinRadius = 25;
+		const pinX = pinRadius * (3/5);
+		const pinY = pinRadius * (4/5);
+		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
-			M 0, -${length}
+			M -${tipRadius}, -${length}
+			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${length}
+
+			L ${pinX} -${pinY}
+			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
+
 			L ${width} ${tail}
 			L -${width} ${tail}
-			Z
-			M 30 0
-			A 30,30 0 1 1 -30,00
-			A 30,30 0 1 1 30,00`;
+
+			L -${pinX} ${pinY}
+			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
+
+			Z`;
 		const svg = `<path class="hand1" d="${path}" />`;
 		return svg;
 	}
