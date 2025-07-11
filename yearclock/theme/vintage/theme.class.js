@@ -229,8 +229,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	getIcon = function() {
 		const path =
-			`<path class="label favicon" d="M 500 866 L -866 -500 L 1000 0 L -866 500 L 500 -866 L 0 1000 L -500 -866 L 866 500 L -1000 0 L 866 -500 L -500 866 L 0 -1000  Z"/>`;
-
+			`<path class="label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>`;
 		return path;
 	}
 

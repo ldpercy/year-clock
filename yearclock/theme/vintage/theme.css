@@ -139,6 +139,7 @@ svg.yearclock .label {
 		font-size: 3em;
 		dominant-baseline: central;
 		fill: var(--sectordark);
+		fill-rule: evenodd; /* nonzero, evenodd */
 		stroke: var(--darkGrey);
 		stroke-width: 5;
 		stroke-linejoin: round;
