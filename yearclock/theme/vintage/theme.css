@@ -140,7 +140,7 @@ svg.yearclock .label {
 		dominant-baseline: central;
 		fill: var(--sectordark);
 		stroke: var(--darkGrey);
-		stroke-width: 2;
+		stroke-width: 5;
 		stroke-linejoin: round;
 	}
 

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
+
+
+	<style>
+		path {
+			stroke: blue;
+			stroke-width: 1;
+			fill: #00fa;  <!-- none; -->
+			fill-rule: evenodd; <!-- evenodd, nonzero -->
+			stroke-linecap: round;
+			stroke-linejoin: bevel;
+		}
+	</style>
+
+	<path id="star" d="M 500 866 L -866 -500 L 1000 0 L -866 500 L 500 -866 L 0 1000 L -500 -866 L 866 500 L -1000 0 L 866 -500 L -500 866 L 0 -1000  Z"/>
+
+</svg>

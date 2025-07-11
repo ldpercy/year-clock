@@ -107,13 +107,16 @@ themeClass['vintage'] = class extends ThemeBase {
 
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 
-				<text x="0" y="350" class="label favicon">&#10041;</text>
+				<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
+					${this.getIcon()}
+				</svg>
 
 				${this.getHand(displayDate, this.hand)}
 			</svg>
 		`;
 
 		/*
+		<text x="0" y="350" class="label favicon">&#10041;</text>
 		*/
 
 		return clockSVG;
@@ -221,6 +224,14 @@ themeClass['vintage'] = class extends ThemeBase {
 			Z`;
 		const svg = `<path class="hand1" d="${path}" />`;
 		return svg;
+	}
+
+
+	getIcon = function() {
+		const path =
+			`<path class="label favicon" d="M 500 866 L -866 -500 L 1000 0 L -866 500 L 500 -866 L 0 1000 L -500 -866 L 866 500 L -1000 0 L 866 -500 L -500 866 L 0 -1000  Z"/>`;
+
+		return path;
 	}
 
 
