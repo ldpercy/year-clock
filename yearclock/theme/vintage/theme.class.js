@@ -111,7 +111,7 @@ themeClass['vintage'] = class extends ThemeBase {
 					${this.getIcon()}
 				</svg>
 
-				${this.getHand2(displayDate, this.hand)}
+				${this.getHands(displayDate, this.hand)}
 			</svg>
 		`;
 
@@ -232,15 +232,17 @@ themeClass['vintage'] = class extends ThemeBase {
 	/* getHand2
 	Test of a more configurable hand shape
 	*/
-	getHand2 = function() {
-		const length = 900;
+	getHandPath = function(length, transform, cssClass, id)
+	/* getHand2 = function() */
+	{
+		//const length = 900;
 		const tail = 150;
 		const width = 30;
 
 		const tipRadius = 5;
 
 		const circle = 350;
-		const circleRadius = 150;
+		const circleRadius = 130;
 		const circleInnerRadius = 100;
 		const circleX = circleRadius * (5/13);
 		const circleY = circleRadius * (12/13);
@@ -277,7 +279,13 @@ themeClass['vintage'] = class extends ThemeBase {
 			A ${circleInnerRadius},${circleInnerRadius} 0 0 1 0 ${-circle-circleInnerRadius}
 			Z
 			`;
-		const svg = `<path class="hand2" d="${path}" />`;
+		/* const svg = `<path class="hand2" d="${path}" />`; */
+		const svg = `
+			<g class="${cssClass}" transform="${transform}">
+				<circle class="hand2 lens" cx="0" cy="${-circle}" r="${circleInnerRadius}"/>
+				<path id="${id}" class="hand2 ${cssClass}" d="${path}"/>
+			</g>
+		`;
 		return svg;
 	}/* getHand2 */
 

@@ -48,7 +48,7 @@ svg.yearclock {
 }
 
 svg.yearclock {
-	fill: url(#Gradient1);
+
 	/* background-color: burlywood; */
 	/* background-image: url(#Gradient1); */
 	font-size: 48px;
@@ -70,6 +70,7 @@ svg.yearclock {
 
 svg.yearclock .body   {
 	/* fill: wheat; */
+	fill: url(#Gradient1);
 	stroke: grey;
 	stroke-width: 3;
 	filter: drop-shadow(0px 20px 20px gray);
@@ -183,3 +184,15 @@ svg.yearclock path.hand2  {
 	stroke-linejoin: round;
 }
 
+.yearHand .hand2.lens  {
+	fill: #ff03;
+	/* fill: none; */
+	backdrop-filter: blur(10px);
+	/* backdrop-filter:brightness(50%); */
+}
+
+.monthHand .hand2.lens  {
+	/* fill: #00f3; */
+	fill: transparent;
+	backdrop-filter:hue-rotate(90deg);
+}

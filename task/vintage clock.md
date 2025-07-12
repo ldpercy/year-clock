@@ -205,3 +205,30 @@ There are a few competing concerns here I think:
 * keeping the stroke-width similar in size to other borders such as sectors/text
 * styling the path stroke with linecap, linejoin, width etc to achieve smooth corners
 
+
+### Hole hand
+
+I've run ahead and added a couple of proof-of-concept hand methods.
+
+First is a more configurable version of the original hand that includes a proper radius for the pointer tip so I should be able to avoid abusng stroke properties.
+
+Second is a hand with a hole in it - an idea I'd been wondering about while looking at photos of vintage clocks.
+Some actual examples have attractive swirls and shapes, I can't code those by hand would need to scan+vectorify in inkscape.
+
+Both new hands are still in early stages and need a lot more polish to get the parameters right and properly exposed by the methods.
+
+The idea for the hole-hand was originally that static parts of the clock face would be circled as the hand turned (the year and logo for the vintage clock).
+
+But immediately I started wondering whether filters could be used to apply effects to things in the circle.
+So I've starting playing around with the idea of placing a lens in the hole.
+Unfortunately so far I can only apply colour transparencies - filters seem to apply only to the element itself, not to what's underneath.
+Will try to figure out if there's a way to do it though (i think it can be done), because a stack of potentially very interesting effects could ensue.
+For instance the plain-svg theme that I've moving towards a glassy sort of idea could gain some extra blur/translucency effects.
+
+
+Bingo - think this is it:
+https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
+
+Or maybe not... might have to use svg filters instead
+
+
