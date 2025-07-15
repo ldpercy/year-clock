@@ -24,7 +24,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	monthNumber = {
-		radius         : 900,
+		radius         : 950,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
@@ -44,7 +44,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 	dayNumber = {
-		radius         : 600,
+		radius         : 615,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
@@ -58,7 +58,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	handConfig = {
 		year : {
-			length : 850,
+			length : 900,
 			function : ()=>this.getHand1,
 		},
 		month : {

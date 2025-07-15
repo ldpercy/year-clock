@@ -106,14 +106,13 @@ svg.yearclock .day .sector.weekend
 
 svg.yearclock .label {
 	text-anchor: middle;
-	dominant-baseline: middle;
+	dominant-baseline: central;
 	fill: var(--darkGrey);
 	stroke: none;
 	font-variant: small-caps;
 
 	&.monthName text {
 		font-size: 1em;
-		dominant-baseline: central;
 	}
 
 	&.monthNumber text{
@@ -132,13 +131,11 @@ svg.yearclock .label {
 	&.dateLabel {
 		text-anchor: middle;
 		font-size: 4em;
-		dominant-baseline: central;
 	}
 
 	&.favicon {
 		text-anchor: middle;
 		font-size: 3em;
-		dominant-baseline: central;
 		fill: var(--sectordark);
 		fill-rule: evenodd; /* nonzero, evenodd */
 		stroke: var(--darkGrey);
