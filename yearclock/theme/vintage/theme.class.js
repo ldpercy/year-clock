@@ -261,11 +261,15 @@ themeClass['vintage'] = class extends ThemeBase {
 		const pinY = pinRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
-		const path = `
+		/*
 			M -${tipRadius}, -${param.length}
 			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
+		*/
 
-			L ${circleX} -${circle+circleY}
+		const path = `
+
+
+			M 0 -${circle+circleRadius}
 			A ${circleRadius},${circleRadius} 0 0 1 ${circleX} -${circle-circleY}
 
 
@@ -279,7 +283,7 @@ themeClass['vintage'] = class extends ThemeBase {
 			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
 
 			L ${-circleX} -${circle-circleY}
-			A ${circleRadius},${circleRadius} 0 0 1 ${-circleX} -${circle+circleY}
+			A ${circleRadius},${circleRadius} 0 0 1 0, -${circle+circleRadius}
 
 			Z
 

@@ -184,15 +184,10 @@ svg.yearclock path.hand2  {
 	stroke-linejoin: round;
 }
 
-.yearHand .hand2.lens  {
+.monthHand .lens  {
 	fill: #ff03;
 	/* fill: none; */
 	backdrop-filter: blur(10px);
 	/* backdrop-filter:brightness(50%); */
-}
-
-.monthHand .hand2.lens  {
-	/* fill: #00f3; */
-	fill: transparent;
 	backdrop-filter:hue-rotate(90deg);
 }
