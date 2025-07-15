@@ -64,7 +64,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		month : {
 			function : ()=>this.getHoleHand,
 			length : 790,
-			circleCenter: 660,
+			circleCenter: 670,
 		}
 	};
 
@@ -153,11 +153,6 @@ themeClass['vintage'] = class extends ThemeBase {
 					<stop class="stop1" offset="0%" />
 					<stop class="stop2" offset="50%" />
 					<stop class="stop3" offset="100%" />
-				</linearGradient>
-				<linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
-					<stop offset="0%" stop-color="red" />
-					<stop offset="50%" stop-color="black" stop-opacity="0" />
-					<stop offset="100%" stop-color="blue" />
 				</linearGradient>
 			</defs>
 		`;
@@ -295,6 +290,14 @@ themeClass['vintage'] = class extends ThemeBase {
 		/* const svg = `<path class="hand2" d="${path}" />`; */
 		const svg = `
 			<g id="${id}" class="${cssClass}" transform="${transform}">
+				<defs>
+					<radialGradient id="lensGradient">
+						<stop offset="80%" stop-color="#ff02" />
+						<stop offset="90%" stop-color="#ff99" />
+						<stop offset="100%" stop-color="white" />
+					</radialGradient>
+				</defs>
+
 				<circle class="hand2 lens" cx="0" cy="${-circle}" r="${circleInnerRadius}"/>
 				<path class="hand2" d="${path}"/>
 			</g>
