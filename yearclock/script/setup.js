@@ -14,7 +14,7 @@ const page = {
 	default :
 	{
 		date        : new Date(),
-		theme       : 'season-out',
+		theme       : 'vintage',
 		style       : '',
 		language    : 'en',
 		background  : '',

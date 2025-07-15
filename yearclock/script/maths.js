@@ -11,11 +11,11 @@ function Point(x, y)
 	this.y = y;
 }
 
-function polarPoint (angle, radius)
+function polarPoint(radians, radius)
 {
 	return new Point(
-		radius * Math.sin(angle),
-		radius * -Math.cos(angle)
+		radius * Math.sin(radians),
+		radius * -Math.cos(radians)
 	)
 }
 
@@ -51,6 +51,7 @@ function divisionDegrees(divisions, number) {
 		middle : (number-0.5) * (360 / divisions),
 		end    : (number)     * (360 / divisions),
 	}
+	result.width = result.end - result.start;
 	return result;
 }
 
@@ -59,11 +60,12 @@ Given integer divisions of a circle, return the start, middle and end angle of t
 Divisions are discrete so counting is 1-based.
 */
 function divisionRadians(divisions, number) {
-	let result = {
+	const result = {
 		start  : (number-1)   * (Math.TAU / divisions),
 		middle : (number-0.5) * (Math.TAU / divisions),
 		end    : (number)     * (Math.TAU / divisions),
 	}
+	result.width = result.end - result.start;
 	return result;
 }
 

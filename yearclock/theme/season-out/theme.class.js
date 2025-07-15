@@ -27,8 +27,8 @@ themeClass['season-out'] = class extends ThemeBase {
 		invert         : false,
 	};
 
-	hand = {
-		yearLength	: 800,
+	handConfig = {
+		year : { length : 800 },
 	};
 
 	//
@@ -65,16 +65,19 @@ themeClass['season-out'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+		displayDate.seasonArray  = getSeasonArray(displayDate.object);
+
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${this.getFace(this.clockRadius)}
 				${this.getSectors('season', displayDate.seasonArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
-				${this.getMonthSectors(displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
+				${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
+				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.hand)}
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

@@ -1,0 +1,12 @@
+svg#clock {
+	background-color: brown;
+	font-size: 48px;
+	font-family:fantasy;
+}
+
+svg#clock .face {
+	fill: burlywood;
+	stroke: silver;
+
+}
+

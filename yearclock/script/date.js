@@ -26,8 +26,7 @@ function createDisplayDate(date, language) {
 
 	// Set up period arrays
 	result.monthArray   = getMonthArray(result, result.monthNames);
-	result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
-	result.seasonArray  = getSeasonArray(date);
+	//result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
 
 	//log('createDisplayDate',result);
 	return result;
@@ -79,12 +78,12 @@ function isWeekend(d) {
 	return dayNumber == 0 || dayNumber == 6
 }
 
-function getDayClass(date, displayDate) { // this needs attention
+function getDayClass(date, currentDate) { // this needs attention
 	//log(arguments);
 	result = 'weekday';
 	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
 	if (date.getDate() === 1) result += ' first';
-	if (datesAreEqual(date, displayDate)) {
+	if (datesAreEqual(date, currentDate)) {
 		log('current day:',date);
 		result += ' current';
 	}
@@ -125,6 +124,7 @@ function daysInYear(date) {
 
 /* dateRangeRadians
 Given two dates return the start, middle and end angles in radians, as well as the width in radians.
+Gives angles in the context of years.
 */
 function dateRangeRadians(date1, date2) {
 	const diy1 = daysInYear(date1);
@@ -185,31 +185,24 @@ closedIntervalEnd(date) {}
 This needs a lot of cleanup/rationalisation:
 	Remove globals/paramterise
 	Change monthname map to something else
-	Change radians calc to fn
-
 */
 function getMonthArray(displayDate, monthNames) {
-	const monthCodes = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+	const monthId = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
 
 	const result = monthNames.map(
-		function( monthName, monthNumber ) {
-			const startDate    = new Date(displayDate.year, monthNumber);
-			const nextMonth    = new Date(displayDate.year, monthNumber + 1);
+		function( monthName, index ) {
+			const startDate    = new Date(displayDate.year, index);
+			const nextMonth    = new Date(displayDate.year, index + 1);
 			const endDate      = new Date(nextMonth - 1000);
-			const radiansStart = dateRadians(startDate);
-			const radiansEnd   = dateRadians(endDate);
-			const radiansWidth = radiansEnd - radiansStart;
 
 			const month = {
+				'id'           : monthId[index],
+				'number'       : index+1,
 				'name'         : monthName,
-				'code'         : monthCodes[monthNumber],
-				'startDate'    : new Date(displayDate.year, monthNumber),
+				'startDate'    : new Date(displayDate.year, index),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
-				'radiansStart' : radiansStart,
-				'radiansEnd'   : radiansEnd,
-				'radiansWidth' : radiansWidth,
-				'radiansMid'   : midpoint(radiansStart, radiansEnd),
+				'radians'      : dateRangeRadians(startDate, nextMonth),
 				'class'        : getMonthClass(startDate, displayDate.object)
 			};
 			return month;
@@ -225,7 +218,7 @@ Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
+function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 	const result = [];
 
 	let dayCounter = 1;
@@ -239,9 +232,8 @@ function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 			date         : new Date(thisDate),
 			isFirst      : thisDate.getDate() === 1,
 			isWeekend    : isWeekend(thisDate),
-			class        : getDayClass(thisDate, displayDate),
+			class        : getDayClass(thisDate, currentDate),
 			isoShort     : isoDate(thisDate),
-			radians      : dateRangeRadians(thisDate, nextDay(thisDate)),
 		}
 		result.push(dayInfo);
 		dayCounter++;
@@ -250,6 +242,10 @@ function getPeriodDayArray(dateStart, dateEnd, displayDate, locale) {
 	return result;
 }/* getPeriodDayArray */
 
+
+function yearDayRadians(date) {
+	return dateRangeRadians(date, nextDay(date))
+}
 
 
 /* getSeasonArray
@@ -260,32 +256,36 @@ function getSeasonArray(date) {
 
 	const seasonArray = [
 		{
-			name:      'Summer',
-			dateStart: new Date(year,11,1),
-			dateEnd:   new Date(year,2,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'summer',
+			name        : 'Summer',
+			dateStart   : new Date(year,11,1),
+			dateEnd     : new Date(year,2,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Autumn',
-			dateStart: new Date(year,2,1),
-			dateEnd:   new Date(year,5,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'autumn',
+			name        : 'Autumn',
+			dateStart   : new Date(year,2,1),
+			dateEnd     : new Date(year,5,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Winter',
-			dateStart: new Date(year,5,1),
-			dateEnd:   new Date(year,8,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'winter',
+			name        : 'Winter',
+			dateStart   : new Date(year,5,1),
+			dateEnd     : new Date(year,8,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Spring',
-			dateStart: new Date(year,8,1),
-			dateEnd:   new Date(year,11,1),
-			radians:   undefined,
-			class:     '',
+			id          : 'spring',
+			name        : 'Spring',
+			dateStart   : new Date(year,8,1),
+			dateEnd     : new Date(year,11,1),
+			radians     : undefined,
+			class       : '',
 		},
 	];
 
@@ -306,32 +306,36 @@ function getQuarterArray(date) {
 
 	const quarterArray = [
 		{
-			name:      'Q1',
-			dateStart: new Date(year,0,1),
-			dateEnd:   new Date(year,3,1),
-			radians:   undefined,
-			class:     '',
+			id          : '1',
+			name        : 'Q1',
+			dateStart   : new Date(year,0,1),
+			dateEnd     : new Date(year,3,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Q2',
-			dateStart: new Date(year,3,1),
-			dateEnd:   new Date(year,6,1),
-			radians:   undefined,
-			class:     '',
+			id          : '2',
+			name        : 'Q2',
+			dateStart   : new Date(year,3,1),
+			dateEnd     : new Date(year,6,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Q3',
-			dateStart: new Date(year,6,1),
-			dateEnd:   new Date(year,9,1),
-			radians:   undefined,
-			class:     '',
+			id          : '3',
+			name        : 'Q3',
+			dateStart   : new Date(year,6,1),
+			dateEnd     : new Date(year,9,1),
+			radians     : undefined,
+			class       : '',
 		},
 		{
-			name:      'Q4',
-			dateStart: new Date(year,9,1),
-			dateEnd:   new Date(year,12,1),
-			radians:   undefined,
-			class:     '',
+			id          : '4',
+			name        : 'Q4',
+			dateStart   : new Date(year,9,1),
+			dateEnd     : new Date(year,12,1),
+			radians     : undefined,
+			class       : '',
 		},
 	];
 
@@ -356,11 +360,12 @@ function getYearWeekArray(date) {
 
 	let weekArray = [
 		{
-			name:      `${weekNumber}`,
-			dateStart: yearStart,
-			dateEnd:   undefined,
-			radians:   undefined,
-			class:     '',
+			id          : `${weekNumber}`,
+			name        : `${weekNumber}`,
+			dateStart   : yearStart,
+			dateEnd     : undefined,
+			radians     : undefined,
+			class       : '',
 		}
 	];
 
@@ -372,10 +377,11 @@ function getYearWeekArray(date) {
 
 			weekNumber++;
 			weekArray.push({
-				name:      `${weekNumber}`,
-				dateStart:  new Date(thisDate),
-				radians:    undefined,
-				class:      '',
+				id          : `${weekNumber}`,
+				name        : `${weekNumber}`,
+				dateStart   : new Date(thisDate),
+				radians     : undefined,
+				class       : '',
 			});
 		}
 	}

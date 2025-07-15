@@ -1,0 +1,194 @@
+/*
+** vintage theme styles
+*/
+svg.yearclock {
+
+	--lightblue: #ade9;
+	--lightpink: #fbc;
+	--ivory: #ffee;
+
+	--sectorlight: cornsilk; /* #fff7 */
+	--sectordark: wheat;
+
+	--darkGrey: #222c;
+
+
+	/*
+	background: repeating-linear-gradient(
+		45deg,
+		ivory,
+		ivory 2vw,
+		gold 2.4vw,
+		gold 2.6vw
+	); */
+
+
+	background:
+		repeating-linear-gradient(
+			to right,
+			var(--ivory),
+			var(--ivory) 2vw,
+			var(--lightblue) 2.4vw,
+			var(--lightblue) 2.6vw,
+			var(--lightpink) 3vw,
+			var(--lightpink) 7vw,
+			var(--lightblue) 7.4vw,
+			var(--lightblue) 7.6vw,
+			var(--ivory) 8vw,
+			var(--ivory) 10vw
+		),
+		repeating-linear-gradient(
+			135deg,
+			ivory,
+			ivory 1vh,
+			gold 2vh,
+			gold 3vh,
+			ivory 3.3vh
+		);
+}
+
+svg.yearclock {
+
+	/* background-color: burlywood; */
+	/* background-image: url(#Gradient1); */
+	font-size: 48px;
+	font-family: serif;/*  cursive, */
+}
+
+
+.stop1 {
+	stop-color:brown;
+}
+.stop2 {
+	stop-color: burlywood;
+	stop-opacity: 1;
+}
+.stop3 {
+	stop-color: brown;
+}
+
+
+svg.yearclock .body   {
+	/* fill: wheat; */
+	fill: url(#Gradient1);
+	stroke: grey;
+	stroke-width: 3;
+	filter: drop-shadow(0px 30px 20px #444);
+}
+
+
+svg.yearclock .face   {
+	fill: ivory; /* cornsilk */
+	stroke: silver;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+
+
+svg.yearclock .sector {
+	stroke:black;
+	stroke-width:1px;
+}
+
+svg.yearclock .month .sector:nth-of-type(odd),
+svg.yearclock .day .sector.weekday
+{
+	fill: var(--sectorlight);
+}
+
+svg.yearclock .month .sector:nth-of-type(even),
+svg.yearclock .day .sector.weekend
+{
+	fill: var(--sectordark);
+}
+
+
+svg.yearclock .label {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: var(--darkGrey);
+	stroke: none;
+	font-variant: small-caps;
+
+	&.monthName text {
+		font-size: 1em;
+		dominant-baseline: central;
+	}
+
+	&.monthNumber text{
+		font-size: 5em;
+	}
+
+	&.dayName text {
+		font-size: 1em;
+	}
+
+	&.dayNumber text {
+		font-size: 1em;
+		font-weight:bold;
+	}
+
+	&.dateLabel {
+		text-anchor: middle;
+		font-size: 4em;
+		dominant-baseline: central;
+	}
+
+	&.favicon {
+		text-anchor: middle;
+		font-size: 3em;
+		dominant-baseline: central;
+		fill: var(--sectordark);
+		fill-rule: evenodd; /* nonzero, evenodd */
+		stroke: var(--darkGrey);
+		stroke-width: 5;
+		stroke-linejoin: round;
+	}
+
+}
+
+
+
+svg.yearclock .hands {
+	filter: drop-shadow(0px 20px 10px gray);
+}
+
+svg.yearclock path.yearHand  {
+	stroke: black;
+	fill: black;
+	stroke-width: 25;
+	stroke-linejoin: round;
+}
+
+svg.yearclock path.monthHand  {
+	stroke:dimgrey;
+	fill: dimgrey;
+	stroke-width: 15;
+	stroke-linejoin: round;
+}
+
+
+svg.yearclock path.hand1  {
+	stroke:grey;
+	fill: silver;
+	stroke-width: 3;
+	stroke-linejoin: round;
+}
+
+svg.yearclock path.hand2  {
+	stroke:grey;
+	fill: white;
+	fill-rule: evenodd;
+	stroke-width: 3;
+	stroke-linejoin: round;
+}
+
+.monthHand .lens  {
+	/* fill: #ff03; */
+	backdrop-filter: blur(10px);
+	/* backdrop-filter:brightness(50%); */
+	backdrop-filter:hue-rotate(90deg);
+
+	fill: url(#lensGradient);
+}

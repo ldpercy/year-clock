@@ -132,8 +132,9 @@ path.sector.day.current
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
 
-.monthLabels text {
-	font-size: 3ex;
+
+.label.month text {
+	font-size: 4ex;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
 

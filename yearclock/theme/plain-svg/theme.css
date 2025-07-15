@@ -10,28 +10,28 @@ svg.yearclock {
 
 
 svg.yearclock .face   {
-	fill: whitesmoke;
+	fill: #fff5; /* f5f5f555 */
 	stroke: silver;
 	stroke-width: 10;
 	filter: drop-shadow(0px 10px 10px gray);
 }
 
 
-svg.yearclock .sector * { stroke:none; }
-
-svg.yearclock .sector.jan { fill: #E42D1A }
-svg.yearclock .sector.feb { fill: #983021 }
-svg.yearclock .sector.mar { fill: #89493B }
-svg.yearclock .sector.apr { fill: #7C5E57 }
-svg.yearclock .sector.may { fill: #6F6E6D }
-svg.yearclock .sector.jun { fill: #738C92 }
-svg.yearclock .sector.jul { fill: #7ABECF }
-svg.yearclock .sector.aug { fill: #5FB69C }
-svg.yearclock .sector.sep { fill: #2EA544 }
-svg.yearclock .sector.oct { fill: #AEC013 }
-svg.yearclock .sector.nov { fill: #F3C301 }
-svg.yearclock .sector.dec { fill: #F18E17 }
-
+svg.yearclock .sectorGroup.month {
+	path.sector { stroke:none; }
+	.sector.month-jan { fill: #E42D1A }
+	.sector.month-feb { fill: #983021 }
+	.sector.month-mar { fill: #89493B }
+	.sector.month-apr { fill: #7C5E57 }
+	.sector.month-may { fill: #6F6E6D }
+	.sector.month-jun { fill: #738C92 }
+	.sector.month-jul { fill: #7ABECF }
+	.sector.month-aug { fill: #5FB69C }
+	.sector.month-sep { fill: #2EA544 }
+	.sector.month-oct { fill: #AEC013 }
+	.sector.month-nov { fill: #F3C301 }
+	.sector.month-dec { fill: #F18E17 }
+}
 
 
 svg.yearclock .tick * {
@@ -57,12 +57,14 @@ svg.yearclock .label text {
 	dominant-baseline: middle;
 	fill: white;
 	stroke: none;
-	font-size: 1em;
+	font-size: 1.3em;
 }
 
 
 svg.yearclock .label.dateLabel {
-	fill: gray;
+	fill: white;
+	stroke: black;
+	stroke-width:1px;
 	text-anchor: middle;
 	font-size: 5.2em;
 	dominant-baseline: central;
@@ -74,8 +76,8 @@ svg.yearclock .hands {
 }
 
 svg.yearclock path.yearHand {
-	stroke: black;
-	fill: black;
+	stroke: white;
+	fill: white;
 	stroke-width: 15;
 	stroke-linejoin: round;
 }

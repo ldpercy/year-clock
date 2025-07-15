@@ -27,8 +27,8 @@ themeClass['brice'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	hand = {
-		yearLength : 1030,
+	handConfig = {
+		year : { length : 1030 }
 	};
 
 	dateLabelPosition   = 500;
@@ -38,14 +38,16 @@ themeClass['brice'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${this.getFace(this.clockRadius)}
-				${this.getMonthSectors(displayDate.monthArray, this.outerRadius, this.innerRadius)}
-				${this.getMonthLabels(displayDate.monthArray, this.monthLabel)}
+				${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
+				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.hand)}
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

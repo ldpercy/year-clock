@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
+
+
+	<style>
+		path {
+			stroke: blue;
+			stroke-width: 1;
+			fill: #00fa;  <!-- none; -->
+			fill-rule: evenodd; <!-- evenodd, nonzero -->
+			stroke-linecap: round;
+			stroke-linejoin: bevel;
+		}
+	</style>
+
+	<!-- Single path, point-step = 5
+	<path id="star" d="M 500 866 L -866 -500 L 1000 0 L -866 500 L 500 -866 L 0 1000 L -500 -866 L 866 500 L -1000 0 L 866 -500 L -500 866 L 0 -1000  Z"/>
+	-->
+
+	<!-- 4 triangles, even offset: -->
+	<path class="star" d="M 259 966 L -966 -259 L 707 -707 M -259 966 L -707 -707 L 966 -259 M -707 707 L -259 -966 L 966 259 M -966 259 L 259 -966 L 707 707  Z"></path>
+
+
+</svg>
