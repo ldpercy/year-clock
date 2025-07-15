@@ -30,8 +30,8 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	};
 
 	handConfig = {
-		yearLength  : 600,
-		monthLength : 850,
+		year : { length : 600 },
+		month : { length : 850 },
 	};
 
 

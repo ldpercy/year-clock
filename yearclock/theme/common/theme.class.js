@@ -28,7 +28,7 @@ themeClass['common'] = class extends ThemeBase {
 	};
 
 	handConfig = {
-		yearLength : 1030,
+		year : { length : 1030 },
 	};
 
 	dateLabelPosition   = 500;

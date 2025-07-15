@@ -28,7 +28,7 @@ themeClass['season-out'] = class extends ThemeBase {
 	};
 
 	handConfig = {
-		yearLength	: 800,
+		year : { length : 800 },
 	};
 
 	//

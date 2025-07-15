@@ -179,7 +179,7 @@ class ThemeBase extends Clock {
 
 		var monthHand = '';
 
-		if (handConfig.monthLength) {
+		if (handConfig.month) {
 			// calculate month hand params
 			const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 			const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
@@ -211,7 +211,7 @@ class ThemeBase extends Clock {
 			A 30,30 0 1 1 30,00`;
 		const svg = `<path  id="${id}" class="${cssClass}" d="${path}" transform="${transform}"></path>`;
 		return svg;
-	}
+	}/* getBasicHand */
 
 
 

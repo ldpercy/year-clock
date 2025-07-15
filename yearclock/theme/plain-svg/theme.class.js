@@ -27,7 +27,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 	};
 
 	handConfig = {
-		yearLength : 940,
+		year : { length : 940 },
 	};
 
 	dateLabelPosition         = 530;

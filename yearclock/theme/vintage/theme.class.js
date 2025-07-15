@@ -54,15 +54,18 @@ themeClass['vintage'] = class extends ThemeBase {
 	weekdayMarkerLength = 40;
 	weekendMarkerLength = 55;
 
-
 	dateLabelPosition         = new Point(0,350);
 
-
 	handConfig = {
-		yearLength	: 850,
-		monthLength : 550,
+		year : {
+			length : 850,
+			function : ()=>this.getHand1,
+		},
+		month : {
+			length : 550,
+			function : ()=>this.getHoleHand,
+		}
 	};
-
 
 
 	/* getClockSVG
