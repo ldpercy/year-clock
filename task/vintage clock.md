@@ -1,6 +1,10 @@
 Vintage clock
 =============
 
+```
+2025-07-15		1.3.0	Done
+```
+
 I've been messing about with different fonts and colours on the wall clock to try to get a more old-timey look.
 Only so much I can do with styles, will begin a new theme.
 
@@ -285,5 +289,34 @@ const yearHand = yearHandFunc(handConfig.year.length, yearTransform, 'yearHand',
 Why and how this works is ... mysterious - I really should try to boil this down.
 
 
+### Dressing
+
+I've quickly added a lens gradient mask to the lens which looks not-too-bad.
+
+
+
+Wrapup
+------
+
+The temptation at this point is to tweak everything more.
+There's lots of little things that I reckon could still be done, but I really want to get it out there first.
+
+* Renamed the old 'sector-day' theme to 'vintage'
+* Added retro/vintage style wallpaper background & wooden clock body
+* Moved some of the period arrays out of the displayDate builder to their respective themes
+* Also moved the period array radian calcs to the themes
+* Removed old methods: getMonthLabels, getMonthSectors
+* Added ability to draw text on arc paths
+* Some tweaks and updates for the 'plain-svg' theme
+* Added some new customisable hands, including one with a lens (need more work)
+* Added a little 12 pointed star icon representing the months
+* Hands are now more configurable, but more work needed
+
+
+New tasks:
+* car dashboard theme - to test different angular contexts
+* add some basic testing
+
+Additionally a few days ago I added a GitHub pages build for this project, so the clock is now live out there on the internet; there are various tidies I'd like to make in respect to that.
 
 

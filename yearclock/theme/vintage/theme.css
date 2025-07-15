@@ -73,7 +73,7 @@ svg.yearclock .body   {
 	fill: url(#Gradient1);
 	stroke: grey;
 	stroke-width: 3;
-	filter: drop-shadow(0px 20px 20px gray);
+	filter: drop-shadow(0px 30px 20px #444);
 }
 
 
