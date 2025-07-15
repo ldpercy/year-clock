@@ -191,7 +191,7 @@ class ThemeBase extends Clock {
 			const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 			// get month hand
 			const monthHandfFunc = (handConfig.month.function)  ? handConfig.month.function() : this.getBasicHand;
-			monthHand = monthHandfFunc(handConfig.month.length, monthTransform, 'monthHand', '');
+			monthHand = monthHandfFunc(handConfig.month, monthTransform, 'monthHand', '');
 		}
 
 		const svg = `

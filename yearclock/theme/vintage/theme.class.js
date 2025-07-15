@@ -62,8 +62,9 @@ themeClass['vintage'] = class extends ThemeBase {
 			function : ()=>this.getHand1,
 		},
 		month : {
-			length : 550,
 			function : ()=>this.getHoleHand,
+			length : 790,
+			circleCenter: 660,
 		}
 	};
 
@@ -240,16 +241,16 @@ themeClass['vintage'] = class extends ThemeBase {
 	/* getHoleHand
 	Test of a more configurable hand shape
 	*/
-	getHoleHand = function(length, transform, cssClass, id)
+	getHoleHand = function(param, transform, cssClass, id)
 	/* getHand2 = function() */
 	{
 		//const length = 900;
 		const tail = 150;
 		const width = 30;
 
-		const tipRadius = 5;
+		const tipRadius = 30;
 
-		const circle = 350;
+		const circle = param.circleCenter;
 		const circleRadius = 130;
 		const circleInnerRadius = 100;
 		const circleX = circleRadius * (5/13);
@@ -261,8 +262,8 @@ themeClass['vintage'] = class extends ThemeBase {
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
-			M -${tipRadius}, -${length}
-			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${length}
+			M -${tipRadius}, -${param.length}
+			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
 
 			L ${circleX} -${circle+circleY}
 			A ${circleRadius},${circleRadius} 0 0 1 ${circleX} -${circle-circleY}
