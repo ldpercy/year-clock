@@ -79,7 +79,9 @@ themeClass['vintage'] = class extends ThemeBase {
 			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
 		);
 
-		log('displayDate.monthDayArray:', displayDate.monthDayArray);
+		//log('handConfig:', this.handConfig);
+		//log('this.getHand1:', this.getHand1);
+
 
 		const clockSVG = `
 			<svg id="clock"
@@ -199,8 +201,8 @@ themeClass['vintage'] = class extends ThemeBase {
 	/* getHand1
 	Test of a more configurable hand shape
 	*/
-	getHand1 = function() {
-		const length = 900;
+	getHand1 = function(length, transform, cssClass, id) {
+		//const length = 900;
 		const tail = 100;
 		const width = 50;
 
@@ -225,17 +227,20 @@ themeClass['vintage'] = class extends ThemeBase {
 			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
 
 			Z`;
-		const svg = `<path class="hand1" d="${path}" />`;
+		const svg =
+			`<g id="${id}" class="${cssClass}" transform="${transform}">
+				<path class="hand1" d="${path}" />
+			</g>`;
 		return svg;
 	}/* getHand1 */
 
 
 
 
-	/* getHand2
+	/* getHoleHand
 	Test of a more configurable hand shape
 	*/
-	getHandPath = function(length, transform, cssClass, id)
+	getHoleHand = function(length, transform, cssClass, id)
 	/* getHand2 = function() */
 	{
 		//const length = 900;
@@ -284,13 +289,13 @@ themeClass['vintage'] = class extends ThemeBase {
 			`;
 		/* const svg = `<path class="hand2" d="${path}" />`; */
 		const svg = `
-			<g class="${cssClass}" transform="${transform}">
+			<g id="${id}" class="${cssClass}" transform="${transform}">
 				<circle class="hand2 lens" cx="0" cy="${-circle}" r="${circleInnerRadius}"/>
-				<path id="${id}" class="hand2 ${cssClass}" d="${path}"/>
+				<path class="hand2" d="${path}"/>
 			</g>
 		`;
 		return svg;
-	}/* getHand2 */
+	}/* getHoleHand */
 
 
 	getIcon = function() {

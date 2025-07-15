@@ -171,11 +171,17 @@ class ThemeBase extends Clock {
 	*/
 	getHands = function(displayDate, handConfig) {
 
+		log('getHands:',handConfig);
+
 		// calculate year hand params
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
+
 		// get year hand
-		const yearHand = this.getHandPath(handConfig.yearLength, yearTransform, 'yearHand', '');
+		const yearHandFunc = (handConfig.year.function) ? handConfig.year.function() : this.getBasicHand;
+		log('yearHandFunc:',yearHandFunc);
+
+		const yearHand = yearHandFunc(handConfig.year.length, yearTransform, 'yearHand', '');
 
 		var monthHand = '';
 
@@ -184,7 +190,8 @@ class ThemeBase extends Clock {
 			const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 			const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 			// get month hand
-			monthHand = this.getHandPath(handConfig.monthLength, monthTransform, 'monthHand', '');
+			const monthHandfFunc = (handConfig.month.function)  ? handConfig.month.function() : this.getBasicHand;
+			monthHand = monthHandfFunc(handConfig.month.length, monthTransform, 'monthHand', '');
 		}
 
 		const svg = `
@@ -197,9 +204,9 @@ class ThemeBase extends Clock {
 	}/* getHands */
 
 
-	/* getHandPath
+	/* getBasicHand
 	*/
-	getHandPath = function(length, transform, cssClass, id)
+	getBasicHand = function(length, transform, cssClass, id)
 	{
 		const path = `
 			M 12 160

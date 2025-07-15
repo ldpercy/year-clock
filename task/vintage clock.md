@@ -252,4 +252,38 @@ For now:
 Another thought while I'm here... probably want to shift terminlogy at some stage away from 'hands' to something a bit more generic like 'pointers'. Not 100% sure yet though.
 
 
+### Functional
+Need to find the right pattern here...
+
+Am trying to pass a function reference but it's not working?
+Was trying to pass the hand path function to the hand builder like this:
+```js
+	year : {
+		length : 850,
+		function : this.getHand1,
+	},
+```
+Doesn't seem to be my use of 'function' as a key name here, it fails no matter what I call it.
+The method I pass the hand config to sees the 'function' element as undefined.
+
+Trying a few random variants, and have stumbled upon something that seems to work, but buggered if I know why.
+(Seems like every time i try to 'properly' understand JS it just evades me. One day maybe.)
+Changing the above the following:
+```js
+	year : {
+		length : 850,
+		function : ()=>this.getHand1,
+	},
+```
+Passes a function that can can be evaluated and run in `getHands`:
+```js
+// get year hand
+const yearHandFunc = (handConfig.year.function) ? handConfig.year.function() : this.getBasicHand;
+const yearHand = yearHandFunc(handConfig.year.length, yearTransform, 'yearHand', '');
+```
+
+Why and how this works is ... mysterious - I really should try to boil this down.
+
+
+
 
