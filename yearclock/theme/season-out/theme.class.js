@@ -27,7 +27,7 @@ themeClass['season-out'] = class extends ThemeBase {
 		invert         : false,
 	};
 
-	hand = {
+	handConfig = {
 		yearLength	: 800,
 	};
 
@@ -77,7 +77,7 @@ themeClass['season-out'] = class extends ThemeBase {
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.hand)}
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

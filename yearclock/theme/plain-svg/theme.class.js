@@ -26,7 +26,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 		monthFirstEnd   : this.outerRadius,
 	};
 
-	hand = {
+	handConfig = {
 		yearLength : 940,
 	};
 
@@ -46,7 +46,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
 				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.hand)}
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

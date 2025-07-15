@@ -58,7 +58,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	dateLabelPosition         = new Point(0,350);
 
 
-	hand = {
+	handConfig = {
 		yearLength	: 850,
 		monthLength : 550,
 	};
@@ -111,7 +111,7 @@ themeClass['vintage'] = class extends ThemeBase {
 					${this.getIcon()}
 				</svg>
 
-				${this.getHands(displayDate, this.hand)}
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

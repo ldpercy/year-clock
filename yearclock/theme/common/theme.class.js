@@ -27,7 +27,7 @@ themeClass['common'] = class extends ThemeBase {
 		invert         : true,
 	};
 
-	hand = {
+	handConfig = {
 		yearLength : 1030,
 	};
 
@@ -47,7 +47,7 @@ themeClass['common'] = class extends ThemeBase {
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.hand)}
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

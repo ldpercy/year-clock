@@ -249,3 +249,7 @@ For now:
 * Use the hole-hand for month, and set the hole over the day/date ring
 * Add a simple transparency & mask effect to the lens
 
+Another thought while I'm here... probably want to shift terminlogy at some stage away from 'hands' to something a bit more generic like 'pointers'. Not 100% sure yet though.
+
+
+

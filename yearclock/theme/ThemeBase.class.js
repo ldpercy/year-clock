@@ -169,22 +169,22 @@ class ThemeBase extends Clock {
 
 	/* getHands
 	*/
-	getHands = function(displayDate, hand) {
+	getHands = function(displayDate, handConfig) {
 
 		// calculate year hand params
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
-		const yearHand = this.getHandPath(hand.yearLength, yearTransform, 'yearHand', '');
+		const yearHand = this.getHandPath(handConfig.yearLength, yearTransform, 'yearHand', '');
 
 		var monthHand = '';
 
-		if (hand.monthLength) {
+		if (handConfig.monthLength) {
 			// calculate month hand params
 			const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
 			const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 			// get month hand
-			monthHand = this.getHandPath(hand.monthLength, monthTransform, 'monthHand', '');
+			monthHand = this.getHandPath(handConfig.monthLength, monthTransform, 'monthHand', '');
 		}
 
 		const svg = `
