@@ -231,4 +231,21 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
 
 Or maybe not... might have to use svg filters instead
 
+Look into filter `in="BackgroundImage"` / `in="BackgroundAlpha"` with `enable-background="new"`.
+
+Hmmm.... deprecated??
+https://www.w3.org/TR/filter-effects/#AccessBackgroundImage
+https://stackoverflow.com/questions/43333457/how-to-fill-a-shape-with-the-inverse-of-its-background-in-svg
+
+
+### Wrap it up
+
+I've been looking into ways to achieve lens effects in svg but it's taking too long, and while I think it can probably be done, I want to wrap this up and move onto other things.
+
+For now:
+* Clean up the new hand functions and parameterise properly
+* Add abililty to use different hand functions for year & month
+* Use a new custom hand shape for the year
+* Use the hole-hand for month, and set the hole over the day/date ring
+* Add a simple transparency & mask effect to the lens
 
