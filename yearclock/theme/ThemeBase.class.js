@@ -181,7 +181,7 @@ class ThemeBase extends Clock {
 		const yearHandFunc = (handConfig.year.function) ? handConfig.year.function() : this.getBasicHand;
 		log('yearHandFunc:',yearHandFunc);
 
-		const yearHand = yearHandFunc(handConfig.year.length, yearTransform, 'yearHand', '');
+		const yearHand = yearHandFunc(handConfig.year, yearTransform, 'yearHand', '');
 
 		var monthHand = '';
 
@@ -206,12 +206,12 @@ class ThemeBase extends Clock {
 
 	/* getBasicHand
 	*/
-	getBasicHand = function(length, transform, cssClass, id)
+	getBasicHand = function(param, transform, cssClass, id)
 	{
 		const path = `
 			M 12 160
 			L -12 160
-			L 0, -${length}
+			L 0, -${param.length}
 			Z
 			M 30 0
 			A 30,30 0 1 1 -30,00

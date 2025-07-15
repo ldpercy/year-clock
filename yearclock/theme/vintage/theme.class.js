@@ -197,7 +197,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	/* getHand1
 	Test of a more configurable hand shape
 	*/
-	getHand1 = function(length, transform, cssClass, id) {
+	getHand1 = function(param, transform, cssClass, id) {
 		//const length = 900;
 		const tail = 100;
 		const width = 50;
@@ -210,8 +210,8 @@ themeClass['vintage'] = class extends ThemeBase {
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
-			M -${tipRadius}, -${length}
-			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${length}
+			M -${tipRadius}, -${param.length}
+			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
 
 			L ${pinX} -${pinY}
 			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
