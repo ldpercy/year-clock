@@ -3,24 +3,17 @@
 */
 svg.yearclock {
 
+	font-size: 48px;
+	font-family: serif;
+
+
 	--lightblue: #ade9;
 	--lightpink: #fbc;
 	--ivory: #ffee;
 
 	--sectorlight: cornsilk; /* #fff7 */
 	--sectordark: wheat;
-
 	--darkGrey: #222c;
-
-
-	/*
-	background: repeating-linear-gradient(
-		45deg,
-		ivory,
-		ivory 2vw,
-		gold 2.4vw,
-		gold 2.6vw
-	); */
 
 
 	background:
@@ -45,15 +38,26 @@ svg.yearclock {
 			gold 3vh,
 			ivory 3.3vh
 		);
-}
 
-svg.yearclock {
 
-	/* background-color: burlywood; */
-	/* background-image: url(#Gradient1); */
-	font-size: 48px;
-	font-family: serif;/*  cursive, */
-}
+	.body {
+		/* fill: wheat; */
+		fill: url(#Gradient1);
+		stroke: grey;
+		stroke-width: 3;
+		filter: drop-shadow(0px 40px 20px #444b);
+	}
+
+	.face {
+		fill: ivory; /* cornsilk */
+		stroke: silver;
+		stroke-width: 10;
+		filter: drop-shadow(0px 10px 10px gray);
+	}
+
+}/* svg.yearclock */
+
+
 
 
 .stop1 {
@@ -66,24 +70,6 @@ svg.yearclock {
 .stop3 {
 	stop-color: brown;
 }
-
-
-svg.yearclock .body   {
-	/* fill: wheat; */
-	fill: url(#Gradient1);
-	stroke: grey;
-	stroke-width: 3;
-	filter: drop-shadow(0px 30px 20px #444);
-}
-
-
-svg.yearclock .face   {
-	fill: ivory; /* cornsilk */
-	stroke: silver;
-	stroke-width: 10;
-	filter: drop-shadow(0px 10px 10px gray);
-}
-
 
 
 svg.yearclock .sector {
