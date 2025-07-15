@@ -204,9 +204,9 @@ themeClass['vintage'] = class extends ThemeBase {
 
 		const tipRadius = 5;
 
-		const pinRadius = 25;
-		const pinX = pinRadius * (3/5);
-		const pinY = pinRadius * (4/5);
+		const pinRadius = 60;
+		const pinX = pinRadius * (5/13);
+		const pinY = pinRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
