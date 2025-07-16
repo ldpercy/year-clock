@@ -1,6 +1,11 @@
 Github pages updates
 ====================
 
+```
+2025-07-16		1.4.0	Done
+```
+
+
 I added a Github pages build to the year clock repo a few days back and it works fine.
 The yearclock is up and running at:
 
@@ -24,3 +29,9 @@ Actually if I move index.html to the root I should get it down to:
 Will need some updating.
 
 
+Wrapup
+------
+
+* Renamed 'yearclock' directory to just plain 'clock'
+* Original brice code moved to wiki
+* Renamed 'clock.html' to 'index.html' and moved to project root (+ path updates)
