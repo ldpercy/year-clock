@@ -3,24 +3,17 @@
 */
 svg.yearclock {
 
+	font-size: 48px;
+	font-family: Noto Serif, serif;
+
+
 	--lightblue: #ade9;
 	--lightpink: #fbc;
 	--ivory: #ffee;
 
 	--sectorlight: cornsilk; /* #fff7 */
 	--sectordark: wheat;
-
 	--darkGrey: #222c;
-
-
-	/*
-	background: repeating-linear-gradient(
-		45deg,
-		ivory,
-		ivory 2vw,
-		gold 2.4vw,
-		gold 2.6vw
-	); */
 
 
 	background:
@@ -45,15 +38,32 @@ svg.yearclock {
 			gold 3vh,
 			ivory 3.3vh
 		);
-}
 
-svg.yearclock {
 
-	/* background-color: burlywood; */
-	/* background-image: url(#Gradient1); */
-	font-size: 48px;
-	font-family: serif;/*  cursive, */
-}
+	.body {
+		/* fill: wheat; */
+		fill: url(#Gradient1);
+		stroke: grey;
+		stroke-width: 3;
+		filter: url(#emboss-top) drop-shadow(0px 40px 20px #444b);
+	}
+
+	.face {
+		fill: ivory; /* cornsilk */
+		stroke: silver;
+		stroke-width: 10;
+		filter: url(#emboss-top) drop-shadow(0px 10px 10px #444b);
+	}
+
+	circle.pin {
+		stroke: var(--darkGrey);
+		fill: #444b;
+		stroke-width: 2;
+	}
+
+}/* svg.yearclock */
+
+
 
 
 .stop1 {
@@ -66,24 +76,6 @@ svg.yearclock {
 .stop3 {
 	stop-color: brown;
 }
-
-
-svg.yearclock .body   {
-	/* fill: wheat; */
-	fill: url(#Gradient1);
-	stroke: grey;
-	stroke-width: 3;
-	filter: drop-shadow(0px 30px 20px #444);
-}
-
-
-svg.yearclock .face   {
-	fill: ivory; /* cornsilk */
-	stroke: silver;
-	stroke-width: 10;
-	filter: drop-shadow(0px 10px 10px gray);
-}
-
 
 
 svg.yearclock .sector {
@@ -106,14 +98,13 @@ svg.yearclock .day .sector.weekend
 
 svg.yearclock .label {
 	text-anchor: middle;
-	dominant-baseline: middle;
+	dominant-baseline: central;
 	fill: var(--darkGrey);
 	stroke: none;
 	font-variant: small-caps;
 
 	&.monthName text {
 		font-size: 1em;
-		dominant-baseline: central;
 	}
 
 	&.monthNumber text{
@@ -132,13 +123,11 @@ svg.yearclock .label {
 	&.dateLabel {
 		text-anchor: middle;
 		font-size: 4em;
-		dominant-baseline: central;
 	}
 
 	&.favicon {
 		text-anchor: middle;
 		font-size: 3em;
-		dominant-baseline: central;
 		fill: var(--sectordark);
 		fill-rule: evenodd; /* nonzero, evenodd */
 		stroke: var(--darkGrey);
@@ -192,3 +181,5 @@ svg.yearclock path.hand2  {
 
 	fill: url(#lensGradient);
 }
+
+

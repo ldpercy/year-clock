@@ -24,7 +24,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 	monthNumber = {
-		radius         : 900,
+		radius         : 950,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
@@ -44,7 +44,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 	dayNumber = {
-		radius         : 600,
+		radius         : 615,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
@@ -58,7 +58,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	handConfig = {
 		year : {
-			length : 850,
+			length : 900,
 			function : ()=>this.getHand1,
 		},
 		month : {
@@ -118,6 +118,8 @@ themeClass['vintage'] = class extends ThemeBase {
 				</svg>
 
 				${this.getHands(displayDate, this.handConfig)}
+				${this.getPin()}
+
 			</svg>
 		`;
 
@@ -154,6 +156,13 @@ themeClass['vintage'] = class extends ThemeBase {
 					<stop class="stop2" offset="50%" />
 					<stop class="stop3" offset="100%" />
 				</linearGradient>
+				<filter id="emboss-top">
+					<feConvolveMatrix kernelMatrix="
+						0 1 0
+						0 1 0
+						0 -1 0
+					"/>
+				</filter>
 			</defs>
 		`;
 		return result;
@@ -204,23 +213,23 @@ themeClass['vintage'] = class extends ThemeBase {
 
 		const tipRadius = 5;
 
-		const pinRadius = 25;
-		const pinX = pinRadius * (3/5);
-		const pinY = pinRadius * (4/5);
+		const discRadius = 60;
+		const discX = discRadius * (5/13);
+		const discY = discRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
 			M -${tipRadius}, -${param.length}
 			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
 
-			L ${pinX} -${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
+			L ${discX} -${discY}
+			A ${discRadius},${discRadius} 0 0 1 ${discX}, ${discY}
 
 			L ${width} ${tail}
 			L -${width} ${tail}
 
-			L -${pinX} ${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
+			L -${discX} ${discY}
+			A ${discRadius},${discRadius} 0 0 1 -${discX}, -${discY}
 
 			Z`;
 		const svg =
@@ -251,9 +260,9 @@ themeClass['vintage'] = class extends ThemeBase {
 		const circleX = circleRadius * (5/13);
 		const circleY = circleRadius * (12/13);
 
-		const pinRadius = 50;
-		const pinX = pinRadius * (5/13);
-		const pinY = pinRadius * (12/13);
+		const discRadius = 50;
+		const discX = discRadius * (5/13);
+		const discY = discRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		/*
@@ -268,14 +277,14 @@ themeClass['vintage'] = class extends ThemeBase {
 			A ${circleRadius},${circleRadius} 0 0 1 ${circleX} -${circle-circleY}
 
 
-			L ${pinX} -${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
+			L ${discX} -${discY}
+			A ${discRadius},${discRadius} 0 0 1 ${discX}, ${discY}
 
 			L ${width} ${tail}
 			L -${width} ${tail}
 
-			L -${pinX} ${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
+			L -${discX} ${discY}
+			A ${discRadius},${discRadius} 0 0 1 -${discX}, -${discY}
 
 			L ${-circleX} -${circle-circleY}
 			A ${circleRadius},${circleRadius} 0 0 1 0, -${circle+circleRadius}
@@ -311,6 +320,10 @@ themeClass['vintage'] = class extends ThemeBase {
 			`<path class="label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>`;
 			//'<path class="label favicon" d="M 259 966 L -966 -259 L 707 -707 M -259 966 L -707 -707 L 966 -259 M -707 707 L -259 -966 L 966 259 M -966 259 L 259 -966 L 707 707  Z"></path>';
 		return path;
+	}
+
+	getPin = function() {
+		return `<circle class="pin" x="0" y="0" r="10"/>`
 	}
 
 
