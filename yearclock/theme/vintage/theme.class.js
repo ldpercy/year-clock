@@ -211,23 +211,23 @@ themeClass['vintage'] = class extends ThemeBase {
 
 		const tipRadius = 5;
 
-		const pinRadius = 60;
-		const pinX = pinRadius * (5/13);
-		const pinY = pinRadius * (12/13);
+		const discRadius = 60;
+		const discX = discRadius * (5/13);
+		const discY = discRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
 			M -${tipRadius}, -${param.length}
 			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
 
-			L ${pinX} -${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
+			L ${discX} -${discY}
+			A ${discRadius},${discRadius} 0 0 1 ${discX}, ${discY}
 
 			L ${width} ${tail}
 			L -${width} ${tail}
 
-			L -${pinX} ${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
+			L -${discX} ${discY}
+			A ${discRadius},${discRadius} 0 0 1 -${discX}, -${discY}
 
 			Z`;
 		const svg =
@@ -258,9 +258,9 @@ themeClass['vintage'] = class extends ThemeBase {
 		const circleX = circleRadius * (5/13);
 		const circleY = circleRadius * (12/13);
 
-		const pinRadius = 50;
-		const pinX = pinRadius * (5/13);
-		const pinY = pinRadius * (12/13);
+		const discRadius = 50;
+		const discX = discRadius * (5/13);
+		const discY = discRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		/*
@@ -275,14 +275,14 @@ themeClass['vintage'] = class extends ThemeBase {
 			A ${circleRadius},${circleRadius} 0 0 1 ${circleX} -${circle-circleY}
 
 
-			L ${pinX} -${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 ${pinX}, ${pinY}
+			L ${discX} -${discY}
+			A ${discRadius},${discRadius} 0 0 1 ${discX}, ${discY}
 
 			L ${width} ${tail}
 			L -${width} ${tail}
 
-			L -${pinX} ${pinY}
-			A ${pinRadius},${pinRadius} 0 0 1 -${pinX}, -${pinY}
+			L -${discX} ${discY}
+			A ${discRadius},${discRadius} 0 0 1 -${discX}, -${discY}
 
 			L ${-circleX} -${circle-circleY}
 			A ${circleRadius},${circleRadius} 0 0 1 0, -${circle+circleRadius}
