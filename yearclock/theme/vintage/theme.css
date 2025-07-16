@@ -45,14 +45,14 @@ svg.yearclock {
 		fill: url(#Gradient1);
 		stroke: grey;
 		stroke-width: 3;
-		filter: drop-shadow(0px 40px 20px #444b);
+		filter: url(#emboss-top) drop-shadow(0px 40px 20px #444b);
 	}
 
 	.face {
 		fill: ivory; /* cornsilk */
 		stroke: silver;
 		stroke-width: 10;
-		filter: drop-shadow(0px 10px 10px gray);
+		filter: url(#emboss-top) drop-shadow(0px 10px 10px #444b);
 	}
 
 }/* svg.yearclock */

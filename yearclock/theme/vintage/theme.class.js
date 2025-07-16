@@ -154,6 +154,13 @@ themeClass['vintage'] = class extends ThemeBase {
 					<stop class="stop2" offset="50%" />
 					<stop class="stop3" offset="100%" />
 				</linearGradient>
+				<filter id="emboss-top">
+					<feConvolveMatrix kernelMatrix="
+						0 1 0
+						0 1 0
+						0 -1 0
+					"/>
+				</filter>
 			</defs>
 		`;
 		return result;
