@@ -6,15 +6,13 @@ A bit like a regular analog clock, but instead of the regular 12 hour divisions 
 The 'hour hand' points to the time of year. In the second example the 'minute hand' points to the time of month.
 
 <p align="middle">
-	<img width="40%" src="image/plain-svg.svg" alt="Example: plain-svg" title="yearclock.html?theme=plain-svg&date=2021-09-01"/>
-	<img width="40%" src="image/wall-clock.svg" alt="Example: wall-clock" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
+	<img width="45%" src="image/season-out.svg" alt="Example: season-out" title="yearclock.html?theme=season-out&date=2015-10-21"/>
+	<img width="45%" src="image/wall-clock.svg" alt="Example: wall-clock" title="yearclock.html?theme=wall-clock&date=2024-02-26"/>
 </p>
 
-Click through to the raw for this example to show hovers and tooltips on the sectors:
-<p align="middle">
-<img width="50%" src="image/season-out.svg" alt="Example: season-out" title="yearclock.html?theme=season-out&date=2015-10-21"/>
-</p>
 
+> [!TIP]
+> The year clock is live: [ldpercy.github.io/year-clock/](https://ldpercy.github.io/year-clock/)
 
 
 Prior and current art
@@ -46,16 +44,18 @@ Many more examples can be found by searching for things like 'radial calendar' o
 
 I've started with code from [http://year-clock.net](http://year-clock.net) to use as a base.
 
-A copy of the original source code is in the [./year-clock.net/](<./year-clock.net/>) directory.
+A copy of the original source code is in the wiki: [./wiki/year-clock.net/](<./wiki/year-clock.net/>).
 
 
 How to run
 ----------
 
-* Clone the repository
-* Open the file `[path to repo]/year-clock/yearclock/yearclock.html` directly in a browser
 
-No webserver is required, it all runs locally.
+
+* Clone the repository
+* Open the file `[path to repo]/year-clock/index.html` directly in a browser
+
+No webserver is required, it all runs in-page.
 
 
 URL Parameters
@@ -98,7 +98,7 @@ A few custom backgrounds are available eg:
 
 Theming
 -------
-[-> Wiki:theming](wiki/theming.md)
+[-> Wiki:theming](./wiki/theming.md)
 
 
 > [!NOTE]
@@ -125,7 +125,6 @@ More detail in the [task/](<./task/>) directory.
 ### Currently working on
 
 * Dynamic/interactive elements
-* Vintage clock theme
 * Custom date highlighting
 * Remove callback from draw sequence
 
