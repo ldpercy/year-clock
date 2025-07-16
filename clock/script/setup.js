@@ -141,12 +141,12 @@ function formChangeHandler(event) {
 
 function updateStyle(style) {
 	//page.element.themeInput.value
-	const cssUrl_style = (style) ? `theme/${page.element.themeInput.value}/style-${style}.css` : '';
+	const cssUrl_style = (style) ? `clock/theme/${page.element.themeInput.value}/style-${style}.css` : '';
 	page.element.style_style.setAttribute('href', cssUrl_style);
 }
 
 function updateBackground(background) {
-	const cssUrl_background = (background) ? `background/${background}.css` : '';
+	const cssUrl_background = (background) ? `clock/background/${background}.css` : '';
 	page.element.style_background.setAttribute('href', cssUrl_background);
 }
 
@@ -183,11 +183,11 @@ function drawClock(clock) {
 
 	log('drawClock', arguments);
 
-	let cssUrl_theme = `theme/${clock.theme}/theme.css`;
+	let cssUrl_theme = `clock/theme/${clock.theme}/theme.css`;
 	page.element.style_theme.setAttribute('href', cssUrl_theme);
 
 	if (clock.style) {
-		let cssUrl_style = `theme/${clock.theme}/style-${clock.style}.css`;
+		let cssUrl_style = `clock/theme/${clock.theme}/style-${clock.style}.css`;
 		page.element.style_style.setAttribute('href', cssUrl_style);
 	}
 
@@ -197,7 +197,7 @@ function drawClock(clock) {
 		drawClock2(...arguments);
 	}
 	else { // go and get the theme class
-		let classUrl = `theme/${clock.theme}/theme.class.js`;
+		let classUrl = `clock/theme/${clock.theme}/theme.class.js`;
 		// async load the theme class
 		replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(...arguments)}));
 	}
