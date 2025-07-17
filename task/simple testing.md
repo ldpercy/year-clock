@@ -18,3 +18,11 @@ Which mightn't be obvious on visual inspection as other classes might take over.
 A quick and dirty way of finding these would be to look for strings like undefined, null, NaN in the output.
 
 
+Opt in
+------
+
+I'd like to be able to manually opt in/out of any testing features I add.
+I initially thought about switching it on based on protocol (on for file://) but even that's prob too much.
+Just turn it on with a URL flag when needed.
+
+

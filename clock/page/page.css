@@ -23,6 +23,10 @@ svg#clock {
 	padding: 5vh 5vw;
 }
 
+.hasErrors {
+	border:1em solid red;
+}
+
 
 /* clock settings form
 */

@@ -43,3 +43,15 @@ function createLog() {
 		console.log(performance.now(), ...values);
 	}
 }
+
+
+
+/* passSmokeTest
+*/
+function passSmokeTest(string) {
+	const result =
+		!string.includes('undefined')
+		&& !string.includes('NaN')
+		&& !string.includes('null');
+	return result;
+}

@@ -36,15 +36,17 @@
 			const language      = getParameterByName('language');
 			const style         = getParameterByName('style');
 			const background    = getParameterByName('background');
+			const test          = getParameterByName('test');
 
 
 			const dateParam         = (date)        ? `&date=${date}` : '';
 			const languageParam     = (language)    ? `&language=${language}` : '';
 			const styleParam        = (style)       ? `&style=${style}` : '';
 			const backgroundParam   = (background)  ? `&background=${background}` : '';
+			const testParam         = (test)        ? `&test=${test}` : '';
 
 			for (let baseUrl of baseUrlArray) {
-				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}`;
+				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}${testParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">
