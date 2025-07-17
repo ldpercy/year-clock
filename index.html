@@ -62,14 +62,14 @@
 		</select>
 
 		<label for="input-style">Style</label>
-		<input id="input-style" type="text" name="style" title="style" list="datalist-style"/>
+		<input id="input-style" type="text" name="style" title="style" list="datalist-style" pattern="[a-z0-9\-]{0,10}"/>
 		<datalist id="datalist-style">
 			<option value="dark"></option>
 			<option value="mono"></option>
 		</datalist>
 
 		<label for="input-background">Background</label>
-		<input id="input-background" name="background" type="text" title="background" list="datalist-background"/>
+		<input id="input-background" name="background" type="text" title="background" list="datalist-background" pattern="[a-z0-9\-]{0,10}"/>
 		<datalist id="datalist-background">
 			<option value="">none/theme</option>
 			<option>star</option>
