@@ -62,4 +62,4 @@ form#form-clock {
 	}
 }
 
-
+:invalid {background-color:pink;}

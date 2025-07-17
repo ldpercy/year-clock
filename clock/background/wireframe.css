@@ -1,0 +1,8 @@
+svg.yearclock, svg.yearclock * {
+	background: none !important;
+	background-color: none !important;
+	fill:none !important;
+	stroke: black !important;
+	stroke-width: 1px !important;
+	filter: none !important;
+}
