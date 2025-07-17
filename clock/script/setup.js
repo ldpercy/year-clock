@@ -225,7 +225,7 @@ function drawClock2(clock) {
 	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
 
 	if (page.initial.test && !passSmokeTest(clockSVG)) {
-		document.body.classList.add('hasErrors');
+		document.getElementById('clockContainer').classList.add('hasErrors');
 	}
 
 	clock.container.innerHTML = clockSVG;

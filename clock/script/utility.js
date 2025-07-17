@@ -45,13 +45,12 @@ function createLog() {
 }
 
 
-
 /* passSmokeTest
 */
 function passSmokeTest(string) {
-	const result =
-		!string.includes('undefined')
-		&& !string.includes('NaN')
-		&& !string.includes('null');
-	return result;
+	const error =
+		string.includes('undefined')
+		|| string.includes('NaN')
+		|| string.includes('null');
+	return !error;
 }
