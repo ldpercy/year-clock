@@ -95,6 +95,12 @@ A few custom backgrounds are available eg:
 
 	index.html?background=dusk
 
+### Testing
+
+Turn on some basic smoke testing:
+
+	index.html?test=true
+
 
 Theming
 -------
