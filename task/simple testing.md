@@ -26,3 +26,14 @@ I initially thought about switching it on based on protocol (on for file://) but
 Just turn it on with a URL flag when needed.
 
 
+
+
+Wrapup
+------
+I've run ahead and have some basic opt-in smoke testing going, which is what I wanted.
+
+* Add a `test` url param to turn on testing
+* Test for the presence of certain *problem* strings in the output: NaN, Infinity, undefined, null
+* If present count them up and show in output
+* Add styles for quick error indicators
+* Fix some `undefined`s that were found
