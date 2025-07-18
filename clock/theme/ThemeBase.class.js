@@ -85,10 +85,9 @@ class ThemeBase extends Clock {
 	/* getPeriodDayTicks
 	*/
 	getPeriodDayTicks = function(periodType, periodArray, tick) {
-
 		let tickClass = '';
-		let tickLine;
-		let tickSvg;
+		let tickLine = '';
+		let tickSvg = '';
 
 		for (let day of periodArray)
 		{
@@ -106,14 +105,14 @@ class ThemeBase extends Clock {
 			}
 
 			tickSvg +=
-				`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
+				`<line class="${tickClass}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
 
 			if (day.isFirst) // Draw an extra line for firsts of the month
 			{
 				tickLine = radialLine(dayAngle.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
-					`<line class="${tickClass}" data-number="${day.number}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
+					`<line class="${tickClass}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
 			}
 		}
 
