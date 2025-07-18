@@ -70,7 +70,7 @@ function setup() {
 	// test
 	page.parameter.test = getParameterByName('test');
 	page.initial.test   = page.parameter.test || page.default.test;
-
+	if (page.initial.test) document.body.classList.add('testing');
 
 	// reusable page elements
 	page.element.style_theme        = document.getElementById('stylesheet-theme');
