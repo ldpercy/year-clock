@@ -18,6 +18,7 @@ const page = {
 		style       : '',
 		language    : 'en',
 		background  : '',
+		test        : false,
 	},
 
 	parameter : 	// requested values to use
@@ -27,6 +28,7 @@ const page = {
 		style       : undefined,
 		language    : undefined,
 		background  : undefined,
+		test        : undefined,
 	},
 
 	initial :		// initial computed values to use
@@ -36,6 +38,7 @@ const page = {
 		style       : undefined,	// initial clock style to use
 		language    : undefined,	// initial language to use
 		background  : undefined,
+		test        : undefined,
 	},
 
 	element       : {}, // store references to various page elements
@@ -53,20 +56,21 @@ function setup() {
 	page.parameter.date = getParameterByName('date');
 	const urlDate = (page.parameter.date !== null) ? new Date(page.parameter.date) : null;
 	page.initial.date = (isValidDate(urlDate)) ? urlDate : page.default.date;
-
 	// Theming:
 	page.parameter.theme = getParameterByName('theme');
 	page.initial.theme   = page.parameter.theme || page.default.theme;
 	page.parameter.style = getParameterByName('style');
 	page.initial.style   = page.parameter.style || page.default.style;
-
 	// Language
 	page.parameter.language = getParameterByName('language');
 	page.initial.language   = getSupportedLanguage(page.parameter.language) || getSupportedBrowserLanguage() || page.default.language;
-
 	// Background
 	page.parameter.background = getParameterByName('background');
 	page.initial.background   = page.parameter.background || page.default.background;
+	// test
+	page.parameter.test = getParameterByName('test');
+	page.initial.test   = page.parameter.test || page.default.test;
+	if (page.initial.test) document.body.classList.add('testing');
 
 	// reusable page elements
 	page.element.style_theme        = document.getElementById('stylesheet-theme');
@@ -219,6 +223,8 @@ function drawClock2(clock) {
 
 	let displayDate = createDisplayDate(clock.date, clock.language);
 	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
+
+	if (page.initial.test) { runTest(clockSVG); }
 
 	clock.container.innerHTML = clockSVG;
 

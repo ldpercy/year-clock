@@ -36,15 +36,17 @@
 			const language      = getParameterByName('language');
 			const style         = getParameterByName('style');
 			const background    = getParameterByName('background');
+			const test          = getParameterByName('test');
 
 
 			const dateParam         = (date)        ? `&date=${date}` : '';
 			const languageParam     = (language)    ? `&language=${language}` : '';
 			const styleParam        = (style)       ? `&style=${style}` : '';
 			const backgroundParam   = (background)  ? `&background=${background}` : '';
+			const testParam         = (test)        ? `&test=${test}` : '';
 
 			for (let baseUrl of baseUrlArray) {
-				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}`;
+				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}${testParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">
@@ -62,13 +64,13 @@
 <body onload="setup();">
 
 	<p style="float:right;">
-		<a href="test.html?date=1988-03-14&language=en">Pi Day</a>
-		<a href="test.html?date=2010-04-23&language=es">Spanish Language Day</a>
-		<a href="test.html?date=1789-07-14&language=fr&style=dark">Bastille Day</a>
-		<a href="test.html?date=1947-08-15&language=hi">Indian Independence Day</a>
-		<a href="test.html?date=1949-10-01&language=zh">Chinese National Day</a>
-		<a href="test.html?date=1970-10-09&language=ko&style=dark">Hangul Day</a>
-		<a href="test.html?date=1961-04-12&language=ru&style=dark">Cosmonautics Day</a>
+		<a href="test.html?language=en&date=1988-03-14">Pi Day</a>
+		<a href="test.html?language=es&date=2010-04-23">Spanish Language Day</a>
+		<a href="test.html?language=fr&date=1789-07-14">Bastille Day</a>
+		<a href="test.html?language=hi&date=1947-08-15">Indian Independence Day</a>
+		<a href="test.html?language=zh&date=1949-10-01">Chinese National Day</a>
+		<a href="test.html?language=ko&date=1970-10-09">Hangul Day</a>
+		<a href="test.html?language=ru&date=1961-04-12">Cosmonautics Day</a>
 	</p>
 	<h1>Test Page for Year Clock</h1>
 

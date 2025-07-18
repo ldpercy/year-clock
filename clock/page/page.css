@@ -1,4 +1,4 @@
-/* page
+/* Page
 */
 
 body {
@@ -17,14 +17,19 @@ a:link {
 	color: #7ABECF;
 }
 
+/* Clock
+*/
+
 svg#clock {
 	width: 90vw;
 	height: 90vh;
 	padding: 5vh 5vw;
 }
 
+output { display:block; }
 
-/* clock settings form
+
+/* Settings form
 */
 
 form#form-clock {
@@ -63,3 +68,33 @@ form#form-clock {
 }
 
 :invalid {background-color:pink;}
+
+
+/* Testing
+*/
+.testResult { display:none; }
+
+.testing {
+	.testResult {
+		display: grid;
+		position:absolute;
+		right:0ex;
+		bottom: 0ex;
+		border:1px solid red;
+		background-color: pink;
+		border-radius: 1ex;
+		padding:1ex;
+		margin: 1ex;
+	}
+
+	.testPass {
+		outline:1ex dashed green;
+		outline-offset: -1ex;
+	}
+
+	.testFail {
+		outline:1ex dashed red;
+		outline-offset: -1ex;
+	}
+}
+
