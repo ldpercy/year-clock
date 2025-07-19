@@ -105,7 +105,7 @@ Lets see now...
 Task Split - refactor config global
 -----------------------------------
 
-Some major refactoring to the setup and config required - job has been split to: [refactor config global](<refactor config global.md>)
+Some major refactoring to the setup and config required - job has been split to: [refactor config global](<./v0/21 - refactor config global.md>)
 
 
 

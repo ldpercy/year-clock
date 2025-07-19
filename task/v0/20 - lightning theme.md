@@ -72,7 +72,7 @@ So for example you add a class 'current' to the current quarter, month, week and
 
 That would probably do for now, but I feel like this tends to hint pretty strongly at general highlighting.
 
-New task: [custom date highlighting](<custom date highlighting.md >)
+New task: [custom date highlighting](<../custom date highlighting.md >)
 
 Lightning
 ---------

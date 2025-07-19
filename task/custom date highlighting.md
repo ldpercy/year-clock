@@ -1,7 +1,7 @@
 Custom Date Highlighting
 ========================
 
-From: [lightning theme](<20 - lightning theme.md>)
+From: [lightning theme](<./v0/20 - lightning theme.md>)
 
 The lightning theme required some simple class additions for highlighting drawn parts of the current display date.
 

@@ -11,10 +11,10 @@ This one is tentative as I'm not sure it's the necessarily the best approach, bu
 
 
 If successful will likely cover these two as well:
-* [dynamic clock drawing](<dynamic clock drawing.md>)
-* [add svg tag to drawclock](<add svg tag to drawclock.md>)
+* [dynamic clock drawing](<../v1/1.1 - dynamic clock drawing.md>)
+* ~~[add svg tag to drawclock](<add svg tag to drawclock.md>)~~
 
-And probably simplify [convert callbacks to async](<convert callbacks to async.md>).
+And probably simplify [convert callbacks to async](<../convert callbacks to async.md>).
 
 
 
@@ -68,7 +68,7 @@ For example if there *are* techniques to apply certain chunks of CSS to certain 
 
 I'd better take a detour into stylesheet scripting.
 
-See: [multiple clocks in document](<multiple clocks in document.md>)
+See: [multiple clocks in document](<../multiple clocks in document.md>)
 
 
 Remaining questions
@@ -120,7 +120,7 @@ It won't be great, but better to start somewhere.
 Task split
 ----------
 
--> [multiple clocks in document](<multiple clocks in document.md>)
+-> [multiple clocks in document](<../multiple clocks in document.md>)
 
 I've spent way too much time on this particular diversion.
 It's been cool brushing up on recent CSS features, but I need to split this particular goal out to a separate task.
@@ -311,7 +311,7 @@ drawClock(testClock);
 
 Yep it works and yep it breaks the styles.
 Okay cool.
-The [long diversion into style encapsulation](<multiple clocks in document.md>) suggests I won't be able to properly fix this anytime soon, but still have an idea or two that might help a bit.
+The [long diversion into style encapsulation](<../multiple clocks in document.md>) suggests I won't be able to properly fix this anytime soon, but still have an idea or two that might help a bit.
 
 
 Clock instance mutators
@@ -371,7 +371,7 @@ Wrapup
 * Created Clock and ThemeBase classes
 * ThemeBase is the new 'common' and holds all the core drawing functions
 * 'Inheritance is not reuse' so this isn't very trad OO, but workable for now
-* Long diversion into [style isolation](<multiple clocks in document.md>)
+* Long diversion into [style isolation](<../multiple clocks in document.md>)
 * All of the draw functions were [converted to string getters](<22 - convert draw functions to string-getters.md>) to help
 * Converted all the current themes to JS classes
 * Old config.js files aren't needed anymore

@@ -1,5 +1,5 @@
-Design improvements
-===================
+Design
+======
 
 I knocked the wall-clock theme together pretty quickly while adding the month hand, and it looks okay as a basic clock replica.
 

@@ -1,7 +1,7 @@
 Refactor config global
 ======================
 
-Split off from: [add interactivity](<add interactivity.md>)
+Split off from: [add interactivity](<../add interactivity.md>)
 
 Original context below up up until **Resume from task split**
 
