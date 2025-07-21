@@ -13,3 +13,15 @@ Put together a car dashboard theme to try this out.
 Could have the month as the tacho, year as the speedo, and odometer as the date/year of day. Maybe a fuel gauge for seasons.
 
 
+
+Start hacking
+-------------
+
+Starting from the wall-clock.
+
+index.html?theme=car-dashboard&date=1988-03-14&test=true
+
+
+Don't think I have the circle centres right.
+Some gridlines would help.
+

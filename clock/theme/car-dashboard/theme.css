@@ -1,0 +1,92 @@
+/*
+** Wall Clock theme styles
+*/
+
+
+svg.yearclock {
+	background-color:dimgrey;
+	font-size: 48px;
+	font-family: Arial, sans-serif;
+
+
+	.body {
+		fill: silver;
+		stroke:red;
+	}
+
+	.face   {
+		fill: whitesmoke;
+		stroke: silver;
+		stroke-width: 10;
+		filter: drop-shadow(0px 10px 10px gray);
+	}
+}
+
+svg.yearclock .tick * {
+	stroke: black;
+	stroke-linecap: butt;
+}
+
+svg.yearclock .tick.day .first {
+	stroke-width: 20;
+}
+
+svg.yearclock .tick.day .weekday {
+	stroke-width: 10;
+}
+
+svg.yearclock .tick.day .weekend {
+	stroke-width: 30;
+}
+
+svg.yearclock .month .label {
+	fill: black;
+}
+
+
+svg.yearclock .label.month text{
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: black;
+	stroke: none;
+	font-size: 3.2em;
+	font-variant: small-caps;
+}
+
+
+svg.yearclock .label.dateLabel {
+	fill: black;
+	text-anchor: middle;
+	font-size: 5em;
+	dominant-baseline: central;
+}
+
+
+svg.yearclock .hands {
+	filter: drop-shadow(0px 20px 10px gray);
+}
+
+svg.yearclock path.yearHand  {
+	stroke: black;
+	fill: black;
+	stroke-width: 25;
+	stroke-linejoin: round;
+}
+
+svg.yearclock path.monthHand  {
+	stroke:dimgrey;
+	fill: dimgrey;
+	stroke-width: 15;
+	stroke-linejoin: round;
+}
+
+
+text.schwartz {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: black;
+	stroke: none;
+	font-size: 2ex;
+	font-variant: small-caps;
+	letter-spacing: 0.5ex;
+}
