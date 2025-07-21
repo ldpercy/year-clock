@@ -4,14 +4,16 @@
 
 
 svg.yearclock {
-	background-color:dimgrey;
+	background-color:black;
 	font-size: 48px;
 	font-family: Arial, sans-serif;
 
 
 	.body {
-		fill: silver;
-		stroke:red;
+		fill: dimgrey;
+		stroke:silver;
+		stroke-width: 1em;
+		stroke-linejoin: round;
 	}
 
 	.face   {
@@ -44,22 +46,32 @@ svg.yearclock .month .label {
 }
 
 
-svg.yearclock .label.month text{
+svg.yearclock .label {
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: black;
 	stroke: none;
-	font-size: 3.2em;
+
 	font-variant: small-caps;
+
+	&.label.month text {
+		font-size: 3em;
+		font-style: italic;
+	}
+
+	&.label.monthDay text {
+		font-size: 2em;
+		font-style: italic;
+	}
+
+	&.dateLabel {
+		font-size: 3em;
+	}
+
 }
 
 
-svg.yearclock .label.dateLabel {
-	fill: black;
-	text-anchor: middle;
-	font-size: 5em;
-	dominant-baseline: central;
-}
+
 
 
 svg.yearclock .hands {
@@ -71,6 +83,7 @@ svg.yearclock path.yearHand  {
 	fill: black;
 	stroke-width: 25;
 	stroke-linejoin: round;
+	transform: translateX(1300px);
 }
 
 svg.yearclock path.monthHand  {
@@ -78,15 +91,6 @@ svg.yearclock path.monthHand  {
 	fill: dimgrey;
 	stroke-width: 15;
 	stroke-linejoin: round;
+	transform: translate(-1300px,0);
 }
 
-
-text.schwartz {
-	text-anchor: middle;
-	dominant-baseline: middle;
-	fill: black;
-	stroke: none;
-	font-size: 2ex;
-	font-variant: small-caps;
-	letter-spacing: 0.5ex;
-}

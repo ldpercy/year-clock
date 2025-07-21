@@ -16,7 +16,7 @@ svg#clock.yearclock g#grid {
 		stroke-width: 5px !important;
 	}
 	.major {
-		stroke-width: 3px;
+		stroke-width: 2px !important;
 	}
 	.minor {
 		stroke-width: 1px;

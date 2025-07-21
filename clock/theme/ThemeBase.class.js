@@ -370,7 +370,7 @@ class ThemeBase extends Clock {
 
 	/* getGrid
 	*/
-	getGrid = function(viewBox, spacing=100) {
+	getGrid = function(viewBox, spacing=100, major=500) {
 
 		const vb = splitViewBox(viewBox);
 
@@ -390,16 +390,18 @@ class ThemeBase extends Clock {
 
 		while (x < (vb.width/2)){
 			x += spacing;
+			const className = (x % major === 0) ? 'major' : 'minor';
 			vertical += `
-				<line class="minor" x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"></line>
-				<line class="minor" x1="${-x}" y1="${y1}" x2="${-x}" y2="${y2}"></line>
+				<line class="${className}" x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"></line>
+				<line class="${className}" x1="${-x}" y1="${y1}" x2="${-x}" y2="${y2}"></line>
 			`;
 		}
 		while (y < (vb.height/2)){
 			y += spacing;
+			const className = (y % major === 0) ? 'major' : 'minor';
 			horizontal += `
-				<line class="minor" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"></line>
-				<line class="minor" x1="${x1}" y1="${-y}" x2="${x2}" y2="${-y}"></line>
+				<line class="${className}" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"></line>
+				<line class="${className}" x1="${x1}" y1="${-y}" x2="${x2}" y2="${-y}"></line>
 			`;
 		}
 

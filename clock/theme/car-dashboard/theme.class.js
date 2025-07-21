@@ -2,7 +2,7 @@
 */
 themeClass['car-dashboard'] = class extends ThemeBase {
 
-	viewBox           = '-2400 -1200 4800 2400';
+	viewBox           = '-2700 -1400 5400 2800';
 
 	body = {
 		radius : 1300,
@@ -29,10 +29,18 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	monthLabel = {
 		radius         : 920,
-		sectorPosition : 0,
+		sectorPosition : 0.5,
 		rotate         : false,
 		invert         : false,
 	};
+
+	dayLabel = {
+		radius         : 920,
+		sectorPosition : 0.5,
+		rotate         : false,
+		invert         : false,
+	};
+
 
 	handConfig = {
 		year : { length : 600 },
@@ -46,14 +54,30 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	{
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 
+		displayDate.monthDayArray.forEach(
+			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
+		);
+
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				${this.getGrid(this.viewBox)}
 				${this.getBody(this.body)}
-				${this.getFace(this.clockRadius)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+
+				<g transform="translate(-1300)">
+					<!-- month-day -->
+					${this.getFace(this.clockRadius)}
+					${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
+					${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+				</g>
+				<g transform="translate(1300)">
+					<!-- year -->
+					${this.getFace(this.clockRadius)}
+					${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+					${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+				</g>
+
 				${this.getHands(displayDate, this.handConfig)}
+
 			</svg>
 		`;
 
@@ -65,7 +89,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
-			case 'date'     : result = `${data.date.getFullYear()}` ; break;
+			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
+			case 'date'     : result = `${isoDate(data.date)}` ; break;
 			default         : result = data.name; break;
 		}
 		return result;
@@ -75,10 +100,19 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	getBody = function(body) {
 
 		const xUpper = body.radius - (body.radius * (12/13));
-		const yUpper = body.radius - (body.radius * (5/13));
+		const yUpper = body.radius * (5/13);
 
-		const xLower = body.radius - (body.radius * (3/5));
-		const yLower = body.radius - (body.radius * (1/5));
+		const xLower = body.radius - (body.radius * (5/13));
+		const yLower = body.radius - (body.radius * (1/13));
+
+		/*
+
+		c = 1300,0
+
+
+		x ~= 1000
+		y ~= 1000
+		*/
 
 
 		const path = `
@@ -87,7 +121,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			Z`;
 
 		const svg =
-			`<path class="body" d="${path}" />`
+			`
+			<circle cx="1300" cy="0" r="1300" />
+			<circle cx="-1300" cy="0" r="1300" />
+			<path class="body" d="${path}" />
+			`
+		/* <path class="body" d="${path}" />	 */
 		return svg;
 	}
 
