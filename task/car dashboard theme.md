@@ -25,3 +25,18 @@ index.html?theme=car-dashboard&date=1988-03-14&test=true
 Don't think I have the circle centres right.
 Some gridlines would help.
 
+
+
+Transforms
+----------
+
+Turns out quite a lot can be done with just simple transforms.
+CSS transforms are even working for me in both FF and Chromium, which is quite neat.
+However they're having the unintended consequence of overwriting the rotation transforms on the hands, so I'll have to split those apart.
+
+The hand code is getting a bit tortured...
+I'd made some changes for the vintage theme to allow for specifying which drawing function to use.
+Now I need to break the code apart again.
+
+
+
