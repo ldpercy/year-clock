@@ -20,7 +20,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabelPosition         = new Point(0,430);
+	dateLabelPosition         = new Point(0,-430);
 
 	monthLabel = {
 		radius         : 920,
@@ -48,6 +48,8 @@ themeClass['wall-clock'] = class extends ThemeBase {
 				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				${this.getHands(displayDate, this.handConfig)}
+
+				<text x="0" y="430" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
 			</svg>
 		`;
 
@@ -64,5 +66,9 @@ themeClass['wall-clock'] = class extends ThemeBase {
 		}
 		return result;
 	}
+
+
+
+
 
 }/* wall-clock */

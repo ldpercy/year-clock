@@ -6,7 +6,7 @@
 svg.yearclock {
 	background-color: seashell;
 	font-size: 48px;
-	font-family: serif;
+	font-family: Arial, sans-serif;
 }
 
 
@@ -74,4 +74,15 @@ svg.yearclock path.monthHand  {
 	fill: dimgrey;
 	stroke-width: 15;
 	stroke-linejoin: round;
+}
+
+
+text.schwartz {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: black;
+	stroke: none;
+	font-size: 2ex;
+	font-variant: small-caps;
+	letter-spacing: 0.5ex;
 }
