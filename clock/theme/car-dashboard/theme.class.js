@@ -68,15 +68,18 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					${this.getFace(this.clockRadius)}
 					${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 					${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+
+					${this.getMonthHand(displayDate, this.handConfig.month)}
+
 				</g>
 				<g transform="translate(1300)">
 					<!-- year -->
 					${this.getFace(this.clockRadius)}
 					${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 					${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				</g>
 
-				${this.getHands(displayDate, this.handConfig)}
+					${this.getYearHand(displayDate, this.handConfig.year)}
+				</g>
 
 			</svg>
 		`;

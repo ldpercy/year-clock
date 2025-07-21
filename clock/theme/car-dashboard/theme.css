@@ -71,26 +71,21 @@ svg.yearclock .label {
 }
 
 
-
-
-
 svg.yearclock .hands {
 	filter: drop-shadow(0px 20px 10px gray);
 }
 
 svg.yearclock path.yearHand  {
-	stroke: black;
-	fill: black;
+	stroke: red;
+	fill: red;
 	stroke-width: 25;
 	stroke-linejoin: round;
-	transform: translateX(1300px);
 }
 
 svg.yearclock path.monthHand  {
-	stroke:dimgrey;
-	fill: dimgrey;
+	stroke:red;
+	fill: red;
 	stroke-width: 15;
 	stroke-linejoin: round;
-	transform: translate(-1300px,0);
 }
 
