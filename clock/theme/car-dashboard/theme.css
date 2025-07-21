@@ -10,14 +10,14 @@ svg.yearclock {
 
 
 	.body {
-		fill: dimgrey;
+		fill: whitesmoke;
 		stroke:silver;
-		stroke-width: 1em;
+		stroke-width: 2em;
 		stroke-linejoin: round;
 	}
 
 	.face   {
-		fill: whitesmoke;
+		fill: white;
 		stroke: silver;
 		stroke-width: 10;
 		filter: drop-shadow(0px 10px 10px gray);
@@ -80,6 +80,7 @@ svg.yearclock path.yearHand  {
 	fill: red;
 	stroke-width: 25;
 	stroke-linejoin: round;
+	filter: drop-shadow(0px 20px 10px gray);
 }
 
 svg.yearclock path.monthHand  {
@@ -87,5 +88,6 @@ svg.yearclock path.monthHand  {
 	fill: red;
 	stroke-width: 15;
 	stroke-linejoin: round;
+	filter: drop-shadow(0px 20px 10px gray);
 }
 
