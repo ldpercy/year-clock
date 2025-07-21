@@ -368,4 +368,53 @@ class ThemeBase extends Clock {
 	}/* rotationDegrees */
 
 
+	/* getGrid
+	*/
+	getGrid = function(viewBox, spacing=100) {
+
+		const vb = splitViewBox(viewBox);
+
+		const x1 = vb.x;
+		const x2 = vb.x + vb.width;
+		const y1 = vb.y;
+		const y2 = vb.y + vb.height;
+
+
+		const xAxis = `<line class="axis" x1="${x1}" y1="0" x2="${x2}" y2="0"></line>`;
+		const yAxis = `<line class="axis" x1="0" y1="${y1}" x2="0" y2="${y2}"></line>`;
+
+		let horizontal = '';
+		let vertical = '';
+
+		let x=0, y=0;
+
+		while (x < (vb.width/2)){
+			x += spacing;
+			vertical += `
+				<line class="minor" x1="${x}" y1="${y1}" x2="${x}" y2="${y2}"></line>
+				<line class="minor" x1="${-x}" y1="${y1}" x2="${-x}" y2="${y2}"></line>
+			`;
+		}
+		while (y < (vb.height/2)){
+			y += spacing;
+			horizontal += `
+				<line class="minor" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"></line>
+				<line class="minor" x1="${x1}" y1="${-y}" x2="${x2}" y2="${-y}"></line>
+			`;
+		}
+
+		const result = `
+			<g id="grid">
+				${xAxis}
+				${yAxis}
+				${vertical}
+				${horizontal}
+			</g>
+		`;
+
+		return result;
+	}/* getGrid */
+
+
+
 }/* ThemeBase */

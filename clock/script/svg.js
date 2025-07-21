@@ -88,10 +88,10 @@ function padViewBox(padding, x=-1200, y=-1200, width=2400, height=2400) {
 function splitViewBox(viewBoxString) {
 	const vba    = viewBoxString.split(' ');
 	const result = {
-		x      : vba[0],
-		y      : vba[1],
-		width  : vba[2],
-		height : vba[3],
+		x      : parseInt(vba[0]),
+		y      : parseInt(vba[1]),
+		width  : parseInt(vba[2]),
+		height : parseInt(vba[3]),
 	};
 	return result;
 }
