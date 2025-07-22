@@ -55,7 +55,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			length      : 800,
 			tipRadius   : 10,
 			discRadius  : 75,
-			tail        : 250,
+			tail        : 150,
 			width       : 10,
 		},
 		month : {
@@ -63,7 +63,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			length      : 900,
 			tipRadius   : 10,
 			discRadius  : 75,
-			tail        : 250,
+			tail        : 150,
 			width       : 10,
 		},
 
@@ -85,7 +85,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				<defs>
 					<linearGradient id="body-light" y1="0%" y2="100%" x1="0%" x2="0%">
 						<stop offset="0%" stop-color="#111f"/>
-						<stop offset="10%" stop-color="#333f"/>
+						<stop offset="50%" stop-color="#333f"/>
 						<stop offset="90%" stop-color="#333f"/>
 						<stop offset="100%" stop-color="#555f"/>
 					</linearGradient>
