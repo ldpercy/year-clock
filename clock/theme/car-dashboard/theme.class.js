@@ -50,8 +50,23 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 	handConfig = {
-		year : { length : 800 },
-		month : { length : 800 },
+		year : {
+			function : ()=>this.getHand1,
+			length      : 800,
+			tipRadius   : 10,
+			discRadius  : 75,
+			tail        : 250,
+			width       : 10,
+		},
+		month : {
+			function : ()=>this.getHand1,
+			length      : 900,
+			tipRadius   : 10,
+			discRadius  : 75,
+			tail        : 250,
+			width       : 10,
+		},
+
 	};
 
 
@@ -66,6 +81,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+
+				<defs>
+					<linearGradient id="body-light" y1="0%" y2="100%" x1="0%" x2="0%">
+						<stop offset="0%" stop-color="#111f"/>
+						<stop offset="10%" stop-color="#333f"/>
+						<stop offset="90%" stop-color="#333f"/>
+						<stop offset="100%" stop-color="#555f"/>
+					</linearGradient>
+				</defs>
+
 				${this.getGrid(this.viewBox)}
 				${this.getBody(this.body)}
 
