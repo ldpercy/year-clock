@@ -40,6 +40,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	getClockSVG = function(displayDate)
 	{
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
+		addRadians(displayDate.monthDayArray);
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">

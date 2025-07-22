@@ -91,16 +91,14 @@ class ThemeBase extends Clock {
 
 		for (let day of periodArray)
 		{
-			let dayAngle = divisionRadians(periodArray.length, day.dayOfPeriod);
-
 			if (day.isWeekend)
 			{
-				tickLine = radialLine(dayAngle.start, tick.weekendStart, tick.weekendEnd);
+				tickLine = radialLine(day.radians.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
 			}
 			else // day.isWeekday
 			{
-				tickLine = radialLine(dayAngle.start, tick.weekdayStart, tick.weekdayEnd);
+				tickLine = radialLine(day.radians.start, tick.weekdayStart, tick.weekdayEnd);
 				tickClass = 'weekday';
 			}
 
@@ -109,7 +107,7 @@ class ThemeBase extends Clock {
 
 			if (day.isFirst) // Draw an extra line for firsts of the month
 			{
-				tickLine = radialLine(dayAngle.start, tick.monthFirstStart, tick.monthFirstEnd);
+				tickLine = radialLine(day.radians.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
 					`<line class="${tickClass}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
