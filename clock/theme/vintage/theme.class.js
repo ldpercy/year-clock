@@ -58,8 +58,12 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	handConfig = {
 		year : {
-			length : 900,
 			function : ()=>this.getHand1,
+			length      : 900,
+			tipRadius   : 5,
+			discRadius  : 60,
+			tail        : 100,
+			width       : 50,
 		},
 		month : {
 			function : ()=>this.getHoleHand,
@@ -202,29 +206,23 @@ themeClass['vintage'] = class extends ThemeBase {
 	Test of a more configurable hand shape
 	*/
 	getHand1 = function(param, transform, cssClass, id) {
-		//const length = 900;
-		const tail = 100;
-		const width = 50;
 
-		const tipRadius = 5;
-
-		const discRadius = 60;
-		const discX = discRadius * (5/13);
-		const discY = discRadius * (12/13);
+		const discX = param.discRadius * (5/13);
+		const discY = param.discRadius * (12/13);
 		/* Need to use a better pythagorean triad or do the trig properly */
 
 		const path = `
-			M -${tipRadius}, -${param.length}
-			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
+			M -${param.tipRadius}, -${param.length}
+			A ${param.tipRadius},${param.tipRadius} 0 1 1 ${param.tipRadius}, -${param.length}
 
 			L ${discX} -${discY}
-			A ${discRadius},${discRadius} 0 0 1 ${discX}, ${discY}
+			A ${param.discRadius},${param.discRadius} 0 0 1 ${discX}, ${discY}
 
-			L ${width} ${tail}
-			L -${width} ${tail}
+			L ${param.width} ${param.tail}
+			L -${param.width} ${param.tail}
 
 			L -${discX} ${discY}
-			A ${discRadius},${discRadius} 0 0 1 -${discX}, -${discY}
+			A ${param.discRadius},${param.discRadius} 0 0 1 -${discX}, -${discY}
 
 			Z`;
 		const svg =
