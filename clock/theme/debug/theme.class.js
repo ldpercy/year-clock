@@ -50,9 +50,9 @@ themeClass['debug'] = class extends ThemeBase {
 	}
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
 		// Set Up Drawing
 		addRadians(displayDate.monthArray);
@@ -61,18 +61,16 @@ themeClass['debug'] = class extends ThemeBase {
 
 		let weekArray    = getYearWeekArray(displayDate.object);
 
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace(this.clockRadius)}
-				${this.getSectorLabels('week', weekArray, this.weekLabel)}
-				${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
-				${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
-				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-			</svg>
+		const themeSVG = `
+			${this.getFace(this.clockRadius)}
+			${this.getSectorLabels('week', weekArray, this.weekLabel)}
+			${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
+			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
+			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 }/* themeClass.Debug */

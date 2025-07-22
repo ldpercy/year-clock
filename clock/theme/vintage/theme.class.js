@@ -73,61 +73,50 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
 		addRadians(displayDate.monthArray);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-
 		addRadians(displayDate.monthDayArray);
 
+		const themeSVG = `
+			<!--
+			<rect x="-1200" y="-1200" width="2400" height="2400">
+			</rect>
+			-->
 
-		const clockSVG = `
-			<svg id="clock"
-				class="yearclock"
-				viewBox="${this.viewBox}"
-				preserveAspectRatio="xMidYMid meet"
-				xmlns="http://www.w3.org/2000/svg"
-				>
-
-				<!--
-				<rect x="-1200" y="-1200" width="2400" height="2400">
-				</rect>
-				-->
-
-				${this.getDefs()}
-				${this.getBody(this.body)}
-				${this.getFace(this.faceRadius)}
+			${this.getDefs()}
+			${this.getBody(this.body)}
+			${this.getFace(this.faceRadius)}
 
 
-				${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+			${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
-				${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
-				${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
+			${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
+			${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
-				${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
-				${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
-				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
+			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+			${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
+			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 
-				<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
-					${this.getIcon()}
-				</svg>
-
-				${this.getHands(displayDate, this.handConfig)}
-				${this.getPin()}
-
+			<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
+				${this.getIcon()}
 			</svg>
+
+			${this.getHands(displayDate, this.handConfig)}
+			${this.getPin()}
 		`;
 
 		/*
 		<text x="0" y="350" class="label favicon">&#10041;</text>
 		*/
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 

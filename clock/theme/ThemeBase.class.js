@@ -42,20 +42,22 @@ class ThemeBase extends Clock {
 	*/
 	getClockSVG = function(displayDate)
 	{
-		// const clockSVG = `
-		// 	<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-		// 		${this.getFace()}
-		// 		${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
-		// 		${this.getSectorLabels('month', displayDate.monthArray)}
-		// 		${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray)}
-		// 		${this.getDateLabel(displayDate.object)}
-		// 		${this.getHands(displayDate)}
-		// 	</svg>
-		// `;
-		// return clockSVG;
-		// throw('getClockSVG should be overridden by the theme');
-		return `<svg viewBox="${this.viewBox}"> <text> getClockSVG should be overridden by the theme </text> </svg>`;
+		const clockSVG = `
+			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				${this.getThemeSVG(displayDate)}
+			</svg>`;
+
+		return clockSVG;
 	}/* getClockSVG */
+
+
+	/* getThemeSVG
+	*/
+	getThemeSVG = function(displayDate)
+	{
+		return `<text> getThemeSVG should be overridden by the theme </text>`;
+	}/* getThemeSVG */
+
 
 
 	/* getViewbox
@@ -121,6 +123,15 @@ class ThemeBase extends Clock {
 
 		return result;
 	}/* getPeriodDayTicks */
+
+
+
+	/* getPeriodMarkers
+	*/
+	getPeriodMarkers = function() {
+
+	}
+	/* getPeriodMarkers */
 
 
 

@@ -70,54 +70,50 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	};
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
 		addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+		const themeSVG = `
+			<defs>
+				<linearGradient id="body-light" y1="0%" y2="100%" x1="0%" x2="0%">
+					<stop offset="0%" stop-color="#111f"/>
+					<stop offset="50%" stop-color="#333f"/>
+					<stop offset="90%" stop-color="#333f"/>
+					<stop offset="100%" stop-color="#555f"/>
+				</linearGradient>
+			</defs>
 
-				<defs>
-					<linearGradient id="body-light" y1="0%" y2="100%" x1="0%" x2="0%">
-						<stop offset="0%" stop-color="#111f"/>
-						<stop offset="50%" stop-color="#333f"/>
-						<stop offset="90%" stop-color="#333f"/>
-						<stop offset="100%" stop-color="#555f"/>
-					</linearGradient>
-				</defs>
+			${this.getGrid(this.viewBox)}
+			${this.getBody(this.body)}
 
-				${this.getGrid(this.viewBox)}
-				${this.getBody(this.body)}
-
-				<g transform="translate(-1300)">
-					<!-- month-day -->
-					${this.getFace(this.clockRadius)}
-					${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
-					${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
-					<g class="hands">
-						${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreesStart, this.dial.degreesLength)}
-					</g>
+			<g transform="translate(-1300)">
+				<!-- month-day -->
+				${this.getFace(this.clockRadius)}
+				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
+				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+				<g class="hands">
+					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreesStart, this.dial.degreesLength)}
 				</g>
-				<g transform="translate(1300)">
-					<!-- year -->
-					${this.getFace(this.clockRadius)}
-					${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-					${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-					<g class="hands">
-						${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreesStart, this.dial.degreesLength)}
-					</g>
+			</g>
+			<g transform="translate(1300)">
+				<!-- year -->
+				${this.getFace(this.clockRadius)}
+				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+				<g class="hands">
+					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreesStart, this.dial.degreesLength)}
 				</g>
-
-			</svg>
+			</g>
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 	formatLabel = function(labelType, data) {

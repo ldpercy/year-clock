@@ -35,27 +35,25 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	};
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
 		addRadians(displayDate.monthArray);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray);
 
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace(this.clockRadius)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
-				${this.getHands(displayDate, this.handConfig)}
-			</svg>
+		const themeSVG = `
+			${this.getFace(this.clockRadius)}
+			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+			${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
+			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
+			${this.getHands(displayDate, this.handConfig)}
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 	formatLabel = function(labelType, data) {
