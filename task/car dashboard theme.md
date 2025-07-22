@@ -66,3 +66,7 @@ Gonna come back to this - wanna tackle angles first.
 Angular Context
 ---------------
 
+I've chopped something together that is starting to work.
+
+Inadvertently I've made the end relative to the start instead of absolute, but this is actually better as more kinds of angular contexts, eg greater than one revolution, are possible.
+

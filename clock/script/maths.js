@@ -58,16 +58,29 @@ function divisionDegrees(divisions, number) {
 /* divisionRadians
 Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
 Divisions are discrete so counting is 1-based.
+
+radiansEnd is currently working as an offset from radiansStart.
 */
-function divisionRadians(divisions, number) {
+function divisionRadians(divisions, number, radiansStart=0, radiansEnd=Math.TAU) {
+
 	const result = {
-		start  : (number-1)   * (Math.TAU / divisions),
-		middle : (number-0.5) * (Math.TAU / divisions),
-		end    : (number)     * (Math.TAU / divisions),
+		start  : radiansStart + radiansEnd * ((number - 1.0) / divisions),
+		middle : radiansStart + radiansEnd * ((number - 0.5) / divisions),
+		end    : radiansStart + radiansEnd * ((number - 0.0) / divisions),
 	}
 	result.width = result.end - result.start;
 	return result;
 }
+
+
+/* addRadians
+This might be tricky to do is a fully general way.
+*/
+function addRadians(array, radiansStart=0, radiansEnd=Math.TAU) {
+	array.forEach(
+		(element, index) => {element.radians = divisionRadians(array.length, index+1, radiansStart, radiansEnd);} // nb one-based
+	);
+}/* addRadians */
 
 
 

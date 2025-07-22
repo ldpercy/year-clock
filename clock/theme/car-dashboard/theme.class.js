@@ -54,9 +54,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	{
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 
-		displayDate.monthDayArray.forEach(
+		/* displayDate.monthDayArray.forEach(
 			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
-		);
+		); */
+		addRadians(displayDate.monthDayArray, radians(225), radians(270));
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
