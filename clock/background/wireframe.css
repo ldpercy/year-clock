@@ -10,7 +10,7 @@ svg.yearclock, svg.yearclock * {
 
 svg#clock.yearclock g#grid {
 
-	* { stroke: darkcyan !important; }
+	* { stroke: #0aaa !important; }
 
 	.axis {
 		stroke-width: 5px !important;

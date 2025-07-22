@@ -4,52 +4,52 @@
 
 
 svg.yearclock {
-	background-color:black;
+	background-color:#111f;
 	font-size: 48px;
 	font-family: Arial, sans-serif;
 
 
 	.body {
-		fill: whitesmoke;
-		stroke:silver;
+		fill: #444f;
+		stroke:#333f;
 		stroke-width: 2em;
 		stroke-linejoin: round;
 	}
 
 	.face   {
-		fill: white;
+		fill: #444f;
 		stroke: silver;
-		stroke-width: 10;
-		filter: drop-shadow(0px 10px 10px gray);
+		stroke-width: 1px;
+		/* filter: drop-shadow(0px 10px 10px gray); */
 	}
 }
 
-svg.yearclock .tick * {
-	stroke: black;
+svg.yearclock .tick {
+	stroke: white;
 	stroke-linecap: butt;
+
+
+	&.day .first {
+		stroke-width: 20;
+	}
+
+	&.day .weekday {
+		stroke-width: 10;
+	}
+
+	&.day .weekend {
+		stroke-width: 30;
+	}
+
 }
 
-svg.yearclock .tick.day .first {
-	stroke-width: 20;
-}
 
-svg.yearclock .tick.day .weekday {
-	stroke-width: 10;
-}
-
-svg.yearclock .tick.day .weekend {
-	stroke-width: 30;
-}
-
-svg.yearclock .month .label {
-	fill: black;
-}
 
 
 svg.yearclock .label {
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: black;
+	fill: white;
 	stroke: none;
 
 	font-variant: small-caps;
@@ -72,22 +72,22 @@ svg.yearclock .label {
 
 
 svg.yearclock .hands {
-	filter: drop-shadow(0px 20px 10px gray);
+	filter: drop-shadow(0px 20px 10px #111a);
+
+	path.yearHand  {
+		stroke: #e00f;
+		fill: #e00f;
+		stroke-width: 25;
+		stroke-linejoin: round;
+	}
+
+	path.monthHand  {
+		stroke:#e00f;
+		fill: #e00f;
+		stroke-width: 25;
+		stroke-linejoin: round;
+	}
+
 }
 
-svg.yearclock path.yearHand  {
-	stroke: red;
-	fill: red;
-	stroke-width: 25;
-	stroke-linejoin: round;
-	filter: drop-shadow(0px 20px 10px gray);
-}
-
-svg.yearclock path.monthHand  {
-	stroke:red;
-	fill: red;
-	stroke-width: 15;
-	stroke-linejoin: round;
-	filter: drop-shadow(0px 20px 10px gray);
-}
 

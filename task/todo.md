@@ -13,11 +13,12 @@ Small job reminders to wrap into other tasks.
 * Fonts - find some web-safe ones or figure out serving
 * Rename hands to pointers
 * Improve test page parameterisation
-* See if date presets (Pi Day etc) can be added as datalist suggestions
-* See if favicons can be controlled by css at all
 * Look into stroke gradients
-* Add extra label to wall-clock
 * Make pointer-sector position configurable (start/middle/fractional)
 * Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
 
 
+
+* Add extra label to wall-clock -> in progress
+* See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF
+* See if favicons can be controlled by css at all -> appears not

@@ -43,8 +43,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 	handConfig = {
-		year : { length : 600 },
-		month : { length : 850 },
+		year : { length : 800 },
+		month : { length : 800 },
 	};
 
 
@@ -68,17 +68,18 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					${this.getFace(this.clockRadius)}
 					${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 					${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
-
-					${this.getMonthHand(displayDate, this.handConfig.month)}
-
+					<g class="hands">
+						${this.getMonthHand(displayDate, this.handConfig.month)}
+					</g>
 				</g>
 				<g transform="translate(1300)">
 					<!-- year -->
 					${this.getFace(this.clockRadius)}
 					${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 					${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-
-					${this.getYearHand(displayDate, this.handConfig.year)}
+					<g class="hands">
+						${this.getYearHand(displayDate, this.handConfig.year)}
+					</g>
 				</g>
 
 			</svg>
@@ -102,11 +103,11 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	getBody = function(body) {
 
-		const xUpper = body.radius - (body.radius * (12/13));
+		const xUpper = body.radius * (1/13);
 		const yUpper = body.radius * (5/13);
 
-		const xLower = body.radius - (body.radius * (5/13));
-		const yLower = body.radius - (body.radius * (1/13));
+		const xLower = body.radius * (8/13);
+		const yLower = body.radius * (12/13);
 
 		/*
 

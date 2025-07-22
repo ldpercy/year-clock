@@ -48,7 +48,7 @@ I've split up the two dials, they're still full-circle though.
 Was about to put some matching ticks in for the year hand when I realised I don't have a method for that.
 The *only* tick method I have is the old `getPeriodDayTicks`.
 
-So I need something new or old.
+So I need something newish.
 I'd like to take the opportunity to think about ways to improve and abstract the old tick code while I'm at it.
 
 For a while I've wanted to rename 'ticks' to something more general like 'markers'.
@@ -59,3 +59,10 @@ That could cover over a few other variants I've thought about at various times:
 * start or mid markers
 * diamond shapes
 * Characters/emojis as markers
+
+Gonna come back to this - wanna tackle angles first.
+
+
+Angular Context
+---------------
+
