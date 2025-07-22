@@ -47,9 +47,8 @@ themeClass['wall-clock'] = class extends ThemeBase {
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.handConfig)}
-
 				<text x="0" y="430" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
+				${this.getHands(displayDate, this.handConfig)}
 			</svg>
 		`;
 

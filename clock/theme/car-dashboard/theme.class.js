@@ -124,12 +124,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			L ${-xLower},${yLower} A ${body.radius},${body.radius} 0 1 1 ${-xUpper},${-yUpper}
 			Z`;
 
-		const svg =
-			`
+		/*
 			<circle cx="1300" cy="0" r="1300" />
 			<circle cx="-1300" cy="0" r="1300" />
-			<path class="body" d="${path}" />
-			`
+		*/
+		const svg =
+			`<path class="body" d="${path}" />`;
 		/* <path class="body" d="${path}" />	 */
 		return svg;
 	}

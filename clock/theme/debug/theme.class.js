@@ -14,20 +14,20 @@ themeClass['debug'] = class extends ThemeBase {
 	viewBox           = padViewBox(10);
 	clockRadius       = 1200;
 	weekRadiusStart = 400;
-	weekRadiusEnd   = 1100;
+	weekRadiusEnd   = 800;
 
 	weekLabel = {
-		radius         : 800,
+		radius         : 600,
 		sectorPosition : 0.5,
 		rotate         : 'radial-left',
 		invert         : false,
 	};
 
-	dayRadiusStart      = 1100;
+	dayRadiusStart      = 800;
 	dayRadiusEnd        = 1200;
 
 	dayLabel = {
-		radius         : 1150,
+		radius         : 1000,
 		sectorPosition : 0.5,
 		rotate         : 'radial-left',
 		invert         : false,
@@ -58,9 +58,14 @@ themeClass['debug'] = class extends ThemeBase {
 		// Set Up Drawing
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 
+
 		displayDate.yearDayArray.forEach(
 			(day) => {day.radians = divisionRadians(displayDate.yearDayArray.length, day.dayOfPeriod);}
 		);
+		//log(displayDate.yearDayArray);
+
+		//addRadians(displayDate.yearDayArray);
+		//log(displayDate.yearDayArray);
 
 		let weekArray    = getYearWeekArray(displayDate.object);
 
