@@ -73,6 +73,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		addRadians(displayDate.monthArray);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 
 		displayDate.monthDayArray.forEach(

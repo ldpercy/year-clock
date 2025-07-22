@@ -37,6 +37,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		addRadians(displayDate.monthArray);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
 

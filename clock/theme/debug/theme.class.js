@@ -54,7 +54,7 @@ themeClass['debug'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
-
+		addRadians(displayDate.monthArray);
 		// Set Up Drawing
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 

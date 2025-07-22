@@ -26,7 +26,6 @@ function createDisplayDate(date, language) {
 
 	// Set up period arrays
 	result.monthArray   = getMonthArray(result, result.monthNames);
-	//result.yearDayArray = getPeriodDayArray(startOfYear(date), nextYear(date), date);
 
 	//log('createDisplayDate',result);
 	return result;
@@ -202,7 +201,6 @@ function getMonthArray(displayDate, monthNames) {
 				'startDate'    : new Date(displayDate.year, index),
 				'nextMonth'    : nextMonth,
 				'endDate'      : new Date(nextMonth - 1000),
-				'radians'      : dateRangeRadians(startDate, nextMonth),
 				'class'        : getMonthClass(startDate, displayDate.object)
 			};
 			return month;

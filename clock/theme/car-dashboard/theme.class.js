@@ -32,7 +32,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabelPosition         = new Point(0,430);
+	dateLabelPosition         = new Point(0,900);
 
 	monthLabel = {
 		radius         : 920,
@@ -59,11 +59,9 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
-		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
+		addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
 
-		/* displayDate.monthDayArray.forEach(
-			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
-		); */
+		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		const clockSVG = `
@@ -86,7 +84,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 					${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 					<g class="hands">
-						${this.getYearHand(displayDate, this.handConfig.year)}
+						${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreesStart, this.dial.degreesLength)}
 					</g>
 				</g>
 
