@@ -57,8 +57,9 @@ themeClass['debug'] = class extends ThemeBase {
 
 		// Set Up Drawing
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+
 		displayDate.yearDayArray.forEach(
-			(day) => {day.radians = yearDayRadians(day.date);}
+			(day) => {day.radians = divisionRadians(displayDate.yearDayArray.length, day.dayOfPeriod);}
 		);
 
 		let weekArray    = getYearWeekArray(displayDate.object);

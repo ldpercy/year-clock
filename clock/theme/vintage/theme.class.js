@@ -76,7 +76,6 @@ themeClass['vintage'] = class extends ThemeBase {
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 
 		displayDate.monthDayArray.forEach(
-			//(day) => {day.radians = yearDayRadians(day.date);}
 			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
 		);
 

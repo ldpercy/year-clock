@@ -243,10 +243,6 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 }/* getPeriodDayArray */
 
 
-function yearDayRadians(date) {
-	return dateRangeRadians(date, nextDay(date))
-}
-
 
 /* getSeasonArray
 */

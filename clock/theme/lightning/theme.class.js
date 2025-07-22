@@ -101,7 +101,7 @@ themeClass['lightning'] = class extends ThemeBase {
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 
 		displayDate.yearDayArray.forEach(
-			(day) => {day.radians = yearDayRadians(day.date);}
+			(day) => {day.radians = divisionRadians(displayDate.yearDayArray.length, day.dayOfPeriod);}
 		);
 
 		// radians      : dateRangeRadians(thisDate, nextDay(thisDate)),
