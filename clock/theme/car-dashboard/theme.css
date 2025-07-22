@@ -5,13 +5,31 @@
 
 svg.yearclock {
 	background-color:#111f;
+
+
+	background:
+		repeating-linear-gradient(
+			135deg,
+			#000f,
+			#333a 19px,
+			#000a 20px
+		),
+		repeating-linear-gradient(
+			225deg,
+			#000f,
+			#333a 19px,
+			#000a 20px
+		);
+
+
 	font-size: 48px;
 	font-family: Arial, sans-serif;
 
 
 	.body {
 		fill: #444f;
-		stroke:#333f;
+		/* stroke:#333f; */
+		stroke: url(#body-light);
 		stroke-width: 2em;
 		stroke-linejoin: round;
 	}
