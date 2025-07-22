@@ -226,6 +226,36 @@ class ThemeBase extends Clock {
 
 
 
+	/* getHand1
+	Test of a more configurable hand shape
+	*/
+	getHand1 = function(param, transform, cssClass, id) {
+
+		const discX = param.discRadius * (5/13);
+		const discY = param.discRadius * (12/13);
+		/* Need to use a better pythagorean triad or do the trig properly */
+
+		const path = `
+			M -${param.tipRadius}, -${param.length}
+			A ${param.tipRadius},${param.tipRadius} 0 1 1 ${param.tipRadius}, -${param.length}
+
+			L ${discX} -${discY}
+			A ${param.discRadius},${param.discRadius} 0 0 1 ${discX}, ${discY}
+
+			L ${param.width} ${param.tail}
+			L -${param.width} ${param.tail}
+
+			L -${discX} ${discY}
+			A ${param.discRadius},${param.discRadius} 0 0 1 -${discX}, -${discY}
+
+			Z`;
+		const svg =
+			`<path id="${id}" class="hand1 ${cssClass}" d="${path}" transform="${transform}"/>`;
+		return svg;
+	}/* getHand1 */
+
+
+
 	/* getPeriodDaySectors
 	*/
 	getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
