@@ -100,14 +100,7 @@ themeClass['lightning'] = class extends ThemeBase {
 	{
 		addRadians(displayDate.monthArray);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-
-		displayDate.yearDayArray.forEach(
-			(day) => {day.radians = divisionRadians(displayDate.yearDayArray.length, day.dayOfPeriod);}
-		);
-
-		// radians      : dateRangeRadians(thisDate, nextDay(thisDate)),
-
-
+		addRadians(displayDate.yearDayArray);
 
 		let quarterArray = getQuarterArray(displayDate.object);
 		let weekArray    = getYearWeekArray(displayDate.object);

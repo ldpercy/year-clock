@@ -3,7 +3,7 @@ Todo
 
 Small job reminders to wrap into other tasks.
 
-
+* Figure out out if there are 'safe' ways of capturing keyboard events so i can do continuous date +/-
 * Finish cleaning up new hands & promote to ThemeBase
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)

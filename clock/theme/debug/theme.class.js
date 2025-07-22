@@ -54,18 +54,10 @@ themeClass['debug'] = class extends ThemeBase {
 	*/
 	getClockSVG = function(displayDate)
 	{
-		addRadians(displayDate.monthArray);
 		// Set Up Drawing
+		addRadians(displayDate.monthArray);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-
-
-		displayDate.yearDayArray.forEach(
-			(day) => {day.radians = divisionRadians(displayDate.yearDayArray.length, day.dayOfPeriod);}
-		);
-		//log(displayDate.yearDayArray);
-
-		//addRadians(displayDate.yearDayArray);
-		//log(displayDate.yearDayArray);
+		addRadians(displayDate.yearDayArray);
 
 		let weekArray    = getYearWeekArray(displayDate.object);
 

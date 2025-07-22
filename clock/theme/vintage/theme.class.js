@@ -76,12 +76,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		addRadians(displayDate.monthArray);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 
-		displayDate.monthDayArray.forEach(
-			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
-		);
-
-		//log('handConfig:', this.handConfig);
-		//log('this.getHand1:', this.getHand1);
+		addRadians(displayDate.monthDayArray);
 
 
 		const clockSVG = `
