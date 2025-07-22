@@ -8,13 +8,20 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		radius : 1300,
 	}
 
+
 	clockRadius       = 1200;
+	innerRadius       = 900;
+	outerRadius       = 1200;
 
-	innerRadius       = 1000;
-	outerRadius       = 1150;
+	dial = {
+		degreesStart  : 225,
+		degreesLength : 270,
+		radiansStart  : radians(225),
+		radiansLength : radians(270),
+	}
 
-	weekdayMarkerLength = 40;
-	weekendMarkerLength = 55;
+	weekdayMarkerLength = 100;
+	weekendMarkerLength = 150;
 
 	tick = {
 		weekdayStart    : this.outerRadius,
@@ -35,9 +42,9 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	};
 
 	dayLabel = {
-		radius         : 920,
+		radius         : 1120,
 		sectorPosition : 0.5,
-		rotate         : false,
+		rotate         : true,
 		invert         : false,
 	};
 
@@ -57,7 +64,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		/* displayDate.monthDayArray.forEach(
 			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
 		); */
-		addRadians(displayDate.monthDayArray, radians(225), radians(270));
+		addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +77,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 					${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 					<g class="hands">
-						${this.getMonthHand(displayDate, this.handConfig.month)}
+						${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreesStart, this.dial.degreesLength)}
 					</g>
 				</g>
 				<g transform="translate(1300)">

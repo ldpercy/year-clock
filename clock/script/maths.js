@@ -44,12 +44,14 @@ function significantFigures(integer) {
 /* divisionDegrees
 Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
 Divisions are discrete so counting is 1-based.
+
+degreesLength is an offset from radiansStart.
 */
-function divisionDegrees(divisions, number) {
+function divisionDegrees(divisions, number, degreesStart=0, degreesLength=360) {
 	let result = {
-		start  : (number-1)   * (360 / divisions),
-		middle : (number-0.5) * (360 / divisions),
-		end    : (number)     * (360 / divisions),
+		start  : degreesStart + degreesLength * ((number - 1.0) / divisions),
+		middle : degreesStart + degreesLength * ((number - 0.5) / divisions),
+		end    : degreesStart + degreesLength * ((number - 0.0) / divisions),
 	}
 	result.width = result.end - result.start;
 	return result;
@@ -59,14 +61,14 @@ function divisionDegrees(divisions, number) {
 Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
 Divisions are discrete so counting is 1-based.
 
-radiansEnd is currently working as an offset from radiansStart.
+radiansLength is an offset from radiansStart.
 */
-function divisionRadians(divisions, number, radiansStart=0, radiansEnd=Math.TAU) {
+function divisionRadians(divisions, number, radiansStart=0, radiansLength=Math.TAU) {
 
 	const result = {
-		start  : radiansStart + radiansEnd * ((number - 1.0) / divisions),
-		middle : radiansStart + radiansEnd * ((number - 0.5) / divisions),
-		end    : radiansStart + radiansEnd * ((number - 0.0) / divisions),
+		start  : radiansStart + radiansLength * ((number - 1.0) / divisions),
+		middle : radiansStart + radiansLength * ((number - 0.5) / divisions),
+		end    : radiansStart + radiansLength * ((number - 0.0) / divisions),
 	}
 	result.width = result.end - result.start;
 	return result;

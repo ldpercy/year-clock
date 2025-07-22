@@ -30,7 +30,7 @@ svg.yearclock .tick {
 
 
 	&.day .first {
-		stroke-width: 20;
+		stroke-width: 30;
 	}
 
 	&.day .weekday {
@@ -38,7 +38,7 @@ svg.yearclock .tick {
 	}
 
 	&.day .weekend {
-		stroke-width: 30;
+		stroke-width: 20;
 	}
 
 }
@@ -60,7 +60,7 @@ svg.yearclock .label {
 	}
 
 	&.label.monthDay text {
-		font-size: 2em;
+		font-size: 3ex;
 		font-style: italic;
 	}
 

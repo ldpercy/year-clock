@@ -183,9 +183,9 @@ class ThemeBase extends Clock {
 
 
 	/* getYearHand */
-	getYearHand = function(displayDate, handConfig) {
+	getYearHand = function(displayDate, handConfig, degreesStart, degreesLength) {
 		// calculate year hand params
-		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear);
+		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear, degreesStart, degreesLength);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
 		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
@@ -196,13 +196,13 @@ class ThemeBase extends Clock {
 
 
 	/* getMonthHand */
-	getMonthHand = function(displayDate, handConfig) {
+	getMonthHand = function(displayDate, handConfig, degreesStart, degreesLength) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate());
+		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate(), degreesStart, degreesLength);
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
-		const monthHandfFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
-		const result = monthHandfFunc(handConfig, monthTransform, 'monthHand', '');
+		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
+		const result = monthHandFunc(handConfig, monthTransform, 'monthHand', '');
 		return result;
 	}/* getMonthHand */
 
