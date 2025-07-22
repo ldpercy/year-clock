@@ -86,3 +86,18 @@ text.schwartz {
 	font-variant: small-caps;
 	letter-spacing: 0.5ex;
 }
+
+
+#schwartz:hover + g.hands {
+	path.yearHand {
+		fill: lightgreen;
+		stroke: lightgreen;
+		filter: drop-shadow(0px 0px 20px lightgreen);
+	}
+
+	path.monthHand {
+		fill: orange;
+		stroke: orange;
+		filter: drop-shadow(0px 0px 20px orange);
+	 }
+}
