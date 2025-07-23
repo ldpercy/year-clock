@@ -65,15 +65,17 @@ svg.yearclock .hands {
 svg.yearclock path.yearHand  {
 	stroke: black;
 	fill: black;
-	stroke-width: 25;
+	stroke-width: 10;
 	stroke-linejoin: round;
+	paint-order: stroke;
 }
 
 svg.yearclock path.monthHand  {
 	stroke:dimgrey;
 	fill: dimgrey;
-	stroke-width: 15;
+	stroke-width: 10;
 	stroke-linejoin: round;
+	paint-order: stroke;
 }
 
 
@@ -90,17 +92,17 @@ text.schwartz {
 
 #schwartz:hover + g.hands {
 
-	filter: drop-shadow(0px 20px 10px #ff07);
+	/* filter: drop-shadow(0px 0px 20px #2227); */
 
 	path.yearHand {
 		fill: lightgreen;
 		stroke: lightgreen;
-		filter: drop-shadow(0px 0px 15px lightgreen);
+		filter: drop-shadow(0px 0px 20px lime);
 	}
 
 	path.monthHand {
 		fill: orange;
 		stroke: orange;
-		filter: drop-shadow(0px 0px 15px orange);
+		filter: drop-shadow(0px 0px 20px darkorange);
 	 }
 }

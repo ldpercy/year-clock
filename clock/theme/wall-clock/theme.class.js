@@ -30,8 +30,22 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	};
 
 	handConfig = {
-		year : { length : 600 },
-		month : { length : 850 },
+		year : {
+			function : ()=>this.getHand1,
+			length      : 600,
+			tipRadius   : 10,
+			discRadius  : 40,
+			tail        : 160,
+			width       : 18,
+		},
+		month : {
+			function : ()=>this.getHand1,
+			length      : 850,
+			tipRadius   : 5,
+			discRadius  : 30,
+			tail        : 160,
+			width       : 14,
+		},
 	};
 
 
