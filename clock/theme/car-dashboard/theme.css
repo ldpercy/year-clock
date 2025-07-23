@@ -9,13 +9,13 @@ svg.yearclock {
 
 	background:
 		repeating-linear-gradient(
-			135deg,
+			315deg,
 			#000f,
 			#333a 19px,
 			#000a 20px
 		),
 		repeating-linear-gradient(
-			225deg,
+			45deg,
 			#000f,
 			#333a 19px,
 			#000a 20px

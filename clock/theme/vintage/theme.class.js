@@ -77,7 +77,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function(displayDate)
 	{
-		addRadians(displayDate.monthArray);
+		addDateRangeRadians(displayDate.monthArray);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray);
 

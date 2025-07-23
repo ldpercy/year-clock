@@ -75,6 +75,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	getThemeSVG = function(displayDate)
 	{
 		addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
+		addDateRangeRadians(displayDate.monthArray);
 
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Year Clock</title>
+	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
+
+	<!-- page -->
+	<link rel="icon" href="./page/favicon.svg">
+	<link rel="stylesheet" href="./page/page.css">
+
+	<!-- core --->
+	<script defer src="./script/l10n.js"></script>
+	<script defer src="./script/maths.js"></script>
+	<script defer src="./script/date.js"></script>
+	<script defer src="./script/svg.js"></script>
+	<script defer src="./script/utility.js"></script>
+
+</head>
+<body > <!-- onload="setup();" -->
+	<form id="form-clock">
+		<label for="input-theme">Theme</label>
+		<select id="input-theme" name="theme" title="theme">
+			<option>car-dashboard</option>
+			<option>vintage</option>
+			<option>lightning</option>
+			<option>season-out</option>
+			<option>wall-clock</option>
+			<option>plain-svg</option>
+			<option>brice</option>
+			<option>debug</option>
+		</select>
+
+		<label for="input-date">Date</label>
+		<input id="input-date" type="date" name="date" title="date"/>
+
+		<label for="input-language">Language</label>
+		<select id="input-language" name="language" title="language">
+			<option>en</option>
+			<option>es</option>
+			<option>fr</option>
+			<option>zh</option>
+			<option>hi</option>
+			<option>ru</option>
+			<option>ko</option>
+		</select>
+
+		<label for="input-style">Style</label>
+		<input id="input-style" type="text" name="style" title="style" list="datalist-style" pattern="[a-z0-9\-]{0,10}"/>
+		<datalist id="datalist-style">
+			<option value="dark"></option>
+			<option value="mono"></option>
+		</datalist>
+
+		<label for="input-background">Background</label>
+		<input id="input-background" name="background" type="text" title="background" list="datalist-background" pattern="[a-z0-9\-]{0,10}"/>
+		<datalist id="datalist-background">
+			<option value="">none/theme</option>
+			<option>star</option>
+			<option>sunset</option>
+			<option>dusk</option>
+			<option value="wireframe">wireframe (style override)</option>
+		</datalist>
+	</form>
+
+	<output id="clockContainer">
+		<!-- <svg id="clock" class="yearclock" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+		</svg> -->
+	</output>
+
+	<output id="testResult" class="testResult"></output>
+
+	<footer>
+		Year Clock by <a href="https://github.com/ldpercy/">ldpercy</a>, adapted from <a href="http://year-clock.net">year-clock.net</a> by <a href="http://andybrice.net">Andy Brice</a> and <a href="http://bricedesign.co.uk">Ian Brice</a>.
+	</footer>
+</body>
+</html>

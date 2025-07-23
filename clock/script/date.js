@@ -122,26 +122,37 @@ function daysInYear(date) {
 
 
 /* dateRangeRadians
-Given two dates return the start, middle and end angles in radians, as well as the width in radians.
+Given two dates return the start, middle, end & width in radians.
 Gives angles in the context of years.
 */
-function dateRangeRadians(date1, date2) {
+//function dateRangeRadians(date1, date2, radiansStart=0) {
+function dateRangeRadians(date1, date2, radiansStart=0, radiansLength=Math.TAU) {
 	const diy1 = daysInYear(date1);
 	const diy2 = daysInYear(date2);
 
-	const radiansStart = divisionRadians(diy1, dayOfYear(date1)).start;
-	const radiansEnd   = divisionRadians(diy2, dayOfYear(date2)).start + (Math.TAU * yearDifference(date1, date2));
-	// Need to add or subtract additional 2pi rotations based on the year difference
+	const start = divisionRadians(diy1, dayOfYear(date1), radiansStart, radiansLength).start;
+	const end   = divisionRadians(diy2, dayOfYear(date2), radiansStart, radiansLength).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+
+	/* 	Need to add or subtract additional 2pi rotations based on the year difference
+	TODO:
+	This will have to change with angular context - need to figure out what to do with negatives and year crossings for arcs
+
+	In an arc context it will depedn what the start and length radians represent.
+	For example it will be okay to represent a year crossing if the arc date range covers it, but if not then it will be an error, or a truncated sector.
+	Will need to think about how to handle these cases.
+
+	*/
 
 	let result = {
-		start  : radiansStart,
-		middle : (radiansStart + radiansEnd) / 2,
-		end    : radiansEnd,
-		width  : radiansEnd - radiansStart,
+		start  : start,
+		middle : (start + end) / 2,
+		end    : end,
+		width  : end - start,
 	}
 
 	return result;
 }/* dateRangeRadians */
+
 
 
 function yearDifference(date1, date2) {
@@ -190,18 +201,17 @@ function getMonthArray(displayDate, monthNames) {
 
 	const result = monthNames.map(
 		function( monthName, index ) {
-			const startDate    = new Date(displayDate.year, index);
-			const nextMonth    = new Date(displayDate.year, index + 1);
-			const endDate      = new Date(nextMonth - 1000);
+			const dateStart   = new Date(displayDate.year, index);
+			const dateEnd     = new Date(displayDate.year, index + 1);
 
 			const month = {
 				'id'           : monthId[index],
 				'number'       : index+1,
 				'name'         : monthName,
-				'startDate'    : new Date(displayDate.year, index),
-				'nextMonth'    : nextMonth,
-				'endDate'      : new Date(nextMonth - 1000),
-				'class'        : getMonthClass(startDate, displayDate.object)
+				'dateStart'    : dateStart,
+				'dateEnd'      : dateEnd,
+				'lastDate'     : new Date(nextMonth - 1000),
+				'class'        : getMonthClass(dateStart, displayDate.object)
 			};
 			return month;
 		}

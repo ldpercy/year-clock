@@ -38,7 +38,7 @@ themeClass['brice'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function(displayDate)
 	{
-		addRadians(displayDate.monthArray);
+		addDateRangeRadians(displayDate.monthArray);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
 

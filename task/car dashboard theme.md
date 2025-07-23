@@ -70,3 +70,66 @@ I've chopped something together that is starting to work.
 
 Inadvertently I've made the end relative to the start instead of absolute, but this is actually better as more kinds of angular contexts, eg greater than one revolution, are possible.
 
+Have both dials working now in a basic way
+
+
+Wireframe and Grid
+------------------
+
+I've rejigged the getClockSVG methods so that method now sits in the ThemeBase, and the themes now have getThemeSVG methods instead.
+The main difference is that the SVG tag has been promoted to the ThemeBase, and I can add common elements easily across themes.
+
+In this case, a graph-paper like grid that gets turned on in wireframe mode to help with layout.
+
+Paying off immediately, spotted a a bug.
+
+
+Month sector bug
+----------------
+
+Looks like I've munged something to do with the month sectors - they're not lining up with their day sector/markers at the moment, hopefully this is just a recently added bug.
+
+Not lining up with days either, it's out fractionally, so not a counting/off-by-one error.
+
+It's:
+
+	addRadians(displayDate.monthArray);
+
+`addRadians` currently only works for evenly spaced array items, so it's evenly spacing the months (bzzzzt).
+
+Need another way of calcing radians for unevenly spaced arrays.
+
+Changes made in:
+
+	8202901c Get dial working for months: remove radians from getMonthArray, move to themes
+
+Months were using:
+
+	'radians'      : dateRangeRadians(startDate, nextMonth),
+
+
+
+`dateRangeRadians` is still available, and is being used by the season, quarter and week functions.
+
+Need to decide what to do about it. Do I just wodge in angular context, or try to generalise `addRadians`?
+
+I think a general date range addRadians function would be useful.
+The array items needn't even necessarily be aligned or consecutive - just as long as they have start and end dates we can calc radians within a context.
+Could also be useful for things like custom date-range highlights, which I'll actually want pretty soon.
+
+Now I have another weirder bug...
+Something is completely stopping the date.js script in its tracks - no error, just the script isn't loading or available.
+It must be a syntax error of some sort, but I can't find it.
+Thas was weird:
+
+	Uncaught SyntaxError: redeclaration of formal parameter radiansStartdate.js:133:8note: Previously declared at line 129, column 41
+
+Wasn't showing up in a normal load, only in a pared down test file.
+For future reference, I was using a default param with the same name as a const.
+Should really have shown up somewhere between vscode, ff, chromium....
+
+
+I've changed the themes over to use a new `addDateRangeRadians` function to fix the month sector misalignment, and have added angle context to `dateRangeRadians`.
+But it is now in an awkward state of being incorrect for date ranges outside what the arc represents - will need to add some testing/rules.
+At the moment the only year crossing date range is probably summer in season-out so look at that, but will need a general solution.
+
