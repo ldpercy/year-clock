@@ -63,6 +63,10 @@ function nextDay(date) {
 	return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 }
 
+function truncateTime(date) {
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
 /* decisions, calculations:
 */
 
@@ -110,10 +114,14 @@ function daysInMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
 
-function dayOfYear(date)
-{
-	return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+function dayOfYear(date) {
+	return dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
 }
+
+function dayDifference(date1, date2) {
+	return Math.floor((truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24));
+}
+
 
 function daysInYear(date) {
 	return dayOfYear(new Date(date.getFullYear(),11,31));
