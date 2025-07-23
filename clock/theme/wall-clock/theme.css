@@ -89,15 +89,18 @@ text.schwartz {
 
 
 #schwartz:hover + g.hands {
+
+	filter: drop-shadow(0px 20px 10px #ff07);
+
 	path.yearHand {
 		fill: lightgreen;
 		stroke: lightgreen;
-		filter: drop-shadow(0px 0px 20px lightgreen);
+		filter: drop-shadow(0px 0px 15px lightgreen);
 	}
 
 	path.monthHand {
 		fill: orange;
 		stroke: orange;
-		filter: drop-shadow(0px 0px 20px orange);
+		filter: drop-shadow(0px 0px 15px orange);
 	 }
 }

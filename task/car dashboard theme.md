@@ -128,8 +128,59 @@ Wasn't showing up in a normal load, only in a pared down test file.
 For future reference, I was using a default param with the same name as a const.
 Should really have shown up somewhere between vscode, ff, chromium....
 
-
 I've changed the themes over to use a new `addDateRangeRadians` function to fix the month sector misalignment, and have added angle context to `dateRangeRadians`.
 But it is now in an awkward state of being incorrect for date ranges outside what the arc represents - will need to add some testing/rules.
 At the moment the only year crossing date range is probably summer in season-out so look at that, but will need a general solution.
+
+
+dateRangeRadians
+----------------
+
+Currently stands like this:
+
+	function dateRangeRadians(date1, date2, radiansStart=0, radiansLength=Math.TAU) {...}
+
+But it's incomplete like that.
+Currently it's exhibiting as a bug on the year side of the dashboard theme.
+It's assuming the dates take place within a standard circle.
+
+Ugh.
+Struggling with this one - too many assumptions.
+Lets generalise it a bit.
+What if the array items were non-sequential/non-correlated, ie just an arbitrary set of date ranges.
+And we wanted to calc their radian parameters over an arbitrary arc.
+
+We'd need
+	* the array of date periods of interest (holidays/seasons/sprints whatever)
+	* The angular range over which to distribute them
+	* The date range represented by the whole range
+
+So if the arc is 180 degrees, and the arc represents a whole year, then the date period sectors can be placed within.
+
+So I need some sort of compact way or expressing a date-angle mapping.
+
+```js
+	const diy1 = daysInYear(date1);
+	const diy2 = daysInYear(date2);
+
+	const start = divisionRadians(diy1, dayOfYear(date1), radiansStart, radiansLength).start;
+	const end   = divisionRadians(diy2, dayOfYear(date2), radiansStart, radiansLength).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+```
+There are more assumptions in here too.
+The `daysInYear` and `dayOfYear` calcs aren't necessarily correct - they need to be replaced by something sensitive to the date range represented by the full arc.
+So need something like:
+
+```js
+	const daysInRange = daysInRange(periodStart, periodEnd);
+
+	const dop1 = dayOfPeriod(date1, periodStart, periodEnd);
+	const dop2 = dayOfPeriod(date2, periodStart, periodEnd);
+
+	const start = divisionRadians(daysInRange, dop1, radiansStart, radiansLength).start;
+	const end   = divisionRadians(daysInRange, dop2, radiansStart, radiansLength).start;
+```
+
+That will be closer.
+Need to write `daysInRange` and `dayOfPeriod` though.
+
 

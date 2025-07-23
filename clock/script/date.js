@@ -83,7 +83,6 @@ function getDayClass(date, currentDate) { // this needs attention
 	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
 	if (date.getDate() === 1) result += ' first';
 	if (datesAreEqual(date, currentDate)) {
-		log('current day:',date);
 		result += ' current';
 	}
 	return result;
@@ -125,7 +124,6 @@ function daysInYear(date) {
 Given two dates return the start, middle, end & width in radians.
 Gives angles in the context of years.
 */
-//function dateRangeRadians(date1, date2, radiansStart=0) {
 function dateRangeRadians(date1, date2, radiansStart=0, radiansLength=Math.TAU) {
 	const diy1 = daysInYear(date1);
 	const diy2 = daysInYear(date2);
