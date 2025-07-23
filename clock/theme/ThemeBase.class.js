@@ -3,8 +3,8 @@
 class ThemeBase extends Clock {
 
 
-	constructor(id, date, theme, style, language) {
-		super(id, date, theme, style, language);
+	constructor(id, date, theme, style, language, background) {
+		super(id, date, theme, style, language, background);
 	}
 
 
@@ -42,8 +42,11 @@ class ThemeBase extends Clock {
 	*/
 	getClockSVG = function(displayDate)
 	{
+		const grid = (this.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
+
 		const clockSVG = `
 			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				${grid}
 				${this.getThemeSVG(displayDate)}
 			</svg>`;
 

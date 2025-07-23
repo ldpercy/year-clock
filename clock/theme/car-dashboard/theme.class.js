@@ -89,7 +89,6 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				</linearGradient>
 			</defs>
 
-			${this.getGrid(this.viewBox)}
 			${this.getBody(this.body)}
 
 			<g transform="translate(-1300)">

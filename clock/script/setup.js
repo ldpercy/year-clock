@@ -171,6 +171,7 @@ function updateClock() {
 		theme       : page.element.themeInput.value,
 		style       : page.element.styleInput.value,
 		language    : page.element.languageInput.value,
+		background  : page.element.backgroundInput.value,
 	};
 
 	drawClock(updateClockParams);
@@ -219,7 +220,7 @@ function drawClock2(clock) {
 
 	//log('drawClock2',arguments);
 
-	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme,clock.style, clock.language);
+	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme, clock.style, clock.language, clock.background);
 
 	let displayDate = createDisplayDate(clock.date, clock.language);
 	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
