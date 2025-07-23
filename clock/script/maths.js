@@ -99,15 +99,6 @@ function addDateRangeRadians(array, radiansStart=0, radiansEnd=Math.TAU) {
 
 // clock
 
-function dateRadians(date)
-{
-	return clockAngle( dateRatio(date) )
-}
-
-function clockAngle( revolutions )
-{
-	return Math.TAU * (revolutions)
-}
 
 function dateRatio(date)
 {
