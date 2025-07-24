@@ -188,3 +188,35 @@ I think they're actually the same function - `dayDifference(date1,date2)` which 
 `dayOfPeriod` might still be needed - it could return null if the date is outside the range  - not sure yet.
 
 
+### Experimenting with small classes
+The signatures of some of these functions are starting to get a bit hard to read.
+I'm going to toy with changing some things over to small classes for obviously grouped parameters.
+Eg:
+```js
+class DateRange {
+	constructor(start, end) {
+		this.start = new Date(start);
+		this.end = new Date(end);
+	}
+}/* DateRange */
+```
+Not sure yet if this will help or hinder read/write-ability, will try it for a little while.
+Also *technically* these might be better described as intervals, will stick with range for now.
+
+Actually i might need another terminology here - I also want to be able to describe ranges in terms of start+offset pairs that I'd started using for radian width.
+
+Using 'range' for one and 'interval' for the other is tempting...
+For really simple things I could even get away with using completely generic classes, ie just Range or Interval.
+Could even subclass for datatypes, might be good for some things, not sure I want to though.
+
+For radians i'll use Delta, something like this:
+```
+class RadianDelta {
+	constructor(start = 0, delta = Math.TAU) {
+		this.start = start;
+		this.delta = delta;
+	}
+}/* RadianDelta */
+```
+
+

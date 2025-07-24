@@ -197,9 +197,9 @@ class ThemeBase extends Clock {
 
 
 	/* getYearHand */
-	getYearHand = function(displayDate, handConfig, degreesStart, degreesLength) {
+	getYearHand = function(displayDate, handConfig, degreeDelta = new DegreeDelta) {
 		// calculate year hand params
-		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear, degreesStart, degreesLength);
+		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear, degreeDelta);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
 		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
@@ -210,9 +210,9 @@ class ThemeBase extends Clock {
 
 
 	/* getMonthHand */
-	getMonthHand = function(displayDate, handConfig, degreesStart, degreesLength) {
+	getMonthHand = function(displayDate, handConfig, degreeDelta = new DegreeDelta) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate(), degreesStart, degreesLength);
+		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate(), degreeDelta);
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;

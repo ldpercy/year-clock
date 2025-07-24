@@ -20,6 +20,7 @@ function createDisplayDate(date, language) {
 		daysInYear  : daysInYear(date),
 		yearStart   : startOfYear(date),
 		yearEnd     : nextYear(date),
+		dateRange   : new DateRange(startOfYear(date), nextYear(date)),
 	};
 
 	result.monthNames = getMonthNames(language);
@@ -132,12 +133,12 @@ function daysInYear(date) {
 Given two dates return the start, middle, end & width in radians.
 Gives angles in the context of years.
 */
-function dateRangeRadians(date1, date2, radiansStart=0, radiansLength=Math.TAU) {
+function dateRangeRadians(date1, date2, radianDelta = new RadianDelta) {
 	const diy1 = daysInYear(date1);
 	const diy2 = daysInYear(date2);
 
-	const start = divisionRadians(diy1, dayOfYear(date1), radiansStart, radiansLength).start;
-	const end   = divisionRadians(diy2, dayOfYear(date2), radiansStart, radiansLength).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+	const start = divisionRadians(diy1, dayOfYear(date1), radianDelta).start;
+	const end   = divisionRadians(diy2, dayOfYear(date2), radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
 
 	/* 	Need to add or subtract additional 2pi rotations based on the year difference
 	TODO:
@@ -404,3 +405,18 @@ function getYearWeekArray(date) {
 
 	return weekArray;
 }/* getYearWeekArray */
+
+
+
+
+class DateRange {
+	constructor(start, end) {
+		this.start = new Date(start);
+		this.end = new Date(end);
+	}
+}/* DateRange */
+
+
+/*
+dr = new DateRange('2025-01-01','2026-01-01')
+*/

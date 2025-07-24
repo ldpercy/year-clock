@@ -14,10 +14,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	outerRadius       = 1200;
 
 	dial = {
-		degreesStart  : 225,
-		degreesLength : 270,
-		radiansStart  : radians(225),
-		radiansLength : radians(270),
+		degreeDelta   : new DegreeDelta(225, 270),
+		radianDelta   : new RadianDelta(radians(225), radians(270)),
 	}
 
 	weekdayMarkerLength = 100;
@@ -75,12 +73,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	getThemeSVG = function(displayDate)
 	{
 		// addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
-		addDateRangeRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
+		addDateRangeRadians(displayDate.monthArray, displayDate.dateRange, this.dial.radianDelta);
 
 		log(displayDate.monthArray);
 
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
+		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
 
 		const themeSVG = `
 			<defs>
@@ -100,7 +98,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 				<g class="hands">
-					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreesStart, this.dial.degreesLength)}
+					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
 				</g>
 			</g>
 			<g transform="translate(1300)">
@@ -109,7 +107,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 				<g class="hands">
-					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreesStart, this.dial.degreesLength)}
+					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreeDelta)}
 				</g>
 			</g>
 		`;
