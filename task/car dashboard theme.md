@@ -220,3 +220,20 @@ class RadianDelta {
 ```
 
 
+### Zero basing for divisionRadians & divisionDegrees
+
+These have both been 1-based for a while, but I need them both to become 0-based to make more sense with arc-division mappings.
+
+It makes more sense for the zeroth div to start at 0 and go up from there, and for the -1th div to be negative.
+
+So I'm going to change these over.
+Might get messy.
+
+	divisionRadians
+		addRadians
+		getPeriodDaySectors
+
+	done
+
+
+

@@ -274,16 +274,16 @@ class ThemeBase extends Clock {
 	*/
 	getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
 	{
-		log('getPeriodDaySectors:', arguments);
+		//log('getPeriodDaySectors:', arguments);
 		let sectorPath = '';
 		let sectorSvg = '';
 
 		for (let day of periodArray)
 		{
-			let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
+			//let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
 
 			//log(thisDivisionRadians);
-			const sectorPath = getSectorPath(thisDivisionRadians.start, thisDivisionRadians.end, radiusStart, radiusEnd);
+			const sectorPath = getSectorPath(day.radians.start, day.radians.end, radiusStart, radiusEnd);
 			sectorSvg += `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${this.formatTitle('day',day)}</title></path>`;
 		}
 

@@ -63,13 +63,27 @@ Divisions are discrete so counting is 1-based.
 
 The arc starts at `radiansStart` and is `radiansLength` wide.
 Default is full-circle.
+
+I might need to generalise/extrapolate this a bit.
+Currently it works on the idea that an arc (commonly a whole circle) is divided evenly then gives the parameters for the numbered division.
+If we instead think about a number-arc mapping we can extrapolate outside the range including negatives.
+Will probably need to rebase on zero though.
+Actually as written it already works for numbers outside of range, so I'll just 0 base it so it makes more sense.
+
+
 */
 function divisionRadians(divisions, number, radianDelta = new RadianDelta) {
 
 	const result = {
+		/*
 		start  : radianDelta.start + radianDelta.delta * ((number - 1.0) / divisions),
 		middle : radianDelta.start + radianDelta.delta * ((number - 0.5) / divisions),
 		end    : radianDelta.start + radianDelta.delta * ((number - 0.0) / divisions),
+		 */
+		start  : radianDelta.start + radianDelta.delta * ((number + 0.0) / divisions),
+		middle : radianDelta.start + radianDelta.delta * ((number + 0.5) / divisions),
+		end    : radianDelta.start + radianDelta.delta * ((number + 1.0) / divisions),
+
 	}
 	result.width = result.end - result.start;
 	return result;
@@ -82,7 +96,7 @@ Currently only works for even spacing of an array.
 */
 function addRadians(array, radianDelta = new RadianDelta) {
 	array.forEach(
-		(element, index) => {element.radians = divisionRadians(array.length, index+1, radianDelta);} // nb one-based
+		(element, index) => {element.radians = divisionRadians(array.length, index, radianDelta);} // nb one-based
 	);
 }/* addRadians */
 
@@ -96,29 +110,11 @@ Need to decide some things:
 
 Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
 
-
-
-
 */
-function addDateRangeRadians(array, dateRange, radianDelta = new RadianDelta) {
+function addDateRangeRadians(array, dateRange, radianDelta = new RadianDelta, outlier = '') {
 	array.forEach(
 		(element) => {
-
-
-
-			element.radians = dateRangeRadians(element.dateStart, element.dateEnd, radianDelta);
-
-
-
-
-
-			/*
-
-			*/
-
-
-
-
+			element.radians = dateRangeRadians(element.dateStart, element.dateEnd, radianDelta, outlier);
 		}
 	);
 }/* addDateRangeRadians */

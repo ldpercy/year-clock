@@ -67,6 +67,7 @@ themeClass['season-out'] = class extends ThemeBase {
 	{
 		addDateRangeRadians(displayDate.monthArray);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+		addRadians(displayDate.yearDayArray);
 		displayDate.seasonArray  = getSeasonArray(displayDate.object);
 
 		const themeSVG = `

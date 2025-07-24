@@ -133,12 +133,20 @@ function daysInYear(date) {
 Given two dates return the start, middle, end & width in radians.
 Gives angles in the context of years.
 */
-function dateRangeRadians(date1, date2, radianDelta = new RadianDelta) {
+function dateRangeRadians(date1, date2, radianDelta = new RadianDelta, outlier = '') {
 	const diy1 = daysInYear(date1);
 	const diy2 = daysInYear(date2);
 
-	const start = divisionRadians(diy1, dayOfYear(date1), radianDelta).start;
-	const end   = divisionRadians(diy2, dayOfYear(date2), radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+	const start = divisionRadians(diy1, dayOfYear(date1)-1, radianDelta).start;
+	const end   = divisionRadians(diy2, dayOfYear(date2)-1, radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+
+	/*
+	switch(outlier) {
+		case 'truncate'    : result += (Math.cos(radians) < 0) ? 180 : 0; break;
+		case 'extrapolate' : result += (Math.sin(radians) < 0) ? 180 : 0; break;
+		case 'wrap'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+	} */
+
 
 	/* 	Need to add or subtract additional 2pi rotations based on the year difference
 	TODO:
