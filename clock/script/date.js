@@ -112,6 +112,11 @@ function dateIsInPeriod(date, periodStart, periodEnd) {
 	return ((date >= periodStart) && (date < periodEnd));
 }
 
+function dateIsInRange(date, dateRange) {
+	return ((date >= dateRange.start) && (date < dateRange.end));
+}
+
+
 function daysInMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
@@ -323,49 +328,57 @@ function getSeasonArray(date) {
 
 /* getQuarterArray
 */
-function getQuarterArray(date) {
+function getQuarterArray(displayDate) {
 
-	const year = date.getFullYear();
+	const year = displayDate.year;
 
 	const quarterArray = [
 		{
 			id          : '1',
 			name        : 'Q1',
-			dateStart   : new Date(year,0,1),
-			dateEnd     : new Date(year,3,1),
+			//dateStart   : new Date(year,0,1),
+			//dateEnd     : new Date(year,3,1),
+			dateRange   : new DateRange(new Date(year,0,1), new Date(year,3,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '2',
 			name        : 'Q2',
-			dateStart   : new Date(year,3,1),
-			dateEnd     : new Date(year,6,1),
+			//dateStart   : new Date(year,3,1),
+			//dateEnd     : new Date(year,6,1),
+			dateRange   : new DateRange(new Date(year,3,1), new Date(year,6,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '3',
 			name        : 'Q3',
-			dateStart   : new Date(year,6,1),
-			dateEnd     : new Date(year,9,1),
+			//dateStart   : new Date(year,6,1),
+			//dateEnd     : new Date(year,9,1),
+			dateRange   : new DateRange(new Date(year,6,1), new Date(year,9,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '4',
 			name        : 'Q4',
-			dateStart   : new Date(year,9,1),
-			dateEnd     : new Date(year,12,1),
+			//dateStart   : new Date(year,9,1),
+			//dateEnd     : new Date(year,12,1),
+			dateRange   : new DateRange(new Date(year,9,1), new Date(year,12,1)),
 			radians     : undefined,
 			class       : '',
 		},
 	];
 
 	for (let quarter of quarterArray) {
-		quarter.radians = dateRangeRadians(quarter.dateStart, quarter.dateEnd);
-		quarter.class = (dateIsInPeriod(date, quarter.dateStart, quarter.dateEnd)) ? 'current' : '';
+		//quarter.radians = dateRangeRadians(quarter.dateStart, quarter.dateEnd);
+		quarter.class = (dateIsInRange(displayDate.object, quarter.dateRange)) ? 'current' : '';
 	}
+
+
+	addDateRangeRadians(quarterArray, displayDate.yearRange);
+
 
 	return quarterArray;
 }/* getQuarterArray */
@@ -374,10 +387,10 @@ function getQuarterArray(date) {
 
 /* getYearWeekArray
 */
-function getYearWeekArray(date) {
+function getYearWeekArray(displayDate) {
 
-	const yearStart   = startOfYear(date);
-	const yearEnd     = nextYear(date);
+	const yearStart   = displayDate.yearStart;
+	const yearEnd     = displayDate.yearEnd;
 
 	let weekNumber = 1;
 
@@ -385,8 +398,9 @@ function getYearWeekArray(date) {
 		{
 			id          : `${weekNumber}`,
 			name        : `${weekNumber}`,
-			dateStart   : yearStart,
-			dateEnd     : undefined,
+			//dateStart   : yearStart,
+			//dateEnd     : undefined,
+			dateRange   : new DateRange(yearStart, undefined),
 			radians     : undefined,
 			class       : '',
 		}
@@ -396,25 +410,28 @@ function getYearWeekArray(date) {
 	{
 		if (thisDate.getDay() === 1 && !datesAreEqual(thisDate, yearStart)) // need this condition otherwise weeks get borked
 		{
-			weekArray[weekArray.length-1].dateEnd = new Date(thisDate);
+			weekArray[weekArray.length-1].dateRange.end = new Date(thisDate);
 
 			weekNumber++;
 			weekArray.push({
 				id          : `${weekNumber}`,
 				name        : `${weekNumber}`,
-				dateStart   : new Date(thisDate),
+				//dateStart   : new Date(thisDate),
+				dateRange   : new DateRange(thisDate, undefined),
 				radians     : undefined,
 				class       : '',
 			});
 		}
 	}
-	weekArray[weekArray.length-1].dateEnd = yearEnd;
+	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
 	for (let week of weekArray) {
-		week.radians = dateRangeRadians(week.dateStart, week.dateEnd);
-		week.class = (dateIsInPeriod(date, week.dateStart, week.dateEnd)) ? 'current' : '';
+		//week.radians = dateRangeRadians(week.dateStart, week.dateEnd);
+		week.class = (dateIsInRange(displayDate.object, week.dateRange)) ? 'current' : '';
 	}
+	addDateRangeRadians(weekArray, displayDate.yearRange);
 
+	//log(weekArray);
 	return weekArray;
 }/* getYearWeekArray */
 
@@ -423,7 +440,7 @@ function getYearWeekArray(date) {
 
 class DateRange {
 	constructor(start, end) {
-		this.start = new Date(start);
+		this.start = new Date(start);		// not sure yet if i want to keep these 'new Date(...)' constructors in here
 		this.end = new Date(end);
 	}
 

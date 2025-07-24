@@ -256,17 +256,21 @@ Three options I think I'll need:
 * truncate - if a range falls partly outside the window, truncate it to the window
 * extrapolate - extrapolate outlying ranges to beyond the window
 * wrap - attempt to 'wrap' outlying ranges back into the window by some method
+* negative - what to do with negative ranges
 
 I think I should first try to get a function to sit between dateRangeRadians and divisionRadians.
 
 Need `dateRadians`.
 
 
+### custom date arrays
 
+Most of the clocks are working ow with the new scheme, but lightning and season-out both make use of some custom arrays being built in `date.js`.
 
+I've updated lightning and looks like it's working now.
 
-
-
-
+The custom season array for `season-out` is where this might get interesting though.
+It uses (used) a trick to get summer to cross back into the current year.
+Need to see if any of the above options might work for this.
 
 

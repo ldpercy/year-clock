@@ -71,7 +71,7 @@ themeClass['lightning'] = class extends ThemeBase {
 		switch(type) {
 			case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
 			case 'quarter'  : result = `${data.name}`; break;
-			case 'week'     : result = `W${data.name}: ${isoDate(data.dateStart)} - ${isoDate(data.dateEnd)}`; break;
+			case 'week'     : result = `W${data.name}: ${isoDate(data.dateRange.start)} - ${isoDate(data.dateRange.end)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			default         : result = data.name; break;
 		}
@@ -98,12 +98,12 @@ themeClass['lightning'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function(displayDate)
 	{
-		addDateRangeRadians(displayDate.monthArray);
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
 
-		let quarterArray = getQuarterArray(displayDate.object);
-		let weekArray    = getYearWeekArray(displayDate.object);
+		let quarterArray = getQuarterArray(displayDate);
+		let weekArray    = getYearWeekArray(displayDate);
 
 		const themeSVG = `
 			${this.getBody(this.body)}

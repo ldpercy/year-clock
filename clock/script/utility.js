@@ -74,7 +74,7 @@ function runTest(string) {
 */
 function smokeTest(testString) {
 	let result = [];
-	const smokeString = ['NaN', 'undefined', 'null', 'Infinity', 'Object'];
+	const smokeString = ['NaN', 'undefined', 'null', 'Infinity', 'Object', 'Invalid'];
 
 	smokeString.forEach(
 		(string) => {
