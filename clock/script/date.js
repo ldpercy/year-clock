@@ -422,6 +422,9 @@ class DateRange {
 		this.start = new Date(start);
 		this.end = new Date(end);
 	}
+
+	length = function() { return dayDifference(this.start, this.end); }
+
 }/* DateRange */
 
 

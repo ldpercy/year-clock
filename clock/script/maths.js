@@ -61,7 +61,6 @@ function divisionDegrees(divisions, number, degreeDelta = new DegreeDelta) {
 Given integer divisions of an arc, return start, middle, end & width in radians of the numbered division.
 Divisions are now zero-based.
 
-The arc starts at `radiansStart` and is `radiansLength` wide.
 Default is full-circle.
 
 I might need to generalise/extrapolate this a bit.
@@ -83,6 +82,16 @@ function divisionRadians(divisions, number, radianDelta = new RadianDelta) {
 	result.width = result.end - result.start;
 	return result;
 }/* divisionRadians */
+
+
+/* dateRadians
+*/
+function dateRadians(date, dateRange, radianDelta = new RadianDelta) {
+
+	/* 	This might be the key I've been looking for */
+	result = divisionRadians(dateRange.length(), dayDifference(dateRange.start, date), radianDelta);
+	return result;
+}/* dateRadians */
 
 
 /* addRadians

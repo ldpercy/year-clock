@@ -242,5 +242,31 @@ Might get messy.
 	done
 
 
+Those are in place now, now extrapolating the division-arc mapping makes more sense.
+
+
+dateRadians & outlier handling
+------------------------------
+
+It's still a mess at the moment, but slowly making progress.
+dateRangeRadians is still the main source of problems.
+
+Need to be more systematic about how range outliers are handled in a generic division-arc mapping.
+Three options I think I'll need:
+* truncate - if a range falls partly outside the window, truncate it to the window
+* extrapolate - extrapolate outlying ranges to beyond the window
+* wrap - attempt to 'wrap' outlying ranges back into the window by some method
+
+I think I should first try to get a function to sit between dateRangeRadians and divisionRadians.
+
+Need `dateRadians`.
+
+
+
+
+
+
+
+
 
 
