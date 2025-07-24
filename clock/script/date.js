@@ -14,13 +14,14 @@ function createDisplayDate(date, language) {
 		language    : language,
 		year        : date.getFullYear(),
 		month       : date.getMonth() + 1,		// js month starts at 0
+		monthRange  : new DateRange(startOfMonth(date), nextMonth(date)),
 		date        : date.getDate(),
 		name        : date.toLocaleString(language, {weekday: "long"}),
 		dayOfYear   : dayOfYear(date),
 		daysInYear  : daysInYear(date),
 		yearStart   : startOfYear(date),
 		yearEnd     : nextYear(date),
-		dateRange   : new DateRange(startOfYear(date), nextYear(date)),
+		yearRange   : new DateRange(startOfYear(date), nextYear(date)),
 	};
 
 	result.monthNames = getMonthNames(language);
@@ -133,12 +134,14 @@ function daysInYear(date) {
 Given two dates return the start, middle, end & width in radians.
 Gives angles in the context of years.
 */
-function dateRangeRadians(date1, date2, radianDelta = new RadianDelta, outlier = '') {
-	const diy1 = daysInYear(date1);
-	const diy2 = daysInYear(date2);
+function dateRangeRadians(dateRange, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
+	//const diy1 = daysInYear(date1);
+	//const diy2 = daysInYear(date2);
+	//const start = divisionRadians(diy1, dayOfYear(date1)-1, radianDelta).start;
+	//const end   = divisionRadians(diy2, dayOfYear(date2)-1, radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
 
-	const start = divisionRadians(diy1, dayOfYear(date1)-1, radianDelta).start;
-	const end   = divisionRadians(diy2, dayOfYear(date2)-1, radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+	const start = dateRadians(dateRange.start, arcDateRange, radianDelta).start;
+	const end = dateRadians(dateRange.end, arcDateRange, radianDelta).start;
 
 	/*
 	switch(outlier) {
@@ -226,7 +229,8 @@ function getMonthArray(displayDate, monthNames) {
 				'dateStart'    : dateStart,
 				'dateEnd'      : dateEnd,
 				'lastDate'     : new Date(nextMonth - 1000),
-				'class'        : getMonthClass(dateStart, displayDate.object)
+				'class'        : getMonthClass(dateStart, displayDate.object),
+				'dateRange'    : new DateRange(dateStart, dateEnd),
 			};
 			return month;
 		}

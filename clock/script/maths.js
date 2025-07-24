@@ -85,6 +85,7 @@ function divisionRadians(divisions, number, radianDelta = new RadianDelta) {
 
 
 /* dateRadians
+Will automatically extrapolate if the date falls outside of the date range.
 */
 function dateRadians(date, dateRange, radianDelta = new RadianDelta) {
 
@@ -115,10 +116,10 @@ Need to decide some things:
 Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
 
 */
-function addDateRangeRadians(array, dateRange, radianDelta = new RadianDelta, outlier = '') {
+function addDateRangeRadians(array, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
 	array.forEach(
 		(element) => {
-			element.radians = dateRangeRadians(element.dateStart, element.dateEnd, radianDelta, outlier);
+			element.radians = dateRangeRadians(element.dateRange, arcDateRange, radianDelta, outlier);
 		}
 	);
 }/* addDateRangeRadians */
