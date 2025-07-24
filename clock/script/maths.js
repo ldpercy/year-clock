@@ -43,15 +43,15 @@ function significantFigures(integer) {
 
 /* divisionDegrees
 Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
-Divisions are discrete so counting is 1-based.
+Divisions are now zero-based.
 
 degreesLength is an offset from radiansStart.
 */
 function divisionDegrees(divisions, number, degreeDelta = new DegreeDelta) {
 	let result = {
-		start  : degreeDelta.start + degreeDelta.delta * ((number - 1.0) / divisions),
-		middle : degreeDelta.start + degreeDelta.delta * ((number - 0.5) / divisions),
-		end    : degreeDelta.start + degreeDelta.delta * ((number - 0.0) / divisions),
+		start  : degreeDelta.start + degreeDelta.delta * ((number + 0.0) / divisions),
+		middle : degreeDelta.start + degreeDelta.delta * ((number + 0.5) / divisions),
+		end    : degreeDelta.start + degreeDelta.delta * ((number + 1.0) / divisions),
 	}
 	result.width = result.end - result.start;
 	return result;
@@ -59,7 +59,7 @@ function divisionDegrees(divisions, number, degreeDelta = new DegreeDelta) {
 
 /* divisionRadians
 Given integer divisions of an arc, return start, middle, end & width in radians of the numbered division.
-Divisions are discrete so counting is 1-based.
+Divisions are now zero-based.
 
 The arc starts at `radiansStart` and is `radiansLength` wide.
 Default is full-circle.
@@ -75,11 +75,6 @@ Actually as written it already works for numbers outside of range, so I'll just 
 function divisionRadians(divisions, number, radianDelta = new RadianDelta) {
 
 	const result = {
-		/*
-		start  : radianDelta.start + radianDelta.delta * ((number - 1.0) / divisions),
-		middle : radianDelta.start + radianDelta.delta * ((number - 0.5) / divisions),
-		end    : radianDelta.start + radianDelta.delta * ((number - 0.0) / divisions),
-		 */
 		start  : radianDelta.start + radianDelta.delta * ((number + 0.0) / divisions),
 		middle : radianDelta.start + radianDelta.delta * ((number + 0.5) / divisions),
 		end    : radianDelta.start + radianDelta.delta * ((number + 1.0) / divisions),

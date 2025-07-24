@@ -235,5 +235,12 @@ Might get messy.
 
 	done
 
+	divisionDegrees
+
+		only used by the hands
+
+	done
+
+
 
 
