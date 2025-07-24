@@ -53,7 +53,7 @@ themeClass['debug'] = class extends ThemeBase {
 	getThemeSVG = function(displayDate)
 	{
 		// Set Up Drawing
-		addDateRangeRadians(displayDate.monthArray);
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 
 		//log(displayDate.monthArray);
 
