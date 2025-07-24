@@ -103,7 +103,7 @@ Changes made in:
 
 	8202901c Get dial working for months: remove radians from getMonthArray, move to themes
 
-Months were using:
+Months were previously using:
 
 	'radians'      : dateRangeRadians(startDate, nextMonth),
 
@@ -182,5 +182,9 @@ So need something like:
 
 That will be closer.
 Need to write `daysInRange` and `dayOfPeriod` though.
+
+I think they're actually the same function - `dayDifference(date1,date2)` which will just be a generalised version of the current `dayOfYear(date)`.
+
+`dayOfPeriod` might still be needed - it could return null if the date is outside the range  - not sure yet.
 
 

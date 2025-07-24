@@ -20,5 +20,5 @@ Small job reminders to wrap into other tasks.
 
 
 * Add extra label to wall-clock -> in progress
-* See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF
+* See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF, probably leave
 * See if favicons can be controlled by css at all -> appears not

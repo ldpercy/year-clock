@@ -88,10 +88,20 @@ function addRadians(array, radiansStart=0, radiansEnd=Math.TAU) {
 
 
 /* addDateRangeRadians
+Currently incomplete/incorrect due to problems with dateRangeRadians
+Need to decide some things:
+* What date period the arc represents
+* What to do with periods outside or crossing out of the primary date range - discard, truncate, extrapolate
+* Special conditions for truncates or extrapolates crossing back into an overlapping pseudo-range, eg year boundaries (seasons)
+
+Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
+
 */
 function addDateRangeRadians(array, radiansStart=0, radiansEnd=Math.TAU) {
 	array.forEach(
-		(element) => {element.radians = dateRangeRadians(element.dateStart, element.dateEnd, radiansStart, radiansEnd);}
+		(element) => {
+			element.radians = dateRangeRadians(element.dateStart, element.dateEnd, radiansStart, radiansEnd);
+		}
 	);
 }/* addDateRangeRadians */
 
