@@ -278,49 +278,57 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 
 /* getSeasonArray
 */
-function getSeasonArray(date) {
+function getSeasonArray(displayDate) {
 
-	const year = date.getFullYear();
+	const year = displayDate.year;
 
 	const seasonArray = [
 		{
 			id          : 'summer',
 			name        : 'Summer',
-			dateStart   : new Date(year,11,1),
-			dateEnd     : new Date(year,2,1),
+			//dateStart   : new Date(year,11,1),
+			//dateEnd     : new Date(year,2,1),
+			dateRange   : new DateRange(new Date(year,11,1), new Date(year,2,1)),	// NB negative range
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : 'autumn',
 			name        : 'Autumn',
-			dateStart   : new Date(year,2,1),
-			dateEnd     : new Date(year,5,1),
+			//dateStart   : new Date(year,2,1),
+			//dateEnd     : new Date(year,5,1),
+			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : 'winter',
 			name        : 'Winter',
-			dateStart   : new Date(year,5,1),
-			dateEnd     : new Date(year,8,1),
+			//dateStart   : new Date(year,5,1),
+			//dateEnd     : new Date(year,8,1),
+			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : 'spring',
 			name        : 'Spring',
-			dateStart   : new Date(year,8,1),
-			dateEnd     : new Date(year,11,1),
+			//dateStart   : new Date(year,8,1),
+			//dateEnd     : new Date(year,11,1),
+			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
 			radians     : undefined,
 			class       : '',
 		},
 	];
 
 	for (let season of seasonArray) {
-		season.radians = dateRangeRadians(season.dateStart, season.dateEnd);
-		season.class = (dateIsInPeriod(date, season.dateStart, season.dateEnd)) ? 'current' : '';
+		//season.radians = dateRangeRadians(season.dateStart, season.dateEnd);
+		season.class = (dateIsInRange(displayDate.object, season.dateRange)) ? 'current' : '';
 	}
+
+	addDateRangeRadians(seasonArray, displayDate.yearRange);
+
+	log(seasonArray);
 
 	return seasonArray;
 }/* getSeasonArray */

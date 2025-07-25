@@ -269,8 +269,39 @@ Most of the clocks are working ow with the new scheme, but lightning and season-
 
 I've updated lightning and looks like it's working now.
 
+### Summer
+
 The custom season array for `season-out` is where this might get interesting though.
 It uses (used) a trick to get summer to cross back into the current year.
 Need to see if any of the above options might work for this.
+
+I've gone ahead and done the same updates to the season array as I'd done for week and quarter.
+Currently the season array uses a negative date range for summer.
+I was expecting this to break somehow, but the summer sector has drawn "correctly" straight off the bat.
+
+This time around I want to properly understand what's happening.
+At the moment:
+* Summer is a negative date range, eg
+	```
+	s = new DateRange(new Date(2004,11,1), new Date(2004,2,1))
+	s.length()
+		-275
+	```
+* Summer's sector goes backwards and has a negative width, and the middle is in the wrong spot:
+	```
+	​​​start: 5.75100294509607
+	end: 1.0300303782261615
+	​​​middle: 3.3905166616611155
+	​​​width: -4.720972566869908
+	```
+	If there *had* been a sector label, it would have been wrong. (Have just tested - it *is* wrong.)
+* The sector seems to be drawn clockwise ("correctly"), which is unexpected - i'd thought it would have gone counter-clockwise.
+	It goes forwards because of the start-end radians which cross zero clockwise.
+
+So its "worked", but it hasn't really worked properly.
+
+So what to do?
+
+I think the best option will be to try to extrapolate Summer into the next year, keeping the date and radian ranges positive, and taking care to get the day count correct for February.
 
 
