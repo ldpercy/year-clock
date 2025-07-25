@@ -315,3 +315,20 @@ That will come soon enough.
 An example would be if I displayed a whole year on a non-whole circle, such as the car-dashboard's year dial.
 I have something else in mind for seasons for the car dashboard, but to prove the point I should build a theme intentionally designed to show this such as a 180 degree year clock.
 
+
+Mini status
+-----------
+* Have separate dials going for the dashboard done with translate transforms
+* Have custom date range - arc range mostly working to get the dial effect, but the code is probably a mess
+* Have started using mini classes for things like date and radian ranges to neaten up some bits of code - still in a halfway state
+* All clocks appear to be displaying correctly
+
+Todo:
+* Need some solid focus on markers for the dashboard and in general: svg:use+transform; d as a css property
+* Need to work out how to apply internal shadows/lighting for the dashboard - probably require a cutout or three
+* trip meter, fuel gauge, warning lights
+* get carbon-fibre crosshatching sorted out
+* Fix the date dial to 31 days, but turn off extra day lights per month
+* Redlines/redzones
+* Looks more like a motorbike dash at the moment, see if can be made more car-ish
+
