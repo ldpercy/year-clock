@@ -6,6 +6,7 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
+* Build a 180 degree year clock to force the point about split-season display
 * Figure out out if there are 'safe' ways of capturing keyboard events so i can do continuous date +/-
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)

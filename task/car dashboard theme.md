@@ -304,4 +304,14 @@ So what to do?
 
 I think the best option will be to try to extrapolate Summer into the next year, keeping the date and radian ranges positive, and taking care to get the day count correct for February.
 
+Okay looking good so far, have faked a summer end into next year that will display correctly and give the correct width and middle.
+
+*If* at some point in the future I have to display the start and end dates for summer, this current ruse will also be up.
+
+Ultimately Summer (or northern Winter) for a given year will have to be split into two date ranges, along with any other year crossing date ranges.
+This display hack will have to be applied on an as-needed basis.
+That will come soon enough.
+
+An example would be if I displayed a whole year on a non-whole circle, such as the car-dashboard's year dial.
+I have something else in mind for seasons for the car dashboard, but to prove the point I should build a theme intentionally designed to show this such as a 180 degree year clock.
 

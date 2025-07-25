@@ -34,16 +34,17 @@ function createDisplayDate(date, language) {
 }/* createDisplayDate */
 
 
-
-/* mutators:
-*/
+//
+// mutators:
+//
 
 function incrementDay(d) {
 	d.setDate(d.getDate() + 1);
 }
 
-/* constructors:
-*/
+//
+// constructors:
+//
 
 function startOfYear(date) {
 	return new Date(date.getFullYear(), 0, 1);
@@ -69,12 +70,14 @@ function truncateTime(date) {
 	return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
-/* decisions, calculations:
-*/
+
+//
+// decisions, calculations:
+//
 
 
-//https://stackoverflow.com/a/1353711
 function isValidDate(date) {
+	//https://stackoverflow.com/a/1353711
 	return date instanceof Date && !isNaN(date);
 }
 
@@ -116,7 +119,6 @@ function dateIsInRange(date, dateRange) {
 	return ((date >= dateRange.start) && (date < dateRange.end));
 }
 
-
 function daysInMonth(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
@@ -129,9 +131,12 @@ function dayDifference(date1, date2) {
 	return Math.floor((truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24));
 }
 
-
 function daysInYear(date) {
 	return dayOfYear(new Date(date.getFullYear(),11,31));
+}
+
+function yearDifference(date1, date2) {
+	return date2.getFullYear() - date1.getFullYear();
 }
 
 
@@ -178,10 +183,6 @@ function dateRangeRadians(dateRange, arcDateRange, radianDelta = new RadianDelta
 
 
 
-function yearDifference(date1, date2) {
-	return date2.getFullYear() - date1.getFullYear();
-}
-
 //
 // Date formatting
 //
@@ -211,7 +212,6 @@ closedIntervalEnd(date) {}
 //
 // Period Arrays
 //
-
 
 
 /* getMonthArray
@@ -282,16 +282,14 @@ function getSeasonArray(displayDate) {
 
 	const year = displayDate.year;
 
+	const thisYearSummerEnd = new Date(year,2,1);
+	const thisYearSummerDays = dayDifference(displayDate.yearStart, thisYearSummerEnd);
+	const fauxSummerEnd = new Date(displayDate.yearEnd);
+	fauxSummerEnd.setDate(fauxSummerEnd.getDate() + thisYearSummerDays);
+
+	//log('getSeasonArray', thisYearSummerEnd, thisYearSummerDays, fauxSummerEnd);
+
 	const seasonArray = [
-		{
-			id          : 'summer',
-			name        : 'Summer',
-			//dateStart   : new Date(year,11,1),
-			//dateEnd     : new Date(year,2,1),
-			dateRange   : new DateRange(new Date(year,11,1), new Date(year,2,1)),	// NB negative range
-			radians     : undefined,
-			class       : '',
-		},
 		{
 			id          : 'autumn',
 			name        : 'Autumn',
@@ -319,6 +317,15 @@ function getSeasonArray(displayDate) {
 			radians     : undefined,
 			class       : '',
 		},
+		{
+			id          : 'summer',
+			name        : 'Summer',
+			//dateStart   : new Date(year,11,1),
+			//dateEnd     : new Date(year,2,1),
+			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
+			radians     : undefined,
+			class       : '',
+		},
 	];
 
 	for (let season of seasonArray) {
@@ -328,7 +335,7 @@ function getSeasonArray(displayDate) {
 
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
-	log(seasonArray);
+	//log(seasonArray);
 
 	return seasonArray;
 }/* getSeasonArray */
