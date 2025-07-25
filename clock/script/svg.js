@@ -19,7 +19,8 @@ function radialLine(radians, startRadius, endRadius) {
 	return result;
 }
 
-
+/* getSectorPath
+*/
 function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(radiansStart, outerRadius);
@@ -27,15 +28,17 @@ function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
 	const innerEnd   = polarPoint(radiansEnd,   innerRadius);
 	const innerStart = polarPoint(radiansStart, innerRadius);
 
+	const innerArc = (innerRadius === 0) ? '' : `A ${sf(innerRadius)} ${sf(innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}`;
+
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}
 		A ${sf(outerRadius)} ${sf(outerRadius)} 0 0 1 ${sf(outerEnd.x)} ${sf(outerEnd.y)}
 		L ${sf(innerEnd.x)} ${sf(innerEnd.y)}
-		A ${sf(innerRadius)} ${sf(innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}
+		${innerArc}
 		Z`;
 
 	return path;
-}
+}/* getSectorPath */
 
 
 /* getArcPath
