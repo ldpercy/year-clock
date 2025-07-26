@@ -40,5 +40,11 @@ svg.yearclock .hands {
 		stroke-width: 25;
 		stroke-linejoin: round;
 	}
-
 }
+
+
+.dashboard-lighting {
+	flood-color: orange;
+	flood-opacity: .5;
+}
+

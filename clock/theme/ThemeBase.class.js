@@ -271,6 +271,7 @@ class ThemeBase extends Clock {
 
 
 	/* getPeriodDaySectors
+	Is this still necessary??
 	*/
 	getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
 	{

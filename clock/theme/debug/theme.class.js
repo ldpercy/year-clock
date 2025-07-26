@@ -4,7 +4,7 @@ Debug theme - use for fixing bugs
 themeClass['debug'] = class extends ThemeBase {
 
 
-	viewBox           = padViewBox(10);
+	viewBox           = padViewBox(50);
 	clockRadius       = 1200;
 
 	monthRadiusStart = 400;

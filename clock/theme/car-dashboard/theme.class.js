@@ -88,6 +88,15 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					<stop offset="90%" stop-color="#333f"/>
 					<stop offset="100%" stop-color="#555f"/>
 				</linearGradient>
+
+				<filter id="inset-shadow">
+					<feOffset dx="0" dy="20"/>
+					<feGaussianBlur stdDeviation="50" result="offset-blur"/>
+					<feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+					<feFlood class="dashboard-lighting" result="color"/>
+					<feComposite operator="in" in="color" in2="inverse" result="shadow"/>
+					<feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+				</filter>
 			</defs>
 
 			${this.getBody(this.body)}
@@ -162,4 +171,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}
 
 
+
+
+
+
+
+
+
 }/* car-dashboard */
+
+
+
+
+
