@@ -469,4 +469,46 @@ class ThemeBase extends Clock {
 
 
 
+
+	/* getMarkers
+		markerSetting = {
+			radius         : number,
+			position       : number,
+			rotate         : boolean,
+			invert         : boolean,
+		};
+	*/
+	getMarkers = function(markerType, markerArray, settings)
+	{
+		//log('getMarkers:', arguments);
+		let newSvg = '';
+		for (let element of markerArray)
+		{
+			//log('sector:', sector);
+			const radians = element.radians.start + (element.radians.width * settings.position);
+
+			const center     = polarPoint(radians, settings.radius);
+			let transform = '';
+
+			if (settings.rotate)
+			{
+				let rotate = this.rotationDegrees(radians, settings);
+				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
+			}
+			const markerSvg =
+				`<use href="#${settings.elementId}" class="${element.class}"
+					x="${sf(center.x)}" y="${sf(center.y)}"
+					width="${settings.width}" height="${settings.height}"
+					transform="${transform}"/>`;
+			newSvg += markerSvg;
+		}
+
+		const result =
+			`<g class="marker ${markerType}">
+				${newSvg}
+			</g>`;
+		return result;
+	}/* getMarkers */
+
+
 }/* ThemeBase */

@@ -357,4 +357,20 @@ I also need to figure out how effectively svg filters can be styled with css - I
 I'd like to be able to avoid defining multiple similar shadow `<filter/>`s if I can avoid it.
 
 
+Markers
+-------
+
+Want to spend some time on markers.
+Will start with the secor label code as I think the rotations I want will work similarly.
+
+Have quickly chopped something together that looks like it's working, but still need to figure a few things out.
+
+There are a few cryptic statements in here:
+
+https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/use
+
+
+
+
+
 

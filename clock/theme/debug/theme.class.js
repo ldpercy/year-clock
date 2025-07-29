@@ -31,6 +31,22 @@ themeClass['debug'] = class extends ThemeBase {
 	};
 	dateLabelPosition         = new Point(0,0);
 
+
+	monthMarkers = {
+		radius         : 600,
+		position       : 0.5,
+		rotate         : true,
+		invert         : false,
+		elementId      : 'star',
+		/*
+		width          : 50,
+		height         : 50,
+ 		*/
+		width          : 100,
+		height         : 100,
+	};
+
+
 	//
 	// formatting functions
 	//
@@ -70,9 +86,34 @@ themeClass['debug'] = class extends ThemeBase {
  		*/
 
 
+
 		const themeSVG = `
+
+			<defs>
+				<!-- class="label favicon"
+				width="100" height="100"
+				refX="-1000" refY="-1000"
+				-->
+				<symbol id="star" viewBox="-1000 -1000 2000 2000" >
+					<path d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
+				</symbol>
+
+				<circle id="circle" cx="0" cy="0" r="20"/>
+				<rect id="rect" x="-10" y="0" width="20" height="80"/>
+
+				<symbol id="symbol" width="20" height="100" viewBox="-10 0 20 100" refX="0" refY="0">
+					<rect x="-10" y="0" width="20" height="100"/>
+				</symbol>
+
+				<path id="wedge" d="M 0,0 L 20 80 L -20 80 Z"/>
+
+			</defs>
+
 			${this.getFace(this.clockRadius)}
 			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
+
+			${this.getMarkers('monthMarkers', displayDate.monthArray, this.monthMarkers)}
+
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}

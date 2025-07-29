@@ -161,3 +161,12 @@ path.sector.day.current
 	stroke-width: 5;
 	paint-order: fill;
 }
+
+
+g.marker * {
+
+	fill:red;
+	stroke: green;
+	stroke-width:4px;
+
+}
