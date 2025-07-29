@@ -30,6 +30,9 @@
 	fill: whitesmoke;
 	stroke: silver;
 	stroke-width: 10;
+
+	/* filter: drop-shadow(0px 20px 10px #111a); */
+	box-shadow: 0px 20px  red;
 }
 
 /* sectors
@@ -157,4 +160,13 @@ path.sector.day.current
 	stroke: var(--hover);
 	stroke-width: 5;
 	paint-order: fill;
+}
+
+
+g.marker * {
+
+	fill:red;
+	stroke: green;
+	stroke-width:4px;
+
 }

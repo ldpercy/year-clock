@@ -327,8 +327,50 @@ Todo:
 * Need some solid focus on markers for the dashboard and in general: svg:use+transform; d as a css property
 * Need to work out how to apply internal shadows/lighting for the dashboard - probably require a cutout or three
 * trip meter, fuel gauge, warning lights
-* get carbon-fibre crosshatching sorted out
+* get carbon-fibre crosshatching sorted out - maybe look into an svg background instead
 * Fix the date dial to 31 days, but turn off extra day lights per month
 * Redlines/redzones
 * Looks more like a motorbike dash at the moment, see if can be made more car-ish
+
+
+
+Inset drop shadow
+-----------------
+
+Found a totally usable SVG inset drop shadow filter:
+	https://css-tricks.com/adding-shadows-to-svg-icons-with-css-and-svg-filters/
+
+Going to tinker with it for shadow and lighting effects.
+Will have to properly figure out exactly how it works as well so I can make my own.
+
+There are other suggestions around, eg
+	https://stackoverflow.com/questions/20778568/how-to-make-an-inset-drop-shadow-in-svg
+
+
+Originally I'd thought that I might have to create the body as a donut shape of some sort and apply a css drop shadow and somehow mask out the outer shadow.
+I imagine there are probably a few different ways of doing this sort of thing; a radial gradient background of some sort might be another idea.
+This is going to be a bit of trial and error generally to see what works and what looks good.
+One thing I'm a bit worried about is that some techniques are probably more expensive/slower  - I think some of the SVG filter effects are known to be a bit slow for example.
+I'll have a bit of a look around to see if there's any accepted wisdom for this sort of thing.
+
+I also need to figure out how effectively svg filters can be styled with css - I've quickly done the flood, but would like a whole stack more control over these before I go really far down this path.
+I'd like to be able to avoid defining multiple similar shadow `<filter/>`s if I can avoid it.
+
+
+Markers
+-------
+
+Want to spend some time on markers.
+Will start with the secor label code as I think the rotations I want will work similarly.
+
+Have quickly chopped something together that looks like it's working, but still need to figure a few things out.
+
+There are a few cryptic statements in here:
+
+https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/use
+
+
+
+
+
 
