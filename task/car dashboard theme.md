@@ -357,6 +357,9 @@ I also need to figure out how effectively svg filters can be styled with css - I
 I'd like to be able to avoid defining multiple similar shadow `<filter/>`s if I can avoid it.
 
 
+**Note** - it might end up being easier and cheaper to use a drop-shadow and clip
+
+
 Markers
 -------
 
@@ -369,8 +372,13 @@ There are a few cryptic statements in here:
 
 https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/use
 
+...
 
+In general there are actually a few different ways to reuse content in SVG, I've only really taken beginning steps with this stuff so far.
+I think most drawing elements with an id can be reused with a `use` (including things in external files), but in practise it's usually things defined in `defs`.
 
+A couple of interest here are `symbol` and `marker` that have some extra features.
 
+Markers can be automatically applied along paths with CSS (probably even invisible ones), and can have custom start, middle and ends (prob no complex rotation though).
 
-
+`Symbol` requires `use` so better if more control needed.
