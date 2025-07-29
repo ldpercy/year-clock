@@ -28,14 +28,6 @@ themeClass['season-out'] = class extends ThemeBase {
 	};
 
 
-	seasonLabel = {
-		radius         : 200,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : false,
-	};
-
-
 	handConfig = {
 		year : { length : 800 },
 	};
@@ -83,8 +75,6 @@ themeClass['season-out'] = class extends ThemeBase {
 			${this.getFace(this.clockRadius)}
 
 			${this.getSectors('season', displayDate.seasonArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
-			${ this.getSectorLabels('season', displayDate.seasonArray, this.seasonLabel) }
-
 			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
