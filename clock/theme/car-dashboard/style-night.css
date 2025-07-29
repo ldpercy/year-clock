@@ -30,14 +30,14 @@ svg.yearclock .hands {
 	path.yearHand  {
 		stroke: #e30f;
 		fill: #e00f;
-		stroke-width: 25;
+		/* stroke-width: 25; */
 		stroke-linejoin: round;
 	}
 
 	path.monthHand  {
 		stroke:#e30f;
 		fill: #e00f;
-		stroke-width: 25;
+		/* stroke-width: 25; */
 		stroke-linejoin: round;
 	}
 }
