@@ -48,6 +48,24 @@ svg.yearclock {
 	}
 }
 
+
+.sectorGroup path {
+	stroke: #fff2;
+	fill: #fff1;
+	stroke-width: 1px;
+}
+
+.sectorGroup.monthDay path:nth-last-child(1),
+.sectorGroup.monthDay path:nth-last-child(2),
+.sectorGroup.monthDay path:nth-last-child(3),
+.sectorGroup.month path:last-child
+{
+	stroke: white;
+	fill: #f00a;
+}
+
+
+
 svg.yearclock .tick {
 	stroke: white;
 	stroke-linecap: butt;
@@ -88,7 +106,7 @@ svg.yearclock .label {
 	}
 
 	&.label.monthDay text {
-		font-size: 3ex;
+		font-size: 4ex;
 		font-style: italic;
 	}
 

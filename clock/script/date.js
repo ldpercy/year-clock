@@ -257,6 +257,7 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
 	{
 		const dayInfo = {
+			id           : thisDate.getDate(),
 			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
 			dayOfPeriod  : dayCounter,
 			dayOfMonth   : thisDate.getDate(),

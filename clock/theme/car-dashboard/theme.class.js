@@ -32,6 +32,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	dateLabelPosition         = new Point(0,900);
 
+	daySectorRadiusStart = 1000;
+	monthSectorRadiusStart = 1000;
+	sectorRadiusEnd = 1200;
+
 
 	monthSymbols = {
 		radius         : 1200,
@@ -45,16 +49,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 	monthLabel = {
-		radius         : 920,
+		radius         : 950,
 		sectorPosition : 0.5,
 		rotate         : false,
 		invert         : false,
 	};
 
 	dayLabel = {
-		radius         : 1120,
+		radius         : 1000,
 		sectorPosition : 0.5,
-		rotate         : true,
+		rotate         : false,
 		invert         : false,
 	};
 
@@ -118,7 +122,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<g transform="translate(-1300)">
 				<!-- month-day -->
 				${this.getFace(this.clockRadius)}
-				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
+
+				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySectorRadiusStart, this.sectorRadiusEnd)}
+
+				<!-- ${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)} -->
+				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
+
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 				<g class="hands">
 					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
@@ -127,6 +136,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<g transform="translate(1300)">
 				<!-- year -->
 				${this.getFace(this.clockRadius)}
+
+				${this.getSectors('month', displayDate.monthArray, this.monthSectorRadiusStart, this.sectorRadiusEnd)}
 
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
