@@ -91,7 +91,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		// addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
 		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange, this.dial.radianDelta);
 
-		log(displayDate.monthArray);
+		//log(displayDate.monthArray);
 
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
@@ -129,6 +129,9 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
 
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+
+				${this.getDateLabel('dayName', displayDate, this.dateLabelPosition)}
+
 				<g class="hands">
 					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
 				</g>
@@ -142,7 +145,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+				${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 
 				<g class="hands">
 					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreeDelta)}
@@ -159,7 +162,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
 			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
-			case 'date'     : result = `${isoDate(data.date)}` ; break;
+			case 'date'     : result = `${isoDate(data.object)}` ; break;
+			case 'dayName'  : result = `${data.name}`; break;
 			default         : result = data.name; break;
 		}
 		return result;

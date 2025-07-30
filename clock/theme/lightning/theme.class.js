@@ -85,8 +85,8 @@ themeClass['lightning'] = class extends ThemeBase {
 			case 'quarter'  : result = `${data.name}`; break;
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
 			case 'week'     : result = `W${data.name}`; break;
-			case 'date'     : result = `${isoMonthDay(data.date)}`; break;
-			case 'year'     : result = `${data.date.getFullYear()}`; break;
+			case 'date'     : result = `${isoMonthDay(data.object)}`; break;
+			case 'year'     : result = `${data.year}`; break;
 			default         : result = data.name; break;
 		}
 		return result;
@@ -117,8 +117,8 @@ themeClass['lightning'] = class extends ThemeBase {
 			${this.getSectorLabels('week', weekArray, this.weekLabel)}
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 
-			${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getYearLabel(displayDate, this.yearLabelPosition)}
+			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 		`;
 
 		return themeSVG;

@@ -24,7 +24,7 @@ class ThemeBase extends Clock {
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
-			case 'year'     : result = `${data.date.getFullYear()}`; break;
+			case 'year'     : result = `${data.year}`; break;
 			case 'date'     : result = `${data.date.getFullYear()}`; break;
 			default         : result = data.name; break;
 		}
@@ -141,7 +141,7 @@ class ThemeBase extends Clock {
 	/* getDateLabel
 	This and year below need to be generally sorted out
 	*/
-	getDateLabel = function(date, dateLabelPosition) {
+	getDateLabel = function(labelType, displayDate, dateLabelPosition) {
 		let x,y;
 
 		if (dateLabelPosition instanceof Point)
@@ -151,7 +151,7 @@ class ThemeBase extends Clock {
 		}
 		else
 		{
-			const yearOnLeft = dateRatio(date) < 0.5
+			const yearOnLeft = dateRatio(displayDate.object) < 0.5
 			const labelSide = yearOnLeft ? -1 : 1
 			x = dateLabelPosition * labelSide;
 			y = 0;
@@ -159,7 +159,7 @@ class ThemeBase extends Clock {
 
 		const svg =
 			`<g class="dateLabel">
-				<text x="${x}" y="${y}" class="label dateLabel">${this.formatLabel('date',{'date':date})}</text>
+				<text x="${x}" y="${y}" class="label dateLabel">${this.formatLabel(labelType, displayDate)}</text>
 			</g>`;
 
 		return svg;
@@ -168,10 +168,10 @@ class ThemeBase extends Clock {
 
 	/* getYearLabel
 	*/
-	getYearLabel = function(date, point) {
+	getYearLabel = function(displayDate, point) {
 		const svg =
 			`<g class="dateLabel">
-				<text x="${point.x}" y="${point.y}" class="label yearLabel">${this.formatLabel('year',{'date':date})}</text>
+				<text x="${point.x}" y="${point.y}" class="label yearLabel">${this.formatLabel('year', displayDate)}</text>
 			</g>`;
 		return svg;
 	}/* getYearLabel */

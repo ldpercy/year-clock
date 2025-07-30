@@ -125,7 +125,7 @@ themeClass['debug'] = class extends ThemeBase {
 
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
 		`;
 
 		return themeSVG;

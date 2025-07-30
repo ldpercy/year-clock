@@ -40,8 +40,8 @@ themeClass['season-out'] = class extends ThemeBase {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
-			case 'date'     : result = `${(data.date.getMonth()+1).toString().padStart(2,'0')}-${data.date.getDate().toString().padStart(2,'0')}`; break;
-			case 'year'     : result = `${data.date.getFullYear()}`; break;
+			case 'date'     : result = `${data.month.toString().padStart(2,'0')}-${data.object.getDate().toString().padStart(2,'0')}`; break;
+			case 'year'     : result = `${data.year}`; break;
 			default         : result = data.name; break;
 		}
 		return result;
@@ -78,8 +78,8 @@ themeClass['season-out'] = class extends ThemeBase {
 			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getYearLabel(displayDate, this.yearLabelPosition)}
+			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 			${this.getHands(displayDate, this.handConfig)}
 		`;
 

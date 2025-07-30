@@ -48,7 +48,7 @@ themeClass['brice'] = class extends ThemeBase {
 			${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
 			${this.getHands(displayDate, this.handConfig)}
 		`;
 

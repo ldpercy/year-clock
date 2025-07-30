@@ -61,7 +61,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 			${this.getFace(this.clockRadius)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 			${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
 			<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
 			${this.getHands(displayDate, this.handConfig)}
 		`;
@@ -74,7 +74,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
-			case 'date'     : result = `${data.date.getFullYear()}` ; break;
+			case 'year'     : result = `${data.year}` ; break;
 			default         : result = data.name; break;
 		}
 		return result;
