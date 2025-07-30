@@ -381,8 +381,13 @@ A couple of interest here are `symbol` and `marker` that have some extra feature
 
 Markers can be automatically applied along paths with CSS (probably even invisible ones), and can have custom start, middle and ends (prob no complex rotation though).
 
-`Symbol` requires `use` so better if more control needed, however the refX and refY attributes don't appear to be implemented in browsers yet:
+`Symbol` requires `use` so better if viewbox & sizing control needed, however the refX and refY attributes don't appear to be implemented in browsers yet:
 https://stackoverflow.com/questions/63967987/svg-symbols-refx-refx-attribute-and-placing-a-symbol-relative-to-its-center
+
+Without refX+refY on symbol I think the thing to do is make the the symbols centred on 0 (which I usually do anyway).
+Actually without refX+refY symbol is going to be hard to use programmatically until I figure something else out.
+Have had better results just `use`ing a group or basic element.
+
 
 Turns out there is a native rotation implementation for markers though, so for a lot of basic needs these will do:
 
@@ -390,3 +395,5 @@ Turns out there is a native rotation implementation for markers though, so for a
 	orient="auto-start-reverse"
 
 https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/orient
+
+

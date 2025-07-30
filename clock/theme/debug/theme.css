@@ -163,10 +163,14 @@ path.sector.day.current
 }
 
 
-g.marker * {
+g.symbol * {
 
 	fill:red;
 	stroke: green;
 	stroke-width:4px;
+	/* transform: scale(.1); */
+}
 
+.path-star{
+	transform: scale(.1);
 }

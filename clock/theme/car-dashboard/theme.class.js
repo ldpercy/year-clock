@@ -32,6 +32,18 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	dateLabelPosition         = new Point(0,900);
 
+
+	monthSymbols = {
+		radius         : 1200,
+		position       : 0.5,
+		rotate         : true,
+		invert         : false,
+		elementId      : 'dial-marker',
+		width          : 100,
+		height         : 100,
+	};
+
+
 	monthLabel = {
 		radius         : 920,
 		sectorPosition : 0.5,
@@ -97,6 +109,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					<feComposite operator="in" in="color" in2="inverse" result="shadow"/>
 					<feComposite operator="over" in="shadow" in2="SourceGraphic"/>
 				</filter>
+
+				<rect id="dial-marker" class="dial-marker" x="-10" y="0" width="20" height="80"/>
 			</defs>
 
 			${this.getBody(this.body)}
@@ -113,8 +127,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<g transform="translate(1300)">
 				<!-- year -->
 				${this.getFace(this.clockRadius)}
+
+				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
+
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+
 				<g class="hands">
 					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreeDelta)}
 				</g>

@@ -32,12 +32,12 @@ themeClass['debug'] = class extends ThemeBase {
 	dateLabelPosition         = new Point(0,0);
 
 
-	monthMarkers = {
+	monthSymbols = {
 		radius         : 600,
 		position       : 0.5,
-		rotate         : true,
+		rotate         : false,
 		invert         : false,
-		elementId      : 'star',
+		elementId      : 'star-g',
 		/*
 		width          : 50,
 		height         : 50,
@@ -94,9 +94,18 @@ themeClass['debug'] = class extends ThemeBase {
 				width="100" height="100"
 				refX="-1000" refY="-1000"
 				-->
-				<symbol id="star" viewBox="-1000 -1000 2000 2000" >
+				<symbol id="star-symbol" viewBox="-1000 -1000 2000 2000" >
+					<rect x="-1000" y="-1000" width="2000" height="2000"/>
 					<path d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
 				</symbol>
+
+				<g id="star-g">
+					<path class="path-star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
+				</g>
+
+				<path id="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
+
+
 
 				<circle id="circle" cx="0" cy="0" r="20"/>
 				<rect id="rect" x="-10" y="0" width="20" height="80"/>
@@ -112,7 +121,7 @@ themeClass['debug'] = class extends ThemeBase {
 			${this.getFace(this.clockRadius)}
 			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 
-			${this.getMarkers('monthMarkers', displayDate.monthArray, this.monthMarkers)}
+			${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}

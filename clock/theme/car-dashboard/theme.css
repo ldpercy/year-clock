@@ -67,7 +67,9 @@ svg.yearclock .tick {
 
 }
 
-
+.dial-marker {
+	fill:white;
+}
 
 
 svg.yearclock .label {

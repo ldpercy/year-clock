@@ -470,19 +470,19 @@ class ThemeBase extends Clock {
 
 
 
-	/* getMarkers
-		markerSetting = {
+	/* getSymbols
+		symbolSetting = {
 			radius         : number,
 			position       : number,
 			rotate         : boolean,
 			invert         : boolean,
 		};
 	*/
-	getMarkers = function(markerType, markerArray, settings)
+	getSymbols = function(symbolType, symbolArray, settings)
 	{
-		//log('getMarkers:', arguments);
+		//log('getSymbols:', arguments);
 		let newSvg = '';
-		for (let element of markerArray)
+		for (let element of symbolArray)
 		{
 			//log('sector:', sector);
 			const radians = element.radians.start + (element.radians.width * settings.position);
@@ -495,20 +495,23 @@ class ThemeBase extends Clock {
 				let rotate = this.rotationDegrees(radians, settings);
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
-			const markerSvg =
+			const symbolSvg =
 				`<use href="#${settings.elementId}" class="${element.class}"
 					x="${sf(center.x)}" y="${sf(center.y)}"
 					width="${settings.width}" height="${settings.height}"
 					transform="${transform}"/>`;
-			newSvg += markerSvg;
+			newSvg += symbolSvg;
 		}
 
-		const result =
-			`<g class="marker ${markerType}">
+		const result = `
+			<g class="symbol ${symbolType}">
 				${newSvg}
 			</g>`;
 		return result;
-	}/* getMarkers */
+	}/* getSymbols */
+
+
+
 
 
 }/* ThemeBase */
