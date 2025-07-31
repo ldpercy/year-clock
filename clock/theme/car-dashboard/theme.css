@@ -27,16 +27,19 @@ svg.yearclock {
 
 
 	.body {
-		fill: #444f;
-		/* stroke:#333f; */
-		stroke: url(#body-light);
-		stroke-width: 2em;
+		fill: #222f;
+		stroke:black;
+		stroke-width: 2px;
+		/* stroke: url(#body-light);
+
 		stroke-linejoin: round;
 
-		paint-order: stroke;
+		paint-order: stroke; */
 		fill-rule: evenodd;
 
-		filter: url(#inset-shadow);
+		/* filter: url(#inset-shadow); */
+		filter: drop-shadow(0px 10px 10px black);
+		clip-path: url(#bodyClip);
 	}
 
 	.face   {
@@ -44,7 +47,7 @@ svg.yearclock {
 		stroke: silver;
 		stroke-width: 1px;
 		/* filter: drop-shadow(0px 10px 10px gray); */
-
+		/* filter: url(#inset-shadow); */
 
 	}
 }
@@ -86,12 +89,11 @@ svg.yearclock .tick {
 
 }
 
-.dial-marker {
-	fill:white;
-}
 
 
-svg.yearclock .label {
+svg.yearclock .label,
+.dial-marker
+{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: white;
@@ -138,13 +140,13 @@ svg.yearclock .hands {
 }
 
 
-.inset-shadow {
+/* .inset-shadow {
 	filter: url(#inset-shadow);
 }
 
 
 .dashboard-lighting {
-	flood-color: ivory;
+	flood-color: palegoldenrod
 	flood-opacity: .2;
 }
-
+*/

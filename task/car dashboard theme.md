@@ -397,7 +397,11 @@ Turns out there is a native rotation implementation for markers though, so for a
 https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/orient
 
 
+Styling is also a bit trickier with `use` - will add details as I figure it out.
+
 
 Season cutout
 -------------
 
+I want to start hacking on the season cutout next, but I also feel liekthe current body/face arrangement could use some work.
+Going to change the curreent 'body' to become the face, and add an extra body layer.

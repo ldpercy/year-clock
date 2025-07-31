@@ -3,12 +3,12 @@
 themeClass['car-dashboard'] = class extends ThemeBase {
 
 	//viewBox           = '-2700 -1400 5400 2800';
-	viewBox           = padViewBox(75, '-2700 -1400 5400 2800');
+	viewBox           = padViewBox(50, '-2700 -1400 5400 2800');
 
-	body = {
-		radius : 1300,
+	clock = {
+		bodyRadius : 1400,
+		faceRadius : 1300,
 	}
-
 
 	clockRadius       = 1200;
 	innerRadius       = 900;
@@ -107,22 +107,26 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				</linearGradient>
 
 				<filter id="inset-shadow">
-					<feOffset dx="0" dy="20"/>
-					<feGaussianBlur stdDeviation="50" result="offset-blur"/>
+					<feOffset dx="0" dy="0"/>
+					<feGaussianBlur stdDeviation="20" result="offset-blur"/>
 					<feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
 					<feFlood class="dashboard-lighting" result="color"/>
 					<feComposite operator="in" in="color" in2="inverse" result="shadow"/>
 					<feComposite operator="over" in="shadow" in2="SourceGraphic"/>
 				</filter>
 
+				<clipPath id="bodyClip">
+					<path d="${this.getBodyClip(this.clock)}"/>
+				</clipPath>
+
 				<rect id="dial-marker" class="dial-marker" x="-10" y="0" width="20" height="80"/>
 			</defs>
 
-			${this.getBody(this.body)}
+			<path class="face" d="${this.getFacePath(this.clock)}" />
+			<path class="body" d="${this.getBodyPath(this.clock)}" />
 
 			<g transform="translate(-1300)">
 				<!-- month-day -->
-				${this.getFace(this.clockRadius)}
 
 				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySectorRadiusStart, this.sectorRadiusEnd)}
 
@@ -139,7 +143,6 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			</g>
 			<g transform="translate(1300)">
 				<!-- year -->
-				${this.getFace(this.clockRadius)}
 
 				${this.getSectors('month', displayDate.monthArray, this.monthSectorRadiusStart, this.sectorRadiusEnd)}
 
@@ -171,44 +174,52 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}
 
 
-	getBody = function(body) {
+	getFacePath = function(clock) {
 
-		const xUpper = body.radius * (1/13);
-		const yUpper = body.radius * (5/13);
+		const xUpper = clock.faceRadius * (1/13);
+		const yUpper = clock.faceRadius * (5/13);
 
-		const xLower = body.radius * (8/13);
-		const yLower = body.radius * (12/13);
+		const xLower = clock.faceRadius * (8/13);
+		const yLower = clock.faceRadius * (12/13);
 
 
 		const path = `
-			M ${xUpper},${-yUpper} A ${body.radius},${body.radius} 0 1 1 ${xLower},${yLower}
-			L ${-xLower},${yLower} A ${body.radius},${body.radius} 0 1 1 ${-xUpper},${-yUpper}
+			M ${xUpper},${-yUpper} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${xLower},${yLower}
+			L ${-xLower},${yLower} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-xUpper},${-yUpper}
 			Z
 			M 300,1100 L -300,1100 L -300,800 L 300,800
 			Z
 			`;
-
-		/*
-			<circle cx="1300" cy="0" r="1300" />
-			<circle cx="-1300" cy="0" r="1300" />
-		*/
-		const svg =
-			`<path class="body" d="${path}" />`;
-		/* <path class="body" d="${path}" />	 */
-		return svg;
-	}
+		return path;
+	}/* getFacePath */
 
 
+	getBodyPath = function(clock) {
+
+		const path = `
+			M ${clock.faceRadius},${-clock.bodyRadius}
+			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${clock.faceRadius},${clock.bodyRadius}
+			L ${-clock.faceRadius},${clock.bodyRadius}
+			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${-clock.faceRadius},${-clock.bodyRadius}
+			Z
+			${this.getFacePath(clock)}
+			`;
+		return path;
+	}/* getBodyPath */
 
 
+	getBodyClip = function(clock) {
 
-
-
+		const path = `
+			M ${clock.faceRadius},${-clock.bodyRadius}
+			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${clock.faceRadius},${clock.bodyRadius}
+			L ${-clock.faceRadius},${clock.bodyRadius}
+			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${-clock.faceRadius},${-clock.bodyRadius}
+			Z`;
+		return path;
+	}/* getBodyClip */
 
 
 }/* car-dashboard */
-
-
-
 
 
