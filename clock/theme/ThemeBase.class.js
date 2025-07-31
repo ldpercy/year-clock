@@ -8,6 +8,9 @@ class ThemeBase extends Clock {
 	}
 
 
+	viewBox = '-1200 -1200 2400 2400';
+
+
 	//
 	// formatting functions
 	//

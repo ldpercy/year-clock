@@ -2,7 +2,8 @@
 */
 themeClass['car-dashboard'] = class extends ThemeBase {
 
-	viewBox           = '-2700 -1400 5400 2800';
+	//viewBox           = '-2700 -1400 5400 2800';
+	viewBox           = padViewBox(75, '-2700 -1400 5400 2800');
 
 	body = {
 		radius : 1300,

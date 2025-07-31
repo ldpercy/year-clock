@@ -83,8 +83,9 @@ function getSectorPathSimple(radiansStart, radiansEnd, innerRadius, outerRadius)
 
 
 
-function padViewBox(padding, x=-1200, y=-1200, width=2400, height=2400) {
-	return `${x-padding} ${y-padding} ${width + 2*padding} ${height + 2*padding}`;
+function padViewBox(padding, viewBox = '-1200 -1200 2400 2400') {
+	const vb = splitViewBox(viewBox);
+	return `${vb.x-padding} ${vb.y-padding} ${vb.width + 2*padding} ${vb.height + 2*padding}`;
 }
 
 
