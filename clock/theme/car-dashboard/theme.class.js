@@ -178,20 +178,14 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const xLower = body.radius * (8/13);
 		const yLower = body.radius * (12/13);
 
-		/*
-
-		c = 1300,0
-
-
-		x ~= 1000
-		y ~= 1000
-		*/
-
 
 		const path = `
 			M ${xUpper},${-yUpper} A ${body.radius},${body.radius} 0 1 1 ${xLower},${yLower}
 			L ${-xLower},${yLower} A ${body.radius},${body.radius} 0 1 1 ${-xUpper},${-yUpper}
-			Z`;
+			Z
+			M 300,1100 L -300,1100 L -300,800 L 300,800
+			Z
+			`;
 
 		/*
 			<circle cx="1300" cy="0" r="1300" />

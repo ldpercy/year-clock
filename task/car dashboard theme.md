@@ -397,3 +397,7 @@ Turns out there is a native rotation implementation for markers though, so for a
 https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/orient
 
 
+
+Season cutout
+-------------
+

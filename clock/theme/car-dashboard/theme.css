@@ -34,6 +34,7 @@ svg.yearclock {
 		stroke-linejoin: round;
 
 		paint-order: stroke;
+		fill-rule: evenodd;
 
 		filter: url(#inset-shadow);
 	}
