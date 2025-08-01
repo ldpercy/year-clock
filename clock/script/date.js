@@ -288,14 +288,11 @@ function getSeasonArray(displayDate) {
 	const fauxSummerEnd = new Date(displayDate.yearEnd);
 	fauxSummerEnd.setDate(fauxSummerEnd.getDate() + thisYearSummerDays);
 
-	//log('getSeasonArray', thisYearSummerEnd, thisYearSummerDays, fauxSummerEnd);
-
 	const seasonArray = [
 		{
 			id          : 'autumn',
 			name        : 'Autumn',
-			//dateStart   : new Date(year,2,1),
-			//dateEnd     : new Date(year,5,1),
+			emoji       : '🍂',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
 			radians     : undefined,
 			class       : '',
@@ -303,8 +300,7 @@ function getSeasonArray(displayDate) {
 		{
 			id          : 'winter',
 			name        : 'Winter',
-			//dateStart   : new Date(year,5,1),
-			//dateEnd     : new Date(year,8,1),
+			emoji       : '❄',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			radians     : undefined,
 			class       : '',
@@ -312,8 +308,7 @@ function getSeasonArray(displayDate) {
 		{
 			id          : 'spring',
 			name        : 'Spring',
-			//dateStart   : new Date(year,8,1),
-			//dateEnd     : new Date(year,11,1),
+			emoji       : '🌱',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
 			radians     : undefined,
 			class       : '',
@@ -321,8 +316,7 @@ function getSeasonArray(displayDate) {
 		{
 			id          : 'summer',
 			name        : 'Summer',
-			//dateStart   : new Date(year,11,1),
-			//dateEnd     : new Date(year,2,1),
+			emoji       : '🌞',
 			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
 			radians     : undefined,
 			class       : '',
@@ -330,13 +324,10 @@ function getSeasonArray(displayDate) {
 	];
 
 	for (let season of seasonArray) {
-		//season.radians = dateRangeRadians(season.dateStart, season.dateEnd);
 		season.class = (dateIsInRange(displayDate.object, season.dateRange)) ? 'current' : '';
 	}
 
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
-
-	//log(seasonArray);
 
 	return seasonArray;
 }/* getSeasonArray */
@@ -352,8 +343,6 @@ function getQuarterArray(displayDate) {
 		{
 			id          : '1',
 			name        : 'Q1',
-			//dateStart   : new Date(year,0,1),
-			//dateEnd     : new Date(year,3,1),
 			dateRange   : new DateRange(new Date(year,0,1), new Date(year,3,1)),
 			radians     : undefined,
 			class       : '',
@@ -361,8 +350,6 @@ function getQuarterArray(displayDate) {
 		{
 			id          : '2',
 			name        : 'Q2',
-			//dateStart   : new Date(year,3,1),
-			//dateEnd     : new Date(year,6,1),
 			dateRange   : new DateRange(new Date(year,3,1), new Date(year,6,1)),
 			radians     : undefined,
 			class       : '',
@@ -370,8 +357,6 @@ function getQuarterArray(displayDate) {
 		{
 			id          : '3',
 			name        : 'Q3',
-			//dateStart   : new Date(year,6,1),
-			//dateEnd     : new Date(year,9,1),
 			dateRange   : new DateRange(new Date(year,6,1), new Date(year,9,1)),
 			radians     : undefined,
 			class       : '',
@@ -379,8 +364,6 @@ function getQuarterArray(displayDate) {
 		{
 			id          : '4',
 			name        : 'Q4',
-			//dateStart   : new Date(year,9,1),
-			//dateEnd     : new Date(year,12,1),
 			dateRange   : new DateRange(new Date(year,9,1), new Date(year,12,1)),
 			radians     : undefined,
 			class       : '',
@@ -388,13 +371,10 @@ function getQuarterArray(displayDate) {
 	];
 
 	for (let quarter of quarterArray) {
-		//quarter.radians = dateRangeRadians(quarter.dateStart, quarter.dateEnd);
 		quarter.class = (dateIsInRange(displayDate.object, quarter.dateRange)) ? 'current' : '';
 	}
 
-
 	addDateRangeRadians(quarterArray, displayDate.yearRange);
-
 
 	return quarterArray;
 }/* getQuarterArray */
@@ -414,8 +394,6 @@ function getYearWeekArray(displayDate) {
 		{
 			id          : `${weekNumber}`,
 			name        : `${weekNumber}`,
-			//dateStart   : yearStart,
-			//dateEnd     : undefined,
 			dateRange   : new DateRange(yearStart, undefined),
 			radians     : undefined,
 			class       : '',
@@ -432,7 +410,6 @@ function getYearWeekArray(displayDate) {
 			weekArray.push({
 				id          : `${weekNumber}`,
 				name        : `${weekNumber}`,
-				//dateStart   : new Date(thisDate),
 				dateRange   : new DateRange(thisDate, undefined),
 				radians     : undefined,
 				class       : '',
@@ -442,15 +419,12 @@ function getYearWeekArray(displayDate) {
 	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
 	for (let week of weekArray) {
-		//week.radians = dateRangeRadians(week.dateStart, week.dateEnd);
 		week.class = (dateIsInRange(displayDate.object, week.dateRange)) ? 'current' : '';
 	}
 	addDateRangeRadians(weekArray, displayDate.yearRange);
 
-	//log(weekArray);
 	return weekArray;
 }/* getYearWeekArray */
-
 
 
 

@@ -99,3 +99,21 @@ function splitViewBox(viewBoxString) {
 	};
 	return result;
 }
+
+
+function rectanglePath(x, y, width, height, radius) {
+
+	const path = `
+		M ${x+width-radius}, ${y}
+		A ${radius},${radius} 0 0 1 ${x+width}, ${y+radius}
+		L ${x+width}, ${y+height-radius}
+		A ${radius},${radius} 0 0 1 ${x+width-radius}, ${y+height}
+		L ${x+radius}, ${y+height}
+
+		A ${radius},${radius} 0 0 1 ${x}, ${y+height-radius}
+		L ${x}, ${y+radius}
+		A ${radius},${radius} 0 0 1 ${x+radius}, ${y}
+		Z`;
+	return path;
+}
+

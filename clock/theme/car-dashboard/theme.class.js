@@ -10,6 +10,13 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		faceRadius : 1300,
 	}
 
+
+	season = {
+		faceRadius : 400,
+		dialRadius : 250,
+	};
+
+
 	clockRadius       = 1200;
 	innerRadius       = 900;
 	outerRadius       = 1200;
@@ -63,6 +70,13 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		invert         : false,
 	};
 
+	seasonLabel = {
+		radius         : 150,
+		sectorPosition : 0.5,
+		rotate         : true,
+		invert         : false,
+	};
+
 
 	handConfig = {
 		year : {
@@ -97,6 +111,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
 
+		displayDate.seasonArray  = getSeasonArray(displayDate);
+
 		const themeSVG = `
 			<defs>
 				<linearGradient id="body-light" y1="0%" y2="100%" x1="0%" x2="0%">
@@ -116,12 +132,17 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				</filter>
 
 				<clipPath id="bodyClip">
-					<path d="${this.getBodyClip(this.clock)}"/>
+					<path d="${this.getBodyOuter(this.clock)}"/>
 				</clipPath>
 
 				<rect id="dial-marker" class="dial-marker" x="-10" y="0" width="20" height="80"/>
 			</defs>
 
+			<g class="season">
+				<g transform="translate(0,1075)">
+					${this.getSeasonFace(this.season, displayDate)}
+				</g>
+			</g>>
 			<path class="face" d="${this.getFacePath(this.clock)}" />
 			<path class="body" d="${this.getBodyPath(this.clock)}" />
 
@@ -168,14 +189,43 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
 			case 'date'     : result = `${isoDate(data.object)}` ; break;
 			case 'dayName'  : result = `${data.name}`; break;
+			case 'season' : result = `${data.name.slice(0,1)}`; break;
 			default         : result = data.name; break;
 		}
 		return result;
 	}
 
 
-	getFacePath = function(clock) {
 
+	getSeasonFace = function(season, displayDate) {
+
+		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
+		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
+		const result = `
+			<circle cx="0" cy="0" class="seasonFace" r="${season.faceRadius}" />
+
+			<g transform="${yearTransform}">
+				${this.getSectors('season', displayDate.seasonArray, 0, season.dialRadius)}
+			</g>
+			`;
+		return result;
+		/* <circle cx="0" cy="0" class="seasonDial" r="${season.dialRadius}" /> */
+	}
+
+
+
+	getFacePath = function(clock) {
+		const path = `
+			${this.getFaceOuter(clock)}
+
+			${rectanglePath(-300, 800, 600, 300, 50)}
+
+			Z`;
+		return path;
+	}/* getFacePath */
+
+
+	getFaceOuter = function(clock) {
 		const xUpper = clock.faceRadius * (1/13);
 		const yUpper = clock.faceRadius * (5/13);
 
@@ -186,30 +236,22 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const path = `
 			M ${xUpper},${-yUpper} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${xLower},${yLower}
 			L ${-xLower},${yLower} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-xUpper},${-yUpper}
-			Z
-			M 300,1100 L -300,1100 L -300,800 L 300,800
-			Z
-			`;
+			Z`;
 		return path;
-	}/* getFacePath */
+	}/* getFaceOuter */
 
 
 	getBodyPath = function(clock) {
 
 		const path = `
-			M ${clock.faceRadius},${-clock.bodyRadius}
-			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${clock.faceRadius},${clock.bodyRadius}
-			L ${-clock.faceRadius},${clock.bodyRadius}
-			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${-clock.faceRadius},${-clock.bodyRadius}
-			Z
-			${this.getFacePath(clock)}
+			${this.getBodyOuter(clock)}
+			${this.getFaceOuter(clock)}
 			`;
 		return path;
 	}/* getBodyPath */
 
 
-	getBodyClip = function(clock) {
-
+	getBodyOuter = function(clock) {
 		const path = `
 			M ${clock.faceRadius},${-clock.bodyRadius}
 			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${clock.faceRadius},${clock.bodyRadius}
@@ -217,7 +259,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${-clock.faceRadius},${-clock.bodyRadius}
 			Z`;
 		return path;
-	}/* getBodyClip */
+	}/* getBodyOuter */
 
 
 }/* car-dashboard */
