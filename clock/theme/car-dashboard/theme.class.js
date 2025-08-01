@@ -159,7 +159,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 
-				${this.getDateLabel('monthHour', displayDate, this.hourLabelPosition)}
+				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabelPosition)} -->
 				${this.getDateLabel('dayName', displayDate, this.dateLabelPosition)}
 
 				<g class="hands">
@@ -174,7 +174,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getDateLabel('yearHour', displayDate, this.hourLabelPosition)}
+				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabelPosition)} -->
 				${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 
 				<g class="hands">
