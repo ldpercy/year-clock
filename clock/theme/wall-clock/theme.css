@@ -6,7 +6,7 @@
 svg.yearclock {
 	background-color: seashell;
 	font-size: 48px;
-	font-family: serif;
+	font-family: Arial, sans-serif;
 }
 
 
@@ -65,13 +65,44 @@ svg.yearclock .hands {
 svg.yearclock path.yearHand  {
 	stroke: black;
 	fill: black;
-	stroke-width: 25;
+	stroke-width: 10;
 	stroke-linejoin: round;
+	paint-order: stroke;
 }
 
 svg.yearclock path.monthHand  {
 	stroke:dimgrey;
 	fill: dimgrey;
-	stroke-width: 15;
+	stroke-width: 10;
 	stroke-linejoin: round;
+	paint-order: stroke;
+}
+
+
+text.schwartz {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: black;
+	stroke: none;
+	font-size: 2ex;
+	font-variant: small-caps;
+	letter-spacing: 0.5ex;
+}
+
+
+#schwartz:hover + g.hands {
+
+	/* filter: drop-shadow(0px 0px 20px #2227); */
+
+	path.yearHand {
+		fill: lightgreen;
+		stroke: lightgreen;
+		filter: drop-shadow(0px 0px 20px lime);
+	}
+
+	path.monthHand {
+		fill: orange;
+		stroke: orange;
+		filter: drop-shadow(0px 0px 20px darkorange);
+	 }
 }

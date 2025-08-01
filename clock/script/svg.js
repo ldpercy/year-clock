@@ -19,7 +19,8 @@ function radialLine(radians, startRadius, endRadius) {
 	return result;
 }
 
-
+/* getSectorPath
+*/
 function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
 {
 	const outerStart = polarPoint(radiansStart, outerRadius);
@@ -27,15 +28,17 @@ function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
 	const innerEnd   = polarPoint(radiansEnd,   innerRadius);
 	const innerStart = polarPoint(radiansStart, innerRadius);
 
+	const innerArc = (innerRadius === 0) ? '' : `A ${sf(innerRadius)} ${sf(innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}`;
+
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}
 		A ${sf(outerRadius)} ${sf(outerRadius)} 0 0 1 ${sf(outerEnd.x)} ${sf(outerEnd.y)}
 		L ${sf(innerEnd.x)} ${sf(innerEnd.y)}
-		A ${sf(innerRadius)} ${sf(innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}
+		${innerArc}
 		Z`;
 
 	return path;
-}
+}/* getSectorPath */
 
 
 /* getArcPath
@@ -80,18 +83,37 @@ function getSectorPathSimple(radiansStart, radiansEnd, innerRadius, outerRadius)
 
 
 
-function padViewBox(padding, x=-1200, y=-1200, width=2400, height=2400) {
-	return `${x-padding} ${y-padding} ${width + 2*padding} ${height + 2*padding}`;
+function padViewBox(padding, viewBox = '-1200 -1200 2400 2400') {
+	const vb = splitViewBox(viewBox);
+	return `${vb.x-padding} ${vb.y-padding} ${vb.width + 2*padding} ${vb.height + 2*padding}`;
 }
 
 
 function splitViewBox(viewBoxString) {
 	const vba    = viewBoxString.split(' ');
 	const result = {
-		x      : vba[0],
-		y      : vba[1],
-		width  : vba[2],
-		height : vba[3],
+		x      : parseInt(vba[0]),
+		y      : parseInt(vba[1]),
+		width  : parseInt(vba[2]),
+		height : parseInt(vba[3]),
 	};
 	return result;
 }
+
+
+function rectanglePath(x, y, width, height, radius) {
+
+	const path = `
+		M ${x+width-radius}, ${y}
+		A ${radius},${radius} 0 0 1 ${x+width}, ${y+radius}
+		L ${x+width}, ${y+height-radius}
+		A ${radius},${radius} 0 0 1 ${x+width-radius}, ${y+height}
+		L ${x+radius}, ${y+height}
+
+		A ${radius},${radius} 0 0 1 ${x}, ${y+height-radius}
+		L ${x}, ${y+radius}
+		A ${radius},${radius} 0 0 1 ${x+radius}, ${y}
+		Z`;
+	return path;
+}
+

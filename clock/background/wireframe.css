@@ -6,3 +6,21 @@ svg.yearclock, svg.yearclock * {
 	stroke-width: 1px !important;
 	filter: none !important;
 }
+
+
+svg#clock.yearclock g#grid {
+
+	* { stroke: #0aaa !important; }
+
+	.axis {
+		stroke-width: 5px !important;
+	}
+	.major {
+		stroke-width: 2px !important;
+	}
+	.minor {
+		stroke-width: 1px;
+	}
+
+}
+

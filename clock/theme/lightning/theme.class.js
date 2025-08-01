@@ -71,7 +71,7 @@ themeClass['lightning'] = class extends ThemeBase {
 		switch(type) {
 			case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
 			case 'quarter'  : result = `${data.name}`; break;
-			case 'week'     : result = `W${data.name}: ${isoDate(data.dateStart)} - ${isoDate(data.dateEnd)}`; break;
+			case 'week'     : result = `W${data.name}: ${isoDate(data.dateRange.start)} - ${isoDate(data.dateRange.end)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			default         : result = data.name; break;
 		}
@@ -85,8 +85,8 @@ themeClass['lightning'] = class extends ThemeBase {
 			case 'quarter'  : result = `${data.name}`; break;
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
 			case 'week'     : result = `W${data.name}`; break;
-			case 'date'     : result = `${isoMonthDay(data.date)}`; break;
-			case 'year'     : result = `${data.date.getFullYear()}`; break;
+			case 'date'     : result = `${isoMonthDay(data.object)}`; break;
+			case 'year'     : result = `${data.year}`; break;
 			default         : result = data.name; break;
 		}
 		return result;
@@ -94,43 +94,35 @@ themeClass['lightning'] = class extends ThemeBase {
 
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+		addRadians(displayDate.yearDayArray);
 
-		displayDate.yearDayArray.forEach(
-			(day) => {day.radians = yearDayRadians(day.date);}
-		);
+		let quarterArray = getQuarterArray(displayDate);
+		let weekArray    = getYearWeekArray(displayDate);
 
-		// radians      : dateRangeRadians(thisDate, nextDay(thisDate)),
+		const themeSVG = `
+			${this.getBody(this.body)}
+			${this.getSectors('quarter', quarterArray, this.quarterRadiusStart, this.quarterRadiusEnd)}
+			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
+			${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
+			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 
+			${this.getSectorLabels('quarter', quarterArray, this.quarterLabel)}
+			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+			${this.getSectorLabels('week', weekArray, this.weekLabel)}
+			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 
-
-		let quarterArray = getQuarterArray(displayDate.object);
-		let weekArray    = getYearWeekArray(displayDate.object);
-
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getBody(this.body)}
-				${this.getSectors('quarter', quarterArray, this.quarterRadiusStart, this.quarterRadiusEnd)}
-				${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
-				${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
-				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-
-				${this.getSectorLabels('quarter', quarterArray, this.quarterLabel)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getSectorLabels('week', weekArray, this.weekLabel)}
-				${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
-
-				${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-			</svg>
+			${this.getYearLabel(displayDate, this.yearLabelPosition)}
+			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 	getBody = function(body=this.body) {

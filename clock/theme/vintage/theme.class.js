@@ -58,8 +58,12 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	handConfig = {
 		year : {
-			length : 900,
 			function : ()=>this.getHand1,
+			length      : 900,
+			tipRadius   : 5,
+			discRadius  : 60,
+			tail        : 100,
+			width       : 50,
 		},
 		month : {
 			function : ()=>this.getHoleHand,
@@ -69,66 +73,50 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
+		addRadians(displayDate.monthDayArray);
 
-		displayDate.monthDayArray.forEach(
-			//(day) => {day.radians = yearDayRadians(day.date);}
-			(day) => {day.radians = divisionRadians(displayDate.monthDayArray.length, day.dayOfPeriod);}
-		);
+		const themeSVG = `
+			<!--
+			<rect x="-1200" y="-1200" width="2400" height="2400">
+			</rect>
+			-->
 
-		//log('handConfig:', this.handConfig);
-		//log('this.getHand1:', this.getHand1);
-
-
-		const clockSVG = `
-			<svg id="clock"
-				class="yearclock"
-				viewBox="${this.viewBox}"
-				preserveAspectRatio="xMidYMid meet"
-				xmlns="http://www.w3.org/2000/svg"
-				>
-
-				<!--
-				<rect x="-1200" y="-1200" width="2400" height="2400">
-				</rect>
-				-->
-
-				${this.getDefs()}
-				${this.getBody(this.body)}
-				${this.getFace(this.faceRadius)}
+			${this.getDefs()}
+			${this.getBody(this.body)}
+			${this.getFace(this.faceRadius)}
 
 
-				${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+			${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
-				${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
-				${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
+			${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
+			${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
-				${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
-				${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
-				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
+			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+			${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
+			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
 
-				<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
-					${this.getIcon()}
-				</svg>
-
-				${this.getHands(displayDate, this.handConfig)}
-				${this.getPin()}
-
+			<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
+				${this.getIcon()}
 			</svg>
+
+			${this.getHands(displayDate, this.handConfig)}
+			${this.getPin()}
 		`;
 
 		/*
 		<text x="0" y="350" class="label favicon">&#10041;</text>
 		*/
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 
@@ -201,44 +189,6 @@ themeClass['vintage'] = class extends ThemeBase {
 
 		return svg;
 	}/* getDateLabel */
-
-
-	/* getHand1
-	Test of a more configurable hand shape
-	*/
-	getHand1 = function(param, transform, cssClass, id) {
-		//const length = 900;
-		const tail = 100;
-		const width = 50;
-
-		const tipRadius = 5;
-
-		const discRadius = 60;
-		const discX = discRadius * (5/13);
-		const discY = discRadius * (12/13);
-		/* Need to use a better pythagorean triad or do the trig properly */
-
-		const path = `
-			M -${tipRadius}, -${param.length}
-			A ${tipRadius},${tipRadius} 0 1 1 ${tipRadius}, -${param.length}
-
-			L ${discX} -${discY}
-			A ${discRadius},${discRadius} 0 0 1 ${discX}, ${discY}
-
-			L ${width} ${tail}
-			L -${width} ${tail}
-
-			L -${discX} ${discY}
-			A ${discRadius},${discRadius} 0 0 1 -${discX}, -${discY}
-
-			Z`;
-		const svg =
-			`<g id="${id}" class="${cssClass}" transform="${transform}">
-				<path class="hand1" d="${path}" />
-			</g>`;
-		return svg;
-	}/* getHand1 */
-
 
 
 

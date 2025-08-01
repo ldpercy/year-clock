@@ -33,25 +33,25 @@ themeClass['plain-svg'] = class extends ThemeBase {
 	dateLabelPosition         = 530;
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
+		addRadians(displayDate.yearDayArray);
 
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace(this.clockRadius)}
-				${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
-				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.handConfig)}
-			</svg>
+		const themeSVG = `
+			${this.getFace(this.clockRadius)}
+			${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
+			${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
+			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
+			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
+			${this.getHands(displayDate, this.handConfig)}
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 }/* Plain SVG */

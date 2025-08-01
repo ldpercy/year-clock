@@ -20,7 +20,7 @@ themeClass['wall-clock'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabelPosition         = new Point(0,430);
+	dateLabelPosition         = new Point(0,-430);
 
 	monthLabel = {
 		radius         : 920,
@@ -30,39 +30,58 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	};
 
 	handConfig = {
-		year : { length : 600 },
-		month : { length : 850 },
+		year : {
+			function : ()=>this.getHand1,
+			length      : 600,
+			tipRadius   : 10,
+			discRadius  : 40,
+			tail        : 160,
+			width       : 18,
+		},
+		month : {
+			function : ()=>this.getHand1,
+			length      : 850,
+			tipRadius   : 5,
+			discRadius  : 30,
+			tail        : 160,
+			width       : 14,
+		},
 	};
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
+		addRadians(displayDate.monthDayArray);
 
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace(this.clockRadius)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.handConfig)}
-			</svg>
+		const themeSVG = `
+			${this.getFace(this.clockRadius)}
+			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+			${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
+			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
+			<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
+			${this.getHands(displayDate, this.handConfig)}
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
-			case 'date'     : result = `${data.date.getFullYear()}` ; break;
+			case 'year'     : result = `${data.year}` ; break;
 			default         : result = data.name; break;
 		}
 		return result;
 	}
+
+
+
+
 
 }/* wall-clock */

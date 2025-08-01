@@ -27,6 +27,7 @@ themeClass['season-out'] = class extends ThemeBase {
 		invert         : false,
 	};
 
+
 	handConfig = {
 		year : { length : 800 },
 	};
@@ -39,8 +40,8 @@ themeClass['season-out'] = class extends ThemeBase {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
-			case 'date'     : result = `${(data.date.getMonth()+1).toString().padStart(2,'0')}-${data.date.getDate().toString().padStart(2,'0')}`; break;
-			case 'year'     : result = `${data.date.getFullYear()}`; break;
+			case 'date'     : result = `${data.month.toString().padStart(2,'0')}-${data.object.getDate().toString().padStart(2,'0')}`; break;
+			case 'year'     : result = `${data.year}`; break;
 			default         : result = data.name; break;
 		}
 		return result;
@@ -61,28 +62,29 @@ themeClass['season-out'] = class extends ThemeBase {
 
 
 
-	/* getClockSVG
+	/* getThemeSVG
 	*/
-	getClockSVG = function(displayDate)
+	getThemeSVG = function(displayDate)
 	{
+		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		displayDate.seasonArray  = getSeasonArray(displayDate.object);
+		addRadians(displayDate.yearDayArray);
+		displayDate.seasonArray  = getSeasonArray(displayDate);
 
-		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-				${this.getFace(this.clockRadius)}
-				${this.getSectors('season', displayDate.seasonArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
-				${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
-				${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				${this.getYearLabel(displayDate.object, this.yearLabelPosition)}
-				${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
-				${this.getHands(displayDate, this.handConfig)}
-			</svg>
+		const themeSVG = `
+			${this.getFace(this.clockRadius)}
+
+			${this.getSectors('season', displayDate.seasonArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
+			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
+			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
+			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+			${this.getYearLabel(displayDate, this.yearLabelPosition)}
+			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
+			${this.getHands(displayDate, this.handConfig)}
 		`;
 
-		return clockSVG;
-	}/* getClockSVG */
+		return themeSVG;
+	}/* getThemeSVG */
 
 
 }/* season-out */

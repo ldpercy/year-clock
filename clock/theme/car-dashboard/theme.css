@@ -1,0 +1,179 @@
+/*
+** Wall Clock theme styles
+*/
+
+
+svg.yearclock {
+	background-color:#111f;
+
+
+	background:
+		repeating-linear-gradient(
+			315deg,
+			#000f,
+			#333a 19px,
+			#000a 20px
+		),
+		repeating-linear-gradient(
+			45deg,
+			#000f,
+			#333a 19px,
+			#000a 20px
+		);
+
+
+	font-size: 48px;
+	font-family: Arial, sans-serif;
+
+
+	.body {
+		fill: #222f;
+		stroke:black;
+		stroke-width: 2px;
+		/* stroke: url(#body-light);
+
+		stroke-linejoin: round;
+
+		paint-order: stroke; */
+		fill-rule: evenodd;
+
+		/* filter: url(#inset-shadow); */
+		filter: drop-shadow(0px 10px 20px black);
+		/* clip-path: url(#bodyClip); */
+	}
+
+	.face   {
+		fill: #444f;
+		stroke: silver;
+		stroke-width: 1px;
+		fill-rule: evenodd;
+		filter: drop-shadow(0px 10px 10px black);
+		/* filter: drop-shadow(0px 10px 10px gray); */
+		/* filter: url(#inset-shadow); */
+
+	}
+}
+
+g.season {
+	clip-path: url(#bodyClip);
+
+	.seasonFace {
+		fill: #555;
+	}
+	.seasonDial {
+		stroke: black;
+	}
+	.sector.season-summer { fill: #f77a }
+	.sector.season-autumn { fill: #ff7a }
+	.sector.season-winter { fill: #77fa }
+	.sector.season-spring { fill: #7f7a }
+
+	.label text {
+		font-size:3ex;
+		font-family: Noto Emoji, sans-serif;
+		font-weight: normal;
+		font-style: normal;
+		font-variant: normal;
+		dominant-baseline: middle;
+	}
+}
+
+
+
+.sectorGroup path {
+	stroke: #fff2;
+	fill: #fff1;
+	stroke-width: 1px;
+}
+
+.sectorGroup.monthDay path:nth-last-child(1),
+.sectorGroup.monthDay path:nth-last-child(2),
+.sectorGroup.monthDay path:nth-last-child(3),
+.sectorGroup.month path:last-child
+{
+	stroke: white;
+	fill: #f00a;
+}
+
+
+
+svg.yearclock .tick {
+	stroke: white;
+	stroke-linecap: butt;
+
+
+	&.day .first {
+		stroke-width: 30;
+	}
+
+	&.day .weekday {
+		stroke-width: 10;
+	}
+
+	&.day .weekend {
+		stroke-width: 20;
+	}
+
+}
+
+
+
+svg.yearclock .label,
+.dial-marker
+{
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: white;
+	stroke: black;
+	stroke-width: 5;
+	paint-order: stroke;
+
+	font-variant: small-caps;
+
+	&.label.month text {
+		font-size: 3em;
+		font-style: italic;
+	}
+
+	&.label.monthDay text {
+		font-size: 4ex;
+		font-style: italic;
+	}
+
+	&.dateLabel {
+		font-size: 3em;
+	}
+
+}
+
+
+svg.yearclock .hands {
+	filter: drop-shadow(0px 20px 10px #111a);
+
+	path.yearHand  {
+		stroke: #e00f;
+		fill: #e00f;
+		stroke-width: 5;
+		stroke-linejoin: round;
+	}
+
+	path.monthHand  {
+		stroke:#e00f;
+		fill: #e00f;
+		stroke-width: 5;
+		stroke-linejoin: round;
+	}
+
+}
+
+
+/* .inset-shadow {
+	filter: url(#inset-shadow);
+}
+
+
+.dashboard-lighting {
+	flood-color: palegoldenrod
+	flood-opacity: .2;
+}
+*/
