@@ -6,6 +6,7 @@ svg.yearclock {
 
 	.body {
 		filter: drop-shadow(0px 10px 10px #000a) drop-shadow(0px -10px 30px #ea1a);
+		clip-path: url(#bodyClip);
 	}
 
 	.face   {
@@ -44,7 +45,7 @@ svg.yearclock .label,
 
 
 svg.yearclock .hands {
-	filter: drop-shadow(0px -10px 30px #ea1a);
+	filter: drop-shadow(0px 20px 10px #1117) drop-shadow(0px -10px 30px #ea1a);
 
 	path.yearHand  {
 		stroke: #e30f;

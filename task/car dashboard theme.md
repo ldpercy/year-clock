@@ -404,4 +404,31 @@ Season cutout
 -------------
 
 I want to start hacking on the season cutout next, but I also feel liekthe current body/face arrangement could use some work.
-Going to change the curreent 'body' to become the face, and add an extra body layer.
+Going to change the current 'body' to become the face, and add an extra body layer.
+
+Have it going, had wanted to add some emojis but can't seem to get them to work - will need to figure out if there's a reliable way to do that.
+
+
+
+Wrapup
+------
+
+Just about done here, have tentatively added some hour counters which I'm undecided about - might try to inset them properly.
+
+Wrapup notes:
+
+* Split clock face in two and positioned with translates
+* Added graph paper for wireframe background
+* Hand code split up
+* A whole stack of changes and improvements to allow for calculating the custom angular contexts of dials
+* Some updates for the wall-clock theme
+* Start using small classes for things like date ranges, radian deltas
+* Markers drawn with `use` this time; also experimenting with path markers
+* Various experiments with inset shadows - going with standard css filter + clip for now
+* Make getDateLabel a bit more flexible
+* Add rotating season dial
+
+Follow up:
+* Get a warning lamp or three going - prob need to figure out emojis first
+* Maybe inset & space the hour counters to look more like odometers/tripmeters
+

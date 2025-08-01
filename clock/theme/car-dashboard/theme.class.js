@@ -38,7 +38,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabelPosition         = new Point(0,900);
+	dateLabelPosition   = new Point(0,950);
+	hourLabelPosition   = new Point(0,500);
 
 	daySectorRadiusStart = 1000;
 	monthSectorRadiusStart = 1000;
@@ -115,6 +116,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 		const themeSVG = `
 			<defs>
+				<!--
 				<linearGradient id="body-light" y1="0%" y2="100%" x1="0%" x2="0%">
 					<stop offset="0%" stop-color="#111f"/>
 					<stop offset="50%" stop-color="#333f"/>
@@ -130,6 +132,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 					<feComposite operator="in" in="color" in2="inverse" result="shadow"/>
 					<feComposite operator="over" in="shadow" in2="SourceGraphic"/>
 				</filter>
+				-->
 
 				<clipPath id="bodyClip">
 					<path d="${this.getBodyOuter(this.clock)}"/>
@@ -156,6 +159,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 
+				${this.getDateLabel('monthHour', displayDate, this.hourLabelPosition)}
 				${this.getDateLabel('dayName', displayDate, this.dateLabelPosition)}
 
 				<g class="hands">
@@ -170,6 +174,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+				${this.getDateLabel('yearHour', displayDate, this.hourLabelPosition)}
 				${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 
 				<g class="hands">
@@ -189,7 +194,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
 			case 'date'     : result = `${isoDate(data.object)}` ; break;
 			case 'dayName'  : result = `${data.name}`; break;
-			case 'season' : result = `${data.name.slice(0,1)}`; break;
+			case 'season'   : result = `${data.name.slice(0,1)}`; break;
+
+			case 'monthHour' : result = `${(data.date*24).toString().padStart(4,'0')}`; break;
+			case 'yearHour'  : result = `${(data.dayOfYear*24).toString().padStart(5,'0')}`; break;
+
+
 			default         : result = data.name; break;
 		}
 		return result;
