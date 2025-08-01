@@ -432,4 +432,6 @@ Follow up:
 * Get a warning lamp or three going - prob need to figure out emojis first
 * Maybe inset & space the hour counters to look more like odometers/tripmeters
 * Probably a bunch of mess
+* Get the wireframe background to switch on the grid properly - prob need to draw separately
+* Maybe add another body layer to have separate outer and inset shadows
 

@@ -67,6 +67,15 @@ g.season {
 	.sector.season-autumn { fill: #ff7a }
 	.sector.season-winter { fill: #77fa }
 	.sector.season-spring { fill: #7f7a }
+
+	.label text {
+		font-size:3ex;
+		font-family: Noto Emoji, sans-serif;
+		font-weight: normal;
+		font-style: normal;
+		font-variant: normal;
+		dominant-baseline: middle;
+	}
 }
 
 

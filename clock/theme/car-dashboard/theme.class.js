@@ -72,7 +72,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	};
 
 	seasonLabel = {
-		radius         : 150,
+		radius         : 140,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
@@ -194,11 +194,11 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
 			case 'date'     : result = `${isoDate(data.object)}` ; break;
 			case 'dayName'  : result = `${data.name}`; break;
-			case 'season'   : result = `${data.name.slice(0,1)}`; break;
+			//case 'season'   : result = `${data.name.slice(0,1)}`; break;
+			case 'season'   : result = `${data.emoji}`; break;
 
 			case 'monthHour' : result = `${(data.date*24).toString().padStart(4,'0')}`; break;
 			case 'yearHour'  : result = `${(data.dayOfYear*24).toString().padStart(5,'0')}`; break;
-
 
 			default         : result = data.name; break;
 		}
@@ -216,6 +216,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 			<g transform="${yearTransform}">
 				${this.getSectors('season', displayDate.seasonArray, 0, season.dialRadius)}
+				${this.getSectorLabels('season', displayDate.seasonArray, this.seasonLabel)}
 			</g>
 			`;
 		return result;

@@ -14,6 +14,7 @@ Todo
 * Do something with the footer
 * Add option to hide the form
 * Fonts - find some web-safe ones or figure out serving
+* Also figure out reliable way to use emojis
 * Rename hands to pointers
 * Improve test page parameterisation
 * Look into stroke gradients
@@ -24,12 +25,11 @@ Todo
 In progress
 -----------
 * Finish cleaning up new hands & promote to ThemeBase
-* 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc - see if it can be removed -> check others
-* Add extra label to wall-clock -> in progress
 
 
 Done
 ----
 * See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF, probably leave
 * See if favicons can be controlled by css at all -> appears not
-
+* 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc - see if it can be removed -> check others
+* Add extra label to wall-clock -> in progress
