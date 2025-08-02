@@ -225,38 +225,49 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 	getFacePath = function(clock) {
+		//${this.getBodyInner(clock)}
 		const path = `
-			${this.getFaceOuter(clock)}
+			M ${clock.faceRadius},${-clock.faceRadius}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${clock.faceRadius},${clock.faceRadius}
+			L ${-clock.faceRadius},${clock.faceRadius}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-clock.faceRadius},${-clock.faceRadius}
+			Z
 
 			${rectanglePath(-300, 800, 600, 300, 50)}
-
 			Z`;
 		return path;
 	}/* getFacePath */
 
 
-	getFaceOuter = function(clock) {
+	getBodyInner = function(clock) {
 		const xUpper = clock.faceRadius * (1/13);
 		const yUpper = clock.faceRadius * (5/13);
 
 		const xLower = clock.faceRadius * (8/13);
 		const yLower = clock.faceRadius * (12/13);
 
-
 		const path = `
-			M ${xUpper},${-yUpper} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${xLower},${yLower}
-			L ${-xLower},${yLower} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-xUpper},${-yUpper}
+			M ${xUpper},${-yUpper}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${xLower},${yLower}
+			L ${-xLower},${yLower}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-xUpper},${-yUpper}
 			Z`;
 		return path;
-	}/* getFaceOuter */
+	}/* getBodyInner */
 
 
 	getBodyPath = function(clock) {
 
 		const path = `
 			${this.getBodyOuter(clock)}
-			${this.getFaceOuter(clock)}
+			${this.getBodyInner(clock)}
 			`;
+		/*
+			M 0,-1200
+			A 150,150 0 1 1 0,-900
+			A 150,150 0 1 1 0,-1200
+		*/
+
 		return path;
 	}/* getBodyPath */
 
