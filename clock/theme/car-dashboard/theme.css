@@ -5,6 +5,7 @@
 
 svg.yearclock {
 	background-color:#111f;
+	--text-colour: white;
 
 
 	background:
@@ -68,11 +69,12 @@ g.season {
 	.sector.season-winter { fill: #77fa }
 	.sector.season-spring { fill: #7f7a }
 
-	.label text {
-		font-size:3ex;
-		dominant-baseline: middle;
+
+	.thermometer {
+		font-size: 3ex;
 		font-style: normal;
 		stroke:	none;
+		fill:var(--text-colour);
 	}
 }
 
@@ -89,31 +91,9 @@ g.season {
 .sectorGroup.monthDay path:nth-last-child(3),
 .sectorGroup.month path:last-child
 {
-	stroke: white;
+	stroke: var(--text-colour);
 	fill: #f00a;
 }
-
-
-
-svg.yearclock .tick {
-	stroke: white;
-	stroke-linecap: butt;
-
-
-	&.day .first {
-		stroke-width: 30;
-	}
-
-	&.day .weekday {
-		stroke-width: 10;
-	}
-
-	&.day .weekend {
-		stroke-width: 20;
-	}
-
-}
-
 
 
 svg.yearclock .label,
@@ -121,7 +101,7 @@ svg.yearclock .label,
 {
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: white;
+	fill: var(--text-colour);
 	stroke: black;
 	stroke-width: 5;
 	paint-order: stroke;

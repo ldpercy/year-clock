@@ -154,7 +154,6 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySectorRadiusStart, this.sectorRadiusEnd)}
 
-				<!-- ${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)} -->
 				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
 
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
@@ -216,8 +215,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 			<g transform="${yearTransform}">
 				${this.getSectors('season', displayDate.seasonArray, 0, season.dialRadius)}
-				${this.getSectorLabels('season', displayDate.seasonArray, this.seasonLabel)}
 			</g>
+			<text class="thermometer" x="230" y="-170">🌡</text>
 			`;
 		return result;
 		/* <circle cx="0" cy="0" class="seasonDial" r="${season.dialRadius}" /> */
