@@ -70,11 +70,9 @@ g.season {
 
 	.label text {
 		font-size:3ex;
-		font-family: Noto Emoji, sans-serif;
-		font-weight: normal;
-		font-style: normal;
-		font-variant: normal;
 		dominant-baseline: middle;
+		font-style: normal;
+		stroke:	none;
 	}
 }
 
@@ -177,3 +175,9 @@ svg.yearclock .hands {
 	flood-opacity: .2;
 }
 */
+
+text.text2 {
+	font-size: 5em;
+	fill: blue;
+	/* font-style: oblique; */
+}
