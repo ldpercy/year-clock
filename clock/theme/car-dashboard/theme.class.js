@@ -147,7 +147,17 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				</g>
 			</g>>
 			<path class="face" d="${this.getFacePath(this.clock)}" />
-			<path class="body" d="${this.getBodyPath(this.clock)}" />
+			<g class="body">
+				<path d="${this.getBodyPath(this.clock)}" />
+				<g transform="translate(0,-1000)">
+					<path class="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"/>
+				</g>
+			</g>
+			<!--
+			<g transform="translate(0,-1000)">
+				<path class="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"/>
+			</g>
+			-->
 
 			<g transform="translate(-1300)">
 				<!-- month-day -->

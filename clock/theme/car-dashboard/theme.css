@@ -53,6 +53,14 @@ svg.yearclock {
 		/* filter: url(#inset-shadow); */
 
 	}
+
+	path.star {
+		transform:scale(0.2);
+		fill-rule: evenodd;
+		stroke-width:5px;
+		stroke:#f00a;
+		fill:#000a;
+	}
 }
 
 g.season {
