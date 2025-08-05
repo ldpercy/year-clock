@@ -55,8 +55,8 @@ svg.yearclock {
 	}
 
 	path.star {
-		transform:scale(0.2);
-		fill-rule: evenodd;
+		/* transform:scale(0.2); */
+		fill-rule:nonzero;
 		stroke-width:5px;
 		stroke:#f00a;
 		fill:#000a;

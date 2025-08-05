@@ -149,15 +149,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<path class="face" d="${this.getFacePath(this.clock)}" />
 			<g class="body">
 				<path d="${this.getBodyPath(this.clock)}" />
-				<g transform="translate(0,-1000)">
-					<path class="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"/>
-				</g>
 			</g>
-			<!--
-			<g transform="translate(0,-1000)">
-				<path class="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"/>
-			</g>
-			-->
 
 			<g transform="translate(-1300)">
 				<!-- month-day -->
@@ -271,6 +263,9 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const path = `
 			${this.getBodyOuter(clock)}
 			${this.getBodyInner(clock)}
+
+			M 0,-1000
+			m -52 193 l 0 -386 l 193 335 l -335 -193 l 386 0 l -335 193 l 193 -335 l 0 386 l -193 -335 l 335 193 l -386 0 l 335 -193 z
 			`;
 		/*
 			M 0,-1200
