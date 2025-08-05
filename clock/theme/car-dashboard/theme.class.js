@@ -78,6 +78,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		invert         : false,
 	};
 
+	warningLight = {
+		y	: 400,
+	};
+
 
 	handConfig = {
 		year : {
@@ -155,10 +159,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				<!-- month-day -->
 
 				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySectorRadiusStart, this.sectorRadiusEnd)}
-
 				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
-
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+
+				${this.getWarningLight('month', displayDate, this.warningLight)}
 
 				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabelPosition)} -->
 				${this.getDateLabel('dayName', displayDate, this.dateLabelPosition)}
@@ -171,10 +175,11 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				<!-- year -->
 
 				${this.getSectors('month', displayDate.monthArray, this.monthSectorRadiusStart, this.sectorRadiusEnd)}
-
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
-
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+
+				${this.getWarningLight('year', displayDate, this.warningLight)}
+
 				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabelPosition)} -->
 				${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
 
@@ -286,6 +291,20 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			Z`;
 		return path;
 	}/* getBodyOuter */
+
+
+	getWarningLight = function(type, displayDate, settings) {
+
+		let event = yearEvent(displayDate.object) || {name:'',symbol:''};
+
+		const result = `
+			<g class="warningLight">
+				<!-- <rect  x="-100" y="${settings.y-100}" width="200" height="200"/> -->
+				<text x="0" y="${settings.y}" title="${event.name}">${event.symbol}</text>
+			</g>
+		`;
+		return result;
+	}
 
 
 }/* car-dashboard */

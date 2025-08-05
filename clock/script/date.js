@@ -442,3 +442,28 @@ class DateRange {
 /*
 dr = new DateRange('2025-01-01','2026-01-01')
 */
+
+function yearEvent(date) {
+
+	const key = isoMonthDay(date);
+
+	const yearEvent = {
+		'01-01' : { symbol:'🌅', name: "New Year's Day" },
+		'02-14' : { symbol:'💘', name: "Valentines day" },
+		'10-31' : { symbol:'🎃', name: "Halloween" },
+		'12-25' : { symbol:'🎄', name: 'Christmas Day' },
+		'12-26' : { symbol:'🎁', name: 'Boxing Day' },
+		'12-31' : { symbol:'🎇', name: "New Year's Eve" }, // 🎇🎆
+	};
+
+	return yearEvent[key];
+
+}/* yearEvent */
+
+function monthEvent(date) {
+
+
+
+
+
+}
