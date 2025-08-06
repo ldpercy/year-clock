@@ -38,10 +38,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabel = {
+	dayNameLabel = {
 		position   : new Point(0,400),
 		attribute  : `textLength="600" lengthAdjust="spacingAndGlyphs"`,
 	}
+
+	dateLabel = {
+		position   : new Point(0,400),
+		attribute  : `textLength="650" lengthAdjust="spacingAndGlyphs"`,
+	}
+
 
 	hourLabel = { position : new Point(0,500) };
 
@@ -169,7 +175,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getWarningLight('month', displayDate, this.warningLight)}
 
 				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabel)} -->
-				${this.getDateLabel('dayName', displayDate, this.dateLabel)}
+				${this.getDateLabel('dayName', displayDate, this.dayNameLabel)}
 
 				<g class="hands">
 					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
