@@ -89,7 +89,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	};
 
 	warningLight = {
-		y	: 1050,
+		y	: 1000,
 	};
 
 
@@ -155,12 +155,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				<rect id="dial-marker" class="dial-marker" x="-10" y="0" width="20" height="80"/>
 			</defs>
 
+			<path class="backing" d="${this.getBodyPath(this.clock)}" />
+
 			<g class="season">
 				<g transform="translate(0,1075)">
 					${this.getSeasonFace(this.season, displayDate)}
 				</g>
-			</g>>
+			</g>
+
 			<path class="face" d="${this.getFacePath(this.clock)}" />
+
 			<g class="body">
 				<path d="${this.getBodyPath(this.clock)}" />
 			</g>
@@ -172,7 +176,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 
-				${this.getWarningLight('month', displayDate, this.warningLight)}
+
+				${this.getWarningMonth('month', displayDate, this.warningLight)}
 
 				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabel)} -->
 				${this.getDateLabel('dayName', displayDate, this.dayNameLabel)}
@@ -188,7 +193,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 
-				${this.getWarningLight('year', displayDate, this.warningLight)}
+				${this.getWarningYear('year', displayDate, this.warningLight)}
 
 				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabel)} -->
 				${this.getDateLabel('date', displayDate, this.dateLabel)}
@@ -228,7 +233,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 		const result = `
+
+			<!--
 			<circle cx="0" cy="0" class="seasonFace" r="${season.faceRadius}" />
+			-->
 
 			<g transform="${yearTransform}">
 				${this.getSectors('season', displayDate.seasonArray, 0, season.dialRadius)}
@@ -251,6 +259,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			Z
 
 			${rectanglePath(-300, 800, 600, 300, 50)}
+
+			${rectanglePath(-1650, 900, 700, 200, 50)}
+			${rectanglePath(950, 900, 700, 200, 50)}
+
 			Z`;
 		return path;
 	}/* getFacePath */
@@ -282,11 +294,6 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			M 0,-1000
 			m26,97 l-122,-122 l167,-45 l-45,167  Z m-97,-167 l167,45 l-122,122 l-45,-167  Z m167,97 l-167,45 l45,-167 l122,122  Z m-193,0 l122,-122 l45,167 l-167,-45 z
 			`;
-		/*
-			M 0,-1200
-			A 150,150 0 1 1 0,-900
-			A 150,150 0 1 1 0,-1200
-		*/
 
 		return path;
 	}/* getBodyPath */
@@ -303,9 +310,28 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}/* getBodyOuter */
 
 
-	getWarningLight = function(type, displayDate, settings) {
+	getWarningMonth = function(type, displayDate, settings) {
 
-		let event = yearEvent(displayDate.object) || {name:'',symbol:''};
+
+		let weekEvent = getWeekEvent(displayDate.object) || {name:'',symbol:''};
+		let monthEvent = getMonthEvent(displayDate.object) || {name:'',symbol:''};
+
+
+		const result = `
+			<g class="warningLight">
+				<!-- <rect  x="-300" y="${settings.y-100}" width="600" height="200"/> -->
+				<text x="-200" y="${settings.y}" title="${weekEvent.name}">${weekEvent.symbol}</text>
+				<text x="0" y="${settings.y}" title="${monthEvent.name}">${monthEvent.symbol}</text>
+				<text x="200" y="${settings.y}" title="${weekEvent.name}">${weekEvent.symbol}</text>
+			</g>
+		`;
+		return result;
+	}/* getWarningMonth */
+
+
+	getWarningYear = function(type, displayDate, settings) {
+
+		let event = getYearEvent(displayDate.object) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -316,9 +342,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			</g>
 		`;
 		return result;
-	}
+	}/* getWarningYear */
+
+
+
+
+
 
 
 }/* car-dashboard */
-
-

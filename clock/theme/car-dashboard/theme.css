@@ -6,6 +6,7 @@
 svg.yearclock {
 	background-color:#111f;
 	--text-colour: white;
+	--body: #222f;
 
 
 	background:
@@ -28,7 +29,7 @@ svg.yearclock {
 
 
 	.body {
-		fill: #222f;
+		fill: var(--body);
 		stroke:black;
 		stroke-width: 2px;
 		/* stroke: url(#body-light);
@@ -41,6 +42,11 @@ svg.yearclock {
 		/* filter: url(#inset-shadow); */
 		filter: drop-shadow(0px 10px 20px black);
 		/* clip-path: url(#bodyClip); */
+	}
+
+
+	.backing {
+		fill: #555;
 	}
 
 	.face   {
@@ -133,10 +139,13 @@ svg.yearclock .label,
 }
 
 g.warningLight {
-	rect { stroke: grey; fill: grey; }
+	rect {
+		stroke: black;
+		fill: var(--body);
+	}
 	text {
 		text-anchor: middle;
-		dominant-baseline: middle;
+		dominant-baseline: central;
 		fill: var(--text-colour);
 		font-size: 3em;
 	}

@@ -5,6 +5,9 @@ svg.yearclock {
 	background-color:#0a0a0aff;
 	--text-colour: #eb1f; /*  */
 
+	.backing {
+		fill: #332;
+	}
 
 	.body {
 		filter: drop-shadow(0px 10px 10px #000a) drop-shadow(0px -10px 30px #ea1a);
@@ -19,10 +22,6 @@ svg.yearclock {
 
 
 g.season {
-
-	.seasonFace {
-		fill: #332;
-	}
 	path { filter:none;}
 }
 

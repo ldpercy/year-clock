@@ -86,6 +86,10 @@ function isWeekend(d) {
 	return dayNumber == 0 || dayNumber == 6
 }
 
+function isLastDayOfMonth(date) {
+	return (date.getDate() === daysInMonth(date));
+}
+
 function getDayClass(date, currentDate) { // this needs attention
 	//log(arguments);
 	result = 'weekday';
@@ -443,7 +447,7 @@ class DateRange {
 dr = new DateRange('2025-01-01','2026-01-01')
 */
 
-function yearEvent(date) {
+function getYearEvent(date) {
 
 	const key = isoMonthDay(date);
 
@@ -452,7 +456,7 @@ function yearEvent(date) {
 		'02-14' : { symbol:'💘', name: "Valentines day" },
 		'10-31' : { symbol:'🎃', name: "Halloween" },
 		'12-25' : { symbol:'🎄', name: 'Christmas Day' },
-		'12-26' : { symbol:'🎁', name: 'Boxing Day' },
+		'12-26' : { symbol:'🥊', name: 'Boxing Day' },
 		'12-31' : { symbol:'🎇', name: "New Year's Eve" }, // 🎇🎆
 	};
 
@@ -460,10 +464,36 @@ function yearEvent(date) {
 
 }/* yearEvent */
 
-function monthEvent(date) {
+function getWeekEvent(date) {
+	const key = date.getDay();
+	const weekEvent = {
+		1 : { symbol:'🌚', name: "" },
+		2 : { symbol:'', name: "" },
+		3 : { symbol:'🐪', name: "Hump day" },
+		4 : { symbol:'', name: '' },
+		5 : { symbol:'🍺', name: '' },
+		6 : { symbol:'🏖️', name: '' },
+		7 : { symbol:'🌞', name: "" },
+	};
+
+	return weekEvent[key];
+
+}
 
 
+function getMonthEvent(date) {
+	const key = date.getDate();
+	const monthEvent = {
+		1 : { symbol:'🥇', name: "" },
+		2 : { symbol:'🥈', name: "" },
+		3 : { symbol:'🥉', name: "" },
+	};
 
+	let result = monthEvent[key]
 
+	if (isLastDayOfMonth(date)) {
+		result = { symbol:'🔚', name: "" };
+	}
 
+	return result;
 }
