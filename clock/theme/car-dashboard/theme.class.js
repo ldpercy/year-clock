@@ -312,17 +312,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	getWarningMonth = function(type, displayDate, settings) {
 
-
 		let weekEvent = getWeekEvent(displayDate.object) || {name:'',symbol:''};
 		let monthEvent = getMonthEvent(displayDate.object) || {name:'',symbol:''};
-
+		let customEvent = getCustomEvent(displayDate.object) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
 				<!-- <rect  x="-300" y="${settings.y-100}" width="600" height="200"/> -->
 				<text x="-200" y="${settings.y}" title="${weekEvent.name}">${weekEvent.symbol}</text>
 				<text x="0" y="${settings.y}" title="${monthEvent.name}">${monthEvent.symbol}</text>
-				<text x="200" y="${settings.y}" title="${weekEvent.name}">${weekEvent.symbol}</text>
+				<text x="200" y="${settings.y}" title="${customEvent.name}">${customEvent.symbol}</text>
 			</g>
 		`;
 		return result;

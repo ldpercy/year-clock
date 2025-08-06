@@ -497,3 +497,16 @@ function getMonthEvent(date) {
 
 	return result;
 }
+
+
+function getCustomEvent(date) {
+
+	const key = isoMonthDay(date);
+
+	const customEvent = {
+		'03-14' : { symbol:'π', name: "Pi day" },
+		'05-04' : { symbol:'¼', name: "May the fourth" },
+	};
+
+	return customEvent[key];
+}
