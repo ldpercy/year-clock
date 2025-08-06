@@ -318,10 +318,9 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 		const result = `
 			<g class="warningLight">
-				<!-- <rect  x="-300" y="${settings.y-100}" width="600" height="200"/> -->
-				<text x="-200" y="${settings.y}" title="${weekEvent.name}">${weekEvent.symbol}</text>
-				<text x="0" y="${settings.y}" title="${monthEvent.name}">${monthEvent.symbol}</text>
-				<text x="200" y="${settings.y}" title="${customEvent.name}">${customEvent.symbol}</text>
+				<text x="-200" y="${settings.y}"><title>${weekEvent.name}"</title>${weekEvent.symbol}</text>
+				<text x="0" y="${settings.y}"><title>${monthEvent.name}</title>${monthEvent.symbol}</text>
+				<text x="200" y="${settings.y}"><title>${customEvent.name}</title>${customEvent.symbol}</text>
 			</g>
 		`;
 		return result;
@@ -330,14 +329,14 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	getWarningYear = function(type, displayDate, settings) {
 
-		let event = getYearEvent(displayDate.object) || {name:'',symbol:''};
+		const event = getYearEvent(displayDate.object) || {name:'', symbol:''};
+		const seasonEvent = getSeasonEvent(displayDate) || {name:'', symbol:''};
 
 		const result = `
 			<g class="warningLight">
-				<!-- <rect  x="-100" y="${settings.y-100}" width="200" height="200"/> -->
-				<text x="-200" y="${settings.y}" title="${event.name}">${event.symbol}</text>
-				<text x="0" y="${settings.y}" title="${event.name}">${event.symbol}</text>
-				<text x="200" y="${settings.y}" title="${event.name}">${event.symbol}</text>
+				<text x="-200" y="${settings.y}"><title>${seasonEvent.name}</title>${seasonEvent.symbol}</text>
+				<text x="0" y="${settings.y}"><title>${event.name}</title>${event.symbol}</text>
+				<text x="200" y="${settings.y}"><title>${event.name}</title>${event.symbol}</text>
 			</g>
 		`;
 		return result;

@@ -505,8 +505,30 @@ function getCustomEvent(date) {
 
 	const customEvent = {
 		'03-14' : { symbol:'π', name: "Pi day" },
-		'05-04' : { symbol:'¼', name: "May the fourth" },
+		'05-04' : { symbol:'¼', name: "May the Fourth be with you" },
 	};
 
 	return customEvent[key];
 }
+
+
+function getSeasonEvent(displayDate) {
+
+	let result = undefined;
+
+	/*
+	need a better way to handle seasons...
+	The current season array is broken
+	*/
+
+	for (let season of displayDate.seasonArray) {
+		if (dateIsInRange(displayDate.object, season.dateRange))
+		{
+			result = { symbol:season.emoji, name: season.name }
+		}
+	}
+
+	return result;
+}
+
+
