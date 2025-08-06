@@ -17,8 +17,8 @@ themeClass['season-out'] = class extends ThemeBase {
 
 
 	dateLabelRadius     = 575;
-	dateLabelPosition   = new Point(10, this.dateLabelRadius);  // tiny tweak to horizontal position here, having trouble centering it properly
-	yearLabelPosition   = new Point(0, -this.dateLabelRadius);
+	dateLabel = { position : new Point(10, this.dateLabelRadius) }; // tiny tweak to horizontal position here, having trouble centering it properly
+	yearLabel = { position : new Point(0, -this.dateLabelRadius) };
 
 	monthLabel = {
 		radius         : 1000,
@@ -78,8 +78,8 @@ themeClass['season-out'] = class extends ThemeBase {
 			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getYearLabel(displayDate, this.yearLabelPosition)}
-			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.yearLabel)}
+			${this.getDateLabel('date', displayDate, this.dateLabel)}
 			${this.getHands(displayDate, this.handConfig)}
 		`;
 

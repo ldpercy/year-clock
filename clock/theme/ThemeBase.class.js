@@ -144,40 +144,29 @@ class ThemeBase extends Clock {
 	/* getDateLabel
 	This and year below need to be generally sorted out
 	*/
-	getDateLabel = function(labelType, displayDate, dateLabelPosition) {
+	getDateLabel = function(labelType, displayDate, setting) {
 		let x,y;
 
-		if (dateLabelPosition instanceof Point)
+		if (setting.position instanceof Point)
 		{
-			x = dateLabelPosition.x;
-			y = dateLabelPosition.y;
+			x = setting.position.x;
+			y = setting.position.y;
 		}
 		else
 		{
 			const yearOnLeft = dateRatio(displayDate.object) < 0.5
 			const labelSide = yearOnLeft ? -1 : 1
-			x = dateLabelPosition * labelSide;
+			x = setting.position * labelSide;
 			y = 0;
 		}
 
 		const svg =
 			`<g class="dateLabel">
-				<text x="${x}" y="${y}" class="label dateLabel">${this.formatLabel(labelType, displayDate)}</text>
+				<text x="${x}" y="${y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelType, displayDate)}</text>
 			</g>`;
 
 		return svg;
 	}/* getDateLabel */
-
-
-	/* getYearLabel
-	*/
-	getYearLabel = function(displayDate, point) {
-		const svg =
-			`<g class="dateLabel">
-				<text x="${point.x}" y="${point.y}" class="label yearLabel">${this.formatLabel('year', displayDate)}</text>
-			</g>`;
-		return svg;
-	}/* getYearLabel */
 
 
 

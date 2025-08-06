@@ -30,7 +30,8 @@ themeClass['plain-svg'] = class extends ThemeBase {
 		year : { length : 940 },
 	};
 
-	dateLabelPosition         = 530;
+
+	dateLabel = { position : 530 };
 
 
 	/* getThemeSVG
@@ -46,7 +47,7 @@ themeClass['plain-svg'] = class extends ThemeBase {
 			${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
 			${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
 			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
-			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.dateLabel)}
 			${this.getHands(displayDate, this.handConfig)}
 		`;
 

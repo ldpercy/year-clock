@@ -31,7 +31,7 @@ themeClass['brice'] = class extends ThemeBase {
 		year : { length : 1030 }
 	};
 
-	dateLabelPosition   = 500;
+	dateLabel = { position : 500 };
 
 
 	/* getThemeSVG
@@ -48,7 +48,7 @@ themeClass['brice'] = class extends ThemeBase {
 			${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
-			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.dateLabel)}
 			${this.getHands(displayDate, this.handConfig)}
 		`;
 

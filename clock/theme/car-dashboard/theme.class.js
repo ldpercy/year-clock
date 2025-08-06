@@ -38,8 +38,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabelPosition   = new Point(0,950);
-	hourLabelPosition   = new Point(0,500);
+	dateLabel = {
+		position   : new Point(0,400),
+		attribute  : `textLength="600" lengthAdjust="spacingAndGlyphs"`,
+	}
+
+	hourLabel = { position : new Point(0,500) };
 
 	daySectorRadiusStart = 1000;
 	monthSectorRadiusStart = 1000;
@@ -79,7 +83,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	};
 
 	warningLight = {
-		y	: 400,
+		y	: 1050,
 	};
 
 
@@ -164,8 +168,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 				${this.getWarningLight('month', displayDate, this.warningLight)}
 
-				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabelPosition)} -->
-				${this.getDateLabel('dayName', displayDate, this.dateLabelPosition)}
+				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabel)} -->
+				${this.getDateLabel('dayName', displayDate, this.dateLabel)}
 
 				<g class="hands">
 					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
@@ -180,8 +184,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 				${this.getWarningLight('year', displayDate, this.warningLight)}
 
-				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabelPosition)} -->
-				${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
+				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabel)} -->
+				${this.getDateLabel('date', displayDate, this.dateLabel)}
 
 				<g class="hands">
 					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreeDelta)}
@@ -300,7 +304,9 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const result = `
 			<g class="warningLight">
 				<!-- <rect  x="-100" y="${settings.y-100}" width="200" height="200"/> -->
+				<text x="-200" y="${settings.y}" title="${event.name}">${event.symbol}</text>
 				<text x="0" y="${settings.y}" title="${event.name}">${event.symbol}</text>
+				<text x="200" y="${settings.y}" title="${event.name}">${event.symbol}</text>
 			</g>
 		`;
 		return result;

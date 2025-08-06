@@ -163,12 +163,12 @@ path.sector.day.current
 /* Clock labels
 */
 
-.label.yearLabel {
+.label.dateLabel.year {
 	text-anchor: start;
 	dominant-baseline: hanging;
 }
 
-.label.dateLabel {
+.label.dateLabel.date {
 	text-anchor: end;
 	dominant-baseline: hanging;
 }

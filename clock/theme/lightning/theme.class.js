@@ -28,10 +28,10 @@ themeClass['lightning'] = class extends ThemeBase {
 	dayRadiusEnd        = 1200;
 
 	//this.yearLabelPosition   = new Point(0, 0);
-	yearLabelPosition   = new Point(-1200, -1200);
-	dateLabelPosition   = new Point( 1200, -1200);
-	weekLabelPosition   = new Point(-1200,  1200);
-	dayLabelPosition    = new Point( 1200,  1200);
+	yearLabel   = { position : new Point(-1200, -1200) };
+	dateLabel   = { position : new Point( 1200, -1200) };
+	weekLabel   = { position : new Point(-1200,  1200) };
+	dayLabel    = { position : new Point( 1200,  1200) };
 
 	quarterLabel = {
 		radius         : 175,
@@ -117,8 +117,8 @@ themeClass['lightning'] = class extends ThemeBase {
 			${this.getSectorLabels('week', weekArray, this.weekLabel)}
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 
-			${this.getYearLabel(displayDate, this.yearLabelPosition)}
-			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.yearLabel)}
+			${this.getDateLabel('date', displayDate, this.dateLabel)}
 		`;
 
 		return themeSVG;
