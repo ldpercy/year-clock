@@ -28,7 +28,7 @@ class ThemeBase extends Clock {
 		let result;
 		switch(labelType) {
 			case 'year'     : result = `${data.year}`; break;
-			case 'date'     : result = `${data.date.getFullYear()}`; break;
+			case 'date'     : result = `${isoDate(data.object)}` ; break;
 			default         : result = data.name; break;
 		}
 		return result;

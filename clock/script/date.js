@@ -304,7 +304,7 @@ function getSeasonArray(displayDate) {
 		{
 			id          : 'winter',
 			name        : 'Winter',
-			emoji       : '❄',
+			emoji       : '🥶',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			radians     : undefined,
 			class       : '',
@@ -455,6 +455,7 @@ function getYearEvent(date) {
 		'01-01' : { symbol:'🌅', name: "New Year's Day" },
 		'02-14' : { symbol:'💘', name: "Valentines day" },
 		'10-31' : { symbol:'🎃', name: "Halloween" },
+		'12-24' : { symbol:'🎅', name: 'Christmas Eve' },
 		'12-25' : { symbol:'🎄', name: 'Christmas Day' },
 		'12-26' : { symbol:'🥊', name: 'Boxing Day' },
 		'12-31' : { symbol:'🎇', name: "New Year's Eve" }, // 🎇🎆
@@ -504,7 +505,7 @@ function getCustomEvent(date) {
 	const key = isoMonthDay(date);
 
 	const customEvent = {
-		'03-14' : { symbol:'π', name: "Pi day" },
+		'03-14' : { symbol:'🥧', name: "Pi day" },
 		'05-04' : { symbol:'¼', name: "May the Fourth be with you" },
 	};
 

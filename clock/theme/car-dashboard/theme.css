@@ -1,13 +1,17 @@
 /*
-** Wall Clock theme styles
+** car dashboard
 */
 
 
 svg.yearclock {
 	background-color:#111f;
-	--text-colour: white;
 	--body: #222f;
+	--backing-colour: #555;
+	--text-colour: white;
+	--hand-colour: #e00f;
 
+	font-size: 48px;
+	font-family: Arial, sans-serif;
 
 	background:
 		repeating-linear-gradient(
@@ -24,29 +28,23 @@ svg.yearclock {
 		);
 
 
-	font-size: 48px;
-	font-family: Arial, sans-serif;
-
-
 	.body {
 		fill: var(--body);
 		stroke:black;
 		stroke-width: 2px;
-		/* stroke: url(#body-light);
-
 		stroke-linejoin: round;
-
-		paint-order: stroke; */
 		fill-rule: evenodd;
+
+		/* stroke: url(#body-light);
+		paint-order: stroke; */
 
 		/* filter: url(#inset-shadow); */
 		filter: drop-shadow(0px 10px 20px black);
 		/* clip-path: url(#bodyClip); */
 	}
 
-
 	.backing {
-		fill: #555;
+		fill: var(--backing-colour);
 	}
 
 	.face   {
@@ -54,14 +52,10 @@ svg.yearclock {
 		stroke: silver;
 		stroke-width: 1px;
 		fill-rule: evenodd;
-		filter: drop-shadow(0px 10px 10px black);
-		/* filter: drop-shadow(0px 10px 10px gray); */
-		/* filter: url(#inset-shadow); */
-
+		filter: drop-shadow(0px 7px 10px #000a);
 	}
 
 	path.star {
-		/* transform:scale(0.2); */
 		fill-rule:nonzero;
 		stroke-width:5px;
 		stroke:#f00a;
@@ -139,10 +133,6 @@ svg.yearclock .label,
 }
 
 g.warningLight {
-	rect {
-		stroke: black;
-		fill: var(--body);
-	}
 	text {
 		text-anchor: middle;
 		dominant-baseline: central;
@@ -155,30 +145,12 @@ g.warningLight {
 svg.yearclock .hands {
 	filter: drop-shadow(0px 20px 10px #111a);
 
-	path.yearHand  {
-		stroke: #e00f;
-		fill: #e00f;
-		stroke-width: 5;
-		stroke-linejoin: round;
-	}
-
+	path.yearHand,
 	path.monthHand  {
-		stroke:#e00f;
-		fill: #e00f;
+		stroke: var(--hand-colour);
+		fill: var(--hand-colour);
 		stroke-width: 5;
 		stroke-linejoin: round;
 	}
-
 }
 
-
-/* .inset-shadow {
-	filter: url(#inset-shadow);
-}
-
-
-.dashboard-lighting {
-	flood-color: palegoldenrod
-	flood-opacity: .2;
-}
-*/

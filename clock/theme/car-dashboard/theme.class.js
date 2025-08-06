@@ -318,7 +318,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 		const result = `
 			<g class="warningLight">
-				<text x="-200" y="${settings.y}"><title>${weekEvent.name}"</title>${weekEvent.symbol}</text>
+				<text x="-200" y="${settings.y}"><title>${weekEvent.name}</title>${weekEvent.symbol}</text>
 				<text x="0" y="${settings.y}"><title>${monthEvent.name}</title>${monthEvent.symbol}</text>
 				<text x="200" y="${settings.y}"><title>${customEvent.name}</title>${customEvent.symbol}</text>
 			</g>
