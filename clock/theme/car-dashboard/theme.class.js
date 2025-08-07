@@ -11,8 +11,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}
 
 
-	season = {
-		faceRadius : 400,
+	seasonWheel = {
 		dialRadius : 250,
 	};
 
@@ -121,12 +120,14 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		// addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
 		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange, this.dial.radianDelta);
 
-		//log(displayDate.monthArray);
-
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
 
+		displayDate.seasonArrayWrapped  = getSeasonArrayWrapped(displayDate);
 		displayDate.seasonArray  = getSeasonArray(displayDate);
+		displayDate.season = getSeason(displayDate.object, displayDate.seasonArray);
+
+		log(displayDate);
 
 		const themeSVG = `
 			<defs>
@@ -159,7 +160,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 			<g class="season">
 				<g transform="translate(0,1075)">
-					${this.getSeasonFace(this.season, displayDate)}
+					${this.getSeasonFace(this.seasonWheel, displayDate)}
 				</g>
 			</g>
 
@@ -228,18 +229,14 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 
-	getSeasonFace = function(season, displayDate) {
+	getSeasonFace = function(seasonWheel, displayDate) {
 
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 		const result = `
 
-			<!--
-			<circle cx="0" cy="0" class="seasonFace" r="${season.faceRadius}" />
-			-->
-
 			<g transform="${yearTransform}">
-				${this.getSectors('season', displayDate.seasonArray, 0, season.dialRadius)}
+				${this.getSectors('season', displayDate.seasonArrayWrapped, 0, seasonWheel.dialRadius)}
 			</g>
 			<text class="thermometer" x="230" y="-170">🌡</text>
 			`;
@@ -330,7 +327,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	getWarningYear = function(type, displayDate, settings) {
 
 		const event = getYearEvent(displayDate.object) || {name:'', symbol:''};
-		const seasonEvent = getSeasonEvent(displayDate) || {name:'', symbol:''};
+		const seasonEvent = getSeasonEvent(displayDate.season.id) || {name:'', symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -341,10 +338,6 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		`;
 		return result;
 	}/* getWarningYear */
-
-
-
-
 
 
 

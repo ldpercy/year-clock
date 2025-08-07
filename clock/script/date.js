@@ -281,48 +281,46 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 
 
 
+
 /* getSeasonArray
+
+This version returns 5 elements with the first season split at the beginning/end
+
 */
 function getSeasonArray(displayDate) {
 
 	const year = displayDate.year;
 
-	const thisYearSummerEnd = new Date(year,2,1);
-	const thisYearSummerDays = dayDifference(displayDate.yearStart, thisYearSummerEnd);
-	const fauxSummerEnd = new Date(displayDate.yearEnd);
-	fauxSummerEnd.setDate(fauxSummerEnd.getDate() + thisYearSummerDays);
 
 	const seasonArray = [
 		{
+			id          : 'summer',
+			name        : 'Summer',
+			dateRange   : new DateRange(new Date(year,0,1), new Date(year,2,1)),
+			class       : '',
+		},
+		{
 			id          : 'autumn',
 			name        : 'Autumn',
-			emoji       : '🍂',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
-			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : 'winter',
 			name        : 'Winter',
-			emoji       : '🥶',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
-			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : 'spring',
 			name        : 'Spring',
-			emoji       : '🌱',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
-			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : 'summer',
 			name        : 'Summer',
-			emoji       : '🌞',
-			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
-			radians     : undefined,
+			dateRange   : new DateRange(new Date(year,11,1), new Date(year+1,0,1)),
 			class       : '',
 		},
 	];
@@ -335,6 +333,64 @@ function getSeasonArray(displayDate) {
 
 	return seasonArray;
 }/* getSeasonArray */
+
+
+
+
+/* getSeasonArrayWrapped
+
+This version wraps the last season around so that it can be used in full-circles
+
+This needs to change in a few ways.
+* needs to be hemisphere aware
+* needs to accommodate the year crossing hack for some clocks
+* should probably take out the presentation items like name and emoji
+
+*/
+function getSeasonArrayWrapped(displayDate) {
+
+	const year = displayDate.year;
+
+	const thisYearSummerEnd = new Date(year,2,1);
+	const thisYearSummerDays = dayDifference(displayDate.yearStart, thisYearSummerEnd);
+	const fauxSummerEnd = new Date(displayDate.yearEnd);
+	fauxSummerEnd.setDate(fauxSummerEnd.getDate() + thisYearSummerDays);
+
+	const seasonArray = [
+		{
+			id          : 'autumn',
+			name        : 'Autumn',
+			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
+			class       : '',
+		},
+		{
+			id          : 'winter',
+			name        : 'Winter',
+			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
+			class       : '',
+		},
+		{
+			id          : 'spring',
+			name        : 'Spring',
+			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
+			class       : '',
+		},
+		{
+			id          : 'summer',
+			name        : 'Summer',
+			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
+			class       : '',
+		},
+	];
+
+	for (let season of seasonArray) {
+		season.class = (dateIsInRange(displayDate.object, season.dateRange)) ? 'current' : '';
+	}
+
+	addDateRangeRadians(seasonArray, displayDate.yearRange);
+
+	return seasonArray;
+}/* getSeasonArrayWrapped */
 
 
 /* getQuarterArray
@@ -513,23 +569,23 @@ function getCustomEvent(date) {
 }
 
 
-function getSeasonEvent(displayDate) {
+function getSeasonEvent(season) {
 
-	let result = undefined;
-
-	/*
-	need a better way to handle seasons...
-	The current season array is broken
-	*/
-
-	for (let season of displayDate.seasonArray) {
-		if (dateIsInRange(displayDate.object, season.dateRange))
-		{
-			result = { symbol:season.emoji, name: season.name }
-		}
+	const seasonEvent = {
+		'autumn' : { symbol:'🍂', name: "Autumn" },
+		'winter' : { symbol:'🥶', name: "Winter" },
+		'spring' : { symbol:'🌱', name: "Spring" },
+		'summer' : { symbol:'🌞', name: "Summer" },
 	}
 
-	return result;
+	return seasonEvent[season];
 }
 
+
+function getSeason(date, seasonArray) {
+	result = seasonArray.find(
+		(season) => dateIsInRange(date, season.dateRange)
+	);
+	return result;
+}
 
