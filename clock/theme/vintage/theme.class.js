@@ -171,7 +171,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		const dateLabelPath = getArcPath(radians(-60), radians(60), point.y);
 		//const dateLabelPath = getArcPath(radians(240), radians(120), point.y);
 
-		const textPath = `<textPath startOffset="50%" xlink:href="#dateLabelPath">${this.formatLabel('date',{'date':date})}</textPath>`;
+		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('date',{'date':date})}</textPath>`;
 
 		const svg =
 			`<g class="dateLabel">
