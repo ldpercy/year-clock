@@ -287,39 +287,39 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 This version returns 5 elements with the first season split at the beginning/end
 
 */
-function getSeasonArray(displayDate) {
+function getSeasonArray(displayDate, hemisphere) {
 
 	const year = displayDate.year;
 
 
 	const seasonArray = [
 		{
-			id          : 'summer',
-			name        : 'Summer',
+			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
+			name        : (hemisphere === 'southern') ? 'Summer' : 'Winter',
 			dateRange   : new DateRange(new Date(year,0,1), new Date(year,2,1)),
 			class       : '',
 		},
 		{
-			id          : 'autumn',
-			name        : 'Autumn',
+			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
+			name        : (hemisphere === 'southern') ? 'Autumn' : 'Spring',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
 			class       : '',
 		},
 		{
-			id          : 'winter',
-			name        : 'Winter',
+			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
+			name        : (hemisphere === 'southern') ? 'Winter' : 'Summer',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			class       : '',
 		},
 		{
-			id          : 'spring',
-			name        : 'Spring',
+			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
+			name        : (hemisphere === 'southern') ? 'Spring' : 'Autumn',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
 			class       : '',
 		},
 		{
-			id          : 'summer',
-			name        : 'Summer',
+			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
+			name        : (hemisphere === 'southern') ? 'Summer' : 'Winter',
 			dateRange   : new DateRange(new Date(year,11,1), new Date(year+1,0,1)),
 			class       : '',
 		},
@@ -347,7 +347,7 @@ This needs to change in a few ways.
 * should probably take out the presentation items like name and emoji
 
 */
-function getSeasonArrayWrapped(displayDate) {
+function getSeasonArrayWrapped(displayDate, hemisphere) {
 
 	const year = displayDate.year;
 
@@ -358,26 +358,26 @@ function getSeasonArrayWrapped(displayDate) {
 
 	const seasonArray = [
 		{
-			id          : 'autumn',
-			name        : 'Autumn',
+			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
+			name        : (hemisphere === 'southern') ? 'Autumn' : 'Spring',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
 			class       : '',
 		},
 		{
-			id          : 'winter',
-			name        : 'Winter',
+			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
+			name        : (hemisphere === 'southern') ? 'Winter' : 'Summer',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			class       : '',
 		},
 		{
-			id          : 'spring',
-			name        : 'Spring',
+			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
+			name        : (hemisphere === 'southern') ? 'Spring' : 'Autumn',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
 			class       : '',
 		},
 		{
-			id          : 'summer',
-			name        : 'Summer',
+			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
+			name        : (hemisphere === 'southern') ? 'Summer' : 'Winter',
 			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
 			class       : '',
 		},

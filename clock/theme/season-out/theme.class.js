@@ -69,7 +69,7 @@ themeClass['season-out'] = class extends ThemeBase {
 		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
-		displayDate.seasonArrayWrapped  = getSeasonArrayWrapped(displayDate);
+		displayDate.seasonArrayWrapped  = getSeasonArrayWrapped(displayDate, this.hemisphere);
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
