@@ -3,11 +3,6 @@
 class ThemeBase extends Clock {
 
 
-	constructor(id, date, theme, style, language, background) {
-		super(id, date, theme, style, language, background);
-	}
-
-
 	viewBox = '-1200 -1200 2400 2400';
 
 
@@ -48,7 +43,7 @@ class ThemeBase extends Clock {
 		const grid = (this.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
 
 		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			<svg id="clock" class="yearclock hemisphere-${this.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${grid}
 				${this.getThemeSVG(displayDate)}
 			</svg>`;
@@ -373,7 +368,7 @@ class ThemeBase extends Clock {
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 			defs += labelPath;
 
-			const textPath = `<textPath class="${sector.class}" startOffset="50%" xlink:href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
 			textPaths += textPath;
 		}
 

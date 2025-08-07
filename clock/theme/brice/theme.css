@@ -13,6 +13,10 @@ svg.yearclock .face   {
 
 svg.yearclock .sectorGroup.month {
 	path.sector { stroke:none; }
+}
+
+
+.hemisphere-northern {
 	.sector.month-jan { fill: #7ABECF }
 	.sector.month-feb { fill: #5FB69C }
 	.sector.month-mar { fill: #2EA544 }
@@ -25,6 +29,21 @@ svg.yearclock .sectorGroup.month {
 	.sector.month-oct { fill: #7C5E57 }
 	.sector.month-nov { fill: #6F6E6D }
 	.sector.month-dec { fill: #738C92 }
+}
+
+.hemisphere-southern {
+	.sector.month-jan { fill: #E42D1A }
+	.sector.month-feb { fill: #983021 }
+	.sector.month-mar { fill: #89493B }
+	.sector.month-apr { fill: #7C5E57 }
+	.sector.month-may { fill: #6F6E6D }
+	.sector.month-jun { fill: #738C92 }
+	.sector.month-jul { fill: #7ABECF }
+	.sector.month-aug { fill: #5FB69C }
+	.sector.month-sep { fill: #2EA544 }
+	.sector.month-oct { fill: #AEC013 }
+	.sector.month-nov { fill: #F3C301 }
+	.sector.month-dec { fill: #F18E17 }
 }
 
 
