@@ -14,7 +14,7 @@ class ThemeBase extends Clock {
 		let result;
 		switch(type) {
 			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -24,7 +24,7 @@ class ThemeBase extends Clock {
 		switch(labelType) {
 			case 'year'     : result = `${data.year}`; break;
 			case 'date'     : result = `${isoDate(data.object)}` ; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -292,7 +292,7 @@ class ThemeBase extends Clock {
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType,sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
 		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;

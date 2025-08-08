@@ -222,7 +222,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			case 'monthHour' : result = `${(data.date*24).toString().padStart(4,'0')}`; break;
 			case 'yearHour'  : result = `${(data.dayOfYear*24).toString().padStart(5,'0')}`; break;
 
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}

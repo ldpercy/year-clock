@@ -291,44 +291,35 @@ function getSeasonArray(displayDate, hemisphere) {
 
 	const year = displayDate.year;
 
-
 	const seasonArray = [
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			name        : (hemisphere === 'southern') ? 'Summer' : 'Winter',
 			dateRange   : new DateRange(new Date(year,0,1), new Date(year,2,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
-			name        : (hemisphere === 'southern') ? 'Autumn' : 'Spring',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
-			name        : (hemisphere === 'southern') ? 'Winter' : 'Summer',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
-			name        : (hemisphere === 'southern') ? 'Spring' : 'Autumn',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			name        : (hemisphere === 'southern') ? 'Summer' : 'Winter',
 			dateRange   : new DateRange(new Date(year,11,1), new Date(year+1,0,1)),
 			class       : '',
 		},
 	];
 
-	for (let season of seasonArray) {
-		season.class = (dateIsInRange(displayDate.object, season.dateRange)) ? 'current' : '';
-	}
-
+	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
@@ -354,34 +345,27 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 	const seasonArray = [
 		{
 			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
-			name        : (hemisphere === 'southern') ? 'Autumn' : 'Spring',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
-			name        : (hemisphere === 'southern') ? 'Winter' : 'Summer',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
-			name        : (hemisphere === 'southern') ? 'Spring' : 'Autumn',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			name        : (hemisphere === 'southern') ? 'Summer' : 'Winter',
 			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
 			class       : '',
 		},
 	];
 
-	for (let season of seasonArray) {
-		season.class = (dateIsInRange(displayDate.object, season.dateRange)) ? 'current' : '';
-	}
-
+	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
@@ -425,10 +409,7 @@ function getQuarterArray(displayDate) {
 		},
 	];
 
-	for (let quarter of quarterArray) {
-		quarter.class = (dateIsInRange(displayDate.object, quarter.dateRange)) ? 'current' : '';
-	}
-
+	quarterArray.find( (quarter) => dateIsInRange(displayDate.object, quarter.dateRange) ).class = 'current';
 	addDateRangeRadians(quarterArray, displayDate.yearRange);
 
 	return quarterArray;
@@ -473,9 +454,7 @@ function getYearWeekArray(displayDate) {
 	}
 	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
-	for (let week of weekArray) {
-		week.class = (dateIsInRange(displayDate.object, week.dateRange)) ? 'current' : '';
-	}
+	weekArray.find( (week) => dateIsInRange(displayDate.object, week.dateRange) ).class = 'current';
 	addDateRangeRadians(weekArray, displayDate.yearRange);
 
 	return weekArray;
@@ -564,7 +543,7 @@ function getCustomEvent(date) {
 }
 
 
-function getSeasonEvent(season) {
+function getSeasonEvent(seasonId) {
 
 	const seasonEvent = {
 		'autumn' : { symbol:'🍂', name: "Autumn" },
@@ -573,7 +552,7 @@ function getSeasonEvent(season) {
 		'summer' : { symbol:'🌞', name: "Summer" },
 	}
 
-	return seasonEvent[season];
+	return seasonEvent[seasonId];
 }
 
 

@@ -42,7 +42,7 @@ themeClass['season-out'] = class extends ThemeBase {
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
 			case 'date'     : result = `${data.month.toString().padStart(2,'0')}-${data.object.getDate().toString().padStart(2,'0')}`; break;
 			case 'year'     : result = `${data.year}`; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -55,7 +55,7 @@ themeClass['season-out'] = class extends ThemeBase {
 			case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
