@@ -11,8 +11,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}
 
 
-	season = {
-		faceRadius : 400,
+	seasonWheel = {
 		dialRadius : 250,
 	};
 
@@ -38,8 +37,18 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		monthFirstEnd   : this.innerRadius,
 	};
 
-	dateLabelPosition   = new Point(0,950);
-	hourLabelPosition   = new Point(0,500);
+	dayNameLabel = {
+		position   : new Point(0,400),
+		attribute  : `textLength="600" lengthAdjust="spacingAndGlyphs"`,
+	}
+
+	dateLabel = {
+		position   : new Point(0,400),
+		attribute  : `textLength="650" lengthAdjust="spacingAndGlyphs"`,
+	}
+
+
+	hourLabel = { position : new Point(0,500) };
 
 	daySectorRadiusStart = 1000;
 	monthSectorRadiusStart = 1000;
@@ -78,6 +87,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		invert         : false,
 	};
 
+	warningLight = {
+		y	: 1000,
+	};
+
 
 	handConfig = {
 		year : {
@@ -107,12 +120,14 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		// addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
 		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange, this.dial.radianDelta);
 
-		//log(displayDate.monthArray);
-
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
 
-		displayDate.seasonArray  = getSeasonArray(displayDate);
+		displayDate.seasonCircleArray  = getSeasonCircleArray(displayDate, this.hemisphere);
+		displayDate.seasonArray  = getSeasonArray(displayDate, this.hemisphere);
+		displayDate.season = getSeason(displayDate.object, displayDate.seasonArray);
+
+		log(displayDate);
 
 		const themeSVG = `
 			<defs>
@@ -141,26 +156,32 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				<rect id="dial-marker" class="dial-marker" x="-10" y="0" width="20" height="80"/>
 			</defs>
 
+			<path class="backing" d="${this.getBodyPath(this.clock)}" />
+
 			<g class="season">
 				<g transform="translate(0,1075)">
-					${this.getSeasonFace(this.season, displayDate)}
+					${this.getSeasonFace(this.seasonWheel, displayDate)}
 				</g>
-			</g>>
+			</g>
+
 			<path class="face" d="${this.getFacePath(this.clock)}" />
-			<path class="body" d="${this.getBodyPath(this.clock)}" />
+
+			<g class="body">
+				<path d="${this.getBodyPath(this.clock)}" />
+			</g>
 
 			<g transform="translate(-1300)">
 				<!-- month-day -->
 
 				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySectorRadiusStart, this.sectorRadiusEnd)}
-
-				<!-- ${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)} -->
 				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
-
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 
-				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabelPosition)} -->
-				${this.getDateLabel('dayName', displayDate, this.dateLabelPosition)}
+
+				${this.getWarningMonth('month', displayDate, this.warningLight)}
+
+				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabel)} -->
+				${this.getDateLabel('dayName', displayDate, this.dayNameLabel)}
 
 				<g class="hands">
 					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
@@ -170,12 +191,13 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 				<!-- year -->
 
 				${this.getSectors('month', displayDate.monthArray, this.monthSectorRadiusStart, this.sectorRadiusEnd)}
-
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
-
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabelPosition)} -->
-				${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
+
+				${this.getWarningYear('year', displayDate, this.warningLight)}
+
+				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabel)} -->
+				${this.getDateLabel('date', displayDate, this.dateLabel)}
 
 				<g class="hands">
 					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreeDelta)}
@@ -200,24 +222,23 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			case 'monthHour' : result = `${(data.date*24).toString().padStart(4,'0')}`; break;
 			case 'yearHour'  : result = `${(data.dayOfYear*24).toString().padStart(5,'0')}`; break;
 
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
 
 
 
-	getSeasonFace = function(season, displayDate) {
+	getSeasonFace = function(seasonWheel, displayDate) {
 
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 		const result = `
-			<circle cx="0" cy="0" class="seasonFace" r="${season.faceRadius}" />
 
 			<g transform="${yearTransform}">
-				${this.getSectors('season', displayDate.seasonArray, 0, season.dialRadius)}
-				${this.getSectorLabels('season', displayDate.seasonArray, this.seasonLabel)}
+				${this.getSectors('season', displayDate.seasonCircleArray, 0, seasonWheel.dialRadius)}
 			</g>
+			<text class="thermometer" x="230" y="-170">🌡</text>
 			`;
 		return result;
 		/* <circle cx="0" cy="0" class="seasonDial" r="${season.dialRadius}" /> */
@@ -226,38 +247,51 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 	getFacePath = function(clock) {
+		//${this.getBodyInner(clock)}
 		const path = `
-			${this.getFaceOuter(clock)}
+			M ${clock.faceRadius},${-clock.faceRadius}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${clock.faceRadius},${clock.faceRadius}
+			L ${-clock.faceRadius},${clock.faceRadius}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-clock.faceRadius},${-clock.faceRadius}
+			Z
 
 			${rectanglePath(-300, 800, 600, 300, 50)}
+
+			${rectanglePath(-1650, 900, 700, 200, 50)}
+			${rectanglePath(950, 900, 700, 200, 50)}
 
 			Z`;
 		return path;
 	}/* getFacePath */
 
 
-	getFaceOuter = function(clock) {
+	getBodyInner = function(clock) {
 		const xUpper = clock.faceRadius * (1/13);
 		const yUpper = clock.faceRadius * (5/13);
 
 		const xLower = clock.faceRadius * (8/13);
 		const yLower = clock.faceRadius * (12/13);
 
-
 		const path = `
-			M ${xUpper},${-yUpper} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${xLower},${yLower}
-			L ${-xLower},${yLower} A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-xUpper},${-yUpper}
+			M ${xUpper},${-yUpper}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${xLower},${yLower}
+			L ${-xLower},${yLower}
+			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-xUpper},${-yUpper}
 			Z`;
 		return path;
-	}/* getFaceOuter */
+	}/* getBodyInner */
 
 
 	getBodyPath = function(clock) {
 
 		const path = `
 			${this.getBodyOuter(clock)}
-			${this.getFaceOuter(clock)}
+			${this.getBodyInner(clock)}
+
+			M 0,-1000
+			m26,97 l-122,-122 l167,-45 l-45,167  Z m-97,-167 l167,45 l-122,122 l-45,-167  Z m167,97 l-167,45 l45,-167 l122,122  Z m-193,0 l122,-122 l45,167 l-167,-45 z
 			`;
+
 		return path;
 	}/* getBodyPath */
 
@@ -273,6 +307,38 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}/* getBodyOuter */
 
 
+	getWarningMonth = function(type, displayDate, settings) {
+
+		let weekEvent = getWeekEvent(displayDate.object) || {name:'',symbol:''};
+		let monthEvent = getMonthEvent(displayDate.object) || {name:'',symbol:''};
+		let customEvent = getCustomEvent(displayDate.object) || {name:'',symbol:''};
+
+		const result = `
+			<g class="warningLight">
+				<text x="-200" y="${settings.y}"><title>${weekEvent.name}</title>${weekEvent.symbol}</text>
+				<text x="0" y="${settings.y}"><title>${monthEvent.name}</title>${monthEvent.symbol}</text>
+				<text x="200" y="${settings.y}"><title>${customEvent.name}</title>${customEvent.symbol}</text>
+			</g>
+		`;
+		return result;
+	}/* getWarningMonth */
+
+
+	getWarningYear = function(type, displayDate, settings) {
+
+		const event = getYearEvent(displayDate.object) || {name:'', symbol:''};
+		const seasonEvent = getSeasonEvent(displayDate.season.id) || {name:'', symbol:''};
+
+		const result = `
+			<g class="warningLight">
+				<text x="-200" y="${settings.y}"><title>${seasonEvent.name}</title>${seasonEvent.symbol}</text>
+				<text x="0" y="${settings.y}"><title>${event.name}</title>${event.symbol}</text>
+				<text x="200" y="${settings.y}"><title>${event.name}</title>${event.symbol}</text>
+			</g>
+		`;
+		return result;
+	}/* getWarningYear */
+
+
+
 }/* car-dashboard */
-
-

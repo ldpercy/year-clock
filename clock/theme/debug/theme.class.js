@@ -29,8 +29,10 @@ themeClass['debug'] = class extends ThemeBase {
 		rotate         : 'radial-left',
 		invert         : false,
 	};
-	dateLabelPosition         = new Point(0,0);
 
+	dateLabel = {
+		position   : new Point(-1200,-1200)
+	};
 
 	monthSymbols = {
 		radius         : 600,
@@ -56,7 +58,7 @@ themeClass['debug'] = class extends ThemeBase {
 			case 'quarter': result = `${data.name}`; break;
 			case 'week'   : result = `Week ${data.name}: ${isoDate(data.dateStart)} - ${isoDate(data.dateEnd)}`; break;
 			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
-			case 'date'     : result = `${isoDate(data.date)}` ; break;
+			case 'date'     : result = `${isoDate(data.object)}` ; break;
 			default       : result = data.name; break;
 		}
 
@@ -125,7 +127,7 @@ themeClass['debug'] = class extends ThemeBase {
 
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-			${this.getDateLabel('year', displayDate, this.dateLabelPosition)}
+			${this.getDateLabel('date', displayDate, this.dateLabel)}
 		`;
 
 		return themeSVG;

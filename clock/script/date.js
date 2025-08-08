@@ -86,6 +86,10 @@ function isWeekend(d) {
 	return dayNumber == 0 || dayNumber == 6
 }
 
+function isLastDayOfMonth(date) {
+	return (date.getDate() === daysInMonth(date));
+}
+
 function getDayClass(date, currentDate) { // this needs attention
 	//log(arguments);
 	result = 'weekday';
@@ -277,9 +281,59 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 
 
 
+
 /* getSeasonArray
+
+This version returns 5 elements with the first season split at the beginning/end
+
 */
-function getSeasonArray(displayDate) {
+function getSeasonArray(displayDate, hemisphere) {
+
+	const year = displayDate.year;
+
+	const seasonArray = [
+		{
+			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
+			dateRange   : new DateRange(new Date(year,0,1), new Date(year,2,1)),
+			class       : '',
+		},
+		{
+			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
+			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
+			class       : '',
+		},
+		{
+			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
+			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
+			class       : '',
+		},
+		{
+			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
+			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
+			class       : '',
+		},
+		{
+			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
+			dateRange   : new DateRange(new Date(year,11,1), new Date(year+1,0,1)),
+			class       : '',
+		},
+	];
+
+	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
+	addDateRangeRadians(seasonArray, displayDate.yearRange);
+
+	return seasonArray;
+}/* getSeasonArray */
+
+
+
+
+/* getSeasonCircleArray
+
+This version wraps the last season around so that it can be used in full-circle presentations
+
+*/
+function getSeasonCircleArray(displayDate, hemisphere) {
 
 	const year = displayDate.year;
 
@@ -290,47 +344,32 @@ function getSeasonArray(displayDate) {
 
 	const seasonArray = [
 		{
-			id          : 'autumn',
-			name        : 'Autumn',
-			emoji       : '🍂',
+			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
 			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
-			radians     : undefined,
 			class       : '',
 		},
 		{
-			id          : 'winter',
-			name        : 'Winter',
-			emoji       : '❄',
+			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
 			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
-			radians     : undefined,
 			class       : '',
 		},
 		{
-			id          : 'spring',
-			name        : 'Spring',
-			emoji       : '🌱',
+			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
 			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
-			radians     : undefined,
 			class       : '',
 		},
 		{
-			id          : 'summer',
-			name        : 'Summer',
-			emoji       : '🌞',
+			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
 			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
-			radians     : undefined,
 			class       : '',
 		},
 	];
 
-	for (let season of seasonArray) {
-		season.class = (dateIsInRange(displayDate.object, season.dateRange)) ? 'current' : '';
-	}
-
+	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
-}/* getSeasonArray */
+}/* getSeasonCircleArray */
 
 
 /* getQuarterArray
@@ -370,10 +409,7 @@ function getQuarterArray(displayDate) {
 		},
 	];
 
-	for (let quarter of quarterArray) {
-		quarter.class = (dateIsInRange(displayDate.object, quarter.dateRange)) ? 'current' : '';
-	}
-
+	quarterArray.find( (quarter) => dateIsInRange(displayDate.object, quarter.dateRange) ).class = 'current';
 	addDateRangeRadians(quarterArray, displayDate.yearRange);
 
 	return quarterArray;
@@ -418,9 +454,10 @@ function getYearWeekArray(displayDate) {
 	}
 	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
-	for (let week of weekArray) {
-		week.class = (dateIsInRange(displayDate.object, week.dateRange)) ? 'current' : '';
-	}
+	const currentWeek = weekArray.find( (week) => dateIsInRange(displayDate.object, week.dateRange) );
+	currentWeek.class = 'current';
+	displayDate.week = currentWeek;
+
 	addDateRangeRadians(weekArray, displayDate.yearRange);
 
 	return weekArray;
@@ -442,3 +479,90 @@ class DateRange {
 /*
 dr = new DateRange('2025-01-01','2026-01-01')
 */
+
+function getYearEvent(date) {
+
+	const key = isoMonthDay(date);
+
+	const yearEvent = {
+		'01-01' : { symbol:'🌅', name: "New Year's Day" },
+		'02-14' : { symbol:'💘', name: "Valentines day" },
+		'10-31' : { symbol:'🎃', name: "Halloween" },
+		'12-24' : { symbol:'🎅', name: 'Christmas Eve' },
+		'12-25' : { symbol:'🎄', name: 'Christmas Day' },
+		'12-26' : { symbol:'🥊', name: 'Boxing Day' },
+		'12-31' : { symbol:'🎇', name: "New Year's Eve" }, // 🎇🎆
+	};
+
+	return yearEvent[key];
+
+}/* yearEvent */
+
+function getWeekEvent(date) {
+	const key = date.getDay();
+	const weekEvent = {
+		1 : { symbol:'🌚', name: "" },
+		2 : { symbol:'', name: "" },
+		3 : { symbol:'🐪', name: "Hump day" },
+		4 : { symbol:'', name: '' },
+		5 : { symbol:'🍺', name: '' },
+		6 : { symbol:'🏖️', name: '' },
+		7 : { symbol:'🌞', name: "" },
+	};
+
+	return weekEvent[key];
+
+}
+
+
+function getMonthEvent(date) {
+	const key = date.getDate();
+	const monthEvent = {
+		1 : { symbol:'🥇', name: "" },
+		2 : { symbol:'🥈', name: "" },
+		3 : { symbol:'🥉', name: "" },
+	};
+
+	let result = monthEvent[key]
+
+	if (isLastDayOfMonth(date)) {
+		result = { symbol:'🔚', name: "" };
+	}
+
+	return result;
+}
+
+
+function getCustomEvent(date) {
+
+	const key = isoMonthDay(date);
+
+	const customEvent = {
+		'03-14' : { symbol:'🥧', name: "Pi day" },
+		'05-04' : { symbol:'¼', name: "May the Fourth be with you" },
+	};
+
+	return customEvent[key];
+}
+
+
+function getSeasonEvent(seasonId) {
+
+	const seasonEvent = {
+		'autumn' : { symbol:'🍂', name: "Autumn" },
+		'winter' : { symbol:'🥶', name: "Winter" },
+		'spring' : { symbol:'🌱', name: "Spring" },
+		'summer' : { symbol:'🌞', name: "Summer" },
+	}
+
+	return seasonEvent[seasonId];
+}
+
+
+function getSeason(date, seasonArray) {
+	result = seasonArray.find(
+		(season) => dateIsInRange(date, season.dateRange)
+	);
+	return result;
+}
+

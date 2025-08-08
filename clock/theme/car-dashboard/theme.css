@@ -1,11 +1,17 @@
 /*
-** Wall Clock theme styles
+** car dashboard
 */
 
 
 svg.yearclock {
 	background-color:#111f;
+	--body: #222f;
+	--backing-colour: #555;
+	--text-colour: white;
+	--hand-colour: #e00f;
 
+	font-size: 48px;
+	font-family: Arial, sans-serif;
 
 	background:
 		repeating-linear-gradient(
@@ -22,24 +28,23 @@ svg.yearclock {
 		);
 
 
-	font-size: 48px;
-	font-family: Arial, sans-serif;
-
-
 	.body {
-		fill: #222f;
+		fill: var(--body);
 		stroke:black;
 		stroke-width: 2px;
-		/* stroke: url(#body-light);
-
 		stroke-linejoin: round;
-
-		paint-order: stroke; */
 		fill-rule: evenodd;
 
-		/* filter: url(#inset-shadow); */
-		filter: drop-shadow(0px 10px 20px black);
+		/* stroke: url(#body-light);
+		paint-order: stroke; */
+
 		/* clip-path: url(#bodyClip); */
+		filter: drop-shadow(0px 10px 20px #000d);
+	}
+
+	.backing {
+		fill: var(--backing-colour);
+		filter: drop-shadow(0px 10px 20px #000b);
 	}
 
 	.face   {
@@ -47,10 +52,14 @@ svg.yearclock {
 		stroke: silver;
 		stroke-width: 1px;
 		fill-rule: evenodd;
-		filter: drop-shadow(0px 10px 10px black);
-		/* filter: drop-shadow(0px 10px 10px gray); */
-		/* filter: url(#inset-shadow); */
+		filter: drop-shadow(0px 7px 10px #000a);
+	}
 
+	path.star {
+		fill-rule:nonzero;
+		stroke-width:5px;
+		stroke:#f00a;
+		fill:#000a;
 	}
 }
 
@@ -68,13 +77,12 @@ g.season {
 	.sector.season-winter { fill: #77fa }
 	.sector.season-spring { fill: #7f7a }
 
-	.label text {
-		font-size:3ex;
-		font-family: Noto Emoji, sans-serif;
-		font-weight: normal;
+
+	.thermometer {
+		font-size: 3ex;
 		font-style: normal;
-		font-variant: normal;
-		dominant-baseline: middle;
+		stroke:	none;
+		fill:var(--text-colour);
 	}
 }
 
@@ -91,31 +99,9 @@ g.season {
 .sectorGroup.monthDay path:nth-last-child(3),
 .sectorGroup.month path:last-child
 {
-	stroke: white;
+	stroke: var(--text-colour);
 	fill: #f00a;
 }
-
-
-
-svg.yearclock .tick {
-	stroke: white;
-	stroke-linecap: butt;
-
-
-	&.day .first {
-		stroke-width: 30;
-	}
-
-	&.day .weekday {
-		stroke-width: 10;
-	}
-
-	&.day .weekend {
-		stroke-width: 20;
-	}
-
-}
-
 
 
 svg.yearclock .label,
@@ -123,7 +109,7 @@ svg.yearclock .label,
 {
 	text-anchor: middle;
 	dominant-baseline: middle;
-	fill: white;
+	fill: var(--text-colour);
 	stroke: black;
 	stroke-width: 5;
 	paint-order: stroke;
@@ -146,34 +132,25 @@ svg.yearclock .label,
 
 }
 
+g.warningLight {
+	text {
+		text-anchor: middle;
+		dominant-baseline: central;
+		fill: var(--text-colour);
+		font-size: 3em;
+	}
+}
+
 
 svg.yearclock .hands {
 	filter: drop-shadow(0px 20px 10px #111a);
 
-	path.yearHand  {
-		stroke: #e00f;
-		fill: #e00f;
-		stroke-width: 5;
-		stroke-linejoin: round;
-	}
-
+	path.yearHand,
 	path.monthHand  {
-		stroke:#e00f;
-		fill: #e00f;
+		stroke: var(--hand-colour);
+		fill: var(--hand-colour);
 		stroke-width: 5;
 		stroke-linejoin: round;
 	}
-
 }
 
-
-/* .inset-shadow {
-	filter: url(#inset-shadow);
-}
-
-
-.dashboard-lighting {
-	flood-color: palegoldenrod
-	flood-opacity: .2;
-}
-*/

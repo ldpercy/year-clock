@@ -18,6 +18,7 @@ const page = {
 		style       : '',
 		language    : 'en',
 		background  : '',
+		hemisphere  : 'southern',
 		test        : false,
 	},
 
@@ -28,6 +29,7 @@ const page = {
 		style       : undefined,
 		language    : undefined,
 		background  : undefined,
+		hemisphere  : undefined,
 		test        : undefined,
 	},
 
@@ -38,6 +40,7 @@ const page = {
 		style       : undefined,	// initial clock style to use
 		language    : undefined,	// initial language to use
 		background  : undefined,
+		hemisphere  : undefined,
 		test        : undefined,
 	},
 
@@ -67,6 +70,10 @@ function setup() {
 	// Background
 	page.parameter.background = getParameterByName('background');
 	page.initial.background   = page.parameter.background || page.default.background;
+	// Hemisphere
+	page.parameter.hemisphere = getParameterByName('hemisphere');
+	page.initial.hemisphere   = page.parameter.hemisphere || page.default.hemisphere;
+
 	// test
 	page.parameter.test = getParameterByName('test');
 	page.initial.test   = page.parameter.test || page.default.test;
@@ -95,9 +102,11 @@ function setup() {
 	page.element.backgroundInput = document.getElementById('input-background');
 	page.element.backgroundInput.value = page.initial.background;
 
+	page.element.hemisphereInput = document.getElementById('input-hemisphere');
+	page.element.hemisphereInput.value = page.initial.hemisphere;
+
 	page.element.clockForm = document.getElementById('form-clock');
 	page.element.clockForm.addEventListener('change', ((event)=>{formChangeHandler(event)}) );
-
 
 	log('page:', page);
 
@@ -109,6 +118,7 @@ function setup() {
 		style       : page.initial.style,
 		language    : page.initial.language,
 		background  : page.initial.background,
+		hemisphere  : page.initial.hemisphere,
 	};
 
 	log('initialClockParams:', initialClockParams);
@@ -172,6 +182,7 @@ function updateClock() {
 		style       : page.element.styleInput.value,
 		language    : page.element.languageInput.value,
 		background  : page.element.backgroundInput.value,
+		hemisphere  : page.element.hemisphereInput.value,
 	};
 
 	drawClock(updateClockParams);
@@ -220,7 +231,7 @@ function drawClock2(clock) {
 
 	//log('drawClock2',arguments);
 
-	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme, clock.style, clock.language, clock.background);
+	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme, clock.style, clock.language, clock.background, clock.hemisphere);
 
 	let displayDate = createDisplayDate(clock.date, clock.language);
 	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);

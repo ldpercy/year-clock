@@ -3,11 +3,6 @@
 class ThemeBase extends Clock {
 
 
-	constructor(id, date, theme, style, language, background) {
-		super(id, date, theme, style, language, background);
-	}
-
-
 	viewBox = '-1200 -1200 2400 2400';
 
 
@@ -19,7 +14,7 @@ class ThemeBase extends Clock {
 		let result;
 		switch(type) {
 			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -28,8 +23,8 @@ class ThemeBase extends Clock {
 		let result;
 		switch(labelType) {
 			case 'year'     : result = `${data.year}`; break;
-			case 'date'     : result = `${data.date.getFullYear()}`; break;
-			default         : result = data.name; break;
+			case 'date'     : result = `${isoDate(data.object)}` ; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -48,7 +43,7 @@ class ThemeBase extends Clock {
 		const grid = (this.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
 
 		const clockSVG = `
-			<svg id="clock" class="yearclock" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			<svg id="clock" class="yearclock hemisphere-${this.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${grid}
 				${this.getThemeSVG(displayDate)}
 			</svg>`;
@@ -144,40 +139,29 @@ class ThemeBase extends Clock {
 	/* getDateLabel
 	This and year below need to be generally sorted out
 	*/
-	getDateLabel = function(labelType, displayDate, dateLabelPosition) {
+	getDateLabel = function(labelType, displayDate, setting) {
 		let x,y;
 
-		if (dateLabelPosition instanceof Point)
+		if (setting.position instanceof Point)
 		{
-			x = dateLabelPosition.x;
-			y = dateLabelPosition.y;
+			x = setting.position.x;
+			y = setting.position.y;
 		}
 		else
 		{
 			const yearOnLeft = dateRatio(displayDate.object) < 0.5
 			const labelSide = yearOnLeft ? -1 : 1
-			x = dateLabelPosition * labelSide;
+			x = setting.position * labelSide;
 			y = 0;
 		}
 
 		const svg =
 			`<g class="dateLabel">
-				<text x="${x}" y="${y}" class="label dateLabel">${this.formatLabel(labelType, displayDate)}</text>
+				<text x="${x}" y="${y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelType, displayDate)}</text>
 			</g>`;
 
 		return svg;
 	}/* getDateLabel */
-
-
-	/* getYearLabel
-	*/
-	getYearLabel = function(displayDate, point) {
-		const svg =
-			`<g class="dateLabel">
-				<text x="${point.x}" y="${point.y}" class="label yearLabel">${this.formatLabel('year', displayDate)}</text>
-			</g>`;
-		return svg;
-	}/* getYearLabel */
 
 
 
@@ -308,7 +292,7 @@ class ThemeBase extends Clock {
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType,sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
 		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;
@@ -384,7 +368,7 @@ class ThemeBase extends Clock {
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 			defs += labelPath;
 
-			const textPath = `<textPath class="${sector.class}" startOffset="50%" xlink:href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
 			textPaths += textPath;
 		}
 

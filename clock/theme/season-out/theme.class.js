@@ -17,8 +17,8 @@ themeClass['season-out'] = class extends ThemeBase {
 
 
 	dateLabelRadius     = 575;
-	dateLabelPosition   = new Point(10, this.dateLabelRadius);  // tiny tweak to horizontal position here, having trouble centering it properly
-	yearLabelPosition   = new Point(0, -this.dateLabelRadius);
+	dateLabel = { position : new Point(10, this.dateLabelRadius) }; // tiny tweak to horizontal position here, having trouble centering it properly
+	yearLabel = { position : new Point(0, -this.dateLabelRadius) };
 
 	monthLabel = {
 		radius         : 1000,
@@ -42,7 +42,7 @@ themeClass['season-out'] = class extends ThemeBase {
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
 			case 'date'     : result = `${data.month.toString().padStart(2,'0')}-${data.object.getDate().toString().padStart(2,'0')}`; break;
 			case 'year'     : result = `${data.year}`; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -55,7 +55,7 @@ themeClass['season-out'] = class extends ThemeBase {
 			case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
-			default         : result = data.name; break;
+			default         : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -69,17 +69,17 @@ themeClass['season-out'] = class extends ThemeBase {
 		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
-		displayDate.seasonArray  = getSeasonArray(displayDate);
+		displayDate.seasonCircleArray  = getSeasonCircleArray(displayDate, this.hemisphere);
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
 
-			${this.getSectors('season', displayDate.seasonArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
+			${this.getSectors('season', displayDate.seasonCircleArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
 			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getYearLabel(displayDate, this.yearLabelPosition)}
-			${this.getDateLabel('date', displayDate, this.dateLabelPosition)}
+			${this.getDateLabel('year', displayDate, this.yearLabel)}
+			${this.getDateLabel('date', displayDate, this.dateLabel)}
 			${this.getHands(displayDate, this.handConfig)}
 		`;
 
