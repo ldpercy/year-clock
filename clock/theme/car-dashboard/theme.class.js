@@ -123,7 +123,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
 		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
 
-		displayDate.seasonArrayWrapped  = getSeasonArrayWrapped(displayDate, this.hemisphere);
+		displayDate.seasonCircleArray  = getSeasonCircleArray(displayDate, this.hemisphere);
 		displayDate.seasonArray  = getSeasonArray(displayDate, this.hemisphere);
 		displayDate.season = getSeason(displayDate.object, displayDate.seasonArray);
 
@@ -236,7 +236,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const result = `
 
 			<g transform="${yearTransform}">
-				${this.getSectors('season', displayDate.seasonArrayWrapped, 0, seasonWheel.dialRadius)}
+				${this.getSectors('season', displayDate.seasonCircleArray, 0, seasonWheel.dialRadius)}
 			</g>
 			<text class="thermometer" x="230" y="-170">🌡</text>
 			`;

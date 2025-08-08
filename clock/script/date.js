@@ -337,17 +337,12 @@ function getSeasonArray(displayDate, hemisphere) {
 
 
 
-/* getSeasonArrayWrapped
+/* getSeasonCircleArray
 
-This version wraps the last season around so that it can be used in full-circles
-
-This needs to change in a few ways.
-* needs to be hemisphere aware
-* needs to accommodate the year crossing hack for some clocks
-* should probably take out the presentation items like name and emoji
+This version wraps the last season around so that it can be used in full-circle presentations
 
 */
-function getSeasonArrayWrapped(displayDate, hemisphere) {
+function getSeasonCircleArray(displayDate, hemisphere) {
 
 	const year = displayDate.year;
 
@@ -390,7 +385,7 @@ function getSeasonArrayWrapped(displayDate, hemisphere) {
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
-}/* getSeasonArrayWrapped */
+}/* getSeasonCircleArray */
 
 
 /* getQuarterArray
