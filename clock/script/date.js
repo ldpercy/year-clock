@@ -365,7 +365,7 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 		},
 	];
 
-	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
+	//seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
