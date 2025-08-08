@@ -37,6 +37,7 @@
 			const language      = getParameterByName('language');
 			const style         = getParameterByName('style');
 			const background    = getParameterByName('background');
+			const hemisphere    = getParameterByName('hemisphere');
 			const test          = getParameterByName('test');
 
 
@@ -44,10 +45,15 @@
 			const languageParam     = (language)    ? `&language=${language}` : '';
 			const styleParam        = (style)       ? `&style=${style}` : '';
 			const backgroundParam   = (background)  ? `&background=${background}` : '';
+			const hemisphereParam   = (hemisphere)  ? `&hemisphere=${hemisphere}` : '';
 			const testParam         = (test)        ? `&test=${test}` : '';
 
+
+
+
+
 			for (let baseUrl of baseUrlArray) {
-				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}${testParam}`;
+				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}${hemisphereParam}${testParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">

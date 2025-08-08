@@ -30,31 +30,31 @@ themeClass['lightning'] = class extends ThemeBase {
 	//this.yearLabelPosition   = new Point(0, 0);
 	yearLabel   = { position : new Point(-1200, -1200) };
 	dateLabel   = { position : new Point( 1200, -1200) };
-	weekLabel   = { position : new Point(-1200,  1200) };
-	dayLabel    = { position : new Point( 1200,  1200) };
+	weekLabel   = { position : new Point(-1200,  1150) };
+	dayLabel    = { position : new Point( 1200,  1150) };
 
-	quarterLabel = {
+	quarterLabels = {
 		radius         : 175,
 		sectorPosition : 0.5,
 		rotate         : 'radial-left',
 		invert         : 'left',
 	};
 
-	monthLabel = {
+	monthLabels = {
 		radius         : 450,
 		sectorPosition : 0.5,
 		rotate         : 'radial-left',
 		invert         : 'left',
 	};
 
-	weekLabel = {
+	weekLabels = {
 		radius         : 750,
 		sectorPosition : 0.5,
 		rotate         : 'radial-left',
 		invert         : 'left',
 	};
 
-	dayLabel = {
+	dayLabels = {
 		radius         : 1050,
 		sectorPosition : 0.5,
 		rotate         : 'radial-left',
@@ -81,13 +81,15 @@ themeClass['lightning'] = class extends ThemeBase {
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
-			case 'yearDay'  : result = `${data.name.slice(0,2)}`; break;
-			case 'quarter'  : result = `${data.name}`; break;
-			case 'month'    : result = `${data.name.slice(0,3)}`; break;
-			case 'week'     : result = `W${data.name}`; break;
-			case 'date'     : result = `${isoMonthDay(data.object)}`; break;
-			case 'year'     : result = `${data.year}`; break;
-			default         : result = data.name; break;
+			case 'yearDay'      : result = `${data.name.slice(0,2)}`; break;
+			case 'quarter'      : result = `${data.name}`; break;
+			case 'month'        : result = `${data.name.slice(0,3)}`; break;
+			case 'weekSector'   : result = `W${data.name}`; break;
+			case 'week'         : result = `W${data.name}`; break;
+			case 'dayOfYear'    : result = `D${data.dayOfYear}`; break;
+			case 'date'         : result = `${isoMonthDay(data.object)}`; break;
+			case 'year'         : result = `${data.year}`; break;
+			default             : result = data.name; break;
 		}
 		return result;
 	}
@@ -112,13 +114,16 @@ themeClass['lightning'] = class extends ThemeBase {
 			${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
 			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
 
-			${this.getSectorLabels('quarter', quarterArray, this.quarterLabel)}
-			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getSectorLabels('week', weekArray, this.weekLabel)}
-			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
+			${this.getSectorLabels('quarter', quarterArray, this.quarterLabels)}
+			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabels)}
+			${this.getSectorLabels('weekSector', weekArray, this.weekLabels)}
+			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabels)}
 
 			${this.getDateLabel('year', displayDate, this.yearLabel)}
 			${this.getDateLabel('date', displayDate, this.dateLabel)}
+
+			${this.getDateLabel('week', displayDate.week, this.weekLabel)}
+			${this.getDateLabel('dayOfYear', displayDate, this.dayLabel)}
 		`;
 
 		return themeSVG;

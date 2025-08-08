@@ -172,3 +172,14 @@ path.sector.day.current
 	text-anchor: end;
 	dominant-baseline: hanging;
 }
+
+.label.dateLabel.week {
+	text-anchor: start;
+	dominant-baseline: middle;
+}
+
+.label.dateLabel.dayOfYear {
+	text-anchor: end;
+	dominant-baseline: middle;
+}
+

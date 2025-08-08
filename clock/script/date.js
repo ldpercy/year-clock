@@ -454,7 +454,10 @@ function getYearWeekArray(displayDate) {
 	}
 	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
-	weekArray.find( (week) => dateIsInRange(displayDate.object, week.dateRange) ).class = 'current';
+	const currentWeek = weekArray.find( (week) => dateIsInRange(displayDate.object, week.dateRange) );
+	currentWeek.class = 'current';
+	displayDate.week = currentWeek;
+
 	addDateRangeRadians(weekArray, displayDate.yearRange);
 
 	return weekArray;
