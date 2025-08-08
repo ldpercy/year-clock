@@ -21,3 +21,18 @@ dateEnd:   new Date(year,11,1),
 ```
 
 Plus I think some parts of the world use season definitions that are based on celestial events - need to check that out.
+
+
+Wrapup
+------
+
+I've added some basic hemisphere functionality in as part of the followups for the car dashboard theme.
+
+* Hemisphere UI switch & clock parameter
+* Hemisphere gets added as a root class to the clock svg tag
+* Brice and plain-svg themes switch month colours purely based on the class
+* Season array builders now take hemisphere as a parameter
+* Car dashboard and season-out themes now draw their season circles based on hemisphere-aware arrays
+
+
+
