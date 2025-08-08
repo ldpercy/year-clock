@@ -6,6 +6,8 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
+* Get the wireframe background to switch on the grid properly - prob need to draw separately
+* Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
 * Look into utilising some webservices for tasks like l10n
 * Consider reorgansing the global scripts (maths, date etc) into service objects with some autowiring
 * Build a 180 degree year clock to force the point about split-season display
