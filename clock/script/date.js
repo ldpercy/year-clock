@@ -337,10 +337,21 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 
 	const year = displayDate.year;
 
-	const thisYearSummerEnd = new Date(year,2,1);
-	const thisYearSummerDays = dayDifference(displayDate.yearStart, thisYearSummerEnd);
-	const fauxSummerEnd = new Date(displayDate.yearEnd);
-	fauxSummerEnd.setDate(fauxSummerEnd.getDate() + thisYearSummerDays);
+	let wrappedSeasonStart, wrappedSeasonEnd, thisYearSeasonStart, thisYearSeasonEnd, thisYearSeasonDays;
+
+	if (displayDate.month === 12) {
+		wrappedSeasonStart = new Date(year,11,1);
+		thisYearSeasonEnd = new Date(year,2,1);
+		thisYearSeasonDays = dayDifference(displayDate.yearStart, thisYearSeasonEnd);
+		wrappedSeasonEnd = new Date(displayDate.yearEnd);
+		wrappedSeasonEnd.setDate(wrappedSeasonEnd.getDate() + thisYearSeasonDays);
+	} else {
+		wrappedSeasonEnd = new Date(year,2,1);
+		thisYearSeasonStart = new Date(year,11,1);
+		thisYearSeasonDays = dayDifference(thisYearSeasonStart, displayDate.yearEnd);
+		wrappedSeasonStart = new Date(displayDate.yearStart);
+		wrappedSeasonStart.setDate(wrappedSeasonStart.getDate() - thisYearSeasonDays);
+	}
 
 	const seasonArray = [
 		{
@@ -360,12 +371,12 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			dateRange   : new DateRange(new Date(year,11,1), fauxSummerEnd),	// NB now next year
+			dateRange   : new DateRange(wrappedSeasonStart, wrappedSeasonEnd),
 			class       : '',
 		},
 	];
 
-	//seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
+	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
