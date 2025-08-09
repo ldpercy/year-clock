@@ -108,6 +108,12 @@ function setup() {
 	page.element.clockForm = document.getElementById('form-clock');
 	page.element.clockForm.addEventListener('change', ((event)=>{formChangeHandler(event)}) );
 
+
+	// keyboard listener
+
+	document.addEventListener('keydown', ((event)=>{keyboardHandler(event)}) );
+
+
 	log('page:', page);
 
 	const initialClockParams = {
@@ -134,6 +140,32 @@ function setup() {
 
 
 
+function keyboardHandler(event) {
+
+	if (event.target.id === '') // need a MUCH better of vetting these
+	{
+		switch(event.key) {
+			case ','    : dayBackward(); break;
+			case '.'   	: dayForward(); break;
+			default     : /* do nothing */; break;
+		}
+	}
+
+}/* keyboardHandler */
+
+function dayForward() {
+	const currentDate = page.element.datePicker.valueAsDate;  //valueAsDate
+	incrementDay(currentDate);
+	page.element.datePicker.value = isoDate(currentDate);
+	updateClock();
+}
+
+function dayBackward() {
+	const currentDate = page.element.datePicker.valueAsDate;  //valueAsDate
+	decrementDay(currentDate);
+	page.element.datePicker.value = isoDate(currentDate);
+	updateClock();
+}
 
 
 function formChangeHandler(event) {

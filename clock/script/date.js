@@ -38,8 +38,12 @@ function createDisplayDate(date, language) {
 // mutators:
 //
 
-function incrementDay(d) {
-	d.setDate(d.getDate() + 1);
+function incrementDay(date) {
+	date.setDate(date.getDate() + 1);
+}
+
+function decrementDay(date) {
+	date.setDate(date.getDate() - 1);
 }
 
 //
