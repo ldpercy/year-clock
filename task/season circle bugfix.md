@@ -1,6 +1,10 @@
 Season circle bugfix
 ====================
 
+```
+2025-08-09		1.7.2	Fixed
+```
+
 The `current` finder fails for Jan-feb - the wrpped months - need a small fix for this.
 
 
@@ -25,4 +29,10 @@ Bugfix
 The actual fix isn't too bad, just switch on the current date to decide how to wrap the year-crossing season; the 'current' find now works.
 
 
+Wrapup
+------
+
+Fixed.
+The wrapped season now changes depending on the current date so that it is now always within range.
+Need more automated testing going forward to catch these.
 
