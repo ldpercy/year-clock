@@ -6,6 +6,7 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
+* Add another test mode to check for exceptions - something that would have caught the season-circle bug
 * Get the wireframe background to switch on the grid properly - prob need to draw separately
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
 * Look into utilising some webservices for tasks like l10n
