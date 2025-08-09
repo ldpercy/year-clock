@@ -11,7 +11,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		radius         : 1075,
 		sectorPosition : 0.5,
 		rotate         : true,
-		invert         : true,
+		invert         : false,
 	}
 
 	weekdayMarkerLength = 42;
@@ -26,10 +26,6 @@ themeClass['wheel'] = class extends ThemeBase {
 		monthFirstEnd   : this.outerRadius,
 	};
 
-	handConfig = {
-		year : { length : 940 },
-	};
-
 
 	dateLabel = { position : 530 };
 
@@ -42,13 +38,18 @@ themeClass['wheel'] = class extends ThemeBase {
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
 
+
+		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
+		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
+
 		const themeSVG = `
-			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
-			${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
-			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
+			<g transform="${yearTransform}">
+				${this.getFace(this.clockRadius)}
+				${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
+				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
+				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
+			</g>
 			${this.getDateLabel('year', displayDate, this.dateLabel)}
-			${this.getHands(displayDate, this.handConfig)}
 		`;
 
 		return themeSVG;
