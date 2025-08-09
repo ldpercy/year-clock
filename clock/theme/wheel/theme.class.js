@@ -43,10 +43,19 @@ themeClass['wheel'] = class extends ThemeBase {
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 
 		const themeSVG = `
+
+			<defs>
+				<clipPath id="sectorLabels">
+					${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
+				</clipPath>
+
+			</defs>
+
+
 			<g transform="${yearTransform}">
 				${this.getFace(this.clockRadius)}
 				${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
-				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)}
+				<!-- ${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthLabel)} -->
 				${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 			</g>
 			${this.getDateLabel('year', displayDate, this.dateLabel)}
