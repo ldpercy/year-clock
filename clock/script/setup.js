@@ -14,7 +14,7 @@ const page = {
 	default :
 	{
 		date        : new Date(),
-		theme       : 'car-dashboard',
+		theme       : 'wheel',
 		style       : '',
 		language    : 'en',
 		background  : '',

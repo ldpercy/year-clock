@@ -1,6 +1,6 @@
-/* Plain SVG
+/* Wheel
 */
-themeClass['plain-svg'] = class extends ThemeBase {
+themeClass['wheel'] = class extends ThemeBase {
 
 	viewBox           = padViewBox(30);
 	clockRadius       = 1200;

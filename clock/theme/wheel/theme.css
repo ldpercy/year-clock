@@ -1,10 +1,22 @@
 /*
-** Plain SVG
+** Wheel
 */
 
 
 svg.yearclock {
-	background-color: seashell;
+
+	background:
+		linear-gradient(
+			180deg,
+			black 0%,
+			midnightblue 70%,
+			red 80%,
+			orange 85%,
+			darkgreen 90%,
+			black 100%
+		);
+
+
 	font-size: 48px;
 }
 
