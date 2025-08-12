@@ -22,9 +22,10 @@ class ThemeBase extends Clock {
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
-			case 'year'     : result = `${data.year}`; break;
-			case 'date'     : result = `${isoDate(data.object)}` ; break;
-			default         : result = data.name || data.id; break;
+			case 'year'         : result = `${data.year}`; break;
+			case 'date'         : result = `${isoDate(data.object)}` ; break;
+			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
+			default             : result = data.name || data.id; break;
 		}
 		return result;
 	}

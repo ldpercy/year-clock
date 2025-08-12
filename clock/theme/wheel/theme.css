@@ -32,7 +32,7 @@ svg.yearclock .face   {
 svg.yearclock .sectorGroup.month {
 	path.sector { stroke:none; }
 
-	clip-path: url(#sectorLabels);
+	/* clip-path: url(#sectorLabels); */
 
 }
 
@@ -66,6 +66,15 @@ svg.yearclock .sectorGroup.month {
 	.sector.month-dec { fill: #F18E17 }
 }
 
+
+.periodSectors.day {
+	path.sector {
+		fill:#fff5;
+		stroke:white;
+	}
+
+
+}
 
 
 

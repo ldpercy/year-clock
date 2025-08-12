@@ -15,6 +15,7 @@ function createDisplayDate(date, language) {
 		year        : date.getFullYear(),
 		month       : date.getMonth() + 1,		// js month starts at 0
 		monthRange  : new DateRange(startOfMonth(date), nextMonth(date)),
+		daysInMonth : daysInMonth(date),
 		date        : date.getDate(),
 		name        : date.toLocaleString(language, {weekday: "long"}),
 		dayOfYear   : dayOfYear(date),
