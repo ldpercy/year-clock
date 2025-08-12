@@ -67,6 +67,14 @@ svg.yearclock .sectorGroup.month {
 }
 
 
+
+.sectorMask-month {
+	path { fill: #fffa; }
+	textPath { fill: #000f; }
+	text { fill: #000f; }
+}
+
+
 .periodSectors.day {
 	path.sector {
 		fill:#fff5;
