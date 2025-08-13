@@ -76,11 +76,13 @@ themeClass['wheel'] = class extends ThemeBase {
 
 			</defs>
 
-			${this.getFace(this.clockRadius)}
+			<!-- ${this.getFace(this.clockRadius)} -->
 
-			<!-- <g transform="${yearTransform}"> -->
+			<g transform="${yearTransform}">
 				${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthSector)}
-			<!-- </g> -->
+
+				${this.getDateLabel('year', displayDate, this.dateLabel)}
+			</g>
 
 			<!--
 			<g transform="${monthTransform}">
@@ -89,11 +91,43 @@ themeClass['wheel'] = class extends ThemeBase {
 			</g>
 			-->
 
-			${this.getDateLabel('year', displayDate, this.dateLabel)}
+
 		`;
 
 		return themeSVG;
 	}/* getThemeSVG */
+
+
+
+	getDateLabel = function(labelType, displayDate, setting) {
+
+		const svg =
+			`<g class="dateLabel">
+
+				<defs>
+					<mask id="knockout-dateLabel-${labelType}" class="knockout-mask">
+						<rect class="knockout-shapeContaining" x="-500" y="-500" width="1000" height="1000" />
+						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, displayDate)}</text>
+					</mask>
+				</defs>
+
+				<g style="mask:url(#knockout-dateLabel-${labelType})">
+					<circle cx="0" cy="0" r="600" fill="silver"/>
+					<!--
+					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, displayDate)}</text>
+					-->
+				</g>
+			</g>`;
+
+			/*
+			 class="label dateLabel ${labelType}" ${(setting.attribute || '')}"
+			*/
+
+
+		return svg;
+
+	}
+
 
 
 

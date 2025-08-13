@@ -18,8 +18,10 @@ Have been wanting knockout effects for ages and think I've finally got an exampl
 
 The problem is that the knockout mask has to include the shape that you want to apply the knockout to, so in this instance I probably can't separate the sectors and labels (as has been the case for everything so far).
 
-
 Something's not working - need to simplify a bit and build it up.
+No hole-in-one for this one unfortunately.
+
+Have a simpler version going just for the year label.
 
 
 
