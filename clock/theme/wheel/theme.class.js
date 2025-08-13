@@ -146,7 +146,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		let sectors = '';
 		let textMask = '';
 
-		const textType = 'text';
+		const textType = 'textPath'; // text,textPath
 
 
 		for (let sector of sectorArray)
@@ -170,7 +170,7 @@ themeClass['wheel'] = class extends ThemeBase {
 				const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 				labelPaths += labelPath;
 				// textPath:
-				textMask = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+				textMask = `<textPath class="knockout-shapeKnockedout ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
 			} else {
 				// use regular 'text' elements as the knockout shape
 				const radiansLabel = sector.radians.start + (sector.radians.width * settings.label.sectorPosition);
@@ -185,7 +185,7 @@ themeClass['wheel'] = class extends ThemeBase {
 				}
 
 
-				textMask = `<text class="${sector.class} knockout-shapeKnockedout" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
+				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
 
 			}
 
@@ -216,8 +216,11 @@ themeClass['wheel'] = class extends ThemeBase {
 			`<g class="sector ${sectorType}">
 				<defs>
 					${sectorMasks}
+
 				</defs>
 				${sectors}
+
+				${labelPaths}
 			</g>`;
 		return result;
 
