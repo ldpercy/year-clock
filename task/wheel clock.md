@@ -23,6 +23,11 @@ No hole-in-one for this one unfortunately.
 
 Have a simpler version going just for the year label.
 
+https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/mask
+
+Have something working now with a basic `text` element.
+Not sure if there was a problem with the textPath version, will keep trying to get it working.
+If I can only get it working for `text` will shift the design to something a bit different that doesn't require the curved text - thinking either roman numerals, or maybe something based on polygons/stars.
 
 
 

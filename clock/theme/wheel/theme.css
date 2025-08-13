@@ -68,40 +68,14 @@ svg.yearclock .sectorGroup.month {
 
 
 
-.sectorMask-month {
-	path { fill: #fffa; }
-	textPath { fill: #000f; }
-	text { fill: #000f; }
-}
-
-
-.periodSectors.day {
+.sector.monthDay,
+.sector.dayNumber {
 	path.sector {
-		fill:#fff5;
+		fill:silver;
 		stroke:white;
 	}
-
-
 }
 
-
-
-svg.yearclock .tick * {
-	stroke: white;
-	stroke-linecap: round;
-}
-
-svg.yearclock .tick.day .first {
-	stroke-width: 5;
-}
-
-svg.yearclock .tick.day .weekday {
-	stroke-width: 2;
-}
-
-svg.yearclock .tick.day .weekend {
-	stroke-width: 5;
-}
 
 
 svg.yearclock .label text {
@@ -112,19 +86,6 @@ svg.yearclock .label text {
 	font-size: 1.3em;
 }
 
-
-
-
-svg.yearclock .hands {
-	filter: drop-shadow(0px 20px 10px gray);
-}
-
-svg.yearclock path.yearHand {
-	stroke: white;
-	fill: white;
-	stroke-width: 15;
-	stroke-linejoin: round;
-}
 
 
 /* knockout */
@@ -139,6 +100,24 @@ text.dateLabel.year {
 	text-anchor: middle;
 	font-size: 5.2em;
 	dominant-baseline: central;
+}
+
+
+
+
+.sectorMask-month,
+.sectorMask-monthDay,
+.sectorMask-dayNumber {
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
+.sectorMask-month {
+	font-size: 3ex;
+}
+
+.sectorMask-dayNumber {
+	font-size: 3ex;
 }
 
 

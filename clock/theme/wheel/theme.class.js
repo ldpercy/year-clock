@@ -12,7 +12,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		radiusEnd         : 950,
 
 		label : {
-			radius         : 1075,
+			radius         : 1050,
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : false,
@@ -20,22 +20,17 @@ themeClass['wheel'] = class extends ThemeBase {
 	};
 
 	daySector = {
-		outerRadius       : 850,
-		innerRadius       : 650,
+		radiusStart       : 850,
+		radiusEnd         : 650,
+		label : {
+			radius         : 700,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : false,
+		}
 	};
 
-
-
-
-
-	dayName = {
-		radius         : 700,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : false,
-	};
-
-
+	/*
 	weekdayMarkerLength = 42;
 	weekendMarkerLength = 57;
 
@@ -47,6 +42,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		monthFirstStart : this.innerRadius,
 		monthFirstEnd   : this.outerRadius,
 	};
+	*/
 
 	dateLabel   = { position : new Point( 0, 0) };
 
@@ -72,10 +68,6 @@ themeClass['wheel'] = class extends ThemeBase {
 
 		const themeSVG = `
 
-			<defs>
-
-			</defs>
-
 			<!-- ${this.getFace(this.clockRadius)} -->
 
 			<g transform="${yearTransform}">
@@ -84,15 +76,16 @@ themeClass['wheel'] = class extends ThemeBase {
 				${this.getDateLabel('year', displayDate, this.dateLabel)}
 			</g>
 
-			<!--
 			<g transform="${monthTransform}">
-				${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
-				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
+				${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
 			</g>
-			-->
-
 
 		`;
+
+		/*
+			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
+		*/
 
 		return themeSVG;
 	}/* getThemeSVG */
@@ -123,10 +116,9 @@ themeClass['wheel'] = class extends ThemeBase {
 			 class="label dateLabel ${labelType}" ${(setting.attribute || '')}"
 			*/
 
-
 		return svg;
 
-	}
+	}/* getDateLabel */
 
 
 
@@ -152,6 +144,9 @@ themeClass['wheel'] = class extends ThemeBase {
 		let labelPaths = '';
 		let labelArc = '';
 		let sectors = '';
+		let textMask = '';
+
+		const textType = 'text';
 
 
 		for (let sector of sectorArray)
@@ -161,30 +156,46 @@ themeClass['wheel'] = class extends ThemeBase {
 			const pathId = `labelPath-${sectorType}-${sector.id}`;
 			const maskId = `sectorMask-${sectorType}-${sector.id}`;
 
-			// label paths:
-			if (settings.label.invert && (Math.cos(sector.radians.middle) < 0)) {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, settings.label.radius);
+
+			if (textType === 'textPath') {
+				// use 'textPath' elements as the knockout shape
+				//create extra label paths
+				// label paths:
+				if (settings.label.invert && (Math.cos(sector.radians.middle) < 0)) {
+					labelArc = getArcPath(sector.radians.end, sector.radians.start, settings.label.radius);
+				}
+				else {
+					labelArc = getArcPath(sector.radians.start, sector.radians.end, settings.label.radius);
+				}
+				const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
+				labelPaths += labelPath;
+				// textPath:
+				textMask = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+			} else {
+				// use regular 'text' elements as the knockout shape
+				const radiansLabel = sector.radians.start + (sector.radians.width * settings.label.sectorPosition);
+
+				const center     = polarPoint(radiansLabel, settings.label.radius);
+				let transform = '';
+
+				if (settings.label.rotate)
+				{
+					let rotate = this.rotationDegrees(radiansLabel, settings.label);
+					transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
+				}
+
+
+				textMask = `<text class="${sector.class} knockout-shapeKnockedout" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
+
 			}
-			else {
-				labelArc = getArcPath(sector.radians.start, sector.radians.end, settings.label.radius);
-			}
-
-			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
-			labelPaths += labelPath;
-
-			// textPath:
-			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
-
-			//const text = `<text class="${sector.class}">${this.formatLabel(sectorType, sector)}</text>`;
-
 
 			// sector path, mask, sector itself:
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.radiusStart, settings.radiusEnd);
 
 			const sectorMask = `
-				<mask id="${maskId}" class="sectorMask-${sectorType}">
-					<path d="${sectorPath}"/>
-					${textPath}
+				<mask id="${maskId}" class="sectorMask-${sectorType} knockout-mask">
+					<path class="knockout-shapeContaining" d="${sectorPath}"/>
+					${textMask}
 				</mask>
 			`;
 			sectorMasks += sectorMask;
@@ -200,10 +211,10 @@ themeClass['wheel'] = class extends ThemeBase {
 			sectors += sectorSVG;
 		}
 
+		// ${labelPaths}
 		const result =
 			`<g class="sector ${sectorType}">
 				<defs>
-					${labelPaths}
 					${sectorMasks}
 				</defs>
 				${sectors}
