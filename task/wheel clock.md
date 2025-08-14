@@ -36,5 +36,24 @@ This is true for `textPath`s in general, not just in this masking case.
 Still need to settle on a general idea for this theme though.
 
 
+Theme ideas
+-----------
+
+This one wasn't supposed to be anything in particular just more sort of conceptual wheels in space type of idea.
+Maybe a dyson ring or something like that.
+
+Background was going to be similar to to the dusk one, maybe with the sun at the top or bottom - think I might try a few different things.
+Was also thinking about making the rings non-concentric perhaps to hint more at a lunar-cylce type of idea (without going into it technically).
+There are tons of things that could be tried.
+
+Had a quick go at a not-really-a-wheel idea, with a 'moon' marking the first of the month (plus some really budget diffraction spikes).
+It looks okay-ish and marks the first out fairly well, but it's totally misleading in terms of lunar cycles.
+Thing is I kinda like it anyway, and it *could* do for now. Maybe.
+I'm going to do a proper lunar cycle clock at some point and would probably use a presentation something like this, so maybe I should back away from this one for now and save it for a proper lunar clock.
+Alternatively I could just jump on it now.
+Need to think about what features/presentation I want for the lunar clock and whether it belongs here, or is there space for the wheel theme first.
+
+
+
 
 

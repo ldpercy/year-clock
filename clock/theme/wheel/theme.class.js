@@ -66,9 +66,23 @@ themeClass['wheel'] = class extends ThemeBase {
 
 		// ${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
+		//log(displayDate);
+
+		const moonRadians = displayDate.monthDayArray[0].radians.middle;
+		const moonPosition = polarPoint(moonRadians, this.daySector.label.radius);
+
+
+
 		const themeSVG = `
 
 			<!-- ${this.getFace(this.clockRadius)} -->
+
+			<path class="diffractionSpike" d="
+				M 50,-50 L 1100,0
+				L 50,50 L 0,1100
+				L -50,50 L -1100,0
+				L -50,-50 L 0,-1100
+			"/>
 
 			<g transform="${yearTransform}">
 				${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthSector)}
@@ -76,7 +90,9 @@ themeClass['wheel'] = class extends ThemeBase {
 				${this.getDateLabel('year', displayDate, this.dateLabel)}
 			</g>
 
-			<g transform="${monthTransform}">
+			<g transform="translate(0,-100) ${monthTransform}">
+
+				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
 			</g>
@@ -101,13 +117,17 @@ themeClass['wheel'] = class extends ThemeBase {
 
 				<defs>
 					<mask id="knockout-dateLabel-${labelType}" class="knockout-mask">
+						<!--
 						<rect class="knockout-shapeContaining" x="-500" y="-500" width="1000" height="1000" />
+						-->
+						<circle cx="0" cy="0" r="400" class="knockout-shapeContaining"/>
+
 						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, displayDate)}</text>
 					</mask>
 				</defs>
 
 				<g style="mask:url(#knockout-dateLabel-${labelType})">
-					<circle cx="0" cy="0" r="600" fill="silver"/>
+					<circle cx="0" cy="0" r="600" class="sun"/>
 					<!--
 					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, displayDate)}</text>
 					-->
