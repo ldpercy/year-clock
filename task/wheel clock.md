@@ -29,6 +29,12 @@ Have something working now with a basic `text` element.
 Not sure if there was a problem with the textPath version, will keep trying to get it working.
 If I can only get it working for `text` will shift the design to something a bit different that doesn't require the curved text - thinking either roman numerals, or maybe something based on polygons/stars.
 
+Okay turns out you *can* use a `textPath` as part of a mask, but I was doing in incorrectly.
+The `textPath` element has to be inside a `text` element or it doesn't work.
+This is true for `textPath`s in general, not just in this masking case.
+
+Still need to settle on a general idea for this theme though.
+
 
 
 
