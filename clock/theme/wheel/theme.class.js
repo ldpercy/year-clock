@@ -77,12 +77,14 @@ themeClass['wheel'] = class extends ThemeBase {
 			</g>
 
 			<g transform="${monthTransform}">
-				${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
+
+				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
 			</g>
 
 		`;
 
 		/*
+			${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
 			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
 			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
 		*/
@@ -146,7 +148,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		let sectors = '';
 		let textMask = '';
 
-		const textType = 'textPath'; // text,textPath
+		const textType = 'text'; // text,textPath
 
 
 		for (let sector of sectorArray)
