@@ -43,7 +43,7 @@ This one wasn't supposed to be anything in particular just more sort of conceptu
 Maybe a dyson ring or something like that.
 
 Background was going to be similar to to the dusk one, maybe with the sun at the top or bottom - think I might try a few different things.
-Was also thinking about making the rings non-concentric perhaps to hint more at a lunar-cylce type of idea (without going into it technically).
+Was also thinking about making the rings non-concentric perhaps to hint more at a lunar-cycle type of idea (without going into it technically).
 There are tons of things that could be tried.
 
 Had a quick go at a not-really-a-wheel idea, with a 'moon' marking the first of the month (plus some really budget diffraction spikes).
@@ -54,6 +54,19 @@ Alternatively I could just jump on it now.
 Need to think about what features/presentation I want for the lunar clock and whether it belongs here, or is there space for the wheel theme first.
 
 
+I've stumbled onto a fisheye version of the dusk background while toying with radial-gradient.
+It suggests pretty strongly of an observer standing on the ground looking up into the night sky, so I think I want this for the eventual lunar/solar clock.
+And some of the other features currently drawn:
+* sun in center
+* year-month ring
+* either offset the sun *or* the year-month ring to suggest the seasonal distance from the sun
+* could even hint at the height of the sun in the sky
+* draw moon's apparent 'circular' travel (+ figure out a way to make lunar phases make sense)
+* maybe use the diffraction spikes for pointers
 
+There's enough there to make the new [task](<solar clock.md>).
+I've copied the current state of 'wheel' over to a new solar theme as a starting point.
+
+From here I'll take the wheel theme in a different direction.
 
 

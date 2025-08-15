@@ -1,0 +1,138 @@
+/*
+** Solar
+*/
+
+
+svg.yearclock {
+
+	background:
+		radial-gradient(
+			 black 0%,
+			 midnightblue 70%,
+			 red 80%,
+			 orange 85%,
+			 darkgreen 90%,
+			 black 100% );
+
+
+	font-size: 48px;
+}
+
+
+svg.yearclock .face   {
+	fill: #fff5; /* f5f5f555 */
+	stroke: silver;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+
+
+.sun,
+.diffractionSpike {
+	fill: #ff0a;
+}
+
+.month-first {
+	fill: #ccca;
+}
+
+
+
+.hemisphere-northern {
+	.sector.month-jan { fill: #7abecf }
+	.sector.month-feb { fill: #5fb69c }
+	.sector.month-mar { fill: #2ea544 }
+	.sector.month-apr { fill: #aec013 }
+	.sector.month-may { fill: #f3c301 }
+	.sector.month-jun { fill: #f18e17 }
+	.sector.month-jul { fill: #e42d1a }
+	.sector.month-aug { fill: #983021 }
+	.sector.month-sep { fill: #89493b }
+	.sector.month-oct { fill: #7c5e57 }
+	.sector.month-nov { fill: #6f6e6d }
+	.sector.month-dec { fill: #738c92 }
+}
+
+.hemisphere-southern {
+	.sector.month-jan { fill: #e42d1a }
+	.sector.month-feb { fill: #983021 }
+	.sector.month-mar { fill: #89493b }
+	.sector.month-apr { fill: #7c5e57 }
+	.sector.month-may { fill: #6f6e6d }
+	.sector.month-jun { fill: #738c92 }
+	.sector.month-jul { fill: #7abecf }
+	.sector.month-aug { fill: #5fb69c }
+	.sector.month-sep { fill: #2ea544 }
+	.sector.month-oct { fill: #aec013 }
+	.sector.month-nov { fill: #f3c301 }
+	.sector.month-dec { fill: #f18e17 }
+}
+
+
+svg.yearclock .sector.month {
+	path.sector {
+		stroke: none;
+		opacity: 75%;
+	}
+
+	/* clip-path: url(#sectorLabels); */
+}
+
+
+.sector.monthDay,
+.sector.dayNumber {
+	path.sector {
+		fill:silver;
+		stroke:white;
+	}
+}
+
+
+text.first {
+	font-weight:bold;
+}
+
+svg.yearclock .label text {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: white;
+	stroke: none;
+	font-size: 1.3em;
+}
+
+
+
+/* knockout */
+
+.knockout-mask {
+	.knockout-shapeContaining { fill: #ffff; }		/* this gets added */
+	.knockout-shapeKnockedout { fill: #000f; }		/* this gets subtracted */
+}
+
+
+text.dateLabel.year {
+	text-anchor: middle;
+	font-size: 4em;
+	dominant-baseline: central;
+}
+
+
+
+
+.sectorMask-month,
+.sectorMask-monthDay,
+.sectorMask-dayNumber {
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
+.sectorMask-month {
+	font-size: 3ex;
+}
+
+.sectorMask-dayNumber {
+	font-size: 3ex;
+}
+
+
