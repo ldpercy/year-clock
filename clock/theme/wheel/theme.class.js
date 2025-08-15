@@ -127,7 +127,7 @@ themeClass['wheel'] = class extends ThemeBase {
 				</defs>
 
 				<g style="mask:url(#knockout-dateLabel-${labelType})">
-					<circle cx="0" cy="0" r="600" class="sun"/>
+					<circle cx="0" cy="0" r="300" class="star"/>
 					<!--
 					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, displayDate)}</text>
 					-->

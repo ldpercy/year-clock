@@ -6,16 +6,12 @@
 svg.yearclock {
 
 	background:
-		linear-gradient(
-			180deg,
-			black 0%,
-			midnightblue 70%,
-			red 80%,
-			orange 85%,
-			darkgreen 90%,
+		radial-gradient(
+			orange 25%,
+			midnightblue 50%,
 			black 100%
 		);
-
+		background-position-y:0px;
 
 	font-size: 48px;
 }
@@ -30,9 +26,9 @@ svg.yearclock .face   {
 
 
 
-.sun,
+.star,
 .diffractionSpike {
-	fill: #ff0a;
+	fill: #fafa;
 }
 
 .month-first {
