@@ -5,11 +5,7 @@
 
 Math.TAU = 2 * Math.PI;
 
-function Point(x, y)
-{
-	this.x = x;
-	this.y = y;
-}
+
 
 function polarPoint(radians, radius)
 {
@@ -19,10 +15,7 @@ function polarPoint(radians, radius)
 	)
 }
 
-function midpoint(a,b)
-{
-	return 0.5 * (a + b)
-}
+
 
 function radians(degrees) {
 	return (degrees/360) * Math.TAU;
@@ -138,6 +131,19 @@ function dateRatio(date)
 	const timeElapsed = date - yearStart
 	return timeElapsed / yearLength
 }
+
+
+
+//
+// Classes
+//
+
+class Point {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+}/* Point */
 
 
 class RadianDelta {
