@@ -69,11 +69,9 @@ themeClass['solar'] = class extends ThemeBase {
 		const moonRadians = displayDate.monthDayArray[0].radians.middle;
 		const moonPosition = polarPoint(moonRadians, this.daySector.label.radius);
 
-
+		/* ${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthSector)} */
 
 		const themeSVG = `
-
-			<!-- ${this.getFace(this.clockRadius)} -->
 
 			<path class="diffractionSpike" d="
 				M 50,-50 L 1100,0
@@ -82,12 +80,13 @@ themeClass['solar'] = class extends ThemeBase {
 				L -50,-50 L 0,-1100
 			"/>
 
+			${this.getDateLabel('year', displayDate, this.dateLabel)}
+
 			<g transform="${yearTransform}">
 
 				${this.getSectors('month', displayDate.monthArray, this.monthSector.annulus)}
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthSector.label)}
 
-				${this.getDateLabel('year', displayDate, this.dateLabel)}
 			</g>
 
 			<g transform="translate(0,-100) ${monthTransform}">
@@ -127,7 +126,7 @@ themeClass['solar'] = class extends ThemeBase {
 				</defs>
 
 				<g style="mask:url(#knockout-dateLabel-${labelType})">
-					<circle cx="0" cy="0" r="600" class="sun"/>
+					<circle class="sun"/>
 					<!--
 					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, displayDate)}</text>
 					-->

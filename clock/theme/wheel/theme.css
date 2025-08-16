@@ -11,7 +11,7 @@ svg.yearclock {
 			midnightblue 50%,
 			black 100%
 		);
-		background-position-y:0px;
+	background-position-y:0px;
 
 	font-size: 48px;
 }
