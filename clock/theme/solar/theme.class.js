@@ -1,9 +1,10 @@
-/* Wheel
+/* Solar
 */
 themeClass['solar'] = class extends ThemeBase {
 
-	viewBox           = padViewBox(30);
-	clockRadius       = 1200;
+	//viewBox           = padViewBox(50);
+	viewBox           = padViewBox(50, '-2700 -1400 5400 2800');
+	//clockRadius       = 1200;
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
 
@@ -13,18 +14,19 @@ themeClass['solar'] = class extends ThemeBase {
 			radius         : 1050,
 			sectorPosition : 0.5,
 			rotate         : true,
-			invert         : false,
+			invert         : 'all',
 		}
 	};
 
 	daySector = {
+
 		radiusStart       : 850,
 		radiusEnd         : 650,
 		label : {
-			radius         : 700,
+			radius         : 500,
 			sectorPosition : 0.5,
 			rotate         : true,
-			invert         : false,
+			invert         : 'all',
 		}
 	};
 
@@ -73,28 +75,23 @@ themeClass['solar'] = class extends ThemeBase {
 
 		const themeSVG = `
 
-			<path class="diffractionSpike" d="
-				M 50,-50 L 1100,0
-				L 50,50 L 0,1100
-				L -50,50 L -1100,0
-				L -50,-50 L 0,-1100
-			"/>
 
-			${this.getDateLabel('year', displayDate, this.dateLabel)}
-
-			<g transform="${yearTransform}">
-
-				${this.getSectors('month', displayDate.monthArray, this.monthSector.annulus)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthSector.label)}
-
-			</g>
-
-			<g transform="translate(0,-100) ${monthTransform}">
+			<g transform=" scale(2,1) translate(0,800) ${monthTransform}">
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
 			</g>
+			<g transform="scale(2,1) translate(0,-100) ${yearTransform} ">
+
+				${this.getSun('year', displayDate, this.dateLabel)}
+
+				${this.getSectors('month', displayDate.monthArray, this.monthSector.annulus)}
+				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthSector.label)}
+
+			</g>
+
+
 
 		`;
 
@@ -109,10 +106,10 @@ themeClass['solar'] = class extends ThemeBase {
 
 
 
-	getDateLabel = function(labelType, displayDate, setting) {
+	getSun = function(labelType, displayDate, setting) {
 
 		const svg =
-			`<g class="dateLabel">
+			`<g class="sun">
 
 				<defs>
 					<mask id="knockout-dateLabel-${labelType}" class="knockout-mask">
@@ -124,6 +121,13 @@ themeClass['solar'] = class extends ThemeBase {
 						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, displayDate)}</text>
 					</mask>
 				</defs>
+
+				<path class="diffractionSpike" d="
+					M 50,-50 L 1100,0
+					L 50,50 L 0,1100
+					L -50,50 L -1100,0
+					L -50,-50 L 0,-1100
+				"/>
 
 				<g style="mask:url(#knockout-dateLabel-${labelType})">
 					<circle class="sun"/>
@@ -139,7 +143,7 @@ themeClass['solar'] = class extends ThemeBase {
 
 		return svg;
 
-	}/* getDateLabel */
+	}/* getSun */
 
 
 

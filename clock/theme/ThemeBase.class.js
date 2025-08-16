@@ -359,7 +359,10 @@ class ThemeBase extends Clock {
 
 			const pathId = `labelPath-${sectorType}-${sector.id}`;
 
-			if (labelSettings.invert && (Math.cos(sector.radians.middle) < 0)) {
+			if (labelSettings.invert === 'all') {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
+			}
+			else if (labelSettings.invert && (Math.cos(sector.radians.middle) < 0)) {
 				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
 			}
 			else {
@@ -392,6 +395,7 @@ class ThemeBase extends Clock {
 			case 'none'         : result = 0; break;
 			case 'radial-left'  : result = degrees(radians) - 90; break;
 			case 'radial-right' : result = degrees(radians) + 90; break;
+			case 'radial-in'    : result = degrees(radians) + 180; break;
 			case 'radial'       : result = degrees(radians); break;
 			case true           : result = degrees(radians); break;
 			default             : result = 0; break;
@@ -401,6 +405,7 @@ class ThemeBase extends Clock {
 			case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
 			case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
 			case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+			case 'all'      : result += 180; break;
 		}
 		return result;
 	}/* rotationDegrees */
