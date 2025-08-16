@@ -17,3 +17,8 @@ Some ideas from the wheel clock task:
 
 
 There's a copy of 'wheel' from when the ideas coalesced in `theme/solar`.
+
+
+Thinking again about the fisheye view, and don't think it's going to be the best perspective for lunar phases.
+
+Going to instead try a kind of abstract inner solar-system type view.
