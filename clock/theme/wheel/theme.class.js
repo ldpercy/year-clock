@@ -8,9 +8,7 @@ themeClass['wheel'] = class extends ThemeBase {
 	// innerRadius       = 950;
 
 	monthSector = {
-		radiusStart       : 1150,
-		radiusEnd         : 950,
-
+		annulus : new Annulus(1150, 950),
 		label : {
 			radius         : 1050,
 			sectorPosition : 0.5,
@@ -20,8 +18,7 @@ themeClass['wheel'] = class extends ThemeBase {
 	};
 
 	daySector = {
-		radiusStart       : 850,
-		radiusEnd         : 650,
+		annulus : new Annulus(850, 650),
 		label : {
 			radius         : 700,
 			sectorPosition : 0.5,
@@ -216,7 +213,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			}
 
 			// sector path, mask, sector itself:
-			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.radiusStart, settings.radiusEnd);
+			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.annulus);
 
 			const sectorMask = `
 				<mask id="${maskId}" class="sectorMask-${sectorType} knockout-mask">

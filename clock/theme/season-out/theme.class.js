@@ -8,13 +8,9 @@ themeClass['season-out'] = class extends ThemeBase {
 	clockRadius        = 1250;
 
 
-	seasonRadiusStart = 0;
-	seasonRadiusEnd   = 450;
-	monthRadiusStart  = 350;
-	monthRadiusEnd    = 850;
-	dayRadiusStart    = 750;
-	dayRadiusEnd      = 1200;
-
+	seasonSector = new Annulus(450, 0);
+	monthSector  = new Annulus(850, 350);
+	daySector    = new Annulus(1200, 750);
 
 	dateLabelRadius     = 575;
 	dateLabel = { position : new Point(10, this.dateLabelRadius) }; // tiny tweak to horizontal position here, having trouble centering it properly
@@ -74,9 +70,9 @@ themeClass['season-out'] = class extends ThemeBase {
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
 
-			${this.getSectors('season', displayDate.seasonCircleArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
-			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
+			${this.getSectors('season', displayDate.seasonCircleArray, this.seasonSector)}
+			${this.getSectors('month', displayDate.monthArray, this.monthSector)}
+			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.daySector)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 			${this.getDateLabel('year', displayDate, this.yearLabel)}
 			${this.getDateLabel('date', displayDate, this.dateLabel)}

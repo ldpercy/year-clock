@@ -7,11 +7,9 @@ themeClass['debug'] = class extends ThemeBase {
 	viewBox           = padViewBox(50);
 	clockRadius       = 1200;
 
-	monthRadiusStart = 400;
-	monthRadiusEnd = 800;
-
-	weekRadiusStart = 400;
-	weekRadiusEnd   = 900;
+	monthSector = new Annulus(800, 400);
+	weekSector  = new Annulus(900, 400);
+	daySector   = new Annulus(1200, 700);
 
 	weekLabel = {
 		radius         : 600,
@@ -20,8 +18,6 @@ themeClass['debug'] = class extends ThemeBase {
 		invert         : false,
 	};
 
-	dayRadiusStart      = 700;
-	dayRadiusEnd        = 1200;
 
 	dayLabel = {
 		radius         : 1000,
@@ -121,12 +117,12 @@ themeClass['debug'] = class extends ThemeBase {
 			</defs>
 
 			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
+			${this.getSectors('month', displayDate.monthArray, this.monthSector)}
 
 			${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
+			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.daySector)}
 			${this.getDateLabel('date', displayDate, this.dateLabel)}
 		`;
 

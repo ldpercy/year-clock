@@ -10,10 +10,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	faceRadius       = 1200;
 
-	monthSector = {
-		outerRadius : 1150,
-		innerRadius : 1070,
-	};
+	yearMonthSector = new Annulus(1150, 1070);
 
 	monthText = {
 		radius         : 1110,
@@ -31,10 +28,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 
-	daySector = {
-		innerRadius : 650,
-		outerRadius : 750,
-	};
+	monthDaySector = new Annulus(750,650);
 
 	dayName = {
 		radius         : 700,
@@ -92,12 +86,12 @@ themeClass['vintage'] = class extends ThemeBase {
 			${this.getFace(this.faceRadius)}
 
 
-			${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+			${this.getSectors('month', displayDate.monthArray, this.yearMonthSector)}
 
 			${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
 			${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
 
-			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.monthDaySector)}
 			${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
 			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
 

@@ -146,6 +146,17 @@ class Point {
 }/* Point */
 
 
+
+class Annulus {
+	constructor(outerRadius, innerRadius, cx=0, cy=0) {
+		this.outerRadius = outerRadius;
+		this.innerRadius = innerRadius;
+		this.cx = cx;
+		this.cy = cy;
+	}
+}
+
+
 class RadianDelta {
 	constructor(start = 0, delta = Math.TAU) {
 		this.start = start;

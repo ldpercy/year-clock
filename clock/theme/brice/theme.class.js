@@ -5,9 +5,11 @@ themeClass['brice'] = class extends ThemeBase {
 
 	// Clock parameters
 	viewBox           = '-1200 -1200 2400 2400';
+
 	clockRadius       = 1200;
-	outerRadius       = 1120;
-	innerRadius       = 930;
+
+	yearMonthSector = new Annulus(1120, 930);
+
 	monthLabel = {
 		radius         : 985,
 		sectorPosition : 0.5,
@@ -19,12 +21,12 @@ themeClass['brice'] = class extends ThemeBase {
 	weekendMarkerLength = 55;
 
 	tick = {
-		weekdayStart    : this.outerRadius,
-		weekdayEnd      : this.outerRadius - this.weekdayMarkerLength,
-		weekendStart    : this.outerRadius,
-		weekendEnd      : this.outerRadius - this.weekendMarkerLength,
-		monthFirstStart : this.outerRadius,
-		monthFirstEnd   : this.innerRadius,
+		weekdayStart    : this.yearMonthSector.outerRadius,
+		weekdayEnd      : this.yearMonthSector.outerRadius - this.weekdayMarkerLength,
+		weekendStart    : this.yearMonthSector.outerRadius,
+		weekendEnd      : this.yearMonthSector.outerRadius - this.weekendMarkerLength,
+		monthFirstStart : this.yearMonthSector.outerRadius,
+		monthFirstEnd   : this.yearMonthSector.innerRadius,
 	};
 
 	handConfig = {
@@ -45,7 +47,7 @@ themeClass['brice'] = class extends ThemeBase {
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', displayDate.monthArray, this.outerRadius, this.innerRadius)}
+			${this.getSectors('month', displayDate.monthArray, this.yearMonthSector)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
 			${this.getDateLabel('year', displayDate, this.dateLabel)}

@@ -21,18 +21,18 @@ function radialLine(radians, startRadius, endRadius) {
 
 /* getSectorPath
 */
-function getSectorPath(radiansStart, radiansEnd, innerRadius, outerRadius)
+function getSectorPath(radiansStart, radiansEnd, annulus)
 {
-	const outerStart = polarPoint(radiansStart, outerRadius);
-	const outerEnd   = polarPoint(radiansEnd,   outerRadius);
-	const innerEnd   = polarPoint(radiansEnd,   innerRadius);
-	const innerStart = polarPoint(radiansStart, innerRadius);
+	const outerStart = polarPoint(radiansStart, annulus.outerRadius);
+	const outerEnd   = polarPoint(radiansEnd,   annulus.outerRadius);
+	const innerEnd   = polarPoint(radiansEnd,   annulus.innerRadius);
+	const innerStart = polarPoint(radiansStart, annulus.innerRadius);
 
-	const innerArc = (innerRadius === 0) ? '' : `A ${sf(innerRadius)} ${sf(innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}`;
+	const innerArc = (annulus.innerRadius === 0) ? '' : `A ${sf(annulus.innerRadius)} ${sf(annulus.innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}`;
 
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}
-		A ${sf(outerRadius)} ${sf(outerRadius)} 0 0 1 ${sf(outerEnd.x)} ${sf(outerEnd.y)}
+		A ${sf(annulus.outerRadius)} ${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)} ${sf(outerEnd.y)}
 		L ${sf(innerEnd.x)} ${sf(innerEnd.y)}
 		${innerArc}
 		Z`;

@@ -17,15 +17,11 @@ themeClass['lightning'] = class extends ThemeBase {
 
 	overlap = 10;		// amount by which rings overshoot their natural divisions
 
+	quarterSector = new Annulus(300 + this.overlap, 0);
+	monthSector   = new Annulus(600 + this.overlap, 300 - this.overlap);
+	weekSector    = new Annulus(900 + this.overlap, 600 - this.overlap);
+	daySector     = new Annulus(1200, 900 - this.overlap);
 
-	quarterRadiusStart  = 0;
-	quarterRadiusEnd    = 300 + this.overlap;
-	monthRadiusStart    = 300 - this.overlap;
-	monthRadiusEnd      = 600 + this.overlap;
-	weekRadiusStart     = 600 - this.overlap;
-	weekRadiusEnd       = 900 + this.overlap;
-	dayRadiusStart      = 900 - this.overlap;
-	dayRadiusEnd        = 1200;
 
 	//this.yearLabelPosition   = new Point(0, 0);
 	yearLabel   = { position : new Point(-1200, -1200) };
@@ -109,10 +105,10 @@ themeClass['lightning'] = class extends ThemeBase {
 
 		const themeSVG = `
 			${this.getBody(this.body)}
-			${this.getSectors('quarter', quarterArray, this.quarterRadiusStart, this.quarterRadiusEnd)}
-			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
-			${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
+			${this.getSectors('quarter', quarterArray, this.quarterSector)}
+			${this.getSectors('month', displayDate.monthArray, this.monthSector)}
+			${this.getSectors('week', weekArray, this.weekSector)}
+			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.daySector)}
 
 			${this.getSectorLabels('quarter', quarterArray, this.quarterLabels)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabels)}

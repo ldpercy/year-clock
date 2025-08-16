@@ -12,7 +12,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 
 	seasonWheel = {
-		dialRadius : 250,
+		annulus : new Annulus(250, 0),
 	};
 
 
@@ -50,9 +50,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	hourLabel = { position : new Point(0,500) };
 
-	daySectorRadiusStart = 1000;
-	monthSectorRadiusStart = 1000;
-	sectorRadiusEnd = 1200;
+	monthDayAnnulus = new Annulus(1200, 1000);
+	yearMonthAnnulus = new Annulus(1200, 1000);
 
 
 	monthSymbols = {
@@ -173,7 +172,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<g transform="translate(-1300)">
 				<!-- month-day -->
 
-				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySectorRadiusStart, this.sectorRadiusEnd)}
+				${this.getSectors('monthDay', displayDate.monthDayArray, this.monthDayAnnulus)}
 				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
 				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
 
@@ -190,7 +189,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<g transform="translate(1300)">
 				<!-- year -->
 
-				${this.getSectors('month', displayDate.monthArray, this.monthSectorRadiusStart, this.sectorRadiusEnd)}
+				${this.getSectors('month', displayDate.monthArray, this.yearMonthAnnulus)}
 				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 
@@ -236,7 +235,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		const result = `
 
 			<g transform="${yearTransform}">
-				${this.getSectors('season', displayDate.seasonCircleArray, 0, seasonWheel.dialRadius)}
+				${this.getSectors('season', displayDate.seasonCircleArray, seasonWheel.annulus)}
 			</g>
 			<text class="thermometer" x="230" y="-170">🌡</text>
 			`;
