@@ -5,15 +5,31 @@
 
 svg.yearclock {
 
+	--wheelColour: #eeed;
+	--wheelShadow: #333a;
+	--wheelBorder: transparent;
+
+
+	background-color: fuchsia;
+
 	background:
-		radial-gradient(
-			orange 25%,
-			midnightblue 50%,
+		linear-gradient(
+			0deg,
+			black 0%,
+			midnightblue 20%,
+			purple	40%,
+			fuchsia 48%,
+			darksalmon 50%,
+			fuchsia 52%,
+			purple	60%,
+			midnightblue 80%,
 			black 100%
 		);
 	background-position-y:0px;
 
+	font-family: 'Times New Roman', Times, serif;
 	font-size: 48px;
+
 }
 
 
@@ -77,13 +93,16 @@ svg.yearclock .sector.month {
 	/* clip-path: url(#sectorLabels); */
 }
 
-
-.sector.monthDay,
-.sector.dayNumber {
+.sectorGroup
+{
 	path.sector {
-		fill:silver;
-		stroke:white;
+		fill:var(--wheelColour);
+		stroke:var(--wheelBorder);
+		stroke-width: 5px;
+		paint-order: fill;
+		filter:url(#filter45);
 	}
+
 }
 
 
@@ -118,8 +137,9 @@ text.dateLabel.year {
 
 
 
-.sectorMask-month,
+.sectorMask-yearMonth,
 .sectorMask-monthDay,
+.sectorMask-monthNumber,
 .sectorMask-dayNumber {
 	text-anchor: middle;
 	dominant-baseline: middle;
@@ -129,8 +149,10 @@ text.dateLabel.year {
 	font-size: 3ex;
 }
 
-.sectorMask-dayNumber {
-	font-size: 3ex;
+.sectorMask-monthNumber {
+	font-size: 3em;
 }
-
+.sectorMask-dayNumber {
+	font-size: 2em;
+}
 

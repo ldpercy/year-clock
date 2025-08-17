@@ -25,6 +25,7 @@ class ThemeBase extends Clock {
 			case 'year'         : result = `${data.year}`; break;
 			case 'date'         : result = `${isoDate(data.object)}` ; break;
 			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
+			case 'monthNumber'  : result = `${data.number}`; break;
 			default             : result = data.name || data.id; break;
 		}
 		return result;
