@@ -6,9 +6,8 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
-* Possibly combine sector and label methods into uniified 'ring' (or similar) method
-* Changeover `getPeriodDaySectors` usages to `getSectors`
-* Keyboard events/drawing - see if a debounce of some sort is needed for Chromium's benefit
+* Possibly combine sector and label methods into unified 'ring' (or similar) method
+* See if a debounce of some sort is needed for Chromium's drawing glitchiness
 * Add another test mode to check for exceptions - something that would have caught the season-circle bug
 * Get the wireframe background to switch on the grid properly - prob need to draw separately
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
@@ -35,6 +34,7 @@ In progress
 
 Done
 ----
+* `getPeriodDaySectors` removed, now all sectors drawn with `getSectors`
 * Have working examples of text knock-out now
 * See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF, probably leave
 * See if favicons can be controlled by css at all -> appears not

@@ -258,33 +258,6 @@ class ThemeBase extends Clock {
 
 
 
-	/* getPeriodDaySectors
-	Is this still necessary??
-	*/
-	getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
-	{
-		//log('getPeriodDaySectors:', arguments);
-		let sectorPath = '';
-		let sectorSvg = '';
-
-		for (let day of periodArray)
-		{
-			//let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
-
-			//log(thisDivisionRadians);
-			const sectorPath = getSectorPath(day.radians.start, day.radians.end, radiusStart, radiusEnd);
-			sectorSvg += `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${this.formatTitle('day',day)}</title></path>`;
-		}
-
-		const result = `
-			<g class="periodSectors ${name}">
-				${sectorSvg}
-			</g>`;
-
-		return result;
-	}/* getPeriodDaySectors */
-
-
 	/* getSectors
 	*/
 	getSectors = function(sectorType, sectorArray, annulus)
@@ -293,7 +266,7 @@ class ThemeBase extends Clock {
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.name} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
 		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;

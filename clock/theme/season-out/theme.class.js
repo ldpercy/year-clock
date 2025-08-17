@@ -72,7 +72,7 @@ themeClass['season-out'] = class extends ThemeBase {
 
 			${this.getSectors('season', displayDate.seasonCircleArray, this.seasonSector)}
 			${this.getSectors('month', displayDate.monthArray, this.monthSector)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.daySector)}
+			${this.getSectors('yearDay', displayDate.yearDayArray, this.daySector)}
 			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
 			${this.getDateLabel('year', displayDate, this.yearLabel)}
 			${this.getDateLabel('date', displayDate, this.dateLabel)}

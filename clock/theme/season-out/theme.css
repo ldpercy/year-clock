@@ -59,18 +59,13 @@ svg.yearclock .face   {
 
 
 
-.yearDay .sector.day.weekend {
-	fill: var(--darkgrey);
-}
-
-
-
-.sector.day.Monday, .sector.day.Wednesday, .sector.day.Friday {
-	fill: var(--white);
-}
-
-.sector.day.Tuesday, .sector.day.Thursday {
-	fill: var(--lightgrey);
+.sectorGroup.yearDay {
+	.weekday {
+		fill: var(--white);
+	}
+	.weekend {
+		fill: var(--darkgrey);
+	}
 }
 
 
