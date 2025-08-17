@@ -81,13 +81,18 @@ svg.yearclock .sector.month {
 }
 
 
-.sector.monthDay,
-.sector.dayNumber {
-	path.sector {
-		fill:silver;
-		stroke:white;
+.sectorGroup.monthDay {
+
+	.sector {
+		fill:#333f;
+		stroke:#ffff;
+	}
+
+	.sector.weekend {
+		fill: #ccc7;
 	}
 }
+
 
 
 text.first {

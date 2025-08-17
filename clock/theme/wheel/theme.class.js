@@ -89,16 +89,18 @@ themeClass['wheel'] = class extends ThemeBase {
 
 			<g transform="translate(0,-100) ${monthTransform}">
 
+				${this.getSectorsWithKnockout('day', displayDate.monthDayArray, this.daySector)}
+
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
-				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
+				<!-- ${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)} -->
 			</g>
 
 		`;
 
 		/*
 			${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
-			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+
 			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
 		*/
 

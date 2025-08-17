@@ -19,9 +19,7 @@ themeClass['solar'] = class extends ThemeBase {
 	};
 
 	daySector = {
-
-		radiusStart       : 850,
-		radiusEnd         : 650,
+		annulus : new Annulus(850, 650),
 		label : {
 			radius         : 500,
 			sectorPosition : 0.5,
@@ -80,6 +78,8 @@ themeClass['solar'] = class extends ThemeBase {
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
+				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySector.annulus)}
+
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
 			</g>
 			<g transform="scale(2,1) ${yearTransform} ">
@@ -97,7 +97,7 @@ themeClass['solar'] = class extends ThemeBase {
 
 		/*
 			${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
-			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
+
 			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
 		*/
 
