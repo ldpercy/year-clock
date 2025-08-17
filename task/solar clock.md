@@ -34,9 +34,11 @@ Have a tilted view of the inner solar system, and the month ring spinning around
 It's got a bunch of problems though that need to be worked though:
 
 * The months are on the wrong side
-* The month days aren't lighned up correctly for some months
+* The month days aren't lined up correctly for some months
 * The orbit is incorrect as far as I can remember - I think looking from above the plane of the north-up ecliptic the earth travels in a counterclockwise direction, so the month sequence needs to be reversed
 * Need to confirm the moon direction as well
 * The actual year orbit is ~365.25 days - not going to try to represent that - still working with a standard calendar abstraction here
 * It would be nice to be able to simulate a little bit of perspective on the ring - eg make the far side a little bit smaller
 * Add axial rays to the sun
+
+Am going to take off the knockout effects for this theme for now, will use those on the wheel clock.

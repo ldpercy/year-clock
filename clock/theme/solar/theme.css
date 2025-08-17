@@ -31,7 +31,7 @@ svg.yearclock .face   {
 
 .sun,
 .diffractionSpike {
-	fill: #ff0a;
+	fill: #ff0f;
 }
 
 .month-first {
@@ -116,6 +116,8 @@ text.dateLabel.year {
 	text-anchor: middle;
 	font-size: 4em;
 	dominant-baseline: central;
+	transform: rotate(180deg);
+	fill: #000f;
 }
 
 

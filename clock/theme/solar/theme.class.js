@@ -3,7 +3,7 @@
 themeClass['solar'] = class extends ThemeBase {
 
 	//viewBox           = padViewBox(50);
-	viewBox           = padViewBox(50, '-2700 -1400 5400 2800');
+	viewBox           = padViewBox(50, '-2500 -1200 5000 2800');
 	//clockRadius       = 1200;
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
@@ -59,10 +59,10 @@ themeClass['solar'] = class extends ThemeBase {
 		addRadians(displayDate.monthDayArray);
 
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
+		const yearTransform = `rotate(${180-yearDayDivision.middle},0,0)`;
 
 		const monthDayDivision = divisionDegrees(displayDate.daysInMonth, displayDate.date-1);
-		const monthTransform = `rotate(${-monthDayDivision.middle},0,0)`;
+		const monthTransform = `rotate(${180-monthDayDivision.middle},0,0)`;
 
 		// ${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
@@ -76,13 +76,13 @@ themeClass['solar'] = class extends ThemeBase {
 		const themeSVG = `
 
 
-			<g transform=" scale(2,1) translate(0,800) ${monthTransform}">
+			<g transform=" scale(2,1) translate(0,1000) ${monthTransform}">
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
 				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
 			</g>
-			<g transform="scale(2,1) translate(0,-100) ${yearTransform} ">
+			<g transform="scale(2,1) ${yearTransform} ">
 
 				${this.getSun('year', displayDate, this.dateLabel)}
 
@@ -123,17 +123,15 @@ themeClass['solar'] = class extends ThemeBase {
 				</defs>
 
 				<path class="diffractionSpike" d="
-					M 50,-50 L 1100,0
-					L 50,50 L 0,1100
-					L -50,50 L -1100,0
-					L -50,-50 L 0,-1100
+					M 50,-50 L 950,0
+					L 50,50 L 0,950
+					L -50,50 L -950,0
+					L -50,-50 L 0,-950
 				"/>
 
-				<g style="mask:url(#knockout-dateLabel-${labelType})">
+				<g > <!-- style="mask:url(#knockout-dateLabel-${labelType})" -->
 					<circle class="sun"/>
-					<!--
-					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, displayDate)}</text>
-					-->
+					<text x="${setting.position.x}" y="${setting.position.y}" class="dateLabel ${labelType}">${this.formatLabel(labelType, displayDate)}</text>
 				</g>
 			</g>`;
 
