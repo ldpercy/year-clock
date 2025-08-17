@@ -293,7 +293,7 @@ class ThemeBase extends Clock {
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.name} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
 		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;

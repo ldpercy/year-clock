@@ -122,7 +122,9 @@ themeClass['debug'] = class extends ThemeBase {
 			${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
 
 			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.daySector)}
+
+			${this.getSectors('yearDay', displayDate.yearDayArray, this.daySector)}
+
 			${this.getDateLabel('date', displayDate, this.dateLabel)}
 		`;
 

@@ -96,11 +96,11 @@ svg.yearclock .sector.nov { fill: #F3C301 }
 svg.yearclock .sector.dec { fill: #F18E17 }
 
 
-.sector.day.weekend {
+.sectorGroup.yearDay .weekend {
 	fill: #ccc7;
 }
 
-.sector.day.Monday {
+.sectorGroup.yearDay .Monday {
 	fill: #ff07;
 }
 
