@@ -39,7 +39,7 @@ Still need to settle on a general idea for this theme though.
 Theme ideas
 -----------
 
-This one wasn't supposed to be anything in particular just more sort of conceptual wheels in space type of idea.
+This one wasn't supposed to be anything in particular, just more sort of a conceptual wheels in space type of idea.
 Maybe a dyson ring or something like that.
 
 Background was going to be similar to to the dusk one, maybe with the sun at the top or bottom - think I might try a few different things.
@@ -69,4 +69,7 @@ I've copied the current state of 'wheel' over to a new solar theme as a starting
 
 From here I'll take the wheel theme in a different direction.
 
+
+Wheel theme
+-----------
 

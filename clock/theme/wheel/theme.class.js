@@ -74,22 +74,18 @@ themeClass['wheel'] = class extends ThemeBase {
 
 			<!-- ${this.getFace(this.clockRadius)} -->
 
-			<path class="diffractionSpike" d="
-				M 50,-50 L 1100,0
-				L 50,50 L 0,1100
-				L -50,50 L -1100,0
-				L -50,-50 L 0,-1100
-			"/>
+			${this.getDateLabel('year', displayDate, this.dateLabel)}
+
 
 			<g transform="${yearTransform}">
-				${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthSector)}
+				${this.getSectorsWithKnockout('monthNumber', displayDate.monthArray, this.monthSector)}
 
-				${this.getDateLabel('year', displayDate, this.dateLabel)}
+
 			</g>
 
 			<g transform="translate(0,-100) ${monthTransform}">
 
-				${this.getSectorsWithKnockout('day', displayDate.monthDayArray, this.daySector)}
+				${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
@@ -239,7 +235,7 @@ themeClass['wheel'] = class extends ThemeBase {
 
 		// ${labelPaths}
 		const result =
-			`<g class="sector ${sectorType}">
+			`<g class="sectorGroup ${sectorType}">
 				<defs>
 					${sectorMasks}
 					${labelPaths}
