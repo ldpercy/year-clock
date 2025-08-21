@@ -73,3 +73,6 @@ From here I'll take the wheel theme in a different direction.
 Wheel theme
 -----------
 
+The main ideas i want to explore here:
+* Rotating year+month rings - the current date becomes a static position
+* Knockout, translucent and *simple* filter effects
