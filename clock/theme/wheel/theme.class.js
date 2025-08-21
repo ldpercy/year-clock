@@ -12,18 +12,20 @@ themeClass['wheel'] = class extends ThemeBase {
 		label : {
 			radius         : 1050,
 			sectorPosition : 0.5,
-			rotate         : true,
+			rotate         : 'radial-right',
 			invert         : false,
+			textType       : 'text',
 		}
 	};
 
 	daySector = {
 		annulus : new Annulus(850, 650),
 		label : {
-			radius         : 700,
+			radius         : 750,
 			sectorPosition : 0.5,
-			rotate         : true,
+			rotate         : 'radial-right',
 			invert         : false,
+			textType       : 'text',
 		}
 	};
 
@@ -56,10 +58,10 @@ themeClass['wheel'] = class extends ThemeBase {
 		addRadians(displayDate.monthDayArray);
 
 		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
+		const yearTransform = `rotate(${-90-yearDayDivision.middle},0,0)`;
 
 		const monthDayDivision = divisionDegrees(displayDate.daysInMonth, displayDate.date-1);
-		const monthTransform = `rotate(${-monthDayDivision.middle},0,0)`;
+		const monthTransform = `rotate(${-90-monthDayDivision.middle},0,0)`;
 
 		// ${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
@@ -72,24 +74,29 @@ themeClass['wheel'] = class extends ThemeBase {
 
 		const themeSVG = `
 
+			<defs>
+				${this.getFilters()}
+			</defs>
+
 			<!-- ${this.getFace(this.clockRadius)} -->
 
 			${this.getDateLabel('year', displayDate, this.dateLabel)}
 
-
-			<g transform="${yearTransform}">
-				${this.getSectorsWithKnockout('monthNumber', displayDate.monthArray, this.monthSector)}
-
-
+			<g class="monthRing">
+				<g transform="${yearTransform}">
+					${this.getSectorsWithKnockout('monthNumber', displayDate.monthArray, this.monthSector)}
+				</g>
 			</g>
 
-			<g transform="translate(0,-100) ${monthTransform}">
+			<g class="dayRing">
+				<g transform="${monthTransform}">
 
-				${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
+					${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
 
-				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
+					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
 
-				<!-- ${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)} -->
+					<!-- ${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)} -->
+				</g>
 			</g>
 
 		`;
@@ -108,7 +115,7 @@ themeClass['wheel'] = class extends ThemeBase {
 	getDateLabel = function(labelType, displayDate, setting) {
 
 		const svg =
-			`<g class="dateLabel">
+			`<g class="dateLabel" >
 
 				<defs>
 					<mask id="knockout-dateLabel-${labelType}" class="knockout-mask">
@@ -163,7 +170,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		let sectors = '';
 		let textMask = '';
 
-		const textType = 'textPath'; // text,textPath
+		// const textType = 'textPath'; // text,textPath
 
 
 		for (let sector of sectorArray)
@@ -174,7 +181,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			const maskId = `sectorMask-${sectorType}-${sector.id}`;
 
 
-			if (textType === 'textPath') {
+			if (settings.label.textType === 'textPath') {
 				// use 'textPath' elements as the knockout shape
 				//create extra label paths
 				// label paths:
@@ -248,6 +255,60 @@ themeClass['wheel'] = class extends ThemeBase {
 
 	}/* getSectorsWithKnockout */
 
+
+
+	getFilters = function() {
+		const result = `
+	 <filter
+		 id="f143"
+		 x="-0.25"
+		 width="1.5"
+		 y="-0.25"
+		 height="1.5"
+		 inkscape:menu="Non realistic 3D shaders"
+		 inkscape:menu-tooltip="Non realistic frosted glass imitation"
+		 inkscape:label="Frosted glass"
+		 style="color-interpolation-filters:sRGB">
+		<feGaussianBlur
+			result="result8"
+			stdDeviation="7"
+			id="feGaussianBlur20429" />
+		<feComposite
+			in="result8"
+			operator="xor"
+			result="result6"
+			in2="result8"
+			id="feComposite20431" />
+		<feDisplacementMap
+			result="result4"
+			scale="75"
+			yChannelSelector="A"
+			xChannelSelector="A"
+			in2="result6"
+			in="result6"
+			id="feDisplacementMap20433" />
+		<feComposite
+			k1="2"
+			in="SourceGraphic"
+			operator="arithmetic"
+			result="result2"
+			in2="result4"
+			id="feComposite20435"
+			k2="0"
+			k3="0"
+			k4="0" />
+		<feComposite
+			in2="result2"
+			operator="in"
+			in="result6"
+			result="fbSourceGraphic"
+			id="feComposite20437" />
+	 </filter>
+
+		`;
+
+		return result;
+	}/* getFilters */
 
 
 }/* Plain SVG */

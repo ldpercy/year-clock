@@ -6,6 +6,7 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
+* Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform
 * Possibly combine sector and label methods into unified 'ring' (or similar) method
 * See if a debounce of some sort is needed for Chromium's drawing glitchiness
 * Add another test mode to check for exceptions - something that would have caught the season-circle bug

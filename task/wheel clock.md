@@ -76,3 +76,15 @@ Wheel theme
 The main ideas i want to explore here:
 * Rotating year+month rings - the current date becomes a static position
 * Knockout, translucent and *simple* filter effects
+
+
+Trying out a different non-concentric arrangement that puts the current date in a sort-of readable group to the left.
+It looks interesting in an abstract or mechanical way, but doesn't really have much intuitive value.
+Also, in this arrangement it seems fairly arbitrary whether the rings rotate clockwise or counter-clockwise - either could be done, and as they're not really analogies for anything either could make sense within a way of thinking.
+Toothed cogs or gears might make sense, and I'd thought about that a while back, but don't think I want to for this one now.
+Plus, prob quite tricky.
+Currently they're rotating counter-clockwise.
+
+Given that this theme is meant to be a bit abstract, I might stick with this for a while.
+On the downside it doesn't look that *good* right now though, the sector borders are jaggy - have started to mess around with filters as well but it's a bit laborious.
+
