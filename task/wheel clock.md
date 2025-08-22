@@ -88,3 +88,46 @@ Currently they're rotating counter-clockwise.
 Given that this theme is meant to be a bit abstract, I might stick with this for a while.
 On the downside it doesn't look that *good* right now though, the sector borders are jaggy - have started to mess around with filters as well but it's a bit laborious.
 
+Next
+----
+
+There are a few things I'll need soon for both this and solar.
+* Grouping the config & rendering code for sectors and labels into 'rings'
+* The ability to reverse the rendering direction of said rings
+
+
+Groups sectors and labels into Rings
+------------------------------------
+I've been wondering about this for a little while.
+Whilst not always the case, in lots of places the sectors and labels share related details such as radius.
+In the case of the label knockout i'm experimenting with for the wheel theme the details **have** to be shared because of the way that the knockout works.
+In other cases it might be useful to have the sectors and labels pre-grouped, or allow for other kinds of groupings.
+I also need to be able to reverse the time-progression direction for the solar theme so in that case also it makes sense to have the sector and label config grouped.
+
+I've started grouping some config for the new themes like this, which is indicative of where I'm heading:
+```js
+	monthSector = {
+		annulus : new Annulus(1150,950),
+		label : {
+			radius         : 1050,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : 'all',
+		}
+	};
+```
+But I'll probably rename it slightly, something like:
+
+```js
+	monthRing = {
+		sector : new Annulus(...),
+		label : { ... }
+	};
+```
+I won't necessarily change everything over to this yet, just have it as another way of grouping things.
+
+
+
+
+
+

@@ -2,13 +2,13 @@
 */
 themeClass['wheel'] = class extends ThemeBase {
 
-	viewBox           = padViewBox(30);
+	viewBox           = padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
 
-	monthSector = {
-		annulus : new Annulus(1150, 950),
+	monthRing = {
+		sector : new Annulus(1150, 950),
 		label : {
 			radius         : 1050,
 			sectorPosition : 0.5,
@@ -18,8 +18,8 @@ themeClass['wheel'] = class extends ThemeBase {
 		}
 	};
 
-	daySector = {
-		annulus : new Annulus(850, 650),
+	dayRing = {
+		sector : new Annulus(850, 650),
 		label : {
 			radius         : 750,
 			sectorPosition : 0.5,
@@ -29,19 +29,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		}
 	};
 
-	/*
-	weekdayMarkerLength = 42;
-	weekendMarkerLength = 57;
 
-	tick = {
-		weekdayStart    : this.innerRadius,
-		weekdayEnd      : this.innerRadius + this.weekdayMarkerLength,
-		weekendStart    : this.innerRadius,
-		weekendEnd      : this.innerRadius + this.weekendMarkerLength,
-		monthFirstStart : this.innerRadius,
-		monthFirstEnd   : this.outerRadius,
-	};
-	*/
 
 	dateLabel   = { position : new Point( 0, 0) };
 
@@ -68,7 +56,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		//log(displayDate);
 
 		const moonRadians = displayDate.monthDayArray[0].radians.middle;
-		const moonPosition = polarPoint(moonRadians, this.daySector.label.radius);
+		const moonPosition = polarPoint(moonRadians, this.dayRing.label.radius);
 
 
 
@@ -84,18 +72,18 @@ themeClass['wheel'] = class extends ThemeBase {
 
 			<g class="monthRing">
 				<g transform="${yearTransform}">
-					${this.getSectorsWithKnockout('monthNumber', displayDate.monthArray, this.monthSector)}
+					${this.getSectorsWithKnockout('monthNumber', displayDate.monthArray, this.monthRing)}
 				</g>
 			</g>
 
 			<g class="dayRing">
 				<g transform="${monthTransform}">
 
-					${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
+					${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.dayRing)}
 
 					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
 
-					<!-- ${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)} -->
+					<!-- ${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayRing.label)} -->
 				</g>
 			</g>
 
@@ -218,7 +206,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			}
 
 			// sector path, mask, sector itself:
-			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.annulus);
+			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.sector);
 
 			const sectorMask = `
 				<mask id="${maskId}" class="sectorMask-${sectorType} knockout-mask">

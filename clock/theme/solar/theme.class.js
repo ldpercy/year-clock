@@ -8,8 +8,8 @@ themeClass['solar'] = class extends ThemeBase {
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
 
-	monthSector = {
-		annulus : new Annulus(1150,950),
+	monthRing = {
+		sector : new Annulus(1150,950),
 		label : {
 			radius         : 1050,
 			sectorPosition : 0.5,
@@ -18,8 +18,8 @@ themeClass['solar'] = class extends ThemeBase {
 		}
 	};
 
-	daySector = {
-		annulus : new Annulus(850, 650),
+	dayRing = {
+		sector : new Annulus(850, 650),
 		label : {
 			radius         : 500,
 			sectorPosition : 0.5,
@@ -62,14 +62,14 @@ themeClass['solar'] = class extends ThemeBase {
 		const monthDayDivision = divisionDegrees(displayDate.daysInMonth, displayDate.date-1);
 		const monthTransform = `rotate(${180-monthDayDivision.middle},0,0)`;
 
-		// ${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+		// ${this.getSectors('month', displayDate.monthArray, this.monthRing.outerRadius, this.monthRing.innerRadius)}
 
 		//log(displayDate);
 
 		const moonRadians = displayDate.monthDayArray[0].radians.middle;
-		const moonPosition = polarPoint(moonRadians, this.daySector.label.radius);
+		const moonPosition = polarPoint(moonRadians, this.dayRing.label.radius);
 
-		/* ${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthSector)} */
+		/* ${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthRing)} */
 
 		const themeSVG = `
 
@@ -78,26 +78,22 @@ themeClass['solar'] = class extends ThemeBase {
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
-				${this.getSectors('monthDay', displayDate.monthDayArray, this.daySector.annulus)}
+				${this.getSectors('monthDay', displayDate.monthDayArray, this.dayRing.sector)}
 
-				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.daySector.label)}
+				${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayRing.label)}
 			</g>
 			<g transform="scale(2,1) ${yearTransform} ">
 
 				${this.getSun('year', displayDate, this.dateLabel)}
 
-				${this.getSectors('month', displayDate.monthArray, this.monthSector.annulus)}
-				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthSector.label)}
+				${this.getSectors('month', displayDate.monthArray, this.monthRing.sector)}
+				${this.getSectorLabelsCurved('month', displayDate.monthArray, this.monthRing.label)}
 
 			</g>
-
-
 
 		`;
 
 		/*
-			${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
-
 			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
 		*/
 
