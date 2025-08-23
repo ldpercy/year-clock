@@ -2,15 +2,13 @@
 */
 themeClass['solar'] = class extends ThemeBase {
 
-	//viewBox           = padViewBox(50);
 	viewBox           = padViewBox(50, '-2500 -1200 5000 2800');
-	//clockRadius       = 1200;
-	// outerRadius       = 1150;
-	// innerRadius       = 950;
 
 	monthRing = {
-		sector : new Annulus(1150,950),
-		label : {
+		name    : 'yearMonth',
+		array   : this.displayDate.monthArray,
+		sector  : new Annulus(1150,950),
+		label   : {
 			radius         : 1050,
 			sectorPosition : 0.5,
 			rotate         : true,
@@ -19,6 +17,8 @@ themeClass['solar'] = class extends ThemeBase {
 	};
 
 	dayRing = {
+		name    : 'monthDay',
+		array   : this.displayDate.monthDayArray,
 		sector : new Annulus(850, 650),
 		label : {
 			radius         : 500,
@@ -28,7 +28,11 @@ themeClass['solar'] = class extends ThemeBase {
 		}
 	};
 
+	dateLabel   = { position : new Point( 0, 0) };
+
 	/*
+	outerRadius       = 1150;
+	innerRadius       = 950;
 	weekdayMarkerLength = 42;
 	weekendMarkerLength = 57;
 
@@ -42,7 +46,6 @@ themeClass['solar'] = class extends ThemeBase {
 	};
 	*/
 
-	dateLabel   = { position : new Point( 0, 0) };
 
 
 	/* getThemeSVG
@@ -72,7 +75,6 @@ themeClass['solar'] = class extends ThemeBase {
 		/* ${this.getSectorsWithKnockout('month', displayDate.monthArray, this.monthRing)} */
 
 		const themeSVG = `
-
 
 			<g transform=" scale(2,1) translate(0,1000) ${monthTransform}">
 

@@ -262,11 +262,19 @@ Part 2:
 function drawClock2(clock) {
 
 	//log('drawClock2',arguments);
-
-	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme, clock.style, clock.language, clock.background, clock.hemisphere);
-
+	let clockSVG;
 	let displayDate = createDisplayDate(clock.date, clock.language);
-	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
+	//log('dd:',displayDate);
+	//try {
+		page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme, clock.style, clock.language, clock.background, clock.hemisphere);
+		clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
+	/* }
+	catch(error)
+	{
+		log('found an error');
+		log(error);
+	} */
+
 
 	if (page.initial.test) { runTest(clockSVG); }
 

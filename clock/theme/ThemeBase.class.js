@@ -243,19 +243,32 @@ class ThemeBase extends Clock {
 	}/* getHand1 */
 
 
+	/* getRing
+	Combined sectors and labels
+	*/
+	getRing = function(ringSettings) {
+
+		result = `
+
+		`;
+
+		return result;
+	}
+
+
 
 	/* getSectors
 	*/
-	getSectors = function(sectorType, sectorArray, annulus)
+	getSectors = function(sectorName, sectorArray, annulus)
 	{
 		let newSvg = '';
 		for (let sector of sectorArray)
 		{
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
-		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;
+		const result = `<g class="sectorGroup ${sectorName}">${newSvg}</g>`;
 		return result;
 	}/* getSectors */
 
@@ -268,7 +281,7 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorType, sectorArray, labelSettings)
+	getSectorLabels = function(sectorName, sectorArray, labelSettings)
 	{
 		//log('getSectorLabels:', arguments);
 		let newSvg = '';
@@ -286,12 +299,12 @@ class ThemeBase extends Clock {
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
 			const labelSvg =
-				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
+				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorName, sector)}</text>`;
 			newSvg += labelSvg;
 		}
 
 		const result =
-			`<g class="label ${sectorType}">
+			`<g class="label ${sectorName}">
 				${newSvg}
 			</g>`;
 		return result;
@@ -304,7 +317,7 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelsCurved = function(sectorType, sectorArray, labelSettings)
+	getSectorLabelsCurved = function(sectorName, sectorArray, labelSettings)
 	{
 		//log('getSectorLabels:', arguments);
 
@@ -316,7 +329,7 @@ class ThemeBase extends Clock {
 		{
 			//log('sector:', sector);
 
-			const pathId = `labelPath-${sectorType}-${sector.id}`;
+			const pathId = `labelPath-${sectorName}-${sector.id}`;
 
 			if (labelSettings.invert === 'all') {
 				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
@@ -331,12 +344,12 @@ class ThemeBase extends Clock {
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 			defs += labelPath;
 
-			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorName, sector)}</textPath>`;
 			textPaths += textPath;
 		}
 
 		const result =
-			`<g class="label ${sectorType}">
+			`<g class="label ${sectorName}">
 				<defs>${defs}</defs>
 				<text>${textPaths}</text>
 			</g>`;
@@ -371,6 +384,7 @@ class ThemeBase extends Clock {
 
 
 	/* getGrid
+	Todo: Replace most of this with a pattern
 	*/
 	getGrid = function(viewBox, spacing=100, major=500) {
 

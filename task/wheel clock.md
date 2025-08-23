@@ -127,7 +127,31 @@ But I'll probably rename it slightly, something like:
 I won't necessarily change everything over to this yet, just have it as another way of grouping things.
 
 
+Diversion - pseudo-constructor, constructors, and super
+-------------------------------------------------------
 
+A construct that i'd like has problems:
+```js
+	monthRing = {
+		name    : 'yearMonth',
+		array   : this.displayDate.monthArray,		// can't do this - displayDate isn't set yet
+		sector  : new Annulus(1150,950),
+		label   : {
+			radius         : 1050,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : 'all',
+		}
+	};
+```
 
+The pseudo-constructor area is evaluated prior to the constructor being run, so while you can reference other things defined in the pseudo-constructor, you can't rely on anything coming from the actual constructor method.
+What's the best thing to do here...?
 
+I quite like the compact definition, perhaps it's best to leave it as a placeholder and set it at constructor time.
+
+There are other 'setup' items I'm currently doing in the `getThemeSVG` methods that also should probably be moved to constructor time.
+
+I need to sort out a cleanish way of doing subclass super calls though, preferably with a contained parameter class or some kind [destructuring](../../experiment-html/javascript/javascript.md).
+I don't want to run around modifying loads of function signatures every time I change the clock parameters.
 

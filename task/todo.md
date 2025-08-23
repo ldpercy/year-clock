@@ -6,6 +6,7 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
+* Find out if form `select` size can be controlled with css
 * Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform
 * Possibly combine sector and label methods into unified 'ring' (or similar) method
 * See if a debounce of some sort is needed for Chromium's drawing glitchiness
