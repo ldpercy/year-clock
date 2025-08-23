@@ -33,7 +33,10 @@ themeClass['brice'] = class extends ThemeBase {
 		year : { length : 1030 }
 	};
 
-	dateLabel = { position : 500 };
+	dateLabel = {
+		position   : new Point(500,0)
+	};
+
 
 
 	/* getThemeSVG
@@ -44,6 +47,10 @@ themeClass['brice'] = class extends ThemeBase {
 		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
 		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
 		addRadians(displayDate.yearDayArray);
+
+		// label side flipper:
+		const yearOnLeft = dateRatio(displayDate.object) < 0.5
+		this.dateLabel.position.x = this.dateLabel.position.x * ((yearOnLeft) ? -1 :1);
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
