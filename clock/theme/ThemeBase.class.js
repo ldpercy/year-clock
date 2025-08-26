@@ -40,14 +40,14 @@ class ThemeBase extends Clock {
 
 	/* getClockSVG
 	*/
-	getClockSVG = function(displayDate)
+	getClockSVG = function()
 	{
 		const grid = (this.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
 
 		const clockSVG = `
-			<svg id="clock" class="yearclock hemisphere-${this.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			<svg id="clock" class="yearclock hemisphere-${this.parameter.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${grid}
-				${this.getThemeSVG(displayDate)}
+				${this.getThemeSVG(this.displayDate)}
 			</svg>`;
 
 		return clockSVG;
@@ -56,7 +56,7 @@ class ThemeBase extends Clock {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
 		return `<text> getThemeSVG should be overridden by the theme </text>`;
 	}/* getThemeSVG */
@@ -140,11 +140,11 @@ class ThemeBase extends Clock {
 
 	/* getDateLabel
 	*/
-	getDateLabel = function(labelType, displayDate, setting) {
+	getDateLabel = function(labelType, setting) {
 
 		const svg =
 			`<g class="dateLabel">
-				<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelType, displayDate)}</text>
+				<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelType, this.displayDate)}</text>
 			</g>`;
 
 		return svg;
@@ -154,15 +154,15 @@ class ThemeBase extends Clock {
 
 	/* getHands
 	*/
-	getHands = function(displayDate, handConfig) {
+	getHands = function(handConfig) {
 		//log('getHands:',handConfig);
 
-		const yearHand = (handConfig.year) ? this.getYearHand(displayDate, handConfig.year): '';
-		const monthHand = (handConfig.month) ? this.getMonthHand(displayDate, handConfig.month): '';
+		const yearHand = (handConfig.year) ? this.getYearHand(handConfig.year): '';
+		const monthHand = (handConfig.month) ? this.getMonthHand(handConfig.month): '';
 
 		const svg = `
 			<g class="hands">
-				<title>${this.formatTitle('hands',{'date':displayDate})}</title>
+				<title>${this.formatTitle('hands',{'date':this.displayDate})}</title>
 				${yearHand}
 				${monthHand}
 			</g>`;
@@ -171,9 +171,9 @@ class ThemeBase extends Clock {
 
 
 	/* getYearHand */
-	getYearHand = function(displayDate, handConfig, degreeDelta = new DegreeDelta) {
+	getYearHand = function(handConfig, degreeDelta = new DegreeDelta) {
 		// calculate year hand params
-		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1, degreeDelta);
+		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
 		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
@@ -184,9 +184,9 @@ class ThemeBase extends Clock {
 
 
 	/* getMonthHand */
-	getMonthHand = function(displayDate, handConfig, degreeDelta = new DegreeDelta) {
+	getMonthHand = function(handConfig, degreeDelta = new DegreeDelta) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate()-1, degreeDelta);
+		const monthDayDivision = divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.object.getDate()-1, degreeDelta);
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;

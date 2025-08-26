@@ -36,26 +36,26 @@ themeClass['wheel'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		addRadians(displayDate.yearDayArray);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
 
-		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		addRadians(displayDate.monthDayArray);
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
 
-		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
+		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-90-yearDayDivision.middle},0,0)`;
 
-		const monthDayDivision = divisionDegrees(displayDate.daysInMonth, displayDate.date-1);
+		const monthDayDivision = divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
 		const monthTransform = `rotate(${-90-monthDayDivision.middle},0,0)`;
 
-		// ${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+		// ${this.getSectors('month', this.displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
-		//log(displayDate);
+		//log(this.displayDate);
 
-		const moonRadians = displayDate.monthDayArray[0].radians.middle;
+		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
 		const moonPosition = polarPoint(moonRadians, this.dayRing.label.radius);
 
 
@@ -68,31 +68,31 @@ themeClass['wheel'] = class extends ThemeBase {
 
 			<!-- ${this.getFace(this.clockRadius)} -->
 
-			${this.getDateLabel('year', displayDate, this.dateLabel)}
+			${this.getDateLabel('year', this.dateLabel)}
 
 			<g class="monthRing">
 				<g transform="${yearTransform}">
-					${this.getSectorsWithKnockout('monthNumber', displayDate.monthArray, this.monthRing)}
+					${this.getSectorsWithKnockout('monthNumber', this.displayDate.monthArray, this.monthRing)}
 				</g>
 			</g>
 
 			<g class="dayRing">
 				<g transform="${monthTransform}">
 
-					${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.dayRing)}
+					${this.getSectorsWithKnockout('dayNumber', this.displayDate.monthDayArray, this.dayRing)}
 
 					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
 
-					<!-- ${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayRing.label)} -->
+					<!-- ${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayRing.label)} -->
 				</g>
 			</g>
 
 		`;
 
 		/*
-			${this.getSectorsWithKnockout('dayNumber', displayDate.monthDayArray, this.daySector)}
+			${this.getSectorsWithKnockout('dayNumber', this.displayDate.monthDayArray, this.daySector)}
 
-			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayName)}
+			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayName)}
 		*/
 
 		return themeSVG;
@@ -100,7 +100,7 @@ themeClass['wheel'] = class extends ThemeBase {
 
 
 
-	getDateLabel = function(labelType, displayDate, setting) {
+	getDateLabel = function(labelType, setting) {
 
 		const svg =
 			`<g class="dateLabel" >
@@ -112,14 +112,14 @@ themeClass['wheel'] = class extends ThemeBase {
 						-->
 						<circle cx="0" cy="0" r="400" class="knockout-shapeContaining"/>
 
-						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, displayDate)}</text>
+						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, this.displayDate)}</text>
 					</mask>
 				</defs>
 
 				<g style="mask:url(#knockout-dateLabel-${labelType})">
 					<circle cx="0" cy="0" r="300" class="star"/>
 					<!--
-					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, displayDate)}</text>
+					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, this.displayDate)}</text>
 					-->
 				</g>
 			</g>`;

@@ -64,21 +64,21 @@ themeClass['debug'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
 		// Set Up Drawing
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		//log(displayDate.monthArray);
+		//log(this.displayDate.monthArray);
 
-		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		addRadians(displayDate.yearDayArray);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
 
-		//displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		//addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
+		//this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		//addRadians(this.displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		/*
-		let weekArray    = getYearWeekArray(displayDate.object);
+		let weekArray    = getYearWeekArray(this.displayDate.object);
 		${this.getSectorLabels('week', weekArray, this.weekLabel)}
 		${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
  		*/
@@ -117,15 +117,15 @@ themeClass['debug'] = class extends ThemeBase {
 			</defs>
 
 			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', displayDate.monthArray, this.monthSector)}
+			${this.getSectors('month', this.displayDate.monthArray, this.monthSector)}
 
-			${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
+			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
 
-			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
+			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
 
-			${this.getSectors('yearDay', displayDate.yearDayArray, this.daySector)}
+			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
 
-			${this.getDateLabel('date', displayDate, this.dateLabel)}
+			${this.getDateLabel('date', this.dateLabel)}
 		`;
 
 		return themeSVG;

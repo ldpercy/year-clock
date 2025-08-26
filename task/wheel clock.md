@@ -155,3 +155,59 @@ There are other 'setup' items I'm currently doing in the `getThemeSVG` methods t
 I need to sort out a cleanish way of doing subclass super calls though, preferably with a contained parameter class or some kind [destructuring](../../experiment-html/javascript/javascript.md).
 I don't want to run around modifying loads of function signatures every time I change the clock parameters.
 
+### Wholesale clock parameters
+
+This is a bit of an experiment, and I'm either making or cleaning up a mess.
+
+Want to try just setting the clock parameters wholesale onto the instance rather than individually.
+
+```js
+constructor(parameter) {
+	this.parameter = parameter;
+	this.displayDate = createDisplayDate(parameter.date, parameter.language);
+}
+```
+
+
+Using 'this' instead of arguments
+---------------------------------
+
+Also going to take out displayDate as a parameter to getClockSVG and instead set it at construction time.
+It feels less asymmetric like this, but still unsure.
+
+I also have a nebulous cloud of concern regarding OO/Functional/Impure/Pure function/method calls.
+This is a core philosophical question - I think as long as I'm clear and consistent things shouldn't be too bad.
+
+Principles:
+* things that are fairly constant for the lifetime of the instance -ie most clock parameters - can be assumed, don't need to be passed as a method parameters
+* things that are variable within the context of the instance need to be proper arguments.
+
+Thing is, if I'm at all serious about those then really quite a lot of other clock method arguments should probably be taken out as well.
+Everything in the pseudo-constructor/config category is more or less static for the instance and can be assumed, so they'd all be candidates.
+I've had other thoughts about those in general, but still have a funny feeling that some could be parametrised sometimes.
+Going to sit on this one for a bit.
+
+A maybe possible counter example...?
+I've just gone through and removed displayDate as a parameter for getDateLabel, working on the assumption (as per above) that it's reasonably static for the lifetime of the instance.
+What if I want that method, but I need to put a different date in - say I need to display a year range or next year or something?
+In that case I'd need a new version of the method that does take a date as a parameter, or I'd need to undo everything i've just done.
+
+I feel like it's going to be a bit of to-and-fro here depending on needs.
+Same goes with the theme 'config'.
+*Generally* clock parameters and theme config will be static and can probably be assumed, and as such *mostly* shouldn't need to be passed around as parameters.
+But there might be contrary cases to keep an eye out for.
+This is also assuming (for now) that instances are fairly immutable once constructed, which may not be case in a more optimised future (don't tear-down, update).
+
+Another thought - if I convert the current ThemeBase class to become something like a library or service object (composition) then complete arguments (purity) will need to be reinstated, eg getDateLabel will need a date as a parameter again.
+I have wondered sometimes if the themebase should be broken up into separate objects for parts like labels, sectors, hands etc.
+This isn't on the cards at the moment, but might be in future.
+
+
+I should note that a while back I actually went through and pulled *out* a bunch of `this` references from the ThemeBase to improve purity - now I'm re-allowing them - need to be careful.
+Currently the only things that I can fairly widely reference with `this` are:
+* this.parameter
+* this.displayDate
+* this.viewBox
+The above can be assumed/referenced in the themebase.
+Most other things are specific to the themes, and can perhaps be assumed in each contained environment.
+

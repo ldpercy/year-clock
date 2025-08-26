@@ -41,34 +41,35 @@ svg.yearclock .face   {
 
 
 .hemisphere-northern {
-	.sector.month-jan { fill: #7abecf }
-	.sector.month-feb { fill: #5fb69c }
-	.sector.month-mar { fill: #2ea544 }
-	.sector.month-apr { fill: #aec013 }
-	.sector.month-may { fill: #f3c301 }
-	.sector.month-jun { fill: #f18e17 }
-	.sector.month-jul { fill: #e42d1a }
-	.sector.month-aug { fill: #983021 }
-	.sector.month-sep { fill: #89493b }
-	.sector.month-oct { fill: #7c5e57 }
-	.sector.month-nov { fill: #6f6e6d }
-	.sector.month-dec { fill: #738c92 }
+	.sector.yearMonth-jan { fill: #7abecf }
+	.sector.yearMonth-feb { fill: #5fb69c }
+	.sector.yearMonth-mar { fill: #2ea544 }
+	.sector.yearMonth-apr { fill: #aec013 }
+	.sector.yearMonth-may { fill: #f3c301 }
+	.sector.yearMonth-jun { fill: #f18e17 }
+	.sector.yearMonth-jul { fill: #e42d1a }
+	.sector.yearMonth-aug { fill: #983021 }
+	.sector.yearMonth-sep { fill: #89493b }
+	.sector.yearMonth-oct { fill: #7c5e57 }
+	.sector.yearMonth-nov { fill: #6f6e6d }
+	.sector.yearMonth-dec { fill: #738c92 }
 }
 
 .hemisphere-southern {
-	.sector.month-jan { fill: #e42d1a }
-	.sector.month-feb { fill: #983021 }
-	.sector.month-mar { fill: #89493b }
-	.sector.month-apr { fill: #7c5e57 }
-	.sector.month-may { fill: #6f6e6d }
-	.sector.month-jun { fill: #738c92 }
-	.sector.month-jul { fill: #7abecf }
-	.sector.month-aug { fill: #5fb69c }
-	.sector.month-sep { fill: #2ea544 }
-	.sector.month-oct { fill: #aec013 }
-	.sector.month-nov { fill: #f3c301 }
-	.sector.month-dec { fill: #f18e17 }
+	.sector.yearMonth-jan { fill: #e42d1a }
+	.sector.yearMonth-feb { fill: #983021 }
+	.sector.yearMonth-mar { fill: #89493b }
+	.sector.yearMonth-apr { fill: #7c5e57 }
+	.sector.yearMonth-may { fill: #6f6e6d }
+	.sector.yearMonth-jun { fill: #738c92 }
+	.sector.yearMonth-jul { fill: #7abecf }
+	.sector.yearMonth-aug { fill: #5fb69c }
+	.sector.yearMonth-sep { fill: #2ea544 }
+	.sector.yearMonth-oct { fill: #aec013 }
+	.sector.yearMonth-nov { fill: #f3c301 }
+	.sector.yearMonth-dec { fill: #f18e17 }
 }
+
 
 
 svg.yearclock .sector.month {

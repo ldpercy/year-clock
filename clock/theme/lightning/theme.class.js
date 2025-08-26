@@ -81,7 +81,7 @@ themeClass['lightning'] = class extends ThemeBase {
 			case 'quarter'      : result = `${data.name}`; break;
 			case 'month'        : result = `${data.name.slice(0,3)}`; break;
 			case 'weekSector'   : result = `W${data.name}`; break;
-			case 'week'         : result = `W${data.name}`; break;
+			case 'week'         : result = `W${data.week.name}`; break;
 			case 'dayOfYear'    : result = `D${data.dayOfYear}`; break;
 			case 'date'         : result = `${isoMonthDay(data.object)}`; break;
 			case 'year'         : result = `${data.year}`; break;
@@ -94,32 +94,32 @@ themeClass['lightning'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		addRadians(displayDate.yearDayArray);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
 
-		let quarterArray = getQuarterArray(displayDate);
-		let weekArray    = getYearWeekArray(displayDate);
+		let quarterArray = getQuarterArray(this.displayDate);
+		let weekArray    = getYearWeekArray(this.displayDate);
 
 		const themeSVG = `
 			${this.getBody(this.body)}
 			${this.getSectors('quarter', quarterArray, this.quarterSector)}
-			${this.getSectors('month', displayDate.monthArray, this.monthSector)}
+			${this.getSectors('month', this.displayDate.monthArray, this.monthSector)}
 			${this.getSectors('week', weekArray, this.weekSector)}
-			${this.getSectors('yearDay', displayDate.yearDayArray, this.daySector)}
+			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
 
 			${this.getSectorLabels('quarter', quarterArray, this.quarterLabels)}
-			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabels)}
+			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabels)}
 			${this.getSectorLabels('weekSector', weekArray, this.weekLabels)}
-			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabels)}
+			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabels)}
 
-			${this.getDateLabel('year', displayDate, this.yearLabel)}
-			${this.getDateLabel('date', displayDate, this.dateLabel)}
+			${this.getDateLabel('year', this.yearLabel)}
+			${this.getDateLabel('date', this.dateLabel)}
 
-			${this.getDateLabel('week', displayDate.week, this.weekLabel)}
-			${this.getDateLabel('dayOfYear', displayDate, this.dayLabel)}
+			${this.getDateLabel('week', this.weekLabel)}
+			${this.getDateLabel('dayOfYear', this.dayLabel)}
 		`;
 
 		return themeSVG;

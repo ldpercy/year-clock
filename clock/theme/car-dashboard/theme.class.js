@@ -114,19 +114,19 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		// addRadians(displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange, this.dial.radianDelta);
+		// addRadians(this.displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
 
-		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		addRadians(displayDate.monthDayArray, this.dial.radianDelta);
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
 
-		displayDate.seasonCircleArray  = getSeasonCircleArray(displayDate, this.hemisphere);
-		displayDate.seasonArray  = getSeasonArray(displayDate, this.hemisphere);
-		displayDate.season = getSeason(displayDate.object, displayDate.seasonArray);
+		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.hemisphere);
+		this.displayDate.seasonArray  = getSeasonArray(this.displayDate, this.hemisphere);
+		this.displayDate.season = getSeason(this.displayDate.object, this.displayDate.seasonArray);
 
-		log(displayDate);
+		log(this.displayDate);
 
 		const themeSVG = `
 			<defs>
@@ -159,7 +159,7 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 			<g class="season">
 				<g transform="translate(0,1075)">
-					${this.getSeasonFace(this.seasonWheel, displayDate)}
+					${this.getSeasonFace(this.seasonWheel, this.displayDate)}
 				</g>
 			</g>
 
@@ -172,34 +172,34 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 			<g transform="translate(-1300)">
 				<!-- month-day -->
 
-				${this.getSectors('monthDay', displayDate.monthDayArray, this.monthDayAnnulus)}
-				${this.getSymbols('monthDaySymbols', displayDate.monthDayArray, this.monthSymbols)}
-				${this.getSectorLabels('monthDay', displayDate.monthDayArray, this.dayLabel)}
+				${this.getSectors('monthDay', this.displayDate.monthDayArray, this.monthDayAnnulus)}
+				${this.getSymbols('monthDaySymbols', this.displayDate.monthDayArray, this.monthSymbols)}
+				${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayLabel)}
 
 
-				${this.getWarningMonth('month', displayDate, this.warningLight)}
+				${this.getWarningMonth('month', this.warningLight)}
 
-				<!-- ${this.getDateLabel('monthHour', displayDate, this.hourLabel)} -->
-				${this.getDateLabel('dayName', displayDate, this.dayNameLabel)}
+				<!-- ${this.getDateLabel('monthHour', this.hourLabel)} -->
+				${this.getDateLabel('dayName', this.dayNameLabel)}
 
 				<g class="hands">
-					${this.getMonthHand(displayDate, this.handConfig.month, this.dial.degreeDelta)}
+					${this.getMonthHand(this.handConfig.month, this.dial.degreeDelta)}
 				</g>
 			</g>
 			<g transform="translate(1300)">
 				<!-- year -->
 
-				${this.getSectors('month', displayDate.monthArray, this.yearMonthAnnulus)}
-				${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
-				${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
+				${this.getSectors('month', this.displayDate.monthArray, this.yearMonthAnnulus)}
+				${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
+				${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabel)}
 
-				${this.getWarningYear('year', displayDate, this.warningLight)}
+				${this.getWarningYear('year', this.warningLight)}
 
-				<!-- ${this.getDateLabel('yearHour', displayDate, this.hourLabel)} -->
-				${this.getDateLabel('date', displayDate, this.dateLabel)}
+				<!-- ${this.getDateLabel('yearHour', this.hourLabel)} -->
+				${this.getDateLabel('date', this.dateLabel)}
 
 				<g class="hands">
-					${this.getYearHand(displayDate, this.handConfig.year, this.dial.degreeDelta)}
+					${this.getYearHand(this.handConfig.year, this.dial.degreeDelta)}
 				</g>
 			</g>
 		`;
@@ -230,12 +230,12 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 
 	getSeasonFace = function(seasonWheel, displayDate) {
 
-		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1);
+		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 		const result = `
 
 			<g transform="${yearTransform}">
-				${this.getSectors('season', displayDate.seasonCircleArray, seasonWheel.annulus)}
+				${this.getSectors('season', this.displayDate.seasonCircleArray, seasonWheel.annulus)}
 			</g>
 			<text class="thermometer" x="230" y="-170">🌡</text>
 			`;
@@ -306,11 +306,11 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}/* getBodyOuter */
 
 
-	getWarningMonth = function(type, displayDate, settings) {
+	getWarningMonth = function(type, settings) {
 
-		let weekEvent = getWeekEvent(displayDate.object) || {name:'',symbol:''};
-		let monthEvent = getMonthEvent(displayDate.object) || {name:'',symbol:''};
-		let customEvent = getCustomEvent(displayDate.object) || {name:'',symbol:''};
+		let weekEvent = getWeekEvent(this.displayDate.object) || {name:'',symbol:''};
+		let monthEvent = getMonthEvent(this.displayDate.object) || {name:'',symbol:''};
+		let customEvent = getCustomEvent(this.displayDate.object) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -323,10 +323,10 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	}/* getWarningMonth */
 
 
-	getWarningYear = function(type, displayDate, settings) {
+	getWarningYear = function(type, settings) {
 
-		const event = getYearEvent(displayDate.object) || {name:'', symbol:''};
-		const seasonEvent = getSeasonEvent(displayDate.season.id) || {name:'', symbol:''};
+		const event = getYearEvent(this.displayDate.object) || {name:'', symbol:''};
+		const seasonEvent = getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
 
 		const result = `
 			<g class="warningLight">

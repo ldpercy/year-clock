@@ -41,24 +41,24 @@ themeClass['brice'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		//addDateRangeRadians(displayDate.monthArray);
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		addRadians(displayDate.yearDayArray);
+		//addDateRangeRadians(this.displayDate.monthArray);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
 
 		// label side flipper:
-		const yearOnLeft = dateRatio(displayDate.object) < 0.5
+		const yearOnLeft = dateRatio(this.displayDate.object) < 0.5
 		this.dateLabel.position.x = this.dateLabel.position.x * ((yearOnLeft) ? -1 :1);
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', displayDate.monthArray, this.yearMonthSector)}
-			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getPeriodDayTicks('yearDay', displayDate.yearDayArray, this.tick)}
-			${this.getDateLabel('year', displayDate, this.dateLabel)}
-			${this.getHands(displayDate, this.handConfig)}
+			${this.getSectors('month', this.displayDate.monthArray, this.yearMonthSector)}
+			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabel)}
+			${this.getPeriodDayTicks('yearDay', this.displayDate.yearDayArray, this.tick)}
+			${this.getDateLabel('year', this.dateLabel)}
+			${this.getHands(this.handConfig)}
 		`;
 
 		return themeSVG;

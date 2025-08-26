@@ -69,11 +69,11 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		addRadians(displayDate.monthDayArray);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
 
 		const themeSVG = `
 			<!--
@@ -86,22 +86,22 @@ themeClass['vintage'] = class extends ThemeBase {
 			${this.getFace(this.faceRadius)}
 
 
-			${this.getSectors('month', displayDate.monthArray, this.yearMonthSector)}
+			${this.getSectors('month', this.displayDate.monthArray, this.yearMonthSector)}
 
-			${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
-			${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
+			${this.getSectorLabelsCurved('monthName', this.displayDate.monthArray, this.monthText)}
+			${this.getSectorLabels('monthNumber', this.displayDate.monthArray, this.monthNumber)}
 
-			${this.getSectors('day', displayDate.monthDayArray, this.monthDaySector)}
-			${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
-			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
+			${this.getSectors('day', this.displayDate.monthDayArray, this.monthDaySector)}
+			${this.getSectorLabels('dayName', this.displayDate.monthDayArray, this.dayName)}
+			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayNumber)}
 
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel(this.displayDate.object, this.dateLabelPosition)}
 
 			<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
 				${this.getIcon()}
 			</svg>
 
-			${this.getHands(displayDate, this.handConfig)}
+			${this.getHands(this.handConfig)}
 			${this.getPin()}
 		`;
 
