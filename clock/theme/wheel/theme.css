@@ -171,9 +171,11 @@ text.dateLabel.year {
 .sectorMask-yearMonth {
 	font-size: 3em;
 	text-transform: uppercase;
+	dominant-baseline: central;
 }
 .sectorMask-monthDay {
 	font-size: 1em;
 	text-transform: uppercase;
+	dominant-baseline: central;
 }
 

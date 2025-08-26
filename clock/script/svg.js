@@ -64,12 +64,12 @@ function getArcPath(radiansStart, radiansEnd, radius)
 /* getSectorPathSimple
 A simplified version of the above that draws a quadrilateral with straight lines instead of proper arcs. Suitable for very small sectors or other effects.
 */
-function getSectorPathSimple(radiansStart, radiansEnd, innerRadius, outerRadius)
+function getSectorPathSimple(radiansStart, radiansEnd, annulus)
 {
-	const outerStart = polarPoint(radiansStart, outerRadius);
-	const outerEnd   = polarPoint(radiansEnd,   outerRadius);
-	const innerEnd   = polarPoint(radiansEnd,   innerRadius);
-	const innerStart = polarPoint(radiansStart, innerRadius);
+	const outerStart = polarPoint(radiansStart, annulus.outerRadius);
+	const outerEnd   = polarPoint(radiansEnd,   annulus.outerRadius);
+	const innerEnd   = polarPoint(radiansEnd,   annulus.innerRadius);
+	const innerStart = polarPoint(radiansStart, annulus.innerRadius);
 
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}
