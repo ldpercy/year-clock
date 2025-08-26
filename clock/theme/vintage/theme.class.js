@@ -35,6 +35,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
+		format         : 'dayShort',
 	};
 
 	dayNumber = {
@@ -95,7 +96,7 @@ themeClass['vintage'] = class extends ThemeBase {
 			${this.getSectorLabels('dayName', this.displayDate.monthDayArray, this.dayName)}
 			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayNumber)}
 
-			${this.getDateLabel(this.displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel(this.dateLabelPosition)}
 
 			<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
 				${this.getIcon()}
@@ -114,7 +115,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 
-	formatLabel = function(labelType, data) {
+/* 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'monthName'    : result = data.name; break;
@@ -125,7 +126,7 @@ themeClass['vintage'] = class extends ThemeBase {
 			default             : result = data.name; break;
 		}
 		return result;
-	}
+	} */
 
 
 	/* getDefs
@@ -160,12 +161,12 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	/* getDateLabel
 	*/
-	getDateLabel = function(date, point) {
+	getDateLabel = function(point) {
 
 		const dateLabelPath = getArcPath(radians(-60), radians(60), point.y);
 		//const dateLabelPath = getArcPath(radians(240), radians(120), point.y);
 
-		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('date',{'date':date})}</textPath>`;
+		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 
 		const svg =
 			`<g class="dateLabel">

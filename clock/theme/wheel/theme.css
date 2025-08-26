@@ -28,7 +28,7 @@ svg.yearclock {
 		);
 	background-position-y:0px;
 
-	font-family: 'Times New Roman', Times, serif;
+	font-family:  serif; /* 'Times New Roman', Times, */
 	font-size: 48px;
 
 }
@@ -147,9 +147,9 @@ g.dateLabel {
 }
 text.dateLabel.year {
 	text-anchor: middle;
-	font-size: 4em;
+	font-size: 3em;
+	text-transform: uppercase;
 	dominant-baseline: central;
-
 }
 
 
@@ -170,8 +170,10 @@ text.dateLabel.year {
 
 .sectorMask-yearMonth {
 	font-size: 3em;
+	text-transform: uppercase;
 }
 .sectorMask-monthDay {
-	font-size: 2em;
+	font-size: 1em;
+	text-transform: uppercase;
 }
 

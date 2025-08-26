@@ -25,7 +25,14 @@ class ThemeBase extends Clock {
 			case 'year'         : result = `${data.year}`; break;
 			case 'date'         : result = `${isoDate(data.object)}` ; break;
 			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
+			case 'dayShort'     : result = `${data.name.slice(0,3)}`; break;
+
 			case 'monthNumber'  : result = `${data.number}`; break;
+
+			case 'romanNumeralDay'   : result = `${asRomanNumerals(data.dayOfMonth)}`; break;
+			case 'romanNumeralMonth' : result = `${asRomanNumerals(data.number)}`; break;
+			case 'romanNumeralYear'  : result = `${asRomanNumerals(data.year)}`; break;
+
 			default             : result = data.name || data.id; break;
 		}
 		return result;
@@ -142,9 +149,11 @@ class ThemeBase extends Clock {
 	*/
 	getDateLabel = function(labelType, setting) {
 
+		const labelFormat = setting.format || labelType;
+
 		const svg =
 			`<g class="dateLabel">
-				<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelType, this.displayDate)}</text>
+				<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelFormat, this.displayDate)}</text>
 			</g>`;
 
 		return svg;
@@ -284,6 +293,7 @@ class ThemeBase extends Clock {
 	getSectorLabels = function(sectorName, sectorArray, labelSettings)
 	{
 		//log('getSectorLabels:', arguments);
+		const labelFormat = labelSettings.format || sectorName;
 		let newSvg = '';
 		for (let sector of sectorArray)
 		{
@@ -299,7 +309,7 @@ class ThemeBase extends Clock {
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
 			const labelSvg =
-				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorName, sector)}</text>`;
+				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
 			newSvg += labelSvg;
 		}
 

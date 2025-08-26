@@ -10,32 +10,35 @@ themeClass['wheel'] = class extends ThemeBase {
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector : new Annulus(1150, 950),
+		sector : new Annulus(1200, 900),
 		label : {
 			radius         : 1050,
 			sectorPosition : 0.5,
 			rotate         : 'radial-right',
 			invert         : false,
 			textType       : 'text',
-			format         : 'monthNumber',
+			format         : 'romanNumeralMonth',
 		}
 	};
 
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(850, 650),
+		sector : new Annulus(800, 600),
 		label : {
-			radius         : 750,
+			radius         : 700,
 			sectorPosition : 0.5,
 			rotate         : 'radial-right',
 			invert         : false,
 			textType       : 'text',
-			format         : 'dayNumber',
+			format         : 'romanNumeralDay',
 		}
 	};
 
-	dateLabel   = { position : new Point( 0, 0) };
+	dateLabel   = {
+		position : new Point( 0, 0),
+		format   : 'romanNumeralYear',
+	};
 
 
 	constructor(clockParameter)
@@ -91,7 +94,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			<g class="dayRing">
 				<g transform="${monthTransform}">
 
-					${this.getSectorsWithKnockout('dayNumber', this.displayDate.monthDayArray, this.dayRing)}
+					${this.getSectorsWithKnockout('monthDay', this.displayDate.monthDayArray, this.dayRing)}
 
 					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
 
@@ -112,32 +115,34 @@ themeClass['wheel'] = class extends ThemeBase {
 
 
 
-	getDateLabel = function(labelType, setting) {
+	getDateLabel = function(labelName, setting) {
+
+		const labelFormat = setting.format || labelName;
 
 		const svg =
 			`<g class="dateLabel" >
 
 				<defs>
-					<mask id="knockout-dateLabel-${labelType}" class="knockout-mask">
+					<mask id="knockout-dateLabel-${labelName}" class="knockout-mask">
 						<!--
 						<rect class="knockout-shapeContaining" x="-500" y="-500" width="1000" height="1000" />
 						-->
 						<circle cx="0" cy="0" r="500" class="knockout-shapeContaining"/>
 
-						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, this.displayDate)}</text>
+						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelName}">${this.formatLabel(labelFormat, this.displayDate)}</text>
 					</mask>
 				</defs>
 
-				<g style="mask:url(#knockout-dateLabel-${labelType})">
+				<g style="mask:url(#knockout-dateLabel-${labelName})">
 					<circle cx="0" cy="0" r="500" class="star yearLabel"/>
 					<!--
-					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, this.displayDate)}</text>
+					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelName}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelFormat, this.displayDate)}</text>
 					-->
 				</g>
 			</g>`;
 
 			/*
-			 class="label dateLabel ${labelType}" ${(setting.attribute || '')}"
+			 class="label dateLabel ${labelName}" ${(setting.attribute || '')}"
 			*/
 
 		return svg;
