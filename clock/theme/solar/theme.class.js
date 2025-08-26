@@ -13,6 +13,7 @@ themeClass['solar'] = class extends ThemeBase {
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : 'all',
+			format         : 'monthNumber',
 		}
 	};
 
@@ -25,6 +26,7 @@ themeClass['solar'] = class extends ThemeBase {
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : 'all',
+			format         : 'dayNumber',
 		}
 	};
 
@@ -148,114 +150,6 @@ themeClass['solar'] = class extends ThemeBase {
 
 
 
-
-	/* getSectorsWithKnockout
-		labelSetting = {
-			radius         : number,
-			invert         : boolean,
-		};
-	*/
-	getSectorsWithKnockout = function(sectorType, sectorArray, settings)
-	{
-		//log('getSectorsKnockout:', arguments);
-
-		/*
-		need sector and label information
-		draw sectors normally
-		draw and extra set of sectors with labels to use as masks
-		will have to create a set of mask ids to dynamically apply to the actual drawn sectors
-		*/
-
-		let sectorMasks = '';
-		let labelPaths = '';
-		let labelArc = '';
-		let sectors = '';
-		let textMask = '';
-
-		const textType = 'textPath'; // text,textPath
-
-
-		for (let sector of sectorArray)
-		{
-			//log('sector:', sector);
-
-			const pathId = `labelPath-${sectorType}-${sector.id}`;
-			const maskId = `sectorMask-${sectorType}-${sector.id}`;
-
-
-			if (textType === 'textPath') {
-				// use 'textPath' elements as the knockout shape
-				//create extra label paths
-				// label paths:
-				if (settings.label.invert && (Math.cos(sector.radians.middle) < 0)) {
-					labelArc = getArcPath(sector.radians.end, sector.radians.start, settings.label.radius);
-				}
-				else {
-					labelArc = getArcPath(sector.radians.start, sector.radians.end, settings.label.radius);
-				}
-				const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
-				labelPaths += labelPath;
-				// textPath:
-				textMask = `
-					<text>
-						<textPath class="knockout-shapeKnockedout ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>
-					</text>
-				`;
-			} else {
-				// use regular 'text' elements as the knockout shape
-				const radiansLabel = sector.radians.start + (sector.radians.width * settings.label.sectorPosition);
-
-				const center     = polarPoint(radiansLabel, settings.label.radius);
-				let transform = '';
-
-				if (settings.label.rotate)
-				{
-					let rotate = this.rotationDegrees(radiansLabel, settings.label);
-					transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
-				}
-
-
-				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
-
-			}
-
-			// sector path, mask, sector itself:
-			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.radiusStart, settings.radiusEnd);
-
-			const sectorMask = `
-				<mask id="${maskId}" class="sectorMask-${sectorType} knockout-mask">
-					<path class="knockout-shapeContaining" d="${sectorPath}"/>
-
-					${textMask}
-				</mask>
-			`;
-			sectorMasks += sectorMask;
-
-			const sectorSVG =
-				`<path
-					d="${sectorPath}"
-					class="sector ${sectorType}-${sector.id} ${sector.class}"
-					style="mask: url(#${maskId});"
-					>
-					<title>${this.formatTitle(sectorType, sector)}</title>
-				</path>`;
-			sectors += sectorSVG;
-		}
-
-		// ${labelPaths}
-		const result =
-			`<g class="sector ${sectorType}">
-				<defs>
-					${sectorMasks}
-					${labelPaths}
-				</defs>
-				${sectors}
-
-
-			</g>`;
-		return result;
-
-	}/* getSectorsWithKnockout */
 
 
 

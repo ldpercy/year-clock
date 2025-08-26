@@ -8,6 +8,8 @@ themeClass['wheel'] = class extends ThemeBase {
 	// innerRadius       = 950;
 
 	monthRing = {
+		name    : 'yearMonth',
+		array   : undefined, // this.displayDate.monthArray,
 		sector : new Annulus(1150, 950),
 		label : {
 			radius         : 1050,
@@ -15,10 +17,13 @@ themeClass['wheel'] = class extends ThemeBase {
 			rotate         : 'radial-right',
 			invert         : false,
 			textType       : 'text',
+			format         : 'monthNumber',
 		}
 	};
 
 	dayRing = {
+		name    : 'monthDay',
+		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(850, 650),
 		label : {
 			radius         : 750,
@@ -26,12 +31,19 @@ themeClass['wheel'] = class extends ThemeBase {
 			rotate         : 'radial-right',
 			invert         : false,
 			textType       : 'text',
+			format         : 'dayNumber',
 		}
 	};
 
-
-
 	dateLabel   = { position : new Point( 0, 0) };
+
+
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.monthRing.array = this.displayDate.monthArray;
+		this.dayRing.array   = this.displayDate.monthDayArray;
+	}
 
 
 	/* getThemeSVG
@@ -72,7 +84,7 @@ themeClass['wheel'] = class extends ThemeBase {
 
 			<g class="monthRing">
 				<g transform="${yearTransform}">
-					${this.getSectorsWithKnockout('monthNumber', this.displayDate.monthArray, this.monthRing)}
+					${this.getSectorsWithKnockout('yearMonth', this.displayDate.monthArray, this.monthRing)}
 				</g>
 			</g>
 
@@ -83,7 +95,7 @@ themeClass['wheel'] = class extends ThemeBase {
 
 					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
 
-					<!-- ${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayRing.label)} -->
+					<!-- ${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayRing.label)} -->
 				</g>
 			</g>
 
@@ -110,14 +122,14 @@ themeClass['wheel'] = class extends ThemeBase {
 						<!--
 						<rect class="knockout-shapeContaining" x="-500" y="-500" width="1000" height="1000" />
 						-->
-						<circle cx="0" cy="0" r="400" class="knockout-shapeContaining"/>
+						<circle cx="0" cy="0" r="500" class="knockout-shapeContaining"/>
 
 						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelType}"> ${this.formatLabel(labelType, this.displayDate)}</text>
 					</mask>
 				</defs>
 
 				<g style="mask:url(#knockout-dateLabel-${labelType})">
-					<circle cx="0" cy="0" r="300" class="star"/>
+					<circle cx="0" cy="0" r="500" class="star yearLabel"/>
 					<!--
 					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelType, this.displayDate)}</text>
 					-->
@@ -141,7 +153,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			invert         : boolean,
 		};
 	*/
-	getSectorsWithKnockout = function(sectorType, sectorArray, settings)
+	getSectorsWithKnockout = function(sectorName, sectorArray, settings)
 	{
 		//log('getSectorsKnockout:', arguments);
 
@@ -158,15 +170,14 @@ themeClass['wheel'] = class extends ThemeBase {
 		let sectors = '';
 		let textMask = '';
 
-		// const textType = 'textPath'; // text,textPath
-
+		const labelFormat = settings.label.format || sectorName;
 
 		for (let sector of sectorArray)
 		{
 			//log('sector:', sector);
 
-			const pathId = `labelPath-${sectorType}-${sector.id}`;
-			const maskId = `sectorMask-${sectorType}-${sector.id}`;
+			const pathId = `labelPath-${sectorName}-${sector.id}`;
+			const maskId = `sectorMask-${sectorName}-${sector.id}`;
 
 
 			if (settings.label.textType === 'textPath') {
@@ -184,7 +195,7 @@ themeClass['wheel'] = class extends ThemeBase {
 				// textPath:
 				textMask = `
 					<text>
-						<textPath class="knockout-shapeKnockedout ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>
+						<textPath class="knockout-shapeKnockedout ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(labelFormat, sector)}</textPath>
 					</text>
 				`;
 			} else {
@@ -201,7 +212,7 @@ themeClass['wheel'] = class extends ThemeBase {
 				}
 
 
-				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
+				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
 
 			}
 
@@ -209,7 +220,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.sector);
 
 			const sectorMask = `
-				<mask id="${maskId}" class="sectorMask-${sectorType} knockout-mask">
+				<mask id="${maskId}" class="sectorMask-${sectorName} knockout-mask">
 					<path class="knockout-shapeContaining" d="${sectorPath}"/>
 
 					${textMask}
@@ -220,17 +231,17 @@ themeClass['wheel'] = class extends ThemeBase {
 			const sectorSVG =
 				`<path
 					d="${sectorPath}"
-					class="sector ${sectorType}-${sector.id} ${sector.class}"
+					class="sector ${sectorName}-${sector.id} ${sector.class}"
 					style="mask: url(#${maskId});"
 					>
-					<title>${this.formatTitle(sectorType, sector)}</title>
+					<title>${this.formatTitle(sectorName, sector)}</title>
 				</path>`;
 			sectors += sectorSVG;
 		}
 
 		// ${labelPaths}
 		const result =
-			`<g class="sectorGroup ${sectorType}">
+			`<g class="sectorGroup ${sectorName}">
 				<defs>
 					${sectorMasks}
 					${labelPaths}

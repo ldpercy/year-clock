@@ -211,3 +211,40 @@ Currently the only things that I can fairly widely reference with `this` are:
 The above can be assumed/referenced in the themebase.
 Most other things are specific to the themes, and can perhaps be assumed in each contained environment.
 
+
+Back to constructors and ring config
+------------------------------------
+
+The impetus for the above was to clear up how I want to define clock rings, and what to do when core theme config depends on clock parameters.
+Now I have something like this:
+
+```js
+	monthRing = {
+		name    : 'yearMonth',
+		array   : undefined, // this.displayDate.monthArray,
+		sector  : new Annulus(1150,950),
+		label   : {
+			radius         : 1050,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : 'all',
+		}
+	};
+
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.monthRing.array = this.displayDate.monthArray;
+		this.dayRing.array   = this.displayDate.monthDayArray;
+	}
+
+```
+
+I have the compact ring definition that I want, and make sure that the construction-specific vars are set.
+Looks okay I *think*.
+Hmmm.
+Now I'm second guessing.
+Ugh. I'll run with it for a bit and see if it does what I needed it to do for different kinds of rings.
+It might end up cleaner to specify the array separately.
+
+

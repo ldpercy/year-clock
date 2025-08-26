@@ -53,7 +53,7 @@ svg.yearclock .face   {
 }
 
 
-
+/*
 .hemisphere-northern {
 	.sector.yearMonth-jan { fill: #7abecf }
 	.sector.yearMonth-feb { fill: #5fb69c }
@@ -83,6 +83,7 @@ svg.yearclock .face   {
 	.sector.yearMonth-nov { fill: #f3c301 }
 	.sector.yearMonth-dec { fill: #f18e17 }
 }
+*/
 
 
 svg.yearclock .sector.month {
@@ -142,7 +143,7 @@ svg.yearclock .label text {
 
 
 g.dateLabel {
-	transform: translate(-1000px, 0px);
+	transform: translate(-1100px, 0px);
 }
 text.dateLabel.year {
 	text-anchor: middle;
@@ -163,14 +164,14 @@ text.dateLabel.year {
 	dominant-baseline: middle;
 }
 
-.sectorMask-month {
+/* .sectorMask-yearMonth {
 	font-size: 3ex;
-}
+} */
 
-.sectorMask-monthNumber {
+.sectorMask-yearMonth {
 	font-size: 3em;
 }
-.sectorMask-dayNumber {
+.sectorMask-monthDay {
 	font-size: 2em;
 }
 
