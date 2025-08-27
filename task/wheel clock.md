@@ -274,3 +274,14 @@ Again I'd probably need to be more on top of filters to have a decent chance at 
 
 I might wind it back.
 
+### The original idea...
+
+Originally this was supposed to be a bit of revamp of the old plain-svg theme, which itself was just a tweaked version of brice.
+I had started making things transparent which looked kinda cool.
+I think things might have gotten out of hand when I made both rings rotate indepedendently.
+I might save that for the solar theme, and just try a single rotating disc for this one and have the month-days highlight in some other way.
+
+I'm going to ditch the asymmetric thing I've been using here as well.
+There's definitely space for it somewhere, but not for this theme.
+I'm tempted to stash the current version or copy it away somewhere though - if I wind this a long way back and squash merge it's going to be unrecoverable if i want to look at it later on.
+
