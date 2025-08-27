@@ -25,15 +25,18 @@ function getSectorPath(radiansStart, radiansEnd, annulus)
 {
 	const outerStart = polarPoint(radiansStart, annulus.outerRadius);
 	const outerEnd   = polarPoint(radiansEnd,   annulus.outerRadius);
-	const innerEnd   = polarPoint(radiansEnd,   annulus.innerRadius);
-	const innerStart = polarPoint(radiansStart, annulus.innerRadius);
+	const innerStart = polarPoint(radiansEnd,   annulus.innerRadius);
+	const innerEnd   = polarPoint(radiansStart, annulus.innerRadius);
 
-	const innerArc = (annulus.innerRadius === 0) ? '' : `A ${sf(annulus.innerRadius)} ${sf(annulus.innerRadius)} 0 0 0 ${sf(innerStart.x)} ${sf(innerStart.y)}`;
+	let outerArc = (annulus.option.simpleOuter) ? `L ${sf(outerEnd.x)} ${sf(outerEnd.y)}` : `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
+	let innerArc = (annulus.option.simpleInner) ? `L ${sf(innerEnd.x)} ${sf(innerEnd.y)}` : `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;
+
+	if (annulus.innerRadius === 0) {innerArc = ''};
 
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}
-		A ${sf(annulus.outerRadius)} ${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)} ${sf(outerEnd.y)}
-		L ${sf(innerEnd.x)} ${sf(innerEnd.y)}
+		${outerArc}
+		L ${sf(innerStart.x)} ${sf(innerStart.y)}
 		${innerArc}
 		Z`;
 

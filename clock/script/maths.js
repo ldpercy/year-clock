@@ -139,7 +139,7 @@ function dateRatio(date)
 //
 
 class Point {
-	constructor(x, y) {
+	constructor(x=0, y=0) {
 		this.x = x;
 		this.y = y;
 	}
@@ -148,11 +148,16 @@ class Point {
 
 
 class Annulus {
-	constructor(outerRadius, innerRadius, cx=0, cy=0) {
+	constructor(
+			outerRadius,
+			innerRadius,
+			center = new Point(),
+			option = {}
+		) {
 		this.outerRadius = outerRadius;
 		this.innerRadius = innerRadius;
-		this.cx = cx;
-		this.cy = cy;
+		this.center = center;
+		this.option = option;
 	}
 }
 

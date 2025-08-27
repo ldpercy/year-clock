@@ -248,3 +248,29 @@ Ugh. I'll run with it for a bit and see if it does what I needed it to do for di
 It might end up cleaner to specify the array separately.
 
 
+Design again
+------------
+Still messing around with design ideas for this one - nothing is really grabbing me yet.
+
+### Funky sawtooth bug
+Currently messing around with using straight sides for sectors using the old 'simple' idea.
+In the past I'd come up with some interesting mechanical-looking effects by having one side round and the other curved, but never actually used them yet.
+In the process I've hit upon a bug that draws the sectors kind of like sawtooth waves and it looks kind of funky - would be nice to have weird effects like these as options as well.
+
+### Roman Numerals
+I've put in roman numerals for the rings - I thought it would look interesting.
+But they have readability issues - obvious I guess, it is a stylistic choice after all - but especially on the rings for things IX and XI, and left and right orientations.
+And in some cases they just kind of look not good - annoying to the eye, hard to grok.
+Things like relatively static positions (year) and month numbers aren't too bad, but generally I think it will help to make the reading orientation quickly understandable.
+
+### Spacey theme
+
+The current 'spacey' idea for this theme isn't really gelling with roman numerals either.
+I'd imagined something stone-like that I'd thought *might* be interesting, but would probably require some filters, and could easily become pretty naff.
+I do still want some kind of translucent wheel in space sort of thing somehow, but not like this.
+So do I pivot again, or wind it back to something more like the original idea?
+The other idea I had while tinkering with roman numerals was something completely different stylistically, some kind of ancient bronze clock set into sandstone - something more conceivably 'roman'.
+Again I'd probably need to be more on top of filters to have a decent chance at that, and I'd want a knockout+shadow effect which I haven't achieved yet.
+
+I might wind it back.
+

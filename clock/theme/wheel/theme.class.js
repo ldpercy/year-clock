@@ -10,11 +10,11 @@ themeClass['wheel'] = class extends ThemeBase {
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector : new Annulus(1200, 900),
+		sector : new Annulus(1200, 900, new Point(), { simpleOuter:true}),
 		label : {
 			radius         : 1025,
 			sectorPosition : 0.5,
-			rotate         : 'radial',
+			rotate         : false,
 			invert         : false,
 			textType       : 'text',
 			format         : 'romanNumeralMonth',
@@ -28,7 +28,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		label : {
 			radius         : 700,
 			sectorPosition : 0.5,
-			rotate         : 'radial',
+			rotate         : false,
 			invert         : false,
 			textType       : 'text',
 			format         : 'romanNumeralDay',
@@ -222,7 +222,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			}
 
 			// sector path, mask, sector itself:
-			const sectorPath = getSectorPathSimple(sector.radians.start, sector.radians.end, settings.sector);
+			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.sector);
 
 			const sectorMask = `
 				<mask id="${maskId}" class="sectorMask-${sectorName} knockout-mask">
