@@ -6,6 +6,8 @@ Small job reminders to wrap into other tasks.
 Todo
 ----
 
+* Start looking into tools like linters
+* Add license
 * Find out if form `select` size can be controlled with css
 * Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform
 * Possibly combine sector and label methods into unified 'ring' (or similar) method
@@ -28,17 +30,31 @@ Todo
 * Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
 
 
-In progress
------------
+
+
+
+### In progress
+
 * Old plain-svg theme is now 'wheel' theme
 * Finish cleaning up new hands & promote to ThemeBase
 * 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc -> one side removed, do other
 
-Done
-----
+### Done
+
 * `getPeriodDaySectors` removed, now all sectors drawn with `getSectors`
 * Have working examples of text knock-out now
 * See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF, probably leave
 * See if favicons can be controlled by css at all -> appears not
 * Add extra label to wall-clock -> done
 * Also figure out reliable way to use emojis -> settled for now
+
+
+Themes
+------
+
+* Retro 60s clock
+* Space/alien theme
+* Solar theme
+* Roman theme
+* wheel theme
+* fire warning theme

@@ -285,3 +285,4 @@ I'm going to ditch the asymmetric thing I've been using here as well.
 There's definitely space for it somewhere, but not for this theme.
 I'm tempted to stash the current version or copy it away somewhere though - if I wind this a long way back and squash merge it's going to be unrecoverable if i want to look at it later on.
 
+This current version would be better off as an abstract space/alien theme
