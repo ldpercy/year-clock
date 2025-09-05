@@ -5,51 +5,38 @@
 
 svg.yearclock {
 
-	--wheelColour: #fafa;
-	--wheelShadow: #333a;
-	--wheelBorder: transparent;
-	--current: darksalmon;
+	--wheelColour: #fffa;
+	--wheelShadow: #777e;
+	--wheelBorder: #fff3;
+	--current: #fd7c;
 
 
-	background-color: fuchsia;
+	/* background-color: fuchsia; */
 
 	background:
 		linear-gradient(
-			0deg,
+			180deg,
 			black 0%,
-			midnightblue 20%,
-			purple	40%,
-			fuchsia 48%,
-			darksalmon 50%,
-			fuchsia 52%,
-			purple	60%,
-			midnightblue 80%,
+			midnightblue 70%,
+			red 80%,
+			orange 85%,
+			darkgreen 90%,
 			black 100%
 		);
-	background-position-y:0px;
 
-	font-family:  serif; /* 'Times New Roman', Times, */
+	font-family:  sans-serif; /* 'Times New Roman', Times, */
 	font-size: 48px;
 
 }
 
 
 svg.yearclock .face   {
-	fill: #fff5; /* f5f5f555 */
+	fill: #fff2; /* f5f5f555 */
 	stroke: silver;
 	stroke-width: 10;
-	filter: drop-shadow(0px 10px 10px gray);
-}
+	/* filter: drop-shadow(0px 10px 10px gray); */
+	filter: drop-shadow(0px 10px 10px var(--wheelShadow));
 
-
-
-.star,
-.diffractionSpike {
-	fill: #fafa;
-}
-
-.month-first {
-	fill: #ccca;
 }
 
 
@@ -86,13 +73,9 @@ svg.yearclock .face   {
 */
 
 
-svg.yearclock .sector.month {
-	path.sector {
-		stroke: none;
-		opacity: 75%;
-	}
-
-	/* clip-path: url(#sectorLabels); */
+.yearLabel {
+	fill:var(--wheelColour);
+	stroke:var(--wheelBorder);
 }
 
 .sectorGroup
@@ -100,29 +83,31 @@ svg.yearclock .sector.month {
 	path.sector {
 		fill:var(--wheelColour);
 		stroke:var(--wheelBorder);
-		stroke-width: 5px;
-		/* paint-order: fill; */
+		stroke-width: 10px;
+		/* filter: drop-shadow(0px 10px 10px var(--wheelShadow)); */
+		paint-order: fill;
 		/* filter:url(#f143); */
 	}
 	/* path.sector.current {
 		stroke: var(--current);
 		stroke-width: 10px;
 	} */
+
+	.sector.current {
+		fill : var(--current);
+		font-weight: bold;
+	}
 }
 
-.monthRing {
+/* .monthRing {
 	transform: translate(450px,0);
 }
 .dayRing {
 	transform: translate(350px,0);
-}
+} */
 
 
 
-
-text.first {
-	font-weight:bold;
-}
 
 svg.yearclock .label text {
 	text-anchor: middle;
@@ -142,12 +127,13 @@ svg.yearclock .label text {
 }
 
 
-g.dateLabel {
+/* g.dateLabel {
 	transform: translate(-1100px, 0px);
-}
+} */
+
 text.dateLabel.year {
 	text-anchor: middle;
-	font-size: 3em;
+	font-size: 4em;
 	text-transform: uppercase;
 	dominant-baseline: central;
 }
@@ -174,7 +160,7 @@ text.dateLabel.year {
 	dominant-baseline: central;
 }
 .sectorMask-monthDay {
-	font-size: 1em;
+	font-size: 2em;
 	text-transform: uppercase;
 	dominant-baseline: central;
 }
