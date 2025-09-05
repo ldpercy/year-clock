@@ -298,3 +298,9 @@ First thing, I think I've broken the season switch for some of the themes.
 Ah the changeover to a bulk clock parameter had a few missing updates - sorted.
 
 
+### Wind back
+
+Have wound this back to something a bit more along the lines of the original idea.
+Now to consolidate out the idea and polish it.
+
+One thing I'd quite like to try is figuring out rounding/padding for the sector shapes.

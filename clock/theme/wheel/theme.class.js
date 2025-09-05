@@ -7,37 +7,40 @@ themeClass['wheel'] = class extends ThemeBase {
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
 
+	ringSpace = 50;
+
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector : new Annulus(1200, 900, new Point(), { simpleOuter:true}),
+		sector : new Annulus(800-this.ringSpace, 400+this.ringSpace, new Point()),
 		label : {
-			radius         : 1025,
+			radius         : 600,
 			sectorPosition : 0.5,
-			rotate         : false,
+			rotate         : true,
 			invert         : false,
 			textType       : 'text',
-			format         : 'romanNumeralMonth',
+			format         : 'monthNumber',
 		}
 	};
 
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(800, 600),
+		sector : new Annulus(1200-this.ringSpace, 800+this.ringSpace),
 		label : {
-			radius         : 700,
+			radius         : 1000,
 			sectorPosition : 0.5,
-			rotate         : false,
+			rotate         : true,
 			invert         : false,
 			textType       : 'text',
-			format         : 'romanNumeralDay',
+			format         : 'dayNumber',
 		}
 	};
 
 	dateLabel   = {
 		position : new Point( 0, 0),
-		format   : 'romanNumeralYear',
+		format   : 'year',
+		radius   : 400 - this.ringSpace,
 	};
 
 
@@ -61,10 +64,10 @@ themeClass['wheel'] = class extends ThemeBase {
 		addRadians(this.displayDate.monthDayArray);
 
 		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-90-yearDayDivision.middle},0,0)`;
+		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 
 		const monthDayDivision = divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
-		const monthTransform = `rotate(${-90-monthDayDivision.middle},0,0)`;
+		const monthTransform = `rotate(${-monthDayDivision.middle},0,0)`;
 
 		// ${this.getSectors('month', this.displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 
@@ -81,26 +84,20 @@ themeClass['wheel'] = class extends ThemeBase {
 				${this.getFilters()}
 			</defs>
 
-			<!-- ${this.getFace(this.clockRadius)} -->
+			${this.getFace(this.clockRadius)}
 
-			${this.getDateLabel('year', this.dateLabel)}
-
-			<g class="monthRing">
-				<g transform="${yearTransform}">
+			<g transform="${yearTransform}">
+				<g class="monthRing">
 					${this.getSectorsWithKnockout('yearMonth', this.displayDate.monthArray, this.monthRing)}
 				</g>
-			</g>
-
-			<g class="dayRing">
-				<g transform="${monthTransform}">
-
+				<g class="dayRing">
 					${this.getSectorsWithKnockout('monthDay', this.displayDate.monthDayArray, this.dayRing)}
-
-					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
-
 					<!-- ${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayRing.label)} -->
 				</g>
+				${this.getDateLabel('year', this.dateLabel)}
 			</g>
+
+
 
 		`;
 
@@ -124,20 +121,13 @@ themeClass['wheel'] = class extends ThemeBase {
 
 				<defs>
 					<mask id="knockout-dateLabel-${labelName}" class="knockout-mask">
-						<!--
-						<rect class="knockout-shapeContaining" x="-500" y="-500" width="1000" height="1000" />
-						-->
-						<circle cx="0" cy="0" r="500" class="knockout-shapeContaining"/>
-
+						<circle cx="0" cy="0" r="${setting.radius}" class="knockout-shapeContaining"/>
 						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelName}">${this.formatLabel(labelFormat, this.displayDate)}</text>
 					</mask>
 				</defs>
 
 				<g style="mask:url(#knockout-dateLabel-${labelName})">
-					<circle cx="0" cy="0" r="500" class="star yearLabel"/>
-					<!--
-					<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelName}" ${(setting.attribute || '')}>asdf ${this.formatLabel(labelFormat, this.displayDate)}</text>
-					-->
+					<circle cx="0" cy="0" r="${setting.radius}" class="yearLabel"/>
 				</g>
 			</g>`;
 
