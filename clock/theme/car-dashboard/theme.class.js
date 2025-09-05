@@ -122,8 +122,8 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
 
-		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.hemisphere);
-		this.displayDate.seasonArray  = getSeasonArray(this.displayDate, this.hemisphere);
+		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonArray  = getSeasonArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.season = getSeason(this.displayDate.object, this.displayDate.seasonArray);
 
 		log(this.displayDate);

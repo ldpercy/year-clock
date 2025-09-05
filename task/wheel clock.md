@@ -289,6 +289,12 @@ This current version of wheel would be better off as an abstract space/alien the
 So yeah, will just just copy the current state and try to get back to the original, simpler, wheel idea.
 
 
-This current version of wheel would be better off as an abstract space/alien theme, incorporating some of the base-n experiments that I've been tinkering with.
-So yeah, will just just copy the current state and try to get back to the original, simpler, wheel idea.
+Back to the wheel
+-----------------
+
+Here we go again.
+
+First thing, I think I've broken the season switch for some of the themes.
+Ah the changeover to a bulk clock parameter had a few missing updates - sorted.
+
 
