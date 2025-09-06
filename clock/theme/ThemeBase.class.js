@@ -255,7 +255,7 @@ class ThemeBase extends Clock {
 	/* getRing
 	Combined sectors and labels
 	*/
-	getRing = function(ringSettings) {
+	getRing = function(ringSetting) {
 
 		result = `
 
@@ -268,12 +268,19 @@ class ThemeBase extends Clock {
 
 	/* getSectors
 	*/
-	getSectors = function(sectorName, sectorArray, annulus)
+	getSectors = function(sectorName, sectorArray, annulus, option={})
 	{
 		let newSvg = '';
+		let sectorPath = '';
 		for (let sector of sectorArray)
 		{
-			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
+			if (option.polarDelta) {
+				sectorPath = getSectorPolarDelta(sector.radians.start, sector.radians.end, annulus, option.polarDelta);
+			}
+			else {
+				sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
+			}
+
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
@@ -290,22 +297,22 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorName, sectorArray, labelSettings)
+	getSectorLabels = function(sectorName, sectorArray, labelsetting)
 	{
 		//log('getSectorLabels:', arguments);
-		const labelFormat = labelSettings.format || sectorName;
+		const labelFormat = labelSetting.format || sectorName;
 		let newSvg = '';
 		for (let sector of sectorArray)
 		{
 			//log('sector:', sector);
-			const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
+			const radiansLabel = sector.radians.start + (sector.radians.width * labelSetting.sectorPosition);
 
-			const center     = new PolarPoint(radiansLabel, labelSettings.radius).toPoint();
+			const center     = new PolarPoint(radiansLabel, labelSetting.radius).toPoint();
 			let transform = '';
 
-			if (labelSettings.rotate)
+			if (labelSetting.rotate)
 			{
-				let rotate = this.rotationDegrees(radiansLabel, labelSettings);
+				let rotate = this.rotationDegrees(radiansLabel, labelSetting);
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
 			const labelSvg =
@@ -327,7 +334,7 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelsCurved = function(sectorName, sectorArray, labelSettings)
+	getSectorLabelsCurved = function(sectorName, sectorArray, labelSetting)
 	{
 		//log('getSectorLabels:', arguments);
 
@@ -341,14 +348,14 @@ class ThemeBase extends Clock {
 
 			const pathId = `labelPath-${sectorName}-${sector.id}`;
 
-			if (labelSettings.invert === 'all') {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
+			if (labelSetting.invert === 'all') {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSetting.radius);
 			}
-			else if (labelSettings.invert && (Math.cos(sector.radians.middle) < 0)) {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
+			else if (labelSetting.invert && (Math.cos(sector.radians.middle) < 0)) {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSetting.radius);
 			}
 			else {
-				labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSettings.radius);
+				labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSetting.radius);
 			}
 
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
@@ -370,10 +377,10 @@ class ThemeBase extends Clock {
 
 	/* rotationDegrees
 	*/
-	rotationDegrees = function(radians, settings) {
+	rotationDegrees = function(radians, setting) {
 		let result = 0;
 
-		switch(settings.rotate) {
+		switch(setting.rotate) {
 			case 'none'         : result = 0; break;
 			case 'radial-left'  : result = degrees(radians) - 90; break;
 			case 'radial-right' : result = degrees(radians) + 90; break;
@@ -383,7 +390,7 @@ class ThemeBase extends Clock {
 			default             : result = 0; break;
 		}
 
-		switch(settings.invert) {
+		switch(setting.invert) {
 			case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
 			case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
 			case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
@@ -454,27 +461,27 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSymbols = function(symbolType, symbolArray, settings)
+	getSymbols = function(symbolType, symbolArray, setting)
 	{
 		//log('getSymbols:', arguments);
 		let newSvg = '';
 		for (let element of symbolArray)
 		{
 			//log('sector:', sector);
-			const radians = element.radians.start + (element.radians.width * settings.position);
+			const radians = element.radians.start + (element.radians.width * setting.position);
 
-			const center     = new PolarPoint(radians, settings.radius).toPoint();
+			const center     = new PolarPoint(radians, setting.radius).toPoint();
 			let transform = '';
 
-			if (settings.rotate)
+			if (setting.rotate)
 			{
-				let rotate = this.rotationDegrees(radians, settings);
+				let rotate = this.rotationDegrees(radians, setting);
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
 			const symbolSvg =
-				`<use href="#${settings.elementId}" class="${element.class}"
+				`<use href="#${setting.elementId}" class="${element.class}"
 					x="${sf(center.x)}" y="${sf(center.y)}"
-					width="${settings.width}" height="${settings.height}"
+					width="${setting.width}" height="${setting.height}"
 					transform="${transform}"/>`;
 			newSvg += symbolSvg;
 		}
@@ -495,7 +502,7 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorsWithKnockout = function(sectorName, sectorArray, settings)
+	getSectorsWithKnockout = function(sectorName, sectorArray, setting)
 	{
 		//log('getSectorsKnockout:', arguments);
 
@@ -511,8 +518,9 @@ class ThemeBase extends Clock {
 		let labelArc = '';
 		let sectors = '';
 		let textMask = '';
+		let sectorPath = '';
 
-		const labelFormat = settings.label.format || sectorName;
+		const labelFormat = setting.label.format || sectorName;
 
 		for (let sector of sectorArray)
 		{
@@ -522,15 +530,15 @@ class ThemeBase extends Clock {
 			const maskId = `sectorMask-${sectorName}-${sector.id}`;
 
 
-			if (settings.label.textType === 'textPath') {
+			if (setting.label.textType === 'textPath') {
 				// use 'textPath' elements as the knockout shape
 				//create extra label paths
 				// label paths:
-				if (settings.label.invert && (Math.cos(sector.radians.middle) < 0)) {
-					labelArc = getArcPath(sector.radians.end, sector.radians.start, settings.label.radius);
+				if (setting.label.invert && (Math.cos(sector.radians.middle) < 0)) {
+					labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.label.radius);
 				}
 				else {
-					labelArc = getArcPath(sector.radians.start, sector.radians.end, settings.label.radius);
+					labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.label.radius);
 				}
 				const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 				labelPaths += labelPath;
@@ -542,14 +550,14 @@ class ThemeBase extends Clock {
 				`;
 			} else {
 				// use regular 'text' elements as the knockout shape
-				const radiansLabel = sector.radians.start + (sector.radians.width * settings.label.sectorPosition);
+				const radiansLabel = sector.radians.start + (sector.radians.width * setting.label.sectorPosition);
 
-				const center     = new PolarPoint(radiansLabel, settings.label.radius).toPoint();
+				const center     = new PolarPoint(radiansLabel, setting.label.radius).toPoint();
 				let transform = '';
 
-				if (settings.label.rotate)
+				if (setting.label.rotate)
 				{
-					let rotate = this.rotationDegrees(radiansLabel, settings.label);
+					let rotate = this.rotationDegrees(radiansLabel, setting.label);
 					transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 				}
 
