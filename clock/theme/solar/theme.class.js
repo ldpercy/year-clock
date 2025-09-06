@@ -77,7 +77,7 @@ themeClass['solar'] = class extends ThemeBase {
 		//log(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
-		const moonPosition = polarPoint(moonRadians, this.dayRing.label.radius);
+		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
 
 		/* ${this.getSectorsWithKnockout('month', this.displayDate.monthArray, this.monthRing)} */
 

@@ -71,7 +71,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		//log(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
-		const moonPosition = polarPoint(moonRadians, this.dayRing.label.radius);
+		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
 
 
 
@@ -207,7 +207,7 @@ themeClass['wheel'] = class extends ThemeBase {
 				// use regular 'text' elements as the knockout shape
 				const radiansLabel = sector.radians.start + (sector.radians.width * settings.label.sectorPosition);
 
-				const center     = polarPoint(radiansLabel, settings.label.radius);
+				const center     = new PolarPoint(radiansLabel, settings.label.radius).toPoint();
 				let transform = '';
 
 				if (settings.label.rotate)

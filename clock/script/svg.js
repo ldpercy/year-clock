@@ -8,8 +8,8 @@ sf = significantFigures(4);
 
 
 function radialLine(radians, startRadius, endRadius) {
-	const start = polarPoint(radians, startRadius);
-	const end   = polarPoint(radians, endRadius);
+	const start = new PolarPoint(radians, startRadius).toPoint();
+	const end   = new PolarPoint(radians, endRadius).toPoint();
 	result = {
 		xStart : sf(start.x),
 		yStart : sf(start.y),
@@ -23,10 +23,10 @@ function radialLine(radians, startRadius, endRadius) {
 */
 function getSectorPath(radiansStart, radiansEnd, annulus)
 {
-	const outerStart = polarPoint(radiansStart, annulus.outerRadius);
-	const outerEnd   = polarPoint(radiansEnd,   annulus.outerRadius);
-	const innerStart = polarPoint(radiansEnd,   annulus.innerRadius);
-	const innerEnd   = polarPoint(radiansStart, annulus.innerRadius);
+	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).toPoint();
+	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).toPoint();
+	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius).toPoint();
+	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius).toPoint();
 
 	let outerArc = (annulus.option.simpleOuter) ? `L ${sf(outerEnd.x)} ${sf(outerEnd.y)}` : `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
 	let innerArc = (annulus.option.simpleInner) ? `L ${sf(innerEnd.x)} ${sf(innerEnd.y)}` : `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;
@@ -44,13 +44,41 @@ function getSectorPath(radiansStart, radiansEnd, annulus)
 }/* getSectorPath */
 
 
+
+/* getSectorPadded
+*/
+function getSectorPadded(radiansStart, radiansEnd, annulus, padding)
+{
+	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius - padding).toPoint();
+	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius - padding).toPoint();
+	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius + padding).toPoint();
+	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius + padding).toPoint();
+
+	let outerArc = `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
+	let innerArc = `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;
+
+	if (annulus.innerRadius === 0) {innerArc = ''};
+
+	const path = `
+		M ${sf(outerStart.x)} ${sf(outerStart.y)}
+		${outerArc}
+		L ${sf(innerStart.x)} ${sf(innerStart.y)}
+		${innerArc}
+		Z`;
+
+	return path;
+}/* getSectorPadded */
+
+
+
+
 /* getArcPath
 TODO: work out how to get inner/outer/reverse paths going
 */
 function getArcPath(radiansStart, radiansEnd, radius)
 {
-	const start = polarPoint(radiansStart, radius);
-	const end   = polarPoint(radiansEnd,   radius);
+	const start = new PolarPoint(radiansStart, radius).toPoint();
+	const end   = new PolarPoint(radiansEnd,   radius).toPoint();
 
 	const rotation     = '0';
 	const largeArcFlag = '0';
@@ -69,10 +97,10 @@ A simplified version of the above that draws a quadrilateral with straight lines
 */
 function getSectorPathSimple(radiansStart, radiansEnd, annulus)
 {
-	const outerStart = polarPoint(radiansStart, annulus.outerRadius);
-	const outerEnd   = polarPoint(radiansEnd,   annulus.outerRadius);
-	const innerEnd   = polarPoint(radiansEnd,   annulus.innerRadius);
-	const innerStart = polarPoint(radiansStart, annulus.innerRadius);
+	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).toPoint();
+	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).toPoint();
+	const innerEnd   = new PolarPoint(radiansEnd,   annulus.innerRadius).toPoint();
+	const innerStart = new PolarPoint(radiansStart, annulus.innerRadius).toPoint();
 
 	const path = `
 		M ${sf(outerStart.x)} ${sf(outerStart.y)}

@@ -300,7 +300,7 @@ class ThemeBase extends Clock {
 			//log('sector:', sector);
 			const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
 
-			const center     = polarPoint(radiansLabel, labelSettings.radius);
+			const center     = new PolarPoint(radiansLabel, labelSettings.radius).toPoint();
 			let transform = '';
 
 			if (labelSettings.rotate)
@@ -463,7 +463,7 @@ class ThemeBase extends Clock {
 			//log('sector:', sector);
 			const radians = element.radians.start + (element.radians.width * settings.position);
 
-			const center     = polarPoint(radians, settings.radius);
+			const center     = new PolarPoint(radians, settings.radius).toPoint();
 			let transform = '';
 
 			if (settings.rotate)

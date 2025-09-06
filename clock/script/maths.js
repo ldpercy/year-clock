@@ -7,13 +7,21 @@ Math.TAU = 2 * Math.PI;
 
 
 
-function polarPoint(radians, radius)
-{
-	return new Point(
-		radius * Math.sin(radians),
-		radius * -Math.cos(radians)
-	)
-}
+class PolarPoint {
+	constructor(radian, radius)
+	{
+		this.radian = radian;
+		this.radius = radius;
+	}
+
+	toPoint = function() {
+		return new Point(
+			this.radius * Math.sin(this.radian),
+			this.radius * -Math.cos(this.radian)
+		)
+	}
+
+}/* PolarPoint */
 
 
 
