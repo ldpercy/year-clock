@@ -49,10 +49,12 @@ function getSectorPath(radiansStart, radiansEnd, annulus)
 */
 function getSectorPolarDelta(radiansStart, radiansEnd, annulus, polarDelta=new PolarPoint())
 {
-	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).toPointPolarOffset( new PolarPoint(-polarDelta.radian, +polarDelta.radius) );
-	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).toPointPolarOffset( new PolarPoint(+polarDelta.radian, +polarDelta.radius) );
-	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius).toPointPolarOffset( new PolarPoint(+polarDelta.radian, -polarDelta.radius) );
-	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius).toPointPolarOffset( new PolarPoint(-polarDelta.radian, -polarDelta.radius) );
+	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).move( polarDelta.radius, 0 - (Math.PI * 1/4) ).toPoint();
+	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).move( polarDelta.radius, 0 + (Math.PI * 1/4) ).toPoint();
+	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius).move( polarDelta.radius, 0 + (Math.PI * 3/4) ).toPoint();
+	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius).move( polarDelta.radius, 0 - (Math.PI * 3/4) ).toPoint();
+
+	//log('getSectorPolarDelta', outerStart, outerEnd);
 
 	let outerArc = `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
 	let innerArc = `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;

@@ -198,7 +198,7 @@ function updateBackground(background) {
 
 
 function updateClock() {
-	log('updateClock:');
+	//log('updateClock:');
 
 	if (!isValidDate(new Date(page.element.datePicker.value)))
 	{
@@ -228,7 +228,7 @@ Part 1:
 */
 function drawClock(clockParameter) {
 
-	log('drawClock', arguments);
+	//log('drawClock', arguments);
 
 	let cssUrl_theme = `clock/theme/${clockParameter.theme}/theme.css`;
 	page.element.style_theme.setAttribute('href', cssUrl_theme);

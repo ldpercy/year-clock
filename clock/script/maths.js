@@ -8,10 +8,11 @@ Math.TAU = 2 * Math.PI;
 
 
 class PolarPoint {
-	constructor(radian, radius)
+	constructor(radian=0, radius=0, precision=12)
 	{
 		this.radian = radian;
 		this.radius = radius;
+		this.precision = precision;
 	}
 
 	toPoint = function() {
@@ -26,6 +27,24 @@ class PolarPoint {
 			(this.radius + polarPoint.radius) * Math.sin(this.radian + polarPoint.radian),
 			(this.radius + polarPoint.radius) * -Math.cos(this.radian + polarPoint.radian)
 		)
+	}
+
+	plus = function(polarPoint) {
+		return this.toPoint().plus(polarPoint.toPoint()).toPolarPoint();
+		// this way is pretty dumb, figure out a better way
+		// the lengths should add arithmetically
+		// this one is absolute
+	}
+
+	/* move
+	A single-step turtle graphics kind of move relative to the current point
+	Takes the current radian coordinate as the base heading and the new heading is relative to it.
+	Ie a 0 heading will continue in the same direction
+	*/
+	move = function(distance, heading) {
+		const delta = new PolarPoint(this.radian+heading, distance);
+		//console.log(delta);
+		return this.plus(delta);
 	}
 
 }/* PolarPoint */
@@ -46,6 +65,11 @@ Returns a function that will call toPrecision with the supplied number of signif
 */
 function significantFigures(integer) {
 	return (number) => { return number.toPrecision(integer) }
+}
+
+
+function equalAtPrecision(precision, n1, n2) {
+	return (n1.toPrecision(precision) === n2.toPrecision(precision))
 }
 
 
@@ -154,9 +178,39 @@ function dateRatio(date)
 //
 
 class Point {
-	constructor(x=0, y=0) {
+	constructor(x=0, y=0, precision=12) {
 		this.x = x;
 		this.y = y;
+		this.precision = precision;
+	}
+
+	plus = function(point) {
+		return new Point(
+			this.x + point.x,
+			this.y + point.y
+		);
+	}
+
+	distanceFrom = function(point = new Point()) {
+		const result = Math.hypot((this.x - point.x), (this.y - point.y));
+		return result;
+	}
+
+	// Clockwise from y axis
+	radiansFrom = function(center = new Point()) {
+		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
+		return result;
+	}
+
+	toPolarPoint = function(polarPoint = new PolarPoint()) {
+		const distance = this.distanceFrom();
+		const radian  = (equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
+		// for points on the origin return the default PolarPoint radian
+		// should probably actually add these akin to a base vector
+		return new PolarPoint(
+			radian,
+			distance
+		);
 	}
 }/* Point */
 

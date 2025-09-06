@@ -13,7 +13,7 @@ themeClass['debug'] = class extends ThemeBase {
 		name       : 'yearMonth',
 		array      : undefined, // this.displayDate.monthArray,
 		sector     : new Annulus(800, 400),
-		polarDelta : new PolarPoint(-.05, 0),
+		polarDelta : new PolarPoint(.1, -15),
 		label : {
 			radius         : 600,
 			sectorPosition : 0.5,
@@ -27,7 +27,7 @@ themeClass['debug'] = class extends ThemeBase {
 
 
 	weekSector  = new Annulus(900, 400);
-	daySector   = new Annulus(1200, 700);
+	daySector   = new Annulus(1200, 810);
 
 	weekLabel = {
 		radius         : 600,
@@ -152,6 +152,9 @@ themeClass['debug'] = class extends ThemeBase {
 			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
 
 			${this.getDateLabel('date', this.dateLabel)}
+
+
+			<circle class="face" cx="0" cy="0" r="390" />
 		`;
 
 		return themeSVG;
