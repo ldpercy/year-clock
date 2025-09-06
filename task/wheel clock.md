@@ -304,3 +304,20 @@ Have wound this back to something a bit more along the lines of the original ide
 Now to consolidate out the idea and polish it.
 
 One thing I'd quite like to try is figuring out rounding/padding for the sector shapes.
+
+I think padding by itself will probably be easier, and if I can get that working first then I can mimic rounding with a wide stroke for a while.
+
+Getting proper rounding going using path arcs might be tricky.
+
+
+
+### Wind back
+
+Have wound this back to something a bit more along the lines of the original idea.
+Now to consolidate out the idea and polish it.
+
+One thing I'd quite like to try is figuring out rounding/padding for the sector shapes.
+
+I think padding by itself will probably be easier, and if I can get that working first then I can mimic rounding with a wide stroke for a while.
+
+Getting proper rounding going using path arcs might be tricky.
