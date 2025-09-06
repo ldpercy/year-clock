@@ -6,8 +6,9 @@
 svg.yearclock {
 
 	--wheelColour: #fffa;
-	--wheelShadow: #777e;
-	--wheelBorder: #fff3;
+	--sectorColour: #bbbf;
+	--shadowColour: #777e;
+	--wheelBorder: #fff3; /* #fff3 */
 	--current: #fd7c;
 
 
@@ -34,9 +35,14 @@ svg.yearclock .face   {
 	fill: #fff2; /* f5f5f555 */
 	stroke: silver;
 	stroke-width: 10;
-	/* filter: drop-shadow(0px 10px 10px gray); */
-	filter: drop-shadow(0px 10px 10px var(--wheelShadow));
+	filter: blur(1px) drop-shadow(0px 10px 10px var(--shadowColour));
 
+
+}
+
+
+g.clock .sector{
+	filter:   drop-shadow(0px 10px 10px var(--shadowColour)); /* blur(1px) */
 }
 
 
@@ -74,18 +80,20 @@ svg.yearclock .face   {
 
 
 .yearLabel {
-	fill:var(--wheelColour);
+	fill:var(--sectorColour);
 	stroke:var(--wheelBorder);
+	stroke-width: 40px;
 }
 
 .sectorGroup
 {
 	path.sector {
-		fill:var(--wheelColour);
-		stroke:var(--wheelBorder);
-		stroke-width: 10px;
-		/* filter: drop-shadow(0px 10px 10px var(--wheelShadow)); */
-		paint-order: fill;
+		fill:var(--sectorColour);
+		stroke:var(--wheelColour);
+		stroke-width: 40px;
+		stroke-linejoin: round;
+		/* filter: blur(1px) drop-shadow(0px 10px 10px var(--wheelShadow)); */
+		paint-order: stroke; /* fill */
 		/* filter:url(#f143); */
 	}
 	/* path.sector.current {

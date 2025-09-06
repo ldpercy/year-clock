@@ -274,8 +274,8 @@ class ThemeBase extends Clock {
 		let sectorPath = '';
 		for (let sector of sectorArray)
 		{
-			if (option.polarDelta) {
-				sectorPath = getSectorPolarDelta(sector.radians.start, sector.radians.end, annulus, option.polarDelta);
+			if (option.sectorResize) {
+				sectorPath = getSectorResized(sector.radians.start, sector.radians.end, annulus, option.sizeAdjust);
 			}
 			else {
 				sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
@@ -519,6 +519,7 @@ class ThemeBase extends Clock {
 		let sectors = '';
 		let textMask = '';
 		let sectorPath = '';
+		let maskPath = '';
 
 		const labelFormat = setting.label.format || sectorName;
 
@@ -567,17 +568,18 @@ class ThemeBase extends Clock {
 			}
 
 			// sector path, mask, sector itself:
-			if (setting.polarDelta) {
-				sectorPath = getSectorPolarDelta(sector.radians.start, sector.radians.end, setting.sector, setting.polarDelta);
+			if (setting.sizeAdjust) {
+				sectorPath = getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.sizeAdjust);
+				maskPath = getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.maskExpand);
 			}
 			else {
 				sectorPath = getSectorPath(sector.radians.start, sector.radians.end, setting.sector);
+				maskPath = sectorPath;
 			}
 
 			const sectorMask = `
 				<mask id="${maskId}" class="sectorMask-${sectorName} knockout-mask">
-					<path class="knockout-shapeContaining" d="${sectorPath}"/>
-
+					<path class="knockout-shapeContaining" d="${maskPath}"/>
 					${textMask}
 				</mask>
 			`;

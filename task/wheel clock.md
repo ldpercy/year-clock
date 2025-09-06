@@ -321,3 +321,15 @@ One thing I'd quite like to try is figuring out rounding/padding for the sector 
 I think padding by itself will probably be easier, and if I can get that working first then I can mimic rounding with a wide stroke for a while.
 
 Getting proper rounding going using path arcs might be tricky.
+
+
+
+New Polar Stuff
+---------------
+
+Have run ahead and added a bunch of experimental changes for polar coordinate calcs, but it's very rough, and some parts look like they need some testing/debugging.
+
+* The mask expansion for the sector knockout doesn't seem to be working correctly - test
+* The shadows look wrong??
+* Try to simplify the pp.plus method
+*
