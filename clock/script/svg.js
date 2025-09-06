@@ -45,14 +45,14 @@ function getSectorPath(radiansStart, radiansEnd, annulus)
 
 
 
-/* getSectorPadded
+/* getSectorPolarDelta
 */
-function getSectorPadded(radiansStart, radiansEnd, annulus, padding)
+function getSectorPolarDelta(radiansStart, radiansEnd, annulus, polarDelta=new PolarPoint())
 {
-	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius - padding).toPoint();
-	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius - padding).toPoint();
-	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius + padding).toPoint();
-	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius + padding).toPoint();
+	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).toPointPolarOffset( new PolarPoint(-polarDelta.radian, +polarDelta.radius) );
+	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).toPointPolarOffset( new PolarPoint(+polarDelta.radian, +polarDelta.radius) );
+	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius).toPointPolarOffset( new PolarPoint(+polarDelta.radian, -polarDelta.radius) );
+	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius).toPointPolarOffset( new PolarPoint(-polarDelta.radian, -polarDelta.radius) );
 
 	let outerArc = `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
 	let innerArc = `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;
@@ -67,7 +67,7 @@ function getSectorPadded(radiansStart, radiansEnd, annulus, padding)
 		Z`;
 
 	return path;
-}/* getSectorPadded */
+}/* getSectorPolarDelta */
 
 
 

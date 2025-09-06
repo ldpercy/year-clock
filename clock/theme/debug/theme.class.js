@@ -7,7 +7,25 @@ themeClass['debug'] = class extends ThemeBase {
 	viewBox           = padViewBox(50);
 	clockRadius       = 1200;
 
-	monthSector = new Annulus(800, 400);
+	//monthSector = new Annulus(800, 400);
+
+	monthRing = {
+		name       : 'yearMonth',
+		array      : undefined, // this.displayDate.monthArray,
+		sector     : new Annulus(800, 400),
+		polarDelta : new PolarPoint(-.05, 0),
+		label : {
+			radius         : 600,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : false,
+			textType       : 'text',
+			format         : 'monthNumber',
+		}
+	};
+
+
+
 	weekSector  = new Annulus(900, 400);
 	daySector   = new Annulus(1200, 700);
 
@@ -43,6 +61,15 @@ themeClass['debug'] = class extends ThemeBase {
 		width          : 100,
 		height         : 100,
 	};
+
+
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.monthRing.array = this.displayDate.monthArray;
+		//this.dayRing.array   = this.displayDate.monthDayArray;
+	}
+
 
 
 	//
@@ -103,8 +130,6 @@ themeClass['debug'] = class extends ThemeBase {
 
 				<path id="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
 
-
-
 				<circle id="circle" cx="0" cy="0" r="20"/>
 				<rect id="rect" x="-10" y="0" width="20" height="80"/>
 
@@ -117,7 +142,8 @@ themeClass['debug'] = class extends ThemeBase {
 			</defs>
 
 			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', this.displayDate.monthArray, this.monthSector)}
+
+			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, {polarDelta: this.monthRing.polarDelta})}
 
 			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
 

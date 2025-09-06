@@ -13,6 +13,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector : new Annulus(800-this.ringSpace, 400+this.ringSpace, new Point()),
+		polarDelta : new PolarPoint(-.005, 0),
 		label : {
 			radius         : 600,
 			sectorPosition : 0.5,
@@ -27,6 +28,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(1200-this.ringSpace, 800+this.ringSpace),
+		polarDelta : new PolarPoint(-.005, 0),
 		label : {
 			radius         : 1000,
 			sectorPosition : 0.5,
@@ -92,7 +94,6 @@ themeClass['wheel'] = class extends ThemeBase {
 				</g>
 				<g class="dayRing">
 					${this.getSectorsWithKnockout('monthDay', this.displayDate.monthDayArray, this.dayRing)}
-					<!-- ${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayRing.label)} -->
 				</g>
 				${this.getDateLabel('year', this.dateLabel)}
 			</g>
@@ -100,8 +101,8 @@ themeClass['wheel'] = class extends ThemeBase {
 		`;
 
 		/*
+			${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayRing.label)}
 			${this.getSectorsWithKnockout('dayNumber', this.displayDate.monthDayArray, this.daySector)}
-
 			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayName)}
 		*/
 

@@ -65,19 +65,19 @@ path.sector {
 */
 
 .quarter .sector:nth-of-type(even),
-.month .sector:nth-of-type(odd),
+.yearMonth .sector:nth-of-type(odd),
 .week .sector:nth-of-type(even)
 {
 	fill: var(--sectorDark);
-	mix-blend-mode:multiply;
+	/* mix-blend-mode:multiply; */
 }
 
 .quarter .sector:nth-of-type(odd),
-.month .sector:nth-of-type(even),
+.yearMonth .sector:nth-of-type(even),
 .week .sector:nth-of-type(odd)
 {
 	fill: var(--sectorLight);
-	mix-blend-mode:multiply;
+	/* mix-blend-mode:multiply; */
 }
 
 

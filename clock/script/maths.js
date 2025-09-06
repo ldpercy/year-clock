@@ -21,6 +21,13 @@ class PolarPoint {
 		)
 	}
 
+	toPointPolarOffset(polarPoint) {  // another polar point represents the deltas
+		return new Point(
+			(this.radius + polarPoint.radius) * Math.sin(this.radian + polarPoint.radian),
+			(this.radius + polarPoint.radius) * -Math.cos(this.radian + polarPoint.radian)
+		)
+	}
+
 }/* PolarPoint */
 
 

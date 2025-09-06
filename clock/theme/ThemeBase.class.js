@@ -297,7 +297,7 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorName, sectorArray, labelsetting)
+	getSectorLabels = function(sectorName, sectorArray, labelSetting)
 	{
 		//log('getSectorLabels:', arguments);
 		const labelFormat = labelSetting.format || sectorName;
@@ -567,7 +567,12 @@ class ThemeBase extends Clock {
 			}
 
 			// sector path, mask, sector itself:
-			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, settings.sector);
+			if (setting.polarDelta) {
+				sectorPath = getSectorPolarDelta(sector.radians.start, sector.radians.end, setting.sector, setting.polarDelta);
+			}
+			else {
+				sectorPath = getSectorPath(sector.radians.start, sector.radians.end, setting.sector);
+			}
 
 			const sectorMask = `
 				<mask id="${maskId}" class="sectorMask-${sectorName} knockout-mask">
