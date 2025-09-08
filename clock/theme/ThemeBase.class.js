@@ -281,51 +281,60 @@ class ThemeBase extends Clock {
 
 
 	/* getSectorLabels
-		labelSetting = {
+		setting = {
 			radius         : number,
 			sectorPosition : number,
 			rotate         : boolean,
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorName, sectorArray, labelSetting)
+	getSectorLabels = function(sectorName, sectorArray, setting)
 	{
 		//log('getSectorLabels:', arguments);
-		const labelFormat = labelSetting.format || sectorName;
-		let newSvg = '';
+		const labelFormat = setting.format || sectorName;
+		let sectorLabelSvg = '';
 		for (let sector of sectorArray)
 		{
-			//log('sector:', sector);
-			const radiansLabel = sector.radians.start + (sector.radians.width * labelSetting.sectorPosition);
-
-			const center     = new PolarPoint(radiansLabel, labelSetting.radius).toPoint();
-			let transform = '';
-
-			if (labelSetting.rotate)
-			{
-				let rotate = this.rotationDegrees(radiansLabel, labelSetting);
-				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
-			}
-			const labelSvg =
-				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
-			newSvg += labelSvg;
+			sectorLabelSvg += this.getSectorLabel(sector, setting, labelFormat);
 		}
 
 		const result =
-			`<g class="group-label ${sectorName} ${labelSetting.name||''}">
-				${newSvg}
+			`<g class="group-label ${sectorName} ${setting.name||''}">
+				${sectorLabelSvg}
 			</g>`;
 		return result;
 	}/* getSectorLabels */
 
 
+	/* getSectorLabel
+	*/
+	getSectorLabel = function(sector, setting, labelFormat)
+	{
+		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
+
+		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
+		let rotation;
+		let transform = '';
+
+		if (setting.rotate)
+		{
+			rotation = this.rotationDegrees(radiansLabel, setting);
+			transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
+		}
+		const result =
+			`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
+		return result;
+	}/* getSectorLabel */
+
+
+
 	/* getSectorLabelsCurved
-		labelSetting = {
+		setting = {
 			radius         : number,
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelsCurved = function(sectorName, sectorArray, labelSetting)
+	getSectorLabelsCurved = function(sectorName, sectorArray, setting)
 	{
 		//log('getSectorLabels:', arguments);
 
@@ -339,14 +348,14 @@ class ThemeBase extends Clock {
 
 			const pathId = `labelPath-${sectorName}-${sector.id}`;
 
-			if (labelSetting.invert === 'all') {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSetting.radius);
+			if (setting.invert === 'all') {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
 			}
-			else if (labelSetting.invert && (Math.cos(sector.radians.middle) < 0)) {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSetting.radius);
+			else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
 			}
 			else {
-				labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSetting.radius);
+				labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.radius);
 			}
 
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
@@ -488,7 +497,7 @@ class ThemeBase extends Clock {
 
 
 	/* getSectorsWithKnockout
-		labelSetting = {
+		setting = {
 			radius         : number,
 			invert         : boolean,
 		};
