@@ -1,10 +1,11 @@
-Todo
+Task
 ====
 
-Small job reminders to wrap into other tasks.
 
 Todo
 ----
+
+Job reminders to wrap into other tasks.
 
 * Start looking into tools like linters
 * Add license
@@ -17,7 +18,7 @@ Todo
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
 * Look into utilising some webservices for tasks like l10n
 * Consider reorgansing the global scripts (maths, date etc) into service objects with some autowiring
-* Build a 180 degree year clock to force the point about split-season display
+* Build a 180 degree year clock to force the point about split-season display -> fire warning theme
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)
 * Do something with the footer
@@ -28,8 +29,6 @@ Todo
 * Look into stroke gradients
 * Make pointer-sector position configurable (start/middle/fractional)
 * Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
-
-
 
 
 
@@ -52,9 +51,12 @@ Todo
 Themes
 ------
 
-* Retro 60s clock
-* Space/alien theme
+In progress:
+* Wheel theme
 * Solar theme
+* Space/alien theme
+
+Future:
+* Retro 60s clock
+* Fire warning theme
 * Roman theme
-* wheel theme
-* fire warning theme
