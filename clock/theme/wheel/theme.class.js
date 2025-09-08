@@ -7,40 +7,64 @@ themeClass['wheel'] = class extends ThemeBase {
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
 
-	ringSpace = 60;
+	ringSpace = 50;
 
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector  : new Annulus(800-this.ringSpace, 400+this.ringSpace, new Point()),
-		sectorType: 'knockout',
-		sizeAdjust : new Point(-30,-30),
+		sector  : new Annulus(800, 400),
+		sectorType: 'normal',
+		sizeAdjust : new Point(-25, -this.ringSpace),
 		maskExpand : new Point(100,100),
-		label : {
-			radius         : 600,
-			sectorPosition : 0.5,
-			rotate         : true,
-			invert         : false,
-			textType       : 'text',
-			format         : 'monthNumber',
-		}
+		label : [
+			{
+				name           : 'monthNumber',
+				radius         : 650,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'monthNumber',
+			},
+			{
+				name           : 'monthShort',
+				radius         : 550,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'monthShort',
+			}
+		]
 	};
 
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(1200-this.ringSpace, 800+this.ringSpace),
-		sectorType: 'knockout',
-		sizeAdjust :  new Point( -30,-30),
+		sector : new Annulus(1200, 800),
+		sectorType: 'normal',
+		sizeAdjust :  new Point(-25, -this.ringSpace),
 		maskExpand : new Point(100,100),
-		label : {
-			radius         : 1000,
-			sectorPosition : 0.5,
-			rotate         : true,
-			invert         : false,
-			textType       : 'text',
-			format         : 'dayNumber',
-		}
+		label : [
+			{
+				name           : 'dayNumber',
+				radius         : 1050,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'dayNumber',
+			},
+			{
+				name           : 'dayShort',
+				radius         : 950,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'dayShort',
+			}
+		]
 	};
 
 	dateLabel   = {

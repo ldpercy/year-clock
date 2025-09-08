@@ -161,13 +161,41 @@ text.dateLabel.year {
 	font-size: 3ex;
 } */
 
+.ring-yearMonth {
+	.monthNumber {
+		font-size: 3em;
+	}
+	.monthShort {
+		font-size: 1em;
+	}
+}
+
+
+.ring-monthDay {
+	.dayNumber {
+		font-size: 2em;
+	}
+	.dayShort {
+		font-size: 1em;
+	}
+}
+
 .sectorMask-yearMonth text,
-.yearMonth text {
+.yearMonth.monthNumber {
 	font-size: 3em;
 }
 
-.sectorMask-monthDay text,
-.monthDay text {
+.sectorMask-monthDay text
+.monthDay.dayNumber {
 	font-size: 2em;
 }
+
+/* .yearMonth.monthShort,
+.monthDay.dayShort
+{
+	font-size: 1em;
+}
+ */
+
+
 

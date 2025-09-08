@@ -28,6 +28,7 @@ class ThemeBase extends Clock {
 			case 'dayShort'     : result = `${data.name.slice(0,3)}`; break;
 
 			case 'monthNumber'  : result = `${data.number}`; break;
+			case 'monthShort'     : result = `${data.name.slice(0,3)}`; break;
 
 			case 'romanNumeralDay'   : result = `${asRomanNumerals(data.dayOfMonth)}`; break;
 			case 'romanNumeralMonth' : result = `${asRomanNumerals(data.number)}`; break;
@@ -311,7 +312,7 @@ class ThemeBase extends Clock {
 		}
 
 		const result =
-			`<g class="group-label ${sectorName}">
+			`<g class="group-label ${sectorName} ${labelSetting.name||''}">
 				${newSvg}
 			</g>`;
 		return result;
@@ -617,8 +618,12 @@ class ThemeBase extends Clock {
 		else
 		{
 			sectorSVG = this.getSectors(setting.name, setting.array, setting.sector, setting);
-			labelSVG = this.getSectorLabels(setting.name, setting.array, setting.label);
+			setting.label.forEach((label) => { labelSVG += this.getSectorLabels(setting.name, setting.array, label)});
 		}
+
+		// [1,2,3,4].reduce( (p,c)=>{ return `${p} -${c}`  } )
+		//ReadonlyArray.reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: readonly T[]) => T): T
+
 
 		result = `
 			<g class="group-ring ring-${setting.name}">
