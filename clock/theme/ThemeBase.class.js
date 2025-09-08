@@ -252,17 +252,7 @@ class ThemeBase extends Clock {
 	}/* getHand1 */
 
 
-	/* getRing
-	Combined sectors and labels
-	*/
-	getRing = function(ringSetting) {
 
-		result = `
-
-		`;
-
-		return result;
-	}
 
 
 
@@ -598,7 +588,7 @@ class ThemeBase extends Clock {
 
 		// ${labelPaths}
 		const result =
-			`<g class="sectorGroup ${sectorName}">
+			`<g class="group-sector ${sectorName}">
 				<defs>
 					${sectorMasks}
 					${labelPaths}
@@ -611,6 +601,35 @@ class ThemeBase extends Clock {
 
 	}/* getSectorsWithKnockout */
 
+
+
+	/* getRing
+	Combined sectors and labels
+	*/
+	getRing = function(setting) {
+
+		let sectorSVG = '';
+		let labelSVG = '';
+
+		if (setting.sectorType === 'knockout') {
+			sectorSVG = this.getSectorsWithKnockout(setting.name, setting.array, setting);
+		}
+		else
+		{
+			sectorSVG = this.getSectors(setting.name, setting.array, setting.sector, setting);
+			labelSVG = this.getSectorLabels(setting.name, setting.array, setting.label);
+		}
+
+		result = `
+			<g class="group-ring ring-${setting.name}">
+				<title>${setting.name}</title>
+				${sectorSVG}
+				${labelSVG}
+			</g>
+		`;
+
+		return result;
+	}
 
 
 

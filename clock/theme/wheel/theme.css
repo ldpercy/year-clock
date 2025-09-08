@@ -147,29 +147,27 @@ text.dateLabel.year {
 }
 
 
-
-
-
+.group-label,
 .sectorMask-yearMonth,
 .sectorMask-monthDay,
 .sectorMask-monthNumber,
 .sectorMask-dayNumber {
 	text-anchor: middle;
-	dominant-baseline: middle;
+	dominant-baseline: central;
+	text-transform: uppercase;
 }
 
 /* .sectorMask-yearMonth {
 	font-size: 3ex;
 } */
 
-.sectorMask-yearMonth {
+.sectorMask-yearMonth text,
+.yearMonth text {
 	font-size: 3em;
-	text-transform: uppercase;
-	dominant-baseline: central;
 }
-.sectorMask-monthDay {
+
+.sectorMask-monthDay text,
+.monthDay text {
 	font-size: 2em;
-	text-transform: uppercase;
-	dominant-baseline: central;
 }
 
