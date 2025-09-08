@@ -6,7 +6,8 @@
 svg.yearclock {
 
 	--wheelColour: #fffa;
-	--sectorColour: #bbbf;
+	--sectorColour: #ccce;
+	--sectorStroke: #eee7;
 	--shadowColour: #777e;
 	--wheelBorder: #fff3; /* #fff3 */
 	--current: #fd7c;
@@ -79,28 +80,21 @@ g.clock .sector{
 */
 
 
-.yearLabel {
+.group-sector path.sector,
+.yearLabel
+{
 	fill:var(--sectorColour);
-	stroke:var(--wheelBorder);
+	stroke:var(--sectorStroke);
 	stroke-width: 40px;
+	stroke-linejoin: round;
+	/* filter: blur(1px) drop-shadow(0px 10px 10px var(--wheelShadow)); */
+	paint-order: stroke; /* fill */
+	/* filter:url(#f143); */
 }
+
 
 .group-sector
 {
-	path.sector {
-		fill:var(--sectorColour);
-		stroke:var(--wheelColour);
-		stroke-width: 40px;
-		stroke-linejoin: round;
-		/* filter: blur(1px) drop-shadow(0px 10px 10px var(--wheelShadow)); */
-		paint-order: stroke; /* fill */
-		/* filter:url(#f143); */
-	}
-	/* path.sector.current {
-		stroke: var(--current);
-		stroke-width: 10px;
-	} */
-
 	.sector.current {
 		fill : var(--current);
 		font-weight: bold;

@@ -71,6 +71,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		position : new Point( 0, 0),
 		format   : 'year',
 		radius   : 400 - this.ringSpace,
+		maskExpand : 100,
 	};
 
 
@@ -139,7 +140,7 @@ themeClass['wheel'] = class extends ThemeBase {
 
 				<defs>
 					<mask id="knockout-dateLabel-${labelName}" class="knockout-mask">
-						<circle cx="0" cy="0" r="${setting.radius}" class="knockout-shapeContaining"/>
+						<circle cx="0" cy="0" r="${setting.radius+setting.maskExpand}" class="knockout-shapeContaining"/>
 						<text x="${setting.position.x}" y="${setting.position.y}" class="knockout-shapeKnockedout dateLabel ${labelName}">${this.formatLabel(labelFormat, this.displayDate)}</text>
 					</mask>
 				</defs>
