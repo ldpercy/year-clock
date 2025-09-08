@@ -80,8 +80,8 @@ themeClass['lightning'] = class extends ThemeBase {
 			case 'yearDay'      : result = `${data.name.slice(0,2)}`; break;
 			case 'quarter'      : result = `${data.name}`; break;
 			case 'month'        : result = `${data.name.slice(0,3)}`; break;
-			case 'weekSector'   : result = `W${data.name}`; break;
-			case 'week'         : result = `W${data.week.name}`; break;
+			case 'week'         : result = `W${data.name}`; break;
+			case 'clock-week'         : result = `W${data.week.name}`; break;
 			case 'dayOfYear'    : result = `D${data.dayOfYear}`; break;
 			case 'date'         : result = `${isoMonthDay(data.object)}`; break;
 			case 'year'         : result = `${data.year}`; break;
@@ -112,13 +112,13 @@ themeClass['lightning'] = class extends ThemeBase {
 
 			${this.getSectorLabels('quarter', quarterArray, this.quarterLabels)}
 			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabels)}
-			${this.getSectorLabels('weekSector', weekArray, this.weekLabels)}
+			${this.getSectorLabels('week', weekArray, this.weekLabels)}
 			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabels)}
 
 			${this.getDateLabel('year', this.yearLabel)}
 			${this.getDateLabel('date', this.dateLabel)}
 
-			${this.getDateLabel('week', this.weekLabel)}
+			${this.getDateLabel('clock-week', this.weekLabel)}
 			${this.getDateLabel('dayOfYear', this.dayLabel)}
 		`;
 

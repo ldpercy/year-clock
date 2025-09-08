@@ -96,11 +96,11 @@ svg.yearclock .sector.nov { fill: #F3C301 }
 svg.yearclock .sector.dec { fill: #F18E17 }
 
 
-.sectorGroup.yearDay .weekend {
+.group-sector.yearDay .weekend {
 	fill: #ccc7;
 }
 
-.sectorGroup.yearDay .Monday {
+.group-sector.yearDay .Monday {
 	fill: #ff07;
 }
 
@@ -120,7 +120,7 @@ svg.yearclock .sector.dec { fill: #F18E17 }
 
 }
 
-.label.yearDay text {
+.group-label.yearDay text {
 	font-size: 0.5ex;
 	fill: var(--textDark);
 	stroke:none;
@@ -163,7 +163,7 @@ path.sector.day.current
 }
 
 
-g.symbol * {
+.group-symbol * {
 
 	fill:red;
 	stroke: green;

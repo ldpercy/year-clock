@@ -81,11 +81,11 @@ path.sector {
 
 
 /* days */
-.sectorGroup.yearDay .weekend {
+.group-sector.yearDay .weekend {
 	fill: var(--sectorDark);
 }
 
-.sectorGroup.yearDay .weekday {
+.group-sector.yearDay .weekday {
 	fill: var(--sectorLight);
 }
 
@@ -116,7 +116,7 @@ path.sector {
 /* Labels
 */
 
-.label {
+.group-label {
 	fill: var(--textDark);
 	text-anchor: middle;
 	dominant-baseline: middle;
@@ -131,10 +131,10 @@ path.sector {
 		font-size: 4ex;
 		filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 	}
-	&.label.week text {
+	&.week text {
 		font-size: 1.5ex;
 	}
-	&.label.yearDay text {
+	&.yearDay text {
 		font-size: 0.7ex;
 	}
 }

@@ -284,7 +284,7 @@ class ThemeBase extends Clock {
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
-		const result = `<g class="sectorGroup ${sectorName}">${newSvg}</g>`;
+		const result = `<g class="group-sector ${sectorName}">${newSvg}</g>`;
 		return result;
 	}/* getSectors */
 
@@ -321,7 +321,7 @@ class ThemeBase extends Clock {
 		}
 
 		const result =
-			`<g class="label ${sectorName}">
+			`<g class="group-label ${sectorName}">
 				${newSvg}
 			</g>`;
 		return result;
@@ -366,7 +366,7 @@ class ThemeBase extends Clock {
 		}
 
 		const result =
-			`<g class="label ${sectorName}">
+			`<g class="group-label label-${sectorName}">
 				<defs>${defs}</defs>
 				<text>${textPaths}</text>
 			</g>`;
@@ -487,7 +487,7 @@ class ThemeBase extends Clock {
 		}
 
 		const result = `
-			<g class="symbol ${symbolType}">
+			<g class="group-symbol ${symbolType}">
 				${newSvg}
 			</g>`;
 		return result;

@@ -82,7 +82,7 @@ svg.yearclock .sector.month {
 }
 
 
-.sectorGroup.monthDay {
+.group-sector.monthDay {
 
 	.sector {
 		fill:#333f;
@@ -100,7 +100,7 @@ text.first {
 	font-weight:bold;
 }
 
-svg.yearclock .label text {
+.group-label text {
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: white;

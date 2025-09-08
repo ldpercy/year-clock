@@ -85,7 +85,7 @@ g.clock .sector{
 	stroke-width: 40px;
 }
 
-.sectorGroup
+.group-sector
 {
 	path.sector {
 		fill:var(--sectorColour);

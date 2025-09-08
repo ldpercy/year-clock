@@ -95,7 +95,7 @@ svg.yearclock .sector.month {
 	/* clip-path: url(#sectorLabels); */
 }
 
-.sectorGroup
+.group-sector
 {
 	path.sector {
 		fill:var(--wheelColour);

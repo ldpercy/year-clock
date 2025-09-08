@@ -77,11 +77,6 @@ themeClass['vintage'] = class extends ThemeBase {
 		addRadians(this.displayDate.monthDayArray);
 
 		const themeSVG = `
-			<!--
-			<rect x="-1200" y="-1200" width="2400" height="2400">
-			</rect>
-			-->
-
 			${this.getDefs()}
 			${this.getBody(this.body)}
 			${this.getFace(this.faceRadius)}
@@ -169,7 +164,7 @@ themeClass['vintage'] = class extends ThemeBase {
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 
 		const svg =
-			`<g class="dateLabel">
+			`<g class="group-label dateLabel">
 				<defs>
 					<path id="dateLabelPath" d="${dateLabelPath}"/>
 				</defs>
@@ -262,7 +257,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	getIcon = function() {
 		const path =
-			`<path class="label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>`;
+			`<path class="group-label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"><title>vintage clock by ldpercy</title></path>`;
 			//'<path class="label favicon" d="M 259 966 L -966 -259 L 707 -707 M -259 966 L -707 -707 L 966 -259 M -707 707 L -259 -966 L 966 259 M -966 259 L 259 -966 L 707 707  Z"></path>';
 		return path;
 	}

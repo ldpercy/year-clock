@@ -59,7 +59,7 @@ svg.yearclock .face   {
 
 
 
-.sectorGroup.yearDay {
+.group-sector.yearDay {
 	.weekday {
 		fill: var(--white);
 	}
@@ -72,7 +72,7 @@ svg.yearclock .face   {
 /* Labels
 */
 
-svg.yearclock .label.month text{
+.group-label.month text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: var(--labelblack);
