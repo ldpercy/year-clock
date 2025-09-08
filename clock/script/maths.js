@@ -7,47 +7,6 @@ Math.TAU = 2 * Math.PI;
 
 
 
-class PolarPoint {
-	constructor(radian=0, radius=0, precision=12)
-	{
-		this.radian = radian;
-		this.radius = radius;
-		this.precision = precision;
-	}
-
-	toPoint = function() {
-		return new Point(
-			this.radius * Math.sin(this.radian),
-			this.radius * -Math.cos(this.radian)
-		)
-	}
-
-	toPointPolarOffset(polarPoint) {  // another polar point represents the deltas
-		return new Point(
-			(this.radius + polarPoint.radius) * Math.sin(this.radian + polarPoint.radian),
-			(this.radius + polarPoint.radius) * -Math.cos(this.radian + polarPoint.radian)
-		)
-	}
-
-	plus = function(polarPoint) {
-		return this.toPoint().plus(polarPoint.toPoint()).toPolarPoint();
-		// this way is pretty dumb, figure out a better way
-		// the lengths should add arithmetically
-		// this one is absolute
-	}
-
-	/* move
-	A single-step turtle graphics kind of move relative to the current point
-	Takes the current radian coordinate as the base heading and the new heading is relative to it.
-	Ie a 0 heading will continue in the same direction
-	*/
-	move = function(distance, heading) {
-		const delta = new PolarPoint(this.radian+heading, distance);
-		//console.log(delta);
-		return this.plus(delta);
-	}
-
-}/* PolarPoint */
 
 
 
@@ -212,8 +171,101 @@ class Point {
 			distance
 		);
 	}
+
+	get radian() {
+		return Math.atan2(this.y, this.x) + Math.PI/2;
+	}
+
+	// Clockwise from y axis
+	radiansFrom = function(center = new Point()) {
+		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
+		return result;
+	}
+
+
+	get distanceFromOrigin() {
+		return Math.hypot(this.x, this.y);
+	}
+
+	getDistanceFrom = function(point = new Point()) {
+		return Math.hypot((this.x - point.x), (this.y - point.y));
+	}
+
+	// absolute
+	set radian(radian) {
+		const newPoint = new PolarPoint(radian, this.distanceFromOrigin).toPoint();
+		this.x = newPoint.x;
+		this.y = newPoint.y;
+		return this
+	}
+
+	// relative
+	rotate = function(radian) {
+		const newPoint = new PolarPoint(this.radian + radian, this.distanceFromOrigin).toPoint();
+		this.x = newPoint.x;
+		this.y = newPoint.y;
+		return this;
+	}
+
+
 }/* Point */
 
+
+
+
+class PolarPoint {
+	constructor(radian=0, radius=0, precision=12)
+	{
+		this.radian = radian;
+		this.radius = radius;
+		this.precision = precision;
+	}
+
+	toPoint = function() {
+		return new Point(
+			this.radius * Math.sin(this.radian),
+			this.radius * -Math.cos(this.radian)
+		)
+	}
+
+	toPointPolarOffset(polarPoint) {  // another polar point represents the deltas
+		return new Point(
+			(this.radius + polarPoint.radius) * Math.sin(this.radian + polarPoint.radian),
+			(this.radius + polarPoint.radius) * -Math.cos(this.radian + polarPoint.radian)
+		)
+	}
+
+	plus = function(polarPoint) {
+		return this.toPoint().plus(polarPoint.toPoint()).toPolarPoint();
+		// this way is pretty dumb, figure out a better way
+		// the lengths should add arithmetically
+		// this one is absolute
+	}
+
+	/* move
+	A single-step turtle graphics kind of move relative to the current point
+	Takes the current radian coordinate as the base heading and the new heading is relative to it.
+	Ie a 0 heading will continue in the same direction
+	*/
+	move = function(distance, heading) {
+		const delta = new PolarPoint(this.radian+heading, distance);
+		//console.log(delta);
+		return this.plus(delta);
+	}
+
+
+	/* newPointOffsetXY
+	The offsets are applied to the radial point's 'local' cartesian plane.
+	(The absolute versions of this would have been trivial)
+	*/
+	newPointOffsetXY(dx, dy) {
+		let result = new Point(dx, -this.radius + dy);
+		result.rotate(this.radian);
+		return result;
+	}/* newPointOffsetXY */
+
+
+}/* PolarPoint */
 
 
 class Annulus {

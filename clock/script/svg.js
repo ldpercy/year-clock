@@ -51,10 +51,11 @@ This is very hacked/chopped together right now, needs to be rationaslied
 */
 function getSectorResized(radiansStart, radiansEnd, annulus, sizeAdjust)
 {
-	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).move( sizeAdjust, 0 - (Math.PI * 1/4) ).toPoint();
-	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).move( sizeAdjust, 0 + (Math.PI * 1/4) ).toPoint();
-	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius).move( sizeAdjust, 0 + (Math.PI * 3/4) ).toPoint();
-	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius).move( sizeAdjust, 0 - (Math.PI * 3/4) ).toPoint();
+
+	const outerStart = new PolarPoint(radiansStart, annulus.outerRadius).newPointOffsetXY( -sizeAdjust.x, -sizeAdjust.y );
+	const outerEnd   = new PolarPoint(radiansEnd,   annulus.outerRadius).newPointOffsetXY( +sizeAdjust.x, -sizeAdjust.y );
+	const innerStart = new PolarPoint(radiansEnd,   annulus.innerRadius).newPointOffsetXY( +sizeAdjust.x, +sizeAdjust.y );
+	const innerEnd   = new PolarPoint(radiansStart, annulus.innerRadius).newPointOffsetXY( -sizeAdjust.x, +sizeAdjust.y );
 
 	//log('getSectorPolarDelta', outerStart, outerEnd);
 

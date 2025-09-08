@@ -12,8 +12,8 @@ themeClass['debug'] = class extends ThemeBase {
 	monthRing = {
 		name       : 'yearMonth',
 		array      : undefined, // this.displayDate.monthArray,
-		sector     : new Annulus(800, 10),
-		sizeAdjust :  -50,
+		sector     : new Annulus(800, 100),
+		sizeAdjust :  new Point(-10,-10),
 		label : {
 			radius         : 600,
 			sectorPosition : 0.5,
@@ -153,9 +153,16 @@ themeClass['debug'] = class extends ThemeBase {
 
 			${this.getDateLabel('date', this.dateLabel)}
 
+
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="200" />
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="100" />
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="50" />
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="10" />
+
+
 		`;
 
-		/* <circle class="face" cx="0" cy="0" r="390" /> */
+		/*  */
 
 		return themeSVG;
 	}/* getThemeSVG */

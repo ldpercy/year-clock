@@ -13,8 +13,8 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector : new Annulus(800-this.ringSpace, 400+this.ringSpace, new Point()),
-		sizeAdjust :  -35,
-		maskExpand : 200,
+		sizeAdjust : new Point(-30,-30),
+		maskExpand : new Point(100,100),
 		label : {
 			radius         : 600,
 			sectorPosition : 0.5,
@@ -29,8 +29,8 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(1200-this.ringSpace, 800+this.ringSpace),
-		sizeAdjust :  -35,
-		maskExpand : 200,
+		sizeAdjust :  new Point( -30,-30),
+		maskExpand : new Point(100,100),
 		label : {
 			radius         : 1000,
 			sectorPosition : 0.5,

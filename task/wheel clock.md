@@ -342,4 +342,5 @@ See if the method can be generalised to accept different kinds of size adjustmen
 For the parallel version a first improvement would be to specify the size adjustment as an x-y pair; positive means grow, negative means shrink.
 I think this was what I originally had in mind, and what started off this round of polar experiments.
 
+Think I've finally cracked the x,y version of size adjust.
 
