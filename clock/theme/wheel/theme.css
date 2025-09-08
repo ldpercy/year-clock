@@ -162,28 +162,33 @@ text.dateLabel.year {
 } */
 
 .ring-yearMonth {
-	.monthNumber {
+	.monthNumber text,
+	.sectorMask-yearMonth text.monthNumber
+	{
 		font-size: 3em;
 	}
-	.monthShort {
+	.monthShort
+	.sectorMask-yearMonth text.monthShort
+	{
 		font-size: 1em;
 	}
 }
-
 
 .ring-monthDay {
-	.dayNumber {
+	.dayNumber text,
+	.sectorMask-monthDay text.dayNumber
+	{
 		font-size: 2em;
 	}
-	.dayShort {
+	.dayShort text {
 		font-size: 1em;
 	}
 }
 
-.sectorMask-yearMonth text,
+/* .sectorMask-yearMonth text,
 .yearMonth.monthNumber {
 	font-size: 3em;
-}
+} */
 
 .sectorMask-monthDay text
 .monthDay.dayNumber {

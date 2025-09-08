@@ -308,8 +308,9 @@ class ThemeBase extends Clock {
 
 	/* getSectorLabel
 	*/
-	getSectorLabel = function(sector, setting, labelFormat)
+	getSectorLabel = function(sector, setting, labelFormat, classString='')
 	{
+		//log(arguments);
 		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
 
 		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
@@ -322,7 +323,7 @@ class ThemeBase extends Clock {
 			transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
 		}
 		const result =
-			`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
+			`<text class="${classString} ${setting.name||''} ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
 		return result;
 	}/* getSectorLabel */
 
@@ -521,12 +522,13 @@ class ThemeBase extends Clock {
 		let sectorPath = '';
 		let maskPath = '';
 
-		const labelFormat = setting.label.format || sectorName;
+		let labelFormat = '';
 
 		for (let sector of sectorArray)
 		{
 			//log('sector:', sector);
 
+			textMask = '';
 			const pathId = `labelPath-${sectorName}-${sector.id}`;
 			const maskId = `sectorMask-${sectorName}-${sector.id}`;
 
@@ -551,6 +553,7 @@ class ThemeBase extends Clock {
 				`;
 			} else {
 				// use regular 'text' elements as the knockout shape
+				/*
 				const radiansLabel = sector.radians.start + (sector.radians.width * setting.label.sectorPosition);
 
 				const center     = new PolarPoint(radiansLabel, setting.label.radius).toPoint();
@@ -558,12 +561,18 @@ class ThemeBase extends Clock {
 
 				if (setting.label.rotate)
 				{
-					let rotate = this.rotationDegrees(radiansLabel, setting.label);
-					transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
+					let rotation = this.rotationDegrees(radiansLabel, setting.label);
+					transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
 				}
 
 
 				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
+				*/
+				labelFormat = setting.format || sectorName;
+				setting.label.forEach((label) => { textMask += this.getSectorLabel(sector, label, label.format, 'knockout-shapeKnockedout')});
+				// function(sector, setting, labelFormat, classString='')
+				//labelFormat = setting.label.format || sectorName;
+				//textMask = this.getSectorLabel(sector, setting.label[0], labelFormat, 'knockout-shapeKnockedout');
 
 			}
 

@@ -13,7 +13,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector  : new Annulus(800, 400),
-		sectorType: 'normal',
+		sectorType: 'knockout',
 		sizeAdjust : new Point(-25, -this.ringSpace),
 		maskExpand : new Point(100,100),
 		label : [
@@ -28,7 +28,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			},
 			{
 				name           : 'monthShort',
-				radius         : 550,
+				radius         : 525,
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
@@ -42,7 +42,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(1200, 800),
-		sectorType: 'normal',
+		sectorType: 'knockout',
 		sizeAdjust :  new Point(-25, -this.ringSpace),
 		maskExpand : new Point(100,100),
 		label : [
