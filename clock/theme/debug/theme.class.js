@@ -12,8 +12,8 @@ themeClass['debug'] = class extends ThemeBase {
 	monthRing = {
 		name       : 'yearMonth',
 		array      : undefined, // this.displayDate.monthArray,
-		sector     : new Annulus(800, 400),
-		polarDelta : new PolarPoint(.1, -15),
+		sector     : new Annulus(800, 10),
+		sizeAdjust :  -50,
 		label : {
 			radius         : 600,
 			sectorPosition : 0.5,
@@ -143,7 +143,7 @@ themeClass['debug'] = class extends ThemeBase {
 
 			${this.getFace(this.clockRadius)}
 
-			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, {polarDelta: this.monthRing.polarDelta})}
+			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, this.monthRing)}
 
 			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
 
@@ -153,9 +153,9 @@ themeClass['debug'] = class extends ThemeBase {
 
 			${this.getDateLabel('date', this.dateLabel)}
 
-
-			<circle class="face" cx="0" cy="0" r="390" />
 		`;
+
+		/* <circle class="face" cx="0" cy="0" r="390" /> */
 
 		return themeSVG;
 	}/* getThemeSVG */

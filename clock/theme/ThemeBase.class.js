@@ -274,7 +274,7 @@ class ThemeBase extends Clock {
 		let sectorPath = '';
 		for (let sector of sectorArray)
 		{
-			if (option.sectorResize) {
+			if (option.sizeAdjust) {
 				sectorPath = getSectorResized(sector.radians.start, sector.radians.end, annulus, option.sizeAdjust);
 			}
 			else {

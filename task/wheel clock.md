@@ -332,4 +332,14 @@ Have run ahead and added a bunch of experimental changes for polar coordinate ca
 * The mask expansion for the sector knockout doesn't seem to be working correctly - test
 * The shadows look wrong??
 * Try to simplify the pp.plus method
-*
+
+
+The sector size adjustment `getSectorResized` is *working*, but there are a bunch of hardcoded angles and it needs to be generalised.
+The current version keeps adjacent sector lines parallel, which looks okay when the gap is relatively small; it starts to look weird with bigger gaps.
+I had a different version going a few commits ago that kept the lines radial that I think looked better with bigger gaps.
+See if the method can be generalised to accept different kinds of size adjustments.
+
+For the parallel version a first improvement would be to specify the size adjustment as an x-y pair; positive means grow, negative means shrink.
+I think this was what I originally had in mind, and what started off this round of polar experiments.
+
+
