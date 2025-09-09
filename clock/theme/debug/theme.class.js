@@ -7,11 +7,27 @@ themeClass['debug'] = class extends ThemeBase {
 	viewBox           = padViewBox(50);
 	clockRadius       = 1200;
 
-	monthRadiusStart = 400;
-	monthRadiusEnd = 800;
+	//monthSector = new Annulus(800, 400);
 
-	weekRadiusStart = 400;
-	weekRadiusEnd   = 900;
+	monthRing = {
+		name       : 'yearMonth',
+		array      : undefined, // this.displayDate.monthArray,
+		sector     : new Annulus(800, 100),
+		sizeAdjust :  new Point(-10,-10),
+		label : {
+			radius         : 600,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : false,
+			textType       : 'text',
+			format         : 'monthNumber',
+		}
+	};
+
+
+
+	weekSector  = new Annulus(900, 400);
+	daySector   = new Annulus(1200, 810);
 
 	weekLabel = {
 		radius         : 600,
@@ -20,8 +36,6 @@ themeClass['debug'] = class extends ThemeBase {
 		invert         : false,
 	};
 
-	dayRadiusStart      = 700;
-	dayRadiusEnd        = 1200;
 
 	dayLabel = {
 		radius         : 1000,
@@ -49,6 +63,15 @@ themeClass['debug'] = class extends ThemeBase {
 	};
 
 
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.monthRing.array = this.displayDate.monthArray;
+		//this.dayRing.array   = this.displayDate.monthDayArray;
+	}
+
+
+
 	//
 	// formatting functions
 	//
@@ -68,21 +91,21 @@ themeClass['debug'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
 		// Set Up Drawing
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		//log(displayDate.monthArray);
+		//log(this.displayDate.monthArray);
 
-		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		addRadians(displayDate.yearDayArray);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
 
-		//displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		//addRadians(displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
+		//this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		//addRadians(this.displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		/*
-		let weekArray    = getYearWeekArray(displayDate.object);
+		let weekArray    = getYearWeekArray(this.displayDate.object);
 		${this.getSectorLabels('week', weekArray, this.weekLabel)}
 		${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
  		*/
@@ -107,8 +130,6 @@ themeClass['debug'] = class extends ThemeBase {
 
 				<path id="star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
 
-
-
 				<circle id="circle" cx="0" cy="0" r="20"/>
 				<rect id="rect" x="-10" y="0" width="20" height="80"/>
 
@@ -121,14 +142,27 @@ themeClass['debug'] = class extends ThemeBase {
 			</defs>
 
 			${this.getFace(this.clockRadius)}
-			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
 
-			${this.getSymbols('monthSymbols', displayDate.monthArray, this.monthSymbols)}
+			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, this.monthRing)}
 
-			${this.getSectorLabels('yearDay', displayDate.yearDayArray, this.dayLabel)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-			${this.getDateLabel('date', displayDate, this.dateLabel)}
+			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
+
+			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
+
+			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
+
+			${this.getDateLabel('date', this.dateLabel)}
+
+
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="200" />
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="100" />
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="50" />
+			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="10" />
+
+
 		`;
+
+		/*  */
 
 		return themeSVG;
 	}/* getThemeSVG */

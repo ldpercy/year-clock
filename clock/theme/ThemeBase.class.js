@@ -22,9 +22,19 @@ class ThemeBase extends Clock {
 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
-			case 'year'     : result = `${data.year}`; break;
-			case 'date'     : result = `${isoDate(data.object)}` ; break;
-			default         : result = data.name || data.id; break;
+			case 'year'         : result = `${data.year}`; break;
+			case 'date'         : result = `${isoDate(data.object)}` ; break;
+			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
+			case 'dayShort'     : result = `${data.name.slice(0,3)}`; break;
+
+			case 'monthNumber'  : result = `${data.number}`; break;
+			case 'monthShort'     : result = `${data.name.slice(0,3)}`; break;
+
+			case 'romanNumeralDay'   : result = `${asRomanNumerals(data.dayOfMonth)}`; break;
+			case 'romanNumeralMonth' : result = `${asRomanNumerals(data.number)}`; break;
+			case 'romanNumeralYear'  : result = `${asRomanNumerals(data.year)}`; break;
+
+			default             : result = data.name || data.id; break;
 		}
 		return result;
 	}
@@ -38,14 +48,14 @@ class ThemeBase extends Clock {
 
 	/* getClockSVG
 	*/
-	getClockSVG = function(displayDate)
+	getClockSVG = function()
 	{
-		const grid = (this.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
+		const grid = (this.parameter.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
 
 		const clockSVG = `
-			<svg id="clock" class="yearclock hemisphere-${this.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+			<svg id="clock" class="yearclock hemisphere-${this.parameter.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${grid}
-				${this.getThemeSVG(displayDate)}
+				${this.getThemeSVG(this.displayDate)}
 			</svg>`;
 
 		return clockSVG;
@@ -54,7 +64,7 @@ class ThemeBase extends Clock {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
 		return `<text> getThemeSVG should be overridden by the theme </text>`;
 	}/* getThemeSVG */
@@ -137,27 +147,14 @@ class ThemeBase extends Clock {
 
 
 	/* getDateLabel
-	This and year below need to be generally sorted out
 	*/
-	getDateLabel = function(labelType, displayDate, setting) {
-		let x,y;
+	getDateLabel = function(labelType, setting) {
 
-		if (setting.position instanceof Point)
-		{
-			x = setting.position.x;
-			y = setting.position.y;
-		}
-		else
-		{
-			const yearOnLeft = dateRatio(displayDate.object) < 0.5
-			const labelSide = yearOnLeft ? -1 : 1
-			x = setting.position * labelSide;
-			y = 0;
-		}
+		const labelFormat = setting.format || labelType;
 
 		const svg =
 			`<g class="dateLabel">
-				<text x="${x}" y="${y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelType, displayDate)}</text>
+				<text x="${setting.position.x}" y="${setting.position.y}" class="label dateLabel ${labelType}" ${(setting.attribute || '')}>${this.formatLabel(labelFormat, this.displayDate)}</text>
 			</g>`;
 
 		return svg;
@@ -167,15 +164,15 @@ class ThemeBase extends Clock {
 
 	/* getHands
 	*/
-	getHands = function(displayDate, handConfig) {
+	getHands = function(handConfig) {
 		//log('getHands:',handConfig);
 
-		const yearHand = (handConfig.year) ? this.getYearHand(displayDate, handConfig.year): '';
-		const monthHand = (handConfig.month) ? this.getMonthHand(displayDate, handConfig.month): '';
+		const yearHand = (handConfig.year) ? this.getYearHand(handConfig.year): '';
+		const monthHand = (handConfig.month) ? this.getMonthHand(handConfig.month): '';
 
 		const svg = `
 			<g class="hands">
-				<title>${this.formatTitle('hands',{'date':displayDate})}</title>
+				<title>${this.formatTitle('hands',{'date':this.displayDate})}</title>
 				${yearHand}
 				${monthHand}
 			</g>`;
@@ -184,9 +181,9 @@ class ThemeBase extends Clock {
 
 
 	/* getYearHand */
-	getYearHand = function(displayDate, handConfig, degreeDelta = new DegreeDelta) {
+	getYearHand = function(handConfig, degreeDelta = new DegreeDelta) {
 		// calculate year hand params
-		const yearDayDivision = divisionDegrees(displayDate.daysInYear, displayDate.dayOfYear-1, degreeDelta);
+		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
 		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
@@ -197,9 +194,9 @@ class ThemeBase extends Clock {
 
 
 	/* getMonthHand */
-	getMonthHand = function(displayDate, handConfig, degreeDelta = new DegreeDelta) {
+	getMonthHand = function(handConfig, degreeDelta = new DegreeDelta) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(displayDate.monthDayArray.length, displayDate.object.getDate()-1, degreeDelta);
+		const monthDayDivision = divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.object.getDate()-1, degreeDelta);
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
@@ -257,94 +254,88 @@ class ThemeBase extends Clock {
 
 
 
-	/* getPeriodDaySectors
-	Is this still necessary??
-	*/
-	getPeriodDaySectors = function(name, periodArray, radiusStart, radiusEnd)
-	{
-		//log('getPeriodDaySectors:', arguments);
-		let sectorPath = '';
-		let sectorSvg = '';
 
-		for (let day of periodArray)
-		{
-			//let thisDivisionRadians = divisionRadians(periodArray.length, day.dayOfPeriod);
-
-			//log(thisDivisionRadians);
-			const sectorPath = getSectorPath(day.radians.start, day.radians.end, radiusStart, radiusEnd);
-			sectorSvg += `<path class="sector day ${day.name} ${day.class}" d="${sectorPath}"><title>${this.formatTitle('day',day)}</title></path>`;
-		}
-
-		const result = `
-			<g class="periodSectors ${name}">
-				${sectorSvg}
-			</g>`;
-
-		return result;
-	}/* getPeriodDaySectors */
 
 
 	/* getSectors
 	*/
-	getSectors = function(sectorType, sectorArray, radiusStart, radiusEnd)
+	getSectors = function(sectorName, sectorArray, annulus, option={})
 	{
 		let newSvg = '';
+		let sectorPath = '';
 		for (let sector of sectorArray)
 		{
-			const sectorPath = getSectorPath(sector.radians.start, sector.radians.end, radiusStart, radiusEnd);
-			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorType}-${sector.id} ${sector.class}"><title>${this.formatTitle(sectorType, sector)}</title></path>`;
+			if (option.sizeAdjust) {
+				sectorPath = getSectorResized(sector.radians.start, sector.radians.end, annulus, option.sizeAdjust);
+			}
+			else {
+				sectorPath = getSectorPath(sector.radians.start, sector.radians.end, annulus);
+			}
+
+			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
 			newSvg += sectorSvg;
 		}
-		const result = `<g class="sectorGroup ${sectorType}">${newSvg}</g>`;
+		const result = `<g class="group-sector ${sectorName}">${newSvg}</g>`;
 		return result;
 	}/* getSectors */
 
 
 	/* getSectorLabels
-		labelSetting = {
+		setting = {
 			radius         : number,
 			sectorPosition : number,
 			rotate         : boolean,
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorType, sectorArray, labelSettings)
+	getSectorLabels = function(sectorName, sectorArray, setting)
 	{
 		//log('getSectorLabels:', arguments);
-		let newSvg = '';
+		const labelFormat = setting.format || sectorName;
+		let sectorLabelSvg = '';
 		for (let sector of sectorArray)
 		{
-			//log('sector:', sector);
-			const radiansLabel = sector.radians.start + (sector.radians.width * labelSettings.sectorPosition);
-
-			const center     = polarPoint(radiansLabel, labelSettings.radius);
-			let transform = '';
-
-			if (labelSettings.rotate)
-			{
-				let rotate = this.rotationDegrees(radiansLabel, labelSettings);
-				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
-			}
-			const labelSvg =
-				`<text class="${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(sectorType, sector)}</text>`;
-			newSvg += labelSvg;
+			sectorLabelSvg += this.getSectorLabel(sector, setting, labelFormat);
 		}
 
 		const result =
-			`<g class="label ${sectorType}">
-				${newSvg}
+			`<g class="group-label ${sectorName} ${setting.name||''}">
+				${sectorLabelSvg}
 			</g>`;
 		return result;
 	}/* getSectorLabels */
 
 
+	/* getSectorLabel
+	*/
+	getSectorLabel = function(sector, setting, labelFormat, classString='')
+	{
+		//log(arguments);
+		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
+
+		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
+		let rotation;
+		let transform = '';
+
+		if (setting.rotate)
+		{
+			rotation = this.rotationDegrees(radiansLabel, setting);
+			transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
+		}
+		const result =
+			`<text class="${classString} ${setting.name||''} ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
+		return result;
+	}/* getSectorLabel */
+
+
+
 	/* getSectorLabelsCurved
-		labelSetting = {
+		setting = {
 			radius         : number,
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelsCurved = function(sectorType, sectorArray, labelSettings)
+	getSectorLabelsCurved = function(sectorName, sectorArray, setting)
 	{
 		//log('getSectorLabels:', arguments);
 
@@ -356,24 +347,27 @@ class ThemeBase extends Clock {
 		{
 			//log('sector:', sector);
 
-			const pathId = `labelPath-${sectorType}-${sector.id}`;
+			const pathId = `labelPath-${sectorName}-${sector.id}`;
 
-			if (labelSettings.invert && (Math.cos(sector.radians.middle) < 0)) {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, labelSettings.radius);
+			if (setting.invert === 'all') {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+			}
+			else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
+				labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
 			}
 			else {
-				labelArc = getArcPath(sector.radians.start, sector.radians.end, labelSettings.radius);
+				labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.radius);
 			}
 
 			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
 			defs += labelPath;
 
-			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorType, sector)}</textPath>`;
+			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorName, sector)}</textPath>`;
 			textPaths += textPath;
 		}
 
 		const result =
-			`<g class="label ${sectorType}">
+			`<g class="group-label label-${sectorName}">
 				<defs>${defs}</defs>
 				<text>${textPaths}</text>
 			</g>`;
@@ -384,28 +378,31 @@ class ThemeBase extends Clock {
 
 	/* rotationDegrees
 	*/
-	rotationDegrees = function(radians, settings) {
+	rotationDegrees = function(radians, setting) {
 		let result = 0;
 
-		switch(settings.rotate) {
+		switch(setting.rotate) {
 			case 'none'         : result = 0; break;
 			case 'radial-left'  : result = degrees(radians) - 90; break;
 			case 'radial-right' : result = degrees(radians) + 90; break;
+			case 'radial-in'    : result = degrees(radians) + 180; break;
 			case 'radial'       : result = degrees(radians); break;
 			case true           : result = degrees(radians); break;
 			default             : result = 0; break;
 		}
 
-		switch(settings.invert) {
+		switch(setting.invert) {
 			case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
 			case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
 			case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+			case 'all'      : result += 180; break;
 		}
 		return result;
 	}/* rotationDegrees */
 
 
 	/* getGrid
+	Todo: Replace most of this with a pattern
 	*/
 	getGrid = function(viewBox, spacing=100, major=500) {
 
@@ -465,39 +462,197 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSymbols = function(symbolType, symbolArray, settings)
+	getSymbols = function(symbolType, symbolArray, setting)
 	{
 		//log('getSymbols:', arguments);
 		let newSvg = '';
 		for (let element of symbolArray)
 		{
 			//log('sector:', sector);
-			const radians = element.radians.start + (element.radians.width * settings.position);
+			const radians = element.radians.start + (element.radians.width * setting.position);
 
-			const center     = polarPoint(radians, settings.radius);
+			const center     = new PolarPoint(radians, setting.radius).toPoint();
 			let transform = '';
 
-			if (settings.rotate)
+			if (setting.rotate)
 			{
-				let rotate = this.rotationDegrees(radians, settings);
+				let rotate = this.rotationDegrees(radians, setting);
 				transform = `rotate(${sf(rotate)}, ${sf(center.x)}, ${sf(center.y)})`;
 			}
 			const symbolSvg =
-				`<use href="#${settings.elementId}" class="${element.class}"
+				`<use href="#${setting.elementId}" class="${element.class}"
 					x="${sf(center.x)}" y="${sf(center.y)}"
-					width="${settings.width}" height="${settings.height}"
+					width="${setting.width}" height="${setting.height}"
 					transform="${transform}"/>`;
 			newSvg += symbolSvg;
 		}
 
 		const result = `
-			<g class="symbol ${symbolType}">
+			<g class="group-symbol ${symbolType}">
 				${newSvg}
 			</g>`;
 		return result;
 	}/* getSymbols */
 
 
+
+
+	/* getSectorsWithKnockout
+		setting = {
+			radius         : number,
+			invert         : boolean,
+		};
+	*/
+	getSectorsWithKnockout = function(sectorName, sectorArray, setting)
+	{
+		//log('getSectorsKnockout:', arguments);
+
+		/*
+		need sector and label information
+		draw sectors normally
+		draw and extra set of sectors with labels to use as masks
+		will have to create a set of mask ids to dynamically apply to the actual drawn sectors
+		*/
+
+		let sectorMasks = '';
+		let labelPaths = '';
+		let labelArc = '';
+		let sectors = '';
+		let textMask = '';
+		let sectorPath = '';
+		let maskPath = '';
+
+		let labelFormat = '';
+
+		for (let sector of sectorArray)
+		{
+			//log('sector:', sector);
+
+			textMask = '';
+			const pathId = `labelPath-${sectorName}-${sector.id}`;
+			const maskId = `sectorMask-${sectorName}-${sector.id}`;
+
+
+			if (setting.label.textType === 'textPath') {
+				// use 'textPath' elements as the knockout shape
+				//create extra label paths
+				// label paths:
+				if (setting.label.invert && (Math.cos(sector.radians.middle) < 0)) {
+					labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.label.radius);
+				}
+				else {
+					labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.label.radius);
+				}
+				const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
+				labelPaths += labelPath;
+				// textPath:
+				textMask = `
+					<text>
+						<textPath class="knockout-shapeKnockedout ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(labelFormat, sector)}</textPath>
+					</text>
+				`;
+			} else {
+				// use regular 'text' elements as the knockout shape
+				/*
+				const radiansLabel = sector.radians.start + (sector.radians.width * setting.label.sectorPosition);
+
+				const center     = new PolarPoint(radiansLabel, setting.label.radius).toPoint();
+				let transform = '';
+
+				if (setting.label.rotate)
+				{
+					let rotation = this.rotationDegrees(radiansLabel, setting.label);
+					transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
+				}
+
+
+				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
+				*/
+				labelFormat = setting.format || sectorName;
+				setting.label.forEach((label) => { textMask += this.getSectorLabel(sector, label, label.format, 'knockout-shapeKnockedout')});
+				// function(sector, setting, labelFormat, classString='')
+				//labelFormat = setting.label.format || sectorName;
+				//textMask = this.getSectorLabel(sector, setting.label[0], labelFormat, 'knockout-shapeKnockedout');
+
+			}
+
+			// sector path, mask, sector itself:
+			if (setting.sizeAdjust) {
+				sectorPath = getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.sizeAdjust);
+				maskPath = getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.maskExpand);
+			}
+			else {
+				sectorPath = getSectorPath(sector.radians.start, sector.radians.end, setting.sector);
+				maskPath = sectorPath;
+			}
+
+			const sectorMask = `
+				<mask id="${maskId}" class="sectorMask-${sectorName} knockout-mask">
+					<path class="knockout-shapeContaining" d="${maskPath}"/>
+					${textMask}
+				</mask>
+			`;
+			sectorMasks += sectorMask;
+
+			const sectorSVG =
+				`<path
+					d="${sectorPath}"
+					class="sector ${sectorName}-${sector.id} ${sector.class}"
+					style="mask: url(#${maskId});"
+					>
+					<title>${this.formatTitle(sectorName, sector)}</title>
+				</path>`;
+			sectors += sectorSVG;
+		}
+
+		// ${labelPaths}
+		const result =
+			`<g class="group-sector ${sectorName}">
+				<defs>
+					${sectorMasks}
+					${labelPaths}
+				</defs>
+				${sectors}
+
+
+			</g>`;
+		return result;
+
+	}/* getSectorsWithKnockout */
+
+
+
+	/* getRing
+	Combined sectors and labels
+	*/
+	getRing = function(setting) {
+
+		let sectorSVG = '';
+		let labelSVG = '';
+
+		if (setting.sectorType === 'knockout') {
+			sectorSVG = this.getSectorsWithKnockout(setting.name, setting.array, setting);
+		}
+		else
+		{
+			sectorSVG = this.getSectors(setting.name, setting.array, setting.sector, setting);
+			setting.label.forEach((label) => { labelSVG += this.getSectorLabels(setting.name, setting.array, label)});
+		}
+
+		// [1,2,3,4].reduce( (p,c)=>{ return `${p} -${c}`  } )
+		//ReadonlyArray.reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: readonly T[]) => T): T
+
+
+		result = `
+			<g class="group-ring ring-${setting.name}">
+				<title>${setting.name}</title>
+				${sectorSVG}
+				${labelSVG}
+			</g>
+		`;
+
+		return result;
+	}
 
 
 

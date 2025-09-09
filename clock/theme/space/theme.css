@@ -1,0 +1,181 @@
+/*
+** Wheel
+*/
+
+
+svg.yearclock {
+
+	--wheelColour: #fafa;
+	--wheelShadow: #333a;
+	--wheelBorder: transparent;
+	--current: darksalmon;
+
+
+	background-color: fuchsia;
+
+	background:
+		linear-gradient(
+			0deg,
+			black 0%,
+			midnightblue 20%,
+			purple	40%,
+			fuchsia 48%,
+			darksalmon 50%,
+			fuchsia 52%,
+			purple	60%,
+			midnightblue 80%,
+			black 100%
+		);
+	background-position-y:0px;
+
+	font-family:  serif; /* 'Times New Roman', Times, */
+	font-size: 48px;
+
+}
+
+
+svg.yearclock .face   {
+	fill: #fff5; /* f5f5f555 */
+	stroke: silver;
+	stroke-width: 10;
+	filter: drop-shadow(0px 10px 10px gray);
+}
+
+
+
+.star,
+.diffractionSpike {
+	fill: #fafa;
+}
+
+.month-first {
+	fill: #ccca;
+}
+
+
+/*
+.hemisphere-northern {
+	.sector.yearMonth-jan { fill: #7abecf }
+	.sector.yearMonth-feb { fill: #5fb69c }
+	.sector.yearMonth-mar { fill: #2ea544 }
+	.sector.yearMonth-apr { fill: #aec013 }
+	.sector.yearMonth-may { fill: #f3c301 }
+	.sector.yearMonth-jun { fill: #f18e17 }
+	.sector.yearMonth-jul { fill: #e42d1a }
+	.sector.yearMonth-aug { fill: #983021 }
+	.sector.yearMonth-sep { fill: #89493b }
+	.sector.yearMonth-oct { fill: #7c5e57 }
+	.sector.yearMonth-nov { fill: #6f6e6d }
+	.sector.yearMonth-dec { fill: #738c92 }
+}
+
+.hemisphere-southern {
+	.sector.yearMonth-jan { fill: #e42d1a }
+	.sector.yearMonth-feb { fill: #983021 }
+	.sector.yearMonth-mar { fill: #89493b }
+	.sector.yearMonth-apr { fill: #7c5e57 }
+	.sector.yearMonth-may { fill: #6f6e6d }
+	.sector.yearMonth-jun { fill: #738c92 }
+	.sector.yearMonth-jul { fill: #7abecf }
+	.sector.yearMonth-aug { fill: #5fb69c }
+	.sector.yearMonth-sep { fill: #2ea544 }
+	.sector.yearMonth-oct { fill: #aec013 }
+	.sector.yearMonth-nov { fill: #f3c301 }
+	.sector.yearMonth-dec { fill: #f18e17 }
+}
+*/
+
+
+svg.yearclock .sector.month {
+	path.sector {
+		stroke: none;
+		opacity: 75%;
+	}
+
+	/* clip-path: url(#sectorLabels); */
+}
+
+.group-sector
+{
+	path.sector {
+		fill:var(--wheelColour);
+		stroke:var(--wheelBorder);
+		stroke-width: 5px;
+		/* paint-order: fill; */
+		/* filter:url(#f143); */
+	}
+	/* path.sector.current {
+		stroke: var(--current);
+		stroke-width: 10px;
+	} */
+}
+
+.monthRing {
+	transform: translate(450px,0);
+}
+.dayRing {
+	transform: translate(350px,0);
+}
+
+
+
+
+text.first {
+	font-weight:bold;
+}
+
+svg.yearclock .label text {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	fill: white;
+	stroke: none;
+	font-size: 1.3em;
+}
+
+
+
+/* knockout */
+
+.knockout-mask {
+	.knockout-shapeContaining { fill: #ffff; }		/* this gets added */
+	.knockout-shapeKnockedout { fill: #000f; }		/* this gets subtracted */
+}
+
+
+g.dateLabel {
+	transform: translate(-1100px, 0px);
+}
+text.dateLabel.year {
+	text-anchor: middle;
+	font-size: 3em;
+	text-transform: uppercase;
+	dominant-baseline: central;
+}
+
+
+
+
+
+.sectorMask-yearMonth,
+.sectorMask-monthDay,
+.sectorMask-monthNumber,
+.sectorMask-dayNumber {
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
+/* .sectorMask-yearMonth {
+	font-size: 3ex;
+} */
+
+.sectorMask-yearMonth {
+	font-size: 3em;
+	text-transform: uppercase;
+	dominant-baseline: central;
+}
+.sectorMask-monthDay {
+	font-size: 1em;
+	text-transform: uppercase;
+	dominant-baseline: central;
+}
+

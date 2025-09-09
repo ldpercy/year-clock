@@ -9,7 +9,7 @@
 	--white: #eee7;
 
 	--sectorLight: #ee0b;
-	--sectorDark: #00ab;
+	--sectorDark: #22ab;
 	--sectorStroke: #9997;
 
 	--textDark: #000f;
@@ -65,19 +65,19 @@ path.sector {
 */
 
 .quarter .sector:nth-of-type(even),
-.month .sector:nth-of-type(odd),
+.yearMonth .sector:nth-of-type(odd),
 .week .sector:nth-of-type(even)
 {
 	fill: var(--sectorDark);
-	mix-blend-mode:multiply;
+	/* mix-blend-mode:multiply; */
 }
 
 .quarter .sector:nth-of-type(odd),
-.month .sector:nth-of-type(even),
+.yearMonth .sector:nth-of-type(even),
 .week .sector:nth-of-type(odd)
 {
 	fill: var(--sectorLight);
-	mix-blend-mode:multiply;
+	/* mix-blend-mode:multiply; */
 }
 
 
@@ -96,11 +96,11 @@ svg.yearclock .sector.nov { fill: #F3C301 }
 svg.yearclock .sector.dec { fill: #F18E17 }
 
 
-.sector.day.weekend {
+.group-sector.yearDay .weekend {
 	fill: #ccc7;
 }
 
-.sector.day.Monday {
+.group-sector.yearDay .Monday {
 	fill: #ff07;
 }
 
@@ -120,7 +120,7 @@ svg.yearclock .sector.dec { fill: #F18E17 }
 
 }
 
-.label.yearDay text {
+.group-label.yearDay text {
 	font-size: 0.5ex;
 	fill: var(--textDark);
 	stroke:none;
@@ -163,7 +163,7 @@ path.sector.day.current
 }
 
 
-g.symbol * {
+.group-symbol * {
 
 	fill:red;
 	stroke: green;

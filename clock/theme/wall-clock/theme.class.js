@@ -52,19 +52,19 @@ themeClass['wall-clock'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		addRadians(displayDate.monthDayArray);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
-			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getPeriodDayTicks('monthDay', displayDate.monthDayArray, this.tick)}
-			${this.getDateLabel('year', displayDate, this.dateLabel)}
+			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabel)}
+			${this.getPeriodDayTicks('monthDay', this.displayDate.monthDayArray, this.tick)}
+			${this.getDateLabel('year', this.dateLabel)}
 			<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
-			${this.getHands(displayDate, this.handConfig)}
+			${this.getHands(this.handConfig)}
 		`;
 
 		return themeSVG;

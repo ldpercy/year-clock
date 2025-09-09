@@ -80,13 +80,12 @@ path.sector {
 }
 
 
-
 /* days */
-.sector.day.weekend {
+.group-sector.yearDay .weekend {
 	fill: var(--sectorDark);
 }
 
-.sector.day.weekday {
+.group-sector.yearDay .weekday {
 	fill: var(--sectorLight);
 }
 
@@ -96,7 +95,7 @@ path.sector {
 .quarter path.sector.current,
 .month path.sector.current,
 .week path.sector.current,
-path.sector.day.current
+.yearDay path.sector.current
 {
 	fill: var(--current);
 	stroke: var(--currentOutline);
@@ -117,28 +116,28 @@ path.sector.day.current
 /* Labels
 */
 
-.label {
+.group-label {
 	fill: var(--textDark);
 	text-anchor: middle;
 	dominant-baseline: middle;
 	font-variant: small-caps;
+
+	&.quarter text
+	{
+		font-size: 4ex;
+		filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+	}
+	&.month text {
+		font-size: 4ex;
+		filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+	}
+	&.week text {
+		font-size: 1.5ex;
+	}
+	&.yearDay text {
+		font-size: 0.7ex;
+	}
 }
-
-
-.label.quarter text
-{
-
-	font-size: 4ex;
-	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
-}
-
-
-.label.month text {
-	font-size: 4ex;
-	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
-}
-
-
 
 
 .label.dateLabel, .label.yearLabel {
@@ -148,14 +147,7 @@ path.sector.day.current
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
 }
 
-.label.week text {
-	font-size: 1.5ex;
-}
 
-.label.yearDay text {
-	font-size: 0.7ex;
-	text-anchor: middle;
-}
 
 
 

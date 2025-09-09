@@ -78,25 +78,25 @@ svg.yearclock {
 }
 
 
-svg.yearclock .sector {
+.sector {
 	stroke:black;
 	stroke-width:1px;
 }
 
-svg.yearclock .month .sector:nth-of-type(odd),
-svg.yearclock .day .sector.weekday
+.month .sector:nth-of-type(odd),
+.day .sector.weekday
 {
 	fill: var(--sectorlight);
 }
 
-svg.yearclock .month .sector:nth-of-type(even),
-svg.yearclock .day .sector.weekend
+.month .sector:nth-of-type(even),
+.day .sector.weekend
 {
 	fill: var(--sectordark);
 }
 
 
-svg.yearclock .label {
+.group-label {
 	text-anchor: middle;
 	dominant-baseline: central;
 	fill: var(--darkGrey);

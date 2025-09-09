@@ -1,0 +1,197 @@
+/*
+** Wheel
+*/
+
+
+svg.yearclock {
+
+	--wheelColour: #fffa;
+	--sectorColour: #ccce;
+	--sectorStroke: #eee7;
+	--shadowColour: #777e;
+	--wheelBorder: #fff3; /* #fff3 */
+	--current: #fd7c;
+
+
+	/* background-color: fuchsia; */
+
+	background:
+		radial-gradient(
+			circle 240vh at 50% 160%,
+			black 0%,
+			black 25%,
+			darkgreen 30%,
+			orange 35%,
+			red 40%,
+			midnightblue 50%,
+			black 100%
+			/*
+			black 0%,
+			midnightblue 70%,
+			red 80%,
+			orange 85%,
+			darkgreen 90%,
+			black 100%
+			 */
+		);
+
+	font-family:  sans-serif; /* 'Times New Roman', Times, */
+	font-size: 48px;
+
+}
+
+
+svg.yearclock .face   {
+	fill: #fff2; /* f5f5f555 */
+	stroke: var(--sectorStroke);
+	stroke-width: 20;
+	filter: blur(1px) drop-shadow(0px 10px 10px var(--shadowColour));
+
+}
+
+
+
+g.clock .sector{
+	stroke: url(#gradient-stroke-radial);
+	filter:   drop-shadow(0px 10px 10px var(--shadowColour)); /* blur(1px) */
+}
+
+
+/*
+.hemisphere-northern {
+	.sector.yearMonth-jan { fill: #7abecf }
+	.sector.yearMonth-feb { fill: #5fb69c }
+	.sector.yearMonth-mar { fill: #2ea544 }
+	.sector.yearMonth-apr { fill: #aec013 }
+	.sector.yearMonth-may { fill: #f3c301 }
+	.sector.yearMonth-jun { fill: #f18e17 }
+	.sector.yearMonth-jul { fill: #e42d1a }
+	.sector.yearMonth-aug { fill: #983021 }
+	.sector.yearMonth-sep { fill: #89493b }
+	.sector.yearMonth-oct { fill: #7c5e57 }
+	.sector.yearMonth-nov { fill: #6f6e6d }
+	.sector.yearMonth-dec { fill: #738c92 }
+}
+
+.hemisphere-southern {
+	.sector.yearMonth-jan { fill: #e42d1a }
+	.sector.yearMonth-feb { fill: #983021 }
+	.sector.yearMonth-mar { fill: #89493b }
+	.sector.yearMonth-apr { fill: #7c5e57 }
+	.sector.yearMonth-may { fill: #6f6e6d }
+	.sector.yearMonth-jun { fill: #738c92 }
+	.sector.yearMonth-jul { fill: #7abecf }
+	.sector.yearMonth-aug { fill: #5fb69c }
+	.sector.yearMonth-sep { fill: #2ea544 }
+	.sector.yearMonth-oct { fill: #aec013 }
+	.sector.yearMonth-nov { fill: #f3c301 }
+	.sector.yearMonth-dec { fill: #f18e17 }
+}
+*/
+
+
+.group-sector path.sector,
+.yearLabel
+{
+	fill:var(--sectorColour);
+
+	stroke:var(--sectorStroke);
+	/* stroke: url(#sector-stroke);
+ */
+	stroke-width: 40px;
+	stroke-linejoin: round;
+	/* filter: blur(1px) drop-shadow(0px 10px 10px var(--wheelShadow)); */
+	paint-order: stroke; /* fill */
+	/* filter:url(#f143); */
+}
+
+
+
+
+.group-sector
+{
+	.sector.current {
+		fill : var(--current);
+		font-weight: bold;
+	}
+}
+
+
+
+/* knockout */
+
+.knockout-mask {
+	.knockout-shapeContaining { fill: #ffff; }		/* this gets added */
+	.knockout-shapeKnockedout { fill: #000f; }		/* this gets subtracted */
+}
+
+
+/* g.dateLabel {
+	transform: translate(-1100px, 0px);
+} */
+
+text.dateLabel.year {
+	text-anchor: middle;
+	font-size: 4em;
+	text-transform: uppercase;
+	dominant-baseline: middle;
+}
+
+
+.group-label,
+.sectorMask-yearMonth,
+.sectorMask-monthDay,
+.sectorMask-monthNumber,
+.sectorMask-dayNumber {
+	text-anchor: middle;
+	dominant-baseline: middle;
+	text-transform: uppercase;
+}
+
+/* .sectorMask-yearMonth {
+	font-size: 3ex;
+} */
+
+.ring-yearMonth {
+	.monthNumber text,
+	.sectorMask-yearMonth text.monthNumber
+	{
+		font-size: 3em;
+	}
+	.monthShort
+	.sectorMask-yearMonth text.monthShort
+	{
+		font-size: 1em;
+	}
+}
+
+.ring-monthDay {
+	.dayNumber text,
+	.sectorMask-monthDay text.dayNumber
+	{
+		font-size: 2em;
+	}
+	.dayShort text {
+		font-size: 1em;
+	}
+}
+
+/* .sectorMask-yearMonth text,
+.yearMonth.monthNumber {
+	font-size: 3em;
+} */
+
+.sectorMask-monthDay text
+.monthDay.dayNumber {
+	font-size: 2em;
+}
+
+/* .yearMonth.monthShort,
+.monthDay.dayShort
+{
+	font-size: 1em;
+}
+ */
+
+
+

@@ -8,13 +8,9 @@ themeClass['season-out'] = class extends ThemeBase {
 	clockRadius        = 1250;
 
 
-	seasonRadiusStart = 0;
-	seasonRadiusEnd   = 450;
-	monthRadiusStart  = 350;
-	monthRadiusEnd    = 850;
-	dayRadiusStart    = 750;
-	dayRadiusEnd      = 1200;
-
+	seasonSector = new Annulus(450, 0);
+	monthSector  = new Annulus(850, 350);
+	daySector    = new Annulus(1200, 750);
 
 	dateLabelRadius     = 575;
 	dateLabel = { position : new Point(10, this.dateLabelRadius) }; // tiny tweak to horizontal position here, having trouble centering it properly
@@ -64,23 +60,23 @@ themeClass['season-out'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.yearDayArray = getPeriodDayArray(displayDate.yearStart, displayDate.yearEnd, displayDate.object);
-		addRadians(displayDate.yearDayArray);
-		displayDate.seasonCircleArray  = getSeasonCircleArray(displayDate, this.hemisphere);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
+		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
 
-			${this.getSectors('season', displayDate.seasonCircleArray, this.seasonRadiusStart, this.seasonRadiusEnd)}
-			${this.getSectors('month', displayDate.monthArray, this.monthRadiusStart, this.monthRadiusEnd)}
-			${this.getPeriodDaySectors('yearDay', displayDate.yearDayArray, this.dayRadiusStart, this.dayRadiusEnd)}
-			${this.getSectorLabels('month', displayDate.monthArray, this.monthLabel)}
-			${this.getDateLabel('year', displayDate, this.yearLabel)}
-			${this.getDateLabel('date', displayDate, this.dateLabel)}
-			${this.getHands(displayDate, this.handConfig)}
+			${this.getSectors('season', this.displayDate.seasonCircleArray, this.seasonSector)}
+			${this.getSectors('month', this.displayDate.monthArray, this.monthSector)}
+			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
+			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabel)}
+			${this.getDateLabel('year', this.yearLabel)}
+			${this.getDateLabel('date', this.dateLabel)}
+			${this.getHands(this.handConfig)}
 		`;
 
 		return themeSVG;

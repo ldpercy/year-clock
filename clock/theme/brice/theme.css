@@ -11,7 +11,7 @@ svg.yearclock .face   {
 	stroke: none;
 }
 
-svg.yearclock .sectorGroup.month {
+svg.yearclock .group-sector.month {
 	path.sector { stroke:none; }
 }
 
@@ -68,7 +68,7 @@ svg.yearclock .tick.day .weekend {
 }
 
 
-svg.yearclock .label text {
+.group-label text {
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: white;

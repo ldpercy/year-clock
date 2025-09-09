@@ -7,40 +7,41 @@ svg.yearclock {
 	background-color: seashell;
 	font-size: 48px;
 	font-family: Arial, sans-serif;
+
+	.face   {
+		fill: whitesmoke;
+		stroke: silver;
+		stroke-width: 10;
+		filter: drop-shadow(0px 10px 10px gray);
+	}
+
 }
 
 
-svg.yearclock .face   {
-	fill: whitesmoke;
-	stroke: silver;
-	stroke-width: 10;
-	filter: drop-shadow(0px 10px 10px gray);
-}
 
-
-svg.yearclock .tick * {
+.tick * {
 	stroke: black;
 	stroke-linecap: butt;
 }
 
-svg.yearclock .tick.day .first {
+.tick.day .first {
 	stroke-width: 20;
 }
 
-svg.yearclock .tick.day .weekday {
+.tick.day .weekday {
 	stroke-width: 10;
 }
 
-svg.yearclock .tick.day .weekend {
+.tick.day .weekend {
 	stroke-width: 30;
 }
 
-svg.yearclock .month .label {
+.month .label {
 	fill: black;
 }
 
 
-svg.yearclock .label.month text{
+.group-label.month text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: black;
@@ -50,7 +51,7 @@ svg.yearclock .label.month text{
 }
 
 
-svg.yearclock .label.dateLabel {
+.label.dateLabel {
 	fill: black;
 	text-anchor: middle;
 	font-size: 5em;

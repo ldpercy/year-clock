@@ -5,24 +5,10 @@
 
 Math.TAU = 2 * Math.PI;
 
-function Point(x, y)
-{
-	this.x = x;
-	this.y = y;
-}
 
-function polarPoint(radians, radius)
-{
-	return new Point(
-		radius * Math.sin(radians),
-		radius * -Math.cos(radians)
-	)
-}
 
-function midpoint(a,b)
-{
-	return 0.5 * (a + b)
-}
+
+
 
 function radians(degrees) {
 	return (degrees/360) * Math.TAU;
@@ -38,6 +24,11 @@ Returns a function that will call toPrecision with the supplied number of signif
 */
 function significantFigures(integer) {
 	return (number) => { return number.toPrecision(integer) }
+}
+
+
+function equalAtPrecision(precision, n1, n2) {
+	return (n1.toPrecision(precision) === n2.toPrecision(precision))
 }
 
 
@@ -140,6 +131,158 @@ function dateRatio(date)
 }
 
 
+
+//
+// Classes
+//
+
+class Point {
+	constructor(x=0, y=0, precision=12) {
+		this.x = x;
+		this.y = y;
+		this.precision = precision;
+	}
+
+	plus = function(point) {
+		return new Point(
+			this.x + point.x,
+			this.y + point.y
+		);
+	}
+
+	distanceFrom = function(point = new Point()) {
+		const result = Math.hypot((this.x - point.x), (this.y - point.y));
+		return result;
+	}
+
+	// Clockwise from y axis
+	radiansFrom = function(center = new Point()) {
+		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
+		return result;
+	}
+
+	toPolarPoint = function(polarPoint = new PolarPoint()) {
+		const distance = this.distanceFrom();
+		const radian  = (equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
+		// for points on the origin return the default PolarPoint radian
+		// should probably actually add these akin to a base vector
+		return new PolarPoint(
+			radian,
+			distance
+		);
+	}
+
+	get radian() {
+		return Math.atan2(this.y, this.x) + Math.PI/2;
+	}
+
+	// Clockwise from y axis
+	radiansFrom = function(center = new Point()) {
+		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
+		return result;
+	}
+
+
+	get distanceFromOrigin() {
+		return Math.hypot(this.x, this.y);
+	}
+
+	getDistanceFrom = function(point = new Point()) {
+		return Math.hypot((this.x - point.x), (this.y - point.y));
+	}
+
+	// absolute
+	set radian(radian) {
+		const newPoint = new PolarPoint(radian, this.distanceFromOrigin).toPoint();
+		this.x = newPoint.x;
+		this.y = newPoint.y;
+		return this
+	}
+
+	// relative
+	rotate = function(radian) {
+		const newPoint = new PolarPoint(this.radian + radian, this.distanceFromOrigin).toPoint();
+		this.x = newPoint.x;
+		this.y = newPoint.y;
+		return this;
+	}
+
+
+}/* Point */
+
+
+
+
+class PolarPoint {
+	constructor(radian=0, radius=0, precision=12)
+	{
+		this.radian = radian;
+		this.radius = radius;
+		this.precision = precision;
+	}
+
+	toPoint = function() {
+		return new Point(
+			this.radius * Math.sin(this.radian),
+			this.radius * -Math.cos(this.radian)
+		)
+	}
+
+	toPointPolarOffset(polarPoint) {  // another polar point represents the deltas
+		return new Point(
+			(this.radius + polarPoint.radius) * Math.sin(this.radian + polarPoint.radian),
+			(this.radius + polarPoint.radius) * -Math.cos(this.radian + polarPoint.radian)
+		)
+	}
+
+	plus = function(polarPoint) {
+		return this.toPoint().plus(polarPoint.toPoint()).toPolarPoint();
+		// this way is pretty dumb, figure out a better way
+		// the lengths should add arithmetically
+		// this one is absolute
+	}
+
+	/* move
+	A single-step turtle graphics kind of move relative to the current point
+	Takes the current radian coordinate as the base heading and the new heading is relative to it.
+	Ie a 0 heading will continue in the same direction
+	*/
+	move = function(distance, heading) {
+		const delta = new PolarPoint(this.radian+heading, distance);
+		//console.log(delta);
+		return this.plus(delta);
+	}
+
+
+	/* newPointOffsetXY
+	The offsets are applied to the radial point's 'local' cartesian plane.
+	(The absolute versions of this would have been trivial)
+	*/
+	newPointOffsetXY(dx, dy) {
+		let result = new Point(dx, -this.radius + dy);
+		result.rotate(this.radian);
+		return result;
+	}/* newPointOffsetXY */
+
+
+}/* PolarPoint */
+
+
+class Annulus {
+	constructor(
+			outerRadius,
+			innerRadius,
+			center = new Point(),
+			option = {}
+		) {
+		this.outerRadius = outerRadius;
+		this.innerRadius = innerRadius;
+		this.center = center;
+		this.option = option;
+	}
+}
+
+
 class RadianDelta {
 	constructor(start = 0, delta = Math.TAU) {
 		this.start = start;
@@ -155,3 +298,34 @@ class DegreeDelta {
 	}
 }/* RadianDelta */
 
+
+
+
+function asRomanNumerals(number) {
+	result = '';
+	let value=number, divisor, remainder;
+	const rn = [
+		{ s: 'm',  v: 1000 },
+		{ s: 'cm', v: 900  },
+		{ s: 'd',  v: 500  },
+		{ s: 'cd', v: 400  },
+		{ s: 'c',  v: 100  },
+		{ s: 'xc', v: 90   },
+		{ s: 'l',  v: 50   },
+		{ s: 'xl', v: 40   },
+		{ s: 'x',  v: 10   },
+		{ s: 'ix', v: 9    },
+		{ s: 'v',  v: 5    },
+		{ s: 'iv', v: 4    },
+		{ s: 'i',  v: 1    },
+	];
+
+	for (var j = 0; j < rn.length; j++) {
+		divisor = Math.floor(number/rn[j].v);
+		result += rn[j].s.repeat(divisor);
+		number = number - (divisor * rn[j].v);
+		//log(rn[j], divisor,result,number);
+	}
+
+	return result
+}

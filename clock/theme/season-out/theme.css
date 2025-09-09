@@ -59,25 +59,20 @@ svg.yearclock .face   {
 
 
 
-.yearDay .sector.day.weekend {
-	fill: var(--darkgrey);
-}
-
-
-
-.sector.day.Monday, .sector.day.Wednesday, .sector.day.Friday {
-	fill: var(--white);
-}
-
-.sector.day.Tuesday, .sector.day.Thursday {
-	fill: var(--lightgrey);
+.group-sector.yearDay {
+	.weekday {
+		fill: var(--white);
+	}
+	.weekend {
+		fill: var(--darkgrey);
+	}
 }
 
 
 /* Labels
 */
 
-svg.yearclock .label.month text{
+.group-label.month text{
 	text-anchor: middle;
 	dominant-baseline: middle;
 	fill: var(--labelblack);

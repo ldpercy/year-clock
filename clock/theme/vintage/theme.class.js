@@ -10,10 +10,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	faceRadius       = 1200;
 
-	monthSector = {
-		outerRadius : 1150,
-		innerRadius : 1070,
-	};
+	yearMonthSector = new Annulus(1150, 1070);
 
 	monthText = {
 		radius         : 1110,
@@ -31,16 +28,14 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 
-	daySector = {
-		innerRadius : 650,
-		outerRadius : 750,
-	};
+	monthDaySector = new Annulus(750,650);
 
 	dayName = {
 		radius         : 700,
 		sectorPosition : 0.5,
 		rotate         : true,
 		invert         : false,
+		format         : 'dayShort',
 	};
 
 	dayNumber = {
@@ -75,39 +70,34 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function(displayDate)
+	getThemeSVG = function()
 	{
-		addDateRangeRadians(displayDate.monthArray, displayDate.yearRange);
-		displayDate.monthDayArray = getPeriodDayArray(startOfMonth(displayDate.object), nextMonth(displayDate.object), displayDate.object, displayDate.language);
-		addRadians(displayDate.monthDayArray);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
 
 		const themeSVG = `
-			<!--
-			<rect x="-1200" y="-1200" width="2400" height="2400">
-			</rect>
-			-->
-
 			${this.getDefs()}
 			${this.getBody(this.body)}
 			${this.getFace(this.faceRadius)}
 
 
-			${this.getSectors('month', displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
+			${this.getSectors('month', this.displayDate.monthArray, this.yearMonthSector)}
 
-			${this.getSectorLabelsCurved('monthName', displayDate.monthArray, this.monthText)}
-			${this.getSectorLabels('monthNumber', displayDate.monthArray, this.monthNumber)}
+			${this.getSectorLabelsCurved('monthName', this.displayDate.monthArray, this.monthText)}
+			${this.getSectorLabels('monthNumber', this.displayDate.monthArray, this.monthNumber)}
 
-			${this.getPeriodDaySectors('day', displayDate.monthDayArray, this.daySector.innerRadius, this.daySector.outerRadius)}
-			${this.getSectorLabels('dayName', displayDate.monthDayArray, this.dayName)}
-			${this.getSectorLabels('dayNumber', displayDate.monthDayArray, this.dayNumber)}
+			${this.getSectors('day', this.displayDate.monthDayArray, this.monthDaySector)}
+			${this.getSectorLabels('dayName', this.displayDate.monthDayArray, this.dayName)}
+			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayNumber)}
 
-			${this.getDateLabel(displayDate.object, this.dateLabelPosition)}
+			${this.getDateLabel(this.dateLabelPosition)}
 
 			<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
 				${this.getIcon()}
 			</svg>
 
-			${this.getHands(displayDate, this.handConfig)}
+			${this.getHands(this.handConfig)}
 			${this.getPin()}
 		`;
 
@@ -120,7 +110,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 
 
-	formatLabel = function(labelType, data) {
+/* 	formatLabel = function(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'monthName'    : result = data.name; break;
@@ -131,7 +121,7 @@ themeClass['vintage'] = class extends ThemeBase {
 			default             : result = data.name; break;
 		}
 		return result;
-	}
+	} */
 
 
 	/* getDefs
@@ -166,15 +156,15 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	/* getDateLabel
 	*/
-	getDateLabel = function(date, point) {
+	getDateLabel = function(point) {
 
 		const dateLabelPath = getArcPath(radians(-60), radians(60), point.y);
 		//const dateLabelPath = getArcPath(radians(240), radians(120), point.y);
 
-		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('date',{'date':date})}</textPath>`;
+		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 
 		const svg =
-			`<g class="dateLabel">
+			`<g class="group-label dateLabel">
 				<defs>
 					<path id="dateLabelPath" d="${dateLabelPath}"/>
 				</defs>
@@ -267,7 +257,7 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	getIcon = function() {
 		const path =
-			`<path class="label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>`;
+			`<path class="group-label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"><title>vintage clock by ldpercy</title></path>`;
 			//'<path class="label favicon" d="M 259 966 L -966 -259 L 707 -707 M -259 966 L -707 -707 L 966 -259 M -707 707 L -259 -966 L 966 259 M -966 259 L 259 -966 L 707 707  Z"></path>';
 		return path;
 	}

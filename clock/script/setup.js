@@ -14,7 +14,7 @@ const page = {
 	default :
 	{
 		date        : new Date(),
-		theme       : 'car-dashboard',
+		theme       : 'wheel',
 		style       : '',
 		language    : 'en',
 		background  : '',
@@ -198,7 +198,7 @@ function updateBackground(background) {
 
 
 function updateClock() {
-	log('updateClock:');
+	//log('updateClock:');
 
 	if (!isValidDate(new Date(page.element.datePicker.value)))
 	{
@@ -208,7 +208,6 @@ function updateClock() {
 
 	const updateClockParams = {
 		id          : '1234',
-		container   : page.element.container,
 		date        : new Date(page.element.datePicker.value),
 		theme       : page.element.themeInput.value,
 		style       : page.element.styleInput.value,
@@ -227,27 +226,27 @@ Part 1:
 * load the css
 * async load the theme class
 */
-function drawClock(clock) {
+function drawClock(clockParameter) {
 
-	log('drawClock', arguments);
+	//log('drawClock', arguments);
 
-	let cssUrl_theme = `clock/theme/${clock.theme}/theme.css`;
+	let cssUrl_theme = `clock/theme/${clockParameter.theme}/theme.css`;
 	page.element.style_theme.setAttribute('href', cssUrl_theme);
 
-	if (clock.style) {
-		let cssUrl_style = `clock/theme/${clock.theme}/style-${clock.style}.css`;
+	if (clockParameter.style) {
+		let cssUrl_style = `clock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
 		page.element.style_style.setAttribute('href', cssUrl_style);
 	}
 
-	if (themeClass[clock.theme]) {
+	if (themeClass[clockParameter.theme]) {
 		// we already have that theme class in memory
 		// go right ahead to drawClock2
-		drawClock2(...arguments);
+		drawClock2(clockParameter);
 	}
 	else { // go and get the theme class
-		let classUrl = `clock/theme/${clock.theme}/theme.class.js`;
+		let classUrl = `clock/theme/${clockParameter.theme}/theme.class.js`;
 		// async load the theme class
-		replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(...arguments)}));
+		replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(clockParameter)}));
 	}
 
 }/* drawClock */
@@ -259,18 +258,25 @@ Part 2:
 * create instance of the theme class for the clock
 * write clock svg into the container
 */
-function drawClock2(clock) {
+function drawClock2(clockParameter) {
 
 	//log('drawClock2',arguments);
+	let clockSVG;
 
-	page.clockInstance[clock.id] = new themeClass[clock.theme](clock.id, clock.date, clock.theme, clock.style, clock.language, clock.background, clock.hemisphere);
-
-	let displayDate = createDisplayDate(clock.date, clock.language);
-	let clockSVG = page.clockInstance[clock.id].getClockSVG(displayDate);
+	//log('dd:',this.displayDate);
+	//try {
+		page.clockInstance[clockParameter.id] = new themeClass[clockParameter.theme](clockParameter);
+		clockSVG = page.clockInstance[clockParameter.id].getClockSVG();
+	/* }
+	catch(error)
+	{
+		log('found an error');
+		log(error);
+	} */
 
 	if (page.initial.test) { runTest(clockSVG); }
 
-	clock.container.innerHTML = clockSVG;
+	page.element.container.innerHTML = clockSVG;
 
 }/* drawClock */
 

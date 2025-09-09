@@ -1,0 +1,12 @@
+svg.yearclock {
+
+	background:
+		radial-gradient(
+			 black 0%,
+			 midnightblue 70%,
+			 red 80%,
+			 orange 85%,
+			 darkgreen 90%,
+			 black 100% );
+}
+
