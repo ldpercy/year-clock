@@ -16,14 +16,23 @@ svg.yearclock {
 	/* background-color: fuchsia; */
 
 	background:
-		linear-gradient(
-			180deg,
+		radial-gradient(
+			circle 2400px at 50% 160%,
+			black 0%,
+			black 25%,
+			darkgreen 30%,
+			orange 35%,
+			red 40%,
+			midnightblue 50%,
+			black 100%
+			/*
 			black 0%,
 			midnightblue 70%,
 			red 80%,
 			orange 85%,
 			darkgreen 90%,
 			black 100%
+			 */
 		);
 
 	font-family:  sans-serif; /* 'Times New Roman', Times, */
