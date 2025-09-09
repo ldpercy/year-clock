@@ -359,3 +359,23 @@ I think I should probably wrap this pretty shortly as it's most of the way there
 * Maybe split maths and geometry
 * general cleanup
 * Check some of the styling of older themes - in the group class cleanup I might have lost a property or two in a couple of spots, eg dashboard
+
+
+
+Wrapup
+------
+
+* Got the whole wheel rotating early on
+* Split the month and day rotation which led to massive sidetracks, eventually spawning two new themes 'space' and 'solar'
+* Have successfully implemented text knockout - it's a bit complicated though
+* Now using annulus class instances to describe sectors
+* Starting to use structured 'ring' config to group sector and label config
+* Label side flipper has been moved to brice to clean up date labels
+* A bunch more investigation into js classes - slowly getting better at using features
+* Rationalise clock parameters - displayDate now an instance property
+* Diversion into roman numeral - will revisit in a future theme
+* Some additions/improvements to polar coord calcs - conversion, point arithmetic, some adjusts
+* Can now apply radial adjustments to sectors to allow for adding gutters/lanes between
+* A bunch of classname rationalisation
+
+
