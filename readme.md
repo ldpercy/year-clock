@@ -130,9 +130,10 @@ More detail in the [task/](<./task/>) directory.
 
 ### Currently working on
 
+* Solar theme
 * Dynamic/interactive elements
 * Custom date highlighting
-* Remove callback from draw sequence
+* SVG effects like filters & knockout
 
 
 ### Future features
