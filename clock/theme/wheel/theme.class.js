@@ -19,7 +19,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		label : [
 			{
 				name           : 'monthNumber',
-				radius         : 650,
+				radius         : 635,
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
@@ -101,7 +101,7 @@ themeClass['wheel'] = class extends ThemeBase {
 
 		const themeSVG = `
 			<defs>
-				${this.getFilters()}
+				${this.getDefs()}
 			</defs>
 
 			<g class="clock">
@@ -163,58 +163,69 @@ themeClass['wheel'] = class extends ThemeBase {
 
 
 
-	getFilters = function() {
+	getDefs = function() {
 		const result = `
-	 <filter
-		 id="f143"
-		 x="-0.25"
-		 width="1.5"
-		 y="-0.25"
-		 height="1.5"
-		 inkscape:menu="Non realistic 3D shaders"
-		 inkscape:menu-tooltip="Non realistic frosted glass imitation"
-		 inkscape:label="Frosted glass"
-		 style="color-interpolation-filters:sRGB">
-		<feGaussianBlur
-			result="result8"
-			stdDeviation="7"
-			id="feGaussianBlur20429" />
-		<feComposite
-			in="result8"
-			operator="xor"
-			result="result6"
-			in2="result8"
-			id="feComposite20431" />
-		<feDisplacementMap
-			result="result4"
-			scale="75"
-			yChannelSelector="A"
-			xChannelSelector="A"
-			in2="result6"
-			in="result6"
-			id="feDisplacementMap20433" />
-		<feComposite
-			k1="2"
-			in="SourceGraphic"
-			operator="arithmetic"
-			result="result2"
-			in2="result4"
-			id="feComposite20435"
-			k2="0"
-			k3="0"
-			k4="0" />
-		<feComposite
-			in2="result2"
-			operator="in"
-			in="result6"
-			result="fbSourceGraphic"
-			id="feComposite20437" />
-	 </filter>
 
+			<linearGradient id="gradient-stroke-linear" y1="0%" y2="100%" x1="0%" x2="0%">
+				<stop offset="0%" stop-color="#999a" stop-opacity="50%"/>
+				<stop offset="100%" stop-color="#f00a" stop-opacity="50%"/>
+			</linearGradient>
+
+			<radialGradient id="gradient-stroke-radial" y1="0%" y2="100%" x1="0%" x2="0%">
+				<stop offset="0%" stop-color="#000a" stop-opacity="50%"/>
+				<stop offset="50%" stop-color="#fffa" stop-opacity="50%"/>
+				<stop offset="100%" stop-color="#fffa" stop-opacity="50%"/>
+			</radialGradient>
+
+			<filter
+				id="f143"
+				x="-0.25"
+				width="1.5"
+				y="-0.25"
+				height="1.5"
+				inkscape:menu="Non realistic 3D shaders"
+				inkscape:menu-tooltip="Non realistic frosted glass imitation"
+				inkscape:label="Frosted glass"
+				style="color-interpolation-filters:sRGB">
+				<feGaussianBlur
+					result="result8"
+					stdDeviation="7"
+					id="feGaussianBlur20429" />
+				<feComposite
+					in="result8"
+					operator="xor"
+					result="result6"
+					in2="result8"
+					id="feComposite20431" />
+				<feDisplacementMap
+					result="result4"
+					scale="75"
+					yChannelSelector="A"
+					xChannelSelector="A"
+					in2="result6"
+					in="result6"
+					id="feDisplacementMap20433" />
+				<feComposite
+					k1="2"
+					in="SourceGraphic"
+					operator="arithmetic"
+					result="result2"
+					in2="result4"
+					id="feComposite20435"
+					k2="0"
+					k3="0"
+					k4="0" />
+				<feComposite
+					in2="result2"
+					operator="in"
+					in="result6"
+					result="fbSourceGraphic"
+					id="feComposite20437" />
+			</filter>
 		`;
 
 		return result;
-	}/* getFilters */
+	}/* getDefs */
 
 
 }/* Plain SVG */

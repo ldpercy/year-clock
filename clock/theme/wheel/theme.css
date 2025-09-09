@@ -38,11 +38,12 @@ svg.yearclock .face   {
 	stroke-width: 10;
 	filter: blur(1px) drop-shadow(0px 10px 10px var(--shadowColour));
 
-
 }
 
 
+
 g.clock .sector{
+	stroke: url(#gradient-stroke-radial);
 	filter:   drop-shadow(0px 10px 10px var(--shadowColour)); /* blur(1px) */
 }
 
@@ -84,13 +85,18 @@ g.clock .sector{
 .yearLabel
 {
 	fill:var(--sectorColour);
+
 	stroke:var(--sectorStroke);
+	/* stroke: url(#sector-stroke);
+ */
 	stroke-width: 40px;
 	stroke-linejoin: round;
 	/* filter: blur(1px) drop-shadow(0px 10px 10px var(--wheelShadow)); */
 	paint-order: stroke; /* fill */
 	/* filter:url(#f143); */
 }
+
+
 
 
 .group-sector
@@ -137,7 +143,7 @@ text.dateLabel.year {
 	text-anchor: middle;
 	font-size: 4em;
 	text-transform: uppercase;
-	dominant-baseline: central;
+	dominant-baseline: middle;
 }
 
 
