@@ -19,7 +19,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		label : [
 			{
 				name           : 'monthNumber',
-				radius         : 635,
+				radius         : 630,
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
@@ -28,7 +28,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			},
 			{
 				name           : 'monthShort',
-				radius         : 525,
+				radius         : 520,
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
@@ -48,7 +48,7 @@ themeClass['wheel'] = class extends ThemeBase {
 		label : [
 			{
 				name           : 'dayNumber',
-				radius         : 1050,
+				radius         : 1040,
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
@@ -57,7 +57,7 @@ themeClass['wheel'] = class extends ThemeBase {
 			},
 			{
 				name           : 'dayShort',
-				radius         : 950,
+				radius         : 940,
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,

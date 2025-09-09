@@ -344,3 +344,18 @@ I think this was what I originally had in mind, and what started off this round 
 
 Think I've finally cracked the x,y version of size adjust.
 
+Tweaking/wrapup
+---------------
+
+I think I've finally gotten this to somewhere near the *original* idea - a translucent wheel in space.
+
+I'm mostly just tweaking now, there are one or two more things I want to do - the background for instance, and a nice crackle effect for the glass, but the latter will have to wait.
+
+I think I should probably wrap this pretty shortly as it's most of the way there, and I'd like to move on.
+
+* Test the curved knockout - i think it will break
+* Convert one or two more themes over to the new 'ring' system
+* Update index and readme
+* Maybe split maths and geometry
+* general cleanup
+* Check some of the styling of older themes - in the group class cleanup I might have lost a property or two in a couple of spots, eg dashboard
