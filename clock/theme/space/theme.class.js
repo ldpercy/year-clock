@@ -1,6 +1,6 @@
 /* Wheel
 */
-themeClass['wheel'] = class extends ThemeBase {
+themeClass['space'] = class extends ThemeBase {
 
 	viewBox           = padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;
@@ -11,28 +11,28 @@ themeClass['wheel'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector : new Annulus(1200, 900, new Point(), { simpleOuter:true}),
-		label : {
+		label : [{
 			radius         : 1025,
 			sectorPosition : 0.5,
 			rotate         : false,
 			invert         : false,
 			textType       : 'text',
 			format         : 'romanNumeralMonth',
-		}
+		}]
 	};
 
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(800, 600),
-		label : {
+		label : [{
 			radius         : 700,
 			sectorPosition : 0.5,
 			rotate         : false,
 			invert         : false,
 			textType       : 'text',
 			format         : 'romanNumeralDay',
-		}
+		}]
 	};
 
 	dateLabel   = {
@@ -96,9 +96,6 @@ themeClass['wheel'] = class extends ThemeBase {
 
 					${this.getSectorsWithKnockout('monthDay', this.displayDate.monthDayArray, this.dayRing)}
 
-					<!-- <circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/> -->
-
-					<!-- ${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayRing.label)} -->
 				</g>
 			</g>
 
