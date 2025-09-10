@@ -7,6 +7,7 @@ Todo
 
 Job reminders to wrap into other tasks.
 
+* Option to have month rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
 * Start looking into tools like linters
 * Add license
 * Find out if form `select` size can be controlled with css
@@ -34,12 +35,13 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
-* Old plain-svg theme is now 'wheel' theme
 * Finish cleaning up new hands & promote to ThemeBase
 * 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc -> one side removed, do other
 
 ### Done
 
+
+* Old plain-svg theme is now 'wheel' theme
 * `getPeriodDaySectors` removed, now all sectors drawn with `getSectors`
 * Have working examples of text knock-out now
 * See if date presets (Pi Day etc) can be added as datalist suggestions -> work in Chromium, do nothing in FF, probably leave
@@ -52,7 +54,6 @@ Themes
 ------
 
 In progress:
-* Wheel theme
 * Solar theme
 * Space/alien theme
 
