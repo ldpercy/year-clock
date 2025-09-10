@@ -345,8 +345,6 @@ class ThemeBase extends Clock {
 
 		for (let sector of sectorArray)
 		{
-			//log('sector:', sector);
-
 			const pathId = `labelPath-${sectorName}-${sector.id}`;
 
 			if (setting.invert === 'all') {
@@ -553,27 +551,8 @@ class ThemeBase extends Clock {
 				`;
 			} else {
 				// use regular 'text' elements as the knockout shape
-				/*
-				const radiansLabel = sector.radians.start + (sector.radians.width * setting.label.sectorPosition);
-
-				const center     = new PolarPoint(radiansLabel, setting.label.radius).toPoint();
-				let transform = '';
-
-				if (setting.label.rotate)
-				{
-					let rotation = this.rotationDegrees(radiansLabel, setting.label);
-					transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
-				}
-
-
-				textMask = `<text class="knockout-shapeKnockedout ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
-				*/
 				labelFormat = setting.format || sectorName;
 				setting.label.forEach((label) => { textMask += this.getSectorLabel(sector, label, label.format, 'knockout-shapeKnockedout')});
-				// function(sector, setting, labelFormat, classString='')
-				//labelFormat = setting.label.format || sectorName;
-				//textMask = this.getSectorLabel(sector, setting.label[0], labelFormat, 'knockout-shapeKnockedout');
-
 			}
 
 			// sector path, mask, sector itself:
@@ -638,10 +617,6 @@ class ThemeBase extends Clock {
 			sectorSVG = this.getSectors(setting.name, setting.array, setting.sector, setting);
 			setting.label.forEach((label) => { labelSVG += this.getSectorLabels(setting.name, setting.array, label)});
 		}
-
-		// [1,2,3,4].reduce( (p,c)=>{ return `${p} -${c}`  } )
-		//ReadonlyArray.reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: readonly T[]) => T): T
-
 
 		result = `
 			<g class="group-ring ring-${setting.name}">
