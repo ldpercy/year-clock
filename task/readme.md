@@ -12,14 +12,12 @@ Job reminders to wrap into other tasks.
 * Add license
 * Find out if form `select` size can be controlled with css
 * Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform
-* Possibly combine sector and label methods into unified 'ring' (or similar) method
-* See if a debounce of some sort is needed for Chromium's drawing glitchiness
 * Add another test mode to check for exceptions - something that would have caught the season-circle bug
 * Get the wireframe background to switch on the grid properly - prob need to draw separately
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
 * Look into utilising some webservices for tasks like l10n
 * Consider reorgansing the global scripts (maths, date etc) into service objects with some autowiring
-* Build a 180 degree year clock to force the point about split-season display -> fire warning theme
+* Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)
 * Do something with the footer
@@ -32,14 +30,15 @@ Job reminders to wrap into other tasks.
 * Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
 
 
-
 ### In progress
 
+* Investigating Chromium's drawing glitchiness
+* Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
 * 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc -> one side removed, do other
 
-### Done
 
+### Done
 
 * Old plain-svg theme is now 'wheel' theme
 * `getPeriodDaySectors` removed, now all sectors drawn with `getSectors`
@@ -59,5 +58,5 @@ In progress:
 
 Future:
 * Retro 60s clock
-* Fire warning theme
+* Fire danger theme - https://afdrs.com.au/
 * Roman theme
