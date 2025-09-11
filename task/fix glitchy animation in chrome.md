@@ -37,16 +37,16 @@ Rough evaluation of perceived glitchiness as a percentage of good/vs bad frames:
 
 |              | desktop| desktop small| laptop| latop small|
 |--------------|--------|--------------|-------|------------|
-| solar (1)    | 80     | 90           |       |            |
-| space        | 70     | 60           |       |            |
-| wheel        | 0      | 0            |       |            |
-| car dashboard| 0      | 1            |       |            |
-| vintage      | 0      | 0            |       |            |
-| lightning    | 100    | 100          |       |            |
-| season-out   | 98     | 99           |       |            |
-| wall-clock   | 2      | 0            |       |            |
-| brice        | 50     | 70           |       |            |
-| debug (2)    | dep.   | dep.         |       |            |
+| solar (1)    | 80     |   90         |    5  |      5     |
+| space        | 70     |   60         |   10  |     25     |
+| wheel        | 0      |    0         |    1  |      1     |
+| car dashboard| 0      |    1         |    0  |      0     |
+| vintage      | 0      |    0         |    0  |      0     |
+| lightning    | 100    |  100         |   99  |     99     |
+| season-out   | 98     |   99         |   50  |     50     |
+| wall-clock   | 2      |    0         |    0  |      0     |
+| brice        | 50     |   70         |    5  |     10     |
+| debug (2)    | dep.   |  dep.        |       |            |
 
 
 1. Solar glitches a bit differently - it doesn't do full whiteout like most of the themes, it just displays in black and white.
