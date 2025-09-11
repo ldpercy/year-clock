@@ -8,13 +8,16 @@ themeClass['solar'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector  : new Annulus(1150,950),
-		label   : {
+		sectorType: 'normal',
+		label   : [{
+			name           : 'monthName',
 			radius         : 1050,
+			textType       : 'textPath',
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : 'all',
-			format         : 'monthNumber',
-		}
+			format         : 'monthName',
+		}]
 	};
 
 	dayRing = {
@@ -87,22 +90,22 @@ themeClass['solar'] = class extends ThemeBase {
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
+
+
 				${this.getSectors('monthDay', this.displayDate.monthDayArray, this.dayRing.sector)}
 
 				${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayRing.label)}
 			</g>
 			<g transform="scale(2,1) ${yearTransform} ">
-
 				${this.getSun('year', this.dateLabel)}
-
-				${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector)}
-				${this.getSectorLabelsCurved('yearMonth', this.displayDate.monthArray, this.monthRing.label)}
-
+				${this.getRing(this.monthRing)}
 			</g>
-
 		`;
 
 		/*
+			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector)}
+			${this.getSectorLabelsCurved('yearMonth', this.displayDate.monthArray, this.monthRing.label)}
+			${this.getRing(this.dayRing)}
 			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayName)}
 		*/
 

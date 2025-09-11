@@ -7,7 +7,7 @@ Todo
 
 Job reminders to wrap into other tasks.
 
-* Option to have month rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
+* Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
 * Start looking into tools like linters
 * Add license
 * Find out if form `select` size can be controlled with css
@@ -20,7 +20,7 @@ Job reminders to wrap into other tasks.
 * Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)
-* Do something with the footer
+* Do something with the footer - eg combine it with the form
 * Add option to hide the form
 * Fonts - find some web-safe ones or figure out serving
 * Rename hands to pointers

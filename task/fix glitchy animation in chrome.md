@@ -1,4 +1,4 @@
-Fix Glitchy animation in chrome
+Fix glitchy animation in chrome
 ===============================
 
 From: Wheel clock followup
@@ -33,3 +33,30 @@ Might have something to do with `getPeriodDayArray` - just adding/removing a cal
 
 
 
+Rough evaluation of perceived glitchiness as a percentage of good/vs bad frames:
+
+|              | desktop| desktop small| laptop| latop small|
+|--------------|--------|--------------|-------|------------|
+| solar (1)    | 80     | 90           |       |            |
+| space        | 70     | 60           |       |            |
+| wheel        | 0      | 0            |       |            |
+| car dashboard| 0      | 1            |       |            |
+| vintage      | 0      | 0            |       |            |
+| lightning    | 100    | 100          |       |            |
+| season-out   | 98     | 99           |       |            |
+| wall-clock   | 2      | 0            |       |            |
+| brice        | 50     | 70           |       |            |
+| debug (2)    | dep.   | dep.         |       |            |
+
+
+1. Solar glitches a bit differently - it doesn't do full whiteout like most of the themes, it just displays in black and white.
+2. The debug theme depends because I'm fiddling with it.
+
+
+
+Things to do
+------------
+
+* Try some first-level refactors on the main draw functions in the setup script - it's *very* dumb at the moment and there are one or two easy gains to be made there
+* Add some proper speed testing: automate drawing 100 frames (or whatever) of various themes and collate the results
+* Find out how the `keydown` event actually works  - does it wait/queue etc
