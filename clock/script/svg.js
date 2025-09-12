@@ -153,3 +153,28 @@ function rectanglePath(x, y, width, height, radius) {
 	return path;
 }
 
+
+
+class SVGChunk {
+	constructor(
+		text = '',
+		defs = ''
+	) {
+		this.text = text;
+		this.defs = defs;
+	}
+
+	add = function(svgChunk) {
+		this.text += svgChunk.text;
+		this.defs += svgChunk.defs;
+	}
+
+	toString = function() {
+		const result = `
+			<defs>
+				${this.defs}
+			</defs>
+			${this.text}`;
+		return result;
+	}
+}/* SVGChunk */

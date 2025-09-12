@@ -10,7 +10,7 @@ themeClass['solar'] = class extends ThemeBase {
 		sector  : new Annulus(1150,950),
 		sectorType: 'normal',
 		label   : [{
-			name           : 'monthName',
+			name           : 'yearMonth',
 			radius         : 1050,
 			textType       : 'textPath',
 			sectorPosition : 0.5,
@@ -25,7 +25,9 @@ themeClass['solar'] = class extends ThemeBase {
 		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(850, 650),
 		label : {
+			name           : 'monthDay',
 			radius         : 500,
+			textType       : 'textPath',
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : 'all',
@@ -96,6 +98,7 @@ themeClass['solar'] = class extends ThemeBase {
 
 				${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayRing.label)}
 			</g>
+
 			<g transform="scale(2,1) ${yearTransform} ">
 				${this.getSun('year', this.dateLabel)}
 				${this.getRing(this.monthRing)}

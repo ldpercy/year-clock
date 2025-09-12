@@ -290,17 +290,19 @@ class ThemeBase extends Clock {
 	*/
 	getSectorLabels = function(sectorName, sectorArray, setting)
 	{
+		const sectorLabels = new SVGChunk();
+
 		//log('getSectorLabels:', arguments);
 		const labelFormat = setting.format || sectorName;
 		let sectorLabelSvg = '';
 		for (let sector of sectorArray)
 		{
-			sectorLabelSvg += this.getSectorLabel(sector, setting, labelFormat);
+			sectorLabels.add(this.getSectorLabel(sector, setting, labelFormat));
 		}
 
 		const result =
 			`<g class="group-label ${sectorName} ${setting.name||''}">
-				${sectorLabelSvg}
+				${sectorLabels.toString()}
 			</g>`;
 		return result;
 	}/* getSectorLabels */
@@ -310,7 +312,8 @@ class ThemeBase extends Clock {
 	*/
 	getSectorLabel = function(sector, setting, labelFormat, classString='')
 	{
-		//log(arguments);
+
+		const result = new SVGChunk();
 		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
 
 		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
@@ -322,7 +325,8 @@ class ThemeBase extends Clock {
 			rotation = this.rotationDegrees(radiansLabel, setting);
 			transform = `rotate(${sf(rotation)}, ${sf(center.x)}, ${sf(center.y)})`;
 		}
-		const result =
+
+		result.text =
 			`<text class="${classString} ${setting.name||''} ${sector.class}" x="${sf(center.x)}" y="${sf(center.y)}" transform="${transform}">${this.formatLabel(labelFormat, sector)}</text>`;
 		return result;
 	}/* getSectorLabel */
