@@ -33,24 +33,29 @@ Might have something to do with `getPeriodDayArray` - just adding/removing a cal
 
 
 
-Rough evaluation of perceived glitchiness as a percentage of good/vs bad frames:
+Evaluation of perceived glitchiness
+-----------------------------------
 
-|              | desktop| desktop small| laptop| latop small|
-|--------------|--------|--------------|-------|------------|
-| solar (1)    | 80     |   90         |    5  |      5     |
-| space        | 70     |   60         |   10  |     25     |
-| wheel        | 0      |    0         |    1  |      1     |
-| car dashboard| 0      |    1         |    0  |      0     |
-| vintage      | 0      |    0         |    0  |      0     |
-| lightning    | 100    |  100         |   99  |     99     |
-| season-out   | 98     |   99         |   50  |     50     |
-| wall-clock   | 2      |    0         |    0  |      0     |
-| brice        | 50     |   70         |    5  |     10     |
-| debug (2)    | dep.   |  dep.        |       |            |
+Rough evaluation of perceived glitchiness as a percentage of bad frames:
+
+|				|	desktop	|	desktop small	|	laptop	|	latop small	|
+|---------------|-----------|-------------------|-----------|---------------|
+| solar (1)		|		80	|			90		|		5	|			5	|
+| space			|		70	|			60		|		10	|			25	|
+| wheel			|		0	|			0		|		1	|			1	|
+| car dashboard	|		0	|			1		|		0	|			0	|
+| vintage		|		0	|			0		|		0	|			0	|
+| lightning		|		100	|			100		|		99	|			99	|
+| season-out	|		98	|			99		|		50	|			50	|
+| wall-clock	|		2	|			0		|		0	|			0	|
+| brice			|		50	|			7		|		5	|			10	|
+| debug (2)		|		dep	|			dep		|			|				|
 
 
 1. Solar glitches a bit differently - it doesn't do full whiteout like most of the themes, it just displays in black and white.
 2. The debug theme depends because I'm fiddling with it.
+
+Nearly always my laptop was less glitchy, it's 3 or 4 years newer than my desktop so it probably has better single thread performance.
 
 
 
