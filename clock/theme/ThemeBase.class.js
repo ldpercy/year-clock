@@ -288,13 +288,11 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorName, sectorArray, setting)
+	getSectorLabels = function(sectorName, sectorArray, setting) // :String
 	{
 		const sectorLabels = new SVGChunk();
-
-		//log('getSectorLabels:', arguments);
 		const labelFormat = setting.format || sectorName;
-		let sectorLabelSvg = '';
+
 		for (let sector of sectorArray)
 		{
 			sectorLabels.add(this.getSectorLabel(sector, setting, labelFormat));
@@ -310,9 +308,8 @@ class ThemeBase extends Clock {
 
 	/* getSectorLabel
 	*/
-	getSectorLabel = function(sector, setting, labelFormat, classString='')
+	getSectorLabel = function(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
-
 		const result = new SVGChunk();
 		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
 
@@ -339,42 +336,60 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelsCurved = function(sectorName, sectorArray, setting)
+	getSectorLabelsCurved = function(sectorName, sectorArray, setting) //:String
 	{
-		//log('getSectorLabels:', arguments);
-
-		let defs = '';
-		let textPaths = '';
-		let labelArc = '';
+		const sectorLabels = new SVGChunk();
+		const labelFormat = setting.format || sectorName;
 
 		for (let sector of sectorArray)
 		{
-			const pathId = `labelPath-${sectorName}-${sector.id}`;
-
-			if (setting.invert === 'all') {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
-			}
-			else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
-				labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
-			}
-			else {
-				labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.radius);
-			}
-
-			const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
-			defs += labelPath;
-
-			const textPath = `<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(sectorName, sector)}</textPath>`;
-			textPaths += textPath;
+			sectorLabels.add(this.getSectorLabelCurved(sector, setting, labelFormat));
 		}
 
-		const result =
-			`<g class="group-label label-${sectorName}">
-				<defs>${defs}</defs>
-				<text>${textPaths}</text>
+		const result = `
+			<g class="group-label label-${sectorName}">
+				<defs>
+					${sectorLabels.defs}
+				</defs>
+				<text>
+					${sectorLabels.text}
+				</text>
 			</g>`;
 		return result;
 	}/* getSectorLabelsCurved */
+
+
+
+	/* getSectorLabelCurved
+		setting = {
+			radius         : number,
+			invert         : boolean,
+		};
+	*/
+	getSectorLabelCurved = function(sector, setting, labelFormat, classString='')//:SVGChunk
+	{
+		const result = new SVGChunk();
+		let labelArc = '';
+
+		const pathId = `labelPath-${setting.name}-${sector.id}`;
+
+		if (setting.invert === 'all') {
+			labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+		}
+		else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
+			labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+		}
+		else {
+			labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.radius);
+		}
+
+		result.defs =
+			`<path id="${pathId}" d="${labelArc}"/>`;
+		result.text =
+			`<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(setting.format, sector)}</textPath>`;
+
+		return result;
+	}/* getSectorLabelCurved */
 
 
 
@@ -619,13 +634,22 @@ class ThemeBase extends Clock {
 		else
 		{
 			sectorSVG = this.getSectors(setting.name, setting.array, setting.sector, setting);
-			setting.label.forEach((label) => { labelSVG += this.getSectorLabels(setting.name, setting.array, label)});
+			setting.label.forEach((label) => {
+				if (label.textType === 'textPath') {
+					labelSVG += this.getSectorLabelsCurved(setting.name, setting.array, label);
+				}
+				else {
+					labelSVG += this.getSectorLabels(setting.name, setting.array, label);
+				}
+			});
 		}
 
 		result = `
 			<g class="group-ring ring-${setting.name}">
 				<title>${setting.name}</title>
+				<!-- sectorSVG: -->
 				${sectorSVG}
+				<!-- labelSVG: -->
 				${labelSVG}
 			</g>
 		`;

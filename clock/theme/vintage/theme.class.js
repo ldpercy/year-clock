@@ -13,6 +13,7 @@ themeClass['vintage'] = class extends ThemeBase {
 	yearMonthSector = new Annulus(1150, 1070);
 
 	monthText = {
+		name           : 'monthName',
 		radius         : 1110,
 		sectorPosition : 0.5,
 		rotate         : true,
