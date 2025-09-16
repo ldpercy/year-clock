@@ -127,6 +127,22 @@ text.dateLabel.year {
 }
 
 
+.sectorMask-yearMonth,
+.sectorMask-monthDay {
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
+
+
+.ring-yearMonth {
+	.yearMonth text,
+	.sectorMask-yearMonth text
+	{
+		font-size: 1.3em;
+	}
+}
+
 
 
 .sectorMask-month,
@@ -136,9 +152,6 @@ text.dateLabel.year {
 	dominant-baseline: middle;
 }
 
-.sectorMask-month {
-	font-size: 3ex;
-}
 
 .sectorMask-dayNumber {
 	font-size: 3ex;

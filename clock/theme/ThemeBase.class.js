@@ -298,8 +298,8 @@ class ThemeBase extends Clock {
 			sectorLabels.add(this.getSectorLabel(sector, setting, labelFormat));
 		}
 
-		const result =
-			`<g class="group-label ${sectorName} ${setting.name||''}">
+		const result = `
+			<g class="group-label ${sectorName} ${setting.name||''}">
 				${sectorLabels.toString()}
 			</g>`;
 		return result;
@@ -351,9 +351,7 @@ class ThemeBase extends Clock {
 				<defs>
 					${sectorLabels.defs}
 				</defs>
-				<text>
-					${sectorLabels.text}
-				</text>
+				${sectorLabels.text}
 			</g>`;
 		return result;
 	}/* getSectorLabelsCurved */
@@ -366,7 +364,7 @@ class ThemeBase extends Clock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelCurved = function(sector, setting, labelFormat, classString='')//:SVGChunk
+	getSectorLabelCurved = function(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
 		const result = new SVGChunk();
 		let labelArc = '';
@@ -385,8 +383,11 @@ class ThemeBase extends Clock {
 
 		result.defs =
 			`<path id="${pathId}" d="${labelArc}"/>`;
-		result.text =
-			`<textPath class="${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(setting.format, sector)}</textPath>`;
+		result.text = `
+			<text>
+				<textPath class="${classString} ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(labelFormat, sector)}</textPath>
+			</text>
+		`;
 
 		return result;
 	}/* getSectorLabelCurved */
@@ -531,48 +532,30 @@ class ThemeBase extends Clock {
 		will have to create a set of mask ids to dynamically apply to the actual drawn sectors
 		*/
 
-		let sectorMasks = '';
-		let labelPaths = '';
-		let labelArc = '';
+		let defs = '';
 		let sectors = '';
 		let textMask = '';
 		let sectorPath = '';
 		let maskPath = '';
-
-		let labelFormat = '';
+		let textKnockout; // = new SVGChunk();
 
 		for (let sector of sectorArray)
 		{
-			//log('sector:', sector);
-
+			textKnockout = new SVGChunk();
 			textMask = '';
 			const pathId = `labelPath-${sectorName}-${sector.id}`;
 			const maskId = `sectorMask-${sectorName}-${sector.id}`;
 
-
-			if (setting.label.textType === 'textPath') {
-				// use 'textPath' elements as the knockout shape
-				//create extra label paths
-				// label paths:
-				if (setting.label.invert && (Math.cos(sector.radians.middle) < 0)) {
-					labelArc = getArcPath(sector.radians.end, sector.radians.start, setting.label.radius);
+			setting.label.forEach(
+				(label) => {
+					if (label.textType === 'textPath') {
+						textKnockout.add(this.getSectorLabelCurved(sector, label, label.format, '---test---'));
+					}
+					else { // use regular 'text' elements as the knockout shape
+						textKnockout.add(this.getSectorLabel(sector, label, label.format, 'knockout-shapeKnockedout'));
+					}
 				}
-				else {
-					labelArc = getArcPath(sector.radians.start, sector.radians.end, setting.label.radius);
-				}
-				const labelPath = `<path id="${pathId}" d="${labelArc}"/>`;
-				labelPaths += labelPath;
-				// textPath:
-				textMask = `
-					<text>
-						<textPath class="knockout-shapeKnockedout ${sector.class}" startOffset="50%" href="#${pathId}">${this.formatLabel(labelFormat, sector)}</textPath>
-					</text>
-				`;
-			} else {
-				// use regular 'text' elements as the knockout shape
-				labelFormat = setting.format || sectorName;
-				setting.label.forEach((label) => { textMask += this.getSectorLabel(sector, label, label.format, 'knockout-shapeKnockedout')});
-			}
+			);
 
 			// sector path, mask, sector itself:
 			if (setting.sizeAdjust) {
@@ -584,13 +567,15 @@ class ThemeBase extends Clock {
 				maskPath = sectorPath;
 			}
 
+
 			const sectorMask = `
 				<mask id="${maskId}" class="sectorMask-${sectorName} knockout-mask">
 					<path class="knockout-shapeContaining" d="${maskPath}"/>
-					${textMask}
+					${textKnockout.text}
 				</mask>
 			`;
-			sectorMasks += sectorMask;
+			defs += textKnockout.defs;
+			defs += sectorMask;
 
 			const sectorSVG =
 				`<path
@@ -601,18 +586,16 @@ class ThemeBase extends Clock {
 					<title>${this.formatTitle(sectorName, sector)}</title>
 				</path>`;
 			sectors += sectorSVG;
-		}
+
+		} // for (let sector of sectorArray)
 
 		// ${labelPaths}
 		const result =
 			`<g class="group-sector ${sectorName}">
 				<defs>
-					${sectorMasks}
-					${labelPaths}
+					${defs}
 				</defs>
 				${sectors}
-
-
 			</g>`;
 		return result;
 
@@ -647,9 +630,9 @@ class ThemeBase extends Clock {
 		result = `
 			<g class="group-ring ring-${setting.name}">
 				<title>${setting.name}</title>
-				<!-- sectorSVG: -->
+				<!-- sectors: -->
 				${sectorSVG}
-				<!-- labelSVG: -->
+				<!-- labels: -->
 				${labelSVG}
 			</g>
 		`;

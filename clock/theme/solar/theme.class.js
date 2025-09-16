@@ -8,11 +8,11 @@ themeClass['solar'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector  : new Annulus(1150,950),
-		sectorType: 'normal',
+		sectorType: 'knockout',
 		label   : [{
 			name           : 'yearMonth',
 			radius         : 1050,
-			textType       : 'textPath',
+			textType       : 'textPath', //
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : 'all',
@@ -24,7 +24,7 @@ themeClass['solar'] = class extends ThemeBase {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
 		sector : new Annulus(850, 650),
-		label : {
+		label : [{
 			name           : 'monthDay',
 			radius         : 500,
 			textType       : 'textPath',
@@ -32,7 +32,7 @@ themeClass['solar'] = class extends ThemeBase {
 			rotate         : true,
 			invert         : 'all',
 			format         : 'dayNumber',
-		}
+		}]
 	};
 
 	dateLabel   = { position : new Point( 0, 0) };
@@ -56,6 +56,15 @@ themeClass['solar'] = class extends ThemeBase {
 	constructor(clockParameter)
 	{
 		super(clockParameter);
+
+
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		//this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		//addRadians(this.displayDate.yearDayArray);
+
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
+
 		this.monthRing.array = this.displayDate.monthArray;
 		this.dayRing.array   = this.displayDate.monthDayArray;
 	}
@@ -64,12 +73,7 @@ themeClass['solar'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function()
 	{
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
-		addRadians(this.displayDate.yearDayArray);
 
-		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray);
 
 		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${180-yearDayDivision.middle},0,0)`;
@@ -82,7 +86,7 @@ themeClass['solar'] = class extends ThemeBase {
 		//log(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
-		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
+		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
 
 		/* ${this.getSectorsWithKnockout('month', this.displayDate.monthArray, this.monthRing)} */
 
@@ -92,11 +96,7 @@ themeClass['solar'] = class extends ThemeBase {
 
 				<circle class="month-first" cx="${moonPosition.x}" cy="${moonPosition.y}" r="100"/>
 
-
-
-				${this.getSectors('monthDay', this.displayDate.monthDayArray, this.dayRing.sector)}
-
-				${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayRing.label)}
+				${this.getRing(this.dayRing)}
 			</g>
 
 			<g transform="scale(2,1) ${yearTransform} ">
@@ -106,6 +106,9 @@ themeClass['solar'] = class extends ThemeBase {
 		`;
 
 		/*
+			${this.getSectors('monthDay', this.displayDate.monthDayArray, this.dayRing.sector)}
+			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayRing.label)}
+
 			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector)}
 			${this.getSectorLabelsCurved('yearMonth', this.displayDate.monthArray, this.monthRing.label)}
 			${this.getRing(this.dayRing)}
