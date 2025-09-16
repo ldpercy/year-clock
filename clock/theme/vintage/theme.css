@@ -83,14 +83,14 @@ svg.yearclock {
 	stroke-width:1px;
 }
 
-.month .sector:nth-of-type(odd),
-.day .sector.weekday
+.yearMonth .sector:nth-of-type(odd),
+.monthDay .sector.weekday
 {
 	fill: var(--sectorlight);
 }
 
-.month .sector:nth-of-type(even),
-.day .sector.weekend
+.yearMonth .sector:nth-of-type(even),
+.monthDay .sector.weekend
 {
 	fill: var(--sectordark);
 }
