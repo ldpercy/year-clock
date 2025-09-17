@@ -66,6 +66,13 @@ themeClass['debug'] = class extends ThemeBase {
 	constructor(clockParameter)
 	{
 		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+
 		this.monthRing.array = this.displayDate.monthArray;
 
 		// Set Up Drawing
@@ -83,7 +90,6 @@ themeClass['debug'] = class extends ThemeBase {
 		${this.getSectorLabels('week', weekArray, this.weekLabel)}
 		${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
  		*/
-
 	}
 
 
@@ -109,8 +115,6 @@ themeClass['debug'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function()
 	{
-
-
 		const themeSVG = `
 
 			<defs>

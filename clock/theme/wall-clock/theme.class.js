@@ -50,13 +50,27 @@ themeClass['wall-clock'] = class extends ThemeBase {
 	};
 
 
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
+	}
+
+
 	/* getThemeSVG
 	*/
 	getThemeSVG = function()
 	{
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray);
+
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}

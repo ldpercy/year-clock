@@ -156,15 +156,15 @@ function keyboardHandler(event) {
 function dayForward() {
 	const currentDate = page.element.datePicker.valueAsDate;  //valueAsDate
 	incrementDay(currentDate);
+	changeDate(currentDate);
 	page.element.datePicker.value = isoDate(currentDate);
-	updateClock();
 }
 
 function dayBackward() {
 	const currentDate = page.element.datePicker.valueAsDate;  //valueAsDate
 	decrementDay(currentDate);
+	changeDate(currentDate);
 	page.element.datePicker.value = isoDate(currentDate);
-	updateClock();
 }
 
 
@@ -265,7 +265,10 @@ function drawClock2(clockParameter) {
 
 	//log('dd:',this.displayDate);
 	//try {
+
+	log('--- before instantiation');
 		page.clockInstance[clockParameter.id] = new themeClass[clockParameter.theme](clockParameter);
+	log('after instantiation; before getClockSVG');
 		clockSVG = page.clockInstance[clockParameter.id].getClockSVG();
 	/* }
 	catch(error)
@@ -274,11 +277,24 @@ function drawClock2(clockParameter) {
 		log(error);
 	} */
 
-	if (page.initial.test) { runTest(clockSVG); }
+	log('after getClockSVG; before page update');
 
 	page.element.container.innerHTML = clockSVG;
 
+	log('after page update ---');
+
+	if (page.initial.test) { runTest(clockSVG); }
+
 }/* drawClock */
+
+
+
+function changeDate(date)
+{
+	page.clockInstance[1234].setDisplayDate(date);
+	const clockSVG = page.clockInstance[1234].getClockSVG();
+	page.element.container.innerHTML = clockSVG;
+}
 
 
 

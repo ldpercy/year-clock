@@ -41,24 +41,35 @@ themeClass['space'] = class extends ThemeBase {
 	};
 
 
+
 	constructor(clockParameter)
 	{
 		super(clockParameter);
-		this.monthRing.array = this.displayDate.monthArray;
-		this.dayRing.array   = this.displayDate.monthDayArray;
+		this.setDisplayDate(this.parameter.date);
 	}
 
 
-	/* getThemeSVG
-	*/
-	getThemeSVG = function()
-	{
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
 		addRadians(this.displayDate.yearDayArray);
 
 		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray);
+
+		this.monthRing.array = this.displayDate.monthArray;
+		this.dayRing.array   = this.displayDate.monthDayArray;
+	}
+
+
+
+
+	/* getThemeSVG
+	*/
+	getThemeSVG = function()
+	{
 
 		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-90-yearDayDivision.middle},0,0)`;
@@ -72,8 +83,6 @@ themeClass['space'] = class extends ThemeBase {
 
 		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
 		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
-
-
 
 		const themeSVG = `
 

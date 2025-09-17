@@ -34,23 +34,34 @@ themeClass['brice'] = class extends ThemeBase {
 	};
 
 	dateLabel = {
-		position   : new Point(500,0)
+		radius    : 500,
+		position  : new Point(500,0)
 	};
 
+
+	constructor(clockParameter) {
+		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
+		// label side flipper:
+		const yearOnLeft = (dateRatio(this.displayDate.object) < 0.5);
+		this.dateLabel.position.x = this.dateLabel.radius * ((yearOnLeft) ? -1 :1);
+	}
 
 
 	/* getThemeSVG
 	*/
 	getThemeSVG = function()
 	{
-		//addDateRangeRadians(this.displayDate.monthArray);
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
-		addRadians(this.displayDate.yearDayArray);
 
-		// label side flipper:
-		const yearOnLeft = dateRatio(this.displayDate.object) < 0.5
-		this.dateLabel.position.x = this.dateLabel.position.x * ((yearOnLeft) ? -1 :1);
+
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}

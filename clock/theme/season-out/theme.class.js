@@ -28,6 +28,23 @@ themeClass['season-out'] = class extends ThemeBase {
 		year : { length : 800 },
 	};
 
+
+
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
+		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+	}
+
+
 	//
 	// formatting functions
 	//
@@ -62,11 +79,6 @@ themeClass['season-out'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function()
 	{
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
-		addRadians(this.displayDate.yearDayArray);
-		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
-
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
 

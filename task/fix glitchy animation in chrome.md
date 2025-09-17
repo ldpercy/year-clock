@@ -65,3 +65,25 @@ Things to do
 * Try some first-level refactors on the main draw functions in the setup script - it's *very* dumb at the moment and there are one or two easy gains to be made there
 * Add some proper speed testing: automate drawing 100 frames (or whatever) of various themes and collate the results
 * Find out how the `keydown` event actually works  - does it wait/queue etc
+
+
+
+
+Set displayDate separately
+--------------------------
+
+Wondering what it would look like if displayDate could be set independently.
+Currently it looks messy.
+There needs to be a dedicated setDate method on the clock classes, but it needs to be customised a bit to each clock so the get the bits they need.
+It also needs to be called at construction time, so need to clean this up.
+
+
+Separate setDisplayDate
+-----------------------
+
+Okay this seems to have worked...
+
+I've added proper constructors for each theme class, and each theme now implements it's own setDisplayDate which can be called independently.
+I've quickly changed the two keypress date change events to use a `changeDate` function which doesn't do a full reconstruction and it's heaps better.
+Need to clean up all that code though, and update more events to just set relevant properties.
+

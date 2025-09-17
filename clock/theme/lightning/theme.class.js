@@ -57,6 +57,23 @@ themeClass['lightning'] = class extends ThemeBase {
 		invert         : 'left',
 	};
 
+
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		addRadians(this.displayDate.yearDayArray);
+
+		this.displayDate.quarterArray = getQuarterArray(this.displayDate);
+		this.displayDate.weekArray    = getYearWeekArray(this.displayDate);
+	}
+
 	//
 	// formatting functions
 	//
@@ -96,23 +113,16 @@ themeClass['lightning'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function()
 	{
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
-		addRadians(this.displayDate.yearDayArray);
-
-		let quarterArray = getQuarterArray(this.displayDate);
-		let weekArray    = getYearWeekArray(this.displayDate);
-
 		const themeSVG = `
 			${this.getBody(this.body)}
-			${this.getSectors('quarter', quarterArray, this.quarterSector)}
+			${this.getSectors('quarter', this.displayDate.quarterArray, this.quarterSector)}
 			${this.getSectors('month', this.displayDate.monthArray, this.monthSector)}
-			${this.getSectors('week', weekArray, this.weekSector)}
+			${this.getSectors('week', this.displayDate.weekArray, this.weekSector)}
 			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
 
-			${this.getSectorLabels('quarter', quarterArray, this.quarterLabels)}
+			${this.getSectorLabels('quarter', this.displayDate.quarterArray, this.quarterLabels)}
 			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabels)}
-			${this.getSectorLabels('week', weekArray, this.weekLabels)}
+			${this.getSectorLabels('week', this.displayDate.weekArray, this.weekLabels)}
 			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabels)}
 
 			${this.getDateLabel('year', this.yearLabel)}
