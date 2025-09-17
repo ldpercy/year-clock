@@ -3,7 +3,7 @@ class Clock {
 
 	constructor(parameter) {
 		this.parameter = parameter;
-		this.displayDate = createDisplayDate(parameter.date, parameter.language);
+		// this.setDisplayDate(this.parameter.date);
 	}
 
 	/*
@@ -17,6 +17,15 @@ class Clock {
 		hemisphere,		// [northern,southern] which hemisphere the clock is in, used for seasons
 	}
 	*/
+
+
+	/* setDisplayDate
+	Each clock class needs to override this method and call it during construction
+	*/
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+	}
+
 
 }/* Clock */
 

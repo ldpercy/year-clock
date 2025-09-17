@@ -53,10 +53,16 @@ themeClass['solar'] = class extends ThemeBase {
 	};
 	*/
 
+
 	constructor(clockParameter)
 	{
 		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
 
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 		//this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
@@ -68,6 +74,7 @@ themeClass['solar'] = class extends ThemeBase {
 		this.monthRing.array = this.displayDate.monthArray;
 		this.dayRing.array   = this.displayDate.monthDayArray;
 	}
+
 
 	/* getThemeSVG
 	*/

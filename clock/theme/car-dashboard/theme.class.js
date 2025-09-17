@@ -112,11 +112,16 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 	};
 
 
-	/* getThemeSVG
-	*/
-	getThemeSVG = function()
+	constructor(clockParameter)
 	{
-		// addRadians(this.displayDate.monthArray, this.dial.radiansStart, this.dial.radiansLength);
+		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
+
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
 
 		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
@@ -125,9 +130,13 @@ themeClass['car-dashboard'] = class extends ThemeBase {
 		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.seasonArray  = getSeasonArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.season = getSeason(this.displayDate.object, this.displayDate.seasonArray);
+	}
 
-		log(this.displayDate);
 
+	/* getThemeSVG
+	*/
+	getThemeSVG = function()
+	{
 		const themeSVG = `
 			<defs>
 				<!--
