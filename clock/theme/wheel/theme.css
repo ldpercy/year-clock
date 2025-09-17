@@ -17,14 +17,14 @@ svg.yearclock {
 
 	background:
 		radial-gradient(
-			circle 240vh at 50% 160%,
-			black 0%,
-			black 25%,
-			darkgreen 30%,
-			orange 35%,
-			red 40%,
-			midnightblue 50%,
-			black 100%
+			circle 1200vh at 50% 300vh,
+			black 0vh,
+			black 200vh,
+			darkgreen 220vh,
+			orange 230vh,
+			red 240vh,
+			midnightblue 250vh,
+			black 300vh
 			/*
 			black 0%,
 			midnightblue 70%,

@@ -10,44 +10,61 @@ themeClass['vintage'] = class extends ThemeBase {
 
 	faceRadius       = 1200;
 
-	yearMonthSector = new Annulus(1150, 1070);
 
-	monthText = {
-		radius         : 1110,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : false,
+
+	monthRing = {
+		name    : 'yearMonth',
+		array   : undefined, // this.displayDate.monthArray,
+		sector  : new Annulus(1150, 1070),
+		sectorType: 'normal',
+		label : [
+			{
+				name           : 'monthName',
+				radius         : 1110,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'monthName',
+			},
+			{
+				name           : 'monthNumber',
+				radius         : 950,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'monthNumber',
+			},
+		]
 	};
 
 
-	monthNumber = {
-		radius         : 950,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : false,
+	dayRing = {
+		name    : 'monthDay',
+		array   : undefined, // this.displayDate.monthDayArray,
+		sector : new Annulus(750, 650),
+		label : [
+			{
+				name           : 'dayName',
+				radius         : 700,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'dayShort',
+			},
+			{
+				name           : 'dayNumber',
+				radius         : 615,
+				sectorPosition : 0.5,
+				rotate         : true,
+				invert         : false,
+				textType       : 'text',
+				format         : 'dayNumber',
+			},
+		]
 	};
-
-
-	monthDaySector = new Annulus(750,650);
-
-	dayName = {
-		radius         : 700,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : false,
-		format         : 'dayShort',
-	};
-
-	dayNumber = {
-		radius         : 615,
-		sectorPosition : 0.5,
-		rotate         : true,
-		invert         : false,
-	};
-
-
-	weekdayMarkerLength = 40;
-	weekendMarkerLength = 55;
 
 	dateLabelPosition         = new Point(0,350);
 
@@ -68,28 +85,32 @@ themeClass['vintage'] = class extends ThemeBase {
 	};
 
 
+	constructor(clockParameter)
+	{
+		super(clockParameter);
+
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+
+		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		addRadians(this.displayDate.monthDayArray);
+
+		this.monthRing.array = this.displayDate.monthArray;
+		this.dayRing.array   = this.displayDate.monthDayArray;
+	}
+
+
 	/* getThemeSVG
 	*/
 	getThemeSVG = function()
 	{
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray);
-
 		const themeSVG = `
 			${this.getDefs()}
 			${this.getBody(this.body)}
 			${this.getFace(this.faceRadius)}
 
+			${this.getRing(this.monthRing)}
 
-			${this.getSectors('month', this.displayDate.monthArray, this.yearMonthSector)}
-
-			${this.getSectorLabelsCurved('monthName', this.displayDate.monthArray, this.monthText)}
-			${this.getSectorLabels('monthNumber', this.displayDate.monthArray, this.monthNumber)}
-
-			${this.getSectors('day', this.displayDate.monthDayArray, this.monthDaySector)}
-			${this.getSectorLabels('dayName', this.displayDate.monthDayArray, this.dayName)}
-			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayNumber)}
+			${this.getRing(this.dayRing)}
 
 			${this.getDateLabel(this.dateLabelPosition)}
 
@@ -102,6 +123,16 @@ themeClass['vintage'] = class extends ThemeBase {
 		`;
 
 		/*
+			${this.getSectors('day', this.displayDate.monthDayArray, this.monthDaySector)}
+			${this.getSectorLabels('dayName', this.displayDate.monthDayArray, this.dayName)}
+			${this.getSectorLabels('dayNumber', this.displayDate.monthDayArray, this.dayNumber)}
+
+			${this.getSectors('month', this.displayDate.monthArray, this.yearMonthSector)}
+
+			${this.getSectorLabelsCurved('monthName', this.displayDate.monthArray, this.monthText)}
+			${this.getSectorLabels('monthNumber', this.displayDate.monthArray, this.monthNumber)}
+
+
 		<text x="0" y="350" class="label favicon">&#10041;</text>
 		*/
 

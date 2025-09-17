@@ -19,6 +19,7 @@
 
 	<script defer>
 		baseUrlArray = [
+			'../index.html?theme=space',
 			'../index.html?theme=solar',
 			'../index.html?theme=wheel',
 			'../index.html?theme=car-dashboard',
@@ -54,7 +55,7 @@
 
 
 			for (let baseUrl of baseUrlArray) {
-				let url = `${baseUrl}${dateParam}${languageParam}${styleParam}${backgroundParam}${hemisphereParam}${testParam}`;
+				let url = `${baseUrl}${languageParam}${styleParam}${backgroundParam}${hemisphereParam}${testParam}${dateParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">

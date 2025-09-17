@@ -67,7 +67,23 @@ themeClass['debug'] = class extends ThemeBase {
 	{
 		super(clockParameter);
 		this.monthRing.array = this.displayDate.monthArray;
+
+		// Set Up Drawing
+		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+
+		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		//addRadians(this.displayDate.yearDayArray);
 		//this.dayRing.array   = this.displayDate.monthDayArray;
+
+		//this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		//addRadians(this.displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
+
+		/*
+		let weekArray    = getYearWeekArray(this.displayDate.object);
+		${this.getSectorLabels('week', weekArray, this.weekLabel)}
+		${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
+ 		*/
+
 	}
 
 
@@ -93,23 +109,6 @@ themeClass['debug'] = class extends ThemeBase {
 	*/
 	getThemeSVG = function()
 	{
-		// Set Up Drawing
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-
-		//log(this.displayDate.monthArray);
-
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
-		addRadians(this.displayDate.yearDayArray);
-
-		//this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
-		//addRadians(this.displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
-
-		/*
-		let weekArray    = getYearWeekArray(this.displayDate.object);
-		${this.getSectorLabels('week', weekArray, this.weekLabel)}
-		${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
- 		*/
-
 
 
 		const themeSVG = `
@@ -119,10 +118,12 @@ themeClass['debug'] = class extends ThemeBase {
 				width="100" height="100"
 				refX="-1000" refY="-1000"
 				-->
+				<!--
 				<symbol id="star-symbol" viewBox="-1000 -1000 2000 2000" >
 					<rect x="-1000" y="-1000" width="2000" height="2000"/>
 					<path d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
 				</symbol>
+				-->
 
 				<g id="star-g">
 					<path class="path-star" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
@@ -144,12 +145,10 @@ themeClass['debug'] = class extends ThemeBase {
 			${this.getFace(this.clockRadius)}
 
 			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, this.monthRing)}
-
 			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
 
-			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
 
-			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
+
 
 			${this.getDateLabel('date', this.dateLabel)}
 
@@ -162,7 +161,12 @@ themeClass['debug'] = class extends ThemeBase {
 
 		`;
 
-		/*  */
+		/*
+			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
+			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
+
+
+		*/
 
 		return themeSVG;
 	}/* getThemeSVG */
