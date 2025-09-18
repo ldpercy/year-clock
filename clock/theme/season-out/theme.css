@@ -3,22 +3,22 @@
 */
 
 
+:root {
+	--white: #eee7;
+	--lightgrey: #eee7;
+	--darkgrey: #aaa7;
+	--labelblack: #000f;
+	--shadow: #aaaf;
+	--yearhand: darkorange;
+	--hover: red;
+
+}
 
 
 svg.yearclock {
 	background-color: seashell;
 	font-size: 36px;
 	font-family: monospace;
-
-	--white: #fff7;
-	--lightgrey: #fff5;
-	--darkgrey: #bbb7;
-	--labelblack: #000f;
-	--shadow: #aaaf;
-	--yearhand: darkorange;
-	--hover: red;
-
-
 }
 
 
@@ -57,21 +57,11 @@ svg.yearclock .face   {
 .sector.season-winter { fill: #00f4 }
 .sector.season-spring { fill: #0f04 }
 
-/*
-.sector.season-summer {
-	fill: url(#gradient-summer);
-}
-.sector.season-autumn { fill: #ff04 }
-.sector.season-winter { fill: #00f4 }
-.sector.season-spring { fill: #0f04 } */
-
-
-
 
 
 .group-sector.yearDay {
 	.weekday {
-		fill: var(--lightgrey);
+		fill: var(--white);
 	}
 	.weekend {
 		fill: var(--darkgrey);
@@ -95,13 +85,13 @@ svg.yearclock .face   {
 .label.dateLabel, .label.yearLabel {
 	fill: var(--labelblack);
 	text-anchor: middle;
-	font-size: 6ex;
+	font-size: 10ex;
 	dominant-baseline: central;
 	filter: drop-shadow(0ex 0ex 0.4ex white);
 }
 
 svg.yearclock .label.dateLabel {
-	font-size: 6ex;
+	font-size: 8ex;
 }
 
 
@@ -110,10 +100,10 @@ svg.yearclock .label.dateLabel {
 }
 
 
-.yearHand  {
+path.yearHand  {
 	stroke: var(--yearhand);
 	fill: var(--yearhand);
-	stroke-width: 1;
+	stroke-width: 25;
 	stroke-linejoin: round;
 }
 
@@ -125,8 +115,7 @@ svg.yearclock .label.dateLabel {
 	transition: all .5s ease-in;
 }
 
-.sector:hover,
-.yearHand:hover
+.sector:hover
 {
 	stroke: var(--hover);
 	stroke-width: 5;
@@ -134,7 +123,7 @@ svg.yearclock .label.dateLabel {
 	transition: all .05s ease-in;
 }
 
-/* .hands:hover {
-	/ * //stroke: var(--hover); * /
+.hands:hover {
+	/* //stroke: var(--hover); */
 	filter: drop-shadow(0px 20px 10px var(--hover));
-} */
+}

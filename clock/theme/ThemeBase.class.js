@@ -24,7 +24,6 @@ class ThemeBase extends Clock {
 		switch(labelType) {
 			case 'year'         : result = `${data.year}`; break;
 			case 'date'         : result = `${isoDate(data.object)}` ; break;
-			case 'isoDate'      : result = `${isoDate(data.object)}` ; break;
 			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
 			case 'dayShort'     : result = `${data.name.slice(0,3)}`; break;
 
