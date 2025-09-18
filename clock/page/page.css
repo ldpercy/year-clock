@@ -38,10 +38,33 @@ form#form-clock {
 
 	h2 {
 		margin-top: 0em;
+		margin-bottom: 1ex;
 	}
 	details {
 		margin-top:1ex;
 	}
+
+	.controls {
+		margin:1ex 0ex;
+
+		.key {
+			background-color: white;
+			/* line-height:1ex; */
+			vertical-align: top;
+			/* font-size:2em; */
+			font-family: monospace;
+			font-weight:bold;
+			display:inline-block;
+			/* padding-top:-1ex; */
+			/* padding-bottom:0em; */
+			width:20px;
+			height:20px;
+			border: 2px silver outset;
+			border-radius: 5px;
+		}
+
+	}
+
 
 }
 
@@ -59,8 +82,10 @@ form#form-clock {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		label { text-align:right; margin-right:1ex; }
 		label::after { content:": "; }
-		h2, details { display:none; }
+		h2, details, .controls { display:none; }
 		width: auto;
+		left:0ex;
+		right:0ex;
 	}
 }
 
@@ -68,7 +93,7 @@ form#form-clock {
 	form#form-clock {
 		grid-template-columns: 1fr 1fr 1fr;
 		label { display: none; }
-		h2, details { display:none; }
+		h2, details, .controls { display:none; }
 		width: auto;
 		left:0ex;
 		right:0ex;
