@@ -6,16 +6,6 @@ body {
 	font-family: sans-serif;
 }
 
-footer {
-	color: silver;
-	padding: 1em;
-	text-align: center;
-	background-color: white;
-}
-
-a:link {
-	color: #7ABECF;
-}
 
 /* Clock
 */
@@ -33,6 +23,7 @@ output { display:block; }
 */
 
 form#form-clock {
+
 	display: grid;
 	position:absolute;
 	right:0ex;
@@ -41,6 +32,27 @@ form#form-clock {
 	border-radius: 1ex;
 	padding:1ex;
 	margin: 1ex;
+	width: 12em;
+
+	h2 {
+		margin-top: 0em;
+		margin-bottom: 1ex;
+	}
+	details {
+		margin-top:1ex;
+	}
+
+	.controls {
+		margin:1ex 0ex;
+
+		button {
+			font-family: monospace;
+			font-weight:bold;
+			width:2em;
+			height:2em;
+			padding:0em;
+		}
+	}
 }
 
 /* @media (orientation: landscape) { */
@@ -48,22 +60,31 @@ form#form-clock {
 
 	form#form-clock {
 		grid-template-columns: 1fr ;
+		label { margin-top: 0.2em; }
 	}
 }
 
 /* @media (orientation: portrait) { */
 @media (max-aspect-ratio: 1.2) {
 	form#form-clock {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		label { text-align:right; margin-right:1ex; }
 		label::after { content:": "; }
+		h2, details, .controls { display:none; }
+		width: auto;
+		left:0ex;
+		right:0ex;
 	}
 }
 
 @media (max-width: 800px) {
 	form#form-clock {
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 		label { display: none; }
+		h2, details, .controls { display:none; }
+		width: auto;
+		left:0ex;
+		right:0ex;
 	}
 }
 

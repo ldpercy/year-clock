@@ -88,6 +88,12 @@ themeClass['vintage'] = class extends ThemeBase {
 	constructor(clockParameter)
 	{
 		super(clockParameter);
+		this.setDisplayDate(this.parameter.date);
+	}
+
+
+	setDisplayDate(date) {
+		this.displayDate = createDisplayDate(date, this.parameter.language);
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
