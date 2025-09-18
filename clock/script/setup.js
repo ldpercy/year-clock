@@ -189,6 +189,7 @@ function formChangeHandler(event) {
 	switch(event.target.name) {
 		case 'style'        : updateStyle(event.target.value); break;
 		case 'background'   : updateBackground(event.target.value) ; break;
+		case 'date'         : changeDate(new Date(event.target.value)) ; break;
 		default             : updateClock(); break;
 	}
 
@@ -277,9 +278,9 @@ function drawClock2(clockParameter) {
 	//log('dd:',this.displayDate);
 	//try {
 
-	log('--- before instantiation');
+	//log('--- before instantiation');
 		page.clockInstance[clockParameter.id] = new themeClass[clockParameter.theme](clockParameter);
-	log('after instantiation; before getClockSVG');
+	//log('after instantiation; before getClockSVG');
 		clockSVG = page.clockInstance[clockParameter.id].getClockSVG();
 	/* }
 	catch(error)
@@ -288,11 +289,11 @@ function drawClock2(clockParameter) {
 		log(error);
 	} */
 
-	log('after getClockSVG; before page update');
+	//log('after getClockSVG; before page update');
 
 	page.element.container.innerHTML = clockSVG;
 
-	log('after page update ---');
+	//log('after page update ---');
 
 	if (page.initial.test) { runTest(clockSVG); }
 
@@ -302,6 +303,11 @@ function drawClock2(clockParameter) {
 
 function changeDate(date)
 {
+	if (!isValidDate(new Date(page.element.datePicker.value)))
+	{
+		log('Invalid date');
+		return;
+	}
 	page.clockInstance[1234].setDisplayDate(date);
 	const clockSVG = page.clockInstance[1234].getClockSVG();
 	page.element.container.innerHTML = clockSVG;
