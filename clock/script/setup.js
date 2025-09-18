@@ -110,9 +110,20 @@ function setup() {
 
 
 	// keyboard listener
-
 	document.addEventListener('keydown', ((event)=>{keyboardHandler(event)}) );
-
+	// button listeners
+	document.getElementById('button-dayBack').addEventListener('click',
+		((event)=>{
+			event.preventDefault();
+			dayBackward();
+		})
+	);
+	document.getElementById('button-dayForward').addEventListener('click',
+		((event)=>{
+			event.preventDefault();
+			dayForward();
+		})
+	);
 
 	log('page:', page);
 

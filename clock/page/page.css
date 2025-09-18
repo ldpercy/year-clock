@@ -47,25 +47,13 @@ form#form-clock {
 	.controls {
 		margin:1ex 0ex;
 
-		.key {
-			background-color: white;
-			/* line-height:1ex; */
-			vertical-align: top;
-			/* font-size:2em; */
+		button {
 			font-family: monospace;
 			font-weight:bold;
-			display:inline-block;
-			/* padding-top:-1ex; */
-			/* padding-bottom:0em; */
-			width:20px;
-			height:20px;
-			border: 2px silver outset;
-			border-radius: 5px;
+			width:2em;
+			height:2em;
 		}
-
 	}
-
-
 }
 
 /* @media (orientation: landscape) { */
