@@ -24,8 +24,6 @@ output { display:block; }
 
 form#form-clock {
 
-
-
 	display: grid;
 	position:absolute;
 	right:0ex;
@@ -52,6 +50,7 @@ form#form-clock {
 			font-weight:bold;
 			width:2em;
 			height:2em;
+			padding:0em;
 		}
 	}
 }
@@ -61,6 +60,7 @@ form#form-clock {
 
 	form#form-clock {
 		grid-template-columns: 1fr ;
+		label { margin-top: 0.2em; }
 	}
 }
 

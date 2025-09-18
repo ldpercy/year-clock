@@ -1,6 +1,11 @@
 Fix glitchy animation in chrome
 ===============================
 
+```
+2025-09-09		1.10.0	Done
+```
+
+
 From: Wheel clock followup
 
 
@@ -86,3 +91,20 @@ Okay this seems to have worked...
 I've added proper constructors for each theme class, and each theme now implements it's own setDisplayDate which can be called independently.
 I've quickly changed the two keypress date change events to use a `changeDate` function which doesn't do a full reconstruction and it's heaps better.
 Need to clean up all that code though, and update more events to just set relevant properties.
+
+
+
+Wrapup
+------
+
+I've really messed up this branch by cutting it from the tail of the previous one instead of from main, so merging this might do some weird things that need extra cleaning.
+Here goes anyway:
+
+* I notices that the glitchiness varied a fair bit depending on theme and machine, so decided to investigate
+* Have added peoper constructors and setDisplayDate methods to all themes
+* UI date changes don't destroy and reconstruct anymore, just update the displaydate and render the new SVG
+* This seemingly has fixed the glitchiness in chrome - still not entirely sure why, but it should have been like this anyway
+* Added some day control buttons to the form that indicate which keys to use
+* Have removed the old footer and added a small note to the form
+
+

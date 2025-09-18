@@ -20,7 +20,6 @@ Job reminders to wrap into other tasks.
 * Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)
-* Do something with the footer - eg combine it with the form
 * Add option to hide the form
 * Fonts - find some web-safe ones or figure out serving
 * Rename hands to pointers
@@ -32,7 +31,7 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
-* Investigating Chromium's drawing glitchiness
+
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
 * 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc -> one side removed, do other
@@ -40,6 +39,8 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Chromium's animation glitchiness remedied for now afaict
+* Old footer removed, added small note to the form
 * Old plain-svg theme is now 'wheel' theme
 * `getPeriodDaySectors` removed, now all sectors drawn with `getSectors`
 * Have working examples of text knock-out now
