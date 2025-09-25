@@ -8,7 +8,8 @@ themeClass['solar'] = class extends ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector  : new Annulus(1150,950),
-		sectorType: 'knockout',
+		direction : 'anticlockwise',
+		sectorType: 'normal',
 		label   : [{
 			name           : 'yearMonth',
 			radius         : 1050,

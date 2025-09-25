@@ -12,7 +12,7 @@ The 'hour hand' points to the time of year. In the second example the 'minute ha
 
 
 > [!TIP]
-> The year clock is live: [ldpercy.github.io/year-clock/](https://ldpercy.github.io/year-clock/)
+> Live on github pages: [ldpercy.github.io/year-clock/](https://ldpercy.github.io/year-clock/)
 
 
 Prior and current art

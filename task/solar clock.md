@@ -16,7 +16,7 @@ Some ideas from the wheel clock task:
 * Maybe use diffraction spikes for pointers (if needed)
 
 
-There's a copy of 'wheel' from when the ideas coalesced in `theme/solar`.
+This is a copy of 'wheel' from when the ideas coalesced.
 
 
 Thinking again about the fisheye view, and don't think it's going to be the best perspective for lunar phases.
@@ -42,3 +42,32 @@ It's got a bunch of problems though that need to be worked though:
 * Add axial rays to the sun
 
 Am going to take off the knockout effects for this theme for now, will use those on the wheel clock.
+
+
+Return after a while
+--------------------
+The wheel clock task ended up twistier than a basket of pretzels - by the end of it I had the new wheel clock, the start of two new themes, and the ideas for another.
+
+I also had the diversion into performance to fix the glitchiness in chrome, been skilling up on JS classes, and have the new Turtle project going.
+
+So time to return to the solar clock, which I've been slowly laying the groundwork for.
+
+### Rings
+During the wheel clock and its followup I added a 'ring' arrangement so that sectors, labels and related config could be grouped together logically.
+
+This is one of the things i needed for the solar clock because the rings & labels need to go counter-clockwise (in contrast to all the other themes so far), so it makes sense to set that collectively.
+
+Which is more or less where I'm at now.
+
+
+### Sector direction 'anticlockwise'
+
+So far all the clocks have been 'clockwise' for their time-dimension, so most of the currently written code assumes that.
+Will need to figure out the best way to switch it, and find all the places that might need updating.
+The first thought that occurred to me is just adding a switch to 'addRadians' and/or 'addDateRangeRadians' - that *seems* like it might do it without needing to alter the actual draw loops.
+
+Also, coming back from Turtle I reckon I could tidy up a bunch of code with better use of js classes.
+
+Where to start...
+
+
