@@ -71,3 +71,32 @@ Also, coming back from Turtle I reckon I could tidy up a bunch of code with bett
 Where to start...
 
 
+addRadians & addDateRangeRadians
+--------------------------------
+
+* `addRadians` is used to add radians to an array where the items are evenly spaced, in practise that means the day arrays - yearDay & monthDay.
+* `addDateRangeRadians` is used when the periods are of arbitrary length. So far it's used on arrays for month, season, quarter and week, but could also be used for other kinds of things such as projects or holidays. Just calls `dateRangeRadians` for each item.
+
+I feel like lots of this code could be reorganised/cleaned up with better use of js classes.
+There are also a lot of warning comments in there - not sure how current though as things as 'working' at the moment.
+I think that stuff dates from the car dashboard when I first introduced angular context.
+
+For instance say I create a class called PeriodGroup or DateRangeArray, i could add a getter for the sectorRadians which would only be called if/when needed.
+This would do away with having to manually call the adders in setDisplayDate like I'm doing now.
+(That was always a bit of a crufty hack.)
+Converting some things over to the angle class I've used in Turtle might be good too.
+
+Still not really sure yet though what objects/classes are more fundamental - ie what should compose what etc.
+
+### What a mess
+I've really fallen right into some of most confusing code here...
+Lots of functions calling functions to calculate angle ranges.
+I've got to be able to simplify this...
+The terminology is a bit confusing too.
+I need some sort of way of clarfying when I mean and absolute angle, as in for example a clock position, and an angular range as in the difference between two angular positions.
+A sector or an angular context (eg car dashboard dials) will be examples of the second.
+
+
+
+
+
