@@ -34,7 +34,8 @@ form#form-clock {
 	margin: 1ex;
 	width: 12em;
 
-	h2 {
+	h1 {
+		font-size: 3ex;
 		margin-top: 0em;
 		margin-bottom: 1ex;
 	}
