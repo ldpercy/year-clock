@@ -2,9 +2,16 @@
 // Setup
 //
 
-console.clear();
+projectInfo = `
+	Year Clock by ldpercy
+	https://github.com/ldpercy/year-clock/
+	Version 1.11
+	https://github.com/ldpercy/year-clock/pull/39
+`;
+console.info(projectInfo);
+
+
 const log = createLog();
-log('--- setup.js ---')
 
 
 
