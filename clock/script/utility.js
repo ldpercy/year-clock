@@ -16,6 +16,12 @@ function getParameterByName(name)
 	return decodeURIComponent(results[2].replace(/\+/g, " "))
 }
 
+function getURLParam(name) {
+	return (new URL(window.location)).searchParams.get(name);
+}
+
+
+
 
 /* replaceScript
 */
