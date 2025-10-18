@@ -8,8 +8,12 @@
 class ClockApp extends HTMLApp {
 
 	name = "Year Clock";
-	info = "Year Clock by ldpercy";
-
+	info = `
+		Year Clock by ldpercy
+		https://github.com/ldpercy/year-clock/
+		v1.11-dev
+		https://github.com/ldpercy/year-clock/pull/39
+	`.replace(/\n\t/g,'\n');
 
 	eventListeners = [
 		{
