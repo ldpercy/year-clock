@@ -17,7 +17,7 @@ http://snapsvg.io
 https://github.com/adobe-webplatform/Snap.svg
 
 
-The source files in here were downloaded directly from the Year Clock website.
+The source files in [here](year-clock.net) were downloaded directly from the Year Clock website.
 
 
 

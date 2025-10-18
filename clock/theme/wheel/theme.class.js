@@ -1,6 +1,6 @@
 /* Wheel
 */
-themeClass['wheel'] = class extends ThemeBase {
+YearClock['wheel'] = class extends ThemeBase {
 
 	viewBox           = padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;
@@ -235,4 +235,4 @@ themeClass['wheel'] = class extends ThemeBase {
 	}/* getDefs */
 
 
-}/* Plain SVG */
+}/* YearClock.wheel */

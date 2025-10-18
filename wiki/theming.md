@@ -23,7 +23,7 @@ Themes are written as JavaScript classes.
 Example `yearclock/theme/example-theme/theme.class.js`:
 
 ```js
-themeClass['example-theme'] = class extends ThemeBase {
+YearClock['example-theme'] = class extends ThemeBase {
 
 	getClockSVG = function() {
 

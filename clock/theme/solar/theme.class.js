@@ -1,6 +1,6 @@
 /* Solar
 */
-themeClass['solar'] = class extends ThemeBase {
+YearClock['solar'] = class extends ThemeBase {
 
 	viewBox           = padViewBox(50, '-2500 -1200 5000 2800');
 
@@ -168,6 +168,4 @@ themeClass['solar'] = class extends ThemeBase {
 
 
 
-
-
-}/* Plain SVG */
+}/* YearClock.solar */

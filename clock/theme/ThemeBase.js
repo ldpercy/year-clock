@@ -1,6 +1,6 @@
 /* ThemeBase
 */
-class ThemeBase extends Clock {
+class ThemeBase extends YearClock {
 
 
 	viewBox = '-1200 -1200 2400 2400';

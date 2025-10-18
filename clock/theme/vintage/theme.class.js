@@ -1,6 +1,6 @@
 /* vintage
 */
-themeClass['vintage'] = class extends ThemeBase {
+YearClock['vintage'] = class extends ThemeBase {
 
 	viewBox           = padViewBox(200);
 
