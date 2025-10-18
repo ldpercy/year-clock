@@ -1,11 +1,6 @@
-//
-// clockApp
-//
-
-
-/* ClockApp
+/* YearClockApp
 */
-class ClockApp extends HTMLApp {
+class YearClockApp extends HTMLApp {
 
 	name = "Year Clock";
 	info = `
@@ -337,10 +332,10 @@ class ClockApp extends HTMLApp {
 		this.page.element.container.innerHTML = clockSVG;
 	}
 
-}/* ClockApp */
+}/* YearClockApp */
 
 
-var clockApp = new ClockApp();
+var yearClockApp = new YearClockApp();
 
 
 
