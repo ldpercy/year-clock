@@ -1,7 +1,7 @@
 /* brice
 Original theme from year-clock.net
 */
-themeClass['brice'] = class extends ThemeBase {
+YearClock['brice'] = class extends ThemeBase {
 
 	// Clock parameters
 	viewBox           = '-1200 -1200 2400 2400';
@@ -76,4 +76,4 @@ themeClass['brice'] = class extends ThemeBase {
 	}/* getThemeSVG */
 
 
-}/* brice */
+}/* YearClock.brice */
