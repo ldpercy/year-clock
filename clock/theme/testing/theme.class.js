@@ -1,7 +1,7 @@
-/* debug
-Debug theme - use for fixing bugs
+/* testing
+Testing theme - use for trying things out and fixing bugs
 */
-YearClock['debug'] = class extends ThemeBase {
+YearClock['testing'] = class extends ThemeBase {
 
 
 	viewBox           = padViewBox(50);
@@ -176,4 +176,4 @@ YearClock['debug'] = class extends ThemeBase {
 	}/* getThemeSVG */
 
 
-}/* YearClock.debug */
+}/* YearClock.testing */
