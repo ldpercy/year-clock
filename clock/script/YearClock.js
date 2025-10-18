@@ -1,5 +1,5 @@
 
-class Clock {
+class YearClock {
 
 	constructor(parameter) {
 		this.parameter = parameter;
@@ -27,7 +27,7 @@ class Clock {
 	}
 
 
-}/* Clock */
+}/* YearClock */
 
 
 
