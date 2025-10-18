@@ -3,8 +3,6 @@
 //
 
 
-const log = createLog();
-//log('--- setup.js ---')
 
 
 

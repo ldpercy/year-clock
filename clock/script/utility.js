@@ -38,7 +38,7 @@ function createLog() {
 		console.log(performance.now(), ...values);
 	}
 }
-
+const log = createLog();
 
 //
 // Testing
