@@ -6,8 +6,8 @@ A bit like a regular analog clock, but instead of the regular 12 hour divisions 
 The 'hour hand' points to the time of year. In the second example the 'minute hand' points to the time of month.
 
 <p align="middle">
-	<img width="45%" src="image/season-out.svg" alt="Example: season-out" title="index.html?theme=season-out&date=2015-10-21"/>
-	<img width="45%" src="image/wall-clock.svg" alt="Example: wall-clock" title="index.html?theme=wall-clock&date=2024-02-26"/>
+	<img width="45%" src="wiki/image/season-out.svg" alt="Example: season-out" title="index.html?theme=season-out&date=2015-10-21"/>
+	<img width="45%" src="wiki/image/wall-clock.svg" alt="Example: wall-clock" title="index.html?theme=wall-clock&date=2024-02-26"/>
 </p>
 
 

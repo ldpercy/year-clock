@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Year Clock</title>
+	<title>Year Clock by ldpercy v1.11</title>
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
 
 	<!-- page -->
@@ -15,13 +15,14 @@
 	<script defer src="clock/script/date.js"></script>
 	<script defer src="clock/script/svg.js"></script>
 	<script defer src="clock/script/utility.js"></script>
+	<script defer src="clock/script/HTMLApp.js"></script>
+
 	<!-- Clock & Theme classes -->
-	<script defer src="clock/script/Clock.class.js"></script>
-	<script defer src="clock/theme/ThemeBase.class.js"></script>
+	<script defer src="clock/theme/YearClock.js"></script>
+	<script defer src="clock/theme/ThemeBase.js"></script>
 
 	<!-- setup -->
-	<script defer src="clock/script/setup.js"></script>
-
+	<script defer src="clock/script/yearClockApp.js"></script>
 
 	<!-- Theme Styles -->
 	<link id="stylesheet-theme" rel="stylesheet">
@@ -34,13 +35,9 @@
 	<script defer id="script-themeClass"></script>
 
 </head>
-<body onload="setup();">
+<body>
 	<form id="form-clock">
 		<h2>Year Clock</h2>
-
-
-
-
 
 		<label for="input-theme">Theme</label>
 		<select id="input-theme" name="theme" title="theme">
@@ -53,7 +50,7 @@
 			<option>season-out</option>
 			<option>wall-clock</option>
 			<option>brice</option>
-			<option>debug</option>
+			<option>testing</option>
 		</select>
 
 		<label for="input-date">Date</label>
@@ -101,6 +98,7 @@
 		<details>
 			<summary>🛈</summary>
 			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a> by <a href="https://github.com/ldpercy/">ldpercy</a>
+			<a href="https://github.com/ldpercy/year-clock/pull/39">v1.11</a>
 		</details>
 	</form>
 
@@ -110,10 +108,5 @@
 	</output>
 
 	<output id="testResult" class="testResult"></output>
-
-	<!-- <footer>
-		Year Clock by <a href="https://github.com/ldpercy/">ldpercy</a>, adapted from <a href="http://year-clock.net">year-clock.net</a> by <a href="http://andybrice.net">Andy Brice</a> and <a href="http://bricedesign.co.uk">Ian Brice</a>.
-	</footer>
-	 -->
 </body>
 </html>
