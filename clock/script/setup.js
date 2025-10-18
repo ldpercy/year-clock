@@ -2,9 +2,9 @@
 // Setup
 //
 
-console.clear();
+
 const log = createLog();
-log('--- setup.js ---')
+//log('--- setup.js ---')
 
 
 
@@ -125,7 +125,7 @@ function setup() {
 		})
 	);
 
-	log('page:', page);
+	//log('page:', page);
 
 	const initialClockParams = {
 		id          : '1234',
@@ -138,7 +138,7 @@ function setup() {
 		hemisphere  : page.initial.hemisphere,
 	};
 
-	log('initialClockParams:', initialClockParams);
+	//log('initialClockParams:', initialClockParams);
 
 	updateBackground(page.initial.background);
 

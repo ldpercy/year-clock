@@ -18,51 +18,41 @@
 	</style>
 
 	<script defer>
-		baseUrlArray = [
-			'../index.html?theme=space',
-			'../index.html?theme=solar',
-			'../index.html?theme=wheel',
-			'../index.html?theme=car-dashboard',
-			'../index.html?theme=vintage',
-			'../index.html?theme=lightning',
-			'../index.html?theme=season-out',
-			'../index.html?theme=wall-clock',
-			'../index.html?theme=brice',
-			'../index.html?theme=debug',
+		const testThemes = [
+			'space',
+			'solar',
+			'wheel',
+			'car-dashboard',
+			'vintage',
+			'lightning',
+			'season-out',
+			'wall-clock',
+			'brice',
+			'debug',
 		];
 
 		function setup() {
+			const testUrl = new URL(window.location);
+			//console.log(testUrl.search);
+			const clockPath = testUrl.href.replace('clock/test.html','index.html');
+			let frameUrl = new URL(clockPath);
+			frameUrl.search = testUrl.search;
+			frameUrl.searchParams.delete('theme');
+
+
 			let testElement = document.getElementById('testOutput');
 
-			// url parameters
-			const date          = getParameterByName('date');
-			const language      = getParameterByName('language');
-			const style         = getParameterByName('style');
-			const background    = getParameterByName('background');
-			const hemisphere    = getParameterByName('hemisphere');
-			const test          = getParameterByName('test');
+			for (let theme of testThemes) {
 
+				frameUrl.searchParams.set('theme',theme);
 
-			const dateParam         = (date)        ? `&date=${date}` : '';
-			const languageParam     = (language)    ? `&language=${language}` : '';
-			const styleParam        = (style)       ? `&style=${style}` : '';
-			const backgroundParam   = (background)  ? `&background=${background}` : '';
-			const hemisphereParam   = (hemisphere)  ? `&hemisphere=${hemisphere}` : '';
-			const testParam         = (test)        ? `&test=${test}` : '';
-
-
-
-
-
-			for (let baseUrl of baseUrlArray) {
-				let url = `${baseUrl}${languageParam}${styleParam}${backgroundParam}${hemisphereParam}${testParam}${dateParam}`;
 				testElement.innerHTML +=
 					`
 					<div class="test">
-						<a href="${url}">${url}</a>
+						<a href="${frameUrl}">${frameUrl}</a>
 						</br>
-						<iframe src="${url}" title="${url}">
-							${url}
+						<iframe src="${frameUrl}" title="${frameUrl}">
+							${frameUrl}
 						</iframe>
 					</div>
 					`;
