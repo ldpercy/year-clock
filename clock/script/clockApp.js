@@ -1,315 +1,342 @@
 //
-// Setup
+// clockApp
 //
 
 
-
-
-
-// object to store general page information
-const page = {
-	// arguments - default, received and computed
-	default :
-	{
-		date        : new Date(),
-		theme       : 'wheel',
-		style       : '',
-		language    : 'en',
-		background  : '',
-		hemisphere  : 'southern',
-		test        : false,
-	},
-
-	parameter : 	// requested values to use
-	{
-		date        : undefined,
-		theme       : undefined,
-		style       : undefined,
-		language    : undefined,
-		background  : undefined,
-		hemisphere  : undefined,
-		test        : undefined,
-	},
-
-	initial :		// initial computed values to use
-	{
-		date        : undefined,	// initial date to use
-		theme       : undefined,	// initial clock theme to use
-		style       : undefined,	// initial clock style to use
-		language    : undefined,	// initial language to use
-		background  : undefined,
-		hemisphere  : undefined,
-		test        : undefined,
-	},
-
-	element       : {}, // store references to various page elements
-	clockInstance : {}, // clock instances will be collected here
-};
-
-
-const themeClass = {};		// global namespace that theme classes will be defined into
-
-
-/* setup
+/* ClockApp
 */
-function setup() {
-	// Set initial date based on date param or local date
-	page.parameter.date = getParameterByName('date');
-	const urlDate = (page.parameter.date !== null) ? new Date(page.parameter.date) : null;
-	page.initial.date = (isValidDate(urlDate)) ? urlDate : page.default.date;
-	// Theming:
-	page.parameter.theme = getParameterByName('theme');
-	page.initial.theme   = page.parameter.theme || page.default.theme;
-	page.parameter.style = getParameterByName('style');
-	page.initial.style   = page.parameter.style || page.default.style;
-	// Language
-	page.parameter.language = getParameterByName('language');
-	page.initial.language   = getSupportedLanguage(page.parameter.language) || getSupportedBrowserLanguage() || page.default.language;
-	// Background
-	page.parameter.background = getParameterByName('background');
-	page.initial.background   = page.parameter.background || page.default.background;
-	// Hemisphere
-	page.parameter.hemisphere = getParameterByName('hemisphere');
-	page.initial.hemisphere   = page.parameter.hemisphere || page.default.hemisphere;
+class ClockApp extends HTMLApp {
 
-	// test
-	page.parameter.test = getParameterByName('test');
-	page.initial.test   = page.parameter.test || page.default.test;
-	if (page.initial.test) document.body.classList.add('testing');
-
-	// reusable page elements
-	page.element.style_theme        = document.getElementById('stylesheet-theme');
-	page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
-	page.element.style_background   = document.getElementById('stylesheet-background');
-
-	page.element.container   = document.getElementById('clockContainer');
-
-	// The clock form
-	page.element.themeInput = document.getElementById('input-theme');
-	page.element.themeInput.value = page.initial.theme;
-
-	page.element.datePicker = document.getElementById('input-date');
-	page.element.datePicker.value = isoDate(page.initial.date);
-
-	page.element.languageInput = document.getElementById('input-language');
-	page.element.languageInput.value = page.initial.language;
-
-	page.element.styleInput = document.getElementById('input-style');
-	page.element.styleInput.value = page.initial.style;
-
-	page.element.backgroundInput = document.getElementById('input-background');
-	page.element.backgroundInput.value = page.initial.background;
-
-	page.element.hemisphereInput = document.getElementById('input-hemisphere');
-	page.element.hemisphereInput.value = page.initial.hemisphere;
-
-	page.element.clockForm = document.getElementById('form-clock');
-	page.element.clockForm.addEventListener('change', ((event)=>{formChangeHandler(event)}) );
+	name = "Year Clock";
+	info = "Year Clock by ldpercy";
 
 
-	// keyboard listener
-	document.addEventListener('keydown', ((event)=>{keyboardHandler(event)}) );
-	// button listeners
-	document.getElementById('button-dayBack').addEventListener('click',
-		((event)=>{
-			event.preventDefault();
-			dayBackward();
-		})
-	);
-	document.getElementById('button-dayForward').addEventListener('click',
-		((event)=>{
-			event.preventDefault();
-			dayForward();
-		})
-	);
+	eventListeners = [
+		{
+			query: '#form-clock',
+			type: 'change',
+			listener: this.formChangeHandler
+		},
+		{
+			element: document,
+			type: 'keydown',
+			listener: this.keyboardHandler
+		},
+		{
+			query: '#button-dayBack',
+			type: 'click',
+			listener: ((event)=>{ event.preventDefault(); this.dayBackward(); })
+		},
+		{
+			query: '#button-dayForward',
+			type: 'click',
+			listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
+		},
+	];
 
-	//log('page:', page);
 
-	const initialClockParams = {
-		id          : '1234',
-		container   : page.element.container,
-		date        : page.initial.date,
-		theme       : page.initial.theme,
-		style       : page.initial.style,
-		language    : page.initial.language,
-		background  : page.initial.background,
-		hemisphere  : page.initial.hemisphere,
+	// object to store general page information
+	page = {
+		// arguments - default, received and computed
+		default :
+		{
+			date        : new Date(),
+			theme       : 'wheel',
+			style       : '',
+			language    : 'en',
+			background  : '',
+			hemisphere  : 'southern',
+			test        : false,
+		},
+
+		parameter : 	// requested values to use
+		{
+			date        : undefined,
+			theme       : undefined,
+			style       : undefined,
+			language    : undefined,
+			background  : undefined,
+			hemisphere  : undefined,
+			test        : undefined,
+		},
+
+		initial :		// initial computed values to use
+		{
+			date        : undefined,	// initial date to use
+			theme       : undefined,	// initial clock theme to use
+			style       : undefined,	// initial clock style to use
+			language    : undefined,	// initial language to use
+			background  : undefined,
+			hemisphere  : undefined,
+			test        : undefined,
+		},
+
+		element       : {}, // store references to various page elements
+		clockInstance : {}, // clock instances will be collected here
 	};
 
-	//log('initialClockParams:', initialClockParams);
-
-	updateBackground(page.initial.background);
-
-	drawClock(initialClockParams);
-	// I'm sure there's a way to spread these parameters properly...
-
-	// Loading is async from here on, so the rest is in callbacks:
-
-} /* setup */
 
 
+	documentDOMContentLoaded() {
+		super.documentDOMContentLoaded();
+		this.setup()
+	}
 
-function keyboardHandler(event) {
 
-	if (event.target.id === '') // need a MUCH better of vetting these
-	{
-		switch(event.key) {
-			case ','    : event.preventDefault(); dayBackward(); break;
-			case '.'   	: event.preventDefault(); dayForward(); break;
-			default     : /* do nothing */; break;
+	/* setup
+	*/
+	setup() {
+		// Set initial date based on date param or local date
+		this.page.parameter.date = getParameterByName('date');
+		const urlDate = (this.page.parameter.date !== null) ? new Date(this.page.parameter.date) : null;
+		this.page.initial.date = (isValidDate(urlDate)) ? urlDate : this.page.default.date;
+		// Theming:
+		this.page.parameter.theme = getParameterByName('theme');
+		this.page.initial.theme   = this.page.parameter.theme || this.page.default.theme;
+		this.page.parameter.style = getParameterByName('style');
+		this.page.initial.style   = this.page.parameter.style || this.page.default.style;
+		// Language
+		this.page.parameter.language = getParameterByName('language');
+		this.page.initial.language   = getSupportedLanguage(this.page.parameter.language) || getSupportedBrowserLanguage() || this.page.default.language;
+		// Background
+		this.page.parameter.background = getParameterByName('background');
+		this.page.initial.background   = this.page.parameter.background || this.page.default.background;
+		// Hemisphere
+		this.page.parameter.hemisphere = getParameterByName('hemisphere');
+		this.page.initial.hemisphere   = this.page.parameter.hemisphere || this.page.default.hemisphere;
+
+		// test
+		this.page.parameter.test = getParameterByName('test');
+		this.page.initial.test   = this.page.parameter.test || this.page.default.test;
+		if (this.page.initial.test) document.body.classList.add('testing');
+
+		// reusable page elements
+		this.page.element.style_theme        = document.getElementById('stylesheet-theme');
+		this.page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+		this.page.element.style_background   = document.getElementById('stylesheet-background');
+
+		this.page.element.container   = document.getElementById('clockContainer');
+
+		// The clock form
+		this.page.element.themeInput = document.getElementById('input-theme');
+		this.page.element.themeInput.value = this.page.initial.theme;
+
+		this.page.element.datePicker = document.getElementById('input-date');
+		this.page.element.datePicker.value = isoDate(this.page.initial.date);
+
+		this.page.element.languageInput = document.getElementById('input-language');
+		this.page.element.languageInput.value = this.page.initial.language;
+
+		this.page.element.styleInput = document.getElementById('input-style');
+		this.page.element.styleInput.value = this.page.initial.style;
+
+		this.page.element.backgroundInput = document.getElementById('input-background');
+		this.page.element.backgroundInput.value = this.page.initial.background;
+
+		this.page.element.hemisphereInput = document.getElementById('input-hemisphere');
+		this.page.element.hemisphereInput.value = this.page.initial.hemisphere;
+
+		this.page.element.clockForm = document.getElementById('form-clock');
+
+
+
+
+
+		//log('page:', page);
+
+		const initialClockParams = {
+			id          : '1234',
+			container   : this.page.element.container,
+			date        : this.page.initial.date,
+			theme       : this.page.initial.theme,
+			style       : this.page.initial.style,
+			language    : this.page.initial.language,
+			background  : this.page.initial.background,
+			hemisphere  : this.page.initial.hemisphere,
+		};
+
+		//log('initialClockParams:', initialClockParams);
+
+		this.updateBackground(this.page.initial.background);
+
+		this.drawClock(initialClockParams);
+		// I'm sure there's a way to spread these parameters properly...
+
+		// Loading is async from here on, so the rest is in callbacks:
+
+	} /* setup */
+
+
+
+
+
+	keyboardHandler(event) {
+		if (event.target.id === '') // need a MUCH better of vetting these
+		{
+			switch(event.key) {
+				case ','    : event.preventDefault(); this.dayBackward(); break;
+				case '.'   	: event.preventDefault(); this.dayForward(); break;
+				default     : /* do nothing */; break;
+			}
 		}
+	}/* keyboardHandler */
+
+
+	dayForward() {
+		const currentDate = this.page.element.datePicker.valueAsDate;  //valueAsDate
+		incrementDay(currentDate);
+		this.changeDate(currentDate);
+		this.page.element.datePicker.value = isoDate(currentDate);
 	}
 
-}/* keyboardHandler */
 
-function dayForward() {
-	const currentDate = page.element.datePicker.valueAsDate;  //valueAsDate
-	incrementDay(currentDate);
-	changeDate(currentDate);
-	page.element.datePicker.value = isoDate(currentDate);
-}
-
-function dayBackward() {
-	const currentDate = page.element.datePicker.valueAsDate;  //valueAsDate
-	decrementDay(currentDate);
-	changeDate(currentDate);
-	page.element.datePicker.value = isoDate(currentDate);
-}
-
-
-function formChangeHandler(event) {
-	//log('formChangeHandler:', event);
-	//log('event.target', event.target);
-	//log('event.currentTarget', event.currentTarget);
-	//log('event.target.name', event.target.name);
-	//log('event.target.value', event.target.value);
-
-	switch(event.target.name) {
-		case 'style'        : updateStyle(event.target.value); break;
-		case 'background'   : updateBackground(event.target.value) ; break;
-		case 'date'         : changeDate(new Date(event.target.value)) ; break;
-		default             : updateClock(); break;
+	dayBackward() {
+		const currentDate = this.page.element.datePicker.valueAsDate;  //valueAsDate
+		decrementDay(currentDate);
+		this.changeDate(currentDate);
+		this.page.element.datePicker.value = isoDate(currentDate);
 	}
 
-}/* formChangeHandler */
+
+	formChangeHandler(event) {
+		//log('formChangeHandler:', event);
+		//log('event.target', event.target);
+		//log('event.currentTarget', event.currentTarget);
+		//log('event.target.name', event.target.name);
+		//log('event.target.value', event.target.value);
+
+		switch(event.target.name) {
+			case 'style'        : this.updateStyle(event.target.value); break;
+			case 'background'   : this.updateBackground(event.target.value) ; break;
+			case 'date'         : this.changeDate(new Date(event.target.value)) ; break;
+			default             : this.updateClock(); break;
+		}
+
+	}/* formChangeHandler */
 
 
 
-function updateStyle(style) {
-	//page.element.themeInput.value
-	const cssUrl_style = (style) ? `clock/theme/${page.element.themeInput.value}/style-${style}.css` : '';
-	page.element.style_style.setAttribute('href', cssUrl_style);
-}
-
-function updateBackground(background) {
-	const cssUrl_background = (background) ? `clock/background/${background}.css` : '';
-	page.element.style_background.setAttribute('href', cssUrl_background);
-}
+	updateStyle(style) {
+		//page.element.themeInput.value
+		const cssUrl_style = (style) ? `clock/theme/${this.page.element.themeInput.value}/style-${style}.css` : '';
+		this.page.element.style_style.setAttribute('href', cssUrl_style);
+	}
 
 
-function updateClock() {
-	//log('updateClock:');
+	updateBackground(background) {
+		const cssUrl_background = (background) ? `clock/background/${background}.css` : '';
+		this.page.element.style_background.setAttribute('href', cssUrl_background);
+	}
 
-	if (!isValidDate(new Date(page.element.datePicker.value)))
+
+	updateClock() {
+		//log('updateClock:');
+
+		if (!isValidDate(new Date(this.page.element.datePicker.value)))
+		{
+			log('Invalid date');
+			return;
+		}
+
+		const updateClockParams = {
+			id          : '1234',
+			date        : new Date(this.page.element.datePicker.value),
+			theme       : this.page.element.themeInput.value,
+			style       : this.page.element.styleInput.value,
+			language    : this.page.element.languageInput.value,
+			background  : this.page.element.backgroundInput.value,
+			hemisphere  : this.page.element.hemisphereInput.value,
+		};
+
+		this.drawClock(updateClockParams);
+	}
+
+
+
+	/* drawClock
+	Part 1:
+	* load the css
+	* async load the theme class
+	*/
+	drawClock(clockParameter) {
+
+		//log('drawClock', arguments);
+
+		let cssUrl_theme = `clock/theme/${clockParameter.theme}/theme.css`;
+		this.page.element.style_theme.setAttribute('href', cssUrl_theme);
+
+		if (clockParameter.style) {
+			let cssUrl_style = `clock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
+			this.page.element.style_style.setAttribute('href', cssUrl_style);
+		}
+
+		if (YearClock[clockParameter.theme]) {
+			// we already have that theme class in memory
+			// go right ahead to drawClock2
+			this.drawClock2(clockParameter);
+		}
+		else { // go and get the theme class
+			let classUrl = `clock/theme/${clockParameter.theme}/theme.class.js`;
+			// async load the theme class
+			replaceScript('script-themeClass', classUrl, (()=>{return this.drawClock2(clockParameter)}));
+		}
+
+	}/* drawClock */
+
+
+	/* drawClock2
+	Asynchronously called by the class script element's load event.
+	Part 2:
+	* create instance of the theme class for the clock
+	* write clock svg into the container
+	*/
+	drawClock2(clockParameter) {
+
+		//log('drawClock2',arguments);
+		let clockSVG;
+
+		//log('dd:',this.displayDate);
+		//try {
+
+		//log('--- before instantiation');
+			this.page.clockInstance[clockParameter.id] = new YearClock[clockParameter.theme](clockParameter);
+		//log('after instantiation; before getClockSVG');
+			clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
+		/* }
+		catch(error)
+		{
+			log('found an error');
+			log(error);
+		} */
+
+		//log('after getClockSVG; before page update');
+
+		this.page.element.container.innerHTML = clockSVG;
+
+		//log('after page update ---');
+
+		if (this.page.initial.test) { runTest(clockSVG); }
+
+	}/* drawClock */
+
+
+
+	changeDate(date)
 	{
-		log('Invalid date');
-		return;
+		if (!isValidDate(new Date(this.page.element.datePicker.value)))
+		{
+			log('Invalid date');
+			return;
+		}
+		this.page.clockInstance[1234].setDisplayDate(date);
+		const clockSVG = this.page.clockInstance[1234].getClockSVG();
+		this.page.element.container.innerHTML = clockSVG;
 	}
 
-	const updateClockParams = {
-		id          : '1234',
-		date        : new Date(page.element.datePicker.value),
-		theme       : page.element.themeInput.value,
-		style       : page.element.styleInput.value,
-		language    : page.element.languageInput.value,
-		background  : page.element.backgroundInput.value,
-		hemisphere  : page.element.hemisphereInput.value,
-	};
-
-	drawClock(updateClockParams);
-}
+}/* ClockApp */
 
 
-
-/* drawClock
-Part 1:
-* load the css
-* async load the theme class
-*/
-function drawClock(clockParameter) {
-
-	//log('drawClock', arguments);
-
-	let cssUrl_theme = `clock/theme/${clockParameter.theme}/theme.css`;
-	page.element.style_theme.setAttribute('href', cssUrl_theme);
-
-	if (clockParameter.style) {
-		let cssUrl_style = `clock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
-		page.element.style_style.setAttribute('href', cssUrl_style);
-	}
-
-	if (themeClass[clockParameter.theme]) {
-		// we already have that theme class in memory
-		// go right ahead to drawClock2
-		drawClock2(clockParameter);
-	}
-	else { // go and get the theme class
-		let classUrl = `clock/theme/${clockParameter.theme}/theme.class.js`;
-		// async load the theme class
-		replaceScript('script-themeClass', classUrl, (()=>{return drawClock2(clockParameter)}));
-	}
-
-}/* drawClock */
-
-
-/* drawClock2
-Asynchronously called by the class script element's load event.
-Part 2:
-* create instance of the theme class for the clock
-* write clock svg into the container
-*/
-function drawClock2(clockParameter) {
-
-	//log('drawClock2',arguments);
-	let clockSVG;
-
-	//log('dd:',this.displayDate);
-	//try {
-
-	//log('--- before instantiation');
-		page.clockInstance[clockParameter.id] = new themeClass[clockParameter.theme](clockParameter);
-	//log('after instantiation; before getClockSVG');
-		clockSVG = page.clockInstance[clockParameter.id].getClockSVG();
-	/* }
-	catch(error)
-	{
-		log('found an error');
-		log(error);
-	} */
-
-	//log('after getClockSVG; before page update');
-
-	page.element.container.innerHTML = clockSVG;
-
-	//log('after page update ---');
-
-	if (page.initial.test) { runTest(clockSVG); }
-
-}/* drawClock */
-
-
-
-function changeDate(date)
-{
-	if (!isValidDate(new Date(page.element.datePicker.value)))
-	{
-		log('Invalid date');
-		return;
-	}
-	page.clockInstance[1234].setDisplayDate(date);
-	const clockSVG = page.clockInstance[1234].getClockSVG();
-	page.element.container.innerHTML = clockSVG;
-}
+var clockApp = new ClockApp();
 
 
 
