@@ -8,7 +8,8 @@ Would like to see how hard it would be to start using it here.
 
 
 ```
-2025-10-18		Start
+2025-10-17		Start
+2025-10-18		Done		v1.11
 ```
 
 
@@ -38,6 +39,15 @@ A bunch of stuff in the script folder really should be turned into service class
 Tbh I think I'll be better off closing this here and returning in dedicated tasks.
 Some of those jobs could get a bit complicated.
 
+Wrapup
+------
 
+Done, quicker than I thought, will come back for more cleaning.
+
+* Convert old url parameter method to use URL obj
+* Update test page to use URL obj as well
+* Rename core classes and move theme classes into YearClock namespace
+* Convert old setup script into YearClockApp
+* A bit of general moving/cleaning
 
 
