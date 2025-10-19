@@ -25,7 +25,7 @@ function createDisplayDate(date, language) {
 		yearRange   : new DateRange(startOfYear(date), nextYear(date)),
 	};
 
-	result.monthNames = getMonthNames(language);
+	result.monthNames = yearclock.l10n.getMonthNames(language);
 
 	// Set up period arrays
 	result.monthArray   = getMonthArray(result, result.monthNames);

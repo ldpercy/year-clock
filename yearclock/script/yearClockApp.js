@@ -10,6 +10,10 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		https://github.com/ldpercy/year-clock/pull/39
 	`.replace(/\n\t/g,'\n');
 
+	//alias
+	l10n = yearclock.l10n;
+
+
 	eventListeners = [
 		{
 			query: '#form-clock',
@@ -96,7 +100,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		this.page.initial.style   = this.page.parameter.style || this.page.default.style;
 		// Language
 		this.page.parameter.language = this.getUrlParameter('language');
-		this.page.initial.language   = getSupportedLanguage(this.page.parameter.language) || getSupportedBrowserLanguage() || this.page.default.language;
+		this.page.initial.language   = this.l10n.getSupportedLanguage(this.page.parameter.language) || this.l10n.getSupportedBrowserLanguage() || this.page.default.language;
 		// Background
 		this.page.parameter.background = this.getUrlParameter('background');
 		this.page.initial.background   = this.page.parameter.background || this.page.default.background;
