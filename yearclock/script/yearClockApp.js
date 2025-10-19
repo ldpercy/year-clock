@@ -227,7 +227,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 
 	updateBackground(background) {
-		const cssUrl_background = (background) ? `yearclock/background/${background}.css` : '';
+		const cssUrl_background = (background) ? `page/background/${background}.css` : '';
 		this.page.element.style_background.setAttribute('href', cssUrl_background);
 	}
 
