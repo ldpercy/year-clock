@@ -3,30 +3,6 @@
 //
 
 
-/* URL Parameters
-*/
-function getParameterByName(name)
-{
-	return (new URL(window.location)).searchParams.get(name);
-}
-
-
-
-/* replaceScript
-*/
-function replaceScript(id, scriptUrl, callback) {
-	//log(`replaceScript: ${id} ${scriptUrl} ${callback}`);
-	let scriptElement = document.createElement('script');
-
-	scriptElement.setAttribute('id', id);
-	scriptElement.setAttribute('src', scriptUrl);
-	scriptElement.addEventListener('load', callback);
-
-	document.getElementById(id).remove();
-	document.getElementsByTagName('head')[0].appendChild(scriptElement);
-}/* replaceScript */
-
-
 
 /* createLog
 Returns a log function that logs to the console with performance timing.

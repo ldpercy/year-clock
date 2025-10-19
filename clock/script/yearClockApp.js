@@ -86,26 +86,26 @@ yearclock.App = class extends ldpercy.HTMLApp {
 	*/
 	setup() {
 		// Set initial date based on date param or local date
-		this.page.parameter.date = getParameterByName('date');
+		this.page.parameter.date = this.getUrlParameter('date');
 		const urlDate = (this.page.parameter.date !== null) ? new Date(this.page.parameter.date) : null;
 		this.page.initial.date = (isValidDate(urlDate)) ? urlDate : this.page.default.date;
 		// Theming:
-		this.page.parameter.theme = getParameterByName('theme');
+		this.page.parameter.theme = this.getUrlParameter('theme');
 		this.page.initial.theme   = this.page.parameter.theme || this.page.default.theme;
-		this.page.parameter.style = getParameterByName('style');
+		this.page.parameter.style = this.getUrlParameter('style');
 		this.page.initial.style   = this.page.parameter.style || this.page.default.style;
 		// Language
-		this.page.parameter.language = getParameterByName('language');
+		this.page.parameter.language = this.getUrlParameter('language');
 		this.page.initial.language   = getSupportedLanguage(this.page.parameter.language) || getSupportedBrowserLanguage() || this.page.default.language;
 		// Background
-		this.page.parameter.background = getParameterByName('background');
+		this.page.parameter.background = this.getUrlParameter('background');
 		this.page.initial.background   = this.page.parameter.background || this.page.default.background;
 		// Hemisphere
-		this.page.parameter.hemisphere = getParameterByName('hemisphere');
+		this.page.parameter.hemisphere = this.getUrlParameter('hemisphere');
 		this.page.initial.hemisphere   = this.page.parameter.hemisphere || this.page.default.hemisphere;
 
 		// test
-		this.page.parameter.test = getParameterByName('test');
+		this.page.parameter.test = this.getUrlParameter('test');
 		this.page.initial.test   = this.page.parameter.test || this.page.default.test;
 		if (this.page.initial.test) document.body.classList.add('testing');
 
@@ -277,7 +277,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		else { // go and get the theme class
 			let classUrl = `clock/theme/${clockParameter.theme}/theme.class.js`;
 			// async load the theme class
-			replaceScript('script-themeClass', classUrl, (()=>{return this.drawClock2(clockParameter)}));
+			this.replaceScript('script-themeClass', classUrl, (()=>{return this.drawClock2(clockParameter)}));
 		}
 
 	}/* drawClock */
