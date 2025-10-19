@@ -217,13 +217,13 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 	updateStyle(style) {
 		//page.element.themeInput.value
-		const cssUrl_style = (style) ? `clock/theme/${this.page.element.themeInput.value}/style-${style}.css` : '';
+		const cssUrl_style = (style) ? `yearclock/theme/${this.page.element.themeInput.value}/style-${style}.css` : '';
 		this.page.element.style_style.setAttribute('href', cssUrl_style);
 	}
 
 
 	updateBackground(background) {
-		const cssUrl_background = (background) ? `clock/background/${background}.css` : '';
+		const cssUrl_background = (background) ? `yearclock/background/${background}.css` : '';
 		this.page.element.style_background.setAttribute('href', cssUrl_background);
 	}
 
@@ -261,11 +261,11 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 		//log('drawClock', arguments);
 
-		let cssUrl_theme = `clock/theme/${clockParameter.theme}/theme.css`;
+		let cssUrl_theme = `yearclock/theme/${clockParameter.theme}/theme.css`;
 		this.page.element.style_theme.setAttribute('href', cssUrl_theme);
 
 		if (clockParameter.style) {
-			let cssUrl_style = `clock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
+			let cssUrl_style = `yearclock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
 			this.page.element.style_style.setAttribute('href', cssUrl_style);
 		}
 
@@ -275,7 +275,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 			this.drawClock2(clockParameter);
 		}
 		else { // go and get the theme class
-			let classUrl = `clock/theme/${clockParameter.theme}/theme.class.js`;
+			let classUrl = `yearclock/theme/${clockParameter.theme}/theme.class.js`;
 			// async load the theme class
 			this.replaceScript('script-themeClass', classUrl, (()=>{return this.drawClock2(clockParameter)}));
 		}

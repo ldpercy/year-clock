@@ -34,7 +34,7 @@
 		function setup() {
 			const testUrl = new URL(window.location);
 			//console.log(testUrl.search);
-			const clockPath = testUrl.href.replace('clock/test.html','index.html');
+			const clockPath = testUrl.href.replace('yearclock/test.html','index.html');
 			let frameUrl = new URL(clockPath);
 			frameUrl.search = testUrl.search;
 			frameUrl.searchParams.delete('theme');
