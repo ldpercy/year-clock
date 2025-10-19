@@ -16,14 +16,12 @@ Job reminders to wrap into other tasks.
 * Get the wireframe background to switch on the grid properly - prob need to draw separately
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
 * Look into utilising some webservices for tasks like l10n
-* Consider reorgansing the global scripts (maths, date etc) into service objects with some autowiring
 * Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
 * Revisit vintage theme lens and hand length
 * Remove radians calcs from other date arrays in `date.js` (had already done some)
 * Add option to hide the form
 * Fonts - find some web-safe ones or figure out serving
 * Rename hands to pointers
-* Improve test page parameterisation
 * Look into stroke gradients
 * Make pointer-sector position configurable (start/middle/fractional)
 * Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
@@ -31,7 +29,8 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
-
+* Reorgansing the global scripts (maths, date etc) into classes
+* Improve test page parameterisation
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
 * 'True' sectors using the origin (non-annular sectors) currently have an extra zero-arc -> one side removed, do other
