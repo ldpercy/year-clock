@@ -29,3 +29,51 @@ I could probably have large chunks of it as a library in the YearClock namespace
 Out of everything, the maths and date scripts are going to be hardest work as they're the biggest and messiest.
 
 
+Namespaces
+----------
+
+I've been out for a walk and was thinking about this.
+
+Nearly everything could just be placed under a 'YearClock' namespace, or if wanted I could go further and use 'ldpercy' as a master namespace under which I put all my projects, ie have 'ldpercy.YearClock', 'ldpercy.Turtle' etc.
+
+I've just had a quick try of a setup like this over in experiment-html, and it seems to work - no idea if there are issues with doing it like this, but I'll give it a try at least.
+Can always change it...
+
+The setup will look something like this:
+
+```js
+class ldpercy {}														// my top level namespace
+ldpercy.yearclock = class {}											// namespace for year clock related work
+ldpercy.htmlapp = class {}												// namespace for the html app
+ldpercy.htmlapp.HTMLApp	= class { ... }									// Actual HTML App class
+ldpercy.yearclock.App = class extends ldpercy.htmlapp.HTMLApp { ... }	// html app for year clock
+ldpercy.yearclock.app = new ldpercy.yearclock.App();					// instance of the yearclock app
+
+ldpercy.yearclock.
+	Date
+	SVG
+	i10n
+	maths				// various classes/namespaces for libraries
+
+ldpercy.yearclock.theme = class {}															// namespace for all theme classes
+ldpercy.yearclock.theme.ThemeBase = class { ... }											// theme base class
+ldpercy.yearclock.theme.Solar = class extends ldpercy.yearclock.theme.ThemeBase { ... }		// (etc) concrete theme classes
+```
+
+I might drop the 'ldpercy' if it gets too verbose.
+Alternatively see if there's any easy way to alias it.
+
+From MDN:
+> Class expressions can have names as well. The expression's name is only visible to the class's body.
+> ```js
+> const MyClass = class MyClassLongerName {
+>	// Class body. Here MyClass and MyClassLongerName point to the same class.
+> };
+> new MyClassLongerName(); // ReferenceError: MyClassLongerName is not defined
+> ```
+
+I'll have to see how this works with nesting, might be useful.
+Hmm just tried it, probably not unfortunately, likely just end up using `yearclock` as the base namespace for now.
+Might still use ldpercy for some external or common things like the html app.
+
+
