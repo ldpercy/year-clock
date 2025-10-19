@@ -110,9 +110,9 @@ More info: [wiki/theming.md](<./wiki/theming.md>)
 > Theming work is in progress so subject to change
 
 
-Themes are in [clock/theme/](<./clock/theme/>).
+Themes are in [yearclock/theme/](<./yearclock/theme/>).
 
-Each theme is a directory `clock/theme/[themeName]/` with two files:
+Each theme is a directory `yearclock/theme/[themeName]/` with two files:
 
 * theme.class.js - contains clock settings and the main `getClockSVG()` function
 * theme.css	- regular stylesheet for the clock
