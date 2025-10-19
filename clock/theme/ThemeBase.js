@@ -1,6 +1,6 @@
 /* ThemeBase
 */
-class ThemeBase extends YearClock {
+yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 	viewBox = '-1200 -1200 2400 2400';

@@ -1,6 +1,6 @@
 /* Wall clock theme
 */
-YearClock['wall-clock'] = class extends ThemeBase {
+yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 	viewBox           = padViewBox(30);
 	clockRadius       = 1200;

@@ -1,7 +1,7 @@
 /* brice
 Original theme from year-clock.net
 */
-YearClock['brice'] = class extends ThemeBase {
+yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 	// Clock parameters
 	viewBox           = '-1200 -1200 2400 2400';

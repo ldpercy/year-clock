@@ -1,6 +1,6 @@
-/* YearClockApp
+/* yearclock.App
 */
-class YearClockApp extends HTMLApp {
+yearclock.App = class extends ldpercy.HTMLApp {
 
 	name = "Year Clock";
 	info = `
@@ -269,7 +269,7 @@ class YearClockApp extends HTMLApp {
 			this.page.element.style_style.setAttribute('href', cssUrl_style);
 		}
 
-		if (YearClock[clockParameter.theme]) {
+		if (yearclock.theme[clockParameter.theme]) {
 			// we already have that theme class in memory
 			// go right ahead to drawClock2
 			this.drawClock2(clockParameter);
@@ -298,7 +298,7 @@ class YearClockApp extends HTMLApp {
 		//try {
 
 		//log('--- before instantiation');
-			this.page.clockInstance[clockParameter.id] = new YearClock[clockParameter.theme](clockParameter);
+			this.page.clockInstance[clockParameter.id] = new yearclock.theme[clockParameter.theme](clockParameter);
 		//log('after instantiation; before getClockSVG');
 			clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
 		/* }
@@ -332,10 +332,10 @@ class YearClockApp extends HTMLApp {
 		this.page.element.container.innerHTML = clockSVG;
 	}
 
-}/* YearClockApp */
+}/* yearclock.App */
 
 
-var yearClockApp = new YearClockApp();
+yearclock.app = new yearclock.App();
 
 
 

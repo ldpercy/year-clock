@@ -1,6 +1,6 @@
 /* Wheel
 */
-YearClock['space'] = class extends ThemeBase {
+yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 	viewBox           = padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;

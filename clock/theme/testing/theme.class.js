@@ -1,7 +1,7 @@
 /* testing
 Testing theme - use for trying things out and fixing bugs
 */
-YearClock['testing'] = class extends ThemeBase {
+yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 
 	viewBox           = padViewBox(50);

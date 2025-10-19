@@ -1,6 +1,6 @@
 /* Car dashboard theme
 */
-YearClock['car-dashboard'] = class extends ThemeBase {
+yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	//viewBox           = '-2700 -1400 5400 2800';
 	viewBox           = padViewBox(50, '-2700 -1400 5400 2800');

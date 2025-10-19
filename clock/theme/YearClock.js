@@ -1,5 +1,5 @@
 
-class YearClock {
+yearclock.theme.YearClock = class  {
 
 	constructor(parameter) {
 		this.parameter = parameter;

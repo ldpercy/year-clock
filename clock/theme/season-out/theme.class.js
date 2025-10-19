@@ -1,7 +1,7 @@
 /* season-out
 Seasons in the middle then months then days
 */
-YearClock['season-out'] = class extends ThemeBase {
+yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 
 	viewBox           = padViewBox(75);
 	//viewBox				= '-800 -800 1600 1600';

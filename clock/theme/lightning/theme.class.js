@@ -1,7 +1,7 @@
 /* Lightning theme
 No hands for this one, just highlights
 */
-YearClock['lightning'] = class extends ThemeBase {
+yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 	viewBox           = padViewBox(125);
 	//this.viewBox				= '-800 -800 1600 1600';

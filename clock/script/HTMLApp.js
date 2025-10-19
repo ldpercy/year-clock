@@ -1,6 +1,6 @@
 /* HTMLApp
 */
-class HTMLApp {
+ldpercy.HTMLApp = class {
 
 	name = 'HTMLApp';
 	info = 'HTMLApp by ldpercy';
