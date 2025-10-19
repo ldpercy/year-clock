@@ -6,7 +6,7 @@
 	<meta name="description" content="Test Page for Year Clock">
 
 	<!-- page -->
-	<link rel="icon" href="page/test-favicon.svg">
+	<link rel="icon" href="test-favicon.svg">
 	<script defer src="script/utility.js"></script>
 
 	<style>
@@ -34,7 +34,7 @@
 		function setup() {
 			const testUrl = new URL(window.location);
 			//console.log(testUrl.search);
-			const clockPath = testUrl.href.replace('yearclock/test.html','index.html');
+			const clockPath = testUrl.href.replace('test/index.html','index.html');
 			let frameUrl = new URL(clockPath);
 			frameUrl.search = testUrl.search;
 			frameUrl.searchParams.delete('theme');
