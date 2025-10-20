@@ -3,122 +3,160 @@
 //
 
 
-
-//
-// mutators:
-//
-
-function incrementDay(date) {
-	date.setDate(date.getDate() + 1);
-}
-
-function decrementDay(date) {
-	date.setDate(date.getDate() - 1);
-}
-
-//
-// constructors:
-//
-
-function startOfYear(date) {
-	return new Date(date.getFullYear(), 0, 1);
-}
-
-function startOfMonth(date) {
-	return new Date(date.getFullYear(), date.getMonth(),1);
-}
-
-function nextYear(date) {
-	return new Date(date.getFullYear()+1, 0, 1);
-}
-
-function nextMonth(date) {
-	return new Date(date.getFullYear(), date.getMonth()+1,1);
-}
-
-function nextDay(date) {
-	return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-}
-
-function truncateTime(date) {
-	return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
+yearclock.Date = class extends Date{
 
 
-//
-// decisions, calculations:
-//
+	//
+	// yearclock.Date instance methods:
+	//
 
-
-function isValidDate(date) {
-	//https://stackoverflow.com/a/1353711
-	return date instanceof Date && !isNaN(date);
-}
-
-function isWeekend(d) {
-	const dayNumber = d.getDay()
-	return dayNumber == 0 || dayNumber == 6
-}
-
-function isLastDayOfMonth(date) {
-	return (date.getDate() === daysInMonth(date));
-}
-
-function getDayClass(date, currentDate) { // this needs attention
-	//log(arguments);
-	result = 'weekday';
-	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
-	if (date.getDate() === 1) result += ' first';
-	if (datesAreEqual(date, currentDate)) {
-		result += ' current';
+	constructor(date) {
+		super(date);
 	}
-	return result;
-}
 
-function getMonthClass(date, displayDate) {
-	result = '';
-	if (monthsAreEqual(date, displayDate)) result += ' current';
-	return result;
-}
-
-function datesAreEqual(d1,d2) {
-	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
-}
-
-function monthsAreEqual(d1,d2) {
-	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth());
-}
-
-function dateIsInPeriod(date, periodStart, periodEnd) {
-	return ((date >= periodStart) && (date < periodEnd));
-}
-
-function dateIsInRange(date, dateRange) {
-	return ((date >= dateRange.start) && (date < dateRange.end));
-}
-
-function daysInMonth(date) {
-	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
-}
-
-function dayOfYear(date) {
-	return dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
-}
-
-function dayDifference(date1, date2) {
-	return Math.floor((truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24));
-}
-
-function daysInYear(date) {
-	return dayOfYear(new Date(date.getFullYear(),11,31));
-}
-
-function yearDifference(date1, date2) {
-	return date2.getFullYear() - date1.getFullYear();
-}
+	// accessors
+	get year()			{ return this.getFullYear(); }
 
 
+	// mutators:
 
+	incrementDay(date) {
+		this.setDate(this.getDate() + 1);
+	}
+
+	decrementDay(date) {
+		this.setDate(this.getDate() - 1);
+	}
+
+
+	// decisions, calculations:
+
+
+	isValidDate() {
+		//https://stackoverflow.com/a/1353711
+		return this instanceof Date && !isNaN(this);
+	}
+
+	isWeekend() {
+		const dayNumber = this.getDay()
+		return dayNumber == 0 || dayNumber == 6
+	}
+	isFirst() { return thisDate.getDate() === 1; }
+
+	isLastDayOfMonth() {
+		return (this.getDate() === daysInMonth(this));
+	}
+
+
+	// these two should be moved to be part of dateRange instead, plus eliminate the first
+	isInPeriod(periodStart, periodEnd) {
+		return ((this >= periodStart) && (this < periodEnd));
+	}
+	isInRange(dateRange) {
+		return ((this >= dateRange.start) && (this < dateRange.end));
+	}
+
+	get daysInMonth() {
+		return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate();
+	}
+
+	get dayOfMonth()	{ return this.getDate(); }
+
+
+
+	get daysInYear() {
+		return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31));
+	}
+
+
+	//
+	// Date formatting
+	//
+
+	toIsoDate() {
+		// return date.toISOString().substring(0, 10);
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+		// The timezone is always UTC,
+		// https://stackoverflow.com/a/72581185
+		var localDate = new Date(this.getTime() - this.getTimezoneOffset()*60000);
+		return localDate.toISOString().substring(0, 10);
+	}
+
+	toIsoMonthDay() {
+		return this.toIsoDate().substring(5, 10);
+	}
+
+
+	// yearclock.Date static methods
+
+	static dayOfYear(date) {
+		return yearclock.Date.dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
+	}
+
+	static datesAreEqual(d1,d2) {
+		return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
+	}
+
+	static monthsAreEqual(d1,d2) {
+		return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth());
+	}
+
+	static dayDifference(date1, date2) {
+		return Math.floor((yearclock.Date.truncateTime(date2) - yearclock.Date.truncateTime(date1)) / (1000 * 60 * 60 * 24));
+	}
+
+	static yearDifference(date1, date2) {
+		return date2.getFullYear() - date1.getFullYear();
+	}
+
+
+	// yearclock.Date static methods for factory/conversion methods
+	// I find the naming of 'newFoo' in instance conversion constructors a bit awkaward, so going to make these static for now
+	// constructors:
+	//
+
+	static startOfYear(date) {
+		return new Date(date.getFullYear(), 0, 1);
+	}
+
+	static startOfMonth(date) {
+		return new Date(date.getFullYear(), date.getMonth(),1);
+	}
+
+	static nextYear(date) {
+		return new Date(date.getFullYear()+1, 0, 1);
+	}
+
+	static nextMonth(date) {
+		return new Date(date.getFullYear(), date.getMonth()+1,1);
+	}
+
+	static nextDay(date) {
+		return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+	}
+
+	static truncateTime(date) {
+		return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+	}
+
+
+
+
+
+}/* yearclock.Date */
+
+
+
+
+yearclock.Date.Range = class {
+	constructor(start, end) {
+		this.start = new yearclock.Date(start);		// not sure yet if i want to keep these 'new Date(...)' constructors in here
+		this.end = new yearclock.Date(end);
+	}
+
+	length = function() { return yearclock.Date.dayDifference(this.start, this.end); }
+
+}/* DateRange */
 
 
 
@@ -166,24 +204,6 @@ function dateRangeRadians(dateRange, arcDateRange, radianDelta = new RadianDelta
 
 
 
-//
-// Date formatting
-//
-
-function isoDate(date) {
-	// return date.toISOString().substring(0, 10);
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-	// The timezone is always UTC,
-	// https://stackoverflow.com/a/72581185
-	var localDate = new Date(date.getTime() - date.getTimezoneOffset()*60000);
-	return localDate.toISOString().substring(0, 10);
-}
-
-
-function isoMonthDay(date) {
-	return isoDate(date).substring(5, 10);
-}
-
 
 /*
 Return the last day of a half-open date range instead of its open limit.
@@ -193,26 +213,7 @@ closedIntervalEnd(date) {}
 
 
 
-class DateRange {
-	constructor(start, end) {
-		this.start = new Date(start);		// not sure yet if i want to keep these 'new Date(...)' constructors in here
-		this.end = new Date(end);
-	}
-
-	length = function() { return dayDifference(this.start, this.end); }
-
-}/* DateRange */
-
-
 /*
 dr = new DateRange('2025-01-01','2026-01-01')
 */
-
-
-function getSeason(date, seasonArray) {
-	result = seasonArray.find(
-		(season) => dateIsInRange(date, season.dateRange)
-	);
-	return result;
-}
 

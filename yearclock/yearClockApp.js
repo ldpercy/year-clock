@@ -43,7 +43,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		// arguments - default, received and computed
 		default :
 		{
-			date        : new Date(),
+			date        : new yearclock.Date(),
 			theme       : 'wheel',
 			style       : '',
 			language    : 'en',
@@ -91,8 +91,8 @@ yearclock.App = class extends ldpercy.HTMLApp {
 	setup() {
 		// Set initial date based on date param or local date
 		this.page.parameter.date = this.getUrlParameter('date');
-		const urlDate = (this.page.parameter.date !== null) ? new Date(this.page.parameter.date) : null;
-		this.page.initial.date = (isValidDate(urlDate)) ? urlDate : this.page.default.date;
+		const urlDate = (this.page.parameter.date !== null) ? new yearclock.Date(this.page.parameter.date) : null;
+		this.page.initial.date = (urlDate.isValidDate()) ? urlDate : this.page.default.date;
 		// Theming:
 		this.page.parameter.theme = this.getUrlParameter('theme');
 		this.page.initial.theme   = this.page.parameter.theme || this.page.default.theme;
@@ -125,7 +125,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		this.page.element.themeInput.value = this.page.initial.theme;
 
 		this.page.element.datePicker = document.getElementById('input-date');
-		this.page.element.datePicker.value = isoDate(this.page.initial.date);
+		this.page.element.datePicker.value = this.page.initial.date.toIsoDate();
 
 		this.page.element.languageInput = document.getElementById('input-language');
 		this.page.element.languageInput.value = this.page.initial.language;

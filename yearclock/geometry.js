@@ -64,7 +64,7 @@ Will automatically extrapolate if the date falls outside of the date range.
 function dateRadians(date, dateRange, radianDelta = new RadianDelta) {
 
 	/* 	This might be the key I've been looking for */
-	result = divisionRadians(dateRange.length(), dayDifference(dateRange.start, date), radianDelta);
+	result = divisionRadians(dateRange.length(), yearclock.Date.dayDifference(dateRange.start, date), radianDelta);
 	return result;
 }/* dateRadians */
 

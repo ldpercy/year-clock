@@ -31,40 +31,141 @@ yearclock.theme.YearClock = class  {
 
 
 
-	/* createDisplayDate
-	This is a temporary-ish function to re-create the big fat object that was sitting in the setup function called `config.date`.
-	It needs to be rationalised (much) further.
+
+	/*
+	find a better place for:
 	*/
-	createDisplayDate(date, language) {
-		//log('createDisplayDate', arguments);
-		const result = {
-			object      : new Date(date),
-			language    : language,
-			year        : date.getFullYear(),
-			month       : date.getMonth() + 1,		// js month starts at 0
-			monthRange  : new DateRange(startOfMonth(date), nextMonth(date)),
-			daysInMonth : daysInMonth(date),
-			date        : date.getDate(),
-			name        : date.toLocaleString(language, {weekday: "long"}),
-			dayOfYear   : dayOfYear(date),
-			daysInYear  : daysInYear(date),
-			yearStart   : startOfYear(date),
-			yearEnd     : nextYear(date),
-			yearRange   : new DateRange(startOfYear(date), nextYear(date)),
-		};
 
-		result.monthNames = yearclock.L10n.getMonthNames(language);
-
-		// Set up period arrays
-		result.monthArray   = getMonthArray(result, result.monthNames);
-
-		//log('createDisplayDate',result);
+	static getDayClass(date, currentDate) { // this needs attention
+		//log(arguments);
+		let result = 'weekday';
+		if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
+		if (date.getDate() === 1) result += ' first';
+		if (yearclock.Date.datesAreEqual(date, currentDate)) {
+			result += ' current';
+		}
 		return result;
-	}/* createDisplayDate */
+	}
+
+	static getMonthClass(date, displayDate) {
+		const result = '';
+		if (yearclock.Date.monthsAreEqual(date, displayDate)) result += ' current';
+		return result;
+	}
+
+
+
+
+
+	/* getPeriodDayArray
+	Attempt at generalising to an arbitrary period.
+	Will try to use half-open intervals.
+	Might need to tweak the loop-end condition though.
+	*/
+	getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
+		const result = [];
+
+		let dayCounter = 1;
+		for (let thisDate = new yearclock.Date(dateStart); thisDate < dateEnd; thisDate.incrementDay())
+		{
+			const dayInfo = {
+				id           : thisDate.getDate(),
+				name         : thisDate.toLocaleString(locale, {weekday: "long"}),
+				dayOfPeriod  : dayCounter,
+				date         : new yearclock.Date(thisDate),
+				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
+			}
+			result.push(dayInfo);
+			dayCounter++;
+		}
+
+		return result;
+	}/* getPeriodDayArray */
+
+
 
 
 
 }/* YearClock */
 
+
+
+/* createDisplayDate
+This is a temporary-ish function to re-create the big fat object that was sitting in the setup function called `config.date`.
+It needs to be rationalised (much) further.
+
+Most of this are actually just extensions on date/yearclock.Date
+Going to try another extension, but lots of this could still go away.
+*/
+yearclock.DisplayDate = class extends yearclock.Date {
+
+	language;
+	#monthArray;
+
+	constructor(date, language)
+	{
+		super(date);
+		this.language = language;
+		//this.monthArray = this.getMonthArray(date, this.monthNames);
+	}
+
+
+	get month()			{ return this.getMonth() + 1; } // js month starts at 0
+	get monthRange()	{ return new yearclock.Date.Range(yearclock.Date.startOfMonth(this), yearclock.Date.nextMonth(this)); }
+	get dayName()		{ return this.toLocaleString(this.language, {weekday: "long"}); }
+	get date()			{ return this.getDate(); }
+	get yearStart()		{ return yearclock.Date.startOfYear(this); }
+	get yearEnd()		{ return yearclock.Date.nextYear(this); }
+	get yearRange()		{ return new yearclock.Date.Range(this.yearStart, this.yearEnd); }
+	get monthNames()	{ return yearclock.L10n.getMonthNames(this.language); }
+
+	get monthArray()	{
+		if (!this.#monthArray)
+		{
+			this.#monthArray = this.getMonthArray(this)
+		}
+		return this.#monthArray;
+	}
+
+	// Set up period arrays
+
+
+	//log('createDisplayDate',result);
+
+
+	/* getMonthArray
+	This needs a lot of cleanup/rationalisation:
+		Remove globals/paramterise
+		Change monthname map to something else
+	*/
+	getMonthArray(date) { //(date, monthNames) {
+		const monthId = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+		const year = date.year;
+
+
+		const result = this.monthNames.map(
+			function( monthName, index ) {
+				const dateStart   = new yearclock.Date(year, index);
+				const dateEnd     = new yearclock.Date(year, index + 1);
+
+				const month = {
+					'id'           : monthId[index],
+					'number'       : index+1,
+					'name'         : monthName,
+					'dateStart'    : dateStart,
+					'dateEnd'      : dateEnd,
+					//'lastDate'     : new yearclock.Date(nextMonth - 1000),
+					'class'        : yearclock.theme.YearClock.getMonthClass(dateStart, date),
+					'dateRange'    : new yearclock.Date.Range(dateStart, dateEnd),
+				};
+				return month;
+			}
+		);
+		return result;
+	}/* getMonthArray */
+
+
+
+}/* yearclock.DisplayDate */
 
 

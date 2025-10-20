@@ -3,66 +3,8 @@
 //
 
 
-/* getMonthArray
-This needs a lot of cleanup/rationalisation:
-	Remove globals/paramterise
-	Change monthname map to something else
-*/
-function getMonthArray(displayDate, monthNames) {
-	const monthId = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
-
-	const result = monthNames.map(
-		function( monthName, index ) {
-			const dateStart   = new Date(displayDate.year, index);
-			const dateEnd     = new Date(displayDate.year, index + 1);
-
-			const month = {
-				'id'           : monthId[index],
-				'number'       : index+1,
-				'name'         : monthName,
-				'dateStart'    : dateStart,
-				'dateEnd'      : dateEnd,
-				'lastDate'     : new Date(nextMonth - 1000),
-				'class'        : getMonthClass(dateStart, displayDate.object),
-				'dateRange'    : new DateRange(dateStart, dateEnd),
-			};
-			return month;
-		}
-	);
-	return result;
-}/* getMonthArray */
 
 
-
-/* getPeriodDayArray
-Attempt at generalising to an arbitrary period.
-Will try to use half-open intervals.
-Might need to tweak the loop-end condition though.
-*/
-function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
-	const result = [];
-
-	let dayCounter = 1;
-	for (let thisDate = new Date(dateStart); thisDate < dateEnd; incrementDay(thisDate))
-	{
-		const dayInfo = {
-			id           : thisDate.getDate(),
-			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
-			dayOfPeriod  : dayCounter,
-			dayOfMonth   : thisDate.getDate(),
-			dayOfYear    : dayOfYear(thisDate),
-			date         : new Date(thisDate),
-			isFirst      : thisDate.getDate() === 1,
-			isWeekend    : isWeekend(thisDate),
-			class        : getDayClass(thisDate, currentDate),
-			isoShort     : isoDate(thisDate),
-		}
-		result.push(dayInfo);
-		dayCounter++;
-	}
-
-	return result;
-}/* getPeriodDayArray */
 
 
 
@@ -104,7 +46,7 @@ function getSeasonArray(displayDate, hemisphere) {
 		},
 	];
 
-	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
+	seasonArray.find( (season) => dateIsInRange(displayDate, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
@@ -161,7 +103,7 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 		},
 	];
 
-	seasonArray.find( (season) => dateIsInRange(displayDate.object, season.dateRange) ).class = 'current';
+	seasonArray.find( (season) => dateIsInRange(displayDate, season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
@@ -205,7 +147,7 @@ function getQuarterArray(displayDate) {
 		},
 	];
 
-	quarterArray.find( (quarter) => dateIsInRange(displayDate.object, quarter.dateRange) ).class = 'current';
+	quarterArray.find( (quarter) => dateIsInRange(displayDate, quarter.dateRange) ).class = 'current';
 	addDateRangeRadians(quarterArray, displayDate.yearRange);
 
 	return quarterArray;
@@ -250,7 +192,7 @@ function getYearWeekArray(displayDate) {
 	}
 	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
-	const currentWeek = weekArray.find( (week) => dateIsInRange(displayDate.object, week.dateRange) );
+	const currentWeek = weekArray.find( (week) => dateIsInRange(displayDate, week.dateRange) );
 	currentWeek.class = 'current';
 	displayDate.week = currentWeek;
 

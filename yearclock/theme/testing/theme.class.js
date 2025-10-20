@@ -78,15 +78,15 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 		// Set Up Drawing
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		//addRadians(this.displayDate.yearDayArray);
 		//this.dayRing.array   = this.displayDate.monthDayArray;
 
-		//this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		//this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
 		//addRadians(this.displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		/*
-		let weekArray    = getYearWeekArray(this.displayDate.object);
+		let weekArray    = getYearWeekArray(this.displayDate);
 		${this.getSectorLabels('week', weekArray, this.weekLabel)}
 		${this.getSectors('week', weekArray, this.weekRadiusStart, this.weekRadiusEnd)}
  		*/

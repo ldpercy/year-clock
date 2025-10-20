@@ -15,7 +15,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	formatTitle = function(type, data) {
 		let result;
 		switch(type) {
-			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
+			case 'hands'    : result = `${data.date.isoDate} - ${data.date.name} - d${data.date.dayOfYear}`; break;
 			default         : result = data.name || data.id; break;
 		}
 		return result;
@@ -198,7 +198,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getMonthHand */
 	getMonthHand = function(handConfig, degreeDelta = new DegreeDelta) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.object.getDate()-1, degreeDelta);
+		const monthDayDivision = divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
@@ -641,6 +641,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 		return result;
 	}
+
+
+
+
+
 
 
 

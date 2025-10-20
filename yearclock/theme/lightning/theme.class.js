@@ -67,7 +67,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = this.createDisplayDate(date, this.parameter.language);
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		addRadians(this.displayDate.yearDayArray);
 
 		this.displayDate.quarterArray = getQuarterArray(this.displayDate);

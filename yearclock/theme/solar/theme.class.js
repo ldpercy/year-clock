@@ -65,10 +65,10 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 		this.displayDate = this.createDisplayDate(date, this.parameter.language);
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		//this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		//this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		//addRadians(this.displayDate.yearDayArray);
 
-		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray);
 
 		this.monthRing.array = this.displayDate.monthArray;

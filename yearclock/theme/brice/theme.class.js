@@ -46,12 +46,12 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = this.createDisplayDate(date, this.parameter.language);
+		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
+		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		addRadians(this.displayDate.yearDayArray);
 		// label side flipper:
-		const yearOnLeft = (this.dateRatio(this.displayDate.object) < 0.5);
+		const yearOnLeft = (this.dateRatio(this.displayDate) < 0.5);
 		this.dateLabel.position.x = this.dateLabel.radius * ((yearOnLeft) ? -1 :1);
 	}
 

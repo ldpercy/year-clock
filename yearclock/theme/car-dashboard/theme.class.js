@@ -124,12 +124,12 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
 
-		this.displayDate.monthDayArray = getPeriodDayArray(startOfMonth(this.displayDate.object), nextMonth(this.displayDate.object), this.displayDate.object, this.displayDate.language);
+		this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
 
 		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.seasonArray  = getSeasonArray(this.displayDate, this.parameter.hemisphere);
-		this.displayDate.season = getSeason(this.displayDate.object, this.displayDate.seasonArray);
+		this.displayDate.season = getSeason(this.displayDate, this.displayDate.seasonArray);
 	}
 
 
@@ -317,9 +317,9 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getWarningMonth = function(type, settings) {
 
-		let weekEvent = yearclock.Event.getWeekEvent(this.displayDate.object) || {name:'',symbol:''};
-		let monthEvent = yearclock.Event.getMonthEvent(this.displayDate.object) || {name:'',symbol:''};
-		let customEvent = yearclock.Event.getCustomEvent(this.displayDate.object) || {name:'',symbol:''};
+		let weekEvent = yearclock.Event.getWeekEvent(this.displayDate) || {name:'',symbol:''};
+		let monthEvent = yearclock.Event.getMonthEvent(this.displayDate) || {name:'',symbol:''};
+		let customEvent = yearclock.Event.getCustomEvent(this.displayDate) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -334,7 +334,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getWarningYear = function(type, settings) {
 
-		const event = yearclock.Event.getYearEvent(this.displayDate.object) || {name:'', symbol:''};
+		const event = yearclock.Event.getYearEvent(this.displayDate) || {name:'', symbol:''};
 		const seasonEvent = yearclock.Event.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
 
 		const result = `
