@@ -11,6 +11,7 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 	yearMonthSector = new Annulus(1120, 930);
 
 	monthLabel = {
+		//name           : 'month',
 		radius         : 985,
 		sectorPosition : 0.5,
 		rotate         : true,
@@ -47,6 +48,10 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+
+		//console.debug(this.displayDate);
+
+
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		addRadians(this.displayDate.yearDayArray);

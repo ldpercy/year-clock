@@ -15,7 +15,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	formatTitle = function(type, data) {
 		let result;
 		switch(type) {
-			case 'hands'    : result = `${data.date.isoDate} - ${data.date.name} - d${data.date.dayOfYear}`; break;
+			case 'hands'    : result = `${data.date.toIsoDate()} - ${data.date.dayName} - d${data.date.dayOfYear}`; break;
 			default         : result = data.name || data.id; break;
 		}
 		return result;
@@ -25,7 +25,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		let result;
 		switch(labelType) {
 			case 'year'         : result = `${data.year}`; break;
-			case 'date'         : result = `${isoDate(data.object)}` ; break;
+			case 'date'         : result = `${data.toIsoDate()}` ; break;
 			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
 			case 'dayShort'     : result = `${data.name.slice(0,3)}`; break;
 
@@ -104,9 +104,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		let tickLine = '';
 		let tickSvg = '';
 
+		//console.debug('getPeriodDayTicks', periodArray);
+
 		for (let day of periodArray)
 		{
-			if (day.isWeekend)
+			if (day.date.isWeekend)
 			{
 				tickLine = this.svg.radialLine(day.radians.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
@@ -118,14 +120,14 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			}
 
 			tickSvg +=
-				`<line class="${tickClass}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
+				`<line class="${tickClass}" data-date="${day.date.toIsoDate()}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
 
-			if (day.isFirst) // Draw an extra line for firsts of the month
+			if (day.date.isFirst) // Draw an extra line for firsts of the month
 			{
 				tickLine = this.svg.radialLine(day.radians.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
-					`<line class="${tickClass}" data-date="${day.isoShort}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
+					`<line class="${tickClass}" data-date="${day.date.toIsoDate()}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
 			}
 		}
 
@@ -183,9 +185,14 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 	/* getYearHand */
-	getYearHand = function(handConfig, degreeDelta = new DegreeDelta) {
+	getYearHand(handConfig, degreeDelta = new DegreeDelta) {
+		//console.debug('getYearHand', arguments);
+		//console.debug(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 		// calculate year hand params
 		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
+
+		//console.debug(yearDayDivision);
+
 		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
 		// get year hand
 		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
@@ -292,6 +299,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	*/
 	getSectorLabels = function(sectorName, sectorArray, setting) // :String
 	{
+		//console.debug(arguments);
 		const sectorLabels = new yearclock.SVG.Chunk();
 		const labelFormat = setting.format || sectorName;
 
@@ -312,6 +320,8 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	*/
 	getSectorLabel = function(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
+
+
 		const result = new yearclock.SVG.Chunk();
 		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
 

@@ -11,11 +11,29 @@ yearclock.Date = class extends Date{
 	//
 
 	constructor(date) {
-		super(date);
+		super(...arguments);
 	}
 
 	// accessors
-	get year()			{ return this.getFullYear(); }
+	get year()		{ return this.getFullYear(); }
+
+	get daysInMonth() {
+		return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate();
+	}
+
+	get dayOfMonth()	{ return this.getDate(); }
+
+	get daysInYear() {
+		return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31));
+	}
+	get dayOfYear() { return yearclock.Date.dayOfYear(this); }
+
+
+	get isWeekend() {
+		const dayNumber = this.getDay()
+		return dayNumber == 0 || dayNumber == 6
+	}
+	get isFirst() { return this.getDate() === 1; }
 
 
 	// mutators:
@@ -31,17 +49,11 @@ yearclock.Date = class extends Date{
 
 	// decisions, calculations:
 
-
 	isValidDate() {
 		//https://stackoverflow.com/a/1353711
 		return this instanceof Date && !isNaN(this);
 	}
 
-	isWeekend() {
-		const dayNumber = this.getDay()
-		return dayNumber == 0 || dayNumber == 6
-	}
-	isFirst() { return thisDate.getDate() === 1; }
 
 	isLastDayOfMonth() {
 		return (this.getDate() === daysInMonth(this));
@@ -56,17 +68,7 @@ yearclock.Date = class extends Date{
 		return ((this >= dateRange.start) && (this < dateRange.end));
 	}
 
-	get daysInMonth() {
-		return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate();
-	}
 
-	get dayOfMonth()	{ return this.getDate(); }
-
-
-
-	get daysInYear() {
-		return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31));
-	}
 
 
 	//
@@ -214,6 +216,6 @@ closedIntervalEnd(date) {}
 
 
 /*
-dr = new DateRange('2025-01-01','2026-01-01')
+dr = new yearclock.Date.Range('2025-01-01','2026-01-01')
 */
 

@@ -120,7 +120,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = this.createDisplayDate(date, this.parameter.language);
+		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
 
@@ -222,7 +222,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
 			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
-			case 'date'     : result = `${isoDate(data.object)}` ; break;
+			case 'date'     : result = `${data.toIsoDate()}` ; break;
 			case 'dayName'  : result = `${data.name}`; break;
 			//case 'season'   : result = `${data.name.slice(0,1)}`; break;
 			case 'season'   : result = `${data.emoji}`; break;

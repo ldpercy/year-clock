@@ -4,7 +4,7 @@
 
 function getSeason(date, seasonArray) {
 	result = seasonArray.find(
-		(season) => dateIsInRange(date, season.dateRange)
+		(season) => yearclock.Date.isInRange(date, season.dateRange)
 	);
 	return result;
 }

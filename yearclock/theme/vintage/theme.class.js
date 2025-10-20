@@ -93,7 +93,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = this.createDisplayDate(date, this.parameter.language);
+		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 

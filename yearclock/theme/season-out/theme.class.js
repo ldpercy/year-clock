@@ -37,7 +37,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 	}
 
 	setDisplayDate(date) {
-		this.displayDate = this.createDisplayDate(date, this.parameter.language);
+		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		addRadians(this.displayDate.yearDayArray);
@@ -53,7 +53,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
-			case 'date'     : result = `${data.month.toString().padStart(2,'0')}-${data.object.getDate().toString().padStart(2,'0')}`; break;
+			case 'date'     : result = `${data.toIsoMonthDay()}`; break;
 			case 'year'     : result = `${data.year}`; break;
 			default         : result = data.name || data.id; break;
 		}
@@ -63,11 +63,11 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 	formatTitle = function(type, data) {
 		let result;
 		switch(type) {
-			case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
+			case 'yearDay'  : result = `${data.name} d${data.dayOfPeriod}`; break;
 			case 'quarter'  : result = `${data.name}`; break;
 			case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
-			case 'hands'    : result = `${isoDate(data.date.object)} - ${data.date.name} - d${data.date.dayOfYear}`; break;
+			case 'hands'    : result = `${data.date.toIsoDate()} - ${data.date.dayName} - d${data.date.dayOfYear}`; break;
 			default         : result = data.name || data.id; break;
 		}
 		return result;

@@ -26,7 +26,7 @@ yearclock.theme.YearClock = class  {
 	Each clock class needs to override this method and call it during construction
 	*/
 	setDisplayDate(date) {
-		this.displayDate = this.createDisplayDate(date, this.parameter.language);
+		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 	}
 
 
@@ -48,7 +48,7 @@ yearclock.theme.YearClock = class  {
 	}
 
 	static getMonthClass(date, displayDate) {
-		const result = '';
+		let result = '';
 		if (yearclock.Date.monthsAreEqual(date, displayDate)) result += ' current';
 		return result;
 	}
@@ -141,13 +141,14 @@ yearclock.DisplayDate = class extends yearclock.Date {
 	getMonthArray(date) { //(date, monthNames) {
 		const monthId = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
 		const year = date.year;
-
+		let dateStart;
+		let dateEnd;
 
 		const result = this.monthNames.map(
 			function( monthName, index ) {
-				const dateStart   = new yearclock.Date(year, index);
-				const dateEnd     = new yearclock.Date(year, index + 1);
-
+				dateStart   = new yearclock.Date(year, index);
+				dateEnd     = new yearclock.Date(year, index + 1);
+				//console.debug(index, dateStart, dateEnd);
 				const month = {
 					'id'           : monthId[index],
 					'number'       : index+1,
@@ -161,6 +162,9 @@ yearclock.DisplayDate = class extends yearclock.Date {
 				return month;
 			}
 		);
+
+		//console.debug(result);
+
 		return result;
 	}/* getMonthArray */
 

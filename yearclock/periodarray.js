@@ -21,32 +21,32 @@ function getSeasonArray(displayDate, hemisphere) {
 	const seasonArray = [
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			dateRange   : new DateRange(new Date(year,0,1), new Date(year,2,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,0,1), new Date(year,2,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
-			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,2,1), new Date(year,5,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
-			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,5,1), new Date(year,8,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
-			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,8,1), new Date(year,11,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			dateRange   : new DateRange(new Date(year,11,1), new Date(year+1,0,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,11,1), new Date(year+1,0,1)),
 			class       : '',
 		},
 	];
 
-	seasonArray.find( (season) => dateIsInRange(displayDate, season.dateRange) ).class = 'current';
+	seasonArray.find( (season) => displayDate.isInRange(season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
@@ -69,13 +69,13 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 	if (displayDate.month === 12) {
 		wrappedSeasonStart = new Date(year,11,1);
 		thisYearSeasonEnd = new Date(year,2,1);
-		thisYearSeasonDays = dayDifference(displayDate.yearStart, thisYearSeasonEnd);
+		thisYearSeasonDays = yearclock.Date.dayDifference(displayDate.yearStart, thisYearSeasonEnd);
 		wrappedSeasonEnd = new Date(displayDate.yearEnd);
 		wrappedSeasonEnd.setDate(wrappedSeasonEnd.getDate() + thisYearSeasonDays);
 	} else {
 		wrappedSeasonEnd = new Date(year,2,1);
 		thisYearSeasonStart = new Date(year,11,1);
-		thisYearSeasonDays = dayDifference(thisYearSeasonStart, displayDate.yearEnd);
+		thisYearSeasonDays = yearclock.Date.dayDifference(thisYearSeasonStart, displayDate.yearEnd);
 		wrappedSeasonStart = new Date(displayDate.yearStart);
 		wrappedSeasonStart.setDate(wrappedSeasonStart.getDate() - thisYearSeasonDays);
 	}
@@ -83,27 +83,27 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 	const seasonArray = [
 		{
 			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
-			dateRange   : new DateRange(new Date(year,2,1), new Date(year,5,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,2,1), new Date(year,5,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
-			dateRange   : new DateRange(new Date(year,5,1), new Date(year,8,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,5,1), new Date(year,8,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
-			dateRange   : new DateRange(new Date(year,8,1), new Date(year,11,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,8,1), new Date(year,11,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			dateRange   : new DateRange(wrappedSeasonStart, wrappedSeasonEnd),
+			dateRange   : new yearclock.Date.Range(wrappedSeasonStart, wrappedSeasonEnd),
 			class       : '',
 		},
 	];
 
-	seasonArray.find( (season) => dateIsInRange(displayDate, season.dateRange) ).class = 'current';
+	seasonArray.find( (season) => displayDate.isInRange(season.dateRange) ).class = 'current';
 	addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 	return seasonArray;
@@ -120,34 +120,34 @@ function getQuarterArray(displayDate) {
 		{
 			id          : '1',
 			name        : 'Q1',
-			dateRange   : new DateRange(new Date(year,0,1), new Date(year,3,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,0,1), new Date(year,3,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '2',
 			name        : 'Q2',
-			dateRange   : new DateRange(new Date(year,3,1), new Date(year,6,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,3,1), new Date(year,6,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '3',
 			name        : 'Q3',
-			dateRange   : new DateRange(new Date(year,6,1), new Date(year,9,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,6,1), new Date(year,9,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '4',
 			name        : 'Q4',
-			dateRange   : new DateRange(new Date(year,9,1), new Date(year,12,1)),
+			dateRange   : new yearclock.Date.Range(new Date(year,9,1), new Date(year,12,1)),
 			radians     : undefined,
 			class       : '',
 		},
 	];
 
-	quarterArray.find( (quarter) => dateIsInRange(displayDate, quarter.dateRange) ).class = 'current';
+	quarterArray.find( (quarter) => displayDate.isInRange(quarter.dateRange) ).class = 'current';
 	addDateRangeRadians(quarterArray, displayDate.yearRange);
 
 	return quarterArray;
@@ -168,7 +168,7 @@ function getYearWeekArray(displayDate) {
 		{
 			id          : `${weekNumber}`,
 			name        : `${weekNumber}`,
-			dateRange   : new DateRange(yearStart, undefined),
+			dateRange   : new yearclock.Date.Range(yearStart, undefined),
 			radians     : undefined,
 			class       : '',
 		}
@@ -184,7 +184,7 @@ function getYearWeekArray(displayDate) {
 			weekArray.push({
 				id          : `${weekNumber}`,
 				name        : `${weekNumber}`,
-				dateRange   : new DateRange(thisDate, undefined),
+				dateRange   : new yearclock.Date.Range(thisDate, undefined),
 				radians     : undefined,
 				class       : '',
 			});
@@ -192,7 +192,7 @@ function getYearWeekArray(displayDate) {
 	}
 	weekArray[weekArray.length-1].dateRange.end = yearEnd;
 
-	const currentWeek = weekArray.find( (week) => dateIsInRange(displayDate, week.dateRange) );
+	const currentWeek = weekArray.find( (week) => displayDate.isInRange(week.dateRange) );
 	currentWeek.class = 'current';
 	displayDate.week = currentWeek;
 
