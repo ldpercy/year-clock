@@ -51,7 +51,7 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 		this.displayDate.yearDayArray = getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate.object);
 		addRadians(this.displayDate.yearDayArray);
 		// label side flipper:
-		const yearOnLeft = (dateRatio(this.displayDate.object) < 0.5);
+		const yearOnLeft = (this.dateRatio(this.displayDate.object) < 0.5);
 		this.dateLabel.position.x = this.dateLabel.radius * ((yearOnLeft) ? -1 :1);
 	}
 
@@ -74,6 +74,18 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 		return themeSVG;
 	}/* getThemeSVG */
+
+
+
+	dateRatio(date)
+	{
+		const year = date.getFullYear()
+		const yearStart = new Date (year, 0)
+		const yearEnd   = new Date (year + 1, 0)
+		const yearLength = yearEnd - yearStart
+		const timeElapsed = date - yearStart
+		return timeElapsed / yearLength
+	}
 
 
 }/* YearClock.brice */

@@ -119,19 +119,6 @@ function yearDifference(date1, date2) {
 
 
 
-// clock
-
-
-function dateRatio(date)
-{
-	const year = date.getFullYear()
-	const yearStart = new Date (year, 0)
-	const yearEnd   = new Date (year + 1, 0)
-	const yearLength = yearEnd - yearStart
-	const timeElapsed = date - yearStart
-	return timeElapsed / yearLength
-}
-
 
 
 
