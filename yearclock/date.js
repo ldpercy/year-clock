@@ -3,37 +3,6 @@
 //
 
 
-/* createDisplayDate
-This is a temporary-ish function to re-create the big fat object sitting in the setup function called `config.date`.
-It needs to be rationalised (much) further.
-*/
-function createDisplayDate(date, language) {
-	//log('createDisplayDate', arguments);
-	const result = {
-		object      : new Date(date),
-		language    : language,
-		year        : date.getFullYear(),
-		month       : date.getMonth() + 1,		// js month starts at 0
-		monthRange  : new DateRange(startOfMonth(date), nextMonth(date)),
-		daysInMonth : daysInMonth(date),
-		date        : date.getDate(),
-		name        : date.toLocaleString(language, {weekday: "long"}),
-		dayOfYear   : dayOfYear(date),
-		daysInYear  : daysInYear(date),
-		yearStart   : startOfYear(date),
-		yearEnd     : nextYear(date),
-		yearRange   : new DateRange(startOfYear(date), nextYear(date)),
-	};
-
-	result.monthNames = yearclock.l10n.getMonthNames(language);
-
-	// Set up period arrays
-	result.monthArray   = getMonthArray(result, result.monthNames);
-
-	//log('createDisplayDate',result);
-	return result;
-}/* createDisplayDate */
-
 
 //
 // mutators:

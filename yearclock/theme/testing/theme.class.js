@@ -71,7 +71,7 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = createDisplayDate(date, this.parameter.language);
+		this.displayDate = this.createDisplayDate(date, this.parameter.language);
 
 		this.monthRing.array = this.displayDate.monthArray;
 
