@@ -21,27 +21,27 @@ function getSeasonArray(displayDate, hemisphere) {
 	const seasonArray = [
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			dateRange   : new yearclock.Date.Range(new Date(year,0,1), new Date(year,2,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,0,1), new yearclock.Date(year,2,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
-			dateRange   : new yearclock.Date.Range(new Date(year,2,1), new Date(year,5,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,2,1), new yearclock.Date(year,5,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
-			dateRange   : new yearclock.Date.Range(new Date(year,5,1), new Date(year,8,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,5,1), new yearclock.Date(year,8,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
-			dateRange   : new yearclock.Date.Range(new Date(year,8,1), new Date(year,11,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,8,1), new yearclock.Date(year,11,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'summer' : 'winter',
-			dateRange   : new yearclock.Date.Range(new Date(year,11,1), new Date(year+1,0,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,11,1), new yearclock.Date(year+1,0,1)),
 			class       : '',
 		},
 	];
@@ -67,33 +67,33 @@ function getSeasonCircleArray(displayDate, hemisphere) {
 	let wrappedSeasonStart, wrappedSeasonEnd, thisYearSeasonStart, thisYearSeasonEnd, thisYearSeasonDays;
 
 	if (displayDate.month === 12) {
-		wrappedSeasonStart = new Date(year,11,1);
-		thisYearSeasonEnd = new Date(year,2,1);
+		wrappedSeasonStart = new yearclock.Date(year,11,1);
+		thisYearSeasonEnd = new yearclock.Date(year,2,1);
 		thisYearSeasonDays = yearclock.Date.dayDifference(displayDate.yearStart, thisYearSeasonEnd);
-		wrappedSeasonEnd = new Date(displayDate.yearEnd);
+		wrappedSeasonEnd = new yearclock.Date(displayDate.yearEnd);
 		wrappedSeasonEnd.setDate(wrappedSeasonEnd.getDate() + thisYearSeasonDays);
 	} else {
-		wrappedSeasonEnd = new Date(year,2,1);
-		thisYearSeasonStart = new Date(year,11,1);
+		wrappedSeasonEnd = new yearclock.Date(year,2,1);
+		thisYearSeasonStart = new yearclock.Date(year,11,1);
 		thisYearSeasonDays = yearclock.Date.dayDifference(thisYearSeasonStart, displayDate.yearEnd);
-		wrappedSeasonStart = new Date(displayDate.yearStart);
+		wrappedSeasonStart = new yearclock.Date(displayDate.yearStart);
 		wrappedSeasonStart.setDate(wrappedSeasonStart.getDate() - thisYearSeasonDays);
 	}
 
 	const seasonArray = [
 		{
 			id          : (hemisphere === 'southern') ? 'autumn' : 'spring',
-			dateRange   : new yearclock.Date.Range(new Date(year,2,1), new Date(year,5,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,2,1), new yearclock.Date(year,5,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'winter' : 'summer',
-			dateRange   : new yearclock.Date.Range(new Date(year,5,1), new Date(year,8,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,5,1), new yearclock.Date(year,8,1)),
 			class       : '',
 		},
 		{
 			id          : (hemisphere === 'southern') ? 'spring' : 'autumn',
-			dateRange   : new yearclock.Date.Range(new Date(year,8,1), new Date(year,11,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,8,1), new yearclock.Date(year,11,1)),
 			class       : '',
 		},
 		{
@@ -120,28 +120,28 @@ function getQuarterArray(displayDate) {
 		{
 			id          : '1',
 			name        : 'Q1',
-			dateRange   : new yearclock.Date.Range(new Date(year,0,1), new Date(year,3,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,0,1), new yearclock.Date(year,3,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '2',
 			name        : 'Q2',
-			dateRange   : new yearclock.Date.Range(new Date(year,3,1), new Date(year,6,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,3,1), new yearclock.Date(year,6,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '3',
 			name        : 'Q3',
-			dateRange   : new yearclock.Date.Range(new Date(year,6,1), new Date(year,9,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,6,1), new yearclock.Date(year,9,1)),
 			radians     : undefined,
 			class       : '',
 		},
 		{
 			id          : '4',
 			name        : 'Q4',
-			dateRange   : new yearclock.Date.Range(new Date(year,9,1), new Date(year,12,1)),
+			dateRange   : new yearclock.Date.Range(new yearclock.Date(year,9,1), new yearclock.Date(year,12,1)),
 			radians     : undefined,
 			class       : '',
 		},
@@ -174,11 +174,11 @@ function getYearWeekArray(displayDate) {
 		}
 	];
 
-	for (let thisDate = new Date(yearStart); thisDate < yearEnd; incrementDay(thisDate))
+	for (let thisDate = new yearclock.Date(yearStart); thisDate < yearEnd; thisDate.incrementDay())
 	{
-		if (thisDate.getDay() === 1 && !datesAreEqual(thisDate, yearStart)) // need this condition otherwise weeks get borked
+		if (thisDate.getDay() === 1 && !yearclock.Date.datesAreEqual(thisDate, yearStart)) // need this condition otherwise weeks get borked
 		{
-			weekArray[weekArray.length-1].dateRange.end = new Date(thisDate);
+			weekArray[weekArray.length-1].dateRange.end = new yearclock.Date(thisDate);
 
 			weekNumber++;
 			weekArray.push({
@@ -197,6 +197,8 @@ function getYearWeekArray(displayDate) {
 	displayDate.week = currentWeek;
 
 	addDateRangeRadians(weekArray, displayDate.yearRange);
+
+	console.debug(weekArray);
 
 	return weekArray;
 }/* getYearWeekArray */

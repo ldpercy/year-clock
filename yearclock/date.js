@@ -118,27 +118,27 @@ yearclock.Date = class extends Date{
 	//
 
 	static startOfYear(date) {
-		return new Date(date.getFullYear(), 0, 1);
+		return new yearclock.Date(date.getFullYear(), 0, 1);
 	}
 
 	static startOfMonth(date) {
-		return new Date(date.getFullYear(), date.getMonth(),1);
+		return new yearclock.Date(date.getFullYear(), date.getMonth(),1);
 	}
 
 	static nextYear(date) {
-		return new Date(date.getFullYear()+1, 0, 1);
+		return new yearclock.Date(date.getFullYear()+1, 0, 1);
 	}
 
 	static nextMonth(date) {
-		return new Date(date.getFullYear(), date.getMonth()+1,1);
+		return new yearclock.Date(date.getFullYear(), date.getMonth()+1,1);
 	}
 
 	static nextDay(date) {
-		return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+		return new yearclock.Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 	}
 
 	static truncateTime(date) {
-		return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+		return new yearclock.Date(date.getFullYear(), date.getMonth(), date.getDate());
 	}
 
 
@@ -151,6 +151,9 @@ yearclock.Date = class extends Date{
 
 
 yearclock.Date.Range = class {
+	start;
+	end;
+
 	constructor(start, end) {
 		this.start = new yearclock.Date(start);		// not sure yet if i want to keep these 'new Date(...)' constructors in here
 		this.end = new yearclock.Date(end);

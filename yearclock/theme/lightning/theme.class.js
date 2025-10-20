@@ -72,6 +72,8 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 		this.displayDate.quarterArray = getQuarterArray(this.displayDate);
 		this.displayDate.weekArray    = getYearWeekArray(this.displayDate);
+
+		console.debug(this.displayDate.yearDayArray);
 	}
 
 	//
@@ -82,9 +84,9 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 	formatTitle = function(type, data) {
 		let result;
 		switch(type) {
-			case 'yearDay'  : result = `${data.name} ${data.dayOfYear}`; break;
+			case 'yearDay'  : result = `${data.name} d${data.date.dayOfYear}`; break;
 			case 'quarter'  : result = `${data.name}`; break;
-			case 'week'     : result = `W${data.name}: ${isoDate(data.dateRange.start)} - ${isoDate(data.dateRange.end)}`; break;
+			case 'week'     : result = `W${data.name}: ${data.dateRange.start.toIsoDate()} - ${data.dateRange.end.toIsoDate()}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			default         : result = data.name; break;
 		}
@@ -100,7 +102,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 			case 'week'         : result = `W${data.name}`; break;
 			case 'clock-week'         : result = `W${data.week.name}`; break;
 			case 'dayOfYear'    : result = `D${data.dayOfYear}`; break;
-			case 'date'         : result = `${isoMonthDay(data.object)}`; break;
+			case 'date'         : result = `${data.toIsoMonthDay()}`; break;
 			case 'year'         : result = `${data.year}`; break;
 			default             : result = data.name; break;
 		}
