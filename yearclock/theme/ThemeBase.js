@@ -641,7 +641,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 		result = `
 			<g class="group-ring ring-${setting.name}">
-				<title>${setting.name}</title>
+				<!-- <title>${setting.name}</title> -->
 				<!-- sectors: -->
 				${sectorSVG}
 				<!-- labels: -->
@@ -650,12 +650,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		`;
 
 		return result;
-	}
-
-
-
-
-
+	}/* getRing */
 
 
 

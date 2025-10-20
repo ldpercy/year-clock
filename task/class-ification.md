@@ -112,3 +112,17 @@ I can only do a little aliasing in this kind of setup, but will try to find plac
 For example I'd like to do something with the date static methods if I can, still undecided about those.
 
 Still looking for ways to make it clear when a method returns a 'new' object, untethered to the original.
+
+This is an example:
+```
+this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
+```
+There will be ways to clean this up, but for now is a bit long winded.
+
+
+The title turning up in the vintage theme is actually coming from the ring, so while relatively new, not related to this conversion.
+I'll turn it off.
+
+
+
+

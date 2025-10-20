@@ -198,7 +198,7 @@ function getYearWeekArray(displayDate) {
 
 	addDateRangeRadians(weekArray, displayDate.yearRange);
 
-	console.debug(weekArray);
+	//console.debug(weekArray);
 
 	return weekArray;
 }/* getYearWeekArray */

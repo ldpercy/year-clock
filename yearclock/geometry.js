@@ -100,6 +100,52 @@ function addDateRangeRadians(array, arcDateRange, radianDelta = new RadianDelta,
 
 
 
+/* dateRangeRadians
+Given two dates return the start, middle, end & width in radians.
+Gives angles in the context of years.
+*/
+function dateRangeRadians(dateRange, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
+	//const diy1 = daysInYear(date1);
+	//const diy2 = daysInYear(date2);
+	//const start = divisionRadians(diy1, dayOfYear(date1)-1, radianDelta).start;
+	//const end   = divisionRadians(diy2, dayOfYear(date2)-1, radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+
+	const start = dateRadians(dateRange.start, arcDateRange, radianDelta).start;
+	const end = dateRadians(dateRange.end, arcDateRange, radianDelta).start;
+
+	/*
+	switch(outlier) {
+		case 'truncate'    : result += (Math.cos(radians) < 0) ? 180 : 0; break;
+		case 'extrapolate' : result += (Math.sin(radians) < 0) ? 180 : 0; break;
+		case 'wrap'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+	} */
+
+
+	/* 	Need to add or subtract additional 2pi rotations based on the year difference
+	TODO:
+	This will have to change with angular context - need to figure out what to do with negatives and year crossings for arcs
+
+	In an arc context it will depedn what the start and length radians represent.
+	For example it will be okay to represent a year crossing if the arc date range covers it, but if not then it will be an error, or a truncated sector.
+	Will need to think about how to handle these cases.
+
+	*/
+
+	let result = {
+		start  : start,
+		middle : (start + end) / 2,
+		end    : end,
+		width  : end - start,
+	}
+
+	return result;
+}/* dateRangeRadians */
+
+
+
+
+
+
 //
 // Classes
 //

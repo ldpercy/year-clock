@@ -73,7 +73,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 		this.displayDate.quarterArray = getQuarterArray(this.displayDate);
 		this.displayDate.weekArray    = getYearWeekArray(this.displayDate);
 
-		console.debug(this.displayDate.yearDayArray);
+		//console.debug(this.displayDate.yearDayArray);
 	}
 
 	//
