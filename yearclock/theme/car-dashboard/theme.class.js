@@ -317,9 +317,9 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getWarningMonth = function(type, settings) {
 
-		let weekEvent = getWeekEvent(this.displayDate.object) || {name:'',symbol:''};
-		let monthEvent = getMonthEvent(this.displayDate.object) || {name:'',symbol:''};
-		let customEvent = getCustomEvent(this.displayDate.object) || {name:'',symbol:''};
+		let weekEvent = yearclock.Event.getWeekEvent(this.displayDate.object) || {name:'',symbol:''};
+		let monthEvent = yearclock.Event.getMonthEvent(this.displayDate.object) || {name:'',symbol:''};
+		let customEvent = yearclock.Event.getCustomEvent(this.displayDate.object) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -334,8 +334,8 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getWarningYear = function(type, settings) {
 
-		const event = getYearEvent(this.displayDate.object) || {name:'', symbol:''};
-		const seasonEvent = getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
+		const event = yearclock.Event.getYearEvent(this.displayDate.object) || {name:'', symbol:''};
+		const seasonEvent = yearclock.Event.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
 
 		const result = `
 			<g class="warningLight">
