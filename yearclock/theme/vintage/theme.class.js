@@ -97,7 +97,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
+		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray);
 
 		this.monthRing.array = this.displayDate.monthArray;

@@ -3,7 +3,7 @@ yearclock.Event = class {
 
 	static getYearEvent(date) {
 
-		const key = isoMonthDay(date);
+		const key = date.toIsoMonthDay();
 
 		const yearEvent = {
 			'01-01' : { symbol:'🌅', name: "New Year's Day" },
@@ -47,7 +47,7 @@ yearclock.Event = class {
 
 		let result = monthEvent[key]
 
-		if (isLastDayOfMonth(date)) {
+		if (date.isLastDayOfMonth) {
 			result = { symbol:'🔚', name: "" };
 		}
 
@@ -57,7 +57,7 @@ yearclock.Event = class {
 
 	static getCustomEvent(date) {
 
-		const key = isoMonthDay(date);
+		const key = date.toIsoMonthDay();
 
 		const customEvent = {
 			'03-14' : { symbol:'🥧', name: "Pi day" },

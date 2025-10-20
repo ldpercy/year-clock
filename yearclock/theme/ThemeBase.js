@@ -26,7 +26,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		switch(labelType) {
 			case 'year'         : result = `${data.year}`; break;
 			case 'date'         : result = `${data.toIsoDate()}` ; break;
-			case 'dayNumber'    : result = `${data.dayOfMonth}`; break;
+			case 'dayNumber'    : result = `${data.date.dayOfMonth}`; break;
 			case 'dayShort'     : result = `${data.name.slice(0,3)}`; break;
 
 			case 'monthNumber'  : result = `${data.number}`; break;

@@ -124,7 +124,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
+		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
 
 		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
@@ -221,9 +221,9 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
-			case 'monthDay' : result = `${data.dayOfMonth}`    ; break;
+			case 'monthDay' : result = `${data.date.dayOfMonth}`    ; break;
 			case 'date'     : result = `${data.toIsoDate()}` ; break;
-			case 'dayName'  : result = `${data.name}`; break;
+			case 'dayName'  : result = `${data.dayName}`; break;
 			//case 'season'   : result = `${data.name.slice(0,1)}`; break;
 			case 'season'   : result = `${data.emoji}`; break;
 
