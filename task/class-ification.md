@@ -77,3 +77,21 @@ Hmm just tried it, probably not unfortunately, likely just end up using `yearclo
 Might still use ldpercy for some external or common things like the html app.
 
 
+
+
+Start converting everything
+---------------------------
+
+Am in the process of converting the scripts to become classes.
+
+For now most things are being explicitly placed under a 'yearclock' namespace, eg:
+
+	yearclock.Maths
+	yearclock.Event
+
+But some things will end up under an 'ldpercy' namespace - will see how that goes.
+
+I've also moved a whole stack of stuff around into more sensible directory locations.
+
+This is going to get v2.0 on account of practically everything changing.
+
