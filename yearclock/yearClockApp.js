@@ -92,7 +92,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		// Set initial date based on date param or local date
 		this.page.parameter.date = this.getUrlParameter('date');
 		const urlDate = (this.page.parameter.date !== null) ? new yearclock.Date(this.page.parameter.date) : null;
-		this.page.initial.date = (urlDate.isValidDate()) ? urlDate : this.page.default.date;
+		this.page.initial.date = (urlDate.isValid) ? urlDate : this.page.default.date;
 		// Theming:
 		this.page.parameter.theme = this.getUrlParameter('theme');
 		this.page.initial.theme   = this.page.parameter.theme || this.page.default.theme;
@@ -186,18 +186,18 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 
 	dayForward() {
-		const currentDate = this.page.element.datePicker.valueAsDate;  //valueAsDate
-		incrementDay(currentDate);
+		const currentDate = new yearclock.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
+		currentDate.incrementDay();
 		this.changeDate(currentDate);
-		this.page.element.datePicker.value = isoDate(currentDate);
+		this.page.element.datePicker.value = currentDate.toIsoDate();
 	}
 
 
 	dayBackward() {
-		const currentDate = this.page.element.datePicker.valueAsDate;  //valueAsDate
-		decrementDay(currentDate);
+		const currentDate = new yearclock.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
+		currentDate.decrementDay();
 		this.changeDate(currentDate);
-		this.page.element.datePicker.value = isoDate(currentDate);
+		this.page.element.datePicker.value = currentDate.toIsoDate();
 	}
 
 
@@ -211,7 +211,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		switch(event.target.name) {
 			case 'style'        : this.updateStyle(event.target.value); break;
 			case 'background'   : this.updateBackground(event.target.value) ; break;
-			case 'date'         : this.changeDate(new Date(event.target.value)) ; break;
+			case 'date'         : this.changeDate(new yearclock.Date(event.target.value)) ; break;
 			default             : this.updateClock(); break;
 		}
 
@@ -233,17 +233,17 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 
 	updateClock() {
-		//log('updateClock:');
+		const newDate = new yearclock.Date(this.page.element.datePicker.value);
 
-		if (!isValidDate(new Date(this.page.element.datePicker.value)))
+		if (!newDate.isValid)
 		{
-			log('Invalid date');
+			console.warn('Invalid date', newDate);
 			return;
 		}
 
 		const updateClockParams = {
 			id          : '1234',
-			date        : new Date(this.page.element.datePicker.value),
+			date        : newDate,
 			theme       : this.page.element.themeInput.value,
 			style       : this.page.element.styleInput.value,
 			language    : this.page.element.languageInput.value,
@@ -324,14 +324,18 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 
 
-	changeDate(date)
+	changeDate(yearclockDate)
 	{
-		if (!isValidDate(new Date(this.page.element.datePicker.value)))
+		//console.debug('yearclockDate', yearclockDate);
+		//console.debug('this instanceof Date', yearclockDate instanceof Date);
+		//console.debug('!isNaN(this)', !isNaN(yearclockDate));
+
+		if (!yearclockDate.isValid)
 		{
-			log('Invalid date');
+			console.warn('Invalid date', yearclockDate);
 			return;
 		}
-		this.page.clockInstance[1234].setDisplayDate(date);
+		this.page.clockInstance[1234].setDisplayDate(yearclockDate);
 		const clockSVG = this.page.clockInstance[1234].getClockSVG();
 		this.page.element.container.innerHTML = clockSVG;
 	}

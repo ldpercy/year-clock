@@ -35,6 +35,18 @@ yearclock.Date = class extends Date{
 	}
 	get isFirst() { return this.getDate() === 1; }
 
+	// decisions, calculations:
+
+	get isValid() {
+		//https://stackoverflow.com/a/1353711
+		return this instanceof Date && !isNaN(this);
+	}
+
+	get isLastDayOfMonth() {
+		return (this.getDate() === this.daysInMonth);
+	}
+
+
 
 	// mutators:
 
@@ -47,17 +59,9 @@ yearclock.Date = class extends Date{
 	}
 
 
-	// decisions, calculations:
-
-	isValidDate() {
-		//https://stackoverflow.com/a/1353711
-		return this instanceof Date && !isNaN(this);
-	}
 
 
-	isLastDayOfMonth() {
-		return (this.getDate() === daysInMonth(this));
-	}
+
 
 
 	// these two should be moved to be part of dateRange instead, plus eliminate the first

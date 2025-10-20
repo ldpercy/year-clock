@@ -35,9 +35,11 @@ function runTest(string) {
 	else {
 		document.getElementById('clockContainer').classList.remove('testPass');
 		document.getElementById('clockContainer').classList.add('testFail');
+		console.error(result);
 	}
 
 	document.getElementById('testResult').innerHTML = JSON.stringify(result);
+
 }
 
 
