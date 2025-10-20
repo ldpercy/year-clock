@@ -95,3 +95,20 @@ I've also moved a whole stack of stuff around into more sensible directory locat
 
 This is going to get v2.0 on account of practically everything changing.
 
+
+
+Dates....
+---------
+
+I've subbranched to try a Date conversion - massive amount of changes, much will need more work, but it's 'mostly' (famous last words) working.
+
+All the themes are green, but still going over things looking for bits I might have missed.
+Some titles/labels for vintage look odd and need verifying for instance.
+
+A bunch of the old crufty code to do with displayDate has been rehomed into the base yearclock class, i've reworked it a little, needs more.
+
+Some areas are more verbose now with all the namespacing, but that's to be expected.
+I can only do a little aliasing in this kind of setup, but will try to find places where things can be trimmed down some more.
+For example I'd like to do something with the date static methods if I can, still undecided about those.
+
+Still looking for ways to make it clear when a method returns a 'new' object, untethered to the original.

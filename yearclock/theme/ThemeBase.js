@@ -32,7 +32,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			case 'monthNumber'  : result = `${data.number}`; break;
 			case 'monthShort'     : result = `${data.name.slice(0,3)}`; break;
 
-			case 'romanNumeralDay'   : result = `${yearclock.Maths.asRomanNumerals(data.dayOfMonth)}`; break;
+			case 'romanNumeralDay'   : result = `${yearclock.Maths.asRomanNumerals(data.date.dayOfMonth)}`; break;
 			case 'romanNumeralMonth' : result = `${yearclock.Maths.asRomanNumerals(data.number)}`; break;
 			case 'romanNumeralYear'  : result = `${yearclock.Maths.asRomanNumerals(data.year)}`; break;
 
