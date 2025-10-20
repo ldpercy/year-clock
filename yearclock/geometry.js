@@ -7,11 +7,11 @@
 
 
 function radians(degrees) {
-	return (degrees/360) * Math.TAU;
+	return (degrees/360) * yearclock.Maths.TAU;
 }
 
 function degrees(radians) {
-	return (radians/Math.TAU) * 360;
+	return (radians/yearclock.Maths.TAU) * 360;
 }
 
 
@@ -252,7 +252,7 @@ class Annulus {
 
 
 class RadianDelta {
-	constructor(start = 0, delta = Math.TAU) {
+	constructor(start = 0, delta = yearclock.Maths.TAU) {
 		this.start = start;
 		this.delta = delta;
 	}

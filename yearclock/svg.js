@@ -4,7 +4,7 @@
 // Unless specified uses a (0,0) origin
 //
 
-sf = significantFigures(4);
+sf = yearclock.Maths.significantFigures(4);
 
 
 function radialLine(radians, startRadius, endRadius) {
