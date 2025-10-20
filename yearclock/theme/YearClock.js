@@ -1,6 +1,9 @@
 
 yearclock.theme.YearClock = class  {
 
+	svg = yearclock.SVG;
+
+
 	constructor(parameter) {
 		this.parameter = parameter;
 		// this.setDisplayDate(this.parameter.date);

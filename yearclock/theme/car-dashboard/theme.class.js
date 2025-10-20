@@ -3,7 +3,7 @@
 yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	//viewBox           = '-2700 -1400 5400 2800';
-	viewBox           = padViewBox(50, '-2700 -1400 5400 2800');
+	viewBox           = this.svg.padViewBox(50, '-2700 -1400 5400 2800');
 
 	clock = {
 		bodyRadius : 1400,
@@ -263,10 +263,10 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-clock.faceRadius},${-clock.faceRadius}
 			Z
 
-			${rectanglePath(-300, 800, 600, 300, 50)}
+			${this.svg.rectanglePath(-300, 800, 600, 300, 50)}
 
-			${rectanglePath(-1650, 900, 700, 200, 50)}
-			${rectanglePath(950, 900, 700, 200, 50)}
+			${this.svg.rectanglePath(-1650, 900, 700, 200, 50)}
+			${this.svg.rectanglePath(950, 900, 700, 200, 50)}
 
 			Z`;
 		return path;

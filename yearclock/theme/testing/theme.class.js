@@ -4,7 +4,7 @@ Testing theme - use for trying things out and fixing bugs
 yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 
-	viewBox           = padViewBox(50);
+	viewBox           = this.svg.padViewBox(50);
 	clockRadius       = 1200;
 
 	//monthSector = new Annulus(800, 400);

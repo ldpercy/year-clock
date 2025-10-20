@@ -2,7 +2,7 @@
 */
 yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
-	viewBox           = padViewBox(50, '-2500 -1200 5000 2800');
+	viewBox           = this.svg.padViewBox(50, '-2500 -1200 5000 2800');
 
 	monthRing = {
 		name    : 'yearMonth',

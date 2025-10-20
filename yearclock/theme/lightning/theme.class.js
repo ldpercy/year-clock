@@ -3,7 +3,7 @@ No hands for this one, just highlights
 */
 yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
-	viewBox           = padViewBox(125);
+	viewBox           = this.svg.padViewBox(125);
 	//this.viewBox				= '-800 -800 1600 1600';
 	clockRadius        = 1250;
 

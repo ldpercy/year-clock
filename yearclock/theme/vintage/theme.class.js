@@ -2,7 +2,7 @@
 */
 yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
-	viewBox           = padViewBox(200);
+	viewBox           = this.svg.padViewBox(200);
 
 	body = {
 		radius : 1300,
@@ -195,8 +195,8 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	*/
 	getDateLabel = function(point) {
 
-		const dateLabelPath = getArcPath(radians(-60), radians(60), point.y);
-		//const dateLabelPath = getArcPath(radians(240), radians(120), point.y);
+		const dateLabelPath = this.svg.getArcPath(radians(-60), radians(60), point.y);
+		//const dateLabelPath = this.svg.getArcPath(radians(240), radians(120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 

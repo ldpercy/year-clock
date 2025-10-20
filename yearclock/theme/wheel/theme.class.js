@@ -2,7 +2,7 @@
 */
 yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
-	viewBox           = padViewBox(50, '-1600 -1200 3200 2400');
+	viewBox           = this.svg.padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
