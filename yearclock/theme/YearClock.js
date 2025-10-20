@@ -50,7 +50,7 @@ yearclock.theme.YearClock = class  {
 			yearRange   : new DateRange(startOfYear(date), nextYear(date)),
 		};
 
-		result.monthNames = yearclock.l10n.getMonthNames(language);
+		result.monthNames = yearclock.L10n.getMonthNames(language);
 
 		// Set up period arrays
 		result.monthArray   = getMonthArray(result, result.monthNames);

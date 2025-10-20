@@ -11,7 +11,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 	`.replace(/\n\t/g,'\n');
 
 	//alias
-	l10n = yearclock.l10n;
+	l10n = yearclock.L10n;
 
 
 	eventListeners = [

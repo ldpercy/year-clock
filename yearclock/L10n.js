@@ -2,7 +2,7 @@
 //	Localisation
 //
 
-yearclock.l10n = class {
+yearclock.L10n = class {
 
 	static month = {
 		"en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -51,4 +51,4 @@ yearclock.l10n = class {
 	}
 
 
-}/* yearclock.l10n */
+}/* yearclock.L10n */
