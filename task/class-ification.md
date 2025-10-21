@@ -6,8 +6,9 @@ Lots to do here, and some of this will be ongoing rather than a self contained t
 
 ```
 2025-10-19		New Task
-2025-10-21		Wrapping up
+2025-10-21		v2.0 done
 ```
+
 
 Ideas
 -----
