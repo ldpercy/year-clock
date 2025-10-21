@@ -46,11 +46,10 @@ I've used code from [year-clock.net](http://year-clock.net) as a starting point.
 
 A copy of the original source code is in the wiki: [wiki/year-clock.net/](<./wiki/year-clock.net/>).
 
+I'm maintaining a theme 'brice' for the original design as seen on year-clock.net
 
 How to run
 ----------
-
-
 
 * Clone the repository
 * Open the file `[path to repo]/year-clock/index.html` directly in a browser
@@ -60,6 +59,17 @@ No webserver is required, it all runs in-page.
 
 URL Parameters
 --------------
+
+| parameter		| example							|
+|---------------|-----------------------------------|
+| date			| date=2023-04-05					|
+| theme			| theme=brice						|
+| style			| theme=car-dashboard&style=night	|
+| language		| language=fr						|
+| background	| background=dusk					|
+| hemisphere	| hemisphere=northern				|
+| test			| test=true							|
+
 
 ### Date
 
@@ -87,7 +97,6 @@ A small set of translations were inherited from the original, eg:
 
 	index.html?language=fr
 
-**NB: Currently only month names are translated**
 
 ### Background
 
@@ -95,11 +104,19 @@ A few custom backgrounds are available eg:
 
 	index.html?background=dusk
 
+### Hemisphere
+
+Change the hemisphere, changes some seasonal cues on some themes:
+
+	index.html?hemisphere=northern
+
 ### Testing
 
 Turn on some basic smoke testing:
 
 	index.html?test=true
+
+
 
 
 Theming
@@ -110,9 +127,9 @@ More info: [wiki/theming.md](<./wiki/theming.md>)
 > Theming work is in progress so subject to change
 
 
-Themes are in [clock/theme/](<./clock/theme/>).
+Themes are in [yearclock/theme/](<./yearclock/theme/>).
 
-Each theme is a directory `clock/theme/[themeName]/` with two files:
+Each theme is a directory `yearclock/theme/[themeName]/` with two files:
 
 * theme.class.js - contains clock settings and the main `getClockSVG()` function
 * theme.css	- regular stylesheet for the clock
@@ -133,7 +150,6 @@ More detail in the [task/](<./task/>) directory.
 * Solar theme
 * Dynamic/interactive elements
 * Custom date highlighting
-* SVG effects like filters & knockout
 
 
 ### Future features
