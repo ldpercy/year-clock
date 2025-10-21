@@ -143,5 +143,13 @@ This really needs a different name/organisation, but it will have to do for now.
 All of this code could use some hefty refactoring.
 A few similar methods got dumped into the root of the yearclock theme, all will need sorting out.
 
+### Geometry
+
+Ugh, so much of this will be able to be simplified.
+*Really* need to come back with the refactor wrecking ball.
+
+
+As an aside, one not-insignifcant practical benefit to all this is everything in classes is now in strict-mode, which is picking up errors for me - a bit of lightweight linting.
+
 
 

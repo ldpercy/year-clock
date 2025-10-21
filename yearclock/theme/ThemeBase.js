@@ -189,7 +189,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		//console.debug('getYearHand', arguments);
 		//console.debug(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 		// calculate year hand params
-		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
+		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 
 		//console.debug(yearDayDivision);
 
@@ -205,7 +205,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getMonthHand */
 	getMonthHand = function(handConfig, degreeDelta = new DegreeDelta) {
 		// calculate month hand params
-		const monthDayDivision = divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
+		const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
 		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
 		// get month hand
 		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
@@ -413,11 +413,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 		switch(setting.rotate) {
 			case 'none'         : result = 0; break;
-			case 'radial-left'  : result = degrees(radians) - 90; break;
-			case 'radial-right' : result = degrees(radians) + 90; break;
-			case 'radial-in'    : result = degrees(radians) + 180; break;
-			case 'radial'       : result = degrees(radians); break;
-			case true           : result = degrees(radians); break;
+			case 'radial-left'  : result = yearclock.Geometry.degrees(radians) - 90; break;
+			case 'radial-right' : result = yearclock.Geometry.degrees(radians) + 90; break;
+			case 'radial-in'    : result = yearclock.Geometry.degrees(radians) + 180; break;
+			case 'radial'       : result = yearclock.Geometry.degrees(radians); break;
+			case true           : result = yearclock.Geometry.degrees(radians); break;
 			default             : result = 0; break;
 		}
 
@@ -639,7 +639,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			});
 		}
 
-		result = `
+		const result = `
 			<g class="group-ring ring-${setting.name}">
 				<!-- <title>${setting.name}</title> -->
 				<!-- sectors: -->

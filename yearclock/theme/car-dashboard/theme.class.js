@@ -22,7 +22,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	dial = {
 		degreeDelta   : new DegreeDelta(225, 270),
-		radianDelta   : new RadianDelta(radians(225), radians(270)),
+		radianDelta   : new RadianDelta(yearclock.Geometry.radians(225), yearclock.Geometry.radians(270)),
 	}
 
 	weekdayMarkerLength = 100;
@@ -122,10 +122,10 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
+		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
 
 		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
+		yearclock.Geometry.addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
 
 		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.seasonArray  = yearclock.PeriodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
@@ -239,7 +239,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getSeasonFace = function(seasonWheel, displayDate) {
 
-		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
+		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 		const result = `
 

@@ -60,12 +60,12 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		//console.debug(this.displayDate.monthArray);
 
 		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray);
+		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
 
 	}
 

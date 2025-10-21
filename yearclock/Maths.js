@@ -22,7 +22,7 @@ yearclock.Maths = class {
 
 
 	static asRomanNumerals(number) {
-		result = '';
+		let result = '';
 		let value=number, divisor, remainder;
 		const rn = [
 			{ s: 'm',  v: 1000 },

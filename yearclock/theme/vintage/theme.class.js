@@ -95,10 +95,10 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray);
+		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
 
 		this.monthRing.array = this.displayDate.monthArray;
 		this.dayRing.array   = this.displayDate.monthDayArray;
@@ -195,7 +195,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	*/
 	getDateLabel = function(point) {
 
-		const dateLabelPath = this.svg.getArcPath(radians(-60), radians(60), point.y);
+		const dateLabelPath = this.svg.getArcPath(yearclock.Geometry.radians(-60), yearclock.Geometry.radians(60), point.y);
 		//const dateLabelPath = this.svg.getArcPath(radians(240), radians(120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;

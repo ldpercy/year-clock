@@ -12,7 +12,7 @@ yearclock.SVG = class {
 	static radialLine(radians, startRadius, endRadius) {
 		const start = new PolarPoint(radians, startRadius).toPoint();
 		const end   = new PolarPoint(radians, endRadius).toPoint();
-		result = {
+		const result = {
 			xStart : this.sf(start.x),
 			yStart : this.sf(start.y),
 			xEnd   : this.sf(end.x),

@@ -85,10 +85,10 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		addRadians(this.displayDate.monthDayArray);
+		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
 
 		this.monthRing.array = this.displayDate.monthArray;
 		this.dayRing.array   = this.displayDate.monthDayArray;
@@ -100,10 +100,10 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 	*/
 	getThemeSVG = function()
 	{
-		const yearDayDivision = divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
+		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
 		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
 
-		//const monthDayDivision = divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
+		//const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
 		//const monthTransform = `rotate(${-monthDayDivision.middle},0,0)`;
 
 		const themeSVG = `

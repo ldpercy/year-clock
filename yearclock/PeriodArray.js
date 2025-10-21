@@ -47,7 +47,7 @@ yearclock.PeriodArray = class {
 		];
 
 		seasonArray.find( (season) => displayDate.isInRange(season.dateRange) ).class = 'current';
-		addDateRangeRadians(seasonArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 		return seasonArray;
 	}/* getSeasonArray */
@@ -104,7 +104,7 @@ yearclock.PeriodArray = class {
 		];
 
 		seasonArray.find( (season) => displayDate.isInRange(season.dateRange) ).class = 'current';
-		addDateRangeRadians(seasonArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(seasonArray, displayDate.yearRange);
 
 		return seasonArray;
 	}/* getSeasonCircleArray */
@@ -148,7 +148,7 @@ yearclock.PeriodArray = class {
 		];
 
 		quarterArray.find( (quarter) => displayDate.isInRange(quarter.dateRange) ).class = 'current';
-		addDateRangeRadians(quarterArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(quarterArray, displayDate.yearRange);
 
 		return quarterArray;
 	}/* getQuarterArray */
@@ -196,7 +196,7 @@ yearclock.PeriodArray = class {
 		currentWeek.class = 'current';
 		displayDate.week = currentWeek;
 
-		addDateRangeRadians(weekArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeRadians(weekArray, displayDate.yearRange);
 
 		//console.debug(weekArray);
 
