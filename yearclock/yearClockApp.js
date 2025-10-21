@@ -318,7 +318,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 		//log('after page update ---');
 
-		if (this.page.initial.test) { runTest(clockSVG); }
+		if (this.page.initial.test) { this.runTest(clockSVG); }
 
 	}/* drawClock */
 
@@ -339,6 +339,24 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		const clockSVG = this.page.clockInstance[1234].getClockSVG();
 		this.page.element.container.innerHTML = clockSVG;
 	}
+
+
+	 runTest(string) {
+		const result = yearclock.Test.runTest(string);
+		const passTest = (result.flat().length === 0);
+
+		if (passTest) {
+			document.getElementById('clockContainer').classList.remove('testFail');
+			document.getElementById('clockContainer').classList.add('testPass');
+		}
+		else {
+			document.getElementById('clockContainer').classList.remove('testPass');
+			document.getElementById('clockContainer').classList.add('testFail');
+			console.error(result);
+		}
+		document.getElementById('testResult').innerHTML = JSON.stringify(result);
+	}/* runTest */
+
 
 }/* yearclock.App */
 
