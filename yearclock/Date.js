@@ -144,6 +144,13 @@ yearclock.Date = class extends Date{
 
 
 
+	static getSeason(date, seasonArray) {
+		const result = seasonArray.find(
+			(season) => date.isInRange(season.dateRange)
+		);
+		return result;
+	}
+
 
 
 }/* yearclock.Date */
