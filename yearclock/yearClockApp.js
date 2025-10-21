@@ -90,9 +90,18 @@ yearclock.App = class extends ldpercy.HTMLApp {
 	*/
 	setup() {
 		// Set initial date based on date param or local date
-		this.page.parameter.date = this.getUrlParameter('date');
-		const urlDate = (this.page.parameter.date !== null) ? new yearclock.Date(this.page.parameter.date) : null;
-		this.page.initial.date = (urlDate.isValid) ? urlDate : this.page.default.date;
+		this.page.parameter.date = this.getUrlParameter('date'); // will be null if absent
+
+		if (this.page.parameter.date === null) {
+			this.page.initial.date = this.page.default.date;
+		}
+		else
+		{
+			const urlDate =  new yearclock.Date(this.page.parameter.date);
+			this.page.initial.date = (urlDate.isValid) ? urlDate : this.page.default.date;
+		}
+
+
 		// Theming:
 		this.page.parameter.theme = this.getUrlParameter('theme');
 		this.page.initial.theme   = this.page.parameter.theme || this.page.default.theme;
