@@ -6,6 +6,7 @@ Lots to do here, and some of this will be ongoing rather than a self contained t
 
 ```
 2025-10-19		New Task
+2025-10-21		Wrapping up
 ```
 
 Ideas
@@ -149,13 +150,19 @@ Ugh, so much of this will be able to be simplified.
 *Really* need to come back with the refactor wrecking ball.
 
 
-As an aside, one not-insignifcant practical benefit to all this is everything in classes is now in strict-mode, which is picking up errors for me - a bit of lightweight linting.
-
-
-
-
 
 Wrapup
 ------
+
+All the old scripts have been converted now.
+Mostly the old script functions are now just static methods within the new classes, so really just collected and namespaced, but some reafactoring as well, particularly for date.
+
+With all the functions now under namespaces the code is bit wordier in a bunch of places, but some of that will be temporary.
+There will be stacks more reorganising and refactoring coming, but this is a *much* better place to be in.
+
+Additionally, one not-insignifcant practical benefit to having everything in classes is it's now all in strict-mode which is picking up some errors for me - a bit of lightweight linting.
+I should add a proper linter.
+
+As I said earlier, this is getting v2.0 on account of nearly everything changing.
 
 
