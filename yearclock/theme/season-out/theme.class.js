@@ -41,7 +41,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 		addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		addRadians(this.displayDate.yearDayArray);
-		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 	}
 
 

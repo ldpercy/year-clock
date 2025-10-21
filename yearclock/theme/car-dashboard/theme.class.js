@@ -127,8 +127,8 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
 		addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
 
-		this.displayDate.seasonCircleArray  = getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
-		this.displayDate.seasonArray  = getSeasonArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonArray  = yearclock.PeriodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.season = getSeason(this.displayDate, this.displayDate.seasonArray);
 	}
 

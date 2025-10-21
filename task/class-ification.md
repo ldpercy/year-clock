@@ -137,3 +137,11 @@ A lot of geometry will also be convertible into a version of the planar space fr
 For now will try to just class-ify them with minimal refactoring.
 
 
+### PeriodArray
+
+This really needs a different name/organisation, but it will have to do for now.
+All of this code could use some hefty refactoring.
+A few similar methods got dumped into the root of the yearclock theme, all will need sorting out.
+
+
+
