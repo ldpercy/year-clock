@@ -1,20 +1,3 @@
-//
-// Utility
-//
-
-
-
-/* createLog
-Returns a log function that logs to the console with performance timing.
-Use:
-	mylog = createLog();
-*/
-function createLog() {
-	return (...values) => {
-		console.log(performance.now(), ...values);
-	}
-}
-const log = createLog();
 
 //
 // Testing

@@ -124,5 +124,16 @@ The title turning up in the vintage theme is actually coming from the ring, so w
 I'll turn it off.
 
 
+What's next
+-----------
+
+I'll quickly change the 'utility' into a testing library.
+Will get rid of the old 'log' function I think - will just stick with the standard console and explore it's methods more.
+
+After that it's only geometry and period array remaining.
+They're both pretty messy and sources of some very refactorable code, esp geometry.
+A lot of geometry will also be convertible into a version of the planar space from Turtle.
+
+For now will try to just class-ify them with minimal refactoring.
 
 
