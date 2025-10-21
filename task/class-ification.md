@@ -165,4 +165,20 @@ I should add a proper linter.
 
 As I said earlier, this is getting v2.0 on account of nearly everything changing.
 
+* Reorganised many directories
+* Have two new namespaces for everything to live under, `yearclock` for most things, `ldpercy` for some general things
+* All of the old scripts have been reorganised into classes
+* Mostly just using classes as namespaces for static methods for the moment
+* Extended the the built-in js `Date` to `yearclock.Date` - pleased that this works
+* A few miscellaneous little changes
+
+I haven't deleved too deeply into actually trying to refactor things with these changes, beyond what was necessary.
+But there's stacks of things that *really* need to be refactored, so I'm anticipating a fair bit of follow up.
+Some of which:
+
+Follow-ups:
+* Convert a lot of the date range and array code to proper classes
+* Look for ways to reduce namespace clutter
+* Bring in some of the SVG/maths/geometry developments from Turtle
+
 
