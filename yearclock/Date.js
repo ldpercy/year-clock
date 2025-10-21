@@ -1,11 +1,6 @@
-//
-// Date
-//
-
-
+/* yearclock.Date
+*/
 yearclock.Date = class extends Date{
-
-
 
 	constructor(date) {
 		super(...arguments);
@@ -46,7 +41,9 @@ yearclock.Date = class extends Date{
 		return (this.getDate() === this.daysInMonth);
 	}
 
-
+	isInRange(dateRange) {
+		return ((this >= dateRange.start) && (this < dateRange.end));
+	}
 
 	// mutators:
 
@@ -59,21 +56,8 @@ yearclock.Date = class extends Date{
 	}
 
 
-
-
-	// these two should be moved to be part of dateRange instead, plus eliminate the first
-	isInPeriod(periodStart, periodEnd) {
-		return ((this >= periodStart) && (this < periodEnd));
-	}
-	isInRange(dateRange) {
-		return ((this >= dateRange.start) && (this < dateRange.end));
-	}
-
-
-
-
 	//
-	// Date formatting
+	//	Conversion methods
 	//
 
 	toIsoDate() {
@@ -90,7 +74,9 @@ yearclock.Date = class extends Date{
 	}
 
 
-	// yearclock.Date static methods
+	//
+	//	Static methods
+	//
 
 	static dayOfYear(date) {
 		return yearclock.Date.dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
@@ -157,7 +143,8 @@ yearclock.Date = class extends Date{
 
 
 
-
+/* yearclock.Date.Range
+*/
 yearclock.Date.Range = class {
 	start;
 	end;
@@ -169,23 +156,4 @@ yearclock.Date.Range = class {
 
 	length = function() { return yearclock.Date.dayDifference(this.start, this.end); }
 
-}/* DateRange */
-
-
-
-
-
-
-
-/*
-Return the last day of a half-open date range instead of its open limit.
-Equivalent to previousDay(date)
-closedIntervalEnd(date) {}
-*/
-
-
-
-/*
-dr = new yearclock.Date.Range('2025-01-01','2026-01-01')
-*/
-
+}/* yearclock.Date.Range */
