@@ -11,7 +11,7 @@ Job reminders to wrap into other tasks.
 * Start looking into tools like linters
 * Add license
 * Find out if form `select` size can be controlled with css
-* Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform
+* Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform; also `writing-mode: vertical-lr;`
 * Add another test mode to check for exceptions - something that would have caught the season-circle bug
 * Get the wireframe background to switch on the grid properly - prob need to draw separately
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
