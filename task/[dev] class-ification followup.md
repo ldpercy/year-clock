@@ -31,5 +31,21 @@ In no particular order:
 There's lots more, but that should keep me busy for a little while :-)
 
 
+Angles
+------
+
+Start with something fairly easy.
+Though I'm already thinking about the difference between absolute angles and relative angles (actual angular positions vs between arbitrary lines).
+Hopefully that can mostly be clarified by naming and context.
+
+### Deltas & ranges
+Looks like I named them deltas because they're set up as a starting position and a width.
+Not really a delta then, but i get the idea.
+The other good things about that arrangement is that it's clear which way the range goes (+/-ve), and can represent rotations greater than 360 degrees.
+Sooo... not actually a bad idea at all - go former me.
+
+### Tear it up
+I'm gonna seriously tear up a bunch of the old divisionRadians, dateRadians, blahRadians etc code.
+Just torch it and rewrite it so it makes sense.
 
 

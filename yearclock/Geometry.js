@@ -146,6 +146,64 @@ yearclock.Geometry = class {
 
 
 
+/* yearclock.Geometry.Angle
+*/
+yearclock.Geometry.Angle = class {
+	#degrees = 0;
+
+	constructor(degrees=0) {
+		this.#degrees = degrees;
+	}
+
+	get degrees()    { return this.#degrees; }
+	get radians()    { return this.#degrees / 180 * Math.PI; }
+	get radiansPi()  { return this.#degrees / 180; }
+	get radiansTau() { return this.#degrees / 360; }
+
+	set degrees(degrees)         { this.#degrees = degrees; return this; }
+	set radians(radians)         { this.#degrees = radians * 180 / Math.PI; return this; }
+	set radiansPi(radiansPi)     { this.#degrees = radiansPi * 180; return this; }
+	set radiansTau(radiansTau)   { this.#degrees = radiansTau * 360; return this; }
+
+	plus(angle) {
+		this.#degrees += angle.degrees;
+	}
+
+}/* yearclock.Geometry.Angle */
+
+
+/* yearclock.Geometry.AngularRange
+*/
+yearclock.Geometry.AngularRange = class {
+	start;
+	width;
+
+	constructor(start = 0, width = 360) {
+		this.start = new yearclock.Geometry.Angle(start);
+		this.width = new yearclock.Geometry.Angle(width);
+	}
+
+}/* yearclock.Geometry.AngularRange */
+
+
+
+
+class RadianDelta {
+	constructor(start = 0, delta = yearclock.Maths.TAU) {
+		this.start = start;
+		this.delta = delta;
+	}
+}/* RadianDelta */
+
+
+class DegreeDelta {
+	constructor(start = 0, delta = 360) {
+		this.start = start;
+		this.delta = delta;
+	}
+}/* RadianDelta */
+
+
 
 
 //
@@ -301,17 +359,3 @@ class Annulus {
 }
 
 
-class RadianDelta {
-	constructor(start = 0, delta = yearclock.Maths.TAU) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
-
-
-class DegreeDelta {
-	constructor(start = 0, delta = 360) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
