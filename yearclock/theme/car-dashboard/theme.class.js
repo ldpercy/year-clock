@@ -21,8 +21,8 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	outerRadius       = 1200;
 
 	dial = {
-		degreeDelta   : new DegreeDelta(225, 270),
-		radianDelta   : new RadianDelta(yearclock.Geometry.radians(225), yearclock.Geometry.radians(270)),
+		//degreeDelta   : new DegreeDelta(225, 270),
+		//radianDelta   : new RadianDelta(yearclock.Geometry.radians(225), yearclock.Geometry.radians(270)),
 		angularRange  : new yearclock.Geometry.AngularRange(225, 270),
 	}
 
@@ -123,10 +123,10 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.radianDelta);
+		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.angularRange);
 
 		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		yearclock.Geometry.addRadians(this.displayDate.monthDayArray, this.dial.radianDelta);
+		yearclock.Geometry.addRadians(this.displayDate.monthDayArray, this.dial.angularRange);
 
 		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.seasonArray  = yearclock.PeriodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
@@ -193,7 +193,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 				${this.getDateLabel('dayName', this.dayNameLabel)}
 
 				<g class="hands">
-					${this.getMonthHand(this.handConfig.month, this.dial.degreeDelta)}
+					${this.getMonthHand(this.handConfig.month, this.dial.angularRange)}
 				</g>
 			</g>
 			<g transform="translate(1300)">
@@ -209,7 +209,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 				${this.getDateLabel('date', this.dateLabel)}
 
 				<g class="hands">
-					${this.getYearHand(this.handConfig.year, this.dial.degreeDelta)}
+					${this.getYearHand(this.handConfig.year, this.dial.angularRange)}
 				</g>
 			</g>
 		`;

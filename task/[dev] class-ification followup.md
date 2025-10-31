@@ -48,4 +48,4 @@ Sooo... not actually a bad idea at all - go former me.
 I'm gonna seriously tear up a bunch of the old divisionRadians, dateRadians, blahRadians etc code.
 Just torch it and rewrite it so it makes sense.
 
-
+Here we go...

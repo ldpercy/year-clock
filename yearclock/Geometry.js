@@ -58,6 +58,7 @@ yearclock.Geometry = class {
 	}/* divisionRadians */
 
 
+
 	/* dateRadians
 	Will automatically extrapolate if the date falls outside of the date range.
 	*/
@@ -181,6 +182,19 @@ yearclock.Geometry.AngularRange = class {
 	constructor(start = 0, width = 360) {
 		this.start = new yearclock.Geometry.Angle(start);
 		this.width = new yearclock.Geometry.Angle(width);
+	}
+
+	get middle() { return new yearclock.Geometry.Angle((this.start.degrees + this.width.degrees)/2); }
+
+	/* division
+	Returns a new angular range representing the nth of count part of the parent
+	Divisions are zero-based.
+	*/
+	division(number, count) {
+		const divWidthDegrees = this.width.degrees / count;
+		const startDegrees = this.start.degrees + (divWidthDegrees * number);
+		const result = new yearclock.Geometry.AngularRange(startDegrees, divWidthDegrees);
+		return result;
 	}
 
 }/* yearclock.Geometry.AngularRange */
