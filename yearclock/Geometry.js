@@ -15,6 +15,12 @@ yearclock.Geometry = class {
 	}
 
 
+	//
+	//	CRAP CODE START:
+	//
+
+
+
 	/* divisionDegrees
 	Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
 	Divisions are now zero-based.
@@ -45,29 +51,45 @@ yearclock.Geometry = class {
 
 
 	*/
-	static divisionRadians(divisions, number, radianDelta = new RadianDelta) {
+	static divisionRadians(divisions, number, angularRange = new yearclock.Geometry.AngularRange()) {
 
-		const result = {
+		/* const result = {
 			start  : radianDelta.start + radianDelta.delta * ((number + 0.0) / divisions),
 			middle : radianDelta.start + radianDelta.delta * ((number + 0.5) / divisions),
 			end    : radianDelta.start + radianDelta.delta * ((number + 1.0) / divisions),
 
 		}
-		result.width = result.end - result.start;
+		result.width = result.end - result.start; */
+
+
+		const result = new yearclock.Geometry.AngularRange();
+
+
+
 		return result;
 	}/* divisionRadians */
 
 
 
-	/* dateRadians
+	/* dateAngularRange
 	Will automatically extrapolate if the date falls outside of the date range.
 	*/
-	static dateRadians(date, dateRange, radianDelta = new RadianDelta) {
+	static dateAngularRange(date, dateRange, angularRange = new yearclock.Geometry.AngularRange()) {
+
+		// date - the date we're interested in
+		// dateRange	- the contextual dateRange
+		// angularRange	- the angular range the dateRange is mapped to
 
 		/* 	This might be the key I've been looking for */
-		const result = this.divisionRadians(dateRange.length(), yearclock.Date.dayDifference(dateRange.start, date), radianDelta);
+		//const result = this.divisionRadians(dateRange.length(), yearclock.Date.dayDifference(dateRange.start, date), radianDelta);
+
+		const dayOfPeriod  = yearclock.Date.dayDifference(dateRange.start, date);
+		const daysInPeriod = dateRange.length();
+
+		const result = angularRange.division(dayOfPeriod, daysInPeriod);
+
 		return result;
-	}/* dateRadians */
+	}/* dateAngularRange */
 
 
 	/* addRadians
@@ -91,28 +113,28 @@ yearclock.Geometry = class {
 	Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
 
 	*/
-	static addDateRangeRadians(array, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
+	static addDateRangeRadians(array, arcDateRange, angularRange = new yearclock.Geometry.AngularRange(), outlier = '') {
 		array.forEach(
 			(element) => {
-				element.radians = this.dateRangeRadians(element.dateRange, arcDateRange, radianDelta, outlier);
+				element.radians = this.dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
 			}
 		);
 	}/* addDateRangeRadians */
 
 
 
-	/* dateRangeRadians
+	/* dateRangeAngularRange
 	Given two dates return the start, middle, end & width in radians.
 	Gives angles in the context of years.
 	*/
-	static dateRangeRadians(dateRange, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
-		//const diy1 = daysInYear(date1);
-		//const diy2 = daysInYear(date2);
-		//const start = divisionRadians(diy1, dayOfYear(date1)-1, radianDelta).start;
-		//const end   = divisionRadians(diy2, dayOfYear(date2)-1, radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+	static dateRangeAngularRange(dateRange, arcDateRange, angularRange = new yearclock.Geometry.AngularRange, outlier = '') {
+		// dateRange	- the range of dates we're interested in
+		// arcDateRange	- the date range of the contextual arc
+		// angularRange	- the angular range of the contextual arc that the date range is mapped to
+		// outlier		- currently unused
 
-		const start = this.dateRadians(dateRange.start, arcDateRange, radianDelta).start;
-		const end = this.dateRadians(dateRange.end, arcDateRange, radianDelta).start;
+		const start = this.dateAngularRange(dateRange.start, arcDateRange, angularRange).start;
+		const end = this.dateAngularRange(dateRange.end, arcDateRange, angularRange).start;
 
 		/*
 		switch(outlier) {
@@ -140,7 +162,14 @@ yearclock.Geometry = class {
 		}
 
 		return result;
-	}/* dateRangeRadians */
+	}/* dateRangeAngularRange */
+
+
+
+	//
+	//	CRAP CODE END
+	//
+
 
 
 }/* yearclock.Geometry */

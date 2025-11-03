@@ -49,3 +49,12 @@ I'm gonna seriously tear up a bunch of the old divisionRadians, dateRadians, bla
 Just torch it and rewrite it so it makes sense.
 
 Here we go...
+
+
+
+	addDateRangeRadians
+	dateRangeRadians				--> dateRangeAngularRange
+	dateRadians						--> dateAngularRange
+	divisionRadians
+
+
