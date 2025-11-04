@@ -26,6 +26,7 @@ yearclock.Geometry = class {
 	Divisions are now zero-based.
 
 	degreesLength is an offset from radiansStart.
+	Used by the hand methods.
 	*/
 	static divisionDegrees(divisions, number, degreeDelta = new DegreeDelta) {
 		let result = {
@@ -84,7 +85,7 @@ yearclock.Geometry = class {
 		//const result = this.divisionRadians(dateRange.length(), yearclock.Date.dayDifference(dateRange.start, date), radianDelta);
 
 		const dayOfPeriod  = yearclock.Date.dayDifference(dateRange.start, date);
-		const daysInPeriod = dateRange.length();
+		const daysInPeriod = dateRange.length;
 
 		const result = angularRange.division(dayOfPeriod, daysInPeriod);
 
@@ -213,13 +214,14 @@ yearclock.Geometry.AngularRange = class {
 		this.width = new yearclock.Geometry.Angle(width);
 	}
 
-	get middle() { return new yearclock.Geometry.Angle((this.start.degrees + this.width.degrees)/2); }
+	get middle() { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees)/2); }
 
 	/* division
 	Returns a new angular range representing the nth of count part of the parent
 	Divisions are zero-based.
 	*/
 	division(number, count) {
+		//console.debug('division', arguments);
 		const divWidthDegrees = this.width.degrees / count;
 		const startDegrees = this.start.degrees + (divWidthDegrees * number);
 		const result = new yearclock.Geometry.AngularRange(startDegrees, divWidthDegrees);
