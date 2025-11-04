@@ -9,18 +9,15 @@ yearclock.Date = class extends Date{
 
 	// accessors
 
-	get year()		{ return this.getFullYear(); }
-
-	get daysInMonth() {
-		return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate();
-	}
-
+	get year()			{ return this.getFullYear(); }
+	get daysInMonth()	{ return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate(); }
 	get dayOfMonth()	{ return this.getDate(); }
+	get daysInYear()	{ return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31)); }
+	get dayOfYear()		{ return yearclock.Date.dayOfYear(this); }
 
-	get daysInYear() {
-		return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31));
-	}
-	get dayOfYear() { return yearclock.Date.dayOfYear(this); }
+	// return new Dates:
+	get yearStart()		{ return new yearclock.Date(this.getFullYear(), 0, 1); }
+	get yearEnd()		{ return new yearclock.Date(this.getFullYear()+1, 0, 1); }
 
 
 	// decisions, calculations:
@@ -104,17 +101,12 @@ yearclock.Date = class extends Date{
 	// constructors:
 	//
 
-	static startOfYear(date) {
-		return new yearclock.Date(date.getFullYear(), 0, 1);
-	}
+
 
 	static startOfMonth(date) {
 		return new yearclock.Date(date.getFullYear(), date.getMonth(),1);
 	}
 
-	static nextYear(date) {
-		return new yearclock.Date(date.getFullYear()+1, 0, 1);
-	}
 
 	static nextMonth(date) {
 		return new yearclock.Date(date.getFullYear(), date.getMonth()+1,1);
@@ -154,6 +146,6 @@ yearclock.Date.Range = class {
 		this.end = new yearclock.Date(end);
 	}
 
-	length = function() { return yearclock.Date.dayDifference(this.start, this.end); }
+	get length() { return yearclock.Date.dayDifference(this.start, this.end); }
 
 }/* yearclock.Date.Range */
