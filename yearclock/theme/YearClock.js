@@ -1,7 +1,9 @@
 
 yearclock.theme.YearClock = class  {
 
-	svg = yearclock.SVG;
+	svg = yearclock.SVG;	// alias
+	angularRange = new yearclock.Geometry.AngularRange();
+
 
 
 	constructor(parameter) {
@@ -101,12 +103,14 @@ yearclock.DisplayDate = class extends yearclock.Date {
 
 	language;
 	#monthArray;
+	dateRange;
 
 	constructor(date, language)
 	{
 		super(date);
 		this.language = language;
 		//this.monthArray = this.getMonthArray(date, this.monthNames);
+		this.dateRange = new yearclock.Date.Range(this.yearStart, this.yearEnd);
 	}
 
 
@@ -114,8 +118,6 @@ yearclock.DisplayDate = class extends yearclock.Date {
 	get monthRange()	{ return new yearclock.Date.Range(yearclock.Date.startOfMonth(this), yearclock.Date.nextMonth(this)); }
 	get dayName()		{ return this.toLocaleString(this.language, {weekday: "long"}); }
 	get date()			{ return this.getDate(); }
-	get yearStart()		{ return yearclock.Date.startOfYear(this); }
-	get yearEnd()		{ return yearclock.Date.nextYear(this); }
 	get yearRange()		{ return new yearclock.Date.Range(this.yearStart, this.yearEnd); }
 	get monthNames()	{ return yearclock.L10n.getMonthNames(this.language); }
 

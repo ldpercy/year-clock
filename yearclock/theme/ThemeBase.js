@@ -185,15 +185,28 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 	/* getYearHand */
-	getYearHand(handConfig, degreeDelta = new DegreeDelta) {
+	getYearHand(handConfig, angularRange = this.angularRange) {
 		//console.debug('getYearHand', arguments);
 		//console.debug(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 		// calculate year hand params
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 
-		//console.debug(yearDayDivision);
 
-		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
+		//const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.dateRange.length, this.displayDate.dayOfYear-1, angularRange);
+
+
+		//console.debug('this.displayDate.dateRange', this.displayDate.dateRange);
+		//console.debug('this.displayDate.dateRange.length', this.displayDate.dateRange.length);
+
+		const yearDayDivision = angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.dateRange.length);
+		//console.debug('yearDayDivision', yearDayDivision);
+
+		//console.debug('yearDayDivision.middle', yearDayDivision.middle);
+
+
+
+		const yearTransform = `rotate(${yearDayDivision.middle.degrees},0,0)`;
+
+
 		// get year hand
 		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
 		//log('yearHandFunc:',yearHandFunc);
@@ -203,10 +216,17 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 	/* getMonthHand */
-	getMonthHand = function(handConfig, degreeDelta = new DegreeDelta) {
+	getMonthHand = function(handConfig, angularRange = this.angularRange) {
 		// calculate month hand params
-		const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
-		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
+
+
+		//const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
+
+		const monthDayDivision = angularRange.division(this.displayDate.getDate()-1, this.displayDate.monthRange.length);
+		//console.debug('monthDayDivision', monthDayDivision);
+
+
+		const monthTransform = `rotate(${monthDayDivision.middle.degrees},0,0)`;
 		// get month hand
 		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
 		const result = monthHandFunc(handConfig, monthTransform, 'monthHand', '');
