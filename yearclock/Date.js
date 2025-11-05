@@ -15,9 +15,13 @@ yearclock.Date = class extends Date{
 	get daysInYear()	{ return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31)); }
 	get dayOfYear()		{ return yearclock.Date.dayOfYear(this); }
 
+
 	// return new Dates:
 	get yearStart()		{ return new yearclock.Date(this.getFullYear(), 0, 1); }
 	get yearEnd()		{ return new yearclock.Date(this.getFullYear()+1, 0, 1); }
+	get monthStart()	{ return new yearclock.Date(this.getFullYear(), this.getMonth(),1); }
+	get monthEnd()		{ return new yearclock.Date(this.getFullYear(), this.getMonth()+1,1); }
+
 
 
 	// decisions, calculations:
@@ -37,6 +41,11 @@ yearclock.Date = class extends Date{
 	get isLastDayOfMonth() {
 		return (this.getDate() === this.daysInMonth);
 	}
+
+
+	name(locale)	{ this.toLocaleString(locale, {weekday: "long"}); }
+
+
 
 	isInRange(dateRange) {
 		return ((this >= dateRange.start) && (this < dateRange.end));
@@ -149,3 +158,53 @@ yearclock.Date.Range = class {
 	get length() { return yearclock.Date.dayDifference(this.start, this.end); }
 
 }/* yearclock.Date.Range */
+
+
+
+/* yearclock.Date.DayRange
+*/
+yearclock.Date.DayRange = class {
+
+	array = [];
+	startDate;
+	endDate;
+	//currentDate;
+	angularRange;
+
+	constructor(
+		startDate,
+		endDate,
+		currentDate,
+	) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.currentDate = currentDate;
+
+		let dayCounter = 1;
+		for (let thisDate = new yearclock.Date(startDate); thisDate < endDate; thisDate.incrementDay())
+		{
+			const dayInfo = {
+				date         : new yearclock.Date(thisDate),
+				id           : thisDate.getDate(),
+				dayOfPeriod  : dayCounter,
+				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
+			}
+			this.array.push(dayInfo);
+			dayCounter++;
+		}
+
+	}/* constructor */
+
+
+	setAngularRange( angularRange = new yearclock.Geometry.AngularRange()) {
+		this.angularRange = angularRange;
+		this.array.forEach(
+			(element, index, array=this) => { element.angularRange = this.angularRange.division(index, array.length); } // nb one-based
+		);
+	}/* addAngularRange */
+
+
+
+}/* yearclock.Date.DayRange */
+
+
