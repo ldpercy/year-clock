@@ -99,7 +99,9 @@ yearclock.Geometry = class {
 	*/
 	static addAngularRange(array, angularRange = new yearclock.Geometry.AngularRange()) {
 		array.forEach(
-			(element, index) => {element.angularRange = this.divisionRadians(array.length, index, radianDelta);} // nb one-based
+			(element, index) => {
+				element.angularRange = angularRange.division(index, array.length);
+			} // nb one-based
 		);
 	}/* addAngularRange */
 

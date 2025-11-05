@@ -123,10 +123,12 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.angularRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.angularRange);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		yearclock.Geometry.addRadians(this.displayDate.monthDayArray, this.dial.angularRange);
+		//this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		//yearclock.Geometry.addAngularRange(this.displayDate.monthDayArray, this.dial.angularRange);
+		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange(this.dial.angularRange);
 
 		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 		this.displayDate.seasonArray  = yearclock.PeriodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
@@ -182,9 +184,9 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 			<g transform="translate(-1300)">
 				<!-- month-day -->
 
-				${this.getSectors('monthDay', this.displayDate.monthDayArray, this.monthDayAnnulus)}
-				${this.getSymbols('monthDaySymbols', this.displayDate.monthDayArray, this.monthSymbols)}
-				${this.getSectorLabels('monthDay', this.displayDate.monthDayArray, this.dayLabel)}
+				${this.getSectors('monthDay', this.displayDate.monthDays.array, this.monthDayAnnulus)}
+				${this.getSymbols('monthDaySymbols', this.displayDate.monthDays.array, this.monthSymbols)}
+				${this.getSectorLabels('monthDay', this.displayDate.monthDays.array, this.dayLabel)}
 
 
 				${this.getWarningMonth('month', this.warningLight)}

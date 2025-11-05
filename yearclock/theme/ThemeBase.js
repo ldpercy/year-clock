@@ -110,12 +110,13 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		{
 			if (day.date.isWeekend)
 			{
-				tickLine = this.svg.radialLine(day.radians.start, tick.weekendStart, tick.weekendEnd);
+				console.log(day.angularRange);
+				tickLine = this.svg.radialLine(day.angularRange.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
 			}
 			else // day.isWeekday
 			{
-				tickLine = this.svg.radialLine(day.radians.start, tick.weekdayStart, tick.weekdayEnd);
+				tickLine = this.svg.radialLine(day.angularRange.start, tick.weekdayStart, tick.weekdayEnd);
 				tickClass = 'weekday';
 			}
 
@@ -124,7 +125,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 			if (day.date.isFirst) // Draw an extra line for firsts of the month
 			{
-				tickLine = this.svg.radialLine(day.radians.start, tick.monthFirstStart, tick.monthFirstEnd);
+				tickLine = this.svg.radialLine(day.angularRange.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
 					`<line class="${tickClass}" data-date="${day.date.toIsoDate()}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
@@ -340,6 +341,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	*/
 	getSectorLabel = function(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
+		console.log(sector);
 		const result = new yearclock.SVG.Chunk();
 		const radiansLabel = sector.angularRange.position(setting.sectorPosition).radians;
 

@@ -43,7 +43,7 @@ yearclock.Date = class extends Date{
 	}
 
 
-	name(locale)	{ this.toLocaleString(locale, {weekday: "long"}); }
+	name(locale)	{ return this.toLocaleString(locale, {weekday: "long"}); }
 
 
 
@@ -175,6 +175,7 @@ yearclock.Date.DayRange = class {
 		startDate,
 		endDate,
 		currentDate,
+		language,
 	) {
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -188,6 +189,7 @@ yearclock.Date.DayRange = class {
 				id           : thisDate.getDate(),
 				dayOfPeriod  : dayCounter,
 				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
+				name         : thisDate.name(language),
 			}
 			this.array.push(dayInfo);
 			dayCounter++;
