@@ -78,7 +78,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
-			${this.getSectorLabels('month', this.displayDate.monthDays.array, this.monthLabel)}
+			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabel)}
 			${this.getPeriodDayTicks('monthDay', this.displayDate.monthDays.array, this.tick)}
 			${this.getDateLabel('year', this.dateLabel)}
 			<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
