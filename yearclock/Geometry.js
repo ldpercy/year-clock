@@ -93,15 +93,15 @@ yearclock.Geometry = class {
 	}/* dateAngularRange */
 
 
-	/* addRadians
+	/* addAngularRange
 	This might be tricky to do is a fully general way.
 	Currently only works for even spacing of an array.
 	*/
-	static addRadians(array, radianDelta = new RadianDelta) {
+	static addAngularRange(array, angularRange = new yearclock.Geometry.AngularRange()) {
 		array.forEach(
-			(element, index) => {element.radians = this.divisionRadians(array.length, index, radianDelta);} // nb one-based
+			(element, index) => {element.angularRange = this.divisionRadians(array.length, index, radianDelta);} // nb one-based
 		);
-	}/* addRadians */
+	}/* addAngularRange */
 
 
 	/* addDateRangeRadians
@@ -114,10 +114,10 @@ yearclock.Geometry = class {
 	Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
 
 	*/
-	static addDateRangeRadians(array, arcDateRange, angularRange = new yearclock.Geometry.AngularRange(), outlier = '') {
+	static addDateRangeAngularRange(array, arcDateRange, angularRange = new yearclock.Geometry.AngularRange(), outlier = '') {
 		array.forEach(
 			(element) => {
-				element.radians = this.dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
+				element.angularRange = this.dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
 			}
 		);
 	}/* addDateRangeRadians */
@@ -155,12 +155,16 @@ yearclock.Geometry = class {
 
 		*/
 
-		let result = {
+
+
+		/* let result = {
 			start  : start,
 			middle : (start + end) / 2,
 			end    : end,
 			width  : end - start,
-		}
+		} */
+
+		const result = new yearclock.Geometry.AngularRange(start.degrees, end.degrees-start.degrees);
 
 		return result;
 	}/* dateRangeAngularRange */
@@ -214,7 +218,10 @@ yearclock.Geometry.AngularRange = class {
 		this.width = new yearclock.Geometry.Angle(width);
 	}
 
+	get end()    { return new yearclock.Geometry.Angle(this.start.degrees + this.width.degrees); }
 	get middle() { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees)/2); }
+
+	position(ratio) { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees * ratio)); }
 
 	/* division
 	Returns a new angular range representing the nth of count part of the parent

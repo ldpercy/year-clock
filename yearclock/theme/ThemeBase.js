@@ -295,10 +295,10 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		for (let sector of sectorArray)
 		{
 			if (option.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.radians.start, sector.radians.end, annulus, option.sizeAdjust);
+				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, annulus, option.sizeAdjust);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.radians.start, sector.radians.end, annulus);
+				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.angularRange.end, annulus);
 			}
 
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
@@ -340,10 +340,8 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	*/
 	getSectorLabel = function(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
-
-
 		const result = new yearclock.SVG.Chunk();
-		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
+		const radiansLabel = sector.angularRange.position(setting.sectorPosition).radians;
 
 		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
 		let rotation;
@@ -404,13 +402,13 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		const pathId = `labelPath-${setting.name}-${sector.id}`;
 
 		if (setting.invert === 'all') {
-			labelArc = this.svg.getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.radians.end, sector.angularRange.start, setting.radius);
 		}
 		else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
-			labelArc = this.svg.getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.radians.end, sector.angularRange.start, setting.radius);
 		}
 		else {
-			labelArc = this.svg.getArcPath(sector.radians.start, sector.radians.end, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange.start, sector.radians.end, setting.radius);
 		}
 
 		result.defs =
@@ -519,7 +517,8 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		for (let element of symbolArray)
 		{
 			//log('sector:', sector);
-			const radians = element.radians.start + (element.radians.width * setting.position);
+			const radians = element.angularRange.position(setting.position).radians;
+			//console.debug(radians);
 
 			const center     = new PolarPoint(radians, setting.radius).toPoint();
 			let transform = '';
@@ -591,11 +590,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 			// sector path, mask, sector itself:
 			if (setting.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.sizeAdjust);
-				maskPath = this.svg.getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.maskExpand);
+				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.radians.end, setting.sector, setting.sizeAdjust);
+				maskPath = this.svg.getSectorResized(sector.angularRange.start, sector.radians.end, setting.sector, setting.maskExpand);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.radians.start, sector.radians.end, setting.sector);
+				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.radians.end, setting.sector);
 				maskPath = sectorPath;
 			}
 
