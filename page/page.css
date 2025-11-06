@@ -2,17 +2,31 @@
 */
 
 html {
+
 	margin:0px;
 	padding:0px;
 
-	body {
-		margin:0px;
-		padding:0px;
-	}
+
 	scrollbar-width: none;
 
 	font-family: sans-serif;
-}
+
+
+	body {
+		--accent-light: #07c;
+		--accent: var(--accent-light);
+
+		margin:0px;
+		padding:0px;
+
+		/* color scheme */
+		color-scheme: light;
+		accent-color: var(--accent);
+		a { color: var(--accent); }
+	}
+
+}/* html */
+
 
 /* Clock
 */

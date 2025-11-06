@@ -7,6 +7,7 @@ Todo
 
 Job reminders to wrap into other tasks.
 
+* Add proper light/dark UI schemes; categorise theme styles into light/dark
 * Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
 * Start looking into tools like linters
 * Add license

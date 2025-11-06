@@ -3,7 +3,7 @@
 */
 
 /* clock basics */
-:root {
+svg.yearclock {
 	--background: seashell;
 	--clockface: white;
 	--white: #eee7;

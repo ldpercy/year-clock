@@ -3,7 +3,7 @@
 */
 
 
-:root {
+svg.yearclock {
 	--background: #223f;
 	--clockface: #111f;
 
@@ -61,33 +61,30 @@ path.sector {
 /* labels
 */
 
-.label text,
-.label.yearLabel,
 .label.dateLabel
 {
 	fill: var(--textLight);
 	stroke: var(--textStroke);
-}
-
-.label.yearLabel,
-.label.dateLabel
-{
 	stroke-width: 3px;
 	filter: drop-shadow(0ex 0ex 0.1ex var(--textLight));
 }
 
+.group-label {
+	fill: var(--textLight);
 
-.label.quarter text
-{
-	font-size: 5ex;
-	stroke-width: 1px;
-	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+
+	.quarter text
+	{
+		font-size: 5ex;
+		stroke-width: 1px;
+		filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+	}
+
 }
-
 
 /* Current date highlights */
 
-svg.yearclock text.current
+text.current
 {
 	fill: var(--textDark);
 	stroke: var(--textDark);

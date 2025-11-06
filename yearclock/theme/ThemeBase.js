@@ -12,7 +12,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	// formatting functions
 	//
 
-	formatTitle = function(type, data) {
+	formatTitle(type, data) {
 		let result;
 		switch(type) {
 			case 'hands'    : result = `${data.date.toIsoDate()} - ${data.date.dayName} - d${data.date.dayOfYear}`; break;
@@ -21,7 +21,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		return result;
 	}
 
-	formatLabel = function(labelType, data) {
+	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'year'         : result = `${data.year}`; break;
@@ -50,7 +50,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getClockSVG
 	*/
-	getClockSVG = function()
+	getClockSVG()
 	{
 		const grid = (this.parameter.background === 'wireframe') ? this.getGrid(this.viewBox) : '';
 
@@ -66,7 +66,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		return `<text> getThemeSVG should be overridden by the theme </text>`;
 	}/* getThemeSVG */
@@ -76,21 +76,21 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getViewbox
 	Mainly for debugging for now
 	*/
-	getViewbox = function(viewBox=this.viewBox) {
+	getViewbox(viewBox=this.viewBox) {
 		const vb =  this.svg.splitViewBox(viewBox);
 		const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
 		return svg;
 	}/* getViewbox */
 
 
-	getBody = function(body) {
+	getBody(body) {
 		const svg =
 			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
 		return svg;
 	}
 
 
-	getFace = function(faceRadius) {
+	getFace(faceRadius) {
 		const svg = `<circle cx="0" cy="0" r="${faceRadius}" class="face"></circle>`
 		return svg;
 	}
@@ -99,7 +99,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getPeriodDayTicks
 	*/
-	getPeriodDayTicks = function(periodType, periodArray, tick) {
+	getPeriodDayTicks(periodType, periodArray, tick) {
 		let tickClass = '';
 		let tickLine = '';
 		let tickSvg = '';
@@ -110,12 +110,12 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		{
 			if (day.date.isWeekend)
 			{
-				tickLine = this.svg.radialLine(day.radians.start, tick.weekendStart, tick.weekendEnd);
+				tickLine = this.svg.radialLine(day.angularRange.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
 			}
 			else // day.isWeekday
 			{
-				tickLine = this.svg.radialLine(day.radians.start, tick.weekdayStart, tick.weekdayEnd);
+				tickLine = this.svg.radialLine(day.angularRange.start, tick.weekdayStart, tick.weekdayEnd);
 				tickClass = 'weekday';
 			}
 
@@ -124,7 +124,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 			if (day.date.isFirst) // Draw an extra line for firsts of the month
 			{
-				tickLine = this.svg.radialLine(day.radians.start, tick.monthFirstStart, tick.monthFirstEnd);
+				tickLine = this.svg.radialLine(day.angularRange.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
 					`<line class="${tickClass}" data-date="${day.date.toIsoDate()}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
@@ -143,7 +143,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getPeriodMarkers
 	*/
-	getPeriodMarkers = function() {
+	getPeriodMarkers() {
 
 	}
 	/* getPeriodMarkers */
@@ -152,7 +152,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getDateLabel
 	*/
-	getDateLabel = function(labelType, setting) {
+	getDateLabel(labelType, setting) {
 
 		const labelFormat = setting.format || labelType;
 
@@ -168,7 +168,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getHands
 	*/
-	getHands = function(handConfig) {
+	getHands(handConfig) {
 		//log('getHands:',handConfig);
 
 		const yearHand = (handConfig.year) ? this.getYearHand(handConfig.year): '';
@@ -185,17 +185,28 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 	/* getYearHand */
-	getYearHand(handConfig, degreeDelta = new DegreeDelta) {
+	getYearHand(handConfig, angularRange = this.angularRange) {
 		//console.debug('getYearHand', arguments);
 		//console.debug(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 		// calculate year hand params
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1, degreeDelta);
 
-		//console.debug(yearDayDivision);
 
-		const yearTransform = `rotate(${yearDayDivision.middle},0,0)`;
+
+		//console.debug('this.displayDate.dateRange', this.displayDate.dateRange);
+		//console.debug('this.displayDate.dateRange.length', this.displayDate.dateRange.length);
+
+		const yearDayDivision = angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.dateRange.length);
+		//console.debug('yearDayDivision', yearDayDivision);
+
+		//console.debug('yearDayDivision.middle', yearDayDivision.middle);
+
+
+
+		const yearTransform = `rotate(${yearDayDivision.middle.degrees},0,0)`;
+
+
 		// get year hand
-		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
+		const yearHandFunc = (handConfig.function) ? handConfig.function : this.getBasicHand;
 		//log('yearHandFunc:',yearHandFunc);
 		const result = yearHandFunc(handConfig, yearTransform, 'yearHand', '');
 		return result;
@@ -203,12 +214,16 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 	/* getMonthHand */
-	getMonthHand = function(handConfig, degreeDelta = new DegreeDelta) {
+	getMonthHand(handConfig, angularRange = this.angularRange) {
 		// calculate month hand params
-		const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
-		const monthTransform = `rotate(${monthDayDivision.middle},0,0)`;
+
+		const monthDayDivision = angularRange.division(this.displayDate.getDate()-1, this.displayDate.monthRange.length);
+		//console.debug('monthDayDivision', monthDayDivision);
+
+
+		const monthTransform = `rotate(${monthDayDivision.middle.degrees},0,0)`;
 		// get month hand
-		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
+		const monthHandFunc = (handConfig.function)  ? handConfig.function : this.getBasicHand;
 		const result = monthHandFunc(handConfig, monthTransform, 'monthHand', '');
 		return result;
 	}/* getMonthHand */
@@ -217,7 +232,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getBasicHand
 	*/
-	getBasicHand = function(param, transform, cssClass, id)
+	getBasicHand(param, transform, cssClass, id)
 	{
 		const path = `
 			M 12 160
@@ -236,7 +251,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getHand1
 	Test of a more configurable hand shape
 	*/
-	getHand1 = function(param, transform, cssClass, id) {
+	getHand1(param, transform, cssClass, id) {
 
 		const discX = param.discRadius * (5/13);
 		const discY = param.discRadius * (12/13);
@@ -268,17 +283,17 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getSectors
 	*/
-	getSectors = function(sectorName, sectorArray, annulus, option={})
+	getSectors(sectorName, sectorArray, annulus, option={})
 	{
 		let newSvg = '';
 		let sectorPath = '';
 		for (let sector of sectorArray)
 		{
 			if (option.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.radians.start, sector.radians.end, annulus, option.sizeAdjust);
+				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, annulus, option.sizeAdjust);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.radians.start, sector.radians.end, annulus);
+				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.angularRange.end, annulus);
 			}
 
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
@@ -297,7 +312,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabels = function(sectorName, sectorArray, setting) // :String
+	getSectorLabels(sectorName, sectorArray, setting) // :String
 	{
 		//console.debug(arguments);
 		const sectorLabels = new yearclock.SVG.Chunk();
@@ -318,21 +333,20 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 	/* getSectorLabel
 	*/
-	getSectorLabel = function(sector, setting, labelFormat, classString='') // :SVGChunk
+	getSectorLabel(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
-
-
+		//console.log(sector);
 		const result = new yearclock.SVG.Chunk();
-		const radiansLabel = sector.radians.start + (sector.radians.width * setting.sectorPosition);
+		const labelPosition = sector.angularRange.position(setting.sectorPosition);
 
-		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
+		const center     = new PolarPoint(labelPosition.radians, setting.radius).toPoint();
 		let rotation;
 		let transform = '';
 
 		if (setting.rotate)
 		{
-			rotation = this.rotationDegrees(radiansLabel, setting);
-			transform = `rotate(${this.sf(rotation)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
+			rotation = this.rotationAngle(labelPosition, setting);
+			transform = `rotate(${this.sf(rotation.degrees)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
 		}
 
 		result.text =
@@ -348,7 +362,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelsCurved = function(sectorName, sectorArray, setting) //:String
+	getSectorLabelsCurved(sectorName, sectorArray, setting) //:String
 	{
 		const sectorLabels = new yearclock.SVG.Chunk();
 		const labelFormat = setting.format || sectorName;
@@ -376,7 +390,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			invert         : boolean,
 		};
 	*/
-	getSectorLabelCurved = function(sector, setting, labelFormat, classString='') // :SVGChunk
+	getSectorLabelCurved(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
 		const result = new yearclock.SVG.Chunk();
 		let labelArc = '';
@@ -384,13 +398,13 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		const pathId = `labelPath-${setting.name}-${sector.id}`;
 
 		if (setting.invert === 'all') {
-			labelArc = this.svg.getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange, setting.radius, true);
 		}
 		else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
-			labelArc = this.svg.getArcPath(sector.radians.end, sector.radians.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange, setting.radius, true);
 		}
 		else {
-			labelArc = this.svg.getArcPath(sector.radians.start, sector.radians.end, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange, setting.radius);
 		}
 
 		result.defs =
@@ -401,40 +415,41 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			</text>
 		`;
 
+		//console.log(result);
 		return result;
 	}/* getSectorLabelCurved */
 
 
 
-	/* rotationDegrees
+	/* rotationAngle
 	*/
-	rotationDegrees = function(radians, setting) {
-		let result = 0;
+	rotationAngle(angle, setting) {
+		let result = new yearclock.Geometry.Angle(angle.degrees);
 
 		switch(setting.rotate) {
-			case 'none'         : result = 0; break;
-			case 'radial-left'  : result = yearclock.Geometry.degrees(radians) - 90; break;
-			case 'radial-right' : result = yearclock.Geometry.degrees(radians) + 90; break;
-			case 'radial-in'    : result = yearclock.Geometry.degrees(radians) + 180; break;
-			case 'radial'       : result = yearclock.Geometry.degrees(radians); break;
-			case true           : result = yearclock.Geometry.degrees(radians); break;
+			case 'none'         : result.degrees = 0;
+			case 'radial-left'  : result.degrees += -90; break;
+			case 'radial-right' : result.degrees += +90; break;
+			case 'radial-in'    : result.degrees += 180; break;
+			case 'radial'       : break; // just return the incoming angle
+			case true           : break; // just return the incoming angle
 			default             : result = 0; break;
 		}
 
 		switch(setting.invert) {
-			case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
-			case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
-			case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
-			case 'all'      : result += 180; break;
+			case true       : result.degrees += (Math.cos(angle.radians) < 0) ? 180 : 0; break;
+			case 'left'     : result.degrees += (Math.sin(angle.radians) < 0) ? 180 : 0; break;
+			case 'right'    : result.degrees += (Math.sin(angle.radians) > 0) ? 180 : 0; break;
+			case 'all'      : result.degrees += 180; break;
 		}
 		return result;
-	}/* rotationDegrees */
+	}/* rotationAngle */
 
 
 	/* getGrid
 	Todo: Replace most of this with a pattern
 	*/
-	getGrid = function(viewBox, spacing=100, major=500) {
+	getGrid(viewBox, spacing=100, major=500) {
 
 		const vb = this.svg.splitViewBox(viewBox);
 
@@ -492,22 +507,23 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			invert         : boolean,
 		};
 	*/
-	getSymbols = function(symbolType, symbolArray, setting)
+	getSymbols(symbolType, symbolArray, setting)
 	{
 		//log('getSymbols:', arguments);
 		let newSvg = '';
 		for (let element of symbolArray)
 		{
 			//log('sector:', sector);
-			const radians = element.radians.start + (element.radians.width * setting.position);
+			const positionAngle = element.angularRange.position(setting.position);
+			//console.debug(radians);
 
-			const center     = new PolarPoint(radians, setting.radius).toPoint();
+			const center     = new PolarPoint(positionAngle.radians, setting.radius).toPoint();
 			let transform = '';
 
 			if (setting.rotate)
 			{
-				let rotate = this.rotationDegrees(radians, setting);
-				transform = `rotate(${this.sf(rotate)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
+				let rotate = this.rotationAngle(positionAngle, setting);
+				transform = `rotate(${this.sf(rotate.degrees)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
 			}
 			const symbolSvg =
 				`<use href="#${setting.elementId}" class="${element.class}"
@@ -533,7 +549,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			invert         : boolean,
 		};
 	*/
-	getSectorsWithKnockout = function(sectorName, sectorArray, setting)
+	getSectorsWithKnockout(sectorName, sectorArray, setting)
 	{
 		//log('getSectorsKnockout:', arguments);
 
@@ -571,11 +587,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 			// sector path, mask, sector itself:
 			if (setting.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.sizeAdjust);
-				maskPath = this.svg.getSectorResized(sector.radians.start, sector.radians.end, setting.sector, setting.maskExpand);
+				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, setting.sector, setting.sizeAdjust);
+				maskPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, setting.sector, setting.maskExpand);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.radians.start, sector.radians.end, setting.sector);
+				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.angularRange.end, setting.sector);
 				maskPath = sectorPath;
 			}
 
@@ -618,7 +634,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getRing
 	Combined sectors and labels
 	*/
-	getRing = function(setting) {
+	getRing(setting) {
 
 		let sectorSVG = '';
 		let labelSVG = '';

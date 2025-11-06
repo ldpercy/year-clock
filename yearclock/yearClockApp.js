@@ -4,10 +4,8 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 	name = "Year Clock";
 	info = `
-		Year Clock by ldpercy
-		https://github.com/ldpercy/year-clock/
-		v2.0
-		https://github.com/ldpercy/year-clock/pull/40
+		Year Clock v2.0.1 by ldpercy
+		https://github.com/ldpercy/year-clock/pull/41
 	`.replace(/\n\t/g,'\n');
 
 	//alias
@@ -361,7 +359,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		else {
 			document.getElementById('clockContainer').classList.remove('testPass');
 			document.getElementById('clockContainer').classList.add('testFail');
-			console.error(result);
+			console.error('runTest:', JSON.stringify(result));
 		}
 		document.getElementById('testResult').innerHTML = JSON.stringify(result);
 	}/* runTest */
