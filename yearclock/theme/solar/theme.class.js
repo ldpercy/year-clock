@@ -72,7 +72,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
-		this.dayRing.array   = this.displayDate.monthDayArray;
+		this.dayRing.array   = this.displayDate.monthDays.array;
 	}
 
 
@@ -90,9 +90,9 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 		// ${this.getSectors('month', this.displayDate.monthArray, this.monthRing.outerRadius, this.monthRing.innerRadius)}
 
-		//log(this.displayDate);
+		//console.debug(this.displayDate);
 
-		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
+		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
 		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
 
 		/* ${this.getSectorsWithKnockout('month', this.displayDate.monthArray, this.monthRing)} */

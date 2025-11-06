@@ -81,7 +81,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 		//log(this.displayDate);
 
-		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
+		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
 		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
 
 		const themeSVG = `
@@ -103,7 +103,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 			<g class="dayRing">
 				<g transform="${monthTransform}">
 
-					${this.getSectorsWithKnockout('monthDay', this.displayDate.monthDayArray, this.dayRing)}
+					${this.getSectorsWithKnockout('monthDay', this.displayDate.monthDays.array, this.dayRing)}
 
 				</g>
 			</g>

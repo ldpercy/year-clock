@@ -91,7 +91,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
-		this.dayRing.array   = this.displayDate.monthDayArray;
+		this.dayRing.array   = this.displayDate.monthDays.array;
 	}
 
 

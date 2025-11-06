@@ -110,7 +110,6 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		{
 			if (day.date.isWeekend)
 			{
-				console.log(day.angularRange);
 				tickLine = this.svg.radialLine(day.angularRange.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
 			}
@@ -341,7 +340,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	*/
 	getSectorLabel = function(sector, setting, labelFormat, classString='') // :SVGChunk
 	{
-		console.log(sector);
+		//console.log(sector);
 		const result = new yearclock.SVG.Chunk();
 		const radiansLabel = sector.angularRange.position(setting.sectorPosition).radians;
 
@@ -404,13 +403,13 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		const pathId = `labelPath-${setting.name}-${sector.id}`;
 
 		if (setting.invert === 'all') {
-			labelArc = this.svg.getArcPath(sector.radians.end, sector.angularRange.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange.end, sector.angularRange.start, setting.radius);
 		}
 		else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
-			labelArc = this.svg.getArcPath(sector.radians.end, sector.angularRange.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange.end, sector.angularRange.start, setting.radius);
 		}
 		else {
-			labelArc = this.svg.getArcPath(sector.angularRange.start, sector.radians.end, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange.start, sector.angularRange.end, setting.radius);
 		}
 
 		result.defs =
@@ -592,11 +591,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 			// sector path, mask, sector itself:
 			if (setting.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.radians.end, setting.sector, setting.sizeAdjust);
-				maskPath = this.svg.getSectorResized(sector.angularRange.start, sector.radians.end, setting.sector, setting.maskExpand);
+				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, setting.sector, setting.sizeAdjust);
+				maskPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, setting.sector, setting.maskExpand);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.radians.end, setting.sector);
+				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.angularRange.end, setting.sector);
 				maskPath = sectorPath;
 			}
 
