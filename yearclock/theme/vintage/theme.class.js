@@ -24,7 +24,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
-				textType       : 'text',
+				textType       : 'textPath',
 				format         : 'monthName',
 			},
 			{
@@ -195,8 +195,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	*/
 	getDateLabel = function(point) {
 
-		const dateLabelPath = this.svg.getArcPath(yearclock.Geometry.radians(-60), yearclock.Geometry.radians(60), point.y);
-		//const dateLabelPath = this.svg.getArcPath(radians(240), radians(120), point.y);
+		const dateLabelPath = this.svg.getArcPath(new yearclock.Geometry.AngularRange(-60,120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 

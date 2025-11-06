@@ -82,14 +82,26 @@ yearclock.SVG = class {
 	/* getArcPath
 	TODO: work out how to get inner/outer/reverse paths going
 	*/
-	static getArcPath(angleStart, angleEnd, radius)
+	static getArcPath(angularRange, radius, reverse = false)
 	{
-		const start = new PolarPoint(angleStart.radians, radius).toPoint();
-		const end   = new PolarPoint(angleEnd.radians,   radius).toPoint();
+		let start;
+		let end;
+		let sweepFlag;
+
+		if (reverse) {
+			start     = new PolarPoint(angularRange.end.radians, radius).toPoint();
+			end       = new PolarPoint(angularRange.start.radians,   radius).toPoint();
+			sweepFlag = 0
+		} else {
+			start     = new PolarPoint(angularRange.start.radians, radius).toPoint();
+			end       = new PolarPoint(angularRange.end.radians,   radius).toPoint();
+			sweepFlag = 1
+		}
+
 
 		const rotation     = '0';
 		const largeArcFlag = '0';
-		const sweepFlag    = (angleStart.radians < angleEnd.radians) ? '1' : '0';
+		//const sweepFlag    = (angularRange.width.degrees > 0) ? '1' : '0';
 
 		const path = `
 			M ${this.sf(start.x)} ${this.sf(start.y)}

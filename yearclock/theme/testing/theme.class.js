@@ -79,11 +79,9 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		//addRadians(this.displayDate.yearDayArray);
 		//this.dayRing.array   = this.displayDate.monthDayArray;
 
 		//this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		//addRadians(this.displayDate.monthDayArray, this.dial.radiansStart, this.dial.radiansLength);
 
 		/*
 		let weekArray    = getYearWeekArray(this.displayDate);

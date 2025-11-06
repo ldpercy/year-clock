@@ -403,13 +403,13 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		const pathId = `labelPath-${setting.name}-${sector.id}`;
 
 		if (setting.invert === 'all') {
-			labelArc = this.svg.getArcPath(sector.angularRange.end, sector.angularRange.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange, setting.radius, true);
 		}
 		else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
-			labelArc = this.svg.getArcPath(sector.angularRange.end, sector.angularRange.start, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange, setting.radius, true);
 		}
 		else {
-			labelArc = this.svg.getArcPath(sector.angularRange.start, sector.angularRange.end, setting.radius);
+			labelArc = this.svg.getArcPath(sector.angularRange, setting.radius);
 		}
 
 		result.defs =
@@ -420,6 +420,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			</text>
 		`;
 
+		console.log(result);
 		return result;
 	}/* getSectorLabelCurved */
 

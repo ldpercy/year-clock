@@ -21,8 +21,6 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	outerRadius       = 1200;
 
 	dial = {
-		//degreeDelta   : new DegreeDelta(225, 270),
-		//radianDelta   : new RadianDelta(yearclock.Geometry.radians(225), yearclock.Geometry.radians(270)),
 		angularRange  : new yearclock.Geometry.AngularRange(225, 270),
 	}
 
