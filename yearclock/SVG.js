@@ -23,12 +23,12 @@ yearclock.SVG = class {
 
 	/* getSectorPath
 	*/
-	static getSectorPath(angleStart, angleEnd, annulus)
+	static getSectorPath(angularRange, annulus)
 	{
-		const outerStart = new PolarPoint(angleStart.radians, annulus.outerRadius).toPoint();
-		const outerEnd   = new PolarPoint(angleEnd.radians,   annulus.outerRadius).toPoint();
-		const innerStart = new PolarPoint(angleEnd.radians,   annulus.innerRadius).toPoint();
-		const innerEnd   = new PolarPoint(angleStart.radians, annulus.innerRadius).toPoint();
+		const outerStart = new PolarPoint(angularRange.start.radians, annulus.outerRadius).toPoint();
+		const outerEnd   = new PolarPoint(angularRange.end.radians,   annulus.outerRadius).toPoint();
+		const innerStart = new PolarPoint(angularRange.end.radians,   annulus.innerRadius).toPoint();
+		const innerEnd   = new PolarPoint(angularRange.start.radians, annulus.innerRadius).toPoint();
 
 		let outerArc = (annulus.option.simpleOuter) ? `L ${this.sf(outerEnd.x)} ${this.sf(outerEnd.y)}` : `A ${this.sf(annulus.outerRadius)},${this.sf(annulus.outerRadius)} 0 0 1 ${this.sf(outerEnd.x)},${this.sf(outerEnd.y)}`;
 		let innerArc = (annulus.option.simpleInner) ? `L ${this.sf(innerEnd.x)} ${this.sf(innerEnd.y)}` : `A ${this.sf(annulus.innerRadius)},${this.sf(annulus.innerRadius)} 0 0 0 ${this.sf(innerEnd.x)},${this.sf(innerEnd.y)}`;
@@ -49,15 +49,14 @@ yearclock.SVG = class {
 
 	/* getSectorResized
 	This is very hacked/chopped together right now, needs to be rationaslied
-
 	*/
-	static getSectorResized(angleStart, angleEnd, annulus, sizeAdjust)
+	static getSectorResized(angularRange, annulus, sizeAdjust)
 	{
 
-		const outerStart = new PolarPoint(angleStart.radians, annulus.outerRadius).newPointOffsetXY( -sizeAdjust.x, -sizeAdjust.y );
-		const outerEnd   = new PolarPoint(angleEnd.radians,   annulus.outerRadius).newPointOffsetXY( +sizeAdjust.x, -sizeAdjust.y );
-		const innerStart = new PolarPoint(angleEnd.radians,   annulus.innerRadius).newPointOffsetXY( +sizeAdjust.x, +sizeAdjust.y );
-		const innerEnd   = new PolarPoint(angleStart.radians, annulus.innerRadius).newPointOffsetXY( -sizeAdjust.x, +sizeAdjust.y );
+		const outerStart = new PolarPoint(angularRange.start.radians, annulus.outerRadius).newPointOffsetXY( -sizeAdjust.x, -sizeAdjust.y );
+		const outerEnd   = new PolarPoint(angularRange.end.radians,   annulus.outerRadius).newPointOffsetXY( +sizeAdjust.x, -sizeAdjust.y );
+		const innerStart = new PolarPoint(angularRange.end.radians,   annulus.innerRadius).newPointOffsetXY( +sizeAdjust.x, +sizeAdjust.y );
+		const innerEnd   = new PolarPoint(angularRange.start.radians, annulus.innerRadius).newPointOffsetXY( -sizeAdjust.x, +sizeAdjust.y );
 
 		//log('getSectorPolarDelta', outerStart, outerEnd);
 
@@ -89,8 +88,8 @@ yearclock.SVG = class {
 		let sweepFlag;
 
 		if (reverse) {
-			start     = new PolarPoint(angularRange.end.radians, radius).toPoint();
-			end       = new PolarPoint(angularRange.start.radians,   radius).toPoint();
+			start     = new PolarPoint(angularRange.end.radians,   radius).toPoint();
+			end       = new PolarPoint(angularRange.start.radians, radius).toPoint();
 			sweepFlag = 0
 		} else {
 			start     = new PolarPoint(angularRange.start.radians, radius).toPoint();
@@ -114,12 +113,12 @@ yearclock.SVG = class {
 	/* getSectorPathSimple
 	A simplified version of the above that draws a quadrilateral with straight lines instead of proper arcs. Suitable for very small sectors or other effects.
 	*/
-	static getSectorPathSimple(angleStart, angleEnd, annulus)
+	static getSectorPathSimple(angularRange, annulus)
 	{
-		const outerStart = new PolarPoint(angleStart.radians, annulus.outerRadius).toPoint();
-		const outerEnd   = new PolarPoint(angleEnd.radians,   annulus.outerRadius).toPoint();
-		const innerEnd   = new PolarPoint(angleEnd.radians,   annulus.innerRadius).toPoint();
-		const innerStart = new PolarPoint(angleStart.radians, annulus.innerRadius).toPoint();
+		const outerStart = new PolarPoint(angularRange.start.radians, annulus.outerRadius).toPoint();
+		const outerEnd   = new PolarPoint(angularRange.end.radians,   annulus.outerRadius).toPoint();
+		const innerStart = new PolarPoint(angularRange.end.radians,   annulus.innerRadius).toPoint();
+		const innerEnd   = new PolarPoint(angularRange.start.radians, annulus.innerRadius).toPoint();
 
 		const path = `
 			M ${this.sf(outerStart.x)} ${this.sf(outerStart.y)}
@@ -173,6 +172,9 @@ yearclock.SVG = class {
 
 
 yearclock.SVG.Chunk = class {
+	text;
+	defs;
+
 	constructor(
 		text = '',
 		defs = ''
