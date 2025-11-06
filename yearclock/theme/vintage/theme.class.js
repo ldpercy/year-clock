@@ -70,7 +70,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	handConfig = {
 		year : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 900,
 			tipRadius   : 5,
 			discRadius  : 60,
@@ -78,8 +78,8 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 			width       : 50,
 		},
 		month : {
-			function : ()=>this.getHoleHand,
-			length : 790,
+			function    : this.getHoleHand,
+			length      : 790,
 			circleCenter: 670,
 		}
 	};
@@ -221,7 +221,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	/* getHoleHand
 	Test of a more configurable hand shape
 	*/
-	getHoleHand = function(param, transform, cssClass, id)
+	getHoleHand(param, transform, cssClass, id)
 	/* getHand2 = function() */
 	{
 		//const length = 900;

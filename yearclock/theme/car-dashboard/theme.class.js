@@ -92,7 +92,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	handConfig = {
 		year : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 800,
 			tipRadius   : 10,
 			discRadius  : 75,
@@ -100,7 +100,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 			width       : 10,
 		},
 		month : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 900,
 			tipRadius   : 10,
 			discRadius  : 75,

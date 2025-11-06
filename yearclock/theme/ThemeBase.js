@@ -206,7 +206,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 		// get year hand
-		const yearHandFunc = (handConfig.function) ? handConfig.function() : this.getBasicHand;
+		const yearHandFunc = (handConfig.function) ? handConfig.function : this.getBasicHand;
 		//log('yearHandFunc:',yearHandFunc);
 		const result = yearHandFunc(handConfig, yearTransform, 'yearHand', '');
 		return result;
@@ -223,7 +223,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 		const monthTransform = `rotate(${monthDayDivision.middle.degrees},0,0)`;
 		// get month hand
-		const monthHandFunc = (handConfig.function)  ? handConfig.function() : this.getBasicHand;
+		const monthHandFunc = (handConfig.function)  ? handConfig.function : this.getBasicHand;
 		const result = monthHandFunc(handConfig, monthTransform, 'monthHand', '');
 		return result;
 	}/* getMonthHand */
@@ -251,7 +251,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getHand1
 	Test of a more configurable hand shape
 	*/
-	getHand1 = function(param, transform, cssClass, id) {
+	getHand1(param, transform, cssClass, id) {
 
 		const discX = param.discRadius * (5/13);
 		const discY = param.discRadius * (12/13);

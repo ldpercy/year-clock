@@ -32,7 +32,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 	handConfig = {
 		year : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 600,
 			tipRadius   : 10,
 			discRadius  : 40,
@@ -40,7 +40,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 			width       : 18,
 		},
 		month : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 850,
 			tipRadius   : 5,
 			discRadius  : 30,
