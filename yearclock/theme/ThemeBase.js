@@ -337,16 +337,16 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	{
 		//console.log(sector);
 		const result = new yearclock.SVG.Chunk();
-		const radiansLabel = sector.angularRange.position(setting.sectorPosition).radians;
+		const labelPosition = sector.angularRange.position(setting.sectorPosition);
 
-		const center     = new PolarPoint(radiansLabel, setting.radius).toPoint();
+		const center     = new PolarPoint(labelPosition.radians, setting.radius).toPoint();
 		let rotation;
 		let transform = '';
 
 		if (setting.rotate)
 		{
-			rotation = this.rotationDegrees(radiansLabel, setting);
-			transform = `rotate(${this.sf(rotation)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
+			rotation = this.rotationAngle(labelPosition, setting);
+			transform = `rotate(${this.sf(rotation.degrees)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
 		}
 
 		result.text =
@@ -421,29 +421,29 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 
 
-	/* rotationDegrees
+	/* rotationAngle
 	*/
-	rotationDegrees = function(radians, setting) {
-		let result = 0;
+	rotationAngle = function(angle, setting) {
+		let result = new yearclock.Geometry.Angle(angle.degrees);
 
 		switch(setting.rotate) {
-			case 'none'         : result = 0; break;
-			case 'radial-left'  : result = yearclock.Geometry.degrees(radians) - 90; break;
-			case 'radial-right' : result = yearclock.Geometry.degrees(radians) + 90; break;
-			case 'radial-in'    : result = yearclock.Geometry.degrees(radians) + 180; break;
-			case 'radial'       : result = yearclock.Geometry.degrees(radians); break;
-			case true           : result = yearclock.Geometry.degrees(radians); break;
+			case 'none'         : result.degrees = 0;
+			case 'radial-left'  : result.degrees += -90; break;
+			case 'radial-right' : result.degrees += +90; break;
+			case 'radial-in'    : result.degrees += 180; break;
+			case 'radial'       : break; // just return the incoming angle
+			case true           : break; // just return the incoming angle
 			default             : result = 0; break;
 		}
 
 		switch(setting.invert) {
-			case true       : result += (Math.cos(radians) < 0) ? 180 : 0; break;
-			case 'left'     : result += (Math.sin(radians) < 0) ? 180 : 0; break;
-			case 'right'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
-			case 'all'      : result += 180; break;
+			case true       : result.degrees += (Math.cos(angle.radians) < 0) ? 180 : 0; break;
+			case 'left'     : result.degrees += (Math.sin(angle.radians) < 0) ? 180 : 0; break;
+			case 'right'    : result.degrees += (Math.sin(angle.radians) > 0) ? 180 : 0; break;
+			case 'all'      : result.degrees += 180; break;
 		}
 		return result;
-	}/* rotationDegrees */
+	}/* rotationAngle */
 
 
 	/* getGrid
@@ -514,16 +514,16 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		for (let element of symbolArray)
 		{
 			//log('sector:', sector);
-			const radians = element.angularRange.position(setting.position).radians;
+			const positionAngle = element.angularRange.position(setting.position);
 			//console.debug(radians);
 
-			const center     = new PolarPoint(radians, setting.radius).toPoint();
+			const center     = new PolarPoint(positionAngle.radians, setting.radius).toPoint();
 			let transform = '';
 
 			if (setting.rotate)
 			{
-				let rotate = this.rotationDegrees(radians, setting);
-				transform = `rotate(${this.sf(rotate)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
+				let rotate = this.rotationAngle(positionAngle, setting);
+				transform = `rotate(${this.sf(rotate.degrees)}, ${this.sf(center.x)}, ${this.sf(center.y)})`;
 			}
 			const symbolSvg =
 				`<use href="#${setting.elementId}" class="${element.class}"
