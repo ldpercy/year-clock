@@ -77,7 +77,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
 		const yearTransform = `rotate(${180-yearDayDivision.middle.degrees},0,0)`;
@@ -124,7 +124,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 
 
-	getSun = function(labelType, setting) {
+	getSun(labelType, setting) {
 
 		const svg =
 			`<g class="sun">

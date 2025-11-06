@@ -72,7 +72,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 
 
@@ -89,7 +89,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 	}/* getThemeSVG */
 
 
-	formatLabel = function(labelType, data) {
+	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;

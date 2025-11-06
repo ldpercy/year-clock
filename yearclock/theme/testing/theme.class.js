@@ -95,7 +95,7 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 	//
 	// formatting functions
 	//
-	formatTitle = function(type, data) {
+	formatTitle(type, data) {
 		let result;
 		switch(type) {
 			case 'quarter': result = `${data.name}`; break;
@@ -111,7 +111,7 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const themeSVG = `
 

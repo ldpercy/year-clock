@@ -98,7 +98,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
 		const yearTransform = `rotate(${-yearDayDivision.middle.degrees},0,0)`;
@@ -135,7 +135,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 
 
-	getDateLabel = function(labelName, setting) {
+	getDateLabel(labelName, setting) {
 
 		const labelFormat = setting.format || labelName;
 
@@ -167,7 +167,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 
 
-	getDefs = function() {
+	getDefs() {
 		const result = `
 
 			<linearGradient id="gradient-stroke-linear" y1="0%" y2="100%" x1="0%" x2="0%">

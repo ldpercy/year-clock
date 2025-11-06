@@ -219,25 +219,25 @@ class Point {
 		this.precision = precision;
 	}
 
-	plus = function(point) {
+	plus(point) {
 		return new Point(
 			this.x + point.x,
 			this.y + point.y
 		);
 	}
 
-	distanceFrom = function(point = new Point()) {
+	distanceFrom(point = new Point()) {
 		const result = Math.hypot((this.x - point.x), (this.y - point.y));
 		return result;
 	}
 
 	// Clockwise from y axis
-	radiansFrom = function(center = new Point()) {
+	radiansFrom(center = new Point()) {
 		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
 		return result;
 	}
 
-	toPolarPoint = function(polarPoint = new PolarPoint()) {
+	toPolarPoint(polarPoint = new PolarPoint()) {
 		const distance = this.distanceFrom();
 		const radian  = (equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
 		// for points on the origin return the default PolarPoint radian
@@ -253,7 +253,7 @@ class Point {
 	}
 
 	// Clockwise from y axis
-	radiansFrom = function(center = new Point()) {
+	radiansFrom(center = new Point()) {
 		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
 		return result;
 	}
@@ -263,7 +263,7 @@ class Point {
 		return Math.hypot(this.x, this.y);
 	}
 
-	getDistanceFrom = function(point = new Point()) {
+	getDistanceFrom(point = new Point()) {
 		return Math.hypot((this.x - point.x), (this.y - point.y));
 	}
 
@@ -276,7 +276,7 @@ class Point {
 	}
 
 	// relative
-	rotate = function(radian) {
+	rotate(radian) {
 		const newPoint = new PolarPoint(this.radian + radian, this.distanceFromOrigin).toPoint();
 		this.x = newPoint.x;
 		this.y = newPoint.y;
@@ -297,7 +297,7 @@ class PolarPoint {
 		this.precision = precision;
 	}
 
-	toPoint = function() {
+	toPoint() {
 		return new Point(
 			this.radius * Math.sin(this.radian),
 			this.radius * -Math.cos(this.radian)
@@ -311,7 +311,7 @@ class PolarPoint {
 		)
 	}
 
-	plus = function(polarPoint) {
+	plus(polarPoint) {
 		return this.toPoint().plus(polarPoint.toPoint()).toPolarPoint();
 		// this way is pretty dumb, figure out a better way
 		// the lengths should add arithmetically
@@ -323,7 +323,7 @@ class PolarPoint {
 	Takes the current radian coordinate as the base heading and the new heading is relative to it.
 	Ie a 0 heading will continue in the same direction
 	*/
-	move = function(distance, heading) {
+	move(distance, heading) {
 		const delta = new PolarPoint(this.radian+heading, distance);
 		//console.log(delta);
 		return this.plus(delta);

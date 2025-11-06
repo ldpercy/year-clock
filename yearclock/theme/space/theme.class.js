@@ -68,7 +68,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
 		const yearTransform = `rotate(${-90-yearDayDivision.middle.degrees},0,0)`;
@@ -121,7 +121,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 
 
-	getDateLabel = function(labelName, setting) {
+	getDateLabel(labelName, setting) {
 
 		const labelFormat = setting.format || labelName;
 
@@ -162,7 +162,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 
 
-	getFilters = function() {
+	getFilters() {
 		const result = `
 	 <filter
 		 id="f143"

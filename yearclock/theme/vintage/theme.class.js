@@ -107,7 +107,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const themeSVG = `
 			${this.getDefs()}
@@ -147,7 +147,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 
-/* 	formatLabel = function(labelType, data) {
+/* 	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'monthName'    : result = data.name; break;
@@ -163,7 +163,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	/* getDefs
 	*/
-	getDefs = function() {
+	getDefs() {
 		const result = `
 			<defs>
 				<linearGradient id="Gradient1">
@@ -184,7 +184,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	}/* getDefs */
 
 
-	getBody = function(body) {
+	getBody(body) {
 		const svg =
 			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
 		return svg;
@@ -193,7 +193,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	/* getDateLabel
 	*/
-	getDateLabel = function(point) {
+	getDateLabel(point) {
 
 		const dateLabelPath = this.svg.getArcPath(new yearclock.Geometry.AngularRange(-60,120), point.y);
 
@@ -222,7 +222,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	Test of a more configurable hand shape
 	*/
 	getHoleHand(param, transform, cssClass, id)
-	/* getHand2 = function() */
+	/* getHand2() */
 	{
 		//const length = 900;
 		const tail = 150;
@@ -291,14 +291,14 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	}/* getHoleHand */
 
 
-	getIcon = function() {
+	getIcon() {
 		const path =
 			`<path class="group-label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"><title>vintage clock by ldpercy</title></path>`;
 			//'<path class="label favicon" d="M 259 966 L -966 -259 L 707 -707 M -259 966 L -707 -707 L 966 -259 M -707 707 L -259 -966 L 966 259 M -966 259 L 259 -966 L 707 707  Z"></path>';
 		return path;
 	}
 
-	getPin = function() {
+	getPin() {
 		return `<circle class="pin" x="0" y="0" r="10"/>`
 	}
 

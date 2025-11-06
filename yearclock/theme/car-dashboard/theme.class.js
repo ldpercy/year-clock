@@ -136,7 +136,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const themeSVG = `
 			<defs>
@@ -218,7 +218,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	}/* getThemeSVG */
 
 
-	formatLabel = function(labelType, data) {
+	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;
@@ -238,7 +238,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 
-	getSeasonFace = function(seasonWheel, displayDate) {
+	getSeasonFace(seasonWheel, displayDate) {
 		const yearDayDivision = (new yearclock.Geometry.AngularRange()).division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
 
 		const yearTransform = `rotate(${-yearDayDivision.middle.degrees},0,0)`;
@@ -255,7 +255,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 
-	getFacePath = function(clock) {
+	getFacePath(clock) {
 		//${this.getBodyInner(clock)}
 		const path = `
 			M ${clock.faceRadius},${-clock.faceRadius}
@@ -274,7 +274,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	}/* getFacePath */
 
 
-	getBodyInner = function(clock) {
+	getBodyInner(clock) {
 		const xUpper = clock.faceRadius * (1/13);
 		const yUpper = clock.faceRadius * (5/13);
 
@@ -291,7 +291,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	}/* getBodyInner */
 
 
-	getBodyPath = function(clock) {
+	getBodyPath(clock) {
 
 		const path = `
 			${this.getBodyOuter(clock)}
@@ -305,7 +305,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	}/* getBodyPath */
 
 
-	getBodyOuter = function(clock) {
+	getBodyOuter(clock) {
 		const path = `
 			M ${clock.faceRadius},${-clock.bodyRadius}
 			A ${clock.bodyRadius},${clock.bodyRadius} 0 1 1 ${clock.faceRadius},${clock.bodyRadius}
@@ -316,7 +316,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	}/* getBodyOuter */
 
 
-	getWarningMonth = function(type, settings) {
+	getWarningMonth(type, settings) {
 
 		let weekEvent = yearclock.Event.getWeekEvent(this.displayDate) || {name:'',symbol:''};
 		let monthEvent = yearclock.Event.getMonthEvent(this.displayDate) || {name:'',symbol:''};
@@ -333,7 +333,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	}/* getWarningMonth */
 
 
-	getWarningYear = function(type, settings) {
+	getWarningYear(type, settings) {
 
 		const event = yearclock.Event.getYearEvent(this.displayDate) || {name:'', symbol:''};
 		const seasonEvent = yearclock.Event.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};

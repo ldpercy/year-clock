@@ -63,7 +63,7 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 
 

@@ -181,12 +181,12 @@ yearclock.SVG.Chunk = class {
 		this.defs = defs;
 	}
 
-	add = function(svgChunk) {
+	add(svgChunk) {
 		this.text += svgChunk.text;
 		this.defs += svgChunk.defs;
 	}
 
-	toString = function() {
+	toString() {
 		const result = `
 			<defs>
 				${this.defs}
