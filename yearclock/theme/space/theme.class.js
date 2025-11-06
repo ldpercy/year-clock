@@ -70,12 +70,12 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 	*/
 	getThemeSVG = function()
 	{
+		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
+		const yearTransform = `rotate(${-90-yearDayDivision.middle.degrees},0,0)`;
 
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-90-yearDayDivision.middle},0,0)`;
+		const monthDayDivision = this.angularRange.division(this.displayDate.date-1, this.displayDate.daysInMonth);
+		const monthTransform = `rotate(${-90-monthDayDivision.middle.degrees},0,0)`;
 
-		const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
-		const monthTransform = `rotate(${-90-monthDayDivision.middle},0,0)`;
 
 		// ${this.getSectors('month', this.displayDate.monthArray, this.monthSector.outerRadius, this.monthSector.innerRadius)}
 

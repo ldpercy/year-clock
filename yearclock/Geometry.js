@@ -21,55 +21,6 @@ yearclock.Geometry = class {
 
 
 
-	/* divisionDegrees
-	Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
-	Divisions are now zero-based.
-
-	degreesLength is an offset from radiansStart.
-	Used by the hand methods.
-	*/
-	static divisionDegrees(divisions, number, degreeDelta = new DegreeDelta) {
-		let result = {
-			start  : degreeDelta.start + degreeDelta.delta * ((number + 0.0) / divisions),
-			middle : degreeDelta.start + degreeDelta.delta * ((number + 0.5) / divisions),
-			end    : degreeDelta.start + degreeDelta.delta * ((number + 1.0) / divisions),
-		}
-		result.width = result.end - result.start;
-		return result;
-	}
-
-	/* divisionRadians
-	Given integer divisions of an arc, return start, middle, end & width in radians of the numbered division.
-	Divisions are now zero-based.
-
-	Default is full-circle.
-
-	I might need to generalise/extrapolate this a bit.
-	Currently it works on the idea that an arc (commonly a whole circle) is divided evenly then gives the parameters for the numbered division.
-	If we instead think about a number-arc mapping we can extrapolate outside the range including negatives.
-	Will probably need to rebase on zero though.
-	Actually as written it already works for numbers outside of range, so I'll just 0 base it so it makes more sense.
-
-
-	*/
-	static divisionRadians(divisions, number, angularRange = new yearclock.Geometry.AngularRange()) {
-
-		/* const result = {
-			start  : radianDelta.start + radianDelta.delta * ((number + 0.0) / divisions),
-			middle : radianDelta.start + radianDelta.delta * ((number + 0.5) / divisions),
-			end    : radianDelta.start + radianDelta.delta * ((number + 1.0) / divisions),
-
-		}
-		result.width = result.end - result.start; */
-
-
-		const result = new yearclock.Geometry.AngularRange();
-
-
-
-		return result;
-	}/* divisionRadians */
-
 
 
 	/* dateAngularRange
@@ -80,9 +31,6 @@ yearclock.Geometry = class {
 		// date - the date we're interested in
 		// dateRange	- the contextual dateRange
 		// angularRange	- the angular range the dateRange is mapped to
-
-		/* 	This might be the key I've been looking for */
-		//const result = this.divisionRadians(dateRange.length(), yearclock.Date.dayDifference(dateRange.start, date), radianDelta);
 
 		const dayOfPeriod  = yearclock.Date.dayDifference(dateRange.start, date);
 		const daysInPeriod = dateRange.length;

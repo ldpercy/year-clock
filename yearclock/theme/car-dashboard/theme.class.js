@@ -239,9 +239,9 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 	getSeasonFace = function(seasonWheel, displayDate) {
+		const yearDayDivision = (new yearclock.Geometry.AngularRange()).division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
 
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
+		const yearTransform = `rotate(${-yearDayDivision.middle.degrees},0,0)`;
 		const result = `
 
 			<g transform="${yearTransform}">

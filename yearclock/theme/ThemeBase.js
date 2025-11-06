@@ -191,8 +191,6 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		// calculate year hand params
 
 
-		//const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.dateRange.length, this.displayDate.dayOfYear-1, angularRange);
-
 
 		//console.debug('this.displayDate.dateRange', this.displayDate.dateRange);
 		//console.debug('this.displayDate.dateRange.length', this.displayDate.dateRange.length);
@@ -218,9 +216,6 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 	/* getMonthHand */
 	getMonthHand = function(handConfig, angularRange = this.angularRange) {
 		// calculate month hand params
-
-
-		//const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.monthDayArray.length, this.displayDate.getDate()-1, degreeDelta);
 
 		const monthDayDivision = angularRange.division(this.displayDate.getDate()-1, this.displayDate.monthRange.length);
 		//console.debug('monthDayDivision', monthDayDivision);
@@ -420,7 +415,7 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 			</text>
 		`;
 
-		console.log(result);
+		//console.log(result);
 		return result;
 	}/* getSectorLabelCurved */
 

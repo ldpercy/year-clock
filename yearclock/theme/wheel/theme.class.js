@@ -100,11 +100,8 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 	*/
 	getThemeSVG = function()
 	{
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
-
-		//const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
-		//const monthTransform = `rotate(${-monthDayDivision.middle},0,0)`;
+		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
+		const yearTransform = `rotate(${-yearDayDivision.middle.degrees},0,0)`;
 
 		const themeSVG = `
 			<defs>
