@@ -7,6 +7,7 @@ Todo
 
 Job reminders to wrap into other tasks.
 
+* Consider finally moving to http-only mode, subject to availability of easy serving options
 * Have display changes update the URL so that reloads use current settings
 * Add proper light/dark UI schemes; categorise theme styles into light/dark
 * Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
