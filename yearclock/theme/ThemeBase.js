@@ -290,10 +290,10 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 		for (let sector of sectorArray)
 		{
 			if (option.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, annulus, option.sizeAdjust);
+				sectorPath = this.svg.getSectorResized(sector.angularRange, annulus, option.sizeAdjust);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.angularRange.end, annulus);
+				sectorPath = this.svg.getSectorPath(sector.angularRange, annulus);
 			}
 
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
@@ -587,11 +587,11 @@ yearclock.theme.Base = class extends yearclock.theme.YearClock {
 
 			// sector path, mask, sector itself:
 			if (setting.sizeAdjust) {
-				sectorPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, setting.sector, setting.sizeAdjust);
-				maskPath = this.svg.getSectorResized(sector.angularRange.start, sector.angularRange.end, setting.sector, setting.maskExpand);
+				sectorPath = this.svg.getSectorResized(sector.angularRange, setting.sector, setting.sizeAdjust);
+				maskPath = this.svg.getSectorResized(sector.angularRange, setting.sector, setting.maskExpand);
 			}
 			else {
-				sectorPath = this.svg.getSectorPath(sector.angularRange.start, sector.angularRange.end, setting.sector);
+				sectorPath = this.svg.getSectorPath(sector.angularRange, setting.sector);
 				maskPath = sectorPath;
 			}
 

@@ -26,3 +26,11 @@ In English it's common to shorten month and day names to three letters - Jan, Fe
 At present some of the theme formatters will do this automatically with something like `string.slice(0,3)`.
 
 Suggestions for more appropriate short names are welcome.
+
+
+
+JavaScript
+----------
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
+
