@@ -4,8 +4,8 @@ yearclock.App = class extends ldpercy.HTMLApp {
 
 	name = "Year Clock";
 	info = `
-		Year Clock v2.🏛② by ldpercy
-		https://github.com/ldpercy/year-clock/pull/??
+		Year Clock v2.0.2 by ldpercy
+		https://github.com/ldpercy/year-clock/pull/42
 	`.replace(/\n\t/g,'\n');
 
 	//alias
