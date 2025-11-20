@@ -9,6 +9,14 @@
 	<link rel="icon" href="page/favicon.svg">
 	<link rel="stylesheet" href="page/page.css">
 
+	<script>
+		const protocol = new URL(window.location).protocol;
+
+		if (protocol === 'file:') {
+			alert("You are using `file:` protocol - modules won't work");
+		}
+	</script>
+
 	<!-- core --->
 	<script defer src="yearclock/namespace.js"></script>
 	<script defer src="yearclock/L10n.js"></script>
