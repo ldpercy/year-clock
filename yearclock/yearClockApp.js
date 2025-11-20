@@ -361,7 +361,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		else {
 			document.getElementById('clockContainer').classList.remove('testPass');
 			document.getElementById('clockContainer').classList.add('testFail');
-			console.error(result);
+			console.error('runTest:', JSON.stringify(result));
 		}
 		document.getElementById('testResult').innerHTML = JSON.stringify(result);
 	}/* runTest */

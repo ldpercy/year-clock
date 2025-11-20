@@ -15,69 +15,43 @@ yearclock.Geometry = class {
 	}
 
 
-	/* divisionDegrees
-	Given integer divisions of a circle, return the start, middle and end angle of the numbered division.
-	Divisions are now zero-based.
-
-	degreesLength is an offset from radiansStart.
-	*/
-	static divisionDegrees(divisions, number, degreeDelta = new DegreeDelta) {
-		let result = {
-			start  : degreeDelta.start + degreeDelta.delta * ((number + 0.0) / divisions),
-			middle : degreeDelta.start + degreeDelta.delta * ((number + 0.5) / divisions),
-			end    : degreeDelta.start + degreeDelta.delta * ((number + 1.0) / divisions),
-		}
-		result.width = result.end - result.start;
-		return result;
-	}
-
-	/* divisionRadians
-	Given integer divisions of an arc, return start, middle, end & width in radians of the numbered division.
-	Divisions are now zero-based.
-
-	Default is full-circle.
-
-	I might need to generalise/extrapolate this a bit.
-	Currently it works on the idea that an arc (commonly a whole circle) is divided evenly then gives the parameters for the numbered division.
-	If we instead think about a number-arc mapping we can extrapolate outside the range including negatives.
-	Will probably need to rebase on zero though.
-	Actually as written it already works for numbers outside of range, so I'll just 0 base it so it makes more sense.
+	//
+	//	CRAP CODE START:
+	//
 
 
-	*/
-	static divisionRadians(divisions, number, radianDelta = new RadianDelta) {
-
-		const result = {
-			start  : radianDelta.start + radianDelta.delta * ((number + 0.0) / divisions),
-			middle : radianDelta.start + radianDelta.delta * ((number + 0.5) / divisions),
-			end    : radianDelta.start + radianDelta.delta * ((number + 1.0) / divisions),
-
-		}
-		result.width = result.end - result.start;
-		return result;
-	}/* divisionRadians */
 
 
-	/* dateRadians
+
+	/* dateAngularRange
 	Will automatically extrapolate if the date falls outside of the date range.
 	*/
-	static dateRadians(date, dateRange, radianDelta = new RadianDelta) {
+	static dateAngularRange(date, dateRange, angularRange = new yearclock.Geometry.AngularRange()) {
 
-		/* 	This might be the key I've been looking for */
-		const result = this.divisionRadians(dateRange.length(), yearclock.Date.dayDifference(dateRange.start, date), radianDelta);
+		// date - the date we're interested in
+		// dateRange	- the contextual dateRange
+		// angularRange	- the angular range the dateRange is mapped to
+
+		const dayOfPeriod  = yearclock.Date.dayDifference(dateRange.start, date);
+		const daysInPeriod = dateRange.length;
+
+		const result = angularRange.division(dayOfPeriod, daysInPeriod);
+
 		return result;
-	}/* dateRadians */
+	}/* dateAngularRange */
 
 
-	/* addRadians
+	/* addAngularRange
 	This might be tricky to do is a fully general way.
 	Currently only works for even spacing of an array.
 	*/
-	static addRadians(array, radianDelta = new RadianDelta) {
+	static addAngularRange(array, angularRange = new yearclock.Geometry.AngularRange()) {
 		array.forEach(
-			(element, index) => {element.radians = this.divisionRadians(array.length, index, radianDelta);} // nb one-based
+			(element, index) => {
+				element.angularRange = angularRange.division(index, array.length);
+			} // nb one-based
 		);
-	}/* addRadians */
+	}/* addAngularRange */
 
 
 	/* addDateRangeRadians
@@ -90,28 +64,28 @@ yearclock.Geometry = class {
 	Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
 
 	*/
-	static addDateRangeRadians(array, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
+	static addDateRangeAngularRange(array, arcDateRange, angularRange = new yearclock.Geometry.AngularRange(), outlier = '') {
 		array.forEach(
 			(element) => {
-				element.radians = this.dateRangeRadians(element.dateRange, arcDateRange, radianDelta, outlier);
+				element.angularRange = this.dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
 			}
 		);
 	}/* addDateRangeRadians */
 
 
 
-	/* dateRangeRadians
+	/* dateRangeAngularRange
 	Given two dates return the start, middle, end & width in radians.
 	Gives angles in the context of years.
 	*/
-	static dateRangeRadians(dateRange, arcDateRange, radianDelta = new RadianDelta, outlier = '') {
-		//const diy1 = daysInYear(date1);
-		//const diy2 = daysInYear(date2);
-		//const start = divisionRadians(diy1, dayOfYear(date1)-1, radianDelta).start;
-		//const end   = divisionRadians(diy2, dayOfYear(date2)-1, radianDelta).start + (Math.TAU * yearDifference(date1, date2)); // INCORRECT for arcs
+	static dateRangeAngularRange(dateRange, arcDateRange, angularRange = new yearclock.Geometry.AngularRange, outlier = '') {
+		// dateRange	- the range of dates we're interested in
+		// arcDateRange	- the date range of the contextual arc
+		// angularRange	- the angular range of the contextual arc that the date range is mapped to
+		// outlier		- currently unused
 
-		const start = this.dateRadians(dateRange.start, arcDateRange, radianDelta).start;
-		const end = this.dateRadians(dateRange.end, arcDateRange, radianDelta).start;
+		const start = this.dateAngularRange(dateRange.start, arcDateRange, angularRange).start;
+		const end = this.dateAngularRange(dateRange.end, arcDateRange, angularRange).start;
 
 		/*
 		switch(outlier) {
@@ -131,19 +105,105 @@ yearclock.Geometry = class {
 
 		*/
 
-		let result = {
+
+
+		/* let result = {
 			start  : start,
 			middle : (start + end) / 2,
 			end    : end,
 			width  : end - start,
-		}
+		} */
+
+		const result = new yearclock.Geometry.AngularRange(start.degrees, end.degrees-start.degrees);
 
 		return result;
-	}/* dateRangeRadians */
+	}/* dateRangeAngularRange */
+
+
+
+	//
+	//	CRAP CODE END
+	//
+
 
 
 }/* yearclock.Geometry */
 
+
+
+/* yearclock.Geometry.Angle
+*/
+yearclock.Geometry.Angle = class {
+	#degrees = 0;
+
+	constructor(degrees=0) {
+		this.#degrees = degrees;
+	}
+
+	get degrees()    { return this.#degrees; }
+	get radians()    { return this.#degrees / 180 * Math.PI; }
+	get radiansPi()  { return this.#degrees / 180; }
+	get radiansTau() { return this.#degrees / 360; }
+
+	set degrees(degrees)         { this.#degrees = degrees; return this; }
+	set radians(radians)         { this.#degrees = radians * 180 / Math.PI; return this; }
+	set radiansPi(radiansPi)     { this.#degrees = radiansPi * 180; return this; }
+	set radiansTau(radiansTau)   { this.#degrees = radiansTau * 360; return this; }
+
+	plus(angle) {
+		this.#degrees += angle.degrees;
+	}
+
+}/* yearclock.Geometry.Angle */
+
+
+/* yearclock.Geometry.AngularRange
+*/
+yearclock.Geometry.AngularRange = class {
+	start;
+	width;
+
+	constructor(start = 0, width = 360) {
+		this.start = new yearclock.Geometry.Angle(start);
+		this.width = new yearclock.Geometry.Angle(width);
+	}
+
+	get end()    { return new yearclock.Geometry.Angle(this.start.degrees + this.width.degrees); }
+	get middle() { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees)/2); }
+
+	position(ratio) { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees * ratio)); }
+
+	/* division
+	Returns a new angular range representing the nth of count part of the parent
+	Divisions are zero-based.
+	*/
+	division(number, count) {
+		//console.debug('division', arguments);
+		const divWidthDegrees = this.width.degrees / count;
+		const startDegrees = this.start.degrees + (divWidthDegrees * number);
+		const result = new yearclock.Geometry.AngularRange(startDegrees, divWidthDegrees);
+		return result;
+	}
+
+}/* yearclock.Geometry.AngularRange */
+
+
+
+
+class RadianDelta {
+	constructor(start = 0, delta = yearclock.Maths.TAU) {
+		this.start = start;
+		this.delta = delta;
+	}
+}/* RadianDelta */
+
+
+class DegreeDelta {
+	constructor(start = 0, delta = 360) {
+		this.start = start;
+		this.delta = delta;
+	}
+}/* RadianDelta */
 
 
 
@@ -159,25 +219,25 @@ class Point {
 		this.precision = precision;
 	}
 
-	plus = function(point) {
+	plus(point) {
 		return new Point(
 			this.x + point.x,
 			this.y + point.y
 		);
 	}
 
-	distanceFrom = function(point = new Point()) {
+	distanceFrom(point = new Point()) {
 		const result = Math.hypot((this.x - point.x), (this.y - point.y));
 		return result;
 	}
 
 	// Clockwise from y axis
-	radiansFrom = function(center = new Point()) {
+	radiansFrom(center = new Point()) {
 		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
 		return result;
 	}
 
-	toPolarPoint = function(polarPoint = new PolarPoint()) {
+	toPolarPoint(polarPoint = new PolarPoint()) {
 		const distance = this.distanceFrom();
 		const radian  = (equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
 		// for points on the origin return the default PolarPoint radian
@@ -193,7 +253,7 @@ class Point {
 	}
 
 	// Clockwise from y axis
-	radiansFrom = function(center = new Point()) {
+	radiansFrom(center = new Point()) {
 		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
 		return result;
 	}
@@ -203,7 +263,7 @@ class Point {
 		return Math.hypot(this.x, this.y);
 	}
 
-	getDistanceFrom = function(point = new Point()) {
+	getDistanceFrom(point = new Point()) {
 		return Math.hypot((this.x - point.x), (this.y - point.y));
 	}
 
@@ -216,7 +276,7 @@ class Point {
 	}
 
 	// relative
-	rotate = function(radian) {
+	rotate(radian) {
 		const newPoint = new PolarPoint(this.radian + radian, this.distanceFromOrigin).toPoint();
 		this.x = newPoint.x;
 		this.y = newPoint.y;
@@ -237,7 +297,7 @@ class PolarPoint {
 		this.precision = precision;
 	}
 
-	toPoint = function() {
+	toPoint() {
 		return new Point(
 			this.radius * Math.sin(this.radian),
 			this.radius * -Math.cos(this.radian)
@@ -251,7 +311,7 @@ class PolarPoint {
 		)
 	}
 
-	plus = function(polarPoint) {
+	plus(polarPoint) {
 		return this.toPoint().plus(polarPoint.toPoint()).toPolarPoint();
 		// this way is pretty dumb, figure out a better way
 		// the lengths should add arithmetically
@@ -263,7 +323,7 @@ class PolarPoint {
 	Takes the current radian coordinate as the base heading and the new heading is relative to it.
 	Ie a 0 heading will continue in the same direction
 	*/
-	move = function(distance, heading) {
+	move(distance, heading) {
 		const delta = new PolarPoint(this.radian+heading, distance);
 		//console.log(delta);
 		return this.plus(delta);
@@ -301,17 +361,3 @@ class Annulus {
 }
 
 
-class RadianDelta {
-	constructor(start = 0, delta = yearclock.Maths.TAU) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
-
-
-class DegreeDelta {
-	constructor(start = 0, delta = 360) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */

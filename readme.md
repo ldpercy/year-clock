@@ -56,6 +56,10 @@ How to run
 
 No webserver is required, it all runs in-page.
 
+> [!NOTE]
+> I'm considering finally changing this over to http-only mode so I can use some CORS-restricted features such as modules
+
+
 
 URL Parameters
 --------------
@@ -124,7 +128,7 @@ Theming
 More info: [wiki/theming.md](<./wiki/theming.md>)
 
 > [!NOTE]
-> Theming work is in progress so subject to change
+> Theme code is evolving so details subject to change
 
 
 Themes are in [yearclock/theme/](<./yearclock/theme/>).
@@ -147,6 +151,7 @@ More detail in the [task/](<./task/>) directory.
 
 ### Currently working on
 
+* Big code clean up/refactors
 * Solar theme
 * Dynamic/interactive elements
 * Custom date highlighting
@@ -154,8 +159,9 @@ More detail in the [task/](<./task/>) directory.
 
 ### Future features
 
+* Changeover to http-only mode
 * A lunar-month hand to demonstrate moon phases
 * A 'second hand' pointing to the time of day
 * Calendar integration
-* Conversion to TypeScript
+
 

@@ -7,11 +7,14 @@ Todo
 
 Job reminders to wrap into other tasks.
 
+* Consider finally moving to http-only mode, subject to availability of easy serving options
+* Have display changes update the URL so that reloads use current settings
+* Add proper light/dark UI schemes; categorise theme styles into light/dark
 * Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
 * Start looking into tools like linters
 * Add license
 * Find out if form `select` size can be controlled with css
-* Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform
+* Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform; also `writing-mode: vertical-lr;`
 * Add another test mode to check for exceptions - something that would have caught the season-circle bug
 * Get the wireframe background to switch on the grid properly - prob need to draw separately
 * Improve the naming conventions for sector and general clock labels - it's a bit confusing right now

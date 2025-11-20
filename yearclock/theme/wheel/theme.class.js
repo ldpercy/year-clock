@@ -85,26 +85,23 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
+		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
-		this.dayRing.array   = this.displayDate.monthDayArray;
+		this.dayRing.array   = this.displayDate.monthDays.array;
 	}
 
 
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${-yearDayDivision.middle},0,0)`;
-
-		//const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
-		//const monthTransform = `rotate(${-monthDayDivision.middle},0,0)`;
+		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
+		const yearTransform = `rotate(${-yearDayDivision.middle.degrees},0,0)`;
 
 		const themeSVG = `
 			<defs>
@@ -138,7 +135,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 
 
-	getDateLabel = function(labelName, setting) {
+	getDateLabel(labelName, setting) {
 
 		const labelFormat = setting.format || labelName;
 
@@ -170,7 +167,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 
 
-	getDefs = function() {
+	getDefs() {
 		const result = `
 
 			<linearGradient id="gradient-stroke-linear" y1="0%" y2="100%" x1="0%" x2="0%">

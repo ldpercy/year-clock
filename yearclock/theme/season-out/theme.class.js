@@ -38,9 +38,9 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		yearclock.Geometry.addRadians(this.displayDate.yearDayArray);
+		yearclock.Geometry.addAngularRange(this.displayDate.yearDayArray);
 		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 	}
 
@@ -49,7 +49,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 	// formatting functions
 	//
 
-	formatLabel = function(labelType, data) {
+	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`; break;
@@ -60,7 +60,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 		return result;
 	}
 
-	formatTitle = function(type, data) {
+	formatTitle(type, data) {
 		let result;
 		switch(type) {
 			case 'yearDay'  : result = `${data.name} d${data.dayOfPeriod}`; break;
@@ -77,7 +77,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}

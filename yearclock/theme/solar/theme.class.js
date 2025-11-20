@@ -65,35 +65,32 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 		//this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		//addRadians(this.displayDate.yearDayArray);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
+		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
-		this.dayRing.array   = this.displayDate.monthDayArray;
+		this.dayRing.array   = this.displayDate.monthDays.array;
 	}
 
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
+		const yearDayDivision = this.angularRange.division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
+		const yearTransform = `rotate(${180-yearDayDivision.middle.degrees},0,0)`;
 
-
-		const yearDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInYear, this.displayDate.dayOfYear-1);
-		const yearTransform = `rotate(${180-yearDayDivision.middle},0,0)`;
-
-		const monthDayDivision = yearclock.Geometry.divisionDegrees(this.displayDate.daysInMonth, this.displayDate.date-1);
-		const monthTransform = `rotate(${180-monthDayDivision.middle},0,0)`;
+		const monthDayDivision = this.angularRange.division(this.displayDate.date-1, this.displayDate.daysInMonth);
+		const monthTransform = `rotate(${180-monthDayDivision.middle.degrees},0,0)`;
 
 		// ${this.getSectors('month', this.displayDate.monthArray, this.monthRing.outerRadius, this.monthRing.innerRadius)}
 
-		//log(this.displayDate);
+		//console.debug(this.displayDate);
 
-		const moonRadians = this.displayDate.monthDayArray[0].radians.middle;
+		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
 		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
 
 		/* ${this.getSectorsWithKnockout('month', this.displayDate.monthArray, this.monthRing)} */
@@ -128,7 +125,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 
 
-	getSun = function(labelType, setting) {
+	getSun(labelType, setting) {
 
 		const svg =
 			`<g class="sun">

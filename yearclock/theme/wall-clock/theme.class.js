@@ -32,7 +32,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 	handConfig = {
 		year : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 600,
 			tipRadius   : 10,
 			discRadius  : 40,
@@ -40,7 +40,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 			width       : 18,
 		},
 		month : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 850,
 			tipRadius   : 5,
 			discRadius  : 30,
@@ -60,26 +60,26 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		//console.debug(this.displayDate.monthArray);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
+		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange();
 
 	}
 
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 
 
 		const themeSVG = `
 			${this.getFace(this.clockRadius)}
 			${this.getSectorLabels('month', this.displayDate.monthArray, this.monthLabel)}
-			${this.getPeriodDayTicks('monthDay', this.displayDate.monthDayArray, this.tick)}
+			${this.getPeriodDayTicks('monthDay', this.displayDate.monthDays.array, this.tick)}
 			${this.getDateLabel('year', this.dateLabel)}
 			<text x="0" y="430" id="schwartz" class="schwartz" textLength="500" lengthAdjust="spacingAndGlyphs">SCHWARTZ</text>
 			${this.getHands(this.handConfig)}
@@ -89,7 +89,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 	}/* getThemeSVG */
 
 
-	formatLabel = function(labelType, data) {
+	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'month'    : result = `${data.name.slice(0,3)}`    ; break;

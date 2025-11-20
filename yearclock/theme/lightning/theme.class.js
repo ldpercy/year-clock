@@ -66,9 +66,9 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		yearclock.Geometry.addRadians(this.displayDate.yearDayArray);
+		yearclock.Geometry.addAngularRange(this.displayDate.yearDayArray);
 
 		this.displayDate.quarterArray = yearclock.PeriodArray.getQuarterArray(this.displayDate);
 		this.displayDate.weekArray    = yearclock.PeriodArray.getYearWeekArray(this.displayDate);
@@ -81,7 +81,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 	//
 
 
-	formatTitle = function(type, data) {
+	formatTitle(type, data) {
 		let result;
 		switch(type) {
 			case 'yearDay'  : result = `${data.name} d${data.date.dayOfYear}`; break;
@@ -93,7 +93,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 		return result;
 	}
 
-	formatLabel = function(labelType, data) {
+	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'yearDay'      : result = `${data.name.slice(0,2)}`; break;
@@ -113,7 +113,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const themeSVG = `
 			${this.getBody(this.body)}
@@ -138,7 +138,7 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 	}/* getThemeSVG */
 
 
-	getBody = function(body=this.body) {
+	getBody(body=this.body) {
 
 		const svg =
 			`<rect class="body" x="${body.x}" y="${body.y}" width="${body.width}" height="${body.height}" rx="${body.radius}" ry="${body.radius}"></rect>`;

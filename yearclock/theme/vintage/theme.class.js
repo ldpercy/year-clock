@@ -24,7 +24,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 				sectorPosition : 0.5,
 				rotate         : true,
 				invert         : false,
-				textType       : 'text',
+				textType       : 'textPath',
 				format         : 'monthName',
 			},
 			{
@@ -70,7 +70,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	handConfig = {
 		year : {
-			function : ()=>this.getHand1,
+			function    : this.getHand1,
 			length      : 900,
 			tipRadius   : 5,
 			discRadius  : 60,
@@ -78,8 +78,8 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 			width       : 50,
 		},
 		month : {
-			function : ()=>this.getHoleHand,
-			length : 790,
+			function    : this.getHoleHand,
+			length      : 790,
 			circleCenter: 670,
 		}
 	};
@@ -95,19 +95,19 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	setDisplayDate(date) {
 		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeRadians(this.displayDate.monthArray, this.displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.monthDayArray = this.getPeriodDayArray(yearclock.Date.startOfMonth(this.displayDate), yearclock.Date.nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
-		yearclock.Geometry.addRadians(this.displayDate.monthDayArray);
+		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
-		this.dayRing.array   = this.displayDate.monthDayArray;
+		this.dayRing.array   = this.displayDate.monthDays.array;
 	}
 
 
 	/* getThemeSVG
 	*/
-	getThemeSVG = function()
+	getThemeSVG()
 	{
 		const themeSVG = `
 			${this.getDefs()}
@@ -147,7 +147,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 
-/* 	formatLabel = function(labelType, data) {
+/* 	formatLabel(labelType, data) {
 		let result;
 		switch(labelType) {
 			case 'monthName'    : result = data.name; break;
@@ -163,7 +163,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	/* getDefs
 	*/
-	getDefs = function() {
+	getDefs() {
 		const result = `
 			<defs>
 				<linearGradient id="Gradient1">
@@ -184,7 +184,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	}/* getDefs */
 
 
-	getBody = function(body) {
+	getBody(body) {
 		const svg =
 			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
 		return svg;
@@ -193,10 +193,9 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 	/* getDateLabel
 	*/
-	getDateLabel = function(point) {
+	getDateLabel(point) {
 
-		const dateLabelPath = this.svg.getArcPath(yearclock.Geometry.radians(-60), yearclock.Geometry.radians(60), point.y);
-		//const dateLabelPath = this.svg.getArcPath(radians(240), radians(120), point.y);
+		const dateLabelPath = this.svg.getArcPath(new yearclock.Geometry.AngularRange(-60,120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 
@@ -222,8 +221,8 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	/* getHoleHand
 	Test of a more configurable hand shape
 	*/
-	getHoleHand = function(param, transform, cssClass, id)
-	/* getHand2 = function() */
+	getHoleHand(param, transform, cssClass, id)
+	/* getHand2() */
 	{
 		//const length = 900;
 		const tail = 150;
@@ -292,14 +291,14 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	}/* getHoleHand */
 
 
-	getIcon = function() {
+	getIcon() {
 		const path =
 			`<path class="group-label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"><title>vintage clock by ldpercy</title></path>`;
 			//'<path class="label favicon" d="M 259 966 L -966 -259 L 707 -707 M -259 966 L -707 -707 L 966 -259 M -707 707 L -259 -966 L 966 259 M -966 259 L 259 -966 L 707 707  Z"></path>';
 		return path;
 	}
 
-	getPin = function() {
+	getPin() {
 		return `<circle class="pin" x="0" y="0" r="10"/>`
 	}
 

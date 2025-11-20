@@ -9,18 +9,19 @@ yearclock.Date = class extends Date{
 
 	// accessors
 
-	get year()		{ return this.getFullYear(); }
-
-	get daysInMonth() {
-		return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate();
-	}
-
+	get year()			{ return this.getFullYear(); }
+	get daysInMonth()	{ return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate(); }
 	get dayOfMonth()	{ return this.getDate(); }
+	get daysInYear()	{ return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31)); }
+	get dayOfYear()		{ return yearclock.Date.dayOfYear(this); }
 
-	get daysInYear() {
-		return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31));
-	}
-	get dayOfYear() { return yearclock.Date.dayOfYear(this); }
+
+	// return new Dates:
+	get yearStart()		{ return new yearclock.Date(this.getFullYear(), 0, 1); }
+	get yearEnd()		{ return new yearclock.Date(this.getFullYear()+1, 0, 1); }
+	get monthStart()	{ return new yearclock.Date(this.getFullYear(), this.getMonth(),1); }
+	get monthEnd()		{ return new yearclock.Date(this.getFullYear(), this.getMonth()+1,1); }
+
 
 
 	// decisions, calculations:
@@ -40,6 +41,11 @@ yearclock.Date = class extends Date{
 	get isLastDayOfMonth() {
 		return (this.getDate() === this.daysInMonth);
 	}
+
+
+	name(locale)	{ return this.toLocaleString(locale, {weekday: "long"}); }
+
+
 
 	isInRange(dateRange) {
 		return ((this >= dateRange.start) && (this < dateRange.end));
@@ -104,17 +110,12 @@ yearclock.Date = class extends Date{
 	// constructors:
 	//
 
-	static startOfYear(date) {
-		return new yearclock.Date(date.getFullYear(), 0, 1);
-	}
+
 
 	static startOfMonth(date) {
 		return new yearclock.Date(date.getFullYear(), date.getMonth(),1);
 	}
 
-	static nextYear(date) {
-		return new yearclock.Date(date.getFullYear()+1, 0, 1);
-	}
 
 	static nextMonth(date) {
 		return new yearclock.Date(date.getFullYear(), date.getMonth()+1,1);
@@ -154,6 +155,58 @@ yearclock.Date.Range = class {
 		this.end = new yearclock.Date(end);
 	}
 
-	length = function() { return yearclock.Date.dayDifference(this.start, this.end); }
+	get length() { return yearclock.Date.dayDifference(this.start, this.end); }
 
 }/* yearclock.Date.Range */
+
+
+
+/* yearclock.Date.DayRange
+*/
+yearclock.Date.DayRange = class {
+
+	array = [];
+	startDate;
+	endDate;
+	//currentDate;
+	angularRange;
+
+	constructor(
+		startDate,
+		endDate,
+		currentDate,
+		language,
+	) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.currentDate = currentDate;
+
+		let dayCounter = 1;
+		for (let thisDate = new yearclock.Date(startDate); thisDate < endDate; thisDate.incrementDay())
+		{
+			const dayInfo = {
+				date         : new yearclock.Date(thisDate),
+				id           : thisDate.getDate(),
+				dayOfPeriod  : dayCounter,
+				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
+				name         : thisDate.name(language),
+			}
+			this.array.push(dayInfo);
+			dayCounter++;
+		}
+
+	}/* constructor */
+
+
+	setAngularRange( angularRange = new yearclock.Geometry.AngularRange()) {
+		this.angularRange = angularRange;
+		this.array.forEach(
+			(element, index, array=this) => { element.angularRange = this.angularRange.division(index, array.length); } // nb one-based
+		);
+	}/* addAngularRange */
+
+
+
+}/* yearclock.Date.DayRange */
+
+

@@ -9,6 +9,16 @@ yearclock.PeriodArray = class {
 
 
 
+
+
+
+
+	//
+	// old static methods
+	//
+
+
+
 	/* getSeasonArray
 
 	This version returns 5 elements with the first season split at the beginning/end
@@ -47,7 +57,7 @@ yearclock.PeriodArray = class {
 		];
 
 		seasonArray.find( (season) => displayDate.isInRange(season.dateRange) ).class = 'current';
-		yearclock.Geometry.addDateRangeRadians(seasonArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(seasonArray, displayDate.yearRange);
 
 		return seasonArray;
 	}/* getSeasonArray */
@@ -104,7 +114,7 @@ yearclock.PeriodArray = class {
 		];
 
 		seasonArray.find( (season) => displayDate.isInRange(season.dateRange) ).class = 'current';
-		yearclock.Geometry.addDateRangeRadians(seasonArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(seasonArray, displayDate.yearRange);
 
 		return seasonArray;
 	}/* getSeasonCircleArray */
@@ -148,7 +158,7 @@ yearclock.PeriodArray = class {
 		];
 
 		quarterArray.find( (quarter) => displayDate.isInRange(quarter.dateRange) ).class = 'current';
-		yearclock.Geometry.addDateRangeRadians(quarterArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(quarterArray, displayDate.yearRange);
 
 		return quarterArray;
 	}/* getQuarterArray */
@@ -196,7 +206,7 @@ yearclock.PeriodArray = class {
 		currentWeek.class = 'current';
 		displayDate.week = currentWeek;
 
-		yearclock.Geometry.addDateRangeRadians(weekArray, displayDate.yearRange);
+		yearclock.Geometry.addDateRangeAngularRange(weekArray, displayDate.yearRange);
 
 		//console.debug(weekArray);
 
