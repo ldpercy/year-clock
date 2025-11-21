@@ -3,6 +3,8 @@
 
 
 import * as yearclock from './theme/YearClock.js';
+import * as l10n from "./L10n.js";
+import * as geometry from "./Geometry.js";
 
 
 
@@ -205,7 +207,7 @@ class DayRange {
 	}/* constructor */
 
 
-	setAngularRange( angularRange = new yearclock.Geometry.AngularRange()) {
+	setAngularRange( angularRange = new geometry.AngularRange()) {
 		this.angularRange = angularRange;
 		this.array.forEach(
 			(element, index, array=this) => { element.angularRange = this.angularRange.division(index, array.length); } // nb one-based
@@ -219,8 +221,150 @@ class DayRange {
 
 
 
+/*
+find a better place for:
+*/
+
+function getDayClass(date, currentDate) { // this needs attention
+	//log(arguments);
+	let result = 'weekday';
+	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
+	if (date.getDate() === 1) result += ' first';
+	if (YearclocDate.datesAreEqual(date, currentDate)) {
+		result += ' current';
+	}
+	return result;
+}
+
+
+function getMonthClass(date, displayDate) {
+	let result = '';
+	if (YearclockDate.monthsAreEqual(date, displayDate)) result += ' current';
+	return result;
+}
+
+
+
+
+/* getPeriodDayArray
+Attempt at generalising to an arbitrary period.
+Will try to use half-open intervals.
+Might need to tweak the loop-end condition though.
+*/
+export function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
+	const result = [];
+
+	let dayCounter = 1;
+	for (let thisDate = new YearclockDate(dateStart); thisDate < dateEnd; thisDate.incrementDay())
+	{
+		const dayInfo = {
+			id           : thisDate.getDate(),
+			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
+			dayOfPeriod  : dayCounter,
+			date         : new yearclockDate.Date(thisDate),
+			class        : YearClock.getDayClass(thisDate, currentDate),
+		}
+		result.push(dayInfo);
+		dayCounter++;
+	}
+
+	return result;
+}/* getPeriodDayArray */
+
+
+
+
+
+
+/* createDisplayDate
+This is a temporary-ish function to re-create the big fat object that was sitting in the setup function called `config.date`.
+It needs to be rationalised (much) further.
+
+Most of this are actually just extensions on date/yearclock.Date
+Going to try another extension, but lots of this could still go away.
+*/
+class DisplayDate extends Date {
+
+	language;
+	#monthArray;
+	dateRange;
+
+	constructor(date, language)
+	{
+		super(date);
+		this.language = language;
+		//this.monthArray = this.getMonthArray(date, this.monthNames);
+		this.dateRange = new Range(this.yearStart, this.yearEnd);
+	}
+
+
+	get month()			{ return this.getMonth() + 1; } // js month starts at 0
+	get monthRange()	{ return new Range(YearclockDate.startOfMonth(this), YearclockDate.nextMonth(this)); }
+	get dayName()		{ return this.toLocaleString(this.language, {weekday: "long"}); }
+	get date()			{ return this.getDate(); }
+	get yearRange()		{ return new Range(this.yearStart, this.yearEnd); }
+	get monthNames()	{ return l10n.getMonthNames(this.language); }
+
+	get monthArray()	{
+		if (!this.#monthArray)
+		{
+			this.#monthArray = this.getMonthArray(this)
+		}
+		return this.#monthArray;
+	}
+
+	// Set up period arrays
+
+
+	//log('createDisplayDate',result);
+
+
+	/* getMonthArray
+	This needs a lot of cleanup/rationalisation:
+		Remove globals/paramterise
+		Change monthname map to something else
+	*/
+	getMonthArray(date) { //(date, monthNames) {
+		const monthId = [ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" ];
+		const year = date.year;
+		let dateStart;
+		let dateEnd;
+
+		const result = this.monthNames.map(
+			function( monthName, index ) {
+				dateStart   = new YearclockDate(year, index);
+				dateEnd     = new YearclockDate(year, index + 1);
+				//console.debug(index, dateStart, dateEnd);
+				const month = {
+					'id'           : monthId[index],
+					'number'       : index+1,
+					'name'         : monthName,
+					'dateStart'    : dateStart,
+					'dateEnd'      : dateEnd,
+					//'lastDate'     : new yearclock.Date(nextMonth - 1000),
+					'class'        : getMonthClass(dateStart, date),
+					'dateRange'    : new Range(dateStart, dateEnd),
+				};
+				return month;
+			}
+		);
+
+		//console.debug(result);
+
+		return result;
+	}/* getMonthArray */
+
+
+
+}/* yearclock.DisplayDate */
+
+
+
+
+
 export {
 	YearclockDate as Date,
 	Range,
 	DayRange,
+	DisplayDate
 };

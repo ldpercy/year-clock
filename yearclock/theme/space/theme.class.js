@@ -58,10 +58,10 @@ class SpaceTheme extends themebase.ThemeBase {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new yearclockDate.DisplayDate(date, this.parameter.language);
 
 		geometry.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		this.displayDate.yearDayArray = yearclockDate.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		geometry.Geometry.addAngularRange(this.displayDate.yearDayArray);
 
 		this.displayDate.monthDays = new yearclockDate.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
