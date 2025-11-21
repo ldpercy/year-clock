@@ -32,7 +32,7 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
-* Reorgansing the global scripts (maths, date etc) into classes
+* Moving to js modules and http-only
 * Improve test page parameterisation
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
@@ -41,6 +41,7 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Reorgansing the global scripts (maths, date etc) into classes
 * Chromium's animation glitchiness remedied for now afaict
 * Old footer removed, added small note to the form
 * Old plain-svg theme is now 'wheel' theme

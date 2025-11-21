@@ -17,7 +17,7 @@
 		}
 	</script>
 
-	<!-- core --->
+	<!-- core
 	<script defer src="yearclock/namespace.js"></script>
 	<script defer src="yearclock/L10n.js"></script>
 	<script defer src="yearclock/Maths.js"></script>
@@ -28,13 +28,15 @@
 	<script defer src="yearclock/SVG.js"></script>
 	<script defer src="yearclock/Test.js"></script>
 	<script defer src="yearclock/HTMLApp.js"></script>
+	--->
 
-	<!-- Clock & Theme classes -->
+	<!-- Clock & Theme classes
 	<script defer src="yearclock/theme/YearClock.js"></script>
 	<script defer src="yearclock/theme/ThemeBase.js"></script>
+	-->
 
 	<!-- setup -->
-	<script defer src="yearclock/yearClockApp.js"></script>
+	<script type="module" src="yearclock/yearClockApp.js"></script>
 
 	<!-- Theme Styles -->
 	<link id="stylesheet-theme" rel="stylesheet">
@@ -53,8 +55,8 @@
 
 		<label for="input-theme">Theme</label>
 		<select id="input-theme" name="theme" title="theme">
-			<!-- <option>solar</option>
-			<option>space</option> -->
+			<option>solar</option>
+			<option>space</option>
 			<option>wheel</option>
 			<option>car-dashboard</option>
 			<option>vintage</option>
