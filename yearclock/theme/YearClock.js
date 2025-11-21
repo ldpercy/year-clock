@@ -1,8 +1,13 @@
 
-yearclock.theme.YearClock = class  {
+import * as yearclockDate from "../Date.js";
+import * as svg from "../SVG.js";
+import * as geometry from "../Geometry.js";
+import * as l10n from "../L10n.js";
 
-	svg = yearclock.SVG;	// alias
-	angularRange = new yearclock.Geometry.AngularRange();
+
+export class YearClock {
+
+	angularRange = new geometry.AngularRange();
 
 
 
@@ -28,67 +33,74 @@ yearclock.theme.YearClock = class  {
 	Each clock class needs to override this method and call it during construction
 	*/
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new DisplayDate(date, this.parameter.language);
 	}
 
-
-
-
-	/*
-	find a better place for:
-	*/
-
-	static getDayClass(date, currentDate) { // this needs attention
-		//log(arguments);
-		let result = 'weekday';
-		if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
-		if (date.getDate() === 1) result += ' first';
-		if (yearclock.Date.datesAreEqual(date, currentDate)) {
-			result += ' current';
-		}
-		return result;
-	}
-
-	static getMonthClass(date, displayDate) {
-		let result = '';
-		if (yearclock.Date.monthsAreEqual(date, displayDate)) result += ' current';
-		return result;
-	}
-
-
-
-
-
-	/* getPeriodDayArray
-	Attempt at generalising to an arbitrary period.
-	Will try to use half-open intervals.
-	Might need to tweak the loop-end condition though.
-	*/
-	getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
-		const result = [];
-
-		let dayCounter = 1;
-		for (let thisDate = new yearclock.Date(dateStart); thisDate < dateEnd; thisDate.incrementDay())
-		{
-			const dayInfo = {
-				id           : thisDate.getDate(),
-				name         : thisDate.toLocaleString(locale, {weekday: "long"}),
-				dayOfPeriod  : dayCounter,
-				date         : new yearclock.Date(thisDate),
-				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
-			}
-			result.push(dayInfo);
-			dayCounter++;
-		}
-
-		return result;
-	}/* getPeriodDayArray */
 
 
 
 
 
 }/* YearClock */
+
+
+
+
+
+
+/*
+find a better place for:
+*/
+
+function getDayClass(date, currentDate) { // this needs attention
+	//log(arguments);
+	let result = 'weekday';
+	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
+	if (date.getDate() === 1) result += ' first';
+	if (yearclockDate.Date.datesAreEqual(date, currentDate)) {
+		result += ' current';
+	}
+	return result;
+}
+
+
+function getMonthClass(date, displayDate) {
+	let result = '';
+	if (yearclockDate.Date.monthsAreEqual(date, displayDate)) result += ' current';
+	return result;
+}
+
+
+
+
+/* getPeriodDayArray
+Attempt at generalising to an arbitrary period.
+Will try to use half-open intervals.
+Might need to tweak the loop-end condition though.
+*/
+function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
+	const result = [];
+
+	let dayCounter = 1;
+	for (let thisDate = new yearclockDate.Date(dateStart); thisDate < dateEnd; thisDate.incrementDay())
+	{
+		const dayInfo = {
+			id           : thisDate.getDate(),
+			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
+			dayOfPeriod  : dayCounter,
+			date         : new yearclockDate.Date(thisDate),
+			class        : YearClock.getDayClass(thisDate, currentDate),
+		}
+		result.push(dayInfo);
+		dayCounter++;
+	}
+
+	return result;
+}/* getPeriodDayArray */
+
+
+
+
 
 
 
@@ -99,7 +111,7 @@ It needs to be rationalised (much) further.
 Most of this are actually just extensions on date/yearclock.Date
 Going to try another extension, but lots of this could still go away.
 */
-yearclock.DisplayDate = class extends yearclock.Date {
+export class DisplayDate extends yearclockDate.Date {
 
 	language;
 	#monthArray;
@@ -110,16 +122,16 @@ yearclock.DisplayDate = class extends yearclock.Date {
 		super(date);
 		this.language = language;
 		//this.monthArray = this.getMonthArray(date, this.monthNames);
-		this.dateRange = new yearclock.Date.Range(this.yearStart, this.yearEnd);
+		this.dateRange = new yearclockDate.Range(this.yearStart, this.yearEnd);
 	}
 
 
 	get month()			{ return this.getMonth() + 1; } // js month starts at 0
-	get monthRange()	{ return new yearclock.Date.Range(yearclock.Date.startOfMonth(this), yearclock.Date.nextMonth(this)); }
+	get monthRange()	{ return new yearclockDate.Range(yearclockDate.Date.startOfMonth(this), yearclockDate.Date.nextMonth(this)); }
 	get dayName()		{ return this.toLocaleString(this.language, {weekday: "long"}); }
 	get date()			{ return this.getDate(); }
-	get yearRange()		{ return new yearclock.Date.Range(this.yearStart, this.yearEnd); }
-	get monthNames()	{ return yearclock.L10n.getMonthNames(this.language); }
+	get yearRange()		{ return new yearclockDate.Range(this.yearStart, this.yearEnd); }
+	get monthNames()	{ return l10n.getMonthNames(this.language); }
 
 	get monthArray()	{
 		if (!this.#monthArray)
@@ -148,8 +160,8 @@ yearclock.DisplayDate = class extends yearclock.Date {
 
 		const result = this.monthNames.map(
 			function( monthName, index ) {
-				dateStart   = new yearclock.Date(year, index);
-				dateEnd     = new yearclock.Date(year, index + 1);
+				dateStart   = new yearclockDate.Date(year, index);
+				dateEnd     = new yearclockDate.Date(year, index + 1);
 				//console.debug(index, dateStart, dateEnd);
 				const month = {
 					'id'           : monthId[index],
@@ -158,8 +170,8 @@ yearclock.DisplayDate = class extends yearclock.Date {
 					'dateStart'    : dateStart,
 					'dateEnd'      : dateEnd,
 					//'lastDate'     : new yearclock.Date(nextMonth - 1000),
-					'class'        : yearclock.theme.YearClock.getMonthClass(dateStart, date),
-					'dateRange'    : new yearclock.Date.Range(dateStart, dateEnd),
+					'class'        : YearClock.getMonthClass(dateStart, date),
+					'dateRange'    : new yearclockDate.Range(dateStart, dateEnd),
 				};
 				return month;
 			}

@@ -4,7 +4,13 @@
 //	Temporary-ish while I'm splitting up maths
 //
 
-yearclock.Geometry = class {
+
+import * as yearclockDate from "./Date.js";
+
+
+
+
+export class Geometry{
 
 	static radians(degrees) {
 		return (degrees/360) * yearclock.Maths.TAU;
@@ -26,13 +32,13 @@ yearclock.Geometry = class {
 	/* dateAngularRange
 	Will automatically extrapolate if the date falls outside of the date range.
 	*/
-	static dateAngularRange(date, dateRange, angularRange = new yearclock.Geometry.AngularRange()) {
+	static dateAngularRange(date, dateRange, angularRange = new AngularRange()) {
 
 		// date - the date we're interested in
 		// dateRange	- the contextual dateRange
 		// angularRange	- the angular range the dateRange is mapped to
 
-		const dayOfPeriod  = yearclock.Date.dayDifference(dateRange.start, date);
+		const dayOfPeriod  = yearclockDate.Date.dayDifference(dateRange.start, date);
 		const daysInPeriod = dateRange.length;
 
 		const result = angularRange.division(dayOfPeriod, daysInPeriod);
@@ -45,7 +51,7 @@ yearclock.Geometry = class {
 	This might be tricky to do is a fully general way.
 	Currently only works for even spacing of an array.
 	*/
-	static addAngularRange(array, angularRange = new yearclock.Geometry.AngularRange()) {
+	static addAngularRange(array, angularRange = new AngularRange()) {
 		array.forEach(
 			(element, index) => {
 				element.angularRange = angularRange.division(index, array.length);
@@ -64,7 +70,7 @@ yearclock.Geometry = class {
 	Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
 
 	*/
-	static addDateRangeAngularRange(array, arcDateRange, angularRange = new yearclock.Geometry.AngularRange(), outlier = '') {
+	static addDateRangeAngularRange(array, arcDateRange, angularRange = new AngularRange(), outlier = '') {
 		array.forEach(
 			(element) => {
 				element.angularRange = this.dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
@@ -78,7 +84,7 @@ yearclock.Geometry = class {
 	Given two dates return the start, middle, end & width in radians.
 	Gives angles in the context of years.
 	*/
-	static dateRangeAngularRange(dateRange, arcDateRange, angularRange = new yearclock.Geometry.AngularRange, outlier = '') {
+	static dateRangeAngularRange(dateRange, arcDateRange, angularRange = new AngularRange, outlier = '') {
 		// dateRange	- the range of dates we're interested in
 		// arcDateRange	- the date range of the contextual arc
 		// angularRange	- the angular range of the contextual arc that the date range is mapped to
@@ -114,7 +120,7 @@ yearclock.Geometry = class {
 			width  : end - start,
 		} */
 
-		const result = new yearclock.Geometry.AngularRange(start.degrees, end.degrees-start.degrees);
+		const result = new AngularRange(start.degrees, end.degrees-start.degrees);
 
 		return result;
 	}/* dateRangeAngularRange */
@@ -133,7 +139,7 @@ yearclock.Geometry = class {
 
 /* yearclock.Geometry.Angle
 */
-yearclock.Geometry.Angle = class {
+export class Angle {
 	#degrees = 0;
 
 	constructor(degrees=0) {
@@ -159,19 +165,19 @@ yearclock.Geometry.Angle = class {
 
 /* yearclock.Geometry.AngularRange
 */
-yearclock.Geometry.AngularRange = class {
+export class AngularRange  {
 	start;
 	width;
 
 	constructor(start = 0, width = 360) {
-		this.start = new yearclock.Geometry.Angle(start);
-		this.width = new yearclock.Geometry.Angle(width);
+		this.start = new Angle(start);
+		this.width = new Angle(width);
 	}
 
-	get end()    { return new yearclock.Geometry.Angle(this.start.degrees + this.width.degrees); }
-	get middle() { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees)/2); }
+	get end()    { return new Angle(this.start.degrees + this.width.degrees); }
+	get middle() { return new Angle(this.start.degrees + (this.width.degrees)/2); }
 
-	position(ratio) { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees * ratio)); }
+	position(ratio) { return new Angle(this.start.degrees + (this.width.degrees * ratio)); }
 
 	/* division
 	Returns a new angular range representing the nth of count part of the parent
@@ -181,7 +187,7 @@ yearclock.Geometry.AngularRange = class {
 		//console.debug('division', arguments);
 		const divWidthDegrees = this.width.degrees / count;
 		const startDegrees = this.start.degrees + (divWidthDegrees * number);
-		const result = new yearclock.Geometry.AngularRange(startDegrees, divWidthDegrees);
+		const result = new AngularRange(startDegrees, divWidthDegrees);
 		return result;
 	}
 
@@ -212,7 +218,7 @@ class DegreeDelta {
 // Classes
 //
 
-class Point {
+export class Point {
 	constructor(x=0, y=0, precision=12) {
 		this.x = x;
 		this.y = y;
@@ -289,7 +295,7 @@ class Point {
 
 
 
-class PolarPoint {
+export class PolarPoint {
 	constructor(radian=0, radius=0, precision=12)
 	{
 		this.radian = radian;
@@ -346,7 +352,7 @@ class PolarPoint {
 
 
 
-class Annulus {
+export class Annulus {
 	constructor(
 			outerRadius,
 			innerRadius,

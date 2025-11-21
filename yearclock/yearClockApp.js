@@ -1,15 +1,26 @@
-/* yearclock.App
+/* yearclockApp
 */
-yearclock.App = class extends ldpercy.HTMLApp {
+
+// namespaces
+class ldpercy {}
+class yearclock {}
+yearclock.theme = class {}
+
+
+import { HTMLApp } from "./HTMLApp.js";
+import * as l10n from "./L10n.js";
+import * as date from "./Date.js";
+
+yearclock.Date = date.Date;
+
+
+class YearclockApp extends HTMLApp {
 
 	name = "Year Clock";
 	info = `
 		Year Clock v2.🄹§ by ldpercy
 		https://github.com/ldpercy/year-clock/pull/??
 	`.replace(/\n\t/g,'\n');
-
-	//alias
-	l10n = yearclock.L10n;
 
 
 	eventListeners = [
@@ -107,7 +118,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		this.page.initial.style   = this.page.parameter.style || this.page.default.style;
 		// Language
 		this.page.parameter.language = this.getUrlParameter('language');
-		this.page.initial.language   = this.l10n.getSupportedLanguage(this.page.parameter.language) || this.l10n.getSupportedBrowserLanguage() || this.page.default.language;
+		this.page.initial.language   = l10n.getSupportedLanguage(this.page.parameter.language) || l10n.getSupportedBrowserLanguage() || this.page.default.language;
 		// Background
 		this.page.parameter.background = this.getUrlParameter('background');
 		this.page.initial.background   = this.page.parameter.background || this.page.default.background;
@@ -268,7 +279,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 	* load the css
 	* async load the theme class
 	*/
-	drawClock(clockParameter) {
+	async drawClock(clockParameter) {
 
 		//log('drawClock', arguments);
 
@@ -280,16 +291,31 @@ yearclock.App = class extends ldpercy.HTMLApp {
 			this.page.element.style_style.setAttribute('href', cssUrl_style);
 		}
 
+		let classUrl = `yearclock/theme/${clockParameter.theme}/theme.class.js`;
+
+
+
+		/*
 		if (yearclock.theme[clockParameter.theme]) {
 			// we already have that theme class in memory
 			// go right ahead to drawClock2
 			this.drawClock2(clockParameter);
 		}
 		else { // go and get the theme class
-			let classUrl = `yearclock/theme/${clockParameter.theme}/theme.class.js`;
+
 			// async load the theme class
 			this.replaceScript('script-themeClass', classUrl, (()=>{return this.drawClock2(clockParameter)}));
 		}
+		*/
+
+
+		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.class.js`;
+		const themeModule = await import(themeModuleUrl);
+		console.log('themeModule',themeModule);
+
+
+		this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
+
 
 	}/* drawClock */
 
@@ -311,7 +337,13 @@ yearclock.App = class extends ldpercy.HTMLApp {
 		//log('--- before instantiation');
 			this.page.clockInstance[clockParameter.id] = new yearclock.theme[clockParameter.theme](clockParameter);
 		//log('after instantiation; before getClockSVG');
-			clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
+
+
+
+
+
+
+		clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
 		/* }
 		catch(error)
 		{
@@ -368,7 +400,7 @@ yearclock.App = class extends ldpercy.HTMLApp {
 }/* yearclock.App */
 
 
-yearclock.app = new yearclock.App();
+const yearclockApp = new YearclockApp();
 
 
 

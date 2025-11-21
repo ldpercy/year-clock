@@ -1,6 +1,13 @@
 /* yearclock.Date
 */
-yearclock.Date = class extends Date{
+
+
+import * as yearclock from './theme/YearClock.js';
+
+
+
+// yearclock.Date = class extends Date{
+class YearclockDate extends Date {
 
 	constructor(date) {
 		super(...arguments);
@@ -12,15 +19,15 @@ yearclock.Date = class extends Date{
 	get year()			{ return this.getFullYear(); }
 	get daysInMonth()	{ return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate(); }
 	get dayOfMonth()	{ return this.getDate(); }
-	get daysInYear()	{ return yearclock.Date.dayOfYear(new Date(this.getFullYear(),11,31)); }
-	get dayOfYear()		{ return yearclock.Date.dayOfYear(this); }
+	get daysInYear()	{ return YearclockDate.dayOfYear(new Date(this.getFullYear(),11,31)); }
+	get dayOfYear()		{ return YearclockDate.dayOfYear(this); }
 
 
 	// return new Dates:
-	get yearStart()		{ return new yearclock.Date(this.getFullYear(), 0, 1); }
-	get yearEnd()		{ return new yearclock.Date(this.getFullYear()+1, 0, 1); }
-	get monthStart()	{ return new yearclock.Date(this.getFullYear(), this.getMonth(),1); }
-	get monthEnd()		{ return new yearclock.Date(this.getFullYear(), this.getMonth()+1,1); }
+	get yearStart()		{ return new YearclockDate(this.getFullYear(), 0, 1); }
+	get yearEnd()		{ return new YearclockDate(this.getFullYear()+1, 0, 1); }
+	get monthStart()	{ return new YearclockDate(this.getFullYear(), this.getMonth(),1); }
+	get monthEnd()		{ return new YearclockDate(this.getFullYear(), this.getMonth()+1,1); }
 
 
 
@@ -97,7 +104,7 @@ yearclock.Date = class extends Date{
 	}
 
 	static dayDifference(date1, date2) {
-		return Math.floor((yearclock.Date.truncateTime(date2) - yearclock.Date.truncateTime(date1)) / (1000 * 60 * 60 * 24));
+		return Math.floor((YearclockDate.truncateTime(date2) - YearclockDate.truncateTime(date1)) / (1000 * 60 * 60 * 24));
 	}
 
 	static yearDifference(date1, date2) {
@@ -113,20 +120,20 @@ yearclock.Date = class extends Date{
 
 
 	static startOfMonth(date) {
-		return new yearclock.Date(date.getFullYear(), date.getMonth(),1);
+		return new YearclockDate(date.getFullYear(), date.getMonth(),1);
 	}
 
 
 	static nextMonth(date) {
-		return new yearclock.Date(date.getFullYear(), date.getMonth()+1,1);
+		return new YearclockDate(date.getFullYear(), date.getMonth()+1,1);
 	}
 
 	static nextDay(date) {
-		return new yearclock.Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+		return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 	}
 
 	static truncateTime(date) {
-		return new yearclock.Date(date.getFullYear(), date.getMonth(), date.getDate());
+		return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate());
 	}
 
 
@@ -146,16 +153,16 @@ yearclock.Date = class extends Date{
 
 /* yearclock.Date.Range
 */
-yearclock.Date.Range = class {
+class Range {
 	start;
 	end;
 
 	constructor(start, end) {
-		this.start = new yearclock.Date(start);		// not sure yet if i want to keep these 'new Date(...)' constructors in here
-		this.end = new yearclock.Date(end);
+		this.start = new YearclockDate(start);		// not sure yet if i want to keep these 'new Date(...)' constructors in here
+		this.end = new YearclockDate(end);
 	}
 
-	get length() { return yearclock.Date.dayDifference(this.start, this.end); }
+	get length() { return YearclockDate.dayDifference(this.start, this.end); }
 
 }/* yearclock.Date.Range */
 
@@ -163,7 +170,7 @@ yearclock.Date.Range = class {
 
 /* yearclock.Date.DayRange
 */
-yearclock.Date.DayRange = class {
+class DayRange {
 
 	array = [];
 	startDate;
@@ -182,10 +189,10 @@ yearclock.Date.DayRange = class {
 		this.currentDate = currentDate;
 
 		let dayCounter = 1;
-		for (let thisDate = new yearclock.Date(startDate); thisDate < endDate; thisDate.incrementDay())
+		for (let thisDate = new YearclockDate(startDate); thisDate < endDate; thisDate.incrementDay())
 		{
 			const dayInfo = {
-				date         : new yearclock.Date(thisDate),
+				date         : new YearclockDate(thisDate),
 				id           : thisDate.getDate(),
 				dayOfPeriod  : dayCounter,
 				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
@@ -210,3 +217,10 @@ yearclock.Date.DayRange = class {
 }/* yearclock.Date.DayRange */
 
 
+
+
+export {
+	YearclockDate as Date,
+	Range,
+	DayRange,
+};

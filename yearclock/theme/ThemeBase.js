@@ -1,11 +1,15 @@
 /* ThemeBase
 */
-yearclock.theme.Base = class extends yearclock.theme.YearClock {
+
+import * as yearclock from './YearClock.js';
+import * as maths from '../Maths.js';
+
+export class ThemeBase extends yearclock.YearClock {
 
 
 	viewBox = '-1200 -1200 2400 2400';
 
-	sf = yearclock.Maths.significantFigures(4);
+	sf = maths.significantFigures(4);
 
 
 	//
