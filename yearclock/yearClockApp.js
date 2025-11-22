@@ -285,18 +285,28 @@ class YearclockApp extends HTMLApp {
 
 		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.class.js`;
 
-		// this will overwrite the theme binding each time, might need to improve?
-		const themeModule = await import(themeModuleUrl);
 
-		//console.log('themeModule',themeModule);
 
-		this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
+		// need something like railroad-handling here, but can't remember how to implement the pattern
 
-		const clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
+		try {
+			// this will overwrite the theme binding each time, might need to improve?
+			const themeModule = await import(themeModuleUrl);
 
-		this.page.element.container.innerHTML = clockSVG;
+			//console.log('themeModule',themeModule);
 
-		if (this.page.initial.test) { this.runTest(clockSVG); }
+			this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
+
+			const clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
+
+			this.page.element.container.innerHTML = clockSVG;
+
+			if (this.page.initial.test) { this.runTest(clockSVG); }
+		}
+		catch (error) {
+			console.error(`Error for '${clockParameter.theme}' theme:`, error);
+			this.page.element.container.innerHTML = `<h2 class="themeError">${error}</h2>`;
+		}
 
 	}/* drawClock */
 
