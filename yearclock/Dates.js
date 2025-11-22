@@ -102,7 +102,7 @@ function dayOfYear(date) {
 	return dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
 }
 
-function datesAreEqual(d1,d2) {
+export function datesAreEqual(d1,d2) {
 	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
 }
 
@@ -139,7 +139,7 @@ function truncateTime(date) {
 	return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
-function getSeason(date, seasonArray) {
+export function getSeason(date, seasonArray) {
 	const result = seasonArray.find(
 		(season) => date.isInRange(season.dateRange)
 	);

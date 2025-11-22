@@ -1,5 +1,12 @@
 /* vintage
 */
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
+
 class VintageTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(200);
@@ -185,9 +192,9 @@ class VintageTheme extends themebase.ThemeBase {
 
 
 	getBody(body) {
-		const svg =
+		const result =
 			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
-		return svg;
+		return result;
 	}
 
 
@@ -199,7 +206,7 @@ class VintageTheme extends themebase.ThemeBase {
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 
-		const svg =
+		const result =
 			`<g class="group-label dateLabel">
 				<defs>
 					<path id="dateLabelPath" d="${dateLabelPath}"/>
@@ -213,7 +220,7 @@ class VintageTheme extends themebase.ThemeBase {
 		${this.formatLabel('date',{'date':date})}
 		*/
 
-		return svg;
+		return result;
 	}/* getDateLabel */
 
 

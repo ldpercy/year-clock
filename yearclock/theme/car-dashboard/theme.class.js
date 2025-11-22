@@ -1,5 +1,14 @@
 /* Car dashboard theme
 */
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+import * as periodArray from '../../PeriodArray.js';
+import * as calendarEvent from '../../CalendarEvent.js';
+
+
 class CarDashboardTheme extends themebase.ThemeBase {
 
 	//viewBox           = '-2700 -1400 5400 2800';
@@ -318,9 +327,9 @@ class CarDashboardTheme extends themebase.ThemeBase {
 
 	getWarningMonth(type, settings) {
 
-		let weekEvent = yearclock.Event.getWeekEvent(this.displayDate) || {name:'',symbol:''};
-		let monthEvent = yearclock.Event.getMonthEvent(this.displayDate) || {name:'',symbol:''};
-		let customEvent = yearclock.Event.getCustomEvent(this.displayDate) || {name:'',symbol:''};
+		let weekEvent = calendarEvent.getWeekEvent(this.displayDate) || {name:'',symbol:''};
+		let monthEvent = calendarEvent.getMonthEvent(this.displayDate) || {name:'',symbol:''};
+		let customEvent = calendarEvent.getCustomEvent(this.displayDate) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -335,8 +344,8 @@ class CarDashboardTheme extends themebase.ThemeBase {
 
 	getWarningYear(type, settings) {
 
-		const event = yearclock.Event.getYearEvent(this.displayDate) || {name:'', symbol:''};
-		const seasonEvent = yearclock.Event.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
+		const event = calendarEvent.getYearEvent(this.displayDate) || {name:'', symbol:''};
+		const seasonEvent = calendarEvent.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
 
 		const result = `
 			<g class="warningLight">

@@ -1,6 +1,14 @@
 /* Lightning theme
 No hands for this one, just highlights
 */
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+import * as periodArray from '../../PeriodArray.js';
+
+
 class LightningTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(125);
