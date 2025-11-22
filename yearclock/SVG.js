@@ -6,6 +6,7 @@
 
 
 import * as maths from './Maths.js';
+import * as geometry from './Geometry.js';
 
 
 
@@ -14,13 +15,13 @@ const sf = maths.significantFigures(4);
 
 
 export function radialLine(angle, startRadius, endRadius) {
-	const start = new PolarPoint(angle.radians, startRadius).toPoint();
-	const end   = new PolarPoint(angle.radians, endRadius).toPoint();
+	const start = new geometry.PolarPoint(angle.radians, startRadius).toPoint();
+	const end   = new geometry.PolarPoint(angle.radians, endRadius).toPoint();
 	const result = {
-		xStart : this.sf(start.x),
-		yStart : this.sf(start.y),
-		xEnd   : this.sf(end.x),
-		yEnd   : this.sf(end.y),
+		xStart : sf(start.x),
+		yStart : sf(start.y),
+		xEnd   : sf(end.x),
+		yEnd   : sf(end.y),
 	}
 	return result;
 }
@@ -29,20 +30,20 @@ export function radialLine(angle, startRadius, endRadius) {
 */
 export function getSectorPath(angularRange, annulus)
 {
-	const outerStart = new PolarPoint(angularRange.start.radians, annulus.outerRadius).toPoint();
-	const outerEnd   = new PolarPoint(angularRange.end.radians,   annulus.outerRadius).toPoint();
-	const innerStart = new PolarPoint(angularRange.end.radians,   annulus.innerRadius).toPoint();
-	const innerEnd   = new PolarPoint(angularRange.start.radians, annulus.innerRadius).toPoint();
+	const outerStart = new geometry.PolarPoint(angularRange.start.radians, annulus.outerRadius).toPoint();
+	const outerEnd   = new geometry.PolarPoint(angularRange.end.radians,   annulus.outerRadius).toPoint();
+	const innerStart = new geometry.PolarPoint(angularRange.end.radians,   annulus.innerRadius).toPoint();
+	const innerEnd   = new geometry.PolarPoint(angularRange.start.radians, annulus.innerRadius).toPoint();
 
-	let outerArc = (annulus.option.simpleOuter) ? `L ${this.sf(outerEnd.x)} ${this.sf(outerEnd.y)}` : `A ${this.sf(annulus.outerRadius)},${this.sf(annulus.outerRadius)} 0 0 1 ${this.sf(outerEnd.x)},${this.sf(outerEnd.y)}`;
-	let innerArc = (annulus.option.simpleInner) ? `L ${this.sf(innerEnd.x)} ${this.sf(innerEnd.y)}` : `A ${this.sf(annulus.innerRadius)},${this.sf(annulus.innerRadius)} 0 0 0 ${this.sf(innerEnd.x)},${this.sf(innerEnd.y)}`;
+	let outerArc = (annulus.option.simpleOuter) ? `L ${sf(outerEnd.x)} ${sf(outerEnd.y)}` : `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
+	let innerArc = (annulus.option.simpleInner) ? `L ${sf(innerEnd.x)} ${sf(innerEnd.y)}` : `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;
 
 	if (annulus.innerRadius === 0) {innerArc = ''};
 
 	const path = `
-		M ${this.sf(outerStart.x)} ${this.sf(outerStart.y)}
+		M ${sf(outerStart.x)} ${sf(outerStart.y)}
 		${outerArc}
-		L ${this.sf(innerStart.x)} ${this.sf(innerStart.y)}
+		L ${sf(innerStart.x)} ${sf(innerStart.y)}
 		${innerArc}
 		Z`;
 
@@ -57,22 +58,22 @@ This is very hacked/chopped together right now, needs to be rationaslied
 export function getSectorResized(angularRange, annulus, sizeAdjust)
 {
 
-	const outerStart = new PolarPoint(angularRange.start.radians, annulus.outerRadius).newPointOffsetXY( -sizeAdjust.x, -sizeAdjust.y );
-	const outerEnd   = new PolarPoint(angularRange.end.radians,   annulus.outerRadius).newPointOffsetXY( +sizeAdjust.x, -sizeAdjust.y );
-	const innerStart = new PolarPoint(angularRange.end.radians,   annulus.innerRadius).newPointOffsetXY( +sizeAdjust.x, +sizeAdjust.y );
-	const innerEnd   = new PolarPoint(angularRange.start.radians, annulus.innerRadius).newPointOffsetXY( -sizeAdjust.x, +sizeAdjust.y );
+	const outerStart = new geometry.PolarPoint(angularRange.start.radians, annulus.outerRadius).newPointOffsetXY( -sizeAdjust.x, -sizeAdjust.y );
+	const outerEnd   = new geometry.PolarPoint(angularRange.end.radians,   annulus.outerRadius).newPointOffsetXY( +sizeAdjust.x, -sizeAdjust.y );
+	const innerStart = new geometry.PolarPoint(angularRange.end.radians,   annulus.innerRadius).newPointOffsetXY( +sizeAdjust.x, +sizeAdjust.y );
+	const innerEnd   = new geometry.PolarPoint(angularRange.start.radians, annulus.innerRadius).newPointOffsetXY( -sizeAdjust.x, +sizeAdjust.y );
 
 	//log('getSectorPolarDelta', outerStart, outerEnd);
 
-	let outerArc = `A ${this.sf(annulus.outerRadius)},${this.sf(annulus.outerRadius)} 0 0 1 ${this.sf(outerEnd.x)},${this.sf(outerEnd.y)}`;
-	let innerArc = `A ${this.sf(annulus.innerRadius)},${this.sf(annulus.innerRadius)} 0 0 0 ${this.sf(innerEnd.x)},${this.sf(innerEnd.y)}`;
+	let outerArc = `A ${sf(annulus.outerRadius)},${sf(annulus.outerRadius)} 0 0 1 ${sf(outerEnd.x)},${sf(outerEnd.y)}`;
+	let innerArc = `A ${sf(annulus.innerRadius)},${sf(annulus.innerRadius)} 0 0 0 ${sf(innerEnd.x)},${sf(innerEnd.y)}`;
 
 	if (annulus.innerRadius === 0) {innerArc = ''};
 
 	const path = `
-		M ${this.sf(outerStart.x)} ${this.sf(outerStart.y)}
+		M ${sf(outerStart.x)} ${sf(outerStart.y)}
 		${outerArc}
-		L ${this.sf(innerStart.x)} ${this.sf(innerStart.y)}
+		L ${sf(innerStart.x)} ${sf(innerStart.y)}
 		${innerArc}
 		Z`;
 
@@ -92,12 +93,12 @@ export function getArcPath(angularRange, radius, reverse = false)
 	let sweepFlag;
 
 	if (reverse) {
-		start     = new PolarPoint(angularRange.end.radians,   radius).toPoint();
-		end       = new PolarPoint(angularRange.start.radians, radius).toPoint();
+		start     = new geometry.PolarPoint(angularRange.end.radians,   radius).toPoint();
+		end       = new geometry.PolarPoint(angularRange.start.radians, radius).toPoint();
 		sweepFlag = 0
 	} else {
-		start     = new PolarPoint(angularRange.start.radians, radius).toPoint();
-		end       = new PolarPoint(angularRange.end.radians,   radius).toPoint();
+		start     = new geometry.PolarPoint(angularRange.start.radians, radius).toPoint();
+		end       = new geometry.PolarPoint(angularRange.end.radians,   radius).toPoint();
 		sweepFlag = 1
 	}
 
@@ -107,8 +108,8 @@ export function getArcPath(angularRange, radius, reverse = false)
 	//const sweepFlag    = (angularRange.width.degrees > 0) ? '1' : '0';
 
 	const path = `
-		M ${this.sf(start.x)} ${this.sf(start.y)}
-		A ${this.sf(radius)} ${this.sf(radius)} 0 0 ${sweepFlag} ${this.sf(end.x)} ${this.sf(end.y)}`;
+		M ${sf(start.x)} ${sf(start.y)}
+		A ${sf(radius)} ${sf(radius)} 0 0 ${sweepFlag} ${sf(end.x)} ${sf(end.y)}`;
 
 	return path;
 }
@@ -119,16 +120,16 @@ A simplified version of the above that draws a quadrilateral with straight lines
 */
 export function getSectorPathSimple(angularRange, annulus)
 {
-	const outerStart = new PolarPoint(angularRange.start.radians, annulus.outerRadius).toPoint();
-	const outerEnd   = new PolarPoint(angularRange.end.radians,   annulus.outerRadius).toPoint();
-	const innerStart = new PolarPoint(angularRange.end.radians,   annulus.innerRadius).toPoint();
-	const innerEnd   = new PolarPoint(angularRange.start.radians, annulus.innerRadius).toPoint();
+	const outerStart = new geometry.PolarPoint(angularRange.start.radians, annulus.outerRadius).toPoint();
+	const outerEnd   = new geometry.PolarPoint(angularRange.end.radians,   annulus.outerRadius).toPoint();
+	const innerStart = new geometry.PolarPoint(angularRange.end.radians,   annulus.innerRadius).toPoint();
+	const innerEnd   = new geometry.PolarPoint(angularRange.start.radians, annulus.innerRadius).toPoint();
 
 	const path = `
-		M ${this.sf(outerStart.x)} ${this.sf(outerStart.y)}
-		L ${this.sf(outerEnd.x)} ${this.sf(outerEnd.y)}
-		L ${this.sf(innerEnd.x)} ${this.sf(innerEnd.y)}
-		L ${this.sf(innerStart.x)} ${this.sf(innerStart.y)}
+		M ${sf(outerStart.x)} ${sf(outerStart.y)}
+		L ${sf(outerEnd.x)} ${sf(outerEnd.y)}
+		L ${sf(innerEnd.x)} ${sf(innerEnd.y)}
+		L ${sf(innerStart.x)} ${sf(innerStart.y)}
 		Z`;
 
 	return path;

@@ -9,9 +9,7 @@ yearclock.theme = class {}
 
 import { HTMLApp } from "./HTMLApp.js";
 import * as l10n from "./L10n.js";
-import * as date from "./Date.js";
-
-yearclock.Date = date.Date;
+import * as dates from "./Dates.js";
 
 
 class YearclockApp extends HTMLApp {
@@ -52,7 +50,7 @@ class YearclockApp extends HTMLApp {
 		// arguments - default, received and computed
 		default :
 		{
-			date        : new yearclock.Date(),
+			date        : new dates.Date(),
 			theme       : 'wheel',
 			style       : '',
 			language    : 'en',
@@ -106,7 +104,7 @@ class YearclockApp extends HTMLApp {
 		}
 		else
 		{
-			const urlDate =  new yearclock.Date(this.page.parameter.date);
+			const urlDate =  new dates.Date(this.page.parameter.date);
 			this.page.initial.date = (urlDate.isValid) ? urlDate : this.page.default.date;
 		}
 
@@ -204,7 +202,7 @@ class YearclockApp extends HTMLApp {
 
 
 	dayForward() {
-		const currentDate = new yearclock.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
+		const currentDate = new dates.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
 		currentDate.incrementDay();
 		this.changeDate(currentDate);
 		this.page.element.datePicker.value = currentDate.toIsoDate();
@@ -212,7 +210,7 @@ class YearclockApp extends HTMLApp {
 
 
 	dayBackward() {
-		const currentDate = new yearclock.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
+		const currentDate = new dates.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
 		currentDate.decrementDay();
 		this.changeDate(currentDate);
 		this.page.element.datePicker.value = currentDate.toIsoDate();

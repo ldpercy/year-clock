@@ -1,8 +1,7 @@
 
-import * as yearclockDate from "../Date.js";
-import * as svg from "../SVG.js";
+import * as dates from "../Dates.js";
 import * as geometry from "../Geometry.js";
-import * as l10n from "../L10n.js";
+
 
 
 export class YearClock {
@@ -33,11 +32,8 @@ export class YearClock {
 	Each clock class needs to override this method and call it during construction
 	*/
 	setDisplayDate(date) {
-		this.displayDate = new DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 	}
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 
 
-import * as yearclockDate from '../../Date.js';
+import * as dates from '../../Dates.js';
 import * as yearclock from '../YearClock.js';
 import * as themebase from '../ThemeBase.js';
 import * as svg from '../../SVG.js';
@@ -58,13 +58,13 @@ class SpaceTheme extends themebase.ThemeBase {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclockDate.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
 		geometry.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = yearclockDate.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		geometry.Geometry.addAngularRange(this.displayDate.yearDayArray);
 
-		this.displayDate.monthDays = new yearclockDate.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 		console.log('this.displayDate',this.displayDate);
@@ -93,7 +93,7 @@ class SpaceTheme extends themebase.ThemeBase {
 		//log(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
-		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
+		const moonPosition = new geometry.PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
 
 		const themeSVG = `
 
