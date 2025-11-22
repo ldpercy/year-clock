@@ -206,7 +206,7 @@ class DayRange {
 			dayCounter++;
 		}
 
-		console.log('DayRange.constructor', arguments);
+		//console.log('DayRange.constructor', arguments);
 
 	}/* constructor */
 

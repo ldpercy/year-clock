@@ -67,7 +67,7 @@ class SpaceTheme extends themebase.ThemeBase {
 		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
-		console.log('this.displayDate',this.displayDate);
+		//console.log('this.displayDate',this.displayDate);
 
 
 		this.monthRing.array = this.displayDate.monthArray;

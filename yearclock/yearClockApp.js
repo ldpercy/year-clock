@@ -10,6 +10,8 @@ yearclock.theme = class {}
 import { HTMLApp } from "./HTMLApp.js";
 import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
+import * as testing from "./Testing.js";
+
 
 
 class YearclockApp extends HTMLApp {
@@ -315,7 +317,7 @@ class YearclockApp extends HTMLApp {
 		this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
 
 		const clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
-
+		if (this.page.initial.test) { this.runTest(clockSVG); }
 
 	}/* drawClock */
 
@@ -381,7 +383,7 @@ class YearclockApp extends HTMLApp {
 
 
 	 runTest(string) {
-		const result = yearclock.Test.runTest(string);
+		const result = testing.runTest(string);
 		const passTest = (result.flat().length === 0);
 
 		if (passTest) {
