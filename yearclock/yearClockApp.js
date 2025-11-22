@@ -1,10 +1,6 @@
 /* yearclockApp
 */
 
-// namespaces
-class ldpercy {}
-class yearclock {}
-yearclock.theme = class {}
 
 
 import { HTMLApp } from "./HTMLApp.js";
@@ -161,8 +157,6 @@ class YearclockApp extends HTMLApp {
 
 
 
-
-
 		//log('page:', page);
 
 		const initialClockParams = {
@@ -182,8 +176,6 @@ class YearclockApp extends HTMLApp {
 
 		this.drawClock(initialClockParams);
 		// I'm sure there's a way to spread these parameters properly...
-
-		// Loading is async from here on, so the rest is in callbacks:
 
 	} /* setup */
 
@@ -275,9 +267,6 @@ class YearclockApp extends HTMLApp {
 
 
 	/* drawClock
-	Part 1:
-	* load the css
-	* async load the theme class
 	*/
 	async drawClock(clockParameter) {
 
@@ -294,25 +283,12 @@ class YearclockApp extends HTMLApp {
 		let classUrl = `yearclock/theme/${clockParameter.theme}/theme.class.js`;
 
 
-
-		/*
-		if (yearclock.theme[clockParameter.theme]) {
-			// we already have that theme class in memory
-			// go right ahead to drawClock2
-			this.drawClock2(clockParameter);
-		}
-		else { // go and get the theme class
-
-			// async load the theme class
-			this.replaceScript('script-themeClass', classUrl, (()=>{return this.drawClock2(clockParameter)}));
-		}
-		*/
-
-
 		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.class.js`;
-		const themeModule = await import(themeModuleUrl);	// this will overwrite the theme binding each time, might need to improve
-		//console.log('themeModule',themeModule);
 
+		// this will overwrite the theme binding each time, might need to improve?
+		const themeModule = await import(themeModuleUrl);
+
+		//console.log('themeModule',themeModule);
 
 		this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
 
@@ -325,46 +301,6 @@ class YearclockApp extends HTMLApp {
 	}/* drawClock */
 
 
-	/* drawClock2
-	Asynchronously called by the class script element's load event.
-	Part 2:
-	* create instance of the theme class for the clock
-	* write clock svg into the container
-	*/
-	drawClock2(clockParameter) {
-
-		//log('drawClock2',arguments);
-		let clockSVG;
-
-		//log('dd:',this.displayDate);
-		//try {
-
-		//log('--- before instantiation');
-			this.page.clockInstance[clockParameter.id] = new yearclock.theme[clockParameter.theme](clockParameter);
-		//log('after instantiation; before getClockSVG');
-
-
-
-
-
-
-		clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
-		/* }
-		catch(error)
-		{
-			log('found an error');
-			log(error);
-		} */
-
-		//log('after getClockSVG; before page update');
-
-		this.page.element.container.innerHTML = clockSVG;
-
-		//log('after page update ---');
-
-		if (this.page.initial.test) { this.runTest(clockSVG); }
-
-	}/* drawClock */
 
 
 
