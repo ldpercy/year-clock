@@ -1,5 +1,11 @@
 /* Wheel
 */
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
 class WheelTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(50, '-1600 -1200 3200 2400');

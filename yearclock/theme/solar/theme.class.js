@@ -1,5 +1,13 @@
 /* Solar
 */
+
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
+
 class SolarTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(50, '-2500 -1200 5000 2800');
@@ -90,7 +98,7 @@ class SolarTheme extends themebase.ThemeBase {
 		//console.debug(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
-		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
+		const moonPosition = new geometry.PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
 
 		/* ${this.getSectorsWithKnockout('month', this.displayDate.monthArray, this.monthRing)} */
 
