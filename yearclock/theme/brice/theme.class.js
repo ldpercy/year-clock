@@ -1,7 +1,13 @@
 /* brice
 Original theme from year-clock.net
 */
-yearclock.theme['brice'] = class extends yearclock.theme.Base {
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as geometry from '../../Geometry.js';
+
+
+class BriceTheme extends themebase.ThemeBase  {
 
 	// Clock parameters
 	viewBox           = '-1200 -1200 2400 2400';
@@ -94,3 +100,6 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.brice */
+
+
+export { BriceTheme as Theme };

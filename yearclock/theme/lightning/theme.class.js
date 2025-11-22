@@ -1,7 +1,7 @@
 /* Lightning theme
 No hands for this one, just highlights
 */
-yearclock.theme['lightning'] = class extends yearclock.theme.Base {
+class LightningTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(125);
 	//this.viewBox				= '-800 -800 1600 1600';
@@ -70,8 +70,8 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		geometry.addAngularRange(this.displayDate.yearDayArray);
 
-		this.displayDate.quarterArray = yearclock.PeriodArray.getQuarterArray(this.displayDate);
-		this.displayDate.weekArray    = yearclock.PeriodArray.getYearWeekArray(this.displayDate);
+		this.displayDate.quarterArray =  periodArray.getQuarterArray(this.displayDate);
+		this.displayDate.weekArray    =  periodArray.getYearWeekArray(this.displayDate);
 
 		//console.debug(this.displayDate.yearDayArray);
 	}
@@ -148,3 +148,6 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.lightning */
+
+
+export { LightningTheme as Theme }

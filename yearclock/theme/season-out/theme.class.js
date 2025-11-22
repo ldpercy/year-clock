@@ -1,7 +1,14 @@
 /* season-out
 Seasons in the middle then months then days
 */
-yearclock.theme['season-out'] = class extends yearclock.theme.Base {
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+import * as periodArray from '../../PeriodArray.js';
+
+class SeasonOutTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(75);
 	//viewBox				= '-800 -800 1600 1600';
@@ -41,7 +48,7 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 		geometry.addAngularRange(this.displayDate.yearDayArray);
-		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonCircleArray  =  periodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 	}
 
 
@@ -96,3 +103,6 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 
 
 }/* season-out */
+
+
+export { SeasonOutTheme as Theme };

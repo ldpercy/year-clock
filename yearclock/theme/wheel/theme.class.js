@@ -1,6 +1,6 @@
 /* Wheel
 */
-yearclock.theme['wheel'] = class extends yearclock.theme.Base {
+class WheelTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;
@@ -87,7 +87,7 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
@@ -233,3 +233,5 @@ yearclock.theme['wheel'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.wheel */
+
+export { WheelTheme as Theme }

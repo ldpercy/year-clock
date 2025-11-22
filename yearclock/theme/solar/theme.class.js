@@ -1,6 +1,6 @@
 /* Solar
 */
-yearclock.theme['solar'] = class extends yearclock.theme.Base {
+class SolarTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(50, '-2500 -1200 5000 2800');
 
@@ -67,7 +67,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 		//this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
@@ -165,3 +165,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.solar */
+
+
+
+export { SolarTheme as Theme }

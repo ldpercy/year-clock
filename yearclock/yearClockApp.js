@@ -229,7 +229,7 @@ class YearclockApp extends HTMLApp {
 		switch(event.target.name) {
 			case 'style'        : this.updateStyle(event.target.value); break;
 			case 'background'   : this.updateBackground(event.target.value) ; break;
-			case 'date'         : this.changeDate(new yearclock.Date(event.target.value)) ; break;
+			case 'date'         : this.changeDate(new dates.Date(event.target.value)) ; break;
 			default             : this.updateClock(); break;
 		}
 
@@ -251,7 +251,7 @@ class YearclockApp extends HTMLApp {
 
 
 	updateClock() {
-		const newDate = new yearclock.Date(this.page.element.datePicker.value);
+		const newDate = new dates.Date(this.page.element.datePicker.value);
 
 		if (!newDate.isValid)
 		{

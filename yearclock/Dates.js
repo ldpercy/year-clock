@@ -303,7 +303,7 @@ class DisplayDate extends YearclockDate {
 
 
 	get month()			{ return this.getMonth() + 1; } // js month starts at 0
-	get monthRange()	{ return new Range(YearclockDate.startOfMonth(this), YearclockDate.nextMonth(this)); }
+	get monthRange()	{ return new Range(startOfMonth(this), nextMonth(this)); }
 	get dayName()		{ return this.toLocaleString(this.language, {weekday: "long"}); }
 	get date()			{ return this.getDate(); }
 	get yearRange()		{ return new Range(this.yearStart, this.yearEnd); }

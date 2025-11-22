@@ -1,6 +1,6 @@
 /* Car dashboard theme
 */
-yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
+class CarDashboardTheme extends themebase.ThemeBase {
 
 	//viewBox           = '-2700 -1400 5400 2800';
 	viewBox           = svg.padViewBox(50, '-2700 -1400 5400 2800');
@@ -123,14 +123,14 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.angularRange);
 
-		//this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		//this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		//geometry.addAngularRange(this.displayDate.monthDayArray, this.dial.angularRange);
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange(this.dial.angularRange);
 
-		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
-		this.displayDate.seasonArray  = yearclock.PeriodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
-		this.displayDate.season = yearclock.Date.getSeason(this.displayDate, this.displayDate.seasonArray);
+		this.displayDate.seasonCircleArray  =  periodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonArray  =  periodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.season = dates.getSeason(this.displayDate, this.displayDate.seasonArray);
 	}
 
 
@@ -351,3 +351,6 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 }/* car-dashboard */
+
+
+export { CarDashboardTheme as Theme }

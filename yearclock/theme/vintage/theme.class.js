@@ -1,6 +1,6 @@
 /* vintage
 */
-yearclock.theme['vintage'] = class extends yearclock.theme.Base {
+class VintageTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(200);
 
@@ -97,7 +97,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
@@ -304,3 +304,5 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 }/* vintage */
+
+export { VintageTheme as Theme }
