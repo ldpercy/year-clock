@@ -430,7 +430,7 @@ export class ThemeBase extends yearclock.YearClock {
 	/* rotationAngle
 	*/
 	rotationAngle(angle, setting) {
-		let result = new yearclock.Geometry.Angle(angle.degrees);
+		let result = new geometry.Angle(angle.degrees);
 
 		switch(setting.rotate) {
 			case 'none'         : result.degrees = 0;

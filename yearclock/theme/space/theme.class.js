@@ -1,7 +1,6 @@
 
 
 import * as dates from '../../Dates.js';
-import * as yearclock from '../YearClock.js';
 import * as themebase from '../ThemeBase.js';
 import * as svg from '../../SVG.js';
 import * as geometry from '../../Geometry.js';
@@ -60,9 +59,9 @@ class SpaceTheme extends themebase.ThemeBase {
 	setDisplayDate(date) {
 		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		geometry.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		geometry.Geometry.addAngularRange(this.displayDate.yearDayArray);
+		geometry.addAngularRange(this.displayDate.yearDayArray);
 
 		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();

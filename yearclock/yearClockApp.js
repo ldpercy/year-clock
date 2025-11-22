@@ -310,7 +310,7 @@ class YearclockApp extends HTMLApp {
 
 
 		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.class.js`;
-		const themeModule = await import(themeModuleUrl);
+		const themeModule = await import(themeModuleUrl);	// this will overwrite the theme binding each time, might need to improve
 		console.log('themeModule',themeModule);
 
 

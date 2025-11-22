@@ -2,7 +2,7 @@
 */
 yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(200);
+	viewBox           = svg.padViewBox(200);
 
 	body = {
 		radius : 1300,
@@ -15,7 +15,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector  : new Annulus(1150, 1070),
+		sector  : new geometry.Annulus(1150, 1070),
 		sectorType: 'normal',
 		label : [
 			{
@@ -43,7 +43,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(750, 650),
+		sector : new geometry.Annulus(750, 650),
 		label : [
 			{
 				name           : 'dayName',
@@ -66,7 +66,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 		]
 	};
 
-	dateLabelPosition         = new Point(0,350);
+	dateLabelPosition         = new geometry.Point(0,350);
 
 	handConfig = {
 		year : {
@@ -93,9 +93,9 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
@@ -195,7 +195,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	*/
 	getDateLabel(point) {
 
-		const dateLabelPath = this.svg.getArcPath(new yearclock.Geometry.AngularRange(-60,120), point.y);
+		const dateLabelPath = svg.getArcPath(new geometry.AngularRange(-60,120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 

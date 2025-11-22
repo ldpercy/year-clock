@@ -3,18 +3,18 @@ Seasons in the middle then months then days
 */
 yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(75);
+	viewBox           = svg.padViewBox(75);
 	//viewBox				= '-800 -800 1600 1600';
 	clockRadius        = 1250;
 
 
-	seasonSector = new Annulus(450, 0);
-	monthSector  = new Annulus(850, 350);
-	daySector    = new Annulus(1200, 750);
+	seasonSector = new geometry.Annulus(450, 0);
+	monthSector  = new geometry.Annulus(850, 350);
+	daySector    = new geometry.Annulus(1200, 750);
 
 	dateLabelRadius     = 575;
-	dateLabel = { position : new Point(10, this.dateLabelRadius) }; // tiny tweak to horizontal position here, having trouble centering it properly
-	yearLabel = { position : new Point(0, -this.dateLabelRadius) };
+	dateLabel = { position : new geometry.Point(10, this.dateLabelRadius) }; // tiny tweak to horizontal position here, having trouble centering it properly
+	yearLabel = { position : new geometry.Point(0, -this.dateLabelRadius) };
 
 	monthLabel = {
 		radius         : 1000,
@@ -37,10 +37,10 @@ yearclock.theme['season-out'] = class extends yearclock.theme.Base {
 	}
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		yearclock.Geometry.addAngularRange(this.displayDate.yearDayArray);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		geometry.addAngularRange(this.displayDate.yearDayArray);
 		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
 	}
 

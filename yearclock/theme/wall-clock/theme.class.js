@@ -2,7 +2,7 @@
 */
 yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(30);
+	viewBox           = svg.padViewBox(30);
 	clockRadius       = 1200;
 
 	innerRadius       = 1000;
@@ -21,7 +21,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 	};
 
 
-	dateLabel = { position : new Point(0,-430) };
+	dateLabel = { position : new geometry.Point(0,-430) };
 
 	monthLabel = {
 		radius         : 920,
@@ -58,9 +58,9 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		//console.debug(this.displayDate.monthArray);
 
