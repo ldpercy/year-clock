@@ -204,6 +204,8 @@ class DayRange {
 			dayCounter++;
 		}
 
+		console.log('DayRange.constructor', arguments);
+
 	}/* constructor */
 
 
@@ -251,7 +253,7 @@ Attempt at generalising to an arbitrary period.
 Will try to use half-open intervals.
 Might need to tweak the loop-end condition though.
 */
-export function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
+function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 	const result = [];
 
 	let dayCounter = 1;
@@ -366,5 +368,6 @@ export {
 	YearclockDate as Date,
 	Range,
 	DayRange,
-	DisplayDate
+	DisplayDate,
+	getPeriodDayArray
 };
