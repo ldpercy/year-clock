@@ -317,6 +317,9 @@ class YearclockApp extends HTMLApp {
 		this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
 
 		const clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
+
+		this.page.element.container.innerHTML = clockSVG;
+
 		if (this.page.initial.test) { this.runTest(clockSVG); }
 
 	}/* drawClock */
