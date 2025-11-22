@@ -21,8 +21,8 @@ class YearclockDate extends Date {
 	get year()			{ return this.getFullYear(); }
 	get daysInMonth()	{ return new Date(this.getFullYear(), this.getMonth()+1, 0).getDate(); }
 	get dayOfMonth()	{ return this.getDate(); }
-	get daysInYear()	{ return YearclockDate.dayOfYear(new Date(this.getFullYear(),11,31)); }
-	get dayOfYear()		{ return YearclockDate.dayOfYear(this); }
+	get daysInYear()	{ return dayOfYear(new Date(this.getFullYear(),11,31)); }
+	get dayOfYear()		{ return dayOfYear(this); }
 
 
 	// return new Dates:
@@ -89,67 +89,69 @@ class YearclockDate extends Date {
 	}
 
 
-	//
-	//	Static methods
-	//
-
-	static dayOfYear(date) {
-		return yearclock.Date.dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
-	}
-
-	static datesAreEqual(d1,d2) {
-		return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
-	}
-
-	static monthsAreEqual(d1,d2) {
-		return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth());
-	}
-
-	static dayDifference(date1, date2) {
-		return Math.floor((YearclockDate.truncateTime(date2) - YearclockDate.truncateTime(date1)) / (1000 * 60 * 60 * 24));
-	}
-
-	static yearDifference(date1, date2) {
-		return date2.getFullYear() - date1.getFullYear();
-	}
-
-
-	// yearclock.Date static methods for factory/conversion methods
-	// I find the naming of 'newFoo' in instance conversion constructors a bit awkaward, so going to make these static for now
-	// constructors:
-	//
-
-
-
-	static startOfMonth(date) {
-		return new YearclockDate(date.getFullYear(), date.getMonth(),1);
-	}
-
-
-	static nextMonth(date) {
-		return new YearclockDate(date.getFullYear(), date.getMonth()+1,1);
-	}
-
-	static nextDay(date) {
-		return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-	}
-
-	static truncateTime(date) {
-		return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate());
-	}
-
-
-
-	static getSeason(date, seasonArray) {
-		const result = seasonArray.find(
-			(season) => date.isInRange(season.dateRange)
-		);
-		return result;
-	}
-
 
 
 }/* yearclock.Date */
+
+
+//
+// Ex-statics
+//
+
+function dayOfYear(date) {
+	return dayDifference(new Date(date.getFullYear(), 0, 1), date) + 1;
+}
+
+function datesAreEqual(d1,d2) {
+	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()) && (d1.getDate() === d2.getDate());
+}
+
+function monthsAreEqual(d1,d2) {
+	return (d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth());
+}
+
+export function dayDifference(date1, date2) {
+	return Math.floor((truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24));
+}
+
+function yearDifference(date1, date2) {
+	return date2.getFullYear() - date1.getFullYear();
+}
+
+// yearclock.Date static methods for factory/conversion methods
+// I find the naming of 'newFoo' in instance conversion constructors a bit awkaward, so going to make these static for now
+// constructors:
+
+function startOfMonth(date) {
+	return new YearclockDate(date.getFullYear(), date.getMonth(),1);
+}
+
+
+function nextMonth(date) {
+	return new YearclockDate(date.getFullYear(), date.getMonth()+1,1);
+}
+
+function nextDay(date) {
+	return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+}
+
+function truncateTime(date) {
+	return new YearclockDate(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function getSeason(date, seasonArray) {
+	const result = seasonArray.find(
+		(season) => date.isInRange(season.dateRange)
+	);
+	return result;
+}
+
+
+
+
+
+
+
 
 
 
@@ -164,7 +166,7 @@ class Range {
 		this.end = new YearclockDate(end);
 	}
 
-	get length() { return YearclockDate.dayDifference(this.start, this.end); }
+	get length() { return dayDifference(this.start, this.end); }
 
 }/* yearclock.Date.Range */
 
@@ -197,7 +199,7 @@ class DayRange {
 				date         : new YearclockDate(thisDate),
 				id           : thisDate.getDate(),
 				dayOfPeriod  : dayCounter,
-				class        : yearclock.theme.YearClock.getDayClass(thisDate, currentDate),
+				class        : getDayClass(thisDate, currentDate),
 				name         : thisDate.name(language),
 			}
 			this.array.push(dayInfo);
@@ -232,7 +234,7 @@ function getDayClass(date, currentDate) { // this needs attention
 	let result = 'weekday';
 	if (date.getDay() === 0 || date.getDay() == 6) result = 'weekend';
 	if (date.getDate() === 1) result += ' first';
-	if (YearclocDate.datesAreEqual(date, currentDate)) {
+	if (datesAreEqual(date, currentDate)) {
 		result += ' current';
 	}
 	return result;
@@ -241,7 +243,7 @@ function getDayClass(date, currentDate) { // this needs attention
 
 function getMonthClass(date, displayDate) {
 	let result = '';
-	if (YearclockDate.monthsAreEqual(date, displayDate)) result += ' current';
+	if (monthsAreEqual(date, displayDate)) result += ' current';
 	return result;
 }
 
@@ -263,8 +265,8 @@ function getPeriodDayArray(dateStart, dateEnd, currentDate, locale) {
 			id           : thisDate.getDate(),
 			name         : thisDate.toLocaleString(locale, {weekday: "long"}),
 			dayOfPeriod  : dayCounter,
-			date         : new yearclockDate.Date(thisDate),
-			class        : YearClock.getDayClass(thisDate, currentDate),
+			date         : new YearclockDate(thisDate),
+			class        : getDayClass(thisDate, currentDate),
 		}
 		result.push(dayInfo);
 		dayCounter++;
@@ -285,7 +287,7 @@ It needs to be rationalised (much) further.
 Most of this are actually just extensions on date/yearclock.Date
 Going to try another extension, but lots of this could still go away.
 */
-class DisplayDate extends Date {
+class DisplayDate extends YearclockDate {
 
 	language;
 	#monthArray;

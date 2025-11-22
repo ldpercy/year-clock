@@ -5,7 +5,7 @@
 //
 
 
-import * as yearclockDate from "./Date.js";
+import * as dates from "./Date.js";
 
 
 
@@ -38,7 +38,7 @@ export class Geometry{
 		// dateRange	- the contextual dateRange
 		// angularRange	- the angular range the dateRange is mapped to
 
-		const dayOfPeriod  = yearclockDate.Date.dayDifference(dateRange.start, date);
+		const dayOfPeriod  = dates.dayDifference(dateRange.start, date);
 		const daysInPeriod = dateRange.length;
 
 		const result = angularRange.division(dayOfPeriod, daysInPeriod);
