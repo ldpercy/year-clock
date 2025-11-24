@@ -1,12 +1,22 @@
 Task
 ====
 
+An overview of tasks, jobs, bugs etc.
+
 
 Todo
 ----
 
 Job reminders to wrap into other tasks.
 
+
+### Needs fixing - bugs, quirks etc
+* [October bug](<october bug.md>) eg: index.html?test=true&theme=vintage&date=2006-10-13
+
+
+
+### General improvements
+* [adjust labels for short weeks](<adjust labels for short weeks.md>)
 * Have display changes update the URL so that reloads use current settings
 * Add proper light/dark UI schemes; categorise theme styles into light/dark
 * Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
