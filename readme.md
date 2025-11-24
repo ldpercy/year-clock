@@ -1,13 +1,15 @@
 Year Clock
 ==========
 
-A bit like a regular analog clock, but instead of the regular 12 hour divisions it has the 12 months of the year.
-
-The 'hour hand' points to the time of year. In the second example the 'minute hand' points to the time of month.
+A bit like a regular analog clock, but instead of the regular 12 hour divisions it has the 12 months of the year. The 'hour hand' when present points to the time of year.
 
 <p align="middle">
-	<img width="45%" src="wiki/image/season-out.svg" alt="Example: season-out" title="index.html?theme=season-out&date=2015-10-21"/>
-	<img width="45%" src="wiki/image/wall-clock.svg" alt="Example: wall-clock" title="index.html?theme=wall-clock&date=2024-02-26"/>
+	<a href="https://ldpercy.github.io/year-clock/?theme=vintage&date=2006-05-25">
+	<img width="45%" src="wiki/image/vintage.svg" alt="Year clock example: vintage theme" title="?theme=vintage&date=2006-05-25"/>
+	</a>
+	<a href="https://ldpercy.github.io/year-clock/?theme=lightning&date=2006-05-25">
+	<img width="45%" src="wiki/image/lightning.svg" alt="Year clock example: lightning theme" title="?theme=lightning&date=2006-05-25"/>
+	</a>
 </p>
 
 
@@ -118,7 +120,7 @@ Change the hemisphere, changes some seasonal cues on some themes:
 
 ### Testing
 
-Turn on some basic smoke testing:
+Turn on some basic smoke testing - the border turns red if 'silent' JavaScript errors leak into the output (undefined, NaN etc):
 
 	index.html?test=true
 
