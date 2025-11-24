@@ -1,13 +1,21 @@
 /* Solar
 */
-yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(50, '-2500 -1200 5000 2800');
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
+
+class SolarTheme extends themebase.ThemeBase {
+
+	viewBox           = svg.padViewBox(50, '-2500 -1200 5000 2800');
 
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector  : new Annulus(1150,950),
+		sector  : new geometry.Annulus(1150,950),
 		sectorType: 'knockout',
 		label   : [{
 			name           : 'yearMonth',
@@ -23,7 +31,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(850, 650),
+		sector : new geometry.Annulus(850, 650),
 		label : [{
 			name           : 'monthDay',
 			radius         : 500,
@@ -35,7 +43,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 		}]
 	};
 
-	dateLabel   = { position : new Point( 0, 0) };
+	dateLabel   = { position : new geometry.Point( 0, 0) };
 
 	/*
 	outerRadius       = 1150;
@@ -62,12 +70,12 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		//this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		//this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
@@ -90,7 +98,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 		//console.debug(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
-		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
+		const moonPosition = new geometry.PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
 
 		/* ${this.getSectorsWithKnockout('month', this.displayDate.monthArray, this.monthRing)} */
 
@@ -165,3 +173,7 @@ yearclock.theme['solar'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.solar */
+
+
+
+export { SolarTheme as Theme }

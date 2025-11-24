@@ -1,9 +1,18 @@
 /* Car dashboard theme
 */
-yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+import * as periodArray from '../../PeriodArray.js';
+import * as calendarEvent from '../../CalendarEvent.js';
+
+
+class CarDashboardTheme extends themebase.ThemeBase {
 
 	//viewBox           = '-2700 -1400 5400 2800';
-	viewBox           = this.svg.padViewBox(50, '-2700 -1400 5400 2800');
+	viewBox           = svg.padViewBox(50, '-2700 -1400 5400 2800');
 
 	clock = {
 		bodyRadius : 1400,
@@ -12,7 +21,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 	seasonWheel = {
-		annulus : new Annulus(250, 0),
+		annulus : new geometry.Annulus(250, 0),
 	};
 
 
@@ -21,7 +30,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	outerRadius       = 1200;
 
 	dial = {
-		angularRange  : new yearclock.Geometry.AngularRange(225, 270),
+		angularRange  : new geometry.AngularRange(225, 270),
 	}
 
 	weekdayMarkerLength = 100;
@@ -37,20 +46,20 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 	};
 
 	dayNameLabel = {
-		position   : new Point(0,400),
+		position   : new geometry.Point(0,400),
 		attribute  : `textLength="600" lengthAdjust="spacingAndGlyphs"`,
 	}
 
 	dateLabel = {
-		position   : new Point(0,400),
+		position   : new geometry.Point(0,400),
 		attribute  : `textLength="650" lengthAdjust="spacingAndGlyphs"`,
 	}
 
 
-	hourLabel = { position : new Point(0,500) };
+	hourLabel = { position : new geometry.Point(0,500) };
 
-	monthDayAnnulus = new Annulus(1200, 1000);
-	yearMonthAnnulus = new Annulus(1200, 1000);
+	monthDayAnnulus = new geometry.Annulus(1200, 1000);
+	yearMonthAnnulus = new geometry.Annulus(1200, 1000);
 
 
 	monthSymbols = {
@@ -119,18 +128,18 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.angularRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange, this.dial.angularRange);
 
-		//this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
-		//yearclock.Geometry.addAngularRange(this.displayDate.monthDayArray, this.dial.angularRange);
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		//this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		//geometry.addAngularRange(this.displayDate.monthDayArray, this.dial.angularRange);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange(this.dial.angularRange);
 
-		this.displayDate.seasonCircleArray  = yearclock.PeriodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
-		this.displayDate.seasonArray  = yearclock.PeriodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
-		this.displayDate.season = yearclock.Date.getSeason(this.displayDate, this.displayDate.seasonArray);
+		this.displayDate.seasonCircleArray  =  periodArray.getSeasonCircleArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.seasonArray  =  periodArray.getSeasonArray(this.displayDate, this.parameter.hemisphere);
+		this.displayDate.season = dates.getSeason(this.displayDate, this.displayDate.seasonArray);
 	}
 
 
@@ -239,7 +248,7 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 	getSeasonFace(seasonWheel, displayDate) {
-		const yearDayDivision = (new yearclock.Geometry.AngularRange()).division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
+		const yearDayDivision = (new geometry.AngularRange()).division(this.displayDate.dayOfYear-1, this.displayDate.daysInYear);
 
 		const yearTransform = `rotate(${-yearDayDivision.middle.degrees},0,0)`;
 		const result = `
@@ -264,10 +273,10 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-clock.faceRadius},${-clock.faceRadius}
 			Z
 
-			${this.svg.rectanglePath(-300, 800, 600, 300, 50)}
+			${svg.rectanglePath(-300, 800, 600, 300, 50)}
 
-			${this.svg.rectanglePath(-1650, 900, 700, 200, 50)}
-			${this.svg.rectanglePath(950, 900, 700, 200, 50)}
+			${svg.rectanglePath(-1650, 900, 700, 200, 50)}
+			${svg.rectanglePath(950, 900, 700, 200, 50)}
 
 			Z`;
 		return path;
@@ -318,9 +327,9 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getWarningMonth(type, settings) {
 
-		let weekEvent = yearclock.Event.getWeekEvent(this.displayDate) || {name:'',symbol:''};
-		let monthEvent = yearclock.Event.getMonthEvent(this.displayDate) || {name:'',symbol:''};
-		let customEvent = yearclock.Event.getCustomEvent(this.displayDate) || {name:'',symbol:''};
+		let weekEvent = calendarEvent.getWeekEvent(this.displayDate) || {name:'',symbol:''};
+		let monthEvent = calendarEvent.getMonthEvent(this.displayDate) || {name:'',symbol:''};
+		let customEvent = calendarEvent.getCustomEvent(this.displayDate) || {name:'',symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -335,8 +344,8 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 	getWarningYear(type, settings) {
 
-		const event = yearclock.Event.getYearEvent(this.displayDate) || {name:'', symbol:''};
-		const seasonEvent = yearclock.Event.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
+		const event = calendarEvent.getYearEvent(this.displayDate) || {name:'', symbol:''};
+		const seasonEvent = calendarEvent.getSeasonEvent(this.displayDate.season.id) || {name:'', symbol:''};
 
 		const result = `
 			<g class="warningLight">
@@ -351,3 +360,6 @@ yearclock.theme['car-dashboard'] = class extends yearclock.theme.Base {
 
 
 }/* car-dashboard */
+
+
+export { CarDashboardTheme as Theme }

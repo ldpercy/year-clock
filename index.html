@@ -2,31 +2,23 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Year Clock v1.12.2 by ldpercy </title>
+	<title>Year Clock v2.0.0 by ldpercy </title>
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
 
 	<!-- page -->
 	<link rel="icon" href="page/favicon.svg">
 	<link rel="stylesheet" href="page/page.css">
 
-	<!-- core --->
-	<script defer src="yearclock/namespace.js"></script>
-	<script defer src="yearclock/L10n.js"></script>
-	<script defer src="yearclock/Maths.js"></script>
-	<script defer src="yearclock/Geometry.js"></script>
-	<script defer src="yearclock/Date.js"></script>
-	<script defer src="yearclock/PeriodArray.js"></script>
-	<script defer src="yearclock/Event.js"></script>
-	<script defer src="yearclock/SVG.js"></script>
-	<script defer src="yearclock/Test.js"></script>
-	<script defer src="yearclock/HTMLApp.js"></script>
+	<script>
+		const protocol = new URL(window.location).protocol;
 
-	<!-- Clock & Theme classes -->
-	<script defer src="yearclock/theme/YearClock.js"></script>
-	<script defer src="yearclock/theme/ThemeBase.js"></script>
+		if (protocol === 'file:') {
+			alert("You are using `file:` protocol - modules won't work");
+		}
+	</script>
 
 	<!-- setup -->
-	<script defer src="yearclock/yearClockApp.js"></script>
+	<script type="module" src="yearclock/yearClockApp.js"></script>
 
 	<!-- Theme Styles -->
 	<link id="stylesheet-theme" rel="stylesheet">
@@ -35,9 +27,6 @@
 	<!-- Page background style -->
 	<link id="stylesheet-background" rel="stylesheet">
 
-	<!-- Theme class script -->
-	<script defer id="script-themeClass"></script>
-
 </head>
 <body>
 	<form id="form-clock">
@@ -45,8 +34,8 @@
 
 		<label for="input-theme">Theme</label>
 		<select id="input-theme" name="theme" title="theme">
-			<!-- <option>solar</option>
-			<option>space</option> -->
+			<option>solar</option>
+			<option>space</option>
 			<option>wheel</option>
 			<option>car-dashboard</option>
 			<option>vintage</option>
@@ -102,7 +91,7 @@
 		<details>
 			<summary>🛈</summary>
 			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
-			<a href="https://github.com/ldpercy/year-clock/pull/42">v1.12.2</a>
+			<a href="https://github.com/ldpercy/year-clock/pull/43">v2.0.0</a>
 			by <a href="https://github.com/ldpercy/">ldpercy</a>
 
 		</details>

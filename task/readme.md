@@ -1,13 +1,21 @@
 Task
 ====
 
+An overview of tasks, jobs, bugs etc.
+
 
 Todo
 ----
-
 Job reminders to wrap into other tasks.
 
-* Consider finally moving to http-only mode, subject to availability of easy serving options
+
+### Needs fixing - bugs, quirks etc
+* [October bug](<october bug.md>) eg: index.html?test=true&theme=vintage&date=2006-10-13
+
+
+
+### General improvements
+* [adjust labels for short weeks](<adjust labels for short weeks.md>)
 * Have display changes update the URL so that reloads use current settings
 * Add proper light/dark UI schemes; categorise theme styles into light/dark
 * Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
@@ -32,7 +40,8 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
-* Reorgansing the global scripts (maths, date etc) into classes
+* Removal of old theme-loading callback
+* Moving to js modules and http-only
 * Improve test page parameterisation
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
@@ -41,6 +50,7 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Reorgansing the global scripts (maths, date etc) into classes
 * Chromium's animation glitchiness remedied for now afaict
 * Old footer removed, added small note to the form
 * Old plain-svg theme is now 'wheel' theme

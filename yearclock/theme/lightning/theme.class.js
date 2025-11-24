@@ -1,9 +1,17 @@
 /* Lightning theme
 No hands for this one, just highlights
 */
-yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(125);
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+import * as periodArray from '../../PeriodArray.js';
+
+
+class LightningTheme extends themebase.ThemeBase {
+
+	viewBox           = svg.padViewBox(125);
 	//this.viewBox				= '-800 -800 1600 1600';
 	clockRadius        = 1250;
 
@@ -17,17 +25,17 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 	overlap = 10;		// amount by which rings overshoot their natural divisions
 
-	quarterSector = new Annulus(300 + this.overlap, 0);
-	monthSector   = new Annulus(600 + this.overlap, 300 - this.overlap);
-	weekSector    = new Annulus(900 + this.overlap, 600 - this.overlap);
-	daySector     = new Annulus(1200, 900 - this.overlap);
+	quarterSector = new geometry.Annulus(300 + this.overlap, 0);
+	monthSector   = new geometry.Annulus(600 + this.overlap, 300 - this.overlap);
+	weekSector    = new geometry.Annulus(900 + this.overlap, 600 - this.overlap);
+	daySector     = new geometry.Annulus(1200, 900 - this.overlap);
 
 
-	//this.yearLabelPosition   = new Point(0, 0);
-	yearLabel   = { position : new Point(-1200, -1200) };
-	dateLabel   = { position : new Point( 1200, -1200) };
-	weekLabel   = { position : new Point(-1200,  1150) };
-	dayLabel    = { position : new Point( 1200,  1150) };
+	//this.yearLabelPosition   = new geometry.Point(0, 0);
+	yearLabel   = { position : new geometry.Point(-1200, -1200) };
+	dateLabel   = { position : new geometry.Point( 1200, -1200) };
+	weekLabel   = { position : new geometry.Point(-1200,  1150) };
+	dayLabel    = { position : new geometry.Point( 1200,  1150) };
 
 	quarterLabels = {
 		radius         : 175,
@@ -65,13 +73,13 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 	}
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		yearclock.Geometry.addAngularRange(this.displayDate.yearDayArray);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		geometry.addAngularRange(this.displayDate.yearDayArray);
 
-		this.displayDate.quarterArray = yearclock.PeriodArray.getQuarterArray(this.displayDate);
-		this.displayDate.weekArray    = yearclock.PeriodArray.getYearWeekArray(this.displayDate);
+		this.displayDate.quarterArray =  periodArray.getQuarterArray(this.displayDate);
+		this.displayDate.weekArray    =  periodArray.getYearWeekArray(this.displayDate);
 
 		//console.debug(this.displayDate.yearDayArray);
 	}
@@ -148,3 +156,6 @@ yearclock.theme['lightning'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.lightning */
+
+
+export { LightningTheme as Theme }

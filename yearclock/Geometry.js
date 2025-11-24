@@ -4,136 +4,141 @@
 //	Temporary-ish while I'm splitting up maths
 //
 
-yearclock.Geometry = class {
 
-	static radians(degrees) {
-		return (degrees/360) * yearclock.Maths.TAU;
-	}
-
-	static degrees(radians) {
-		return (radians/yearclock.Maths.TAU) * 360;
-	}
-
-
-	//
-	//	CRAP CODE START:
-	//
+import * as dates from "./Dates.js";
 
 
 
 
 
-	/* dateAngularRange
-	Will automatically extrapolate if the date falls outside of the date range.
+function radians(degrees) {
+	return (degrees/360) * yearclock.Maths.TAU;
+}
+
+function degrees(radians) {
+	return (radians/yearclock.Maths.TAU) * 360;
+}
+
+
+//
+//	CRAP CODE START:
+//
+
+
+
+
+
+/* dateAngularRange
+Will automatically extrapolate if the date falls outside of the date range.
+*/
+function dateAngularRange(date, dateRange, angularRange = new AngularRange()) {
+
+	// date - the date we're interested in
+	// dateRange	- the contextual dateRange
+	// angularRange	- the angular range the dateRange is mapped to
+
+	const dayOfPeriod  = dates.dayDifference(dateRange.start, date);
+	const daysInPeriod = dateRange.length;
+
+	const result = angularRange.division(dayOfPeriod, daysInPeriod);
+
+	return result;
+}/* dateAngularRange */
+
+
+/* addAngularRange
+This might be tricky to do is a fully general way.
+Currently only works for even spacing of an array.
+*/
+export function addAngularRange(array, angularRange = new AngularRange()) {
+	array.forEach(
+		(element, index) => {
+			element.angularRange = angularRange.division(index, array.length);
+		} // nb one-based
+	);
+}/* addAngularRange */
+
+
+/* addDateRangeRadians
+Currently incomplete/incorrect due to problems with dateRangeRadians
+Need to decide some things:
+* What date period the arc represents
+* What to do with periods outside or crossing out of the primary date range - discard, truncate, extrapolate
+* Special conditions for truncates or extrapolates crossing back into an overlapping pseudo-range, eg year boundaries (seasons)
+
+Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
+
+*/
+export function addDateRangeAngularRange(array, arcDateRange, angularRange = new AngularRange(), outlier = '') {
+	array.forEach(
+		(element) => {
+			element.angularRange = dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
+		}
+	);
+}/* addDateRangeRadians */
+
+
+
+/* dateRangeAngularRange
+Given two dates return the start, middle, end & width in radians.
+Gives angles in the context of years.
+*/
+function dateRangeAngularRange(dateRange, arcDateRange, angularRange = new AngularRange, outlier = '') {
+	// dateRange	- the range of dates we're interested in
+	// arcDateRange	- the date range of the contextual arc
+	// angularRange	- the angular range of the contextual arc that the date range is mapped to
+	// outlier		- currently unused
+
+	const start = dateAngularRange(dateRange.start, arcDateRange, angularRange).start;
+	const end = dateAngularRange(dateRange.end, arcDateRange, angularRange).start;
+
+	/*
+	switch(outlier) {
+		case 'truncate'    : result += (Math.cos(radians) < 0) ? 180 : 0; break;
+		case 'extrapolate' : result += (Math.sin(radians) < 0) ? 180 : 0; break;
+		case 'wrap'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
+	} */
+
+
+	/* 	Need to add or subtract additional 2pi rotations based on the year difference
+	TODO:
+	This will have to change with angular context - need to figure out what to do with negatives and year crossings for arcs
+
+	In an arc context it will depedn what the start and length radians represent.
+	For example it will be okay to represent a year crossing if the arc date range covers it, but if not then it will be an error, or a truncated sector.
+	Will need to think about how to handle these cases.
+
 	*/
-	static dateAngularRange(date, dateRange, angularRange = new yearclock.Geometry.AngularRange()) {
-
-		// date - the date we're interested in
-		// dateRange	- the contextual dateRange
-		// angularRange	- the angular range the dateRange is mapped to
-
-		const dayOfPeriod  = yearclock.Date.dayDifference(dateRange.start, date);
-		const daysInPeriod = dateRange.length;
-
-		const result = angularRange.division(dayOfPeriod, daysInPeriod);
-
-		return result;
-	}/* dateAngularRange */
-
-
-	/* addAngularRange
-	This might be tricky to do is a fully general way.
-	Currently only works for even spacing of an array.
-	*/
-	static addAngularRange(array, angularRange = new yearclock.Geometry.AngularRange()) {
-		array.forEach(
-			(element, index) => {
-				element.angularRange = angularRange.division(index, array.length);
-			} // nb one-based
-		);
-	}/* addAngularRange */
-
-
-	/* addDateRangeRadians
-	Currently incomplete/incorrect due to problems with dateRangeRadians
-	Need to decide some things:
-	* What date period the arc represents
-	* What to do with periods outside or crossing out of the primary date range - discard, truncate, extrapolate
-	* Special conditions for truncates or extrapolates crossing back into an overlapping pseudo-range, eg year boundaries (seasons)
-
-	Also need to decide what to do with what would be discards - set the radians to undefined, or remove the items (mutate)?
-
-	*/
-	static addDateRangeAngularRange(array, arcDateRange, angularRange = new yearclock.Geometry.AngularRange(), outlier = '') {
-		array.forEach(
-			(element) => {
-				element.angularRange = this.dateRangeAngularRange(element.dateRange, arcDateRange, angularRange, outlier);
-			}
-		);
-	}/* addDateRangeRadians */
 
 
 
-	/* dateRangeAngularRange
-	Given two dates return the start, middle, end & width in radians.
-	Gives angles in the context of years.
-	*/
-	static dateRangeAngularRange(dateRange, arcDateRange, angularRange = new yearclock.Geometry.AngularRange, outlier = '') {
-		// dateRange	- the range of dates we're interested in
-		// arcDateRange	- the date range of the contextual arc
-		// angularRange	- the angular range of the contextual arc that the date range is mapped to
-		// outlier		- currently unused
+	/* let result = {
+		start  : start,
+		middle : (start + end) / 2,
+		end    : end,
+		width  : end - start,
+	} */
 
-		const start = this.dateAngularRange(dateRange.start, arcDateRange, angularRange).start;
-		const end = this.dateAngularRange(dateRange.end, arcDateRange, angularRange).start;
+	const result = new AngularRange(start.degrees, end.degrees-start.degrees);
 
-		/*
-		switch(outlier) {
-			case 'truncate'    : result += (Math.cos(radians) < 0) ? 180 : 0; break;
-			case 'extrapolate' : result += (Math.sin(radians) < 0) ? 180 : 0; break;
-			case 'wrap'    : result += (Math.sin(radians) > 0) ? 180 : 0; break;
-		} */
-
-
-		/* 	Need to add or subtract additional 2pi rotations based on the year difference
-		TODO:
-		This will have to change with angular context - need to figure out what to do with negatives and year crossings for arcs
-
-		In an arc context it will depedn what the start and length radians represent.
-		For example it will be okay to represent a year crossing if the arc date range covers it, but if not then it will be an error, or a truncated sector.
-		Will need to think about how to handle these cases.
-
-		*/
+	return result;
+}/* dateRangeAngularRange */
 
 
 
-		/* let result = {
-			start  : start,
-			middle : (start + end) / 2,
-			end    : end,
-			width  : end - start,
-		} */
-
-		const result = new yearclock.Geometry.AngularRange(start.degrees, end.degrees-start.degrees);
-
-		return result;
-	}/* dateRangeAngularRange */
+//
+//	CRAP CODE END
+//
 
 
 
-	//
-	//	CRAP CODE END
-	//
 
-
-
-}/* yearclock.Geometry */
 
 
 
 /* yearclock.Geometry.Angle
 */
-yearclock.Geometry.Angle = class {
+export class Angle {
 	#degrees = 0;
 
 	constructor(degrees=0) {
@@ -159,19 +164,19 @@ yearclock.Geometry.Angle = class {
 
 /* yearclock.Geometry.AngularRange
 */
-yearclock.Geometry.AngularRange = class {
+export class AngularRange  {
 	start;
 	width;
 
 	constructor(start = 0, width = 360) {
-		this.start = new yearclock.Geometry.Angle(start);
-		this.width = new yearclock.Geometry.Angle(width);
+		this.start = new Angle(start);
+		this.width = new Angle(width);
 	}
 
-	get end()    { return new yearclock.Geometry.Angle(this.start.degrees + this.width.degrees); }
-	get middle() { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees)/2); }
+	get end()    { return new Angle(this.start.degrees + this.width.degrees); }
+	get middle() { return new Angle(this.start.degrees + (this.width.degrees)/2); }
 
-	position(ratio) { return new yearclock.Geometry.Angle(this.start.degrees + (this.width.degrees * ratio)); }
+	position(ratio) { return new Angle(this.start.degrees + (this.width.degrees * ratio)); }
 
 	/* division
 	Returns a new angular range representing the nth of count part of the parent
@@ -181,7 +186,7 @@ yearclock.Geometry.AngularRange = class {
 		//console.debug('division', arguments);
 		const divWidthDegrees = this.width.degrees / count;
 		const startDegrees = this.start.degrees + (divWidthDegrees * number);
-		const result = new yearclock.Geometry.AngularRange(startDegrees, divWidthDegrees);
+		const result = new AngularRange(startDegrees, divWidthDegrees);
 		return result;
 	}
 
@@ -212,7 +217,7 @@ class DegreeDelta {
 // Classes
 //
 
-class Point {
+export class Point {
 	constructor(x=0, y=0, precision=12) {
 		this.x = x;
 		this.y = y;
@@ -289,7 +294,7 @@ class Point {
 
 
 
-class PolarPoint {
+export class PolarPoint {
 	constructor(radian=0, radius=0, precision=12)
 	{
 		this.radian = radian;
@@ -346,7 +351,7 @@ class PolarPoint {
 
 
 
-class Annulus {
+export class Annulus {
 	constructor(
 			outerRadius,
 			innerRadius,

@@ -1,13 +1,15 @@
 Year Clock
 ==========
 
-A bit like a regular analog clock, but instead of the regular 12 hour divisions it has the 12 months of the year.
-
-The 'hour hand' points to the time of year. In the second example the 'minute hand' points to the time of month.
+A bit like a regular analog clock, but instead of the regular 12 hour divisions it has the 12 months of the year. The 'hour hand' when present points to the time of year.
 
 <p align="middle">
-	<img width="45%" src="wiki/image/season-out.svg" alt="Example: season-out" title="index.html?theme=season-out&date=2015-10-21"/>
-	<img width="45%" src="wiki/image/wall-clock.svg" alt="Example: wall-clock" title="index.html?theme=wall-clock&date=2024-02-26"/>
+	<a href="https://ldpercy.github.io/year-clock/?theme=vintage&date=2006-05-25">
+	<img width="45%" src="wiki/image/vintage.svg" alt="Year clock example: vintage theme" title="?theme=vintage&date=2006-05-25"/>
+	</a>
+	<a href="https://ldpercy.github.io/year-clock/?theme=lightning&date=2006-05-25">
+	<img width="45%" src="wiki/image/lightning.svg" alt="Year clock example: lightning theme" title="?theme=lightning&date=2006-05-25"/>
+	</a>
 </p>
 
 
@@ -51,14 +53,16 @@ I'm maintaining a theme 'brice' for the original design as seen on year-clock.ne
 How to run
 ----------
 
+> [!IMPORTANT]
+> From version 2.0 onwards year-clock will only run in `http` mode as it utilises JavaScript modules.
+> Versions prior to that were runnable with `file://` protocol.
+
 * Clone the repository
-* Open the file `[path to repo]/year-clock/index.html` directly in a browser
+* Start up your favourite webserver, making sure the project repo is under the webroot
+* Navigate to `[localhost]/year-clock/index.html` or equivalent
 
-No webserver is required, it all runs in-page.
 
-> [!NOTE]
-> I'm considering finally changing this over to http-only mode so I can use some CORS-restricted features such as modules
-
+No installation or build is required, it runs as-is in the browser.
 
 
 URL Parameters
@@ -116,7 +120,7 @@ Change the hemisphere, changes some seasonal cues on some themes:
 
 ### Testing
 
-Turn on some basic smoke testing:
+Turn on some basic smoke testing - the border turns red if 'silent' JavaScript errors leak into the output (undefined, NaN etc):
 
 	index.html?test=true
 
@@ -149,19 +153,28 @@ Tasks
 
 More detail in the [task/](<./task/>) directory.
 
+### Recently completed
+
+* Conversion to HTTP-only and JS modules
+* Change more code to use JS classes
+* Conversion to HTMLApp
+* 'Wheel' theme
+
+
 ### Currently working on
 
-* Big code clean up/refactors
-* Solar theme
-* Dynamic/interactive elements
-* Custom date highlighting
+* Transition to [Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
+* A solar theme that demonstrates moon phases
+* More dynamic/interactive elements
+* Custom date/event highlighting
 
 
-### Future features
+### Future work
 
-* Changeover to http-only mode
-* A lunar-month hand to demonstrate moon phases
-* A 'second hand' pointing to the time of day
-* Calendar integration
+* A live 'second hand' that points to the time of day
+* Calendar integration/import
+* New themes: space, 'fire danger', retro, roman
+* Revisit translations
+
 
 
