@@ -54,7 +54,7 @@ How to run
 ----------
 
 > [!IMPORTANT]
-> From version 2.1 onwards year-clock will only run in `http` mode as it utilises JavaScript modules.
+> From version 2.0 onwards year-clock will only run in `http` mode as it utilises JavaScript modules.
 > Versions prior to that were runnable with `file://` protocol.
 
 * Clone the repository
