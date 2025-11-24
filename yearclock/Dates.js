@@ -1,8 +1,6 @@
 /* yearclock.Date
 */
 
-
-import * as yearclock from './theme/YearClock.js';
 import * as l10n from "./L10n.js";
 import * as geometry from "./Geometry.js";
 
