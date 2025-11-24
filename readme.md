@@ -51,14 +51,16 @@ I'm maintaining a theme 'brice' for the original design as seen on year-clock.ne
 How to run
 ----------
 
+> [!IMPORTANT]
+> From version 2.1 onwards year-clock will only run in `http` mode as it utilises JavaScript modules.
+> Versions prior to that were runnable with `file://` protocol.
+
 * Clone the repository
-* Open the file `[path to repo]/year-clock/index.html` directly in a browser
+* Start up your favourite webserver, making sure the project repo is under the webroot
+* Navigate to `[localhost]/year-clock/index.html` or equivalent
 
-No webserver is required, it all runs in-page.
 
-> [!NOTE]
-> I'm considering finally changing this over to http-only mode so I can use some CORS-restricted features such as modules
-
+No installation or build is required, it runs as-is in the browser.
 
 
 URL Parameters
@@ -149,19 +151,28 @@ Tasks
 
 More detail in the [task/](<./task/>) directory.
 
+### Recently completed
+
+* Conversion to HTTP-only and JS modules
+* Change more code to use JS classes
+* Conversion to HTMLApp
+* 'Wheel' theme
+
+
 ### Currently working on
 
-* Big code clean up/refactors
-* Solar theme
-* Dynamic/interactive elements
-* Custom date highlighting
+* Transition to [Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
+* A solar theme that demonstrates moon phases
+* More dynamic/interactive elements
+* Custom date/event highlighting
 
 
-### Future features
+### Future work
 
-* Changeover to http-only mode
-* A lunar-month hand to demonstrate moon phases
-* A 'second hand' pointing to the time of day
-* Calendar integration
+* A live 'second hand' that points to the time of day
+* Calendar integration/import
+* New themes: space, 'fire danger', retro, roman
+* Revisit translations
+
 
 
