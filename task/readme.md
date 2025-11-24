@@ -40,8 +40,6 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
-* Removal of old theme-loading callback
-* Moving to js modules and http-only
 * Improve test page parameterisation
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
@@ -50,6 +48,8 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Removal of old theme-loading callback
+* Moving to js modules and http-only
 * Reorgansing the global scripts (maths, date etc) into classes
 * Chromium's animation glitchiness remedied for now afaict
 * Old footer removed, added small note to the form

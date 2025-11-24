@@ -139,7 +139,7 @@ Themes are in [yearclock/theme/](<./yearclock/theme/>).
 
 Each theme is a directory `yearclock/theme/[themeName]/` with two files:
 
-* theme.class.js - contains clock settings and the main `getClockSVG()` function
+* theme.class.js - module containing settings, theme class and the main `getThemeSVG()` method
 * theme.css	- regular stylesheet for the clock
 
 Optional style variants (specified with the 'style' parameter) are stored as:
@@ -156,7 +156,6 @@ More detail in the [task/](<./task/>) directory.
 ### Recently completed
 
 * Conversion to HTTP-only and JS modules
-* Change more code to use JS classes
 * Conversion to HTMLApp
 * 'Wheel' theme
 
@@ -164,6 +163,7 @@ More detail in the [task/](<./task/>) directory.
 ### Currently working on
 
 * Transition to [Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
+* Better use of JS classes
 * A solar theme that demonstrates moon phases
 * More dynamic/interactive elements
 * Custom date/event highlighting
