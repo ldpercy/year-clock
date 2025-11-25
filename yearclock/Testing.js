@@ -2,24 +2,34 @@
 // Testing
 //
 
+import * as dates from './Dates.js';
 
-
-function runTest(string) {
+function runTest(tests, outputString='') {
 	let result = [];
-	result.push(smokeTest(string));
+
+	const testArray  = tests.split(',');
+
+	if (testArray.includes('october'))
+	{
+		result.push(octoberTest());
+	}
+
+	result.push(smokeTest(outputString));
+
+
 	return result;
 }
 
 
 /* smokeTest
 */
-function smokeTest(testString) {
+function smokeTest(outputString) {
 	let result = [];
 	const smokeString = ['NaN', 'undefined', 'null', 'Infinity', 'Object', 'Invalid'];
 
 	smokeString.forEach(
 		(string) => {
-			const count = matchCount(testString, string);
+			const count = matchCount(outputString, string);
 			if (count) {
 				const sr = {};
 				sr[`${string}`] = count;
@@ -27,6 +37,7 @@ function smokeTest(testString) {
 			}
 		}
 	);
+	console.log('Smoke test:', result);
 	return result;
 }
 
@@ -34,6 +45,20 @@ function smokeTest(testString) {
 function matchCount(string, regex) {
 	const count  = string.matchAll(regex).toArray().length;
 	return count;
+}
+
+
+
+
+export function octoberTest(){
+	console.log('October Test');
+
+	const october1970 = new dates.DisplayDate('1970-10-15');
+	console.debug(october1970);
+
+	const october1971 = new dates.DisplayDate('1971-10-15');
+	console.debug(october1971);
+	return [];
 }
 
 

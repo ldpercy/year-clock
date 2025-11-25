@@ -298,7 +298,7 @@ class YearclockApp extends HTMLApp {
 
 			this.page.element.container.innerHTML = clockSVG;
 
-			if (this.page.initial.test) { this.runTest(clockSVG); }
+			if (this.page.initial.test) { this.runTest(this.page.initial.test, clockSVG); }
 		// }
 		// catch (error) {
 		// 	console.error(`Error for '${clockParameter.theme}' theme:`, error);
