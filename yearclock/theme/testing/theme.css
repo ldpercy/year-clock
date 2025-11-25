@@ -111,13 +111,12 @@ svg.yearclock .sector.dec { fill: #F18E17 }
 
 /* labels
 */
-
-.label {
+.group-label
+{
 	fill: var(--textDark);
 	text-anchor: middle;
 	dominant-baseline: middle;
-
-
+	font-size: 4em;
 }
 
 .group-label.yearDay text {

@@ -289,7 +289,7 @@ class YearclockApp extends HTMLApp {
 
 		// need something like railroad-handling here, but can't remember how to implement the pattern
 
-		try {
+		//try {
 			// this will overwrite the theme binding each time, might need to improve?
 			const themeModule = await import(themeModuleUrl);
 
@@ -302,11 +302,11 @@ class YearclockApp extends HTMLApp {
 			this.page.element.container.innerHTML = clockSVG;
 
 			if (this.page.initial.test) { this.runTest(clockSVG); }
-		}
-		catch (error) {
-			console.error(`Error for '${clockParameter.theme}' theme:`, error);
-			this.page.element.container.innerHTML = `<h2 class="themeError">${error}</h2>`;
-		}
+		// }
+		// catch (error) {
+		// 	console.error(`Error for '${clockParameter.theme}' theme:`, error);
+		// 	this.page.element.container.innerHTML = `<h2 class="themeError">${error}</h2>`;
+		// }
 
 	}/* drawClock */
 

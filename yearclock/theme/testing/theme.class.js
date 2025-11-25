@@ -16,19 +16,34 @@ class TestingTheme extends themebase.ThemeBase {
 
 	//monthSector = new geometry.Annulus(800, 400);
 
-	monthRing = {
+	yearMonthRing = {
 		name       : 'yearMonth',
 		array      : undefined, // this.displayDate.monthArray,
 		sector     : new geometry.Annulus(800, 100),
 		sizeAdjust :  new geometry.Point(-10,-10),
-		label : {
+		label : [{
 			radius         : 600,
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : false,
 			textType       : 'text',
 			format         : 'monthNumber',
-		}
+		}]
+	};
+
+	monthDayRing = {
+		name       : 'monthDay',
+		array      : undefined, // this.displayDate.monthArray,
+		sector     : new geometry.Annulus(900, 1200),
+		sizeAdjust :  new geometry.Point(-10,-10),
+		label : [{
+			radius         : 1000,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : false,
+			textType       : 'text',
+			format         : 'dayNumber',
+		}]
 	};
 
 
@@ -80,15 +95,17 @@ class TestingTheme extends themebase.ThemeBase {
 	setDisplayDate(date) {
 		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		this.monthRing.array = this.displayDate.monthArray;
+		this.yearMonthRing.array = this.displayDate.monthArray;
 
 		// Set Up Drawing
 		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		//this.dayRing.array   = this.displayDate.monthDayArray;
 
-		//this.displayDate.monthDayArray = dates.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
+
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange();
+		this.monthDayRing.array   = this.displayDate.monthDays.array;
 
 		/*
 		let weekArray    = getYearWeekArray(this.displayDate);
@@ -153,10 +170,9 @@ class TestingTheme extends themebase.ThemeBase {
 
 			${this.getFace(this.clockRadius)}
 
-			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, this.monthRing)}
-			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
 
-
+			${this.getRing(this.yearMonthRing)}
+			${this.getRing(this.monthDayRing)}
 
 
 			${this.getDateLabel('date', this.dateLabel)}
@@ -166,14 +182,14 @@ class TestingTheme extends themebase.ThemeBase {
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="100" />
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="50" />
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="10" />
-
-
 		`;
 
 		/*
+			 ${this.getSectors('yearMonth', this.displayDate.monthArray, this.yearMonthRing.sector, this.yearMonthRing)}
+			 ${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
+
 			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
 			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
-
 
 		*/
 
