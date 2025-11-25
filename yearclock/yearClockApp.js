@@ -280,11 +280,8 @@ class YearclockApp extends HTMLApp {
 			this.page.element.style_style.setAttribute('href', cssUrl_style);
 		}
 
-		let classUrl = `yearclock/theme/${clockParameter.theme}/theme.class.js`;
 
-
-		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.class.js`;
-
+		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.js`;
 
 
 		// need something like railroad-handling here, but can't remember how to implement the pattern

@@ -139,7 +139,7 @@ Themes are in [yearclock/theme/](<./yearclock/theme/>).
 
 Each theme is a directory `yearclock/theme/[themeName]/` with two files:
 
-* theme.class.js - module containing settings, theme class and the main `getThemeSVG()` method
+* theme.js - module containing theme class, settings, and the main `getThemeSVG()` method
 * theme.css	- regular stylesheet for the clock
 
 Optional style variants (specified with the 'style' parameter) are stored as:

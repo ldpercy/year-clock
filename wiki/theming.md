@@ -10,7 +10,7 @@ For `example-theme` this will be:
 yearclock/
 	theme/
 		example-theme/
-			theme.class.js
+			theme.js
 			theme.css
 ```
 
@@ -23,7 +23,7 @@ JavaScript Classes
 Themes are written as JavaScript classes.
 
 
-Example `yearclock/theme/example-theme/theme.class.js`:
+Example `yearclock/theme/example-theme/theme.js`:
 
 ```js
 	import * as themebase from '../ThemeBase.js';
