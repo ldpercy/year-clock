@@ -53,11 +53,37 @@ function matchCount(string, regex) {
 export function octoberTest(){
 	console.log('October Test');
 
-	const october1970 = new dates.DisplayDate('1970-10-15');
+	const result = [];
+
+	const start = 1920;
+	const end = 2020;
+
+	let dateString;
+	let thisDate;
+
+
+	for (let i = start; i <= end; i++) {
+		dateString = `${i}-10-15`;
+		thisDate = new dates.DisplayDate(dateString);
+		console.debug(dateString, thisDate.daysInMonth, thisDate.monthRange.length);
+
+		if ( thisDate.daysInMonth !== thisDate.monthRange.length) {
+			console.warn(thisDate.monthRange);
+		}
+		else {
+			console.log(thisDate.monthRange);
+		}
+
+	}
+
+
+	/* const october1970 = new dates.DisplayDate('1970-10-15');
 	console.debug(october1970);
+	console.debug(october1970.daysInMonth);
 
 	const october1971 = new dates.DisplayDate('1971-10-15');
 	console.debug(october1971);
+	console.debug(october1971.daysInMonth); */
 	return [];
 }
 

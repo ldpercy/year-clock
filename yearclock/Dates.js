@@ -110,6 +110,9 @@ function monthsAreEqual(d1,d2) {
 
 export function dayDifference(date1, date2) {
 	return Math.floor((truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24));
+	// There is an error in here - see the 'october bug'
+
+
 }
 
 function yearDifference(date1, date2) {
@@ -164,7 +167,7 @@ class Range {
 		this.end = new YearclockDate(end);
 	}
 
-	get length() { return dayDifference(this.start, this.end); }
+	get length() { return dayDifference(this.start, this.end); } // error here
 
 }/* yearclock.Date.Range */
 
@@ -301,7 +304,7 @@ class DisplayDate extends YearclockDate {
 
 
 	get month()			{ return this.getMonth() + 1; } // js month starts at 0
-	get monthRange()	{ return new Range(startOfMonth(this), nextMonth(this)); }
+	get monthRange()	{ return new Range(startOfMonth(this), nextMonth(this)); } /// HERE
 	get dayName()		{ return this.toLocaleString(this.language, {weekday: "long"}); }
 	get date()			{ return this.getDate(); }
 	get yearRange()		{ return new Range(this.yearStart, this.yearEnd); }
