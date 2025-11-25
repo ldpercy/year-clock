@@ -131,12 +131,13 @@ text.dateLabel {
 
 /* hands
 */
-.yearHand {
-	stroke: black;
-	fill: black;
-	stroke-width: 15;
+.hands
+{
+	stroke: #7777;
+	fill: #bbbb;
+	stroke-width: 5;
 	stroke-linejoin: round;
-	filter: drop-shadow(5px 5px 10px gray);
+	filter: drop-shadow(5px 5px 10px #4444);
 }
 
 

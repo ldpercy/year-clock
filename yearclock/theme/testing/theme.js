@@ -22,7 +22,7 @@ class TestingTheme extends themebase.ThemeBase {
 		sector     : new geometry.Annulus(800, 100),
 		sizeAdjust :  new geometry.Point(-10,-10),
 		label : [{
-			radius         : 600,
+			radius         : 500,
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : false,
@@ -47,31 +47,31 @@ class TestingTheme extends themebase.ThemeBase {
 	};
 
 
-
-	weekSector  = new geometry.Annulus(900, 400);
-	daySector   = new geometry.Annulus(1200, 810);
-
-	weekLabel = {
-		radius         : 600,
-		sectorPosition : 0.5,
-		rotate         : 'radial-left',
-		invert         : false,
-	};
-
-
-	dayLabel = {
-		radius         : 1000,
-		sectorPosition : 0.5,
-		rotate         : 'radial-left',
-		invert         : false,
+	handConfig = {
+		year : {
+			function    : this.getHand1,
+			length      : 450,
+			tipRadius   : 10,
+			discRadius  : 40,
+			tail        : 160,
+			width       : 18,
+		},
+		month : {
+			function    : this.getHand1,
+			length      : 950,
+			tipRadius   : 10,
+			discRadius  : 30,
+			tail        : 160,
+			width       : 20,
+		},
 	};
 
 	dateLabel = {
-		position   : new geometry.Point(-1200,-1200)
+		position   : new geometry.Point(-1100,-1100)
 	};
 
 	monthSymbols = {
-		radius         : 600,
+		radius         : 650,
 		position       : 0.5,
 		rotate         : false,
 		invert         : false,
@@ -119,6 +119,7 @@ class TestingTheme extends themebase.ThemeBase {
 	//
 	// formatting functions
 	//
+	/*
 	formatTitle(type, data) {
 		let result;
 		switch(type) {
@@ -131,7 +132,7 @@ class TestingTheme extends themebase.ThemeBase {
 
 		return result;
 	}
-
+ */
 
 	/* getThemeSVG
 	*/
@@ -173,7 +174,7 @@ class TestingTheme extends themebase.ThemeBase {
 
 			${this.getRing(this.yearMonthRing)}
 			${this.getRing(this.monthDayRing)}
-
+			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
 
 			${this.getDateLabel('date', this.dateLabel)}
 
@@ -182,11 +183,13 @@ class TestingTheme extends themebase.ThemeBase {
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="100" />
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="50" />
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="10" />
+
+			${this.getHands(this.handConfig)}
 		`;
 
 		/*
 			 ${this.getSectors('yearMonth', this.displayDate.monthArray, this.yearMonthRing.sector, this.yearMonthRing)}
-			 ${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
+
 
 			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
 			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
