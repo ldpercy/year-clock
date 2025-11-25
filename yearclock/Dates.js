@@ -109,10 +109,12 @@ function monthsAreEqual(d1,d2) {
 }
 
 export function dayDifference(date1, date2) {
-	return Math.floor((truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24));
-	// There is an error in here - see the 'october bug'
-
-
+	const rawDayDiff = (truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24);
+	const result = Math.round(rawDayDiff);
+	// There is an error in here when using floor - see the 'october bug'
+	// Changing to use 'round' instead, but in future change all this over to Temporal
+	//console.log(rawDayDiff,result);
+	return result;
 }
 
 function yearDifference(date1, date2) {
