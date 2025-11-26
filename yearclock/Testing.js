@@ -5,7 +5,7 @@
 import * as dates from './Dates.js';
 
 function runTest(tests, outputString='') {
-	let result = new TestResult('Testing');
+	let result = new TestResult('Test Suite');
 
 	const testArray  = tests.split(',');
 

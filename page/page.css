@@ -117,16 +117,20 @@ form#form-clock {
 .testResult { display:none; }
 
 .testing {
+
 	.testResult {
 		display: grid;
 		position:absolute;
-		right:0ex;
+		left:0ex;
 		bottom: 0ex;
 
 		border-radius: 1ex;
 		padding:1ex;
 		margin: 1ex;
-
+		font-family: monospace;
+		white-space: pre;
+		max-height:80%;
+		overflow-y: scroll;
 
 		&.fail {
 			border:1px solid red;

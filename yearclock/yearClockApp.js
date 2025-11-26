@@ -348,7 +348,7 @@ class YearclockApp extends HTMLApp {
 			document.getElementById('testResult').classList.add('fail');
 			console.error('runTest:', JSON.stringify(testResult));
 		}
-		document.getElementById('testResult').innerHTML = JSON.stringify(testResult,undefined,2);
+		document.getElementById('testResult').innerHTML = JSON.stringify(testResult,undefined,'  ');
 	}/* runTest */
 
 
