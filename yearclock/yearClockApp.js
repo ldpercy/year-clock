@@ -328,8 +328,8 @@ class YearclockApp extends HTMLApp {
 	}
 
 
-	 runTest(string) {
-		const testResult = testing.runTest(string);
+	runTest(testNames, outputString) {
+		const testResult = testing.runTest(testNames, outputString);
 		//const passTest = (result.flat().length === 0);
 
 		if (testResult.pass) {
