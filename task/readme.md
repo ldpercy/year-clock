@@ -10,7 +10,7 @@ Job reminders to wrap into other tasks.
 
 
 ### Needs fixing - bugs, quirks etc
-* [October bug](<october bug.md>) eg: index.html?test=true&theme=vintage&date=2006-10-13
+*
 
 
 
@@ -48,6 +48,7 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Fixed october bug
 * Removal of old theme-loading callback
 * Moving to js modules and http-only
 * Reorgansing the global scripts (maths, date etc) into classes

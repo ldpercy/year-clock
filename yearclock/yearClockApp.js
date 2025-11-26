@@ -14,8 +14,8 @@ class YearclockApp extends HTMLApp {
 
 	name = "Year Clock";
 	info = `
-		Year Clock v2.0.0 by ldpercy
-		https://github.com/ldpercy/year-clock/pull/43
+		Year Clock v2.0.1 by ldpercy
+		https://github.com/ldpercy/year-clock/pull/44
 	`.replace(/\n\t/g,'\n');
 
 
@@ -280,16 +280,13 @@ class YearclockApp extends HTMLApp {
 			this.page.element.style_style.setAttribute('href', cssUrl_style);
 		}
 
-		let classUrl = `yearclock/theme/${clockParameter.theme}/theme.class.js`;
 
-
-		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.class.js`;
-
+		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.js`;
 
 
 		// need something like railroad-handling here, but can't remember how to implement the pattern
 
-		try {
+		//try {
 			// this will overwrite the theme binding each time, might need to improve?
 			const themeModule = await import(themeModuleUrl);
 
@@ -301,12 +298,12 @@ class YearclockApp extends HTMLApp {
 
 			this.page.element.container.innerHTML = clockSVG;
 
-			if (this.page.initial.test) { this.runTest(clockSVG); }
-		}
-		catch (error) {
-			console.error(`Error for '${clockParameter.theme}' theme:`, error);
-			this.page.element.container.innerHTML = `<h2 class="themeError">${error}</h2>`;
-		}
+			if (this.page.initial.test) { this.runTest(this.page.initial.test, clockSVG); }
+		// }
+		// catch (error) {
+		// 	console.error(`Error for '${clockParameter.theme}' theme:`, error);
+		// 	this.page.element.container.innerHTML = `<h2 class="themeError">${error}</h2>`;
+		// }
 
 	}/* drawClock */
 
@@ -331,20 +328,27 @@ class YearclockApp extends HTMLApp {
 	}
 
 
-	 runTest(string) {
-		const result = testing.runTest(string);
-		const passTest = (result.flat().length === 0);
+	runTest(testNames, outputString) {
+		const testResult = testing.runTest(testNames, outputString);
+		//const passTest = (result.flat().length === 0);
 
-		if (passTest) {
+		if (testResult.pass) {
 			document.getElementById('clockContainer').classList.remove('testFail');
 			document.getElementById('clockContainer').classList.add('testPass');
+
+			document.getElementById('testResult').classList.remove('fail');
+			document.getElementById('testResult').classList.add('pass');
+
+
 		}
 		else {
 			document.getElementById('clockContainer').classList.remove('testPass');
 			document.getElementById('clockContainer').classList.add('testFail');
-			console.error('runTest:', JSON.stringify(result));
+			document.getElementById('testResult').classList.remove('pass');
+			document.getElementById('testResult').classList.add('fail');
+			console.error('runTest:', JSON.stringify(testResult));
 		}
-		document.getElementById('testResult').innerHTML = JSON.stringify(result);
+		document.getElementById('testResult').innerHTML = JSON.stringify(testResult,undefined,'  ');
 	}/* runTest */
 
 
