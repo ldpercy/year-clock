@@ -5,23 +5,24 @@
 import * as dates from './Dates.js';
 
 function runTest(tests, outputString='') {
-	let result = [];
+	let result = new TestResult('Testing');
 
 	const testArray  = tests.split(',');
 
 	if (testArray.includes('october'))
 	{
-		result.push(octoberTest());
+		result.test.push(octoberTest());
 	}
 
 	if (testArray.includes('april'))
 	{
-		result.push(aprilTest());
+		result.test.push(aprilTest());
 	}
 
-	result.push(smokeTest(outputString));
-
-
+	result.test.push(smokeTest(outputString));
+	result.updatePass();
+	console.log('testResult:',result);
+	//const passTest = (result.flat().length === 0);
 	return result;
 }
 
@@ -29,7 +30,7 @@ function runTest(tests, outputString='') {
 /* smokeTest
 */
 function smokeTest(outputString) {
-	let result = [];
+	let result = new TestResult('Smoke');
 	const smokeString = ['NaN', 'undefined', 'null', 'Infinity', 'Object', 'Invalid'];
 
 	smokeString.forEach(
@@ -38,11 +39,12 @@ function smokeTest(outputString) {
 			if (count) {
 				const sr = {};
 				sr[`${string}`] = count;
-				result.push(sr);
+				result.test.push(sr);
 			}
 		}
 	);
-	console.log('Smoke test:', result);
+	//console.log('Smoke test:', result);
+	result.updatePass();
 	return result;
 }
 
@@ -55,13 +57,10 @@ function matchCount(string, regex) {
 
 
 
-export function octoberTest(){
-	console.log('October Test');
+export function octoberTest(start=1920, end=2020){
+	//console.log('October Test');
 
-	const result = [];
-
-	const start = 1920;
-	const end = 2020;
+	const result = new TestResult('October Test');
 
 	let dateString;
 	let thisDate;
@@ -70,36 +69,24 @@ export function octoberTest(){
 	for (let i = start; i <= end; i++) {
 		dateString = `${i}-10-15`;
 		thisDate = new dates.DisplayDate(dateString);
-		console.debug(dateString, thisDate.daysInMonth, thisDate.monthRange.length);
+		//console.debug(dateString, thisDate.daysInMonth, thisDate.monthRange.length);
 
 		if ( thisDate.daysInMonth !== thisDate.monthRange.length) {
-			console.warn(thisDate.monthRange);
-		}
-		else {
-			console.log(thisDate.monthRange);
+			//console.warn(thisDate.monthRange);
+			result.test.push(dateString);
 		}
 
 	}
 
-
-	/* const october1970 = new dates.DisplayDate('1970-10-15');
-	console.debug(october1970);
-	console.debug(october1970.daysInMonth);
-
-	const october1971 = new dates.DisplayDate('1971-10-15');
-	console.debug(october1971);
-	console.debug(october1971.daysInMonth); */
-	return [];
+	result.updatePass();
+	return result;
 }
 
 
-export function aprilTest(){
-	console.log('April Test');
+export function aprilTest(start=1920, end=2020){
+	//console.log('April Test');
 
-	const result = [];
-
-	const start = 1920;
-	const end = 2020;
+	const result = new TestResult('April Test');
 
 	let dateString;
 	let thisDate;
@@ -108,26 +95,44 @@ export function aprilTest(){
 	for (let i = start; i <= end; i++) {
 		dateString = `${i}-04-15`;
 		thisDate = new dates.DisplayDate(dateString);
-		console.debug(dateString, thisDate.daysInMonth, thisDate.monthRange.length);
+		//console.debug(dateString, thisDate.daysInMonth, thisDate.monthRange.length);
 
 		if ( thisDate.daysInMonth !== thisDate.monthRange.length) {
-			console.warn(thisDate.monthRange);
-		}
-		else {
-			console.log(thisDate.monthRange);
+			//console.warn(thisDate.monthRange);
+			result.test.push(dateString);
 		}
 
 	}
 
+	result.updatePass();
+	return result;
+}
 
-	/* const october1970 = new dates.DisplayDate('1970-10-15');
-	console.debug(october1970);
-	console.debug(october1970.daysInMonth);
 
-	const october1971 = new dates.DisplayDate('1971-10-15');
-	console.debug(october1971);
-	console.debug(october1971.daysInMonth); */
-	return [];
+class TestResult {
+	name;
+	pass;
+	test = [];
+
+	constructor(name) {
+		this.name = name;
+	}
+
+	updatePass() {
+		let result;
+		if (this.test.length === 0) {
+			result = true
+		}
+		else {
+			result = this.test.reduce(
+				(accumulator, thisTest) => accumulator && !!thisTest.pass,
+  				true,
+			);
+		}
+		console.log('updatePass', result);
+		this.pass = result;
+	}/* updatePass */
+
 }
 
 

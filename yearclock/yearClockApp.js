@@ -329,19 +329,26 @@ class YearclockApp extends HTMLApp {
 
 
 	 runTest(string) {
-		const result = testing.runTest(string);
-		const passTest = (result.flat().length === 0);
+		const testResult = testing.runTest(string);
+		//const passTest = (result.flat().length === 0);
 
-		if (passTest) {
+		if (testResult.pass) {
 			document.getElementById('clockContainer').classList.remove('testFail');
 			document.getElementById('clockContainer').classList.add('testPass');
+
+			document.getElementById('testResult').classList.remove('fail');
+			document.getElementById('testResult').classList.add('pass');
+
+
 		}
 		else {
 			document.getElementById('clockContainer').classList.remove('testPass');
 			document.getElementById('clockContainer').classList.add('testFail');
-			console.error('runTest:', JSON.stringify(result));
+			document.getElementById('testResult').classList.remove('pass');
+			document.getElementById('testResult').classList.add('fail');
+			console.error('runTest:', JSON.stringify(testResult));
 		}
-		document.getElementById('testResult').innerHTML = JSON.stringify(result);
+		document.getElementById('testResult').innerHTML = JSON.stringify(testResult,undefined,2);
 	}/* runTest */
 
 
