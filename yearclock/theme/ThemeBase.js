@@ -223,11 +223,11 @@ export class ThemeBase extends yearclock.YearClock {
 	getMonthHand(handConfig, angularRange = this.angularRange) {
 		// calculate month hand params
 
-		console.debug('this.displayDate.monthRange', this.displayDate.monthRange);
+		//console.debug('this.displayDate.monthRange', this.displayDate.monthRange);
 
 		const monthDayDivision = angularRange.division(this.displayDate.getDate()-1, this.displayDate.monthRange.length);
 
-		console.debug('monthDayDivision', monthDayDivision);
+		//console.debug('monthDayDivision', monthDayDivision);
 
 
 		const monthTransform = `rotate(${monthDayDivision.middle.degrees},0,0)`;

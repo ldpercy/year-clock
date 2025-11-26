@@ -21,7 +21,7 @@ function runTest(tests, outputString='') {
 
 	result.test.push(smokeTest(outputString));
 	result.updatePass();
-	console.log('testResult:',result);
+	//console.log('Test Suite result:',result);
 	//const passTest = (result.flat().length === 0);
 	return result;
 }
@@ -129,7 +129,7 @@ class TestResult {
   				true,
 			);
 		}
-		console.log('updatePass', result);
+		//console.log('updatePass', result);
 		this.pass = result;
 	}/* updatePass */
 
