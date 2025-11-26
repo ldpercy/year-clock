@@ -1,8 +1,15 @@
 /* Wall clock theme
 */
-yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(30);
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
+
+class WallClockTheme extends themebase.ThemeBase {
+
+	viewBox           = svg.padViewBox(30);
 	clockRadius       = 1200;
 
 	innerRadius       = 1000;
@@ -21,7 +28,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 	};
 
 
-	dateLabel = { position : new Point(0,-430) };
+	dateLabel = { position : new geometry.Point(0,-430) };
 
 	monthLabel = {
 		radius         : 920,
@@ -58,13 +65,13 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
 		//console.debug(this.displayDate.monthArray);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 	}
@@ -104,3 +111,7 @@ yearclock.theme['wall-clock'] = class extends yearclock.theme.Base {
 
 
 }/* wall-clock */
+
+
+
+export { WallClockTheme as Theme }

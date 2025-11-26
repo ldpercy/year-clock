@@ -1,8 +1,15 @@
-/* Wheel
-*/
-yearclock.theme['space'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(50, '-1600 -1200 3200 2400');
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
+/* Space
+*/
+class SpaceTheme extends themebase.ThemeBase {
+
+	viewBox           = svg.padViewBox(50, '-1600 -1200 3200 2400');
 	clockRadius       = 1200;
 	// outerRadius       = 1150;
 	// innerRadius       = 950;
@@ -10,7 +17,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector : new Annulus(1200, 900, new Point(), { simpleOuter:true}),
+		sector : new geometry.Annulus(1200, 900, new geometry.Point(), { simpleOuter:true}),
 		label : [{
 			radius         : 1025,
 			sectorPosition : 0.5,
@@ -24,7 +31,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(800, 600),
+		sector : new geometry.Annulus(800, 600),
 		label : [{
 			radius         : 700,
 			sectorPosition : 0.5,
@@ -36,7 +43,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 	};
 
 	dateLabel   = {
-		position : new Point( 0, 0),
+		position : new geometry.Point( 0, 0),
 		format   : 'romanNumeralYear',
 	};
 
@@ -50,14 +57,17 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		yearclock.Geometry.addAngularRange(this.displayDate.yearDayArray);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		geometry.addAngularRange(this.displayDate.yearDayArray);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
+
+		//console.log('this.displayDate',this.displayDate);
+
 
 		this.monthRing.array = this.displayDate.monthArray;
 		this.dayRing.array   = this.displayDate.monthDayArray;
@@ -82,7 +92,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 		//log(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
-		const moonPosition = new PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
+		const moonPosition = new geometry.PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
 
 		const themeSVG = `
 
@@ -217,3 +227,7 @@ yearclock.theme['space'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.space */
+
+
+
+export { SpaceTheme as Theme };

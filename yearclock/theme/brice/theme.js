@@ -1,14 +1,20 @@
 /* brice
 Original theme from year-clock.net
 */
-yearclock.theme['brice'] = class extends yearclock.theme.Base {
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as geometry from '../../Geometry.js';
+
+
+class BriceTheme extends themebase.ThemeBase  {
 
 	// Clock parameters
 	viewBox           = '-1200 -1200 2400 2400';
 
 	clockRadius       = 1200;
 
-	yearMonthSector = new Annulus(1120, 930);
+	yearMonthSector = new geometry.Annulus(1120, 930);
 
 	monthLabel = {
 		//name           : 'month',
@@ -36,7 +42,7 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 	dateLabel = {
 		radius    : 500,
-		position  : new Point(500,0)
+		position  : new geometry.Point(500,0)
 	};
 
 
@@ -47,14 +53,14 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
 		//console.debug(this.displayDate);
 
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
-		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		yearclock.Geometry.addAngularRange(this.displayDate.yearDayArray);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
+		geometry.addAngularRange(this.displayDate.yearDayArray);
 		// label side flipper:
 		const yearOnLeft = (this.dateRatio(this.displayDate) < 0.5);
 		this.dateLabel.position.x = this.dateLabel.radius * ((yearOnLeft) ? -1 :1);
@@ -94,3 +100,6 @@ yearclock.theme['brice'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.brice */
+
+
+export { BriceTheme as Theme };

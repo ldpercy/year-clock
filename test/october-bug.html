@@ -5,22 +5,41 @@
 	<title>Year Clock</title>
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
 
-	<!-- page -->
-	<link rel="icon" href="./page/favicon.svg">
-	<link rel="stylesheet" href="./page/page.css">
+	<meta charset="utf-8">
+	<title>Year Clock v2.㋉🐛 by ldpercy </title>
+	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
 
-	<!-- core --->
-	<script defer src="./script/l10n.js"></script>
-	<script defer src="./script/maths.js"></script>
-	<script defer src="./script/date.js"></script>
-	<script defer src="./script/svg.js"></script>
-	<script defer src="./script/utility.js"></script>
+	<!-- page -->
+	<link rel="icon" href="test-favicon.svg">
+	<link rel="stylesheet" href="../page/page.css">
+
+	<script>
+		const protocol = new URL(window.location).protocol;
+
+		if (protocol === 'file:') {
+			alert("You are using `file:` protocol - modules won't work");
+		}
+	</script>
+
+	<!-- setup -->
+	<script type="module" src="../yearclock/yearClockApp.js"></script>
+
+	<!-- Theme Styles -->
+	<link id="stylesheet-theme" rel="stylesheet">
+	<link id="stylesheet-style" rel="stylesheet">
+
+	<!-- Page background style -->
+	<link id="stylesheet-background" rel="stylesheet">
 
 </head>
-<body > <!-- onload="setup();" -->
+<body>
 	<form id="form-clock">
+		<h2>Year Clock</h2>
+
 		<label for="input-theme">Theme</label>
 		<select id="input-theme" name="theme" title="theme">
+			<!-- <option>solar</option>
+			<option>space</option> -->
 			<option>wheel</option>
 			<option>car-dashboard</option>
 			<option>vintage</option>
@@ -33,6 +52,10 @@
 
 		<label for="input-date">Date</label>
 		<input id="input-date" type="date" name="date" title="date"/>
+		<div class="controls">
+			<div><button id="button-dayBack">,&lt;</button> day back</div>
+			<div><button id="button-dayForward">.&gt;</button> day forward</div>
+		</div>
 
 		<label for="input-language">Language</label>
 		<select id="input-language" name="language" title="language">
@@ -50,6 +73,7 @@
 		<datalist id="datalist-style">
 			<option value="dark"></option>
 			<option value="mono"></option>
+			<option value="night"></option>
 		</datalist>
 
 		<label for="input-background">Background</label>
@@ -61,6 +85,20 @@
 			<option>dusk</option>
 			<option value="wireframe">wireframe (style override)</option>
 		</datalist>
+
+		<label for="input-hemisphere">Hemisphere</label>
+		<select id="input-hemisphere" name="hemisphere" title="hemisphere">
+			<option>northern</option>
+			<option>southern</option>
+		</select>
+
+		<details>
+			<summary>🛈</summary>
+			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
+			<a href="https://github.com/ldpercy/year-clock/pull/43">v2.㋉🐛</a>
+			by <a href="https://github.com/ldpercy/">ldpercy</a>
+
+		</details>
 	</form>
 
 	<output id="clockContainer">
@@ -68,10 +106,10 @@
 		</svg> -->
 	</output>
 
-	<output id="testResult" class="testResult"></output>
+	<output id="testResult" class="testResult">
 
-	<footer>
-		Year Clock by <a href="https://github.com/ldpercy/">ldpercy</a>, adapted from <a href="http://year-clock.net">year-clock.net</a> by <a href="http://andybrice.net">Andy Brice</a> and <a href="http://bricedesign.co.uk">Ian Brice</a>.
-	</footer>
+
+	</output>
+
 </body>
 </html>

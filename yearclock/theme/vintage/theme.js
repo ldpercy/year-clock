@@ -1,8 +1,15 @@
 /* vintage
 */
-yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
-	viewBox           = this.svg.padViewBox(200);
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
+
+
+class VintageTheme extends themebase.ThemeBase {
+
+	viewBox           = svg.padViewBox(200);
 
 	body = {
 		radius : 1300,
@@ -15,7 +22,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	monthRing = {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
-		sector  : new Annulus(1150, 1070),
+		sector  : new geometry.Annulus(1150, 1070),
 		sectorType: 'normal',
 		label : [
 			{
@@ -43,7 +50,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	dayRing = {
 		name    : 'monthDay',
 		array   : undefined, // this.displayDate.monthDayArray,
-		sector : new Annulus(750, 650),
+		sector : new geometry.Annulus(750, 650),
 		label : [
 			{
 				name           : 'dayName',
@@ -66,7 +73,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 		]
 	};
 
-	dateLabelPosition         = new Point(0,350);
+	dateLabelPosition         = new geometry.Point(0,350);
 
 	handConfig = {
 		year : {
@@ -93,11 +100,11 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.monthDays = new yearclock.Date.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
 		this.displayDate.monthDays.setAngularRange();
 
 		this.monthRing.array = this.displayDate.monthArray;
@@ -185,9 +192,9 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 	getBody(body) {
-		const svg =
+		const result =
 			`<circle cx="0" cy="0" r="${body.radius}" class="body"></circle>`
-		return svg;
+		return result;
 	}
 
 
@@ -195,11 +202,11 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 	*/
 	getDateLabel(point) {
 
-		const dateLabelPath = this.svg.getArcPath(new yearclock.Geometry.AngularRange(-60,120), point.y);
+		const dateLabelPath = svg.getArcPath(new geometry.AngularRange(-60,120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 
-		const svg =
+		const result =
 			`<g class="group-label dateLabel">
 				<defs>
 					<path id="dateLabelPath" d="${dateLabelPath}"/>
@@ -213,7 +220,7 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 		${this.formatLabel('date',{'date':date})}
 		*/
 
-		return svg;
+		return result;
 	}/* getDateLabel */
 
 
@@ -304,3 +311,5 @@ yearclock.theme['vintage'] = class extends yearclock.theme.Base {
 
 
 }/* vintage */
+
+export { VintageTheme as Theme }

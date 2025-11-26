@@ -1,55 +1,77 @@
 /* testing
 Testing theme - use for trying things out and fixing bugs
 */
-yearclock.theme['testing'] = class extends yearclock.theme.Base {
+
+import * as dates from '../../Dates.js';
+import * as themebase from '../ThemeBase.js';
+import * as svg from '../../SVG.js';
+import * as geometry from '../../Geometry.js';
 
 
-	viewBox           = this.svg.padViewBox(50);
+class TestingTheme extends themebase.ThemeBase {
+
+
+	viewBox           = svg.padViewBox(50);
 	clockRadius       = 1200;
 
-	//monthSector = new Annulus(800, 400);
+	//monthSector = new geometry.Annulus(800, 400);
 
-	monthRing = {
+	yearMonthRing = {
 		name       : 'yearMonth',
 		array      : undefined, // this.displayDate.monthArray,
-		sector     : new Annulus(800, 100),
-		sizeAdjust :  new Point(-10,-10),
-		label : {
-			radius         : 600,
+		sector     : new geometry.Annulus(800, 100),
+		sizeAdjust :  new geometry.Point(-10,-10),
+		label : [{
+			radius         : 500,
 			sectorPosition : 0.5,
 			rotate         : true,
 			invert         : false,
 			textType       : 'text',
 			format         : 'monthNumber',
-		}
+		}]
+	};
+
+	monthDayRing = {
+		name       : 'monthDay',
+		array      : undefined, // this.displayDate.monthArray,
+		sector     : new geometry.Annulus(900, 1200),
+		sizeAdjust :  new geometry.Point(-10,-10),
+		label : [{
+			radius         : 1000,
+			sectorPosition : 0.5,
+			rotate         : true,
+			invert         : false,
+			textType       : 'text',
+			format         : 'dayNumber',
+		}]
 	};
 
 
-
-	weekSector  = new Annulus(900, 400);
-	daySector   = new Annulus(1200, 810);
-
-	weekLabel = {
-		radius         : 600,
-		sectorPosition : 0.5,
-		rotate         : 'radial-left',
-		invert         : false,
-	};
-
-
-	dayLabel = {
-		radius         : 1000,
-		sectorPosition : 0.5,
-		rotate         : 'radial-left',
-		invert         : false,
+	handConfig = {
+		year : {
+			function    : this.getHand1,
+			length      : 450,
+			tipRadius   : 10,
+			discRadius  : 40,
+			tail        : 160,
+			width       : 18,
+		},
+		month : {
+			function    : this.getHand1,
+			length      : 950,
+			tipRadius   : 10,
+			discRadius  : 30,
+			tail        : 160,
+			width       : 20,
+		},
 	};
 
 	dateLabel = {
-		position   : new Point(-1200,-1200)
+		position   : new geometry.Point(-1100,-1100)
 	};
 
 	monthSymbols = {
-		radius         : 600,
+		radius         : 650,
 		position       : 0.5,
 		rotate         : false,
 		invert         : false,
@@ -71,17 +93,19 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 
 	setDisplayDate(date) {
-		this.displayDate = new yearclock.DisplayDate(date, this.parameter.language);
+		this.displayDate = new dates.DisplayDate(date, this.parameter.language);
 
-		this.monthRing.array = this.displayDate.monthArray;
+		this.yearMonthRing.array = this.displayDate.monthArray;
 
 		// Set Up Drawing
-		yearclock.Geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
+		geometry.addDateRangeAngularRange(this.displayDate.monthArray, this.displayDate.yearRange);
 
-		this.displayDate.yearDayArray = this.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
-		//this.dayRing.array   = this.displayDate.monthDayArray;
+		this.displayDate.yearDayArray = dates.getPeriodDayArray(this.displayDate.yearStart, this.displayDate.yearEnd, this.displayDate);
 
-		//this.displayDate.monthDayArray = this.getPeriodDayArray(startOfMonth(this.displayDate), nextMonth(this.displayDate), this.displayDate, this.displayDate.language);
+
+		this.displayDate.monthDays = new dates.DayRange(this.displayDate.monthStart, this.displayDate.monthEnd, this.displayDate, this.displayDate.language);
+		this.displayDate.monthDays.setAngularRange();
+		this.monthDayRing.array   = this.displayDate.monthDays.array;
 
 		/*
 		let weekArray    = getYearWeekArray(this.displayDate);
@@ -95,6 +119,7 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 	//
 	// formatting functions
 	//
+	/*
 	formatTitle(type, data) {
 		let result;
 		switch(type) {
@@ -107,7 +132,7 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 		return result;
 	}
-
+ */
 
 	/* getThemeSVG
 	*/
@@ -146,11 +171,10 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 			${this.getFace(this.clockRadius)}
 
-			${this.getSectors('yearMonth', this.displayDate.monthArray, this.monthRing.sector, this.monthRing)}
+
+			${this.getRing(this.yearMonthRing)}
+			${this.getRing(this.monthDayRing)}
 			${this.getSymbols('monthSymbols', this.displayDate.monthArray, this.monthSymbols)}
-
-
-
 
 			${this.getDateLabel('date', this.dateLabel)}
 
@@ -160,13 +184,15 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="50" />
 			<circle style="stroke:red; fill:none;" cx="0" cy="0" r="10" />
 
-
+			${this.getHands(this.handConfig)}
 		`;
 
 		/*
+			 ${this.getSectors('yearMonth', this.displayDate.monthArray, this.yearMonthRing.sector, this.yearMonthRing)}
+
+
 			${this.getSectorLabels('yearDay', this.displayDate.yearDayArray, this.dayLabel)}
 			${this.getSectors('yearDay', this.displayDate.yearDayArray, this.daySector)}
-
 
 		*/
 
@@ -175,3 +201,6 @@ yearclock.theme['testing'] = class extends yearclock.theme.Base {
 
 
 }/* YearClock.testing */
+
+
+export { TestingTheme as Theme };

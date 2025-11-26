@@ -1,0 +1,604 @@
+<svg id="clock" class="yearclock hemisphere-southern" viewBox="-1400 -1400 2800 2800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+<![CDATA[
+/*
+** vintage theme styles
+*/
+svg.yearclock {
+
+	font-size: 48px;
+	font-family: Noto Serif, serif;
+
+
+	--lightblue: #ade9;
+	--lightpink: #fbc;
+	--ivory: #ffee;
+
+	--sectorlight: cornsilk; /* #fff7 */
+	--sectordark: wheat;
+	--darkGrey: #222c;
+
+
+	background:
+		repeating-linear-gradient(
+			to right,
+			var(--ivory),
+			var(--ivory) 2vw,
+			var(--lightblue) 2.4vw,
+			var(--lightblue) 2.6vw,
+			var(--lightpink) 3vw,
+			var(--lightpink) 7vw,
+			var(--lightblue) 7.4vw,
+			var(--lightblue) 7.6vw,
+			var(--ivory) 8vw,
+			var(--ivory) 10vw
+		),
+		repeating-linear-gradient(
+			135deg,
+			ivory,
+			ivory 1vh,
+			gold 2vh,
+			gold 3vh,
+			ivory 3.3vh
+		);
+
+
+	.body {
+		/* fill: wheat; */
+		fill: url(#Gradient1);
+		stroke: grey;
+		stroke-width: 3;
+		filter: url(#emboss-top) drop-shadow(0px 40px 20px #444b);
+	}
+
+	.face {
+		fill: ivory; /* cornsilk */
+		stroke: silver;
+		stroke-width: 10;
+		filter: url(#emboss-top) drop-shadow(0px 10px 10px #444b);
+	}
+
+	circle.pin {
+		stroke: var(--darkGrey);
+		fill: #444b;
+		stroke-width: 2;
+	}
+
+}/* svg.yearclock */
+
+
+
+
+.stop1 {
+	stop-color:brown;
+}
+.stop2 {
+	stop-color: burlywood;
+	stop-opacity: 1;
+}
+.stop3 {
+	stop-color: brown;
+}
+
+
+.sector {
+	stroke:black;
+	stroke-width:1px;
+}
+
+.yearMonth .sector:nth-of-type(odd),
+.monthDay .sector.weekday
+{
+	fill: var(--sectorlight);
+}
+
+.yearMonth .sector:nth-of-type(even),
+.monthDay .sector.weekend
+{
+	fill: var(--sectordark);
+}
+
+
+.group-label {
+	text-anchor: middle;
+	dominant-baseline: central;
+	fill: var(--darkGrey);
+	stroke: none;
+	font-variant: small-caps;
+
+	&.monthName text {
+		font-size: 1em;
+	}
+
+	&.monthNumber text{
+		font-size: 5em;
+	}
+
+	&.dayName text {
+		font-size: 1em;
+	}
+
+	&.dayNumber text {
+		font-size: 1em;
+		font-weight:bold;
+	}
+
+	&.dateLabel {
+		text-anchor: middle;
+		font-size: 4em;
+	}
+
+	&.favicon {
+		text-anchor: middle;
+		font-size: 3em;
+		fill: var(--sectordark);
+		fill-rule: evenodd; /* nonzero, evenodd */
+		stroke: var(--darkGrey);
+		stroke-width: 5;
+		stroke-linejoin: round;
+	}
+
+}
+
+
+
+svg.yearclock .hands {
+	filter: drop-shadow(0px 20px 10px gray);
+}
+
+
+svg.yearclock path.yearHand  {
+	stroke:grey;
+	fill: silver;
+	stroke-width: 3;
+	stroke-linejoin: round;
+}
+
+
+svg.yearclock .monthHand path {
+	stroke:grey;
+	fill: white;
+	fill-rule: evenodd;
+	stroke-width: 3;
+	stroke-linejoin: round;
+}
+
+.monthHand .lens  {
+	/* fill: #ff03; */
+	backdrop-filter: blur(10px);
+	/* backdrop-filter:brightness(50%); */
+	backdrop-filter:hue-rotate(90deg);
+
+	fill: url(#lensGradient);
+}
+// ]]>
+</style>
+
+
+<defs>
+	<linearGradient id="Gradient1">
+		<stop class="stop1" offset="0%"></stop>
+		<stop class="stop2" offset="50%"></stop>
+		<stop class="stop3" offset="100%"></stop>
+	</linearGradient>
+	<filter id="emboss-top">
+		<feConvolveMatrix kernelMatrix="
+			0 1 0
+			0 1 0
+			0 -1 0
+		"></feConvolveMatrix>
+	</filter>
+</defs>
+
+<circle cx="0" cy="0" r="1300" class="body"></circle>
+<circle cx="0" cy="0" r="1200" class="face"></circle>
+
+
+<g class="group-ring ring-yearMonth">
+	<!-- <title>yearMonth</title> -->
+	<!-- sectors: -->
+	<g class="group-sector yearMonth"><path d="
+M 0.000 -1150
+A 1150,1150 0 0 1 585.0,-990.1
+L 544.3 -921.2
+A 1070,1070 0 0 0 0.000,-1070
+Z" class="sector yearMonth-jan January "><title>January</title></path><path d="
+M 585.0 -990.1
+A 1150,1150 0 0 1 977.3,-606.1
+L 909.3 -564.0
+A 1070,1070 0 0 0 544.3,-921.2
+Z" class="sector yearMonth-feb February "><title>February</title></path><path d="
+M 977.3 -606.1
+A 1150,1150 0 0 1 1150,-24.74
+L 1070 -23.02
+A 1070,1070 0 0 0 909.3,-564.0
+Z" class="sector yearMonth-mar March "><title>March</title></path><path d="
+M 1150 -24.74
+A 1150,1150 0 0 1 1012,546.2
+L 941.6 508.2
+A 1070,1070 0 0 0 1070,-23.02
+Z" class="sector yearMonth-apr April "><title>April</title></path><path d="
+M 1012 546.2
+A 1150,1150 0 0 1 593.5,985.0
+L 552.2 916.5
+A 1070,1070 0 0 0 941.6,508.2
+Z" class="sector yearMonth-may May  current"><title>May</title></path><path d="
+M 593.5 985.0
+A 1150,1150 0 0 1 29.69,1150
+L 27.63 1070
+A 1070,1070 0 0 0 552.2,916.5
+Z" class="sector yearMonth-jun June "><title>June</title></path><path d="
+M 29.69 1150
+A 1150,1150 0 0 1 -559.2,1005
+L -520.3 935.0
+A 1070,1070 0 0 0 27.63,1070
+Z" class="sector yearMonth-jul July "><title>July</title></path><path d="
+M -559.2 1005
+A 1150,1150 0 0 1 -992.6,580.7
+L -923.6 540.3
+A 1070,1070 0 0 0 -520.3,935.0
+Z" class="sector yearMonth-aug August "><title>August</title></path><path d="
+M -992.6 580.7
+A 1150,1150 0 0 1 -1150,14.85
+L -1070 13.81
+A 1070,1070 0 0 0 -923.6,540.3
+Z" class="sector yearMonth-sep September "><title>September</title></path><path d="
+M -1150 14.85
+A 1150,1150 0 0 1 -997.6,-572.1
+L -928.2 -532.3
+A 1070,1070 0 0 0 -1070,13.81
+Z" class="sector yearMonth-oct October "><title>October</title></path><path d="
+M -997.6 -572.1
+A 1150,1150 0 0 1 -585.0,-990.1
+L -544.3 -921.2
+A 1070,1070 0 0 0 -928.2,-532.3
+Z" class="sector yearMonth-nov November "><title>November</title></path><path d="
+M -585.0 -990.1
+A 1150,1150 0 0 1 -2.817e-13,-1150
+L -2.621e-13 -1070
+A 1070,1070 0 0 0 -544.3,-921.2
+Z" class="sector yearMonth-dec December "><title>December</title></path></g>
+	<!-- labels: -->
+
+<g class="group-label label-yearMonth">
+	<defs>
+		<path id="labelPath-monthName-jan" d="
+M 0.000 -1110
+A 1110 1110 0 0 1 564.6 -955.7"></path><path id="labelPath-monthName-feb" d="
+M 564.6 -955.7
+A 1110 1110 0 0 1 943.3 -585.1"></path><path id="labelPath-monthName-mar" d="
+M 943.3 -585.1
+A 1110 1110 0 0 1 1110 -23.88"></path><path id="labelPath-monthName-apr" d="
+M 1110 -23.88
+A 1110 1110 0 0 1 976.8 527.2"></path><path id="labelPath-monthName-may" d="
+M 976.8 527.2
+A 1110 1110 0 0 1 572.8 950.8"></path><path id="labelPath-monthName-jun" d="
+M 572.8 950.8
+A 1110 1110 0 0 1 28.66 1110"></path><path id="labelPath-monthName-jul" d="
+M 28.66 1110
+A 1110 1110 0 0 1 -539.8 969.9"></path><path id="labelPath-monthName-aug" d="
+M -539.8 969.9
+A 1110 1110 0 0 1 -958.1 560.5"></path><path id="labelPath-monthName-sep" d="
+M -958.1 560.5
+A 1110 1110 0 0 1 -1110 14.33"></path><path id="labelPath-monthName-oct" d="
+M -1110 14.33
+A 1110 1110 0 0 1 -962.9 -552.2"></path><path id="labelPath-monthName-nov" d="
+M -962.9 -552.2
+A 1110 1110 0 0 1 -564.6 -955.7"></path><path id="labelPath-monthName-dec" d="
+M -564.6 -955.7
+A 1110 1110 0 0 1 -2.719e-13 -1110"></path>
+	</defs>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-jan">January</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-feb">February</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-mar">March</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-apr">April</textPath>
+</text>
+
+<text>
+	<textPath class="  current" startOffset="50%" href="#labelPath-monthName-may">May</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-jun">June</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-jul">July</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-aug">August</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-sep">September</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-oct">October</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-nov">November</textPath>
+</text>
+
+<text>
+	<textPath class=" " startOffset="50%" href="#labelPath-monthName-dec">December</textPath>
+</text>
+
+</g>
+<g class="group-label yearMonth monthNumber">
+
+<defs>
+
+</defs>
+<text class=" monthNumber " x="250.5" y="-916.4" transform="rotate(15.29, 250.5, -916.4)">1</text><text class=" monthNumber " x="664.5" y="-678.9" transform="rotate(44.38, 664.5, -678.9)">2</text><text class=" monthNumber " x="910.8" y="-270.1" transform="rotate(73.48, 910.8, -270.1)">3</text><text class=" monthNumber " x="923.5" y="222.8" transform="rotate(103.6, 923.5, 222.8)">4</text><text class=" monthNumber  current" x="687.5" y="655.7" transform="rotate(133.6, 687.5, 655.7)">5</text><text class=" monthNumber " x="266.2" y="911.9" transform="rotate(163.7, 266.2, 911.9)">6</text><text class=" monthNumber " x="-226.7" y="922.5" transform="rotate(193.8, -226.7, 922.5)">7</text><text class=" monthNumber " x="-664.5" y="678.9" transform="rotate(224.4, -664.5, 678.9)">8</text><text class=" monthNumber " x="-915.3" y="254.4" transform="rotate(254.5, -915.3, 254.4)">9</text><text class=" monthNumber " x="-919.5" y="-238.6" transform="rotate(284.5, -919.5, -238.6)">10</text><text class=" monthNumber " x="-676.1" y="-667.4" transform="rotate(314.6, -676.1, -667.4)">11</text><text class=" monthNumber " x="-250.5" y="-916.4" transform="rotate(344.7, -250.5, -916.4)">12</text>
+</g>
+</g>
+
+
+
+<g class="group-ring ring-monthDay">
+	<!-- <title>monthDay</title> -->
+	<!-- sectors: -->
+	<g class="group-sector monthDay"><path d="
+M 0.000 -750.0
+A 750.0,750.0 0 0 1 151.0,-734.6
+L 130.8 -636.7
+A 650.0,650.0 0 0 0 0.000,-650.0
+Z" class="sector monthDay-1 Monday weekday first"><title>Monday</title></path><path d="
+M 151.0 -734.6
+A 750.0,750.0 0 0 1 295.8,-689.2
+L 256.3 -597.3
+A 650.0,650.0 0 0 0 130.8,-636.7
+Z" class="sector monthDay-2 Tuesday weekday"><title>Tuesday</title></path><path d="
+M 295.8 -689.2
+A 750.0,750.0 0 0 1 428.5,-615.6
+L 371.3 -533.5
+A 650.0,650.0 0 0 0 256.3,-597.3
+Z" class="sector monthDay-3 Wednesday weekday"><title>Wednesday</title></path><path d="
+M 428.5 -615.6
+A 750.0,750.0 0 0 1 543.6,-516.7
+L 471.1 -447.8
+A 650.0,650.0 0 0 0 371.3,-533.5
+Z" class="sector monthDay-4 Thursday weekday"><title>Thursday</title></path><path d="
+M 543.6 -516.7
+A 750.0,750.0 0 0 1 636.5,-396.7
+L 551.6 -343.8
+A 650.0,650.0 0 0 0 471.1,-447.8
+Z" class="sector monthDay-5 Friday weekday"><title>Friday</title></path><path d="
+M 636.5 -396.7
+A 750.0,750.0 0 0 1 703.3,-260.5
+L 609.5 -225.7
+A 650.0,650.0 0 0 0 551.6,-343.8
+Z" class="sector monthDay-6 Saturday weekend"><title>Saturday</title></path><path d="
+M 703.3 -260.5
+A 750.0,750.0 0 0 1 741.4,-113.6
+L 642.5 -98.43
+A 650.0,650.0 0 0 0 609.5,-225.7
+Z" class="sector monthDay-7 Sunday weekend"><title>Sunday</title></path><path d="
+M 741.4 -113.6
+A 750.0,750.0 0 0 1 749.0,37.99
+L 649.2 32.92
+A 650.0,650.0 0 0 0 642.5,-98.43
+Z" class="sector monthDay-8 Monday weekday"><title>Monday</title></path><path d="
+M 749.0 37.99
+A 750.0,750.0 0 0 1 726.1,188.0
+L 629.3 162.9
+A 650.0,650.0 0 0 0 649.2,32.92
+Z" class="sector monthDay-9 Tuesday weekday"><title>Tuesday</title></path><path d="
+M 726.1 188.0
+A 750.0,750.0 0 0 1 673.4,330.3
+L 583.6 286.3
+A 650.0,650.0 0 0 0 629.3,162.9
+Z" class="sector monthDay-10 Wednesday weekday"><title>Wednesday</title></path><path d="
+M 673.4 330.3
+A 750.0,750.0 0 0 1 593.1,459.1
+L 514.0 397.9
+A 650.0,650.0 0 0 0 583.6,286.3
+Z" class="sector monthDay-11 Thursday weekday"><title>Thursday</title></path><path d="
+M 593.1 459.1
+A 750.0,750.0 0 0 1 488.5,569.1
+L 423.4 493.2
+A 650.0,650.0 0 0 0 514.0,397.9
+Z" class="sector monthDay-12 Friday weekday"><title>Friday</title></path><path d="
+M 488.5 569.1
+A 750.0,750.0 0 0 1 364.0,655.8
+L 315.4 568.3
+A 650.0,650.0 0 0 0 423.4,493.2
+Z" class="sector monthDay-13 Saturday weekend"><title>Saturday</title></path><path d="
+M 364.0 655.8
+A 750.0,750.0 0 0 1 224.5,715.6
+L 194.6 620.2
+A 650.0,650.0 0 0 0 315.4,568.3
+Z" class="sector monthDay-14 Sunday weekend"><title>Sunday</title></path><path d="
+M 224.5 715.6
+A 750.0,750.0 0 0 1 75.88,746.2
+L 65.76 646.7
+A 650.0,650.0 0 0 0 194.6,620.2
+Z" class="sector monthDay-15 Monday weekday"><title>Monday</title></path><path d="
+M 75.88 746.2
+A 750.0,750.0 0 0 1 -75.88,746.2
+L -65.76 646.7
+A 650.0,650.0 0 0 0 65.76,646.7
+Z" class="sector monthDay-16 Tuesday weekday"><title>Tuesday</title></path><path d="
+M -75.88 746.2
+A 750.0,750.0 0 0 1 -224.5,715.6
+L -194.6 620.2
+A 650.0,650.0 0 0 0 -65.76,646.7
+Z" class="sector monthDay-17 Wednesday weekday"><title>Wednesday</title></path><path d="
+M -224.5 715.6
+A 750.0,750.0 0 0 1 -364.0,655.8
+L -315.4 568.3
+A 650.0,650.0 0 0 0 -194.6,620.2
+Z" class="sector monthDay-18 Thursday weekday"><title>Thursday</title></path><path d="
+M -364.0 655.8
+A 750.0,750.0 0 0 1 -488.5,569.1
+L -423.4 493.2
+A 650.0,650.0 0 0 0 -315.4,568.3
+Z" class="sector monthDay-19 Friday weekday"><title>Friday</title></path><path d="
+M -488.5 569.1
+A 750.0,750.0 0 0 1 -593.1,459.1
+L -514.0 397.9
+A 650.0,650.0 0 0 0 -423.4,493.2
+Z" class="sector monthDay-20 Saturday weekend"><title>Saturday</title></path><path d="
+M -593.1 459.1
+A 750.0,750.0 0 0 1 -673.4,330.3
+L -583.6 286.3
+A 650.0,650.0 0 0 0 -514.0,397.9
+Z" class="sector monthDay-21 Sunday weekend"><title>Sunday</title></path><path d="
+M -673.4 330.3
+A 750.0,750.0 0 0 1 -726.1,188.0
+L -629.3 162.9
+A 650.0,650.0 0 0 0 -583.6,286.3
+Z" class="sector monthDay-22 Monday weekday"><title>Monday</title></path><path d="
+M -726.1 188.0
+A 750.0,750.0 0 0 1 -749.0,37.99
+L -649.2 32.92
+A 650.0,650.0 0 0 0 -629.3,162.9
+Z" class="sector monthDay-23 Tuesday weekday"><title>Tuesday</title></path><path d="
+M -749.0 37.99
+A 750.0,750.0 0 0 1 -741.4,-113.6
+L -642.5 -98.43
+A 650.0,650.0 0 0 0 -649.2,32.92
+Z" class="sector monthDay-24 Wednesday weekday current"><title>Wednesday</title></path><path d="
+M -741.4 -113.6
+A 750.0,750.0 0 0 1 -703.3,-260.5
+L -609.5 -225.7
+A 650.0,650.0 0 0 0 -642.5,-98.43
+Z" class="sector monthDay-25 Thursday weekday"><title>Thursday</title></path><path d="
+M -703.3 -260.5
+A 750.0,750.0 0 0 1 -636.5,-396.7
+L -551.6 -343.8
+A 650.0,650.0 0 0 0 -609.5,-225.7
+Z" class="sector monthDay-26 Friday weekday"><title>Friday</title></path><path d="
+M -636.5 -396.7
+A 750.0,750.0 0 0 1 -543.6,-516.7
+L -471.1 -447.8
+A 650.0,650.0 0 0 0 -551.6,-343.8
+Z" class="sector monthDay-27 Saturday weekend"><title>Saturday</title></path><path d="
+M -543.6 -516.7
+A 750.0,750.0 0 0 1 -428.5,-615.6
+L -371.3 -533.5
+A 650.0,650.0 0 0 0 -471.1,-447.8
+Z" class="sector monthDay-28 Sunday weekend"><title>Sunday</title></path><path d="
+M -428.5 -615.6
+A 750.0,750.0 0 0 1 -295.8,-689.2
+L -256.3 -597.3
+A 650.0,650.0 0 0 0 -371.3,-533.5
+Z" class="sector monthDay-29 Monday weekday"><title>Monday</title></path><path d="
+M -295.8 -689.2
+A 750.0,750.0 0 0 1 -151.0,-734.6
+L -130.8 -636.7
+A 650.0,650.0 0 0 0 -256.3,-597.3
+Z" class="sector monthDay-30 Tuesday weekday"><title>Tuesday</title></path><path d="
+M -151.0 -734.6
+A 750.0,750.0 0 0 1 -1.837e-13,-750.0
+L -1.592e-13 -650.0
+A 650.0,650.0 0 0 0 -130.8,-636.7
+Z" class="sector monthDay-31 Wednesday weekday"><title>Wednesday</title></path></g>
+	<!-- labels: -->
+
+<g class="group-label monthDay dayName">
+
+<defs>
+
+</defs>
+<text class=" dayName weekday first" x="70.82" y="-696.4" transform="rotate(5.806, 70.82, -696.4)">Mon</text><text class=" dayName weekday" x="209.6" y="-667.9" transform="rotate(17.42, 209.6, -667.9)">Tue</text><text class=" dayName weekday" x="339.7" y="-612.0" transform="rotate(29.03, 339.7, -612.0)">Wed</text><text class=" dayName weekday" x="456.0" y="-531.1" transform="rotate(40.65, 456.0, -531.1)">Thu</text><text class=" dayName weekday" x="553.5" y="-428.5" transform="rotate(52.26, 553.5, -428.5)">Fri</text><text class=" dayName weekend" x="628.5" y="-308.3" transform="rotate(63.87, 628.5, -308.3)">Sat</text><text class=" dayName weekend" x="677.7" y="-175.5" transform="rotate(75.48, 677.7, -175.5)">Sun</text><text class=" dayName weekday" x="699.1" y="-35.45" transform="rotate(87.10, 699.1, -35.45)">Mon</text><text class=" dayName weekday" x="691.9" y="106.0" transform="rotate(98.71, 691.9, 106.0)">Tue</text><text class=" dayName weekday" x="656.4" y="243.1" transform="rotate(110.3, 656.4, 243.1)">Wed</text><text class=" dayName weekday" x="594.1" y="370.3" transform="rotate(121.9, 594.1, 370.3)">Thu</text><text class=" dayName weekday" x="507.4" y="482.3" transform="rotate(133.5, 507.4, 482.3)">Fri</text><text class=" dayName weekend" x="399.9" y="574.5" transform="rotate(145.2, 399.9, 574.5)">Sat</text><text class=" dayName weekend" x="276.0" y="643.3" transform="rotate(156.8, 276.0, 643.3)">Sun</text><text class=" dayName weekday" x="140.9" y="685.7" transform="rotate(168.4, 140.9, 685.7)">Mon</text><text class=" dayName weekday" x="8.573e-14" y="700.0" transform="rotate(180.0, 8.573e-14, 700.0)">Tue</text><text class=" dayName weekday" x="-140.9" y="685.7" transform="rotate(191.6, -140.9, 685.7)">Wed</text><text class=" dayName weekday" x="-276.0" y="643.3" transform="rotate(203.2, -276.0, 643.3)">Thu</text><text class=" dayName weekday" x="-399.9" y="574.5" transform="rotate(214.8, -399.9, 574.5)">Fri</text><text class=" dayName weekend" x="-507.4" y="482.3" transform="rotate(226.5, -507.4, 482.3)">Sat</text><text class=" dayName weekend" x="-594.1" y="370.3" transform="rotate(238.1, -594.1, 370.3)">Sun</text><text class=" dayName weekday" x="-656.4" y="243.1" transform="rotate(249.7, -656.4, 243.1)">Mon</text><text class=" dayName weekday" x="-691.9" y="106.0" transform="rotate(261.3, -691.9, 106.0)">Tue</text><text class=" dayName weekday current" x="-699.1" y="-35.45" transform="rotate(272.9, -699.1, -35.45)">Wed</text><text class=" dayName weekday" x="-677.7" y="-175.5" transform="rotate(284.5, -677.7, -175.5)">Thu</text><text class=" dayName weekday" x="-628.5" y="-308.3" transform="rotate(296.1, -628.5, -308.3)">Fri</text><text class=" dayName weekend" x="-553.5" y="-428.5" transform="rotate(307.7, -553.5, -428.5)">Sat</text><text class=" dayName weekend" x="-456.0" y="-531.1" transform="rotate(319.4, -456.0, -531.1)">Sun</text><text class=" dayName weekday" x="-339.7" y="-612.0" transform="rotate(331.0, -339.7, -612.0)">Mon</text><text class=" dayName weekday" x="-209.6" y="-667.9" transform="rotate(342.6, -209.6, -667.9)">Tue</text><text class=" dayName weekday" x="-70.82" y="-696.4" transform="rotate(354.2, -70.82, -696.4)">Wed</text>
+</g>
+<g class="group-label monthDay dayNumber">
+
+<defs>
+
+</defs>
+<text class=" dayNumber weekday first" x="62.22" y="-611.8" transform="rotate(5.806, 62.22, -611.8)">1</text><text class=" dayNumber weekday" x="184.1" y="-586.8" transform="rotate(17.42, 184.1, -586.8)">2</text><text class=" dayNumber weekday" x="298.5" y="-537.7" transform="rotate(29.03, 298.5, -537.7)">3</text><text class=" dayNumber weekday" x="400.6" y="-466.6" transform="rotate(40.65, 400.6, -466.6)">4</text><text class=" dayNumber weekday" x="486.3" y="-376.4" transform="rotate(52.26, 486.3, -376.4)">5</text><text class=" dayNumber weekend" x="552.1" y="-270.8" transform="rotate(63.87, 552.1, -270.8)">6</text><text class=" dayNumber weekend" x="595.4" y="-154.2" transform="rotate(75.48, 595.4, -154.2)">7</text><text class=" dayNumber weekday" x="614.2" y="-31.15" transform="rotate(87.10, 614.2, -31.15)">8</text><text class=" dayNumber weekday" x="607.9" y="93.13" transform="rotate(98.71, 607.9, 93.13)">9</text><text class=" dayNumber weekday" x="576.7" y="213.6" transform="rotate(110.3, 576.7, 213.6)">10</text><text class=" dayNumber weekday" x="521.9" y="325.3" transform="rotate(121.9, 521.9, 325.3)">11</text><text class=" dayNumber weekday" x="445.7" y="423.7" transform="rotate(133.5, 445.7, 423.7)">12</text><text class=" dayNumber weekend" x="351.3" y="504.8" transform="rotate(145.2, 351.3, 504.8)">13</text><text class=" dayNumber weekend" x="242.5" y="565.2" transform="rotate(156.8, 242.5, 565.2)">14</text><text class=" dayNumber weekday" x="123.8" y="602.4" transform="rotate(168.4, 123.8, 602.4)">15</text><text class=" dayNumber weekday" x="7.532e-14" y="615.0" transform="rotate(180.0, 7.532e-14, 615.0)">16</text><text class=" dayNumber weekday" x="-123.8" y="602.4" transform="rotate(191.6, -123.8, 602.4)">17</text><text class=" dayNumber weekday" x="-242.5" y="565.2" transform="rotate(203.2, -242.5, 565.2)">18</text><text class=" dayNumber weekday" x="-351.3" y="504.8" transform="rotate(214.8, -351.3, 504.8)">19</text><text class=" dayNumber weekend" x="-445.7" y="423.7" transform="rotate(226.5, -445.7, 423.7)">20</text><text class=" dayNumber weekend" x="-521.9" y="325.3" transform="rotate(238.1, -521.9, 325.3)">21</text><text class=" dayNumber weekday" x="-576.7" y="213.6" transform="rotate(249.7, -576.7, 213.6)">22</text><text class=" dayNumber weekday" x="-607.9" y="93.13" transform="rotate(261.3, -607.9, 93.13)">23</text><text class=" dayNumber weekday current" x="-614.2" y="-31.15" transform="rotate(272.9, -614.2, -31.15)">24</text><text class=" dayNumber weekday" x="-595.4" y="-154.2" transform="rotate(284.5, -595.4, -154.2)">25</text><text class=" dayNumber weekday" x="-552.1" y="-270.8" transform="rotate(296.1, -552.1, -270.8)">26</text><text class=" dayNumber weekend" x="-486.3" y="-376.4" transform="rotate(307.7, -486.3, -376.4)">27</text><text class=" dayNumber weekend" x="-400.6" y="-466.6" transform="rotate(319.4, -400.6, -466.6)">28</text><text class=" dayNumber weekday" x="-298.5" y="-537.7" transform="rotate(331.0, -298.5, -537.7)">29</text><text class=" dayNumber weekday" x="-184.1" y="-586.8" transform="rotate(342.6, -184.1, -586.8)">30</text><text class=" dayNumber weekday" x="-62.22" y="-611.8" transform="rotate(354.2, -62.22, -611.8)">31</text>
+</g>
+</g>
+
+
+<g class="group-label dateLabel">
+	<defs>
+		<path id="dateLabelPath" d="
+M -303.1 -175.0
+A 350.0 350.0 0 0 1 303.1 -175.0"></path>
+	</defs>
+
+	<text class="label dateLabel"><textPath startOffset="50%" href="#dateLabelPath">2006</textPath></text>
+</g>
+
+<svg x="-100" y="250" width="200" height="200" viewBox="-1000 -1000 2000 2000" preserveAspectRatio="xMidYMid meet">
+	<path class="group-label favicon" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966 Z"><title>vintage clock by ldpercy</title></path>
+</svg>
+
+
+<g class="hands">
+	<title>2006-05-24 - Wednesday - d144</title>
+	<path id="" class="hand1 yearHand" d="
+M -5, -900
+A 5,5 0 1 1 5, -900
+
+L 23.076923076923077 -55.38461538461539
+A 60,60 0 0 1 23.076923076923077, 55.38461538461539
+
+L 50 100
+L -50 100
+
+L -23.076923076923077 55.38461538461539
+A 60,60 0 0 1 -23.076923076923077, -55.38461538461539
+
+Z" transform="rotate(141.53424657534245,0,0)"></path>
+
+<g id="" class="monthHand" transform="rotate(272.90322580645164,0,0)">
+	<defs>
+		<radialGradient id="lensGradient">
+			<stop offset="80%" stop-color="#ff02"></stop>
+			<stop offset="90%" stop-color="#ff99"></stop>
+			<stop offset="100%" stop-color="white"></stop>
+		</radialGradient>
+	</defs>
+
+	<circle class="hand2 lens" cx="0" cy="-670" r="100"></circle>
+	<path class="hand2" d="
+
+
+M 0 -800
+A 130,130 0 0 1 50 -550
+
+
+L 19.230769230769234 -46.15384615384615
+A 50,50 0 0 1 19.230769230769234, 46.15384615384615
+
+L 30 150
+L -30 150
+
+L -19.230769230769234 46.15384615384615
+A 50,50 0 0 1 -19.230769230769234, -46.15384615384615
+
+L -50 -550
+A 130,130 0 0 1 0, -800
+
+Z
+
+M 0 -770
+A 100,100 0 0 1 0 -570
+A 100,100 0 0 1 0 -770
+Z
+"></path>
+</g>
+
+</g>
+<circle class="pin" x="0" y="0" r="10"></circle>
+
+</svg>
