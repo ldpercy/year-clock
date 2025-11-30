@@ -296,6 +296,9 @@ class DisplayDate extends YearclockDate {
 	#monthArray;
 	dateRange;
 
+	yearDayArray;
+	monthDayArray;
+
 	constructor(date, language)
 	{
 		super(date);

@@ -150,10 +150,10 @@ export class Angle {
 	get radiansPi()  { return this.#degrees / 180; }
 	get radiansTau() { return this.#degrees / 360; }
 
-	set degrees(degrees)         { this.#degrees = degrees; return this; }
-	set radians(radians)         { this.#degrees = radians * 180 / Math.PI; return this; }
-	set radiansPi(radiansPi)     { this.#degrees = radiansPi * 180; return this; }
-	set radiansTau(radiansTau)   { this.#degrees = radiansTau * 360; return this; }
+	set degrees(degrees)         { this.#degrees = degrees; }
+	set radians(radians)         { this.#degrees = radians * 180 / Math.PI; }
+	set radiansPi(radiansPi)     { this.#degrees = radiansPi * 180; }
+	set radiansTau(radiansTau)   { this.#degrees = radiansTau * 360; }
 
 	plus(angle) {
 		this.#degrees += angle.degrees;
@@ -191,24 +191,6 @@ export class AngularRange  {
 	}
 
 }/* yearclock.Geometry.AngularRange */
-
-
-
-
-class RadianDelta {
-	constructor(start = 0, delta = yearclock.Maths.TAU) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
-
-
-class DegreeDelta {
-	constructor(start = 0, delta = 360) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
 
 
 
