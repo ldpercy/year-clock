@@ -72,7 +72,6 @@ class SeasonOutTheme extends themebase.ThemeBase {
 		switch(type) {
 			case 'yearDay'  : result = `${data.name} d${data.dayOfPeriod}`; break;
 			case 'quarter'  : result = `${data.name}`; break;
-			case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			case 'hands'    : result = `${data.date.toIsoDate()} - ${data.date.dayName} - d${data.date.dayOfYear}`; break;
 			default         : result = data.name || data.id; break;
