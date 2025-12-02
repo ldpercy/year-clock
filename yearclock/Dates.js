@@ -10,6 +10,7 @@ import * as geometry from "./Geometry.js";
 class YearclockDate extends Date {
 
 	constructor(date) {
+		// @ts-ignore
 		super(...arguments);
 	}
 
