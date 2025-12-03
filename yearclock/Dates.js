@@ -11,7 +11,7 @@ class YearclockDate extends Date {
 
 	constructor(date) {
 		// @ts-ignore
-		super(...arguments);
+		super(...arguments);	// no quick fix for this, and should be refactored out soon
 	}
 
 
