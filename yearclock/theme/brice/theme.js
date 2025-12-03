@@ -90,12 +90,12 @@ class BriceTheme extends themebase.ThemeBase  {
 
 	dateRatio(date)
 	{
-		const year = date.getFullYear()
-		const yearStart = new Date (year, 0)
-		const yearEnd   = new Date (year + 1, 0)
-		const yearLength = yearEnd - yearStart
-		const timeElapsed = date - yearStart
-		return timeElapsed / yearLength
+		const year = date.getFullYear();
+		const yearStart = new Date (year, 0);
+		const yearEnd   = new Date (year + 1, 0);
+		const yearLength = yearEnd.getTime() - yearStart.getTime();
+		const timeElapsed = date - yearStart.getTime();
+		return timeElapsed / yearLength;
 	}
 
 

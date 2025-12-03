@@ -92,7 +92,7 @@ class SpaceTheme extends themebase.ThemeBase {
 		//log(this.displayDate);
 
 		const moonRadians = this.displayDate.monthDays.array[0].angularRange.middle.radians;
-		const moonPosition = new geometry.PolarPoint(moonRadians, this.dayRing.label.radius).toPoint();
+		const moonPosition = new geometry.PolarPoint(moonRadians, this.dayRing.label[0].radius).toPoint();
 
 		const themeSVG = `
 

@@ -14,8 +14,8 @@ class YearclockApp extends HTMLApp {
 
 	name = "Year Clock";
 	info = `
-		Year Clock v2.0.1 by ldpercy
-		https://github.com/ldpercy/year-clock/pull/44
+		Year Clock v2.0.2 by ldpercy
+		https://github.com/ldpercy/year-clock/pull/45
 	`.replace(/\n\t/g,'\n');
 
 

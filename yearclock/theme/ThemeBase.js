@@ -63,7 +63,7 @@ export class ThemeBase extends yearclock.YearClock {
 		const clockSVG = `
 			<svg id="clock" class="yearclock hemisphere-${this.parameter.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 				${grid}
-				${this.getThemeSVG(this.displayDate)}
+				${this.getThemeSVG()}
 			</svg>`;
 
 		return clockSVG;
@@ -84,8 +84,8 @@ export class ThemeBase extends yearclock.YearClock {
 	*/
 	getViewbox(viewBox=this.viewBox) {
 		const vb =  svg.splitViewBox(viewBox);
-		const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
-		return svg;
+		const result = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
+		return result;
 	}/* getViewbox */
 
 
@@ -107,7 +107,7 @@ export class ThemeBase extends yearclock.YearClock {
 	*/
 	getPeriodDayTicks(periodType, periodArray, tick) {
 		let tickClass = '';
-		let tickLine = '';
+		let tickLine;
 		let tickSvg = '';
 
 		//console.debug('getPeriodDayTicks', periodArray);
@@ -442,7 +442,7 @@ export class ThemeBase extends yearclock.YearClock {
 			case 'radial-in'    : result.degrees += 180; break;
 			case 'radial'       : break; // just return the incoming angle
 			case true           : break; // just return the incoming angle
-			default             : result = 0; break;
+			default             : result.degrees = 0; break;
 		}
 
 		switch(setting.invert) {

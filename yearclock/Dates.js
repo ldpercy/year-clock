@@ -10,7 +10,8 @@ import * as geometry from "./Geometry.js";
 class YearclockDate extends Date {
 
 	constructor(date) {
-		super(...arguments);
+		// @ts-ignore
+		super(...arguments);	// no quick fix for this, and should be refactored out soon
 	}
 
 
@@ -42,7 +43,7 @@ class YearclockDate extends Date {
 
 	get isValid() {
 		//https://stackoverflow.com/a/1353711
-		return this instanceof Date && !isNaN(this);
+		return this instanceof Date && !isNaN(this.getTime());
 	}
 
 	get isLastDayOfMonth() {
@@ -109,7 +110,7 @@ function monthsAreEqual(d1,d2) {
 }
 
 export function dayDifference(date1, date2) {
-	const rawDayDiff = (truncateTime(date2) - truncateTime(date1)) / (1000 * 60 * 60 * 24);
+	const rawDayDiff = (truncateTime(date2).getTime() - truncateTime(date1).getTime()) / (1000 * 60 * 60 * 24);
 	const result = Math.round(rawDayDiff);
 	// There is an error in here when using floor - see the 'october bug'
 	// Changing to use 'round' instead, but in future change all this over to Temporal
@@ -217,7 +218,7 @@ class DayRange {
 	setAngularRange( angularRange = new geometry.AngularRange()) {
 		this.angularRange = angularRange;
 		this.array.forEach(
-			(element, index, array=this) => { element.angularRange = this.angularRange.division(index, array.length); } // nb one-based
+			(element, index, array) => { element.angularRange = this.angularRange.division(index, array.length); } // nb one-based
 		);
 	}/* addAngularRange */
 
@@ -295,6 +296,15 @@ class DisplayDate extends YearclockDate {
 	language;
 	#monthArray;
 	dateRange;
+
+	yearDayArray;
+	monthDayArray;		//
+	monthDays;			// rationalise these two
+
+	// optional arrays:
+	seasonCircleArray;
+	quarterArray;
+	weekArray;
 
 	constructor(date, language)
 	{

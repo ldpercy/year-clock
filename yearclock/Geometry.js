@@ -6,18 +6,8 @@
 
 
 import * as dates from "./Dates.js";
+import * as maths from "./Maths.js";
 
-
-
-
-
-function radians(degrees) {
-	return (degrees/360) * yearclock.Maths.TAU;
-}
-
-function degrees(radians) {
-	return (radians/yearclock.Maths.TAU) * 360;
-}
 
 
 //
@@ -150,10 +140,10 @@ export class Angle {
 	get radiansPi()  { return this.#degrees / 180; }
 	get radiansTau() { return this.#degrees / 360; }
 
-	set degrees(degrees)         { this.#degrees = degrees; return this; }
-	set radians(radians)         { this.#degrees = radians * 180 / Math.PI; return this; }
-	set radiansPi(radiansPi)     { this.#degrees = radiansPi * 180; return this; }
-	set radiansTau(radiansTau)   { this.#degrees = radiansTau * 360; return this; }
+	set degrees(degrees)         { this.#degrees = degrees; }
+	set radians(radians)         { this.#degrees = radians * 180 / Math.PI; }
+	set radiansPi(radiansPi)     { this.#degrees = radiansPi * 180; }
+	set radiansTau(radiansTau)   { this.#degrees = radiansTau * 360; }
 
 	plus(angle) {
 		this.#degrees += angle.degrees;
@@ -195,24 +185,6 @@ export class AngularRange  {
 
 
 
-class RadianDelta {
-	constructor(start = 0, delta = yearclock.Maths.TAU) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
-
-
-class DegreeDelta {
-	constructor(start = 0, delta = 360) {
-		this.start = start;
-		this.delta = delta;
-	}
-}/* RadianDelta */
-
-
-
-
 //
 // Classes
 //
@@ -242,9 +214,10 @@ export class Point {
 		return result;
 	}
 
+
 	toPolarPoint(polarPoint = new PolarPoint()) {
 		const distance = this.distanceFrom();
-		const radian  = (equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
+		const radian  = (maths.equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
 		// for points on the origin return the default PolarPoint radian
 		// should probably actually add these akin to a base vector
 		return new PolarPoint(
@@ -257,11 +230,7 @@ export class Point {
 		return Math.atan2(this.y, this.x) + Math.PI/2;
 	}
 
-	// Clockwise from y axis
-	radiansFrom(center = new Point()) {
-		const result = Math.PI/2 + Math.atan2(this.y-center.y, this.x-center.x);
-		return result;
-	}
+
 
 
 	get distanceFromOrigin() {
@@ -277,7 +246,6 @@ export class Point {
 		const newPoint = new PolarPoint(radian, this.distanceFromOrigin).toPoint();
 		this.x = newPoint.x;
 		this.y = newPoint.y;
-		return this
 	}
 
 	// relative
@@ -285,7 +253,6 @@ export class Point {
 		const newPoint = new PolarPoint(this.radian + radian, this.distanceFromOrigin).toPoint();
 		this.x = newPoint.x;
 		this.y = newPoint.y;
-		return this;
 	}
 
 
