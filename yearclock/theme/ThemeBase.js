@@ -62,6 +62,10 @@ export class ThemeBase extends yearclock.YearClock {
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock hemisphere-${this.parameter.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				<view id="q1" viewBox="0 -2400 1200 1200"/>
+				<view id="q2" viewBox="0 0 1200 1200"/>
+				<view id="q3" viewBox="-2400 0 1200 1200"/>
+				<view id="q4" viewBox="-2400 -2400 1200 1200"/>
 				${grid}
 				${this.getThemeSVG()}
 			</svg>`;
