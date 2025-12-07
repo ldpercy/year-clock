@@ -13,7 +13,18 @@ class LightningTheme extends themebase.ThemeBase {
 
 	viewBox           = svg.padViewBox(125);
 	//this.viewBox				= '-800 -800 1600 1600';
+
+	view = [
+		{ "view-q1" : "0 -1200 1200 1200" },
+		{ "view-q2" : "0 0 1200 1200"},
+		{ "view-q3" : "-1200 0 1200 1200"},
+		{ "view-q4" : "-1200 -1200 1200 1200"},
+	];
+
+
+
 	clockRadius        = 1250;
+
 
 	body = {
 		x       : -1300,

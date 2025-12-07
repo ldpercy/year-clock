@@ -11,4 +11,5 @@
  * @property	{string}	language
  * @property	{string}	background
  * @property	{string}	hemisphere
+ * @property	{string}	[view]
  */
