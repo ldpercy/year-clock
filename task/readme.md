@@ -15,6 +15,7 @@ Job reminders to wrap into other tasks.
 
 
 ### General improvements
+* Option to have labels combined with their respective sectors instead of as a separate group
 * [adjust labels for short weeks](<adjust labels for short weeks.md>)
 * Have display changes update the URL so that reloads use current settings
 * Add proper light/dark UI schemes; categorise theme styles into light/dark
