@@ -9,7 +9,9 @@ export class YearClock {
 	angularRange = new geometry.AngularRange();
 
 
-
+	/**
+	 * @param {ClockParameters} parameter
+	 */
 	constructor(parameter) {
 		this.parameter = parameter;
 		// this.setDisplayDate(this.parameter.date);
@@ -38,7 +40,5 @@ export class YearClock {
 
 
 }/* YearClock */
-
-
 
 

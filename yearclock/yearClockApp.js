@@ -159,9 +159,10 @@ class YearclockApp extends HTMLApp {
 
 		//log('page:', page);
 
+		/** @type {ClockParameters} */
 		const initialClockParams = {
 			id          : '1234',
-			container   : this.page.element.container,
+			//container   : this.page.element.container,
 			date        : this.page.initial.date,
 			theme       : this.page.initial.theme,
 			style       : this.page.initial.style,
@@ -376,3 +377,7 @@ clockElement.addEventListener('dblclick', function (event) {
 }, false);
 
 */
+
+
+
+
