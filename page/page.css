@@ -91,6 +91,7 @@ form#form-clock {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		label { text-align:right; margin-right:1ex; }
 		label::after { content:": "; }
+		label.no-after::after { content:""; }
 		h2, details, .controls { display:none; }
 		width: auto;
 		left:0ex;
