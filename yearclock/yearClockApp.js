@@ -3,7 +3,7 @@
 
 
 
-import { HTMLApp } from "./HTMLApp.js";
+import { HTMLApp } from "./[html-common]/module/HTMLApp.js";
 import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
 import * as testing from "./Testing.js";
@@ -12,12 +12,13 @@ import * as testing from "./Testing.js";
 
 class YearclockApp extends HTMLApp {
 
-	name = "Year Clock";
-	info = `
+	appVersion = 'v2.🔎🎑';
+	appInfo = [`%c
 		Year Clock v2.🔎🎑 by ldpercy
-		https://github.com/ldpercy/year-clock/pull/45
-	`.replace(/\n\t/g,'\n');
-
+		https://github.com/ldpercy/year-clock/releases/tag/${this.appVersion}
+		`.replace(/\n\t/g,'\n'),
+		'color:light-dark(darkgoldenrod, gold);'
+	];
 
 	eventListeners = [
 		{
