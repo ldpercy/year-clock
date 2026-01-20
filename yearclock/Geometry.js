@@ -6,7 +6,7 @@
 
 
 import * as dates from "./Dates.js";
-import * as maths from "./Maths.js";
+import * as maths from "./[html-common]/module/Maths.js";
 
 
 
@@ -217,7 +217,7 @@ export class Point {
 
 	toPolarPoint(polarPoint = new PolarPoint()) {
 		const distance = this.distanceFrom();
-		const radian  = (maths.equalAtPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
+		const radian  = (maths.equalToPrecision(this.precision, distance, 0)) ? polarPoint.radian : this.radiansFrom();
 		// for points on the origin return the default PolarPoint radian
 		// should probably actually add these akin to a base vector
 		return new PolarPoint(

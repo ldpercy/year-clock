@@ -2,7 +2,7 @@
 */
 
 import * as yearclock from './YearClock.js';
-import * as maths from '../Maths.js';
+import * as maths from '../[html-common]/module/Maths.js';
 import * as geometry from '../Geometry.js';
 import * as svg from '../SVG.js';
 
