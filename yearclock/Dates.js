@@ -302,6 +302,8 @@ class DisplayDate extends YearclockDate {
 	monthDays;			// rationalise these two
 
 	// optional arrays:
+	seasonArray;
+	season;
 	seasonCircleArray;
 	quarterArray;
 	weekArray;

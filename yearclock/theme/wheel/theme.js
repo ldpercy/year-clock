@@ -1,14 +1,14 @@
 /* Wheel
 */
 
+import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
 import * as geometry from '../../Geometry.js';
 
 class WheelTheme extends themebase.ThemeBase {
 
-	viewBox           = svg.padViewBox(50, '-1600 -1200 3200 2400');
+	viewBox = new svg.ViewBox(-1600, -1200, 3200, 2400).pad(50);
 	clockRadius       = 1200;
 	// outerRadius       = 1150;
 	// innerRadius       = 950;

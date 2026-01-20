@@ -2,15 +2,15 @@
 Seasons in the middle then months then days
 */
 
+import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
 import * as geometry from '../../Geometry.js';
 import * as periodArray from '../../PeriodArray.js';
 
 class SeasonOutTheme extends themebase.ThemeBase {
 
-	viewBox           = svg.padViewBox(75);
+	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400).pad(75);
 	//viewBox				= '-800 -800 1600 1600';
 	clockRadius        = 1250;
 
