@@ -1,7 +1,3 @@
-[submodule "yearclock/[html-common]"]
-	path = yearclock/[html-common]
-	url = https://github.com/ldpercy/html-common
-	branch = main
 [submodule "[html-common]"]
 	path = [html-common]
-	url = ../html-common
+	url = https://github.com/ldpercy/html-common
