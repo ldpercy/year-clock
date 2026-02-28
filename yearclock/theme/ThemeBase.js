@@ -2,9 +2,9 @@
 */
 
 import * as yearclock from './YearClock.js';
-import * as maths from '../[html-common]/module/Maths.js';
+import * as maths from '../../[html-common]/module/Maths.js';
 import * as geometry from '../Geometry.js';
-import * as svg from '../[html-common]/module/SVG.js';
+import * as svg from '../../[html-common]/module/SVG.js';
 import * as clockSvg from '../ClockSVG.js';
 
 export class ThemeBase extends yearclock.YearClock {

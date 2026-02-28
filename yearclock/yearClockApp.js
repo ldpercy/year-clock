@@ -3,7 +3,7 @@
 
 
 
-import { HTMLApp } from "./[html-common]/module/HTMLApp.js";
+import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
 import * as testing from "./Testing.js";

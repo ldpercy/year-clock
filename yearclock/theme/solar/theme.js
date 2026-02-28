@@ -1,7 +1,7 @@
 /* Solar
 */
 
-import * as svg from '../../[html-common]/module/SVG.js';
+import * as svg from '../../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
 import * as geometry from '../../Geometry.js';

@@ -5,7 +5,7 @@
 //
 
 
-import * as maths from './[html-common]/module/Maths.js';
+import * as maths from '../[html-common]/module/Maths.js';
 import * as geometry from './Geometry.js';
 
 

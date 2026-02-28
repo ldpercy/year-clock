@@ -6,7 +6,7 @@
 
 
 import * as dates from "./Dates.js";
-import * as maths from "./[html-common]/module/Maths.js";
+import * as maths from "../[html-common]/module/Maths.js";
 
 
 
