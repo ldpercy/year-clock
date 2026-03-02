@@ -2,7 +2,7 @@
 */
 
 html {
-
+	--project-colour: gold;
 	margin:0px;
 	padding:0px;
 
@@ -10,7 +10,7 @@ html {
 	scrollbar-width: none;
 
 	font-family: sans-serif;
-
+	font-size: 16px;
 
 	body {
 		--accent-light: #07c;
