@@ -104,13 +104,10 @@
 			<option>southern</option>
 		</select>
 
-		<details>
-			<summary>🛈</summary>
-			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
-			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.📽🖧">v2.📽🖧</a>
-			by <a href="https://github.com/ldpercy/">ldpercy</a>
 
-		</details>
+		<p></p>
+		<button type="button" popovertarget="info-popover"><strong>🛈 Year Clock help</strong></button>
+
 	</form>
 
 	<output id="clockContainer">
@@ -119,5 +116,32 @@
 	</output>
 
 	<output id="testResult" class="testResult"></output>
+
+
+
+	<dialog popover id="info-popover" closedby="any">
+		<h1>
+			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
+			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.📽🖧">v2.📽🖧</a>
+			by <a href="https://github.com/ldpercy/">ldpercy</a>
+		</h1>
+
+		<h2>Keyboard shortcuts</h2>
+		<dl>
+			<dt><kbd>,</kbd></dt>
+			<dd>Day back</dd>
+
+			<dt><kbd>.</kbd></dt>
+			<dd>Day forward</dd>
+
+			<dt><kbd>?</kbd></dt>
+			<dd>Show this dialog</dd>
+		</dl>
+
+
+	</dialog>
+
+
+
 </body>
 </html>

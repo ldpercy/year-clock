@@ -192,6 +192,7 @@ class YearclockApp extends HTMLApp {
 			switch(event.key) {
 				case ','    : event.preventDefault(); this.dayBackward(); break;
 				case '.'   	: event.preventDefault(); this.dayForward(); break;
+				case '?'	: this.togglePopover(); break;
 				default     : /* do nothing */; break;
 			}
 		}
@@ -211,6 +212,10 @@ class YearclockApp extends HTMLApp {
 		currentDate.decrementDay();
 		this.changeDate(currentDate);
 		this.page.element.datePicker.value = currentDate.toIsoDate();
+	}
+
+	togglePopover() {
+		document.getElementById('info-popover').togglePopover();
 	}
 
 
