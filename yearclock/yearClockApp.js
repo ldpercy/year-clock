@@ -12,10 +12,10 @@ import * as testing from "./Testing.js";
 
 class YearclockApp extends HTMLApp {
 
-	appVersion = 'v2.📽🖧';
+	appVersion = 'v2.1.0';
 	projectColour = 'gold';
 	appInfo = [`%c
-		Year Clock v2.📽🖧 by ldpercy
+		Year Clock v2.1.0 by ldpercy
 		https://github.com/ldpercy/year-clock/releases/tag/${this.appVersion}
 		`.replace(/\n\t/g,'\n'),
 		`color: light-dark(hsl(from ${this.projectColour} h s 30), hsl(from ${this.projectColour} h s 70));`,
