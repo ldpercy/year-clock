@@ -2,11 +2,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Year Clock v2.0.2 by ldpercy </title>
+	<title>Year Clock v2.1.0 by ldpercy </title>
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
-
+	<meta name="theme-color" content="gold"/>
 	<!-- page -->
-	<link rel="icon" href="page/favicon.svg">
+	<link rel="icon" href="favicon.svg">
 	<link rel="stylesheet" href="page/page.css">
 
 	<script>
@@ -55,14 +55,30 @@
 
 		<label for="input-language">Language</label>
 		<select id="input-language" name="language" title="language">
-			<option>en</option>
-			<option>es</option>
-			<option>fr</option>
-			<option>zh</option>
-			<option>hi</option>
-			<option>ru</option>
-			<option>ko</option>
+			<option value="en">English</option>
+			<option value="es">Spanish</option>
+			<option value="fr">French</option>
+			<option value="zh">Chinese</option>
+			<option value="hi">Hindi</option>
+			<option value="ru">Russian</option>
+			<option value="ko">Korean</option>
 		</select>
+		<!--
+		<label class="scheme" title="Colour scheme">
+			Colour scheme
+		</label>
+		<div>
+			<label title="Light scheme" class="no-after">
+				<input type="radio" name="colourScheme" value="light" checked>
+				light
+			</label>
+			<label title="Dark scheme" class="no-after">
+				<input type="radio" name="colourScheme" value="dark">
+				dark
+			</label>
+		</div>
+		-->
+
 
 		<label for="input-style">Style</label>
 		<input id="input-style" type="text" name="style" title="style" list="datalist-style" pattern="[a-z0-9\-]{0,10}"/>
@@ -88,13 +104,10 @@
 			<option>southern</option>
 		</select>
 
-		<details>
-			<summary>🛈</summary>
-			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
-			<a href="https://github.com/ldpercy/year-clock/pull/45">v2.0.2</a>
-			by <a href="https://github.com/ldpercy/">ldpercy</a>
 
-		</details>
+		<p></p>
+		<button type="button" popovertarget="info-popover"><strong>🛈 Year Clock help</strong></button>
+
 	</form>
 
 	<output id="clockContainer">
@@ -103,5 +116,32 @@
 	</output>
 
 	<output id="testResult" class="testResult"></output>
+
+
+
+	<dialog popover id="info-popover" closedby="any">
+		<h1>
+			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
+			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.1.0">v2.1.0</a>
+			by <a href="https://github.com/ldpercy/">ldpercy</a>
+		</h1>
+
+		<h2>Keyboard shortcuts</h2>
+		<dl>
+			<dt><kbd>,</kbd></dt>
+			<dd>Day back</dd>
+
+			<dt><kbd>.</kbd></dt>
+			<dd>Day forward</dd>
+
+			<dt><kbd>?</kbd></dt>
+			<dd>Show this dialog</dd>
+		</dl>
+
+
+	</dialog>
+
+
+
 </body>
 </html>

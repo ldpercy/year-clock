@@ -2,16 +2,15 @@
 Testing theme - use for trying things out and fixing bugs
 */
 
+import * as svg from '../../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
 import * as geometry from '../../Geometry.js';
 
 
 class TestingTheme extends themebase.ThemeBase {
 
-
-	viewBox           = svg.padViewBox(50);
+	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400).pad(50);
 	clockRadius       = 1200;
 
 	//monthSector = new geometry.Annulus(800, 400);

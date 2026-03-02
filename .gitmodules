@@ -1,0 +1,3 @@
+[submodule "[html-common]"]
+	path = [html-common]
+	url = https://github.com/ldpercy/html-common

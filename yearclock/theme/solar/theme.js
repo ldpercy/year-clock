@@ -1,16 +1,15 @@
 /* Solar
 */
 
-
+import * as svg from '../../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
 import * as geometry from '../../Geometry.js';
 
 
 class SolarTheme extends themebase.ThemeBase {
 
-	viewBox           = svg.padViewBox(50, '-2500 -1200 5000 2800');
+	viewBox = new svg.ViewBox(-2500,-1200,5000,2800).pad(50);
 
 	monthRing = {
 		name    : 'yearMonth',

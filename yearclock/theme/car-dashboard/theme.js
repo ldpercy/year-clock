@@ -1,9 +1,10 @@
 /* Car dashboard theme
 */
 
+import * as svg from '../../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
+import * as clockSvg from '../../ClockSVG.js';
 import * as geometry from '../../Geometry.js';
 import * as periodArray from '../../PeriodArray.js';
 import * as calendarEvent from '../../CalendarEvent.js';
@@ -12,7 +13,7 @@ import * as calendarEvent from '../../CalendarEvent.js';
 class CarDashboardTheme extends themebase.ThemeBase {
 
 	//viewBox           = '-2700 -1400 5400 2800';
-	viewBox           = svg.padViewBox(50, '-2700 -1400 5400 2800');
+	viewBox           = new svg.ViewBox(-2700,-1400,5400,2800).pad(50);
 
 	clock = {
 		bodyRadius : 1400,
@@ -273,10 +274,10 @@ class CarDashboardTheme extends themebase.ThemeBase {
 			A ${clock.faceRadius},${clock.faceRadius} 0 1 1 ${-clock.faceRadius},${-clock.faceRadius}
 			Z
 
-			${svg.rectanglePath(-300, 800, 600, 300, 50)}
+			${clockSvg.rectanglePath(-300, 800, 600, 300, 50)}
 
-			${svg.rectanglePath(-1650, 900, 700, 200, 50)}
-			${svg.rectanglePath(950, 900, 700, 200, 50)}
+			${clockSvg.rectanglePath(-1650, 900, 700, 200, 50)}
+			${clockSvg.rectanglePath(950, 900, 700, 200, 50)}
 
 			Z`;
 		return path;

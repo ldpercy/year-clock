@@ -1,11 +1,11 @@
 //
-// SVG
+// ClockSVG
 //
 // Unless specified uses a (0,0) origin
 //
 
 
-import * as maths from './Maths.js';
+import * as maths from '../[html-common]/module/Maths.js';
 import * as geometry from './Geometry.js';
 
 
@@ -137,23 +137,6 @@ export function getSectorPathSimple(angularRange, annulus)
 
 
 
-export function padViewBox(padding, viewBox = '-1200 -1200 2400 2400') {
-	const vb = this.splitViewBox(viewBox);
-	return `${vb.x-padding} ${vb.y-padding} ${vb.width + 2*padding} ${vb.height + 2*padding}`;
-}
-
-
-export function splitViewBox(viewBoxString) {
-	const vba    = viewBoxString.split(' ');
-	const result = {
-		x      : parseInt(vba[0]),
-		y      : parseInt(vba[1]),
-		width  : parseInt(vba[2]),
-		height : parseInt(vba[3]),
-	};
-	return result;
-}
-
 
 export function rectanglePath(x, y, width, height, radius) {
 
@@ -172,32 +155,4 @@ export function rectanglePath(x, y, width, height, radius) {
 }
 
 
-
-
-export class Chunk {
-	text;
-	defs;
-
-	constructor(
-		text = '',
-		defs = ''
-	) {
-		this.text = text;
-		this.defs = defs;
-	}
-
-	add(svgChunk) {
-		this.text += svgChunk.text;
-		this.defs += svgChunk.defs;
-	}
-
-	toString() {
-		const result = `
-			<defs>
-				${this.defs}
-			</defs>
-			${this.text}`;
-		return result;
-	}
-}/* yearclock.SVG.Chunk */
 
