@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1000 -1000 2000 2000">
+	<style>
+		svg { opacity: 40%;	}
+		.background {  }
+		path {
+			fill:gold;
+			filter: blur(1cm);
+		}
+	</style>
+	<rect fill="darkgoldenrod" x="-1000" y="-1000" width="2000" height="2000" />
+	<path style="" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
+</svg>

@@ -12,10 +12,10 @@ import * as testing from "./Testing.js";
 
 class YearclockApp extends HTMLApp {
 
-	appVersion = 'v2.1.0';
+	appVersion = 'v2.1.1';
 	projectColour = 'gold';
 	appInfo = [`%c
-		Year Clock v2.1.0 by ldpercy
+		Year Clock v2.1.1 by ldpercy
 		https://github.com/ldpercy/year-clock/releases/tag/${this.appVersion}
 		`.replace(/\n\t/g,'\n'),
 		`color: light-dark(hsl(from ${this.projectColour} h s 30), hsl(from ${this.projectColour} h s 70));`,
@@ -41,6 +41,11 @@ class YearclockApp extends HTMLApp {
 			query: '#button-dayForward',
 			type: 'click',
 			listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
+		},
+		{
+			query: '#button-showAppInfo',
+			type: 'click',
+			listener: this.toggleAppInfoDialog
 		},
 	];
 
@@ -192,7 +197,7 @@ class YearclockApp extends HTMLApp {
 			switch(event.key) {
 				case ','    : event.preventDefault(); this.dayBackward(); break;
 				case '.'   	: event.preventDefault(); this.dayForward(); break;
-				case '?'	: this.togglePopover(); break;
+				case '?'	: this.toggleAppInfoDialog(); break;
 				default     : /* do nothing */; break;
 			}
 		}
@@ -214,8 +219,10 @@ class YearclockApp extends HTMLApp {
 		this.page.element.datePicker.value = currentDate.toIsoDate();
 	}
 
-	togglePopover() {
-		document.getElementById('info-popover').togglePopover();
+	toggleAppInfoDialog() {
+		/** @type {HTMLDialogElement} */
+		const d = document.querySelector("#dialog-appInfo");
+		d.showModal();
 	}
 
 
