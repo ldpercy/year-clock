@@ -42,6 +42,11 @@ class YearclockApp extends HTMLApp {
 			type: 'click',
 			listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
 		},
+		{
+			query: '#button-showAppInfo',
+			type: 'click',
+			listener: this.toggleAppInfoDialog
+		},
 	];
 
 
@@ -192,7 +197,7 @@ class YearclockApp extends HTMLApp {
 			switch(event.key) {
 				case ','    : event.preventDefault(); this.dayBackward(); break;
 				case '.'   	: event.preventDefault(); this.dayForward(); break;
-				case '?'	: this.togglePopover(); break;
+				case '?'	: this.toggleAppInfoDialog(); break;
 				default     : /* do nothing */; break;
 			}
 		}
@@ -214,8 +219,10 @@ class YearclockApp extends HTMLApp {
 		this.page.element.datePicker.value = currentDate.toIsoDate();
 	}
 
-	togglePopover() {
-		document.getElementById('info-popover').togglePopover();
+	toggleAppInfoDialog() {
+		/** @type {HTMLDialogElement} */
+		const d = document.querySelector("#dialog-appInfo");
+		d.showModal();
 	}
 
 
