@@ -22,7 +22,11 @@ html {
 		/* color scheme */
 		color-scheme: light;
 		accent-color: var(--accent);
-		a { color: var(--accent); }
+		a {
+			color: var(--accent);
+			text-decoration: none;
+			&:hover { text-decoration: underline; }
+		}
 	}
 
 }/* html */
@@ -164,7 +168,7 @@ form#form-clock {
 
 
 
-#info-popover {
+#dialog-appInfo {
 	/* backdrop-filter: blur(20px); */
 	border-radius: 1em;
 	padding:1em;
@@ -172,6 +176,14 @@ form#form-clock {
 	opacity: 95%;
 	box-shadow: 0px 0px 3em var(--accent);
 
+	h1 { margin: 0em 1em;}
+	h1::before {
+		display: inline-block ;
+		content: url("../favicon.svg");
+		height:2ex;
+		width:2ex;
+		vertical-align: sub;
+	}
 
 	dl {
 		display: grid;
@@ -197,13 +209,12 @@ form#form-clock {
 	}
 
 	&::backdrop {
-		background-image:  url('../favicon.svg');
-		filter: blur(4px);
+		background-image:  url('./dialog-backdrop.svg');
+		backdrop-filter: blur(1pt) brightness(40%);
 		background-position: center;
 		background-repeat: repeat;
 
 		background-size: 10%;
-		background-color: hsl(from var(--project-colour) h s 30);
-		opacity: 0.25;
+		opacity: 0.8;
 	}
 }
