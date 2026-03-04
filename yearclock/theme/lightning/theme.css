@@ -59,6 +59,8 @@ path.sector {
 	good: darken, multiply,
 	interesting: difference, exclusion,
 	*/
+	/* transform-box:content-box;
+	transform-origin:50% 50%; */
 }
 
 
@@ -110,6 +112,7 @@ path.sector {
 	stroke-width: 5;
 	paint-order: fill;
 	transition: all .05s ease-in;
+	/* scale: 110%; */
 }
 
 

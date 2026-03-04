@@ -1,15 +1,16 @@
 /* vintage
 */
 
+import * as svg from '../../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
+import * as clockSvg from '../../ClockSVG.js';
 import * as geometry from '../../Geometry.js';
 
 
 class VintageTheme extends themebase.ThemeBase {
 
-	viewBox           = svg.padViewBox(200);
+	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400).pad(200);
 
 	body = {
 		radius : 1300,
@@ -202,7 +203,7 @@ class VintageTheme extends themebase.ThemeBase {
 	*/
 	getDateLabel(point) {
 
-		const dateLabelPath = svg.getArcPath(new geometry.AngularRange(-60,120), point.y);
+		const dateLabelPath = clockSvg.getArcPath(new geometry.AngularRange(-60,120), point.y);
 
 		const textPath = `<textPath startOffset="50%" href="#dateLabelPath">${this.formatLabel('year',this.displayDate)}</textPath>`;
 

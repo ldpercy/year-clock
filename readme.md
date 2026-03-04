@@ -39,6 +39,7 @@ More recent examples:
 
 Many more examples can be found by searching for things like 'radial calendar' or 'circular calendar'.
 
+
 ### Year Clock by Andy Brice and Ian Brice
 
 * http://andybrice.net/blog/2010/01/30/year-clock/
@@ -49,6 +50,7 @@ I've used code from [year-clock.net](http://year-clock.net) as a starting point.
 A copy of the original source code is in the wiki: [wiki/year-clock.net/](<./wiki/year-clock.net/>).
 
 I'm maintaining a theme 'brice' for the original design as seen on year-clock.net
+
 
 How to run
 ----------
@@ -71,7 +73,7 @@ URL Parameters
 | parameter		| example							|
 |---------------|-----------------------------------|
 | date			| date=2023-04-05					|
-| theme			| theme=brice						|
+| theme			| theme=solar						|
 | style			| theme=car-dashboard&style=night	|
 | language		| language=fr						|
 | background	| background=dusk					|
@@ -91,8 +93,6 @@ Load a different theme to the default, eg:
 
 	index.html?theme=brice
 
-Theme 'brice' is the original design seen on [year-clock.net](<http://year-clock.net>).
-
 ### Style
 
 Only relevant if the theme includes style variants, eg:
@@ -101,7 +101,7 @@ Only relevant if the theme includes style variants, eg:
 
 ### Language
 
-A small set of translations were inherited from the original, eg:
+A small set of translations are available:
 
 	index.html?language=fr
 
@@ -114,13 +114,13 @@ A few custom backgrounds are available eg:
 
 ### Hemisphere
 
-Change the hemisphere, changes some seasonal cues on some themes:
+Set the hemisphere, changes seasonal cues on some themes:
 
 	index.html?hemisphere=northern
 
 ### Testing
 
-Turn on some basic smoke testing - the border turns red if 'silent' JavaScript errors leak into the output (undefined, NaN etc):
+Turn on basic smoke testing - the border turns red if 'silent' JavaScript errors leak into the output (undefined, NaN etc):
 
 	index.html?test=true
 

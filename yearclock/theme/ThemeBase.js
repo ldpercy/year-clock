@@ -2,14 +2,15 @@
 */
 
 import * as yearclock from './YearClock.js';
-import * as maths from '../Maths.js';
+import * as maths from '../../[html-common]/module/Maths.js';
 import * as geometry from '../Geometry.js';
-import * as svg from '../SVG.js';
+import * as svg from '../../[html-common]/module/SVG.js';
+import * as clockSvg from '../ClockSVG.js';
 
 export class ThemeBase extends yearclock.YearClock {
 
 
-	viewBox = '-1200 -1200 2400 2400';
+	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400);
 
 	sf = maths.significantFigures(4);
 
@@ -62,8 +63,12 @@ export class ThemeBase extends yearclock.YearClock {
 
 		const clockSVG = `
 			<svg id="clock" class="yearclock hemisphere-${this.parameter.hemisphere}" viewBox="${this.viewBox}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+				<view id="q1" viewBox="0 -2400 1200 1200"/>
+				<view id="q2" viewBox="0 0 1200 1200"/>
+				<view id="q3" viewBox="-2400 0 1200 1200"/>
+				<view id="q4" viewBox="-2400 -2400 1200 1200"/>
 				${grid}
-				${this.getThemeSVG(this.displayDate)}
+				${this.getThemeSVG()}
 			</svg>`;
 
 		return clockSVG;
@@ -79,13 +84,13 @@ export class ThemeBase extends yearclock.YearClock {
 
 
 
-	/* getViewbox
-	Mainly for debugging for now
-	*/
+	/** getViewbox
+	 * Mainly for debugging for now
+	 * @return {string}
+	 */
 	getViewbox(viewBox=this.viewBox) {
-		const vb =  svg.splitViewBox(viewBox);
-		const svg = `<rect class="viewBox" x="${vb.x}" y="${vb.y}" width="${vb.width}" height="${vb.height}"></rect>`;
-		return svg;
+		const result = `<rect class="viewBox" x="${viewBox.x}" y="${viewBox.y}" width="${viewBox.width}" height="${viewBox.height}"></rect>`;
+		return result;
 	}/* getViewbox */
 
 
@@ -107,7 +112,7 @@ export class ThemeBase extends yearclock.YearClock {
 	*/
 	getPeriodDayTicks(periodType, periodArray, tick) {
 		let tickClass = '';
-		let tickLine = '';
+		let tickLine;
 		let tickSvg = '';
 
 		//console.debug('getPeriodDayTicks', periodArray);
@@ -116,12 +121,12 @@ export class ThemeBase extends yearclock.YearClock {
 		{
 			if (day.date.isWeekend)
 			{
-				tickLine = svg.radialLine(day.angularRange.start, tick.weekendStart, tick.weekendEnd);
+				tickLine = clockSvg.radialLine(day.angularRange.start, tick.weekendStart, tick.weekendEnd);
 				tickClass = 'weekend';
 			}
 			else // day.isWeekday
 			{
-				tickLine = svg.radialLine(day.angularRange.start, tick.weekdayStart, tick.weekdayEnd);
+				tickLine = clockSvg.radialLine(day.angularRange.start, tick.weekdayStart, tick.weekdayEnd);
 				tickClass = 'weekday';
 			}
 
@@ -130,7 +135,7 @@ export class ThemeBase extends yearclock.YearClock {
 
 			if (day.date.isFirst) // Draw an extra line for firsts of the month
 			{
-				tickLine = svg.radialLine(day.angularRange.start, tick.monthFirstStart, tick.monthFirstEnd);
+				tickLine = clockSvg.radialLine(day.angularRange.start, tick.monthFirstStart, tick.monthFirstEnd);
 				tickClass = 'first';
 				tickSvg +=
 					`<line class="${tickClass}" data-date="${day.date.toIsoDate()}" x1="${tickLine.xStart}" y1="${tickLine.yStart}" x2="${tickLine.xEnd}" y2="${tickLine.yEnd}" ></line>`;
@@ -299,10 +304,10 @@ export class ThemeBase extends yearclock.YearClock {
 		for (let sector of sectorArray)
 		{
 			if (option.sizeAdjust) {
-				sectorPath = svg.getSectorResized(sector.angularRange, annulus, option.sizeAdjust);
+				sectorPath = clockSvg.getSectorResized(sector.angularRange, annulus, option.sizeAdjust);
 			}
 			else {
-				sectorPath = svg.getSectorPath(sector.angularRange, annulus);
+				sectorPath = clockSvg.getSectorPath(sector.angularRange, annulus);
 			}
 
 			const sectorSvg = `<path d="${sectorPath}" class="sector ${sectorName}-${sector.id} ${sector.name||''} ${sector.class}"><title>${this.formatTitle(sectorName, sector)}</title></path>`;
@@ -407,13 +412,13 @@ export class ThemeBase extends yearclock.YearClock {
 		const pathId = `labelPath-${setting.name}-${sector.id}`;
 
 		if (setting.invert === 'all') {
-			labelArc = svg.getArcPath(sector.angularRange, setting.radius, true);
+			labelArc = clockSvg.getArcPath(sector.angularRange, setting.radius, true);
 		}
 		else if (setting.invert && (Math.cos(sector.radians.middle) < 0)) {
-			labelArc = svg.getArcPath(sector.angularRange, setting.radius, true);
+			labelArc = clockSvg.getArcPath(sector.angularRange, setting.radius, true);
 		}
 		else {
-			labelArc = svg.getArcPath(sector.angularRange, setting.radius);
+			labelArc = clockSvg.getArcPath(sector.angularRange, setting.radius);
 		}
 
 		result.defs =
@@ -442,7 +447,7 @@ export class ThemeBase extends yearclock.YearClock {
 			case 'radial-in'    : result.degrees += 180; break;
 			case 'radial'       : break; // just return the incoming angle
 			case true           : break; // just return the incoming angle
-			default             : result = 0; break;
+			default             : result.degrees = 0; break;
 		}
 
 		switch(setting.invert) {
@@ -460,7 +465,7 @@ export class ThemeBase extends yearclock.YearClock {
 	*/
 	getGrid(viewBox, spacing=100, major=500) {
 
-		const vb = svg.splitViewBox(viewBox);
+		const vb = new svg.ViewBox(0,0,0,0).fromString(viewBox);
 
 		const x1 = vb.x;
 		const x2 = vb.x + vb.width;
@@ -596,11 +601,11 @@ export class ThemeBase extends yearclock.YearClock {
 
 			// sector path, mask, sector itself:
 			if (setting.sizeAdjust) {
-				sectorPath = svg.getSectorResized(sector.angularRange, setting.sector, setting.sizeAdjust);
-				maskPath = svg.getSectorResized(sector.angularRange, setting.sector, setting.maskExpand);
+				sectorPath = clockSvg.getSectorResized(sector.angularRange, setting.sector, setting.sizeAdjust);
+				maskPath = clockSvg.getSectorResized(sector.angularRange, setting.sector, setting.maskExpand);
 			}
 			else {
-				sectorPath = svg.getSectorPath(sector.angularRange, setting.sector);
+				sectorPath = clockSvg.getSectorPath(sector.angularRange, setting.sector);
 				maskPath = sectorPath;
 			}
 

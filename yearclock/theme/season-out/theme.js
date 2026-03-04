@@ -2,15 +2,15 @@
 Seasons in the middle then months then days
 */
 
+import * as svg from '../../../[html-common]/module/SVG.js';
 import * as dates from '../../Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as svg from '../../SVG.js';
 import * as geometry from '../../Geometry.js';
 import * as periodArray from '../../PeriodArray.js';
 
 class SeasonOutTheme extends themebase.ThemeBase {
 
-	viewBox           = svg.padViewBox(75);
+	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400).pad(75);
 	//viewBox				= '-800 -800 1600 1600';
 	clockRadius        = 1250;
 
@@ -72,7 +72,6 @@ class SeasonOutTheme extends themebase.ThemeBase {
 		switch(type) {
 			case 'yearDay'  : result = `${data.name} d${data.dayOfPeriod}`; break;
 			case 'quarter'  : result = `${data.name}`; break;
-			case 'week'     : result = `W${data.name}: ${isoDate(sector.dateStart)} - ${isoDate(sector.dateEnd)}`; break;
 			case 'day'      : result = `${data.isoShort} - ${data.name} - d${data.dayOfYear}`; break;
 			case 'hands'    : result = `${data.date.toIsoDate()} - ${data.date.dayName} - d${data.date.dayOfYear}`; break;
 			default         : result = data.name || data.id; break;

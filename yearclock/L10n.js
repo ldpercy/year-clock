@@ -37,7 +37,7 @@ Language precedence - fall to next if unavailable/unsupported
 */
 
 export function getSupportedBrowserLanguage() {
-	let result = this.getLocaleLanguage(navigator.language || navigator.userLanguage); // navigator.languages[0]
+	let result = this.getLocaleLanguage(navigator.language); // navigator.languages[0]
 	result = (this.haveL10n(result)) ? result : null;
 	return result;
 }

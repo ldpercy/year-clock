@@ -3,7 +3,7 @@
 
 
 
-import { HTMLApp } from "./HTMLApp.js";
+import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
 import * as testing from "./Testing.js";
@@ -12,12 +12,14 @@ import * as testing from "./Testing.js";
 
 class YearclockApp extends HTMLApp {
 
-	name = "Year Clock";
-	info = `
-		Year Clock v2.🌞🕝 by ldpercy
-		https://github.com/ldpercy/year-clock/pull/??
-	`.replace(/\n\t/g,'\n');
-
+	appVersion = 'v2.🌞🕝';
+	projectColour = 'gold';
+	appInfo = [`%c
+		Year Clock ${this.appVersion} by ldpercy
+		https://github.com/ldpercy/year-clock/releases/tag/${this.appVersion}
+		`.replace(/\n\t/g,'\n'),
+		`color: light-dark(hsl(from ${this.projectColour} h s 30), hsl(from ${this.projectColour} h s 70));`,
+	];
 
 	eventListeners = [
 		{
@@ -39,6 +41,11 @@ class YearclockApp extends HTMLApp {
 			query: '#button-dayForward',
 			type: 'click',
 			listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
+		},
+		{
+			query: '#button-showAppInfo',
+			type: 'click',
+			listener: this.toggleAppInfoDialog
 		},
 	];
 
@@ -159,9 +166,10 @@ class YearclockApp extends HTMLApp {
 
 		//log('page:', page);
 
+		/** @type {ClockParameters} */
 		const initialClockParams = {
 			id          : '1234',
-			container   : this.page.element.container,
+			//container   : this.page.element.container,
 			date        : this.page.initial.date,
 			theme       : this.page.initial.theme,
 			style       : this.page.initial.style,
@@ -189,6 +197,7 @@ class YearclockApp extends HTMLApp {
 			switch(event.key) {
 				case ','    : event.preventDefault(); this.dayBackward(); break;
 				case '.'   	: event.preventDefault(); this.dayForward(); break;
+				case '?'	: this.toggleAppInfoDialog(); break;
 				default     : /* do nothing */; break;
 			}
 		}
@@ -208,6 +217,12 @@ class YearclockApp extends HTMLApp {
 		currentDate.decrementDay();
 		this.changeDate(currentDate);
 		this.page.element.datePicker.value = currentDate.toIsoDate();
+	}
+
+	toggleAppInfoDialog() {
+		/** @type {HTMLDialogElement} */
+		const d = document.querySelector("#dialog-appInfo");
+		d.showModal();
 	}
 
 
@@ -376,3 +391,7 @@ clockElement.addEventListener('dblclick', function (event) {
 }, false);
 
 */
+
+
+
+
