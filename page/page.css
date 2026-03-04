@@ -210,7 +210,7 @@ form#form-clock {
 	}
 
 	&::backdrop {
-		background-image:  url('./dialog-backdrop.svg');
+		background-image:  url('./dodecagram-r105\,600-l225\,1000.svg');
 		backdrop-filter: blur(1pt) brightness(40%);
 		background-position: center;
 		background-repeat: repeat;

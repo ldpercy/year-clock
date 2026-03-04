@@ -1,26 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-400 -100 1200 1200">
 	<title>Dodecagram r105,600 l225,1000</title>
 	<style>
-		svg {
-			opacity: 40%;
-		}
-
-		.background {}
-
-		path {
-			fill: gold;
-			filter: blur(1cm);
-		}
-
 		polygon {
 			stroke: none;
 			fill: gold;
 			fill-rule: evenodd;
 		}
 	</style>
-	<!-- <rect fill="darkgoldenrod" x="-1000" y="-1000" width="2000" height="2000" /> -->
-	<!-- <path style=""/> 	-->
-
 
 	<polygon points="
 		0,0
