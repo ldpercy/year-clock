@@ -178,7 +178,7 @@ form#form-clock {
 	box-shadow: 0px 0px 3em var(--accent);
 
 	h1 { margin: 0em 1em;}
-	h1::before {
+	img {
 		display: inline-block ;
 		content: url("../favicon.svg");
 		height:2ex;
@@ -210,7 +210,7 @@ form#form-clock {
 	}
 
 	&::backdrop {
-		background-image:  url('../favicon.svg');
+		background-image:  url('./dialog-backdrop.svg');
 		backdrop-filter: blur(1pt) brightness(40%);
 		background-position: center;
 		background-repeat: repeat;

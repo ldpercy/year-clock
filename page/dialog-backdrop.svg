@@ -1,12 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1000 -1000 2000 2000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-565 -565 1130 1130">
 	<style>
 		svg { opacity: 40%;	}
 		.background {  }
-		path {
+		polygon {
 			fill:gold;
-			filter: blur(1cm);
+			fill-rule: evenodd;
+			filter: blur(1ex);
 		}
 	</style>
-	<rect fill="darkgoldenrod" x="-1000" y="-1000" width="2000" height="2000" />
-	<path style="" d="M 259 966 L -707 -707 L 966 259 L -966 259 L 707 -707 L -259 966 L -259 -966 L 707 707 L -966 -259 L 966 -259 L -707 707 L 259 -966  Z"/>
+	<rect fill="darkgoldenrod" x="-565" y="-565" width="1130" height="1130" />
+
+	<polygon points="
+		-263,-500
+		-22,-565
+		478,301
+		301,478
+		-565,-22
+		-500,-263
+		500,-263
+		565,-22
+		-301,478
+		-478,301
+		22,-565
+		263,-500
+		263,500
+		22,565
+		-478,-301
+		-301,-478
+		565,22
+		500,263
+		-500,263
+		-565,22
+		301,-478
+		478,-301
+		-22,565
+		-263,500
+	" />
 </svg>
