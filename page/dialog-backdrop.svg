@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-565 -565 1130 1130">
 	<style>
-		svg { opacity: 40%;	}
+		svg { opacity: 50%;	}
 		.background {  }
 		polygon {
 			fill:gold;
@@ -8,7 +8,8 @@
 			filter: blur(1ex);
 		}
 	</style>
-	<rect fill="darkgoldenrod" x="-565" y="-565" width="1130" height="1130" />
+	<rect fill="grey" x="-565" y="-565" width="1130" height="1130" />
+
 
 	<polygon points="
 		-263,-500

@@ -211,11 +211,11 @@ form#form-clock {
 
 	&::backdrop {
 		background-image:  url('./dialog-backdrop.svg');
-		backdrop-filter: blur(1pt) brightness(40%);
+		backdrop-filter: blur(1pt) brightness(50%);
 		background-position: center;
 		background-repeat: repeat;
 
 		background-size: 15vh;
-		opacity: 0.8;
+		opacity: 0.9;
 	}
 }

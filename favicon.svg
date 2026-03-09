@@ -2,14 +2,13 @@
 	preserveAspectRatio="xMidYMid meet">
 	<title>Dodecagram right 75,200 right 75,1000</title>
 	<style>
-		line,
 		polygon {
-			stroke: none;
 			fill: gold;
 			fill-rule: evenodd;
 		}
 	</style>
-	<!-- <rect fill="darkgoldenrod" x="-565" y="-565" width="1130" height="1130" /> -->
+
+	<circle cx="0" cy="0" r="565" fill="grey"/>
 
 	<polygon points="
 		-263,-500
@@ -37,6 +36,5 @@
 		-22,565
 		-263,500
 	" />
-
 
 </svg>
