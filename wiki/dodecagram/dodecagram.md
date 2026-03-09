@@ -1,6 +1,9 @@
 Dodecagrams
 ===========
 
+Using various versions of these for icons, details etc.
+
+
 
 Current favicon
 ---------------
@@ -13,7 +16,7 @@ First line is approx:
 	right 75,1000
 ```
 
-Rounded comes out to:
+Integer-rounded comes out to:
 ```
 	<polygon points="
 		-125,-551
