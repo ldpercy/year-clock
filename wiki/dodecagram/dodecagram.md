@@ -3,6 +3,7 @@ Dodecagrams
 
 Using various versions of these for icons, details etc.
 
+https://en.wikipedia.org/wiki/Dodecagram
 
 
 Current favicon
