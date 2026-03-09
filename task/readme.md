@@ -10,16 +10,18 @@ Job reminders to wrap into other tasks.
 
 
 ### Needs fixing - bugs, quirks etc
-*
-
+* Keyboard controls are still quirky wrt focus at the moment
 
 
 ### General improvements
+
+* Convert testing over to use `html-common`'s testing lib
+* See if some of the geometry calcs can be converted over to use PlanarSpace - will need svg coords first though
 * Option to have labels combined with their respective sectors instead of as a separate group
 * [adjust labels for short weeks](<adjust labels for short weeks.md>)
 * Have display changes update the URL so that reloads use current settings
 * Add proper light/dark UI schemes; categorise theme styles into light/dark
-* Option to have month-day rings always show 31 days, but have placeholders for non-functional days. Should reduce visual jarring when crossing months.
+* Option to have month-day rings always show 31 days, but with placeholders for non-functional days. Should reduce visual jarring when crossing months.
 * Start looking into tools like linters
 * Add license
 * Find out if form `select` size can be controlled with css
@@ -41,6 +43,7 @@ Job reminders to wrap into other tasks.
 
 ### In progress
 
+* General refactorin & cleanup
 * Improve test page parameterisation
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
@@ -49,6 +52,7 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Initial changeover to `html-common`
 * Fixed october bug
 * Removal of old theme-loading callback
 * Moving to js modules and http-only

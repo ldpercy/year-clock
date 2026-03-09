@@ -151,22 +151,22 @@ Optional style variants (specified with the 'style' parameter) are stored as:
 Tasks
 -----
 
-More detail in the [task/](<./task/>) directory.
-
-### Recently completed
-
-* Conversion to HTTP-only and JS modules
-* Conversion to HTMLApp
-* 'Wheel' theme
+Detail in the [task/](<./task/>) directory.
 
 
 ### Currently working on
 
-* Transition to [Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
-* Better use of JS classes
 * A solar theme that demonstrates moon phases
-* More dynamic/interactive elements
+* Transition to [Temporal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
+* Dynamic/interactive elements
 * Custom date/event highlighting
+
+
+### Recently completed
+
+* Bring in `html-common` submodule
+* Conversion to HTTP-only and JS modules
+* 'Wheel' theme
 
 
 ### Future work
@@ -175,6 +175,4 @@ More detail in the [task/](<./task/>) directory.
 * Calendar integration/import
 * New themes: space, 'fire danger', retro, roman
 * Revisit translations
-
-
 
