@@ -3,12 +3,8 @@
 
 	<style>
 		path {
-			stroke: blue;
-			stroke-width: 1;
-			fill: #00fa;  <!-- none; -->
-			fill-rule: evenodd; <!-- evenodd, nonzero -->
-			stroke-linecap: round;
-			stroke-linejoin: bevel;
+			fill: gold;
+			fill-rule: evenodd;
 		}
 	</style>
 

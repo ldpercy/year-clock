@@ -15,6 +15,7 @@ class SolarTheme extends themebase.ThemeBase {
 		name    : 'yearMonth',
 		array   : undefined, // this.displayDate.monthArray,
 		sector  : new geometry.Annulus(1150,950),
+		direction : 'anticlockwise',
 		sectorType: 'knockout',
 		label   : [{
 			name           : 'yearMonth',

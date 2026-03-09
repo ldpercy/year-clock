@@ -1,14 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-551 -551 1102 1102">
-	<style>
-		svg { opacity: 50%;	}
-		polygon {
-			fill:gold;
-			fill-rule: evenodd;
-			/* filter: blur(1ex); */
-		}
-	</style>
-	<rect fill="grey" x="-551" y="-551" width="1102" height="1102" />
+Dodecagrams
+===========
 
+Using various versions of these for icons, details etc.
+
+https://en.wikipedia.org/wiki/Dodecagram
+
+
+Current favicon
+---------------
+
+First line is approx:
+```
+	//~xy -125,551.066
+	//~right 15
+	right 75,250
+	right 75,1000
+```
+
+Integer-rounded comes out to:
+```
 	<polygon points="
 		-125,-551
 		125,-551
@@ -35,4 +45,4 @@
 		-167,540
 		-384,415
 	" />
-</svg>
+```

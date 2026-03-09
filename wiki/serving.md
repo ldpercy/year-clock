@@ -7,15 +7,15 @@ Serving
 File protocol
 -------------
 
-I coded the year clock in the beginning without using a web server, just by opening the `index.html` file in a browser:
+At the beginning I developed the year clock without using a web server, just opening the `index.html` file in a browser:
 
 ```
 	file:///local-path-to-project/year-clock/index.html
 ```
 
-Unfortunately file protocol is pretty locked-down in browsers these days (for good reasons) and there are some modern JS features I wanted that don't work under `file`.
+File protocol is however pretty locked-down in browsers these days (with good reason), and some modern JS features I want don't work under `file`.
 
-So from version 2.1 onwards a server and http will be required.
+So from version 2.0 onwards a server and http will be required.
 
 
 HTTP

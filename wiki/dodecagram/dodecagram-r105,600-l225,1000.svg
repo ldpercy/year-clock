@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-350 -27 1052 1052" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+	<title>Dodecagram r105,600 l225,1000 - needs to be redone origin-centered</title>
+	<style>
+		polygon {
+			stroke: none;
+			fill: gold;
+			fill-rule: evenodd;
+		}
+	</style>
+	<!-- <rect fill="darkgoldenrod" x="-350" y="-27" width="1052" height="1052" /> -->
+	<polygon points="
+		0,0
+		580,155
+		80,1021
+		-345,597
+		521,97
+		677,677
+		-323,677
+		-168,97
+		698,597
+		274,1021
+		-226,155
+		353,0
+		353,1000
+		-226,845
+		274,-21
+		698,403
+		-168,903
+		-323,323
+		677,323
+		521,903
+		-345,403
+		80,-21
+		580,845
+		0,1000
+	"/>
+
+
+</svg>

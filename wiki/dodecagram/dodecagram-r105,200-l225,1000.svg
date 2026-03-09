@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-500 -500 1000 1000" width="100%" height="100%"
+	preserveAspectRatio="xMidYMid meet">
+	<title>Dodecagram r105,200 l225,1000</title>
+	<style>
+		line,
+		polygon {
+			stroke: gold;
+			fill: gold;
+			fill-rule: evenodd;
+		}
+	</style>
+	<!-- <rect fill="darkgoldenrod" x="-500" y="-500" width="1000" height="1000" /> -->
+	<polygon points="
+		30,-500
+		224,-448
+		-276,418
+		-418,276
+		448,-224
+		500,-30
+		-500,-30
+		-448,-224
+		418,276
+		276,418
+		-224,-448
+		-30,-500
+		-30,500
+		-224,448
+		276,-418
+		418,-276
+		-448,224
+		-500,30
+		500,30
+		448,224
+		-418,-276
+		-276,-418
+		224,448
+		30,500
+	"/>
+
+
+
+
+</svg>

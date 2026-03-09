@@ -59,7 +59,8 @@ form#form-clock {
 	margin: 1ex;
 	width: 12em;
 
-	h2 {
+	h1 {
+		font-size: 3ex;
 		margin-top: 0em;
 		margin-bottom: 1ex;
 	}
@@ -177,7 +178,7 @@ form#form-clock {
 	box-shadow: 0px 0px 3em var(--accent);
 
 	h1 { margin: 0em 1em;}
-	h1::before {
+	img {
 		display: inline-block ;
 		content: url("../favicon.svg");
 		height:2ex;
@@ -210,11 +211,11 @@ form#form-clock {
 
 	&::backdrop {
 		background-image:  url('./dialog-backdrop.svg');
-		backdrop-filter: blur(1pt) brightness(40%);
+		backdrop-filter: blur(1pt) brightness(50%);
 		background-position: center;
 		background-repeat: repeat;
 
 		background-size: 15vh;
-		opacity: 0.8;
+		opacity: 0.9;
 	}
 }
