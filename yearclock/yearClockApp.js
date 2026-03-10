@@ -12,7 +12,7 @@ import * as testing from "./Testing.js";
 
 class YearclockApp extends HTMLApp {
 
-	appVersion = 'v2.1.2';
+	appVersion = 'v2.🐁Δ';
 	projectColour = 'gold';
 	appInfo = [`%c
 		Year Clock ${this.appVersion} by ldpercy

@@ -4,6 +4,16 @@ Task
 An overview of tasks, jobs, bugs etc.
 
 
+Top of the stack
+----------------
+* Fix keyboard controls + add a few more
+* Split up the monolithic yearClockApp (controller, views etc)
+* URL following the display
+* Light/dark theming
+* Solar theme
+
+
+
 Todo
 ----
 Job reminders to wrap into other tasks.
