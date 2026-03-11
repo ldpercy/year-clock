@@ -7,7 +7,7 @@ import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
 import * as testing from "./Testing.js";
-
+import { ui } from './view-html-ui.js';
 
 
 class YearclockApp extends HTMLApp {
@@ -45,7 +45,7 @@ class YearclockApp extends HTMLApp {
 		{
 			query: '#button-showAppInfo',
 			type: 'click',
-			listener: this.toggleAppInfoDialog
+			listener: ui.toggleAppInfoDialog
 		},
 	];
 
@@ -197,7 +197,7 @@ class YearclockApp extends HTMLApp {
 			switch(event.key) {
 				case ','    : event.preventDefault(); this.dayBackward(); break;
 				case '.'   	: event.preventDefault(); this.dayForward(); break;
-				case '?'	: this.toggleAppInfoDialog(); break;
+				case '?'	: ui.toggleAppInfoDialog(); break;
 				default     : /* do nothing */; break;
 			}
 		}
@@ -219,11 +219,7 @@ class YearclockApp extends HTMLApp {
 		this.page.element.datePicker.value = currentDate.toIsoDate();
 	}
 
-	toggleAppInfoDialog() {
-		/** @type {HTMLDialogElement} */
-		const d = document.querySelector("#dialog-appInfo");
-		d.showModal();
-	}
+
 
 
 	formChangeHandler(event) {
@@ -370,7 +366,7 @@ class YearclockApp extends HTMLApp {
 }/* yearclock.App */
 
 
-const yearclockApp = new YearclockApp();
+export const yearclockApp = new YearclockApp();
 
 
 
