@@ -2,22 +2,6 @@ import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import * as dates from "./Dates.js";
 import { clockView } from './view-clock.js';
 
-let element;
-
-const elementMap = {
-	appInfoDialog		: 'dialog-appInfo',
-
-
-	// The clock form
-	clockForm			: 'form-clock',
-	themeInput			: 'input-theme',
-	datePicker			: 'input-date',
-	languageInput		: 'input-language',
-	styleInput			: 'input-style',
-	backgroundInput		: 'input-background',
-	hemisphereInput		: 'input-hemisphere',
-	style_background	: 'stylesheet-background',
-};
 
 
 
@@ -59,20 +43,31 @@ export const parameter = {
 };
 
 
+let element;
+
+const elementMap = {
+	appInfoDialog		: 'dialog-appInfo',
+
+
+	// The clock form
+	clockForm			: 'form-clock',
+	themeInput			: 'input-theme',
+	datePicker			: 'input-date',
+	languageInput		: 'input-language',
+	styleInput			: 'input-style',
+	backgroundInput		: 'input-background',
+	hemisphereInput		: 'input-hemisphere',
+	style_background	: 'stylesheet-background',
+
+};
 
 
 
 class HTMLUserInterface {
 
 
-
-
 	eventListeners = [
-		{
-			query: '#form-clock',
-			type: 'change',
-			listener: this.formChangeHandler
-		},
+
 	];
 
 	constructor() {
@@ -84,21 +79,7 @@ class HTMLUserInterface {
 
 
 
-	formChangeHandler(event) {
-		//log('formChangeHandler:', event);
-		//log('event.target', event.target);
-		//log('event.currentTarget', event.currentTarget);
-		//log('event.target.name', event.target.name);
-		//log('event.target.value', event.target.value);
 
-		switch(event.target.name) {
-			case 'style'        : this.updateStyle(event.target.value); break;
-			case 'background'   : this.updateBackground(event.target.value) ; break;
-			case 'date'         : clockView.changeDate(new dates.Date(event.target.value)) ; break;
-			default             : clockView.updateClock(); break;
-		}
-
-	}/* formChangeHandler */
 
 
 	updateStyle(style) {
