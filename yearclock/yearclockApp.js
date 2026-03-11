@@ -7,7 +7,9 @@ import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
 import * as testing from "./Testing.js";
+import { controller } from './controller.js';
 import { ui } from './view-html-ui.js';
+import { clockView } from './view-clock.js';
 
 
 class YearclockApp extends HTMLApp {
@@ -22,31 +24,27 @@ class YearclockApp extends HTMLApp {
 	];
 
 	eventListeners = [
-		{
-			query: '#form-clock',
-			type: 'change',
-			listener: this.formChangeHandler
-		},
-		{
-			element: document,
-			type: 'keydown',
-			listener: this.keyboardHandler
-		},
-		{
-			query: '#button-dayBack',
-			type: 'click',
-			listener: ((event)=>{ event.preventDefault(); this.dayBackward(); })
-		},
-		{
-			query: '#button-dayForward',
-			type: 'click',
-			listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
-		},
-		{
-			query: '#button-showAppInfo',
-			type: 'click',
-			listener: ui.toggleAppInfoDialog
-		},
+		// {
+		// 	query: '#form-clock',
+		// 	type: 'change',
+		// 	listener: this.formChangeHandler
+		// },
+
+		// {
+		// 	query: '#button-dayBack',
+		// 	type: 'click',
+		// 	listener: ((event)=>{ event.preventDefault(); this.dayBackward(); })
+		// },
+		// {
+		// 	query: '#button-dayForward',
+		// 	type: 'click',
+		// 	listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
+		// },
+		// {
+		// 	query: '#button-showAppInfo',
+		// 	type: 'click',
+		// 	listener: ui.toggleAppInfoDialog
+		// },
 	];
 
 
@@ -139,28 +137,28 @@ class YearclockApp extends HTMLApp {
 		this.page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 		this.page.element.style_background   = document.getElementById('stylesheet-background');
 
-		this.page.element.container   = document.getElementById('clockContainer');
+		//this.page.element.container   = document.getElementById('clockContainer');
 
-		// The clock form
-		this.page.element.themeInput = document.getElementById('input-theme');
-		this.page.element.themeInput.value = this.page.initial.theme;
+		// // The clock form
+		// this.page.element.themeInput = document.getElementById('input-theme');
+		// this.page.element.themeInput.value = this.page.initial.theme;
 
-		this.page.element.datePicker = document.getElementById('input-date');
-		this.page.element.datePicker.value = this.page.initial.date.toIsoDate();
+		// this.page.element.datePicker = document.getElementById('input-date');
+		// this.page.element.datePicker.value = this.page.initial.date.toIsoDate();
 
-		this.page.element.languageInput = document.getElementById('input-language');
-		this.page.element.languageInput.value = this.page.initial.language;
+		// this.page.element.languageInput = document.getElementById('input-language');
+		// this.page.element.languageInput.value = this.page.initial.language;
 
-		this.page.element.styleInput = document.getElementById('input-style');
-		this.page.element.styleInput.value = this.page.initial.style;
+		// this.page.element.styleInput = document.getElementById('input-style');
+		// this.page.element.styleInput.value = this.page.initial.style;
 
-		this.page.element.backgroundInput = document.getElementById('input-background');
-		this.page.element.backgroundInput.value = this.page.initial.background;
+		// this.page.element.backgroundInput = document.getElementById('input-background');
+		// this.page.element.backgroundInput.value = this.page.initial.background;
 
-		this.page.element.hemisphereInput = document.getElementById('input-hemisphere');
-		this.page.element.hemisphereInput.value = this.page.initial.hemisphere;
+		// this.page.element.hemisphereInput = document.getElementById('input-hemisphere');
+		// this.page.element.hemisphereInput.value = this.page.initial.hemisphere;
 
-		this.page.element.clockForm = document.getElementById('form-clock');
+		// this.page.element.clockForm = document.getElementById('form-clock');
 
 
 
@@ -180,9 +178,9 @@ class YearclockApp extends HTMLApp {
 
 		//log('initialClockParams:', initialClockParams);
 
-		this.updateBackground(this.page.initial.background);
+		ui.updateBackground(this.page.initial.background);
 
-		this.drawClock(initialClockParams);
+		clockView.drawClock(initialClockParams);
 		// I'm sure there's a way to spread these parameters properly...
 
 	} /* setup */
@@ -191,152 +189,9 @@ class YearclockApp extends HTMLApp {
 
 
 
-	keyboardHandler(event) {
-		if (event.target.id === '') // need a MUCH better of vetting these
-		{
-			switch(event.key) {
-				case ','    : event.preventDefault(); this.dayBackward(); break;
-				case '.'   	: event.preventDefault(); this.dayForward(); break;
-				case '?'	: ui.toggleAppInfoDialog(); break;
-				default     : /* do nothing */; break;
-			}
-		}
-	}/* keyboardHandler */
-
-
-	dayForward() {
-		const currentDate = new dates.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
-		currentDate.incrementDay();
-		this.changeDate(currentDate);
-		this.page.element.datePicker.value = currentDate.toIsoDate();
-	}
-
-
-	dayBackward() {
-		const currentDate = new dates.Date(this.page.element.datePicker.valueAsDate);  //valueAsDate
-		currentDate.decrementDay();
-		this.changeDate(currentDate);
-		this.page.element.datePicker.value = currentDate.toIsoDate();
-	}
 
 
 
-
-	formChangeHandler(event) {
-		//log('formChangeHandler:', event);
-		//log('event.target', event.target);
-		//log('event.currentTarget', event.currentTarget);
-		//log('event.target.name', event.target.name);
-		//log('event.target.value', event.target.value);
-
-		switch(event.target.name) {
-			case 'style'        : this.updateStyle(event.target.value); break;
-			case 'background'   : this.updateBackground(event.target.value) ; break;
-			case 'date'         : this.changeDate(new dates.Date(event.target.value)) ; break;
-			default             : this.updateClock(); break;
-		}
-
-	}/* formChangeHandler */
-
-
-
-	updateStyle(style) {
-		//page.element.themeInput.value
-		const cssUrl_style = (style) ? `yearclock/theme/${this.page.element.themeInput.value}/style-${style}.css` : '';
-		this.page.element.style_style.setAttribute('href', cssUrl_style);
-	}
-
-
-	updateBackground(background) {
-		const cssUrl_background = (background) ? `page/background/${background}.css` : '';
-		this.page.element.style_background.setAttribute('href', cssUrl_background);
-	}
-
-
-	updateClock() {
-		const newDate = new dates.Date(this.page.element.datePicker.value);
-
-		if (!newDate.isValid)
-		{
-			console.warn('Invalid date', newDate);
-			return;
-		}
-
-		const updateClockParams = {
-			id          : '1234',
-			date        : newDate,
-			theme       : this.page.element.themeInput.value,
-			style       : this.page.element.styleInput.value,
-			language    : this.page.element.languageInput.value,
-			background  : this.page.element.backgroundInput.value,
-			hemisphere  : this.page.element.hemisphereInput.value,
-		};
-
-		this.drawClock(updateClockParams);
-	}
-
-
-
-	/* drawClock
-	*/
-	async drawClock(clockParameter) {
-
-		//log('drawClock', arguments);
-
-		let cssUrl_theme = `yearclock/theme/${clockParameter.theme}/theme.css`;
-		this.page.element.style_theme.setAttribute('href', cssUrl_theme);
-
-		if (clockParameter.style) {
-			let cssUrl_style = `yearclock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
-			this.page.element.style_style.setAttribute('href', cssUrl_style);
-		}
-
-
-		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.js`;
-
-
-		// need something like railroad-handling here, but can't remember how to implement the pattern
-
-		//try {
-			// this will overwrite the theme binding each time, might need to improve?
-			const themeModule = await import(themeModuleUrl);
-
-			//console.log('themeModule',themeModule);
-
-			this.page.clockInstance[clockParameter.id] = new themeModule.Theme(clockParameter);
-
-			const clockSVG = this.page.clockInstance[clockParameter.id].getClockSVG();
-
-			this.page.element.container.innerHTML = clockSVG;
-
-			if (this.page.initial.test) { this.runTest(this.page.initial.test, clockSVG); }
-		// }
-		// catch (error) {
-		// 	console.error(`Error for '${clockParameter.theme}' theme:`, error);
-		// 	this.page.element.container.innerHTML = `<h2 class="themeError">${error}</h2>`;
-		// }
-
-	}/* drawClock */
-
-
-
-
-
-	changeDate(yearclockDate)
-	{
-		//console.debug('yearclockDate', yearclockDate);
-		//console.debug('this instanceof Date', yearclockDate instanceof Date);
-		//console.debug('!isNaN(this)', !isNaN(yearclockDate));
-
-		if (!yearclockDate.isValid)
-		{
-			console.warn('Invalid date', yearclockDate);
-			return;
-		}
-		this.page.clockInstance[1234].setDisplayDate(yearclockDate);
-		const clockSVG = this.page.clockInstance[1234].getClockSVG();
-		this.page.element.container.innerHTML = clockSVG;
-	}
 
 
 	runTest(testNames, outputString) {
