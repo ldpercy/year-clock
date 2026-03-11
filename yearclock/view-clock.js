@@ -1,6 +1,7 @@
 import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
-import { ui } from './view-html-ui.js';
+import { parameter,ui } from './view-html-ui.js';
 import * as dates from "./Dates.js";
+import { yearclockApp } from "./yearclockApp.js";
 
 
 const elementMap = {
@@ -103,7 +104,7 @@ class ClockView {
 
 			element.clock_container.innerHTML = clockSVG;
 
-			if (this.page.initial.test) { this.runTest(this.page.initial.test, clockSVG); }
+			if (parameter.initial.test) { yearclockApp.runTest(parameter.initial.test, clockSVG); }
 		// }
 		// catch (error) {
 		// 	console.error(`Error for '${clockParameter.theme}' theme:`, error);

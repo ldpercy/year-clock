@@ -19,7 +19,46 @@ const elementMap = {
 	style_background	: 'stylesheet-background',
 };
 
-let currentCommandSet = 1;
+
+
+// object to store general page information
+export const parameter = {
+	// arguments - default, received and computed
+	default :
+	{
+		date        : new dates.Date(),
+		theme       : 'wheel',
+		style       : '',
+		language    : 'en',
+		background  : '',
+		hemisphere  : 'southern',
+		test        : false,
+	},
+
+	url : 	// requested values to use
+	{
+		date        : undefined,
+		theme       : undefined,
+		style       : undefined,
+		language    : undefined,
+		background  : undefined,
+		hemisphere  : undefined,
+		test        : undefined,
+	},
+
+	initial :		// initial computed values to use
+	{
+		date        : undefined,	// initial date to use
+		theme       : undefined,	// initial clock theme to use
+		style       : undefined,	// initial clock style to use
+		language    : undefined,	// initial language to use
+		background  : undefined,
+		hemisphere  : undefined,
+		test        : undefined,
+	},
+};
+
+
 
 
 

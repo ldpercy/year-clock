@@ -8,7 +8,7 @@ import * as l10n from "./L10n.js";
 import * as dates from "./Dates.js";
 import * as testing from "./Testing.js";
 import { controller } from './controller.js';
-import { ui } from './view-html-ui.js';
+import { parameter, ui } from './view-html-ui.js';
 import { clockView } from './view-clock.js';
 
 
@@ -48,45 +48,7 @@ class YearclockApp extends HTMLApp {
 	];
 
 
-	// object to store general page information
-	page = {
-		// arguments - default, received and computed
-		default :
-		{
-			date        : new dates.Date(),
-			theme       : 'wheel',
-			style       : '',
-			language    : 'en',
-			background  : '',
-			hemisphere  : 'southern',
-			test        : false,
-		},
 
-		parameter : 	// requested values to use
-		{
-			date        : undefined,
-			theme       : undefined,
-			style       : undefined,
-			language    : undefined,
-			background  : undefined,
-			hemisphere  : undefined,
-			test        : undefined,
-		},
-
-		initial :		// initial computed values to use
-		{
-			date        : undefined,	// initial date to use
-			theme       : undefined,	// initial clock theme to use
-			style       : undefined,	// initial clock style to use
-			language    : undefined,	// initial language to use
-			background  : undefined,
-			hemisphere  : undefined,
-			test        : undefined,
-		},
-
-		element       : {}, // store references to various page elements
-		clockInstance : {}, // clock instances will be collected here
-	};
 
 
 
@@ -100,42 +62,42 @@ class YearclockApp extends HTMLApp {
 	*/
 	setup() {
 		// Set initial date based on date param or local date
-		this.page.parameter.date = this.getUrlParameter('date'); // will be null if absent
+		parameter.url.date = this.getUrlParameter('date'); // will be null if absent
 
-		if (this.page.parameter.date === null) {
-			this.page.initial.date = this.page.default.date;
+		if (parameter.url.date === null) {
+			parameter.initial.date = parameter.default.date;
 		}
 		else
 		{
-			const urlDate =  new dates.Date(this.page.parameter.date);
-			this.page.initial.date = (urlDate.isValid) ? urlDate : this.page.default.date;
+			const urlDate =  new dates.Date(parameter.url.date);
+			parameter.initial.date = (urlDate.isValid) ? urlDate : parameter.default.date;
 		}
 
 
 		// Theming:
-		this.page.parameter.theme = this.getUrlParameter('theme');
-		this.page.initial.theme   = this.page.parameter.theme || this.page.default.theme;
-		this.page.parameter.style = this.getUrlParameter('style');
-		this.page.initial.style   = this.page.parameter.style || this.page.default.style;
+		parameter.url.theme = this.getUrlParameter('theme');
+		parameter.initial.theme   = parameter.url.theme || parameter.default.theme;
+		parameter.url.style = this.getUrlParameter('style');
+		parameter.initial.style   = parameter.url.style || parameter.default.style;
 		// Language
-		this.page.parameter.language = this.getUrlParameter('language');
-		this.page.initial.language   = l10n.getSupportedLanguage(this.page.parameter.language) || l10n.getSupportedBrowserLanguage() || this.page.default.language;
+		parameter.url.language = this.getUrlParameter('language');
+		parameter.initial.language   = l10n.getSupportedLanguage(parameter.url.language) || l10n.getSupportedBrowserLanguage() || parameter.default.language;
 		// Background
-		this.page.parameter.background = this.getUrlParameter('background');
-		this.page.initial.background   = this.page.parameter.background || this.page.default.background;
+		parameter.url.background = this.getUrlParameter('background');
+		parameter.initial.background   = parameter.url.background || parameter.default.background;
 		// Hemisphere
-		this.page.parameter.hemisphere = this.getUrlParameter('hemisphere');
-		this.page.initial.hemisphere   = this.page.parameter.hemisphere || this.page.default.hemisphere;
+		parameter.url.hemisphere = this.getUrlParameter('hemisphere');
+		parameter.initial.hemisphere   = parameter.url.hemisphere || parameter.default.hemisphere;
 
 		// test
-		this.page.parameter.test = this.getUrlParameter('test');
-		this.page.initial.test   = this.page.parameter.test || this.page.default.test;
-		if (this.page.initial.test) document.body.classList.add('testing');
+		parameter.url.test = this.getUrlParameter('test');
+		parameter.initial.test   = parameter.url.test || parameter.default.test;
+		if (parameter.initial.test) document.body.classList.add('testing');
 
 		// reusable page elements
-		this.page.element.style_theme        = document.getElementById('stylesheet-theme');
-		this.page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
-		this.page.element.style_background   = document.getElementById('stylesheet-background');
+		// this.page.element.style_theme        = document.getElementById('stylesheet-theme');
+		// this.page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
+		// this.page.element.style_background   = document.getElementById('stylesheet-background');
 
 		//this.page.element.container   = document.getElementById('clockContainer');
 
@@ -168,17 +130,17 @@ class YearclockApp extends HTMLApp {
 		const initialClockParams = {
 			id          : '1234',
 			//container   : this.page.element.container,
-			date        : this.page.initial.date,
-			theme       : this.page.initial.theme,
-			style       : this.page.initial.style,
-			language    : this.page.initial.language,
-			background  : this.page.initial.background,
-			hemisphere  : this.page.initial.hemisphere,
+			date        : parameter.initial.date,
+			theme       : parameter.initial.theme,
+			style       : parameter.initial.style,
+			language    : parameter.initial.language,
+			background  : parameter.initial.background,
+			hemisphere  : parameter.initial.hemisphere,
 		};
 
 		//log('initialClockParams:', initialClockParams);
 
-		ui.updateBackground(this.page.initial.background);
+		ui.updateBackground(parameter.initial.background);
 
 		clockView.drawClock(initialClockParams);
 		// I'm sure there's a way to spread these parameters properly...
