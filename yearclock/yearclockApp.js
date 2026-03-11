@@ -23,30 +23,6 @@ class YearclockApp extends HTMLApp {
 		`color: light-dark(hsl(from ${this.projectColour} h s 30), hsl(from ${this.projectColour} h s 70));`,
 	];
 
-	eventListeners = [
-		// {
-		// 	query: '#form-clock',
-		// 	type: 'change',
-		// 	listener: this.formChangeHandler
-		// },
-
-		// {
-		// 	query: '#button-dayBack',
-		// 	type: 'click',
-		// 	listener: ((event)=>{ event.preventDefault(); this.dayBackward(); })
-		// },
-		// {
-		// 	query: '#button-dayForward',
-		// 	type: 'click',
-		// 	listener: ((event)=>{ event.preventDefault(); this.dayForward(); })
-		// },
-		// {
-		// 	query: '#button-showAppInfo',
-		// 	type: 'click',
-		// 	listener: ui.toggleAppInfoDialog
-		// },
-	];
-
 
 
 
@@ -99,32 +75,8 @@ class YearclockApp extends HTMLApp {
 		// this.page.element.style_style        = document.getElementById('stylesheet-style');	// I know this is confusing, will try to find a better name
 		// this.page.element.style_background   = document.getElementById('stylesheet-background');
 
-		//this.page.element.container   = document.getElementById('clockContainer');
-
-		// // The clock form
-		// this.page.element.themeInput = document.getElementById('input-theme');
-		// this.page.element.themeInput.value = this.page.initial.theme;
-
-		// this.page.element.datePicker = document.getElementById('input-date');
-		// this.page.element.datePicker.value = this.page.initial.date.toIsoDate();
-
-		// this.page.element.languageInput = document.getElementById('input-language');
-		// this.page.element.languageInput.value = this.page.initial.language;
-
-		// this.page.element.styleInput = document.getElementById('input-style');
-		// this.page.element.styleInput.value = this.page.initial.style;
-
-		// this.page.element.backgroundInput = document.getElementById('input-background');
-		// this.page.element.backgroundInput.value = this.page.initial.background;
-
-		// this.page.element.hemisphereInput = document.getElementById('input-hemisphere');
-		// this.page.element.hemisphereInput.value = this.page.initial.hemisphere;
-
-		// this.page.element.clockForm = document.getElementById('form-clock');
 
 
-
-		//log('page:', page);
 
 		/** @type {ClockParameters} */
 		const initialClockParams = {
@@ -138,7 +90,7 @@ class YearclockApp extends HTMLApp {
 			hemisphere  : parameter.initial.hemisphere,
 		};
 
-		//log('initialClockParams:', initialClockParams);
+		console.debug('initialClockParams:', initialClockParams);
 
 		ui.updateBackground(parameter.initial.background);
 
