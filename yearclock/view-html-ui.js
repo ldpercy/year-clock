@@ -1,46 +1,12 @@
 import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import * as dates from "./Dates.js";
 import { clockView } from './view-clock.js';
+import { yearclockApp } from "./yearclockApp.js";
 
 
 
 
-// object to store general page information
-export const parameter = {
-	// arguments - default, received and computed
-	default :
-	{
-		date        : new dates.Date(),
-		theme       : 'wheel',
-		style       : '',
-		language    : 'en',
-		background  : '',
-		hemisphere  : 'southern',
-		test        : false,
-	},
 
-	url : 	// requested values to use
-	{
-		date        : undefined,
-		theme       : undefined,
-		style       : undefined,
-		language    : undefined,
-		background  : undefined,
-		hemisphere  : undefined,
-		test        : undefined,
-	},
-
-	initial :		// initial computed values to use
-	{
-		date        : undefined,	// initial date to use
-		theme       : undefined,	// initial clock theme to use
-		style       : undefined,	// initial clock style to use
-		language    : undefined,	// initial language to use
-		background  : undefined,
-		hemisphere  : undefined,
-		test        : undefined,
-	},
-};
 
 
 let element;
@@ -77,7 +43,9 @@ class HTMLUserInterface {
 	}
 
 
-
+	initialise() {
+		this.date = yearclockApp.parameter.initial.date;
+	}
 
 
 
@@ -110,9 +78,9 @@ class HTMLUserInterface {
 		return element.datePicker.valueAsDate;
 	}
 
-	/** @param {dates.Date} date */
+	/** @param {Date} date */
 	set date(date) {
-		element.datePicker.value = date.toIsoDate();
+		element.datePicker.value = new dates.Date(date).toIsoDate();
 	}
 
 	/** @returns {string} */
