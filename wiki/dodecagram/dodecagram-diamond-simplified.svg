@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-97 -97 194 194" width="100%" height="100%"
+	preserveAspectRatio="xMidYMid meet">
+	<title>
+		Dodecagram: diamond - simplified
+		Radius: 100
+		Points: 97,71,26
+		viewbox: -97 -97 194 194
+	</title>
+	<style>
+		polygon {
+			stroke: none;
+			fill: gold;
+			fill-rule: evenodd;
+		}
+	</style>
+	<!-- <rect fill="dimgrey" x="-97" y="-97" width="194" height="194" /> -->
+
+	<polygon points="-26,-97 26,-97 71,71 26,97 -97,-26 -71,-71 97,-26 97,26 -71,71 -97,26 26,-97 71,-71 26,97 -26,97 -71,-71 -26,-97 97,26 71,71 -97,26 -97,-26 71,-71 97,-26 -26,97 -71,71 "/>
+
+</svg>
