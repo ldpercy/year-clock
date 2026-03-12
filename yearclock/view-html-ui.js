@@ -51,6 +51,7 @@ class HTMLUserInterface {
 		this.style = yearclockApp.parameter.initial.style;
 		this.background = yearclockApp.parameter.initial.background;
 		this.hemisphere = yearclockApp.parameter.initial.hemisphere;
+		this.updateBackground(yearclockApp.parameter.initial.background);
 	}
 
 

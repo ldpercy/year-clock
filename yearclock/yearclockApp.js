@@ -115,7 +115,6 @@ class YearclockApp extends HTMLApp {
 
 
 		ui.initialise();
-		ui.updateBackground(this.parameter.initial.background);
 
 		/** @type {ClockParameters} */
 		const initialClockParams = {
