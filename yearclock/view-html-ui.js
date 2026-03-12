@@ -45,6 +45,11 @@ class HTMLUserInterface {
 
 	initialise() {
 		this.date = yearclockApp.parameter.initial.date;
+		this.theme = yearclockApp.parameter.initial.theme;
+		this.language = yearclockApp.parameter.initial.language;
+		this.style = yearclockApp.parameter.initial.style;
+		this.background = yearclockApp.parameter.initial.background;
+		this.hemisphere = yearclockApp.parameter.initial.hemisphere;
 	}
 
 
@@ -73,19 +78,15 @@ class HTMLUserInterface {
 	//
 	//	Accessors
 	//
-	/** @returns {Date} */
-	get date() {
-		return element.datePicker.valueAsDate;
-	}
-
-	/** @param {Date} date */
-	set date(date) {
-		element.datePicker.value = new dates.Date(date).toIsoDate();
-	}
 
 	/** @returns {string} */
 	get theme() {
 		return element.themeInput.value;
+	}
+
+	/** @returns {Date} */
+	get date() {
+		return element.datePicker.valueAsDate;
 	}
 
 	/** @returns {string} */
@@ -108,6 +109,35 @@ class HTMLUserInterface {
 		return element.hemisphereInput.value;
 	}
 
+	/** @param {string} theme */
+	set theme(theme) {
+		element.themeInput.value = theme;
+	}
+
+	/** @param {Date} date */
+	set date(date) {
+		element.datePicker.value = new dates.Date(date).toIsoDate();
+	}
+
+	/** @param {string} language */
+	set language(language) {
+		element.languageInput.value = language;
+	}
+
+	/** @param {string} style */
+	set style(style) {
+		element.styleInput.value = style;
+	}
+
+	/** @param {string} background */
+	set background(background) {
+		element.backgroundInput.value = background;
+	}
+
+	/** @param {string} hemisphere */
+	set hemisphere(hemisphere) {
+		element.hemisphereInput.value = hemisphere;
+	}
 
 }/* HTMLUserInterface */
 
