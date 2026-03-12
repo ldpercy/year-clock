@@ -4,16 +4,17 @@ import { clockView } from './view-clock.js';
 import * as dates from "./Dates.js";
 
 
-const keyFunctionMap = {
-	'?'	: ui.toggleAppInfoDialog,
-};
-
-
-
-
-
 
 class Controller {
+
+
+	keyFunctionMap = {
+		'd'	: this.dayForward,
+		'.'	: this.dayForward,
+		'D'	: this.dayBackward,
+		','	: this.dayBackward,
+		'?'	: ui.toggleAppInfoDialog,
+	};
 
 
 	eventListeners = [
@@ -26,6 +27,11 @@ class Controller {
 			element: document,
 			type: 'keydown',
 			listener: this.keyboardHandler
+		},
+		{
+			query: 'select,input',
+			type: 'keydown',
+			listener: (event)=>event.stopPropagation()
 		},
 		{
 			query: '#button-dayBack',
@@ -51,6 +57,7 @@ class Controller {
 	}
 
 
+
 	formChangeHandler(event) {
 		//log('formChangeHandler:', event);
 		//log('event.target', event.target);
@@ -67,15 +74,15 @@ class Controller {
 
 	}/* formChangeHandler */
 
+
+
+
 	keyboardHandler(event) {
-		//console.debug(event);
-		if (event.target.id === '') // need a MUCH better of vetting these
-		{
-			switch(event.key) {
-				case ','    : this.dayBackward(); break;
-				case '.'   	: this.dayForward(); break;
-				case '?'	: ui.toggleAppInfoDialog(); break;
-				default     : /* do nothing */; break;
+		if (!event.altKey && !event.ctrlKey && !event.metaKey) {
+
+			if (this.keyFunctionMap[event.key]) {
+				event.preventDefault();
+				this.keyFunctionMap[event.key]();
 			}
 		}
 	}/* keyboardHandler */
