@@ -23,6 +23,7 @@ const elementMap = {
 	styleInput			: 'input-style',
 	backgroundInput		: 'input-background',
 	hemisphereInput		: 'input-hemisphere',
+	style_style			: 'stylesheet-style',
 	style_background	: 'stylesheet-background',
 
 };
