@@ -46,3 +46,26 @@ Integer-rounded comes out to:
 		-384,415
 	" />
 ```
+
+
+Dodecagon/gram
+--------------
+
+Try to figure these out exactly.
+
+
+Compass points, approx:
+```
+//~xy -288.676,500
+
+right 75,298.86
+right 75,1000
+```
+
+Compass flats, approx
+```
+~xy -149.43,557.6779
+~right 15
+right 75,298.86
+right 75,1000
+```

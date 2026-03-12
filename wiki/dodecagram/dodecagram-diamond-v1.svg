@@ -1,14 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-558 -558 1116 1116" width="100%" height="100%"
 	preserveAspectRatio="xMidYMid meet">
-	<title>Dodecagram: turn 15; right 75,250; right 75,1000;</title>
+	<title>
+		Dodecagram: diamond
+		Major lines 1000
+	</title>
 	<style>
+		line,
 		polygon {
+			stroke: gold;
 			fill: gold;
 			fill-rule: evenodd;
 		}
 	</style>
-
-	<circle cx="0" cy="0" r="558" fill="dimgrey"/>
+	<!-- <rect fill="darkgoldenrod" x="-551" y="-551" width="1102" height="1102" /> -->
 
 	<polygon points="
 		-149,-558
@@ -36,5 +40,8 @@
 		-149,558
 		-408,408
 	" />
+
+
+
 
 </svg>
