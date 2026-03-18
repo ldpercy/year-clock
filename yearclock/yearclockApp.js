@@ -128,7 +128,7 @@ class YearclockApp extends HTMLApp {
 			hemisphere  : this.parameter.initial.hemisphere,
 		};
 
-		console.debug('initialClockParams:', initialClockParams);
+		//console.debug('initialClockParams:', initialClockParams);
 
 
 
