@@ -72,8 +72,9 @@ class ClockView {
 
 
 
-	/* drawClock
-	*/
+	/** drawClock
+	 * @param {ClockParameters} clockParameter
+	 */
 	async drawClock(clockParameter) {
 
 		//log('drawClock', arguments);
