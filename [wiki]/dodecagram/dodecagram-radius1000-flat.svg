@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1000 -1000 2000 2000" width="100%" height="100%"
+	preserveAspectRatio="xMidYMid meet">
+	<title>
+		Dodecagram: radius 1000, flat
+		-966, -966, 1932, 1932
+	</title>
+	<style>
+		line,
+		polygon,
+		path {
+			stroke: none;
+			fill: gold;
+			fill-rule: evenodd;
+		}
+	</style>
+	<!-- <rect fill="darkgoldenrod" x="-966" y="-966" width="1932" height="1932" /> -->
+
+
+	<path class="star" d="M259,966 L-966,-259 L707,-707 L259,966  Z M-707,-707 L966,-259 L-259,966 L-707,-707  Z M966,259 L-707,707 L-259,-966 L966,259  Z M-966,259 L259,-966 L707,707 L-966,259  Z  z" style="--degrees:0"></path>
+</svg>

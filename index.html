@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Year Clock v2.1.2 by ldpercy </title>
+	<title>Year Clock v2.2.0 by ldpercy </title>
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
 	<meta name="theme-color" content="gold"/>
 	<!-- page -->
@@ -18,7 +18,7 @@
 	</script>
 
 	<!-- setup -->
-	<script type="module" src="yearclock/yearClockApp.js"></script>
+	<script type="module" src="app/yearclockApp.js"></script>
 
 	<!-- Theme Styles -->
 	<link id="stylesheet-theme" rel="stylesheet">
@@ -49,8 +49,8 @@
 		<label for="input-date">Date</label>
 		<input id="input-date" type="date" name="date" title="date"/>
 		<div class="controls">
-			<div><button id="button-dayBack">,&lt;</button> day back</div>
-			<div><button id="button-dayForward">.&gt;</button> day forward</div>
+			<div><button type="button" id="button-dayBack">,&lt;</button> day back</div>
+			<div><button type="button" id="button-dayForward">.&gt;</button> day forward</div>
 		</div>
 
 		<label for="input-language">Language</label>
@@ -123,17 +123,17 @@
 		<h1>
 			<img src="./favicon.svg"/>
 			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
-			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.1.2">v2.1.2</a>
+			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.2.0">v2.2.0</a>
 			by <a href="https://github.com/ldpercy/">ldpercy</a>
 		</h1>
 
 		<h2>Keyboard shortcuts</h2>
 		<dl>
-			<dt><kbd>,</kbd></dt>
-			<dd>Day back</dd>
-
-			<dt><kbd>.</kbd></dt>
+			<dt><kbd>d</kbd> or <kbd>.</kbd></dt>
 			<dd>Day forward</dd>
+
+			<dt><kbd>D</kbd> or <kbd>,</kbd></dt>
+			<dd>Day back</dd>
 
 			<dt><kbd>?</kbd></dt>
 			<dd>Show this dialog</dd>

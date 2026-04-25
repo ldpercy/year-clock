@@ -1,0 +1,71 @@
+Dodecagrams
+===========
+
+Using various versions of these for icons, details etc.
+
+https://en.wikipedia.org/wiki/Dodecagram
+
+
+Current favicon
+---------------
+
+First line is approx:
+```
+	//~xy -125,551.066
+	//~right 15
+	right 75,250
+	right 75,1000
+```
+
+Integer-rounded comes out to:
+```
+	<polygon points="
+		-125,-551
+		125,-551
+		384,415
+		167,540
+		-540,-167
+		-415,-384
+		551,-125
+		551,125
+		-415,384
+		-540,167
+		167,-540
+		384,-415
+		125,551
+		-125,551
+		-384,-415
+		-167,-540
+		540,167
+		415,384
+		-551,125
+		-551,-125
+		415,-384
+		540,-167
+		-167,540
+		-384,415
+	" />
+```
+
+
+Dodecagon/gram
+--------------
+
+Try to figure these out exactly.
+
+
+Compass points, approx:
+```
+//~xy -288.676,500
+
+right 75,298.86
+right 75,1000
+```
+
+Compass flats, approx
+```
+~xy -149.43,557.6779
+~right 15
+right 75,298.86
+right 75,1000
+```

@@ -5,10 +5,10 @@ A bit like a regular analog clock, but instead of the regular 12 hour divisions 
 
 <p align="middle">
 	<a href="https://ldpercy.github.io/year-clock/?theme=vintage&date=2006-05-25">
-	<img width="45%" src="wiki/image/vintage.svg" alt="Year clock example: vintage theme" title="?theme=vintage&date=2006-05-25"/>
+	<img width="45%" src="./[wiki]/image/vintage.svg" alt="Year clock example: vintage theme" title="?theme=vintage&date=2006-05-25"/>
 	</a>
 	<a href="https://ldpercy.github.io/year-clock/?theme=lightning&date=2006-05-25">
-	<img width="45%" src="wiki/image/lightning.svg" alt="Year clock example: lightning theme" title="?theme=lightning&date=2006-05-25"/>
+	<img width="45%" src="./[wiki]/image/lightning.svg" alt="Year clock example: lightning theme" title="?theme=lightning&date=2006-05-25"/>
 	</a>
 </p>
 
@@ -47,7 +47,7 @@ Many more examples can be found by searching for things like 'radial calendar' o
 
 I've used code from [year-clock.net](http://year-clock.net) as a starting point.
 
-A copy of the original source code is in the wiki: [wiki/year-clock.net/](<./wiki/year-clock.net/>).
+A copy of the original source code is in the wiki: [wiki/year-clock.net/](<./[wiki]/year-clock.net/>).
 
 I'm maintaining a theme 'brice' for the original design as seen on year-clock.net
 
@@ -59,7 +59,7 @@ How to run
 > From version 2.0 onwards year-clock will only run in `http` mode as it utilises JavaScript modules.
 > Versions prior to that were runnable with `file://` protocol.
 
-* Clone the repository
+* Clone the repository, including the [html-common submodule](<../html-common/[wiki]/git submodule.md>)
 * Start up your favourite webserver, making sure the project repo is under the webroot
 * Navigate to `[localhost]/year-clock/index.html` or equivalent
 
@@ -129,15 +129,15 @@ Turn on basic smoke testing - the border turns red if 'silent' JavaScript errors
 
 Theming
 -------
-More info: [wiki/theming.md](<./wiki/theming.md>)
+More info: [wiki/theming.md](<./[wiki]/theming.md>)
 
 > [!NOTE]
 > Theme code is evolving so details subject to change
 
 
-Themes are in [yearclock/theme/](<./yearclock/theme/>).
+Themes are in [theme/](<./theme/>).
 
-Each theme is a directory `yearclock/theme/[themeName]/` with two files:
+Each theme is a directory `theme/${themeName}/` with two files:
 
 * theme.js - module containing theme class, settings, and the main `getThemeSVG()` method
 * theme.css	- regular stylesheet for the clock
@@ -151,7 +151,7 @@ Optional style variants (specified with the 'style' parameter) are stored as:
 Tasks
 -----
 
-Detail in the [task/](<./task/>) directory.
+Detail in the [task/](<./[task]/>) directory.
 
 
 ### Currently working on

@@ -27,6 +27,11 @@ html {
 			text-decoration: none;
 			&:hover { text-decoration: underline; }
 		}
+
+		output > svg {
+			display:block;	/*  fix for the extra pixel problem */
+		}
+
 	}
 
 }/* html */
