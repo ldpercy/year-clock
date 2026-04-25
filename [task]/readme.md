@@ -20,40 +20,41 @@ Job reminders to wrap into other tasks.
 
 
 ### Needs fixing - bugs, quirks etc
-* Keyboard controls are still quirky wrt focus at the moment
+* ...
 
 
 ### General improvements
 
-* Convert testing over to use `html-common`'s testing lib
-* See if some of the geometry calcs can be converted over to use PlanarSpace - will need svg coords first though
-* Option to have labels combined with their respective sectors instead of as a separate group
+
+* `testing` Convert testing over to use `html-common`'s testing lib
+* `geometry` See if some of the geometry calcs can be converted over to use PlanarSpace - will need svg coords first though
+* `themebase` Option to have labels combined with their respective sectors instead of as a separate group
 * [adjust labels for short weeks](<adjust labels for short weeks.md>)
-* Have display changes update the URL so that reloads use current settings
-* Add proper light/dark UI schemes; categorise theme styles into light/dark
-* Option to have month-day rings always show 31 days, but with placeholders for non-functional days. Should reduce visual jarring when crossing months.
-* Start looking into tools like linters
-* Add license
-* Find out if form `select` size can be controlled with css
-* Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform; also `writing-mode: vertical-lr;`
-* Add another test mode to check for exceptions - something that would have caught the season-circle bug
-* Get the wireframe background to switch on the grid properly - prob need to draw separately
-* Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
-* Look into utilising some webservices for tasks like l10n
-* Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
-* Revisit vintage theme lens and hand length
-* Remove radians calcs from other date arrays in `date.js` (had already done some)
-* Add option to hide the form
-* Fonts - find some web-safe ones or figure out serving
-* Rename hands to pointers
-* Look into stroke gradients
-* Make pointer-sector position configurable (start/middle/fractional)
-* Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
+* `app` Have display changes update the URL so that reloads use current settings
+* `scheme/theme` Add proper light/dark UI schemes; categorise theme styles into light/dark
+* `theme base` Option to have month-day rings always show 31 days, but with placeholders for non-functional days. Should reduce visual jarring when crossing months.
+* `development` Start looking into tools like linters
+* `license` Add license
+* `css` Find out if form `select` size can be controlled with css
+* `style` Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform; also `writing-mode: vertical-lr;`
+* `testing` Add another test mode to check for exceptions - something that would have caught the season-circle bug
+* `testing` Get the wireframe background to switch on the grid properly - prob need to draw separately
+* `naming` Improve the naming conventions for sector and general clock labels - it's a bit confusing right now
+* `l10n` Look into utilising some webservices for tasks like l10n
+* `theme` Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
+* `vintage` Revisit vintage theme lens and hand length
+* `date` Remove radians calcs from other date arrays in `date.js` (had already done some)
+* `ui` Add option to hide the form
+* `font` Fonts - find some web-safe ones or figure out serving
+* `naming` Rename hands to pointers
+* `svg` Look into stroke gradients
+* `themebase` Make pointer-sector position configurable (start/middle/fractional)
+* `svg/css` Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
 
 
 ### In progress
 
-* General refactorin & cleanup
+* General refactoring & cleanup
 * Improve test page parameterisation
 * Combining sector and label methods into unified 'ring' method
 * Finish cleaning up new hands & promote to ThemeBase
@@ -62,6 +63,8 @@ Job reminders to wrap into other tasks.
 
 ### Done
 
+* Reorganised directories and imports
+* Keyboard controls sorted out for now
 * Initial changeover to `html-common`
 * Fixed october bug
 * Removal of old theme-loading callback
