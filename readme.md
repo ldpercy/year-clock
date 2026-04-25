@@ -47,7 +47,7 @@ Many more examples can be found by searching for things like 'radial calendar' o
 
 I've used code from [year-clock.net](http://year-clock.net) as a starting point.
 
-A copy of the original source code is in the wiki: [wiki/year-clock.net/](<./wiki/year-clock.net/>).
+A copy of the original source code is in the wiki: [wiki/year-clock.net/](<./[wiki]/year-clock.net/>).
 
 I'm maintaining a theme 'brice' for the original design as seen on year-clock.net
 
@@ -129,7 +129,7 @@ Turn on basic smoke testing - the border turns red if 'silent' JavaScript errors
 
 Theming
 -------
-More info: [wiki/theming.md](<./wiki/theming.md>)
+More info: [wiki/theming.md](<./[wiki]/theming.md>)
 
 > [!NOTE]
 > Theme code is evolving so details subject to change
@@ -151,7 +151,7 @@ Optional style variants (specified with the 'style' parameter) are stored as:
 Tasks
 -----
 
-Detail in the [task/](<./task/>) directory.
+Detail in the [task/](<./[task]/>) directory.
 
 
 ### Currently working on
