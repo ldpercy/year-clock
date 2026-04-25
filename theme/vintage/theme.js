@@ -3,12 +3,12 @@
 
 import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../app/Dates.js';
-import * as themebase from '../ThemeBase.js';
+import { ThemeBase } from '../ThemeBase.js';
 import * as clockSvg from '../../app/ClockSVG.js';
 import * as geometry from '../../app/Geometry.js';
 
 
-class VintageTheme extends themebase.ThemeBase {
+class VintageTheme extends ThemeBase {
 
 	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400).pad(200);
 

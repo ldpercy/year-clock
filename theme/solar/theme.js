@@ -3,11 +3,11 @@
 
 import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../app/Dates.js';
-import * as themebase from '../ThemeBase.js';
+import { ThemeBase } from '../ThemeBase.js';
 import * as geometry from '../../app/Geometry.js';
 
 
-class SolarTheme extends themebase.ThemeBase {
+class SolarTheme extends ThemeBase {
 
 	viewBox = new svg.ViewBox(-2500,-1200,5000,2800).pad(50);
 

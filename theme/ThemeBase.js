@@ -1,13 +1,13 @@
 /* ThemeBase
 */
 
-import * as yearclock from './YearClock.js';
+import { YearClock } from './YearClock.js';
 import * as maths from '../[html-common]/module/Maths.js';
 import * as geometry from '../app/Geometry.js';
 import * as svg from '../[html-common]/module/SVG.js';
 import * as clockSvg from '../app/ClockSVG.js';
 
-export class ThemeBase extends yearclock.YearClock {
+export class ThemeBase extends YearClock {
 
 
 	viewBox = new svg.ViewBox(-1200, -1200, 2400, 2400);

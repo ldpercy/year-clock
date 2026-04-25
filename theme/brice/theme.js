@@ -3,11 +3,11 @@ Original theme from year-clock.net
 */
 
 import * as dates from '../../app/Dates.js';
-import * as themebase from '../ThemeBase.js';
+import { ThemeBase } from '../ThemeBase.js';
 import * as geometry from '../../app/Geometry.js';
 
 
-class BriceTheme extends themebase.ThemeBase  {
+class BriceTheme extends ThemeBase  {
 
 	// Clock parameters
 	viewBox           = '-1200 -1200 2400 2400';

@@ -1,12 +1,12 @@
 
 import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../app/Dates.js';
-import * as themebase from '../ThemeBase.js';
+import { ThemeBase } from '../ThemeBase.js';
 import * as geometry from '../../app/Geometry.js';
 
 /* Space
 */
-class SpaceTheme extends themebase.ThemeBase {
+class SpaceTheme extends ThemeBase {
 
 	viewBox = new svg.ViewBox(-1600,-1200,3200,2400).pad(50);
 

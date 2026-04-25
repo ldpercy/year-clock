@@ -3,14 +3,14 @@
 
 import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../app/Dates.js';
-import * as themebase from '../ThemeBase.js';
+import { ThemeBase } from '../ThemeBase.js';
 import * as clockSvg from '../../app/ClockSVG.js';
 import * as geometry from '../../app/Geometry.js';
 import * as periodArray from '../../app/PeriodArray.js';
 import * as calendarEvent from '../../app/CalendarEvent.js';
 
 
-class CarDashboardTheme extends themebase.ThemeBase {
+class CarDashboardTheme extends ThemeBase {
 
 	//viewBox           = '-2700 -1400 5400 2800';
 	viewBox           = new svg.ViewBox(-2700,-1400,5400,2800).pad(50);
