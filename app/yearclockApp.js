@@ -13,7 +13,7 @@ import { clockView } from './view-clock.js';
 
 class YearclockApp extends HTMLApp {
 
-	appVersion = 'v2.🐁Δ';
+	appVersion = 'v2.2.0';
 	projectColour = 'gold';
 	appInfo = [`%c
 		Year Clock ${this.appVersion} by ldpercy
