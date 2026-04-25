@@ -2,11 +2,11 @@
 No hands for this one, just highlights
 */
 
-import * as svg from '../../../[html-common]/module/SVG.js';
-import * as dates from '../../Dates.js';
+import * as svg from '../../[html-common]/module/SVG.js';
+import * as dates from '../../app/Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as geometry from '../../Geometry.js';
-import * as periodArray from '../../PeriodArray.js';
+import * as geometry from '../../app/Geometry.js';
+import * as periodArray from '../../app/PeriodArray.js';
 
 
 class LightningTheme extends themebase.ThemeBase {

@@ -1,6 +1,6 @@
 
-import * as dates from "../Dates.js";
-import * as geometry from "../Geometry.js";
+import * as dates from "../app/Dates.js";
+import * as geometry from "../app/Geometry.js";
 
 
 

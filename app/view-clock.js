@@ -79,16 +79,16 @@ class ClockView {
 
 		//log('drawClock', arguments);
 
-		let cssUrl_theme = `yearclock/theme/${clockParameter.theme}/theme.css`;
+		let cssUrl_theme = `theme/${clockParameter.theme}/theme.css`;
 		element.style_theme.setAttribute('href', cssUrl_theme);
 
 		if (clockParameter.style) {
-			let cssUrl_style = `yearclock/theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
+			let cssUrl_style = `theme/${clockParameter.theme}/style-${clockParameter.style}.css`;
 			element.style_style.setAttribute('href', cssUrl_style);
 		}
 
 
-		const themeModuleUrl = `./theme/${clockParameter.theme}/theme.js`;
+		const themeModuleUrl = `../theme/${clockParameter.theme}/theme.js`;
 
 
 		// need something like railroad-handling here, but can't remember how to implement the pattern

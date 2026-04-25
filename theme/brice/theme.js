@@ -2,9 +2,9 @@
 Original theme from year-clock.net
 */
 
-import * as dates from '../../Dates.js';
+import * as dates from '../../app/Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as geometry from '../../Geometry.js';
+import * as geometry from '../../app/Geometry.js';
 
 
 class BriceTheme extends themebase.ThemeBase  {

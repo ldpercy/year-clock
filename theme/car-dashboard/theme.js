@@ -1,13 +1,13 @@
 /* Car dashboard theme
 */
 
-import * as svg from '../../../[html-common]/module/SVG.js';
-import * as dates from '../../Dates.js';
+import * as svg from '../../[html-common]/module/SVG.js';
+import * as dates from '../../app/Dates.js';
 import * as themebase from '../ThemeBase.js';
-import * as clockSvg from '../../ClockSVG.js';
-import * as geometry from '../../Geometry.js';
-import * as periodArray from '../../PeriodArray.js';
-import * as calendarEvent from '../../CalendarEvent.js';
+import * as clockSvg from '../../app/ClockSVG.js';
+import * as geometry from '../../app/Geometry.js';
+import * as periodArray from '../../app/PeriodArray.js';
+import * as calendarEvent from '../../app/CalendarEvent.js';
 
 
 class CarDashboardTheme extends themebase.ThemeBase {

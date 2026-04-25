@@ -59,7 +59,7 @@ class HTMLUserInterface {
 
 	updateStyle(style) {
 		//page.element.themeInput.value
-		const cssUrl_style = (style) ? `yearclock/theme/${this.theme}/style-${style}.css` : '';
+		const cssUrl_style = (style) ? `theme/${this.theme}/style-${style}.css` : '';
 		element.style_style.setAttribute('href', cssUrl_style);
 	}
 

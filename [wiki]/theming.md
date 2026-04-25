@@ -23,7 +23,7 @@ JavaScript Classes
 Themes are written as JavaScript classes.
 
 
-Example `yearclock/theme/example-theme/theme.js`:
+Example `theme/example-theme/theme.js`:
 
 ```js
 	import * as themebase from '../ThemeBase.js';
