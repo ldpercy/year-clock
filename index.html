@@ -7,7 +7,7 @@
 	<meta name="theme-color" content="gold"/>
 	<!-- page -->
 	<link rel="icon" href="favicon.svg">
-	<link rel="stylesheet" href="page/page.css">
+	<link rel="stylesheet" href="./index.css">
 
 	<script>
 		const protocol = new URL(window.location).protocol;
@@ -29,7 +29,7 @@
 
 </head>
 <body>
-	<form id="form-clock">
+	<form id="form-clock" class="ui-panel" tab-index="0">
 		<h2>Year Clock</h2>
 
 		<label for="input-theme">Theme</label>
@@ -121,7 +121,7 @@
 
 	<dialog id="dialog-appInfo" closedby="any">
 		<h1>
-			<img src="./favicon.svg"/>
+			<!-- <img src="./favicon.svg" style="height:2em;"/> -->
 			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
 			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.2.0">v2.2.0</a>
 			by <a href="https://github.com/ldpercy/">ldpercy</a>

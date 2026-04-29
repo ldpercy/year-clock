@@ -441,7 +441,7 @@ export class ThemeBase extends YearClock {
 		let result = new geometry.Angle(angle.degrees);
 
 		switch(setting.rotate) {
-			case 'none'         : result.degrees = 0;
+			case 'none'         : result.degrees = 0; break;
 			case 'radial-left'  : result.degrees += -90; break;
 			case 'radial-right' : result.degrees += +90; break;
 			case 'radial-in'    : result.degrees += 180; break;

@@ -1,0 +1,47 @@
+/*
+**	index.css
+*/
+
+@import "./[html-common]/style/fullpage/dialog-appInfo.css";
+@import "./[html-common]/style/fullpage/ui-panel.css";
+@import "./page/page.css";
+
+:root {
+	--project-colour: gold;
+	--scheme-colour: white;
+}
+
+
+html {
+	margin:0px;
+	padding:0px;
+
+
+	scrollbar-width: none;
+
+	font-family: sans-serif;
+	font-size: 16px;
+
+	body {
+		--accent-light: #07c;
+		--accent: var(--accent-light);
+
+		margin:0px;
+		padding:0px;
+
+		/* color scheme */
+		color-scheme: light;
+		accent-color: var(--accent);
+		a {
+			color: var(--accent);
+			text-decoration: none;
+			&:hover { text-decoration: underline; }
+		}
+
+		output > svg {
+			display:block;	/*  fix for the extra pixel problem */
+		}
+
+	}
+
+}/* html */
