@@ -125,6 +125,7 @@ form#form-clock {
 
 
 
-#dialog-appInfo::backdrop {
-	background-image:  url('./dialog-backdrop.svg');
+#dialog-appInfo {
+	&::backdrop { background-image:  url('./dialog-backdrop.svg'); }
+	h1::before { content: url("../favicon.svg"); }
 }
