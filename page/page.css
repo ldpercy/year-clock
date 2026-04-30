@@ -21,9 +21,6 @@ output { display:block; }
 
 form#form-clock {
 
-	position:absolute;
-	right:0ex;
-
 	.controls {
 		margin:1ex 0ex;
 
