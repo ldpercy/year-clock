@@ -49,7 +49,7 @@ fieldset.colourScheme {
 /* @media (orientation: landscape) { */
 @media (min-aspect-ratio: 1.2) {
 
-	form#form-clock {
+	#form-clock {
 		grid-template-columns: 1fr ;
 		label { margin-top: 0.2em; }
 	}
@@ -57,7 +57,7 @@ fieldset.colourScheme {
 
 /* @media (orientation: portrait) { */
 @media (max-aspect-ratio: 1.2) {
-	form#form-clock {
+	#form-clock {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		label { text-align:right; margin-right:1ex; }
 		label::after { content:": "; }
@@ -70,7 +70,7 @@ fieldset.colourScheme {
 }
 
 @media (max-width: 800px) {
-	form#form-clock {
+	#form-clock {
 		grid-template-columns: 1fr 1fr 1fr;
 		label { display: none; }
 		h2, details, .controls { display:none; }
