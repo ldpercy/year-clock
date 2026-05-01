@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html data-colourscheme="dark">
 <head>
 	<meta charset="utf-8">
 	<title>Year Clock v2.🖧👚 by ldpercy </title>
@@ -30,7 +30,7 @@
 </head>
 <body>
 	<div class="panel-group group-right">
-		<form id="form-clock" class="ui-panel" tab-index="0">
+		<form id="form-clock" name="clockSettings" class="ui-panel" tab-index="0">
 			<h2>Year Clock</h2>
 
 			<label for="input-theme">Theme</label>
@@ -54,6 +54,20 @@
 				<div><button type="button" id="button-dayForward">.&gt;</button> day forward</div>
 			</div>
 
+			<label class="scheme" title="Colour scheme">
+				Colour scheme
+			</label>
+			<fieldset class="colourScheme">
+				<label title="Light colour scheme">
+					<input type="radio" name="colourScheme" class="colourScheme-selector" value="light" checked>
+					light
+				</label>
+				<label title="Dark colour scheme">
+					<input type="radio" name="colourScheme" class="colourScheme-selector" value="dark">
+					dark
+				</label>
+			</fieldset>
+
 			<label for="input-language">Language</label>
 			<select id="input-language" name="language" title="language">
 				<option value="en">English</option>
@@ -64,22 +78,6 @@
 				<option value="ru">Russian</option>
 				<option value="ko">Korean</option>
 			</select>
-			<!--
-			<label class="scheme" title="Colour scheme">
-				Colour scheme
-			</label>
-			<div>
-				<label title="Light scheme" class="no-after">
-					<input type="radio" name="colourScheme" value="light" checked>
-					light
-				</label>
-				<label title="Dark scheme" class="no-after">
-					<input type="radio" name="colourScheme" value="dark">
-					dark
-				</label>
-			</div>
-			-->
-
 
 			<label for="input-style">Style</label>
 			<input id="input-style" type="text" name="style" title="style" list="datalist-style" pattern="[a-z0-9\-]{0,10}"/>

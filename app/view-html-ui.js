@@ -10,6 +10,8 @@ import { yearclockApp } from "./yearclockApp.js";
 
 
 let element;
+let form;
+
 
 const elementMap = {
 	appInfoDialog		: 'dialog-appInfo',
@@ -41,6 +43,7 @@ class HTMLUserInterface {
 		element = HTMLApp.buildElementMap(document, elementMap);
 		//console.log(element);
 		HTMLApp.addEventListeners(this.eventListeners, this);
+		form = document.forms['clockSettings'];
 	}
 
 
@@ -86,34 +89,14 @@ class HTMLUserInterface {
 		return element.themeInput.value;
 	}
 
-	/** @returns {Date} */
-	get date() {
-		return element.datePicker.valueAsDate;
-	}
-
-	/** @returns {string} */
-	get style() {
-		return element.styleInput.value;
-	}
-
-	/** @returns {string} */
-	get language() {
-		return element.languageInput.value;
-	}
-
-	/** @returns {string} */
-	get background() {
-		return element.backgroundInput.value;
-	}
-
-	/** @returns {string} */
-	get hemisphere() {
-		return element.hemisphereInput.value;
-	}
-
 	/** @param {string} theme */
 	set theme(theme) {
 		element.themeInput.value = theme;
+	}
+
+	/** @returns {Date} */
+	get date() {
+		return element.datePicker.valueAsDate;
 	}
 
 	/** @param {Date} date */
@@ -121,9 +104,22 @@ class HTMLUserInterface {
 		element.datePicker.value = new dates.Date(date).toIsoDate();
 	}
 
-	/** @param {string} language */
-	set language(language) {
-		element.languageInput.value = language;
+
+
+	/** @returns {string} */
+	get colourScheme() {
+		return form.colourScheme.value;
+	}
+
+	/** @param {string} colourScheme */
+	set colourScheme(colourScheme) {
+		form.colourScheme.value = colourScheme;
+	}
+
+
+	/** @returns {string} */
+	get style() {
+		return element.styleInput.value;
 	}
 
 	/** @param {string} style */
@@ -131,9 +127,29 @@ class HTMLUserInterface {
 		element.styleInput.value = style;
 	}
 
+	/** @returns {string} */
+	get language() {
+		return element.languageInput.value;
+	}
+
+	/** @param {string} language */
+	set language(language) {
+		element.languageInput.value = language;
+	}
+
+	/** @returns {string} */
+	get background() {
+		return element.backgroundInput.value;
+	}
+
 	/** @param {string} background */
 	set background(background) {
 		element.backgroundInput.value = background;
+	}
+
+	/** @returns {string} */
+	get hemisphere() {
+		return element.hemisphereInput.value;
 	}
 
 	/** @param {string} hemisphere */
