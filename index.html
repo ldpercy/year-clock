@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-colourscheme="light">
+<html data-colourscheme="dark">
 <head>
 	<meta charset="utf-8">
 	<title>Year Clock v2.🖧👚 by ldpercy </title>
@@ -8,25 +8,13 @@
 	<!-- page -->
 	<link rel="icon" href="favicon.svg">
 	<link rel="stylesheet" href="./index.css">
-
-	<script>
-		const protocol = new URL(window.location).protocol;
-
-		if (protocol === 'file:') {
-			alert("You are using `file:` protocol - modules won't work");
-		}
-	</script>
-
-	<!-- setup -->
-	<script type="module" src="app/yearclockApp.js"></script>
+	<script  type="module"  src="./index.js"></script>
 
 	<!-- Theme Styles -->
 	<link id="stylesheet-theme" rel="stylesheet">
 	<link id="stylesheet-style" rel="stylesheet">
-
 	<!-- Page background style -->
 	<link id="stylesheet-background" rel="stylesheet">
-
 </head>
 <body>
 	<div class="panel-group group-right">
@@ -59,11 +47,11 @@
 			</label>
 			<fieldset class="colourScheme flex1">
 				<label title="Light colour scheme" class="no-after">
-					<input type="radio" name="colourScheme" class="colourScheme-selector" value="light" checked>
+					<input type="radio" name="colourScheme" class="colourScheme-selector" value="light">
 					light
 				</label>
 				<label title="Dark colour scheme" class="no-after">
-					<input type="radio" name="colourScheme" class="colourScheme-selector" value="dark">
+					<input type="radio" name="colourScheme" class="colourScheme-selector" value="dark" checked>
 					dark
 				</label>
 			</fieldset>

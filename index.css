@@ -9,7 +9,7 @@
 
 :root {
 	--project-colour: gold;
-	--transition-time-page: 0.5s;
+	--transition-duration-page: 0.5s;
 }
 
 
@@ -54,14 +54,15 @@ html {
 	--scheme-colour: #0a0a0a;
 	--html-background: var(--scheme-colour);
 	--accent-colour: hsl(from var(--project-colour) h s 50 );
+	--default-panel-colour: var(--scheme-colour);
 
 	background-color: var(--html-background);
 	color-scheme: dark;
 	accent-color: var(--accent-colour);
 
 	transition:
-		background-color var(--transition-time-page) linear,
-		color-scheme var(--transition-time-page) linear allow-discrete;
+		background-color var(--transition-duration-page) linear,
+		color-scheme var(--transition-duration-page) linear allow-discrete;
 
 
 	body {
@@ -69,8 +70,8 @@ html {
 		accent-color: var(--accent-colour);
 
 		transition:
-			color var(--transition-time-page) linear,
-			accent-color var(--transition-time-page) linear;
+			color var(--transition-duration-page) linear,
+			accent-color var(--transition-duration-page) linear;
 	}
 }
 
@@ -80,7 +81,7 @@ html {
 
 html[data-colourscheme=light] {
 	color-scheme: light;
-	--scheme-colour: white;
+	--scheme-colour: #fcfcfc;
 	--accent-colour: oklch(from var(--project-colour) 0.7 c h );
 }
 
