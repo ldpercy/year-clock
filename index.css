@@ -51,7 +51,6 @@ html {
 
 html {
 
-	--scheme-colour: #0a0a0a;
 	--html-background: var(--scheme-colour);
 	--accent-colour: hsl(from var(--project-colour) h s 50 );
 	--default-panel-colour: var(--scheme-colour);

@@ -59,7 +59,7 @@ class Controller {
 
 	constructor() {
 		HTMLApp.addEventListeners(this.eventListeners, this);
-		console.debug('controller');
+		//console.debug('controller');
 	}
 
 
