@@ -1,40 +1,7 @@
-/* Page
+/*
+**	page.css
 */
 
-html {
-	--project-colour: gold;
-	margin:0px;
-	padding:0px;
-
-
-	scrollbar-width: none;
-
-	font-family: sans-serif;
-	font-size: 16px;
-
-	body {
-		--accent-light: #07c;
-		--accent: var(--accent-light);
-
-		margin:0px;
-		padding:0px;
-
-		/* color scheme */
-		color-scheme: light;
-		accent-color: var(--accent);
-		a {
-			color: var(--accent);
-			text-decoration: none;
-			&:hover { text-decoration: underline; }
-		}
-
-		output > svg {
-			display:block;	/*  fix for the extra pixel problem */
-		}
-
-	}
-
-}/* html */
 
 
 /* Clock
@@ -54,25 +21,6 @@ output { display:block; }
 
 form#form-clock {
 
-	display: grid;
-	position:absolute;
-	right:0ex;
-	border:1px solid silver;
-	background-color:#eee9;
-	border-radius: 1ex;
-	padding:1ex;
-	margin: 1ex;
-	width: 12em;
-
-	h1 {
-		font-size: 3ex;
-		margin-top: 0em;
-		margin-bottom: 1ex;
-	}
-	details {
-		margin-top:1ex;
-	}
-
 	.controls {
 		margin:1ex 0ex;
 
@@ -86,10 +34,22 @@ form#form-clock {
 	}
 }
 
+
+fieldset.colourScheme {
+	padding:0px;
+	border:none;
+	label {
+		display:inline-block;
+		width:48%;
+	}
+}
+
+
+
 /* @media (orientation: landscape) { */
 @media (min-aspect-ratio: 1.2) {
 
-	form#form-clock {
+	#form-clock {
 		grid-template-columns: 1fr ;
 		label { margin-top: 0.2em; }
 	}
@@ -97,23 +57,24 @@ form#form-clock {
 
 /* @media (orientation: portrait) { */
 @media (max-aspect-ratio: 1.2) {
-	form#form-clock {
+	#form-clock {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		label { text-align:right; margin-right:1ex; }
 		label::after { content:": "; }
 		label.no-after::after { content:""; }
-		h2, details, .controls { display:none; }
+		h1, details, .controls { display:none; }
 		width: auto;
 		left:0ex;
 		right:0ex;
+		--gap: 0.2em;
 	}
 }
 
 @media (max-width: 800px) {
-	form#form-clock {
+	#form-clock {
 		grid-template-columns: 1fr 1fr 1fr;
 		label { display: none; }
-		h2, details, .controls { display:none; }
+		h1, details, .controls { display:none; }
 		width: auto;
 		left:0ex;
 		right:0ex;
@@ -175,52 +136,6 @@ form#form-clock {
 
 
 #dialog-appInfo {
-	/* backdrop-filter: blur(20px); */
-	border-radius: 1em;
-	padding:1em;
-	border: 3px solid var(--accent);
-	opacity: 95%;
-	box-shadow: 0px 0px 3em var(--accent);
-
-	h1 { margin: 0em 1em;}
-	img {
-		display: inline-block ;
-		content: url("../favicon.svg");
-		height:2ex;
-		width:2ex;
-		vertical-align: sub;
-	}
-
-	dl {
-		display: grid;
-		grid-template-columns: 2fr 3fr ;
-		margin:1em;
-		font-size:1em;
-	}
-	dt {
-		margin: 0em 1em;
-		white-space: nowrap;
-		font-family: monospace;
-	}
-	dd {
-		margin: 0em 1em;
-	}
-
-	kbd {
-		display:inline-block;
-		border-radius: 1ex;
-		border: 1px dotted grey;
-		text-align:center;
-		width:3ex;
-	}
-
-	&::backdrop {
-		background-image:  url('./dialog-backdrop.svg');
-		backdrop-filter: blur(1pt) brightness(50%);
-		background-position: center;
-		background-repeat: repeat;
-
-		background-size: 15vh;
-		opacity: 0.9;
-	}
+	&::backdrop { background-image:  url('./dialog-backdrop.svg'); }
+	h1::before { content: url("../favicon.svg"); }
 }

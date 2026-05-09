@@ -1,114 +1,101 @@
 <!doctype html>
-<html>
+<html data-colourscheme="light">
 <head>
 	<meta charset="utf-8">
-	<title>Year Clock v2.2.0 by ldpercy </title>
+	<title>Year Clock v2.3 by ldpercy </title>
 	<meta name="description" content="The Year Clock displays the date as a clock face to help visualise the long-term passage of time.">
 	<meta name="theme-color" content="gold"/>
 	<!-- page -->
 	<link rel="icon" href="favicon.svg">
-	<link rel="stylesheet" href="page/page.css">
-
-	<script>
-		const protocol = new URL(window.location).protocol;
-
-		if (protocol === 'file:') {
-			alert("You are using `file:` protocol - modules won't work");
-		}
-	</script>
-
-	<!-- setup -->
-	<script type="module" src="app/yearclockApp.js"></script>
+	<link rel="stylesheet" href="./index.css">
+	<script  type="module"  src="./index.js"></script>
 
 	<!-- Theme Styles -->
 	<link id="stylesheet-theme" rel="stylesheet">
 	<link id="stylesheet-style" rel="stylesheet">
-
 	<!-- Page background style -->
 	<link id="stylesheet-background" rel="stylesheet">
-
 </head>
 <body>
-	<form id="form-clock">
-		<h2>Year Clock</h2>
+	<div class="panel-group group-right">
+		<form id="form-clock" name="clockSettings" class="ui-panel" tab-index="0">
+			<h1>Year Clock</h1>
 
-		<label for="input-theme">Theme</label>
-		<select id="input-theme" name="theme" title="theme">
-			<!-- <option>space</option> -->
-			<!-- <option>solar</option> -->
-			<option>wheel</option>
-			<option>car-dashboard</option>
-			<option>vintage</option>
-			<option>lightning</option>
-			<option>season-out</option>
-			<option>wall-clock</option>
-			<option>brice</option>
-			<option>testing</option>
-		</select>
+			<label for="input-theme">Theme</label>
+			<select id="input-theme" name="theme" title="theme">
+				<!-- <option>space</option> -->
+				<!-- <option>solar</option> -->
+				<option>wheel</option>
+				<option>car-dashboard</option>
+				<option>vintage</option>
+				<option>lightning</option>
+				<option>season-out</option>
+				<option>wall-clock</option>
+				<option>brice</option>
+				<option>testing</option>
+			</select>
 
-		<label for="input-date">Date</label>
-		<input id="input-date" type="date" name="date" title="date"/>
-		<div class="controls">
-			<div><button type="button" id="button-dayBack">,&lt;</button> day back</div>
-			<div><button type="button" id="button-dayForward">.&gt;</button> day forward</div>
-		</div>
+			<label for="input-date">Date</label>
+			<input id="input-date" type="date" name="date" title="date"/>
+			<div class="controls">
+				<div><button type="button" id="button-dayBack">,&lt;</button> day back</div>
+				<div><button type="button" id="button-dayForward">.&gt;</button> day forward</div>
+			</div>
 
-		<label for="input-language">Language</label>
-		<select id="input-language" name="language" title="language">
-			<option value="en">English</option>
-			<option value="es">Spanish</option>
-			<option value="fr">French</option>
-			<option value="zh">Chinese</option>
-			<option value="hi">Hindi</option>
-			<option value="ru">Russian</option>
-			<option value="ko">Korean</option>
-		</select>
-		<!--
-		<label class="scheme" title="Colour scheme">
-			Colour scheme
-		</label>
-		<div>
-			<label title="Light scheme" class="no-after">
-				<input type="radio" name="colourScheme" value="light" checked>
-				light
+			<!--
+			<label class="scheme" title="Colour scheme">
+				Colour scheme
 			</label>
-			<label title="Dark scheme" class="no-after">
-				<input type="radio" name="colourScheme" value="dark">
-				dark
-			</label>
-		</div>
-		-->
+			<fieldset class="colourScheme flex1">
+				<label title="Light colour scheme" class="no-after">
+					<input type="radio" name="colourScheme" class="colourScheme-selector" value="light">
+					light
+				</label>
+				<label title="Dark colour scheme" class="no-after">
+					<input type="radio" name="colourScheme" class="colourScheme-selector" value="dark" checked>
+					dark
+				</label>
+			</fieldset>
+			-->
 
+			<label for="input-language">Language</label>
+			<select id="input-language" name="language" title="language">
+				<option value="en">English</option>
+				<option value="es">Spanish</option>
+				<option value="fr">French</option>
+				<option value="zh">Chinese</option>
+				<option value="hi">Hindi</option>
+				<option value="ru">Russian</option>
+				<option value="ko">Korean</option>
+			</select>
 
-		<label for="input-style">Style</label>
-		<input id="input-style" type="text" name="style" title="style" list="datalist-style" pattern="[a-z0-9\-]{0,10}"/>
-		<datalist id="datalist-style">
-			<option value="dark"></option>
-			<option value="mono"></option>
-			<option value="night"></option>
-		</datalist>
+			<label for="input-style">Style</label>
+			<input id="input-style" type="text" name="style" title="style" list="datalist-style" pattern="[a-z0-9\-]{0,10}"/>
+			<datalist id="datalist-style">
+				<option value="dark"></option>
+				<option value="mono"></option>
+				<option value="night"></option>
+			</datalist>
 
-		<label for="input-background">Background</label>
-		<input id="input-background" name="background" type="text" title="background" list="datalist-background" pattern="[a-z0-9\-]{0,10}"/>
-		<datalist id="datalist-background">
-			<option value="">none/theme</option>
-			<option>star</option>
-			<option>sunset</option>
-			<option>dusk</option>
-			<option value="wireframe">wireframe (style override)</option>
-		</datalist>
+			<label for="input-background">Background</label>
+			<input id="input-background" name="background" type="text" title="background" list="datalist-background" pattern="[a-z0-9\-]{0,10}"/>
+			<datalist id="datalist-background">
+				<option value="">none/theme</option>
+				<option>star</option>
+				<option>sunset</option>
+				<option>dusk</option>
+				<option value="wireframe">wireframe (style override)</option>
+			</datalist>
 
-		<label for="input-hemisphere">Hemisphere</label>
-		<select id="input-hemisphere" name="hemisphere" title="hemisphere">
-			<option>northern</option>
-			<option>southern</option>
-		</select>
-
-
-		<p></p>
-		<button type="button" id="button-showAppInfo"><strong>🛈 Year Clock help</strong></button>
-
-	</form>
+			<label for="input-hemisphere">Hemisphere</label>
+			<select id="input-hemisphere" name="hemisphere" title="hemisphere">
+				<option>northern</option>
+				<option>southern</option>
+			</select>
+			<br/>
+			<button type="button" id="button-showAppInfo"><strong>🛈 Year Clock help</strong></button>
+		</form>
+	</div>
 
 	<output id="clockContainer">
 		<!-- <svg id="clock" class="yearclock" viewBox="-1200 -1200 2400 2400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
@@ -121,9 +108,9 @@
 
 	<dialog id="dialog-appInfo" closedby="any">
 		<h1>
-			<img src="./favicon.svg"/>
+			<!-- <img src="./favicon.svg" style="height:2em;"/> -->
 			<a href="https://github.com/ldpercy/year-clock/">Year Clock</a>
-			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.2.0">v2.2.0</a>
+			<a href="https://github.com/ldpercy/year-clock/releases/tag/v2.3">v2.3</a>
 			by <a href="https://github.com/ldpercy/">ldpercy</a>
 		</h1>
 

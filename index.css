@@ -1,0 +1,92 @@
+/*
+**	index.css
+*/
+
+@import "./[html-common]/style/fullpage/dialog-appInfo.css";
+@import "./[html-common]/style/fullpage/ui-panel.css";
+@import "./[html-common]/style/fullpage/panel-group.css";
+@import "./page/page.css";
+
+:root {
+	--project-colour: gold;
+	--transition-duration-page: 0.5s;
+}
+
+
+html {
+	margin:0px;
+	padding:0px;
+	scrollbar-width: none;
+
+	font-family: sans-serif;
+	font-size: 14px;
+
+	--scheme-colour: white;
+
+	body {
+		--accent-light: #07c;
+		--accent: var(--accent-light);
+
+		margin:0px;
+		padding:0px;
+
+		/* a {
+			color: var(--accent);
+			text-decoration: none;
+			&:hover { text-decoration: underline; }
+		} */
+
+		output > svg {
+			display:block;	/*  fix for the extra pixel problem */
+		}
+
+	}
+
+}/* html */
+
+
+
+
+/* Scheme colours */
+
+html {
+
+	--html-background: var(--scheme-colour);
+	--accent-colour: hsl(from var(--project-colour) h s 50 );
+	--default-panel-colour: var(--scheme-colour);
+
+	background-color: var(--html-background);
+	color-scheme: dark;
+	accent-color: var(--accent-colour);
+
+	transition:
+		background-color var(--transition-duration-page) linear,
+		color-scheme var(--transition-duration-page) linear allow-discrete;
+
+
+	body {
+		color: lab( from var(--scheme-colour) calc(sign(l - 70) * -100) 0 0 / 1);
+		accent-color: var(--accent-colour);
+
+		transition:
+			color var(--transition-duration-page) linear,
+			accent-color var(--transition-duration-page) linear;
+	}
+}
+
+
+
+
+
+html[data-colourscheme=light] {
+	color-scheme: light;
+	--scheme-colour: #fcfcfc;
+	--accent-colour: oklch(from var(--project-colour) 0.7 c h );
+}
+
+html[data-colourscheme=dark] {
+	color-scheme: dark;
+	--scheme-colour: #0a0a0a;
+	--accent-colour: oklch(from var(--project-colour) 0.9 c h );
+}
+

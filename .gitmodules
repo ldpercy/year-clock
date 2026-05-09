@@ -1,4 +1,4 @@
 [submodule "[html-common]"]
 	path = [html-common]
 	url = https://github.com/ldpercy/html-common
-	branch = v0.2
+	branch = v0.3

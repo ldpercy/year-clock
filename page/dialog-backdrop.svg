@@ -7,6 +7,6 @@
 			/* filter: blur(1ex); */
 		}
 	</style>
-	<rect fill="slategrey" x="-97" y="-97" width="194" height="194"/>
+	<rect fill="darkslategrey" x="-97" y="-97" width="194" height="194"/>
 	<polygon style="fill: gold;	fill-rule: evenodd;" points="-26,-97 26,-97 71,71 26,97 -97,-26 -71,-71 97,-26 97,26 -71,71 -97,26 26,-97 71,-71 26,97 -26,97 -71,-71 -26,-97 97,26 71,71 -97,26 -97,-26 71,-71 97,-26 -26,97 -71,71 "/>
 </svg>

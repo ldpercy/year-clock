@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-97 -97 194 194" width="100%" height="100%"
 	preserveAspectRatio="xMidYMid meet">
 	<title>Favicon: diamond, simplified, radius 100</title>
-	<circle cx="0" cy="0" r="97" fill="slategrey"/>
+	<circle cx="0" cy="0" r="97" fill="darkslategrey"/>
 	<polygon style="fill: gold;	fill-rule: evenodd;" points="-26,-97 26,-97 71,71 26,97 -97,-26 -71,-71 97,-26 97,26 -71,71 -97,26 26,-97 71,-71 26,97 -26,97 -71,-71 -26,-97 97,26 71,71 -97,26 -97,-26 71,-71 97,-26 -26,97 -71,71 "/>
 </svg>

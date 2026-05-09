@@ -2,6 +2,7 @@ import { HTMLApp } from "../[html-common]/module/HTMLApp.js";
 import { ui } from './view-html-ui.js';
 import { clockView } from './view-clock.js';
 import * as dates from "./Dates.js";
+import { yearclockApp } from './yearclockApp.js';
 
 
 
@@ -48,12 +49,17 @@ class Controller {
 			type: 'click',
 			listener: ui.toggleAppInfoDialog,
 		},
+		{
+			query: '.colourScheme-selector',
+			type: 'click',
+			listener: (event) => { this.colourSchemeHandler(event); }
+		},
 	];
 
 
 	constructor() {
 		HTMLApp.addEventListeners(this.eventListeners, this);
-		console.debug('controller');
+		//console.debug('controller');
 	}
 
 
@@ -102,6 +108,12 @@ class Controller {
 		currentDate.decrementDay();
 		clockView.changeDate(currentDate);
 		ui.date = currentDate;
+	}
+
+
+	colourSchemeHandler(event) {
+		ui.colourScheme = event.target.value;
+		yearclockApp.setColourScheme(event.target.value);
 	}
 
 

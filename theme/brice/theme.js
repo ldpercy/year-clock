@@ -1,7 +1,7 @@
 /* brice
 Original theme from year-clock.net
 */
-
+import * as svg from '../../[html-common]/module/SVG.js';
 import * as dates from '../../app/Dates.js';
 import { ThemeBase } from '../ThemeBase.js';
 import * as geometry from '../../app/Geometry.js';
@@ -10,7 +10,7 @@ import * as geometry from '../../app/Geometry.js';
 class BriceTheme extends ThemeBase  {
 
 	// Clock parameters
-	viewBox           = '-1200 -1200 2400 2400';
+	viewBox           = new svg.ViewBox(-1200, -1200, 2400, 2400);
 
 	clockRadius       = 1200;
 
