@@ -164,6 +164,7 @@ Detail in the [task/](<./[task]/>) directory.
 
 ### Recently completed
 
+* Update to common styles
 * Bring in `html-common` submodule
 * Conversion to HTTP-only and JS modules
 * 'Wheel' theme

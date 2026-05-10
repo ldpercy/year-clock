@@ -25,10 +25,11 @@ Job reminders to wrap into other tasks.
 
 ### General improvements
 
+* `drawing/animation` work out how to break up the drawing process so that items like the hands can be animated separately, eg with *animation-timing-function*
 * `app`		Have display changes update the URL so that reloads use current settings
 * `ui`	Add option to hide the form
 * `ui`	Add proper light/dark UI schemes; categorise theme styles into light/dark
-* `date` Remove radians calcs from other date arrays in `date.js` (had already done some)
+* `date`	Remove radians calcs from other date arrays in `date.js` (had already done some)
 * `geometry`	See if some of the geometry calcs can be converted over to use PlanarSpace - will need svg coords first though
 * `themebase`		Option to have month-day rings always show 31 days, but with placeholders for non-functional days. Should reduce visual jarring when crossing months.
 * `themebase`	Option to have labels combined with their respective sectors instead of as a separate group
@@ -42,13 +43,9 @@ Job reminders to wrap into other tasks.
 * `theme/vintage`	Revisit vintage theme lens and hand length
 * `theme/firedanger`	Build a 180 degree year clock to force the point about split-season display -> 'fire danger' theme
 * `l10n`	Look into utilising some webservices for tasks like l10n
-* `font`	Fonts - find some web-safe ones or figure out serving
-* `css`		Find out if form `select` size can be controlled with css
 * `css`		Investigate replacing/augmenting label rotation transforms with pure css - eg left and right can probably be applied just with css after the radial transform; also `writing-mode: vertical-lr;`
-* `svg`		Look into stroke gradients
-* `svg/css` Look into: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d#using_d_as_a_css_property
 * `license`		Add license
-* `development`		Start looking into tools like linters
+
 
 
 
