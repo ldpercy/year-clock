@@ -5,5 +5,15 @@
 	"version"		: "project-data",
 	"commit"		: "abcdef",
 	"date"			: "2026-10-25",
-	"tag"			: ["html","css","svg","js"]
+	"tag"			: ["html","css","svg","js"],
+	"screenshot"	: [
+		{
+			"path"	: "[project]/screenshot/vintage.svg",
+			"link"	: "?theme=vintage&date=2006-05-25"
+		},
+		{
+			"path"	: "[project]/screenshot/lightning.svg",
+			"link"	: "?theme=lightning&date=2006-05-25"
+		}
+	]
 }
