@@ -1,9 +1,10 @@
-{
+/** @type ProjectData */
+export default {
 	"name"			: "year-clock",
 	"description"	: "Clock-style 12 month calendar with different themes",
 	"repository"	: "https://github.com/ldpercy/year-clock/",
 	"version"		: "project-data",
-	"commit"		: "abcdef",
+	"status"		: "abcdef",
 	"date"			: "2026-10-25",
 	"tag"			: ["html","css","svg","js"],
 	"screenshot"	: [
