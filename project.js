@@ -6,7 +6,7 @@ export default {
 	"version"		: "project-data",
 	"status"		: "abcdef",
 	"date"			: "2026-10-25",
-	"tag"			: ["html","css","svg","js"],
+	"tag"			: ["html","css","svg","js","jsdoc","🍦js"],
 	"screenshot"	: [
 		{
 			"path"	: "[project]/screenshot/vintage.svg",
