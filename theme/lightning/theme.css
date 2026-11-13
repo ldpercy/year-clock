@@ -148,6 +148,8 @@ path.sector {
 	font-size: 9ex;
 	dominant-baseline: central;
 	filter: drop-shadow(0ex 0ex 0.2ex var(--textLight));
+	font-variant: small-caps;
+	text-transform: lowercase;
 }
 
 
