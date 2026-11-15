@@ -139,3 +139,8 @@ fieldset.colourScheme {
 	&::backdrop { background-image:  url('./dialog-backdrop.svg'); }
 	h1::before { content: url("../favicon.svg"); }
 }
+
+
+/* .ui-panel {
+	--panel-shadow-light: var(--accent-colour);
+} */
