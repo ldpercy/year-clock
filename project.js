@@ -3,9 +3,9 @@ export default {
 	"name"			: "year-clock",
 	"description"	: "Clock-style 12 month calendar with different themes",
 	"repository"	: "https://github.com/ldpercy/year-clock/",
-	"version"		: "project-data",
-	"status"		: "abcdef",
-	"date"			: "2026-10-25",
+	"version"		: "2.4.0_project-data",
+	"status"		: "In development",
+	"date"			: "2026-11-16",
 	"tag"			: ["html","css","svg","js","jsdoc","🍦js"],
 	"screenshot"	: [
 		{
